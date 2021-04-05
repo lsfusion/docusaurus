@@ -94,9 +94,10 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} lsFusion Foundation. Built with Docusaurus.`,
     },
-    // prism: {
-    //   theme: require('prism-react-renderer/themes/okaidia'),
-    // },
+    prism: {
+      theme: require('prism-react-renderer/themes/nightOwlLight'),
+      darkTheme: require('prism-react-renderer/themes/vsDark'),
+    },
   },
   presets: [
     [
