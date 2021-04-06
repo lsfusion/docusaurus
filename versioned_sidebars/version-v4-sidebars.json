@@ -1,59 +1,49 @@
 {
-  "version-v4/docs": [
+  "version-v4/install": [
+    {
+      "type": "doc",
+      "id": "version-v4/Install"
+    },
     {
       "collapsed": true,
       "type": "category",
-      "label": "Install",
+      "label": "Automatic installation",
       "items": [
         {
           "type": "doc",
-          "id": "version-v4/Install"
+          "id": "version-v4/Automatic_installation"
         },
         {
-          "collapsed": true,
-          "type": "category",
-          "label": "Automatic installation",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-v4/Automatic_installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-v4/Development_auto_"
-            },
-            {
-              "type": "doc",
-              "id": "version-v4/Execution_auto_"
-            }
-          ]
+          "type": "doc",
+          "id": "version-v4/Development_auto_"
         },
         {
-          "collapsed": true,
-          "type": "category",
-          "label": "Manual installation",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-v4/Manual_installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-v4/Development_manual_"
-            },
-            {
-              "type": "doc",
-              "id": "version-v4/Execution_manual_"
-            }
-          ]
+          "type": "doc",
+          "id": "version-v4/Execution_auto_"
         }
       ]
     },
     {
       "collapsed": true,
       "type": "category",
-      "label": "Learn",
+      "label": "Manual installation",
       "items": [
+        {
+          "type": "doc",
+          "id": "version-v4/Manual_installation"
+        },
+        {
+          "type": "doc",
+          "id": "version-v4/Development_manual_"
+        },
+        {
+          "type": "doc",
+          "id": "version-v4/Execution_manual_"
+        }
+      ]
+    }
+  ],
+  "version-v4/learn": [
         {
           "type": "doc",
           "id": "version-v4/Learn"
@@ -1774,6 +1764,4 @@
           "id": "version-v4/Online_demo"
         }
       ]
-    }
-  ]
 }

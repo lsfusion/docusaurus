@@ -11,19 +11,25 @@ module.exports = {
   projectName: 'platform', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'lsfusion',
+      // title: 'lsfusion',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
-          to: 'docs/Learn',
+          to: 'Install',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Install',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
+        {
+          to: '/',
+          activeBasePath: 'docs',
+          label: 'Learn',
+          position: 'left',
+        },
+//        {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/danchanka/platform',
           label: 'GitHub',
@@ -35,9 +41,6 @@ module.exports = {
           // // Add additional dropdown items at the beginning/end of the dropdown.
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
-          // // Do not add the link active class when browsing docs.
-          // dropdownActiveClassDisabled: true,
-          // docsPluginId: 'default',
         },
         {
           type: 'localeDropdown',
@@ -53,7 +56,7 @@ module.exports = {
           items: [
             {
               label: 'lsf docs',
-              to: 'docs/Learn',
+              to: '/',
             },
           ],
         },
@@ -108,7 +111,8 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/danchanka/platform/edit/master/',
-          editLocalizedFiles: true
+          editLocalizedFiles: true,
+          routeBasePath: '/',
         },
         blog: {
           showReadingTime: true,

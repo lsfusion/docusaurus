@@ -3,9 +3,13 @@
     "message": "lsfusion",
     "description": "The title in the navbar"
   },
-  "item.label.Docs": {
-    "message": "Документация",
-    "description": "Navbar item with label Docs"
+  "item.label.Install": {
+    "message": "Установить",
+    "description": "Navbar item with label Install"
+  },
+  "item.label.Learn": {
+    "message": "Изучить",
+    "description": "Navbar item with label Learn"
   },
   "item.label.Blog": {
     "message": "Блог",
