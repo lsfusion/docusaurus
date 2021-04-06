@@ -1,6 +1,7 @@
 ---
 title: 'Learn: Overview'
 sidebar_label: Overview
+slug: /
 ---
 
 Overview
