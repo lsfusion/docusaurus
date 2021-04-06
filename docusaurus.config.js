@@ -11,7 +11,7 @@ module.exports = {
   projectName: 'platform', // Usually your repo name.
   themeConfig: {
     navbar: {
-      // title: 'lsfusion',
+      title: '',
       logo: {
         alt: 'Logo',
         src: 'img/logo.png',
