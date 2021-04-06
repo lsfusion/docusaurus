@@ -1,5 +1,5 @@
 ---
-title: 'Physical model: Overview'
+title: 'Physical model'
 sidebar_label: Overview
 ---
 

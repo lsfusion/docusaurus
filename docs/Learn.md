@@ -1,5 +1,5 @@
 ---
-title: 'Learn: Overview'
+title: 'Learn'
 sidebar_label: Overview
 slug: /
 ---

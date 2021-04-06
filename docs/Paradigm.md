@@ -1,5 +1,5 @@
 ---
-title: 'Paradigm: Overview'
+title: 'Paradigm'
 sidebar_label: Overview
 ---
 

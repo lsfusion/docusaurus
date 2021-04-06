@@ -1,5 +1,5 @@
 ---
-title: 'Обращение к внутренней системе (INTERNAL, FORMULA): Обзор'
+title: 'Обращение к внутренней системе (INTERNAL, FORMULA)'
 sidebar_label: Обзор
 ---
 

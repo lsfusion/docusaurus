@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Imperative logic: Overview'
+title: 'How-to: Imperative logic'
 sidebar_label: Overview
 ---
 

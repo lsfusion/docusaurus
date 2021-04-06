@@ -1,5 +1,5 @@
 ---
-title: 'FORM instruction: Overview'
+title: 'FORM instruction'
 sidebar_label: Overview
 ---
 

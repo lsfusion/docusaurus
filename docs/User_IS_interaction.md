@@ -1,5 +1,5 @@
 ---
-title: 'User/IS interaction: Overview'
+title: 'User/IS interaction'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Classes: Overview'
+title: 'Classes'
 sidebar_label: Overview
 ---
 

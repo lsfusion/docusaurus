@@ -1,5 +1,5 @@
 ---
-title: 'Actions: Overview'
+title: 'Actions'
 sidebar_label: Overview
 ---
 

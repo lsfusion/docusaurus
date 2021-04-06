@@ -1,5 +1,5 @@
 ---
-title: 'Properties: Overview'
+title: 'Properties'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Execution order: Overview'
+title: 'Execution order'
 sidebar_label: Overview
 ---
 

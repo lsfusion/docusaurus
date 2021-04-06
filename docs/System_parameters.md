@@ -1,5 +1,5 @@
 ---
-title: 'System parameters: Overview'
+title: 'System parameters'
 sidebar_label: Overview
 ---
 

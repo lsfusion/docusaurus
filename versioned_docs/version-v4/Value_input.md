@@ -1,5 +1,5 @@
 ---
-title: 'Value input: Overview'
+title: 'Value input'
 sidebar_label: Overview
 ---
 

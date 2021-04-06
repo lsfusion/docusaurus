@@ -1,5 +1,5 @@
 ---
-title: 'Automatic installation: Overview'
+title: 'Automatic installation'
 sidebar_label: Overview
 ---
 

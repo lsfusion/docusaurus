@@ -1,5 +1,5 @@
 ---
-title: 'Launch parameters: Overview'
+title: 'Launch parameters'
 sidebar_label: Overview
 ---
 

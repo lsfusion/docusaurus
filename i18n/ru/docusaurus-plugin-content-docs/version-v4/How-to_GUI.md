@@ -1,5 +1,5 @@
 ---
-title: 'How-to: GUI: Обзор'
+title: 'How-to: GUI'
 sidebar_label: Обзор
 ---
 

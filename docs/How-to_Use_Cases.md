@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Use Cases: Overview'
+title: 'How-to: Use Cases'
 sidebar_label: Overview
 ---
 

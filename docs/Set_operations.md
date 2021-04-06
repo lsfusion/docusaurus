@@ -1,5 +1,5 @@
 ---
-title: 'Set operations: Overview'
+title: 'Set operations'
 sidebar_label: Overview
 ---
 

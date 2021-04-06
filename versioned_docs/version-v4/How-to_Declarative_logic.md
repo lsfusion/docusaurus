@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Declarative logic: Overview'
+title: 'How-to: Declarative logic'
 sidebar_label: Overview
 ---
 

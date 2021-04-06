@@ -1,5 +1,5 @@
 ---
-title: 'Instruction =: Overview'
+title: 'Instruction ='
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Forms: Overview'
+title: 'Forms'
 sidebar_label: Overview
 ---
 

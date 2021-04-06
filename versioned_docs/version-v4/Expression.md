@@ -1,5 +1,5 @@
 ---
-title: 'Expression: Overview'
+title: 'Expression'
 sidebar_label: Overview
 ---
 

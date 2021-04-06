@@ -1,5 +1,5 @@
 ---
-title: 'Action operator: Overview'
+title: 'Action operator'
 sidebar_label: Overview
 ---
 

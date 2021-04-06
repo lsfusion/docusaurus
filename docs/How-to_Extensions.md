@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Extensions: Overview'
+title: 'How-to: Extensions'
 sidebar_label: Overview
 ---
 

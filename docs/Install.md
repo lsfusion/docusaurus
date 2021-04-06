@@ -1,5 +1,5 @@
 ---
-title: 'Install: Overview'
+title: 'Install'
 sidebar_label: Overview
 ---
 

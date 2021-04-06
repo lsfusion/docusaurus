@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Computations: Overview'
+title: 'How-to: Computations'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Modularity: Overview'
+title: 'Modularity'
 sidebar_label: Overview
 ---
 

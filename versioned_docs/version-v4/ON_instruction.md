@@ -1,5 +1,5 @@
 ---
-title: 'ON instruction: Overview'
+title: 'ON instruction'
 sidebar_label: Overview
 ---
 

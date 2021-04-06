@@ -1,5 +1,5 @@
 ---
-title: 'Session management: Overview'
+title: 'Session management'
 sidebar_label: Overview
 ---
 

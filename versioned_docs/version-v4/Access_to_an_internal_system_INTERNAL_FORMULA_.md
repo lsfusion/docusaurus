@@ -1,5 +1,5 @@
 ---
-title: 'Access to an internal system (INTERNAL, FORMULA): Overview'
+title: 'Access to an internal system (INTERNAL, FORMULA)'
 sidebar_label: Overview
 ---
 

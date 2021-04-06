@@ -1,5 +1,5 @@
 ---
-title: 'Domain logic: Overview'
+title: 'Domain logic'
 sidebar_label: Overview
 ---
 

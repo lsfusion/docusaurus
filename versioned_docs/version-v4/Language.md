@@ -1,5 +1,5 @@
 ---
-title: 'Language: Overview'
+title: 'Language'
 sidebar_label: Overview
 ---
 

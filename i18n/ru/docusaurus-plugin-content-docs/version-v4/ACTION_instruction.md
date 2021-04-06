@@ -1,5 +1,5 @@
 ---
-title: 'Инструкция ACTION: Обзор'
+title: 'Инструкция ACTION'
 sidebar_label: Обзор
 ---
 

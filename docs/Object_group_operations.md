@@ -1,5 +1,5 @@
 ---
-title: 'Object group operations: Overview'
+title: 'Object group operations'
 sidebar_label: Overview
 ---
 

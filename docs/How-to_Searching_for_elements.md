@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Searching for elements: Overview'
+title: 'How-to: Searching for elements'
 sidebar_label: Overview
 ---
 

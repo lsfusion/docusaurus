@@ -1,5 +1,5 @@
 ---
-title: 'Interactive view: Overview'
+title: 'Interactive view'
 sidebar_label: Overview
 ---
 

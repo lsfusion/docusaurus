@@ -1,5 +1,5 @@
 ---
-title: 'Property operators: Overview'
+title: 'Property operators'
 sidebar_label: Overview
 ---
 

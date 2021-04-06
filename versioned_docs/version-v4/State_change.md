@@ -1,5 +1,5 @@
 ---
-title: 'State change: Overview'
+title: 'State change'
 sidebar_label: Overview
 ---
 

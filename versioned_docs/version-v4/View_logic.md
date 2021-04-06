@@ -1,5 +1,5 @@
 ---
-title: 'View logic: Overview'
+title: 'View logic'
 sidebar_label: Overview
 ---
 

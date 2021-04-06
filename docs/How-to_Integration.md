@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Integration: Overview'
+title: 'How-to: Integration'
 sidebar_label: Overview
 ---
 

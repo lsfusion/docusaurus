@@ -1,5 +1,5 @@
 ---
-title: 'How-to: GUI: Overview'
+title: 'How-to: GUI'
 sidebar_label: Overview
 ---
 

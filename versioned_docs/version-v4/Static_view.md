@@ -1,5 +1,5 @@
 ---
-title: 'Static view: Overview'
+title: 'Static view'
 sidebar_label: Overview
 ---
 

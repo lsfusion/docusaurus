@@ -1,5 +1,5 @@
 ---
-title: 'Manual installation: Overview'
+title: 'Manual installation'
 sidebar_label: Overview
 ---
 

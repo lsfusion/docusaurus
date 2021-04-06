@@ -1,5 +1,5 @@
 ---
-title: 'Logical model: Overview'
+title: 'Logical model'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Class operations: Overview'
+title: 'Class operations'
 sidebar_label: Overview
 ---
 

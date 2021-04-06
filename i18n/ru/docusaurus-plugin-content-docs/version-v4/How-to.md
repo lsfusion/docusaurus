@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Обзор'
+title: 'How-to'
 sidebar_label: Обзор
 ---
 

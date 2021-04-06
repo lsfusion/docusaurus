@@ -1,5 +1,5 @@
 ---
-title: 'Navigator: Overview'
+title: 'Navigator'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Access to internal systems: Overview'
+title: 'How-to: Access to internal systems'
 sidebar_label: Overview
 ---
 

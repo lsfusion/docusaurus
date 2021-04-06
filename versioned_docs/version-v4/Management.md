@@ -1,5 +1,5 @@
 ---
-title: 'Management: Overview'
+title: 'Management'
 sidebar_label: Overview
 ---
 

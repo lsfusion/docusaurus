@@ -1,5 +1,5 @@
 ---
-title: 'Инструкция FORM: Обзор'
+title: 'Инструкция FORM'
 sidebar_label: Обзор
 ---
 

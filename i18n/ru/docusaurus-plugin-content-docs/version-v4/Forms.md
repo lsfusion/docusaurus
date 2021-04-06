@@ -1,5 +1,5 @@
 ---
-title: 'Формы: Обзор'
+title: 'Формы'
 sidebar_label: Обзор
 ---
 

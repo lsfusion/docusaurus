@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Interactive forms: Overview'
+title: 'How-to: Interactive forms'
 sidebar_label: Overview
 ---
 

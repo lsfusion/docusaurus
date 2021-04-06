@@ -1,5 +1,5 @@
 ---
-title: 'ACTION instruction: Overview'
+title: 'ACTION instruction'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Primitive operations: Overview'
+title: 'Primitive operations'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Form operators: Overview'
+title: 'Form operators'
 sidebar_label: Overview
 ---
 

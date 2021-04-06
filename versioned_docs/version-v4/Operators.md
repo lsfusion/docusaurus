@@ -1,5 +1,5 @@
 ---
-title: 'Operators: Overview'
+title: 'Operators'
 sidebar_label: Overview
 ---
 

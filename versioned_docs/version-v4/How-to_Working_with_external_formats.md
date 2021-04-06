@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Working with external formats: Overview'
+title: 'How-to: Working with external formats'
 sidebar_label: Overview
 ---
 

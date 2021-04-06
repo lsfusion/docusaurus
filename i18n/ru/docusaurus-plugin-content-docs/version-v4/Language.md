@@ -1,5 +1,5 @@
 ---
-title: 'Язык: Обзор'
+title: 'Язык'
 sidebar_label: Обзор
 ---
 

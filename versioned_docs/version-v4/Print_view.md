@@ -1,5 +1,5 @@
 ---
-title: 'Print view: Overview'
+title: 'Print view'
 sidebar_label: Overview
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'How-to: Поиск элементов: Обзор'
+title: 'How-to: Поиск элементов'
 sidebar_label: Обзор
 ---
 

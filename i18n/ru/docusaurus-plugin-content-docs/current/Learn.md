@@ -1,5 +1,5 @@
 ---
-title: 'Изучить: Обзор'
+title: 'Изучить'
 sidebar_label: Обзор
 slug: /
 ---

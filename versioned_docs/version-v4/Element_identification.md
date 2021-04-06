@@ -1,5 +1,5 @@
 ---
-title: 'Element identification: Overview'
+title: 'Element identification'
 sidebar_label: Overview
 ---
 

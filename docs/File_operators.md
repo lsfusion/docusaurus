@@ -1,5 +1,5 @@
 ---
-title: 'File operators: Overview'
+title: 'File operators'
 sidebar_label: Overview
 ---
 

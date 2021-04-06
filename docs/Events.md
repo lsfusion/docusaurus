@@ -1,5 +1,5 @@
 ---
-title: 'Events: Overview'
+title: 'Events'
 sidebar_label: Overview
 ---
 

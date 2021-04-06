@@ -1,5 +1,5 @@
 ---
-title: 'Extensions: Overview'
+title: 'Extensions'
 sidebar_label: Overview
 ---
 

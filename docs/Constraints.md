@@ -1,5 +1,5 @@
 ---
-title: 'Constraints: Overview'
+title: 'Constraints'
 sidebar_label: Overview
 ---
 
