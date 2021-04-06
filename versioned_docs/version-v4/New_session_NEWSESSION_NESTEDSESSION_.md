@@ -16,9 +16,61 @@ To create an action that executes another action in a new session, use the [**N
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNewSession ()  {
+    NEWSESSION {
+        NEW c = Currency {
+            name(c) <- 'USD';
+            code(c) <- 866;
+        }
+        APPLY;
+    }
+    // here a new object of class Currency is already in the database
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=newsession"/>
+    LOCAL local = BPSTRING[10] (Currency);
+    local(Currency c) <- 'Local';
+    NEWSESSION {
+        MESSAGE (GROUP SUM 1 IF local(Currency c) == 'Local'); // will return NULL
+    }
+    NEWSESSION NESTED (local) {
+        MESSAGE (GROUP SUM 1 IF local(Currency c) == 'Local'); // will return the number of objects of class Currency
+    }
+
+    NEWSESSION {
+        NEW s = Sku {
+            id(s) <- 1234;
+            name(s) <- 'New Sku';
+            SHOW sku OBJECTS s = s;
+        }
+    }
+
+}
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=nestedsession"/>
+```lsf
+testNestedSession ()  {
+    NESTEDSESSION {
+        name(Sku s) <- 'aaa';
+        APPLY; // in fact, the changes will not be applied to the database, but to the "upper" session
+    }
+
+    MESSAGE (GROUP SUM 1 IF name(Sku s) == 'aaa'); // returns all rows
+    CANCEL;
+    MESSAGE (GROUP SUM 1 IF name(Sku s) == 'aaa'); // returns NULL if there was no Sku named aaa in the database before
+
+}
+
+FORM sku
+    OBJECTS s = Sku PANEL
+    PROPERTIES(s) id, name
+;
+newNestedSession()  {
+    NESTEDSESSION {
+        NEW s = Sku {
+            // shows the form, but any changes in it will not be applied to the database, but will be saved in the "upper session" session
+            SHOW sku OBJECTS s = s;
+        }
+    }
+}
+```

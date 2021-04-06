@@ -8,15 +8,96 @@ title: 'How-to: Экспорт данных'
 
 Есть заказы на продажу покупателям некоторых книг.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+REQUIRE Time;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExport&block=sample1"/>
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[100] (Book) IN id;
+
+CLASS Customer 'Покупатель';
+name 'Наименование' = DATA ISTRING[50] (Customer) IN id;
+address 'Адрес' = DATA ISTRING[50] (Customer) IN base;
+
+CLASS Currency 'Валюта';
+name 'Наименование' = DATA ISTRING[50] (Currency) IN id;
+
+CLASS Order 'Заказ';
+date 'Дата' = DATA DATE (Order);
+number 'Номер' = DATA STRING[10] (Order);
+
+customer 'Покупатель' = DATA Customer (Order);
+nameCustomer 'Покупатель' (Order o) = name(customer(o));
+
+CLASS OrderDetail 'Строка заказа';
+order 'Заказ' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Книга' = DATA Book (OrderDetail) NONULL;
+nameBook 'Книга' (OrderDetail d) = name(book(d));
+
+quantity 'Количество' = DATA INTEGER (OrderDetail);
+price 'Цена' = DATA NUMERIC[14,2] (OrderDetail);
+
+currency 'Валюта' = DATA Currency (OrderDetail);
+nameCurrency 'Валюта' (OrderDetail d) = name(currency(d));
+
+FORM order 'Заказ'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number, nameCustomer
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, nameCurrency, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Заказы'
+    OBJECTS o = Order
+    PROPERTIES(o) READONLY date, number, nameCustomer
+    PROPERTIES(o) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 Нужно сделать кнопку, которая выгрузит содержимое заказа в XML-формат.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExport&block=solution1"/>
+```lsf
+GROUP Info;
+GROUP Customer : Info;
+
+GROUP Specification;
+
+GROUP price;
+
+FORM Order
+    PROPERTIES timeStamp = currentDateTime() ATTR
+
+    OBJECTS order = Order
+    PROPERTIES(order) IN Info date, number
+    PROPERTIES IN Customer nameCustomer(order) EXTID 'name', =address(customer(order)) EXTID 'address'
+
+    PROPERTIES IN Specification count = [GROUP SUM 1 BY order(OrderDetail d)](order) ATTR
+
+    OBJECTS Detail = OrderDetail IN Specification
+    PROPERTIES(Detail) nameBook, quantity,
+                       nameCurrency IN price EXTID 'currency' ATTR, price IN price EXTID 'value'
+    FILTERS order(Detail) = order
+;
+
+exportToXML 'Экспорт в XML' (Order o) {
+    EXPORT Order OBJECTS order = o XML;
+    open(exportFile());
+}
+
+EXTEND FORM orders
+    PROPERTIES(o) exportToXML TOOLBAR
+;
+```
 
 Для выгрузки в XML формат, сначала создается форма [соответствующей структуры](Structured_view.md), а затем вызывается [оператор EXPORT](EXPORT_operator.md). Он на основе формы формирует файл и складывает его в свойство **exportFile**, которое затем открывается на клиенте при помощи действия **open**. Оно показывает файл в приложении, ассоциированном с его расширением (в данном случае .json).
 
@@ -82,7 +163,16 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExport&block=solution2"/>
+```lsf
+exportToJSON 'Экспорт в JSON' (Order o) {
+    EXPORT Order OBJECTS order = o JSON;
+    open(exportFile());
+}
+
+EXTEND FORM orders
+    PROPERTIES(o) exportToJSON TOOLBAR
+;
+```
 
 Результирующий файл будет выглядеть следующим образом :
 
@@ -125,7 +215,31 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExport&block=solution3"/>
+```lsf
+exportToCSV (DATE date) {
+    LOCAL file = FILE();
+    EXPORT CSV HEADER FROM number = number(order(OrderDetail d)),
+                    customer = nameCustomer(order(d)),
+                    book = nameBook(d),
+                    quantity(d),
+                    price(d)
+           WHERE date(order(d)) = date TO file;
+    WRITE CLIENT DIALOG file() TO 'orders';
+}
+
+FORM exportParameters 'Параметры'
+    OBJECTS d = DATE PANEL
+    PROPERTIES(d) 'Дата' = VALUE
+;
+exportToCSV 'Экспорт в CSV' () {
+    DIALOG exportParameters OBJECTS d INPUT DO
+        exportToCSV(d);
+}
+
+EXTEND FORM orders
+    PROPERTIES() exportToCSV DRAW o TOOLBAR
+;
+```
 
 Первое действие принимает на вход дату и, при помощи оператора **EXPORT**, формирует плоский файл CSV с разделителем точка с запятой. Файл будет выглядеть следующим образом :
 

@@ -91,9 +91,40 @@ A list of expressions that define the order in which object collections will be 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// determines the place of the team in the conference
+CLASS Conference;
+conference = DATA Conference (Team);
+points = DATA INTEGER (Team);
+gamesWon = DATA INTEGER (Team);
+place 'Place' (Team team) = PARTITION SUM 1 ORDER DESC points(team), gamesWon(team) BY conference(team);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=partition"/>
+// building ordinal indexes of objects in the database in ascending order of their internal IDs (i.e., in the order of creation)
+index 'Number' (Object o) = PARTITION SUM 1 IF o IS Object ORDER o;
 
-**  
-**
+// finds the team next in the conference standings
+prevTeam (Team team) = PARTITION PREV team ORDER place(team), team BY conference(team);
+
+// proportional distribution example
+CLASS Order;
+transportSum 'Freight costs' = DATA NUMERIC[10,2] (Order);
+
+CLASS OrderDetail;
+order = DATA Order (OrderDetail) NONULL DELETE;
+sum = DATA NUMERIC[14,2] (OrderDetail);
+
+transportSum 'Freight costs by line' (OrderDetail d) = PARTITION UNGROUP transportSum
+                                    PROPORTION STRICT ROUND(2) sum(d)
+                                    ORDER d
+                                    BY order(d);
+
+// example of distribution with limits
+discountSum 'Discount' = DATA NUMERIC[10,2] (Order);
+discountSum 'Discount by line' (OrderDetail d) =
+    PARTITION UNGROUP discountSum
+                LIMIT STRICT sum(d)
+                ORDER sum(d), d
+                BY order(d);
+;
+```
+

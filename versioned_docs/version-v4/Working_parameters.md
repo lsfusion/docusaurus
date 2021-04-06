@@ -42,6 +42,6 @@ The platform working parameters can be set in one of the following ways (in the 
 |editActionOnSingleClick|boolean|Determines whether the action call event on the form is triggered by a single (true) or double (false) mouse click|false|
 
 
-:::note
+:::info
 In addition to the system parameters, the platform also has [launch parameters](Launch_parameters.md) which are set a little differently and are relevant mainly for startup (initialization) processes of various components of the platform and access to these components.
 :::

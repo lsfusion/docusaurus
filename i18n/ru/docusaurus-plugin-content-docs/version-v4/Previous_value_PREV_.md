@@ -15,6 +15,23 @@ title: 'Предыдущее значение (PREV)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+f = DATA INTEGER (A);
+// выдает по очереди все изменения f(a) в сессии
+messageFChanges  {
+    FOR CHANGED(f(A a)) DO
+        MESSAGE 'In this session f(a) changed from ' + PREV(f(a)) + ' TO ' + f(a);
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=prev"/>
+CLASS Document;
+date = DATA DATE (Document);
+
+CLASS Article;
+price = DATA NUMERIC[14,2] (Document, Article);
+// записать в цену документа, последнюю использованную цену в БД
+// PREV важен чтобы не учитывалась цены введенные в этом документе
+// это особенно важно, если последняя использованная цена будет материализованной, тогда платформа сможет просто считать это значение из таблицы
+setPrice  {
+    price(Document d, Article a) <- PREV((GROUP LAST price(d, a) ORDER date(d), d));
+}
+```

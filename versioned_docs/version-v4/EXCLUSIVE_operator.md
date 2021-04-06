@@ -21,9 +21,15 @@ List of [expressions](Expression.md) whose values will determine the value of t
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+background 'Color' (INTEGER i) = EXCLUSIVE RGB(255,238,165) IF i <= 5,
+                                                   RGB(255,160,160) IF i > 5;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=exclusive"/>
+CLASS Human;
 
-**  
-**
+CLASS Male : Human;
+CLASS Female : Human;
+
+name(Human h) = EXCLUSIVE 'Male' IF h IS Male, 'Female' IF h IS Female;
+```
+

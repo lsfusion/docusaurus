@@ -8,7 +8,7 @@ All structured views (*formats*) can be divided into two types:
 -   *Flat* (DBF, CSV, XLS, TABLE) - one table file for each object group, and each object group with more than one level of [nesting](Static_view.md#hierarchy) should have a column in its table named **parent** which should contain the "upper" row number in the parent group table.
 
 
-:::note
+:::info
 Working with flat formats with a hierarchy depth greater than one is not very convenient (because in this case, the developer has to maintain an additional column), therefore, usually flat formats are used only for working with simple forms (with a hierarchy depth less than one). In other cases, hierarchical formats are usually used.
 :::
 
@@ -28,12 +28,12 @@ If the property [display group](Form_structure.md#drawgroup-broken) is specifie
 The name of the property on the form that will be used during export/import can be specified explicitly using the corresponding option (**EXTID**). Unless this is done, the name of the property on the form will be used as the name of the export/import. If it is also not specified, then the name of the property itself will be the name of the export/import (without adding parameter objects to its end, as it is done in the other mechanisms - [reports](Print_view.md), customizing interactive view [design](Form_design.md), etc.). The export/import names of object groups and property groups are determined similarly.
 
 
-:::note
+:::info
 Because of the grammar nature, the option for specifying import/export name of the form (specifically, its [empty group](Static_view.md#empty) of objects) is called **FORMEXTID** (not **EXTID**).
 :::
 
 
-:::note
+:::info
 Unlike property names on the form, property export/import names (**EXTID**) of different properties can be equal if these properties are located in different nodes of the hierarchy (i.e., different groups of objects/properties). The same applies to export/import names of object groups and property groups.
 :::
 
@@ -52,12 +52,12 @@ Before directly proceeding with the form export/import, the platform builds a hi
         -   the **X** object group becomes the parent of the uppermost (i.e., that without parents) of the used property groups.
 
 
-:::note
+:::info
 In a hierarchical view, object groups can be included in property groups as well as properties. 
 :::
 
 
-:::note
+:::info
 The described algorithm is very similar to the algorithm for building property containers in the [default design](Form_design.md#defaultDesign) (with the only difference being that it does not use the hierarchy of object groups). Like in the container building mechanism, the same property group can be included in the hierarchy several times for different groups of objects.
 :::
 
@@ -138,7 +138,7 @@ For example, in lsFusion to export a property to a tag with a specified namespac
 For example, h:table or h=<http://www.w3.org/TR/html4:table>. The namespace name may be empty if necessary. If no URI is specified for the namespace, it is inherited from the namespace with the same name of the parent tags. If there are no namespaces with that name in the parent tags, URI is automatically considered equal to http://www.w3.org/ of the namespace>.
 
 
-:::note
+:::info
 It is not possible to specify the property name described above (for example, h:table) in the lsFusion syntax (since the name cannot contain a colon), therefore, to specify such an export name, you should use the [described above](#extid) **EXTID** option.
 :::
 
@@ -167,10 +167,53 @@ To display the form in structured view, the corresponding [open form](Open_form.
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM exportSku
+    OBJECTS st = Store
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=export"/>
+    OBJECTS s = Sku
+    PROPERTIES(s) id, name, weight
+    FILTERS in(st, s)
+;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=importForm"/>
+exportSku (Store store)  {
+    // uploading to DBF all Sku for which in (Store, Sku) is specified for the desired warehouse
+    EXPORT exportSku OBJECTS st = store DBF CHARSET 'CP866';
+    EXPORT exportSku XML;
+    EXPORT exportSku OBJECTS st = store CSV ',';
+}
+```
+
+```lsf
+
+date = DATA DATE (INTEGER);
+sku = DATA BPSTRING[50] (INTEGER);
+price = DATA NUMERIC[14,2] (INTEGER);
+order = DATA INTEGER (INTEGER);
+FORM import
+    OBJECTS o = INTEGER // orders
+    OBJECTS od = INTEGER // order lines
+    PROPERTIES (o) dateOrder = date // importing the date from the dateOrder field
+    PROPERTIES (od) sku = sku, price = price // importing product quantity from sku and price fields
+    FILTERS order(od) = o // writing the top order to order
+
+;
+
+importForm()  {
+    INPUT f = FILE DO {
+        IMPORT import JSON FROM f;
+        SHOW import; // showing what was imported
+
+        // creating objects in the database
+        FOR DATE date = date(INTEGER io) NEW o = Order DO {
+            date(o) <- date;
+            FOR order(INTEGER iod) = io NEW od = OrderDetail DO {
+                price(od) <- price(iod);
+                sku(od) <- GROUP MAX Sku sku IF name(sku) = sku(iod); // finding sku with this name
+            }
+        }
+    }
+}
+```
 
   

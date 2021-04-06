@@ -55,9 +55,32 @@ title: 'Инструкция =>'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+is(Sku s) = s IS Sku;
+// для товара должны быть заданы штрих-код и наименование
+is(Sku s) => barcode(s);
+is(Sku s) => name(s);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=means"/>
 
-**  
-**
+CLASS Invoice;
+CLASS InvoiceLine;
+invoice = DATA Invoice (InvoiceLine);
+is(InvoiceLine l) = l IS InvoiceLine;
+// для строки документа должен быть задан документ, и при удалении документа, чтобы удалялись строки этого документа
+is(InvoiceLine l) => invoice(l) RESOLVE RIGHT;
+// равносильно объявлению document = DATA Invoice (InvoiceLine) NONULL DELETE;
+
+// агрегация для f(a,b) создавать объект класса x, у которого свойство a(x) равняется a, а свойство b(x) равняется b
+CLASS A;
+CLASS B;
+f = DATA BOOLEAN (A, B);
+
+CLASS X;
+a = DATA A(X);
+b = DATA B(X);
+is (X x) = x IS X;
+
+f(a,b) => [ GROUP AGGR X x WHERE x IS X BY a(x), b(x)](a,b) RESOLVE LEFT;
+is(X x) => f(a(x), b(x)) RESOLVE RIGHT;
+```
+

@@ -44,6 +44,12 @@ title: 'Оператор CASE (д)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=case"/>
+```lsf
+test = DATA INTEGER (INTEGER);
+caseActionTest(a)  {
+    CASE
+        WHEN test(a) > 7 THEN MESSAGE '>7';
+        WHEN test(a) > 6 THEN MESSAGE '>6';
+        WHEN test(a) > 5 THEN MESSAGE '>5';
+}
+```

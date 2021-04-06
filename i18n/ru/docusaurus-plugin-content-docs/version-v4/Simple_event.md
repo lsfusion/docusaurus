@@ -20,6 +20,20 @@ title: 'Простые события'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Stock;
+name = DATA STRING[50] (Stock);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=when"/>
+balance = DATA INTEGER (Sku, Stock);
+
+// отправить email, когда остаток в результате применения изменений сессии стал меньше 0
+WHEN balance(Sku s, Stock st) < 0 DO
+      EMAIL SUBJECT 'Остаток стал отрицательным по товару ' + name(s) + ' на складе ' + name(st);
+
+CLASS OrderDetail;
+order = DATA Order (OrderDetail) NONULL DELETE;
+discount = DATA NUMERIC[6,2] (OrderDetail);
+
+WHEN LOCAL CHANGED(customer(Order o)) AND name(customer(o)) == 'Best customer' DO
+    discount(OrderDetail d) <- 50 WHERE order(d) == o;
+```

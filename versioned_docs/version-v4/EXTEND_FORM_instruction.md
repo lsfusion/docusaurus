@@ -29,8 +29,19 @@ Form blocks.
 ### Example
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ItemGroup;
+name = DATA ISTRING[100] (ItemGroup);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=extendform"/>
+itemGroup = DATA ItemGroup (Item);
+
+EXTEND FORM items
+    PROPERTIES(i) NEWSESSION DELETE // adding a delete button to the form
+
+    OBJECTS g = ItemGroup BEFORE i // adding a product group object to the form before the product
+    PROPERTIES(g) READONLY name
+    FILTERS itemGroup(i) == g // if the object was added after the object with products, then filtering would go by the group of products, and not by products
+;
+```
 
   

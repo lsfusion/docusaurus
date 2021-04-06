@@ -7,7 +7,7 @@ The *group *operator creates a [property](Properties.md) that divides all obj
 Groups are defined for this operator as a set of properties (*groups*), and the order is defined as a list of properties and an increasing or decreasing marker. If the aggregation function is not [commutative](Set_operations.md#commutative-broken), then the order must be uniquely determined. 
 
 
-:::note
+:::info
 A uniquely determined order can be guaranteed if for example, the IDs of all objects for which grouping is performed are specified when the order is defined
 :::
 
@@ -22,6 +22,20 @@ To declare a property that implements grouping, use the [**GROUP** operator](GRO
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Game;
+CLASS Team;
+hostGoals = DATA INTEGER (Game);
+hostTeam = DATA Team (Game);
+hostGoalsScored(team) = GROUP SUM hostGoals(Game game) BY hostTeam(game);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=group"/>
+name = DATA STRING[100] (Country);
+countryName = GROUP AGGR Country country WHERE country IS Country BY name(country); // property (STRING[100]) -> Country is obtained
+
+CLASS Book;
+CLASS Tag;
+name = DATA STRING[100] (Tag);
+in = DATA BOOLEAN (Book, Tag);
+
+tags(Book b) = GROUP CONCAT name(Tag t) IF in(b, t), ', ' ORDER name(t), t;
+```

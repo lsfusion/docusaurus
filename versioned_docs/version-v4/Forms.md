@@ -12,7 +12,5 @@ In the user interface, a form is opened when a corresponding element is chosen i
 
 ### Stack
 
-**  
-**
 
-![](download/temp/svgout6273876815036271113.png)
+![](download/temp/svgout831389999078140067.png)

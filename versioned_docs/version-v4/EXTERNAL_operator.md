@@ -89,8 +89,33 @@ List of property IDs (without parameters) to which the results will be written
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testExportFile = DATA FILE ();
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=external"/>
+externalHTTP()  {
+    EXTERNAL HTTP GET 'https://www.cs.cmu.edu/~chuck/lennapg/len_std.jpg' TO exportFile;
+    open(exportFile());
+
+    EXTERNAL HTTP 'http://tryonline.lsfusion.org/exec?action=getExamples' PARAMS JSONFILE('\{"mode"=1,"locale"="en"\}') TO exportFile; // braces are escaped') TO exportFile; // braces are escaped as they are used in internationalization
+    IMPORT FROM exportFile() FIELDS () TEXT caption, TEXT code DO
+        MESSAGE 'Example : ' + caption + ', code : ' + code;
+
+    EXTERNAL HTTP 'http://tryonline.lsfusion.org/exec?action=doSomething&someprm=$1' BODYURL 'otherprm=$2&andonemore=$3' PARAMS 1,2,'3'; // passes the second and third parameters to BODY url-encoded
+}
+externalSQL ()  {
+    EXPORT TABLE FROM bc=barcode(Article a) WHERE name(a) LIKE '%Meat%'; // getting all barcodes of products with the name meat
+    EXTERNAL SQL 'jdbc:mysql://$1/test?user=root&password=' EXEC 'select price AS pc, articles.barcode AS brc from $2 x JOIN articles ON x.bc=articles.barcode' PARAMS 'localhost',exportFile() TO exportFile; // reading prices for read barcodes
+
+    // writing prices for all products with received barcodes
+    LOCAL price = INTEGER (INTEGER);
+    LOCAL barcode = STRING[30] (INTEGER);
+    IMPORT FROM exportFile() TO price=pc,barcode=brc;
+    FOR barcode(Article a) = barcode(INTEGER i) DO
+        price(a) <- price(i);
+}
+externalLSF()  {
+    EXTERNAL LSF 'http://localhost:7651' EXEC 'System.testAction[]';
+};
+```
 
   

@@ -20,6 +20,20 @@ To create simple events, use the [**WHEN** instruction](WHEN_instruction.md).
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Stock;
+name = DATA STRING[50] (Stock);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=when"/>
+balance = DATA INTEGER (Sku, Stock);
+
+// send an email when the balance is less than 0 as a result of applying session changes
+WHEN balance(Sku s, Stock st) < 0 DO
+      EMAIL SUBJECT 'The balance has become negative for the item ' + name(s) + ' in the warehouse ' + name(st);
+
+CLASS OrderDetail;
+order = DATA Order (OrderDetail) NONULL DELETE;
+discount = DATA NUMERIC[6,2] (OrderDetail);
+
+WHEN LOCAL CHANGED(customer(Order o)) AND name(customer(o)) == 'Best customer' DO
+    discount(OrderDetail d) <- 50 WHERE order(d) == o;
+```

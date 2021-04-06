@@ -12,6 +12,10 @@ title: 'Материализации'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+sum = GROUP SUM sum(OrderDetail od) BY order(od) MATERIALIZED;
+date(OrderDetail od) = date(order(od)) MATERIALIZED;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=materialized"/>
+ // такое свойство нельзя материализовать, так как оно не NULL для бесконечного числа дат
+lastDate(Customer customer, DATE date) = GROUP LAST date(Order order) IF customer(order) = customer AND date(order) < date;
+```

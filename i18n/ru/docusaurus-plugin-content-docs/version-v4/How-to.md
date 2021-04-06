@@ -8,7 +8,7 @@ sidebar_label: Обзор
 1.  [Вычисления](How-to_Computations.md). Механизм построения вычисляемых свойств.
 2.  [GUI](How-to_GUI.md). Разработка графического интерфейса пользователя.
 3.  [Императивная логика](How-to_Imperative_logic.md). Разработка [действий](Actions.md), [событий](Events.md) и [ограничений](Constraints.md).
-4.  [Декларативная логика](How-to_Declarative_logic.md). Разработка [ограничений](Constraints.md), [агрегаций](Aggregations.md), а также [наследование](Static_objects.md#inheritance) пользовательских классов.
+4.  [Декларативная логика](How-to_Declarative_logic.md). Разработка [ограничений](Constraints.md), [агрегаций](Aggregations.md), а также [наследование](User_classes.md#inheritance) пользовательских классов.
 5.  [Поиск элементов](How-to_Searching_for_elements.md). Описание механизмов обращения одних элементов системы к другим.
 6.  [Расширения](Extensions.md). Расширение функционала элементов системы после их объявления.
 7.  [Интеграция](How-to_Integration.md). Описание взаимодействия с внешними системами.

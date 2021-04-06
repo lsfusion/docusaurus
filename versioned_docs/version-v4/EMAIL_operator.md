@@ -59,6 +59,27 @@ An expression which values determine the names of the attachments.
 ### Example
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM remindUserPass
+    OBJECTS u=CustomUser PANEL
+    PROPERTIES(u) READONLY login, name[Contact]
+;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=email"/>
+emailUserPassUser 'Login reminder' (CustomUser user)  {
+    LOCAL bodyFile = FILE ();
+    PRINT remindUserPass OBJECTS u = user HTML TO bodyFile;
+    EMAIL
+    SUBJECT 'Login reminder'
+    TO email(user)
+    BODY bodyFile();
+}
+
+justSendEmail 'Send letter' ()  {
+    stringToFile('<font color=#FF0000 size=+3>big red text</font>');
+    EMAIL
+    FROM 'luxsoft@adsl.by'
+    SUBJECT 'Letter subject'
+    TO 'xxx@tut.by'
+    BODY resultFile();
+}
+```

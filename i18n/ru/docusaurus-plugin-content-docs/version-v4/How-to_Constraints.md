@@ -8,15 +8,25 @@ title: 'How-to: Ограничения'
 
 Есть книга, для которой задана цена.
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=sample1"/>
+```lsf
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[50] (Book) IN id;
+price 'Цена' = DATA NUMERIC[14,2] (Book);
+```
 
 Нужно сделать, чтобы было запрещено вводить цены больше 100.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=solution1"/>
+```lsf
+// Вариант 1
+CONSTRAINT price(Book b) > 100
+    MESSAGE 'Цена книги не может быть больше 100 рублей';
+
+// Вариант 2
+CONSTRAINT SET(price(Book b) > 100)
+    MESSAGE 'Цена книги не может быть больше 100 рублей';
+```
 
 При попытке сохранения некоторой книги с ценой больше 100 в любой форме пользователю будет выдано сообщение с соответствующим текстом. Также в этом сообщении будут показаны все объекты класса **Book**, для которых нарушено ограничение. Для каждого объекта будут выведены значения свойств, которые находятся в группе **id**.
 
@@ -28,13 +38,21 @@ import {CodeSample} from './CodeSample.mdx'
 
 Задан заказ, для которого заданы дата, номер и признак того, является ли он проведенным.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=sample2"/>
+```lsf
+CLASS Order 'Заказ';
+date 'Дата' = DATA DATE (Order) IN id;
+number 'Номер' = DATA INTEGER (Order) IN id;
+posted 'Проведен' = DATA BOOLEAN (Order) IN id;
+```
 
 Нужно запретить изменение даты заказа .
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=solution2"/>
+```lsf
+CONSTRAINT CHANGED(date(Order o)) AND posted(o)
+    MESSAGE 'Запрещено менять дату у проведенного заказа';
+```
 
 ## Пример 3
 
@@ -46,7 +64,10 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=solution3"/>
+```lsf
+CONSTRAINT DROPPED(Order o IS Order) AND PREV(date(o)) < currentDate()
+    MESSAGE 'Запрещено удалять старые заказы';
+```
 
 При удалении заказа все его свойства будут иметь значение **NULL**. Поэтому для обращения к значениям его свойств нужно использовать оператор **PREV**.
 
@@ -56,13 +77,24 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 1** и **Примеру 2**. Также для заказа заданы строки со ссылкой на книгу и указанием цены.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=sample4"/>
+```lsf
+CLASS OrderDetail 'Строка заказа';
+order 'Заказ' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Книга' = DATA Book (OrderDetail) NONULL;
+nameBook 'Книга' (OrderDetail d) = name(book(d)) IN id;
+
+price 'Цена' = DATA NUMERIC[14,2] (OrderDetail);
+```
 
 Нужно запретить ввод для строки заказа цены, превышающей цену книги на 10%.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=solution4"/>
+```lsf
+CONSTRAINT price(OrderDetail d) > price(book(d)) * 1.1
+    MESSAGE 'Цена в заказе не может превышать цену книги на 10%';
+```
 
 Так как в выражении не задано ни одного оператора изменений, то это ограничение сработает при изменении цены для строки, книги или цены книги. Поэтому пользователь не сможет изменить цену книги, если по ней были заказы с ценой меньше чем на 10%. Если такое поведение не требуется, то нужно в явную расставлять операторы изменений на те свойства, при изменении которых ограничение должно срабатывать.
 
@@ -72,13 +104,24 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 4**. Введено понятие покупатель и возможность выбора книг, доступных ему.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=sample5"/>
+```lsf
+CLASS Customer 'Покупатель';
+name 'Имя' = DATA ISTRING[100] (Customer);
+
+in 'Вкл' = DATA BOOLEAN (Customer, Book);
+
+customer 'Покупатель' = DATA Customer (OrderDetail);
+```
 
 Нужно запретить ввод для строки заказа книг, недоступных покупателю.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=solution5"/>
+```lsf
+CONSTRAINT book(OrderDetail d) AND NOT in(customer(d), book(d))
+    CHECKED BY book[OrderDetail]
+    MESSAGE 'В строке заказа выбрана книга, которая не разрешена для покупателя';
+```
 
 Проверка на то, что свойство **book** для строки заказа задана нужна потому, что иначе под ограничение попадут все строки заказов с еще не выбранной книгой. Конструкция **CHECKED BY **включает фильтр на форме выбора книги для строки заказа таким образом, чтобы не нарушить заданное ограничение. Таким образом пользователю будут показаны только доступные покупателю книги.
 
@@ -92,6 +135,20 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseConstraint&block=solution6"/>
+```lsf
+// Вариант 1
+CONSTRAINT (CHANGED(book(OrderDetail d)) OR CHANGED(price(d)) OR CHANGED(posted(order(d)))) AND posted(order(d))
+           AND price(d) > price(book(d)) * 1.1
+           MESSAGE 'Цена в заказе не может превышать цену книги на 10%';
+
+// Вариант 2
+constraintBook (OrderDetail d) =
+    (CHANGED(book(d)) OR CHANGED(price(d)) OR CHANGED(posted(order(d)))) AND posted(order(d)) AND price(d) > price(book(d)) * 1.1;
+WHEN (GROUP MAX constraintBook(OrderDetail d)) DO {
+    MESSAGE 'В строке заказа выбрана книга, которая не разрешена для покупателя по строкам : \n' +
+            (GROUP CONCAT ('Дата ' + date(order(OrderDetail d)) + '; Номер ' + number(order(d))) IF constraintBook(d), ',') NOWAIT;
+    CANCEL;
+}
+```
 
 Второй вариант аналогичен первому, но он позволяет модифицировать выдаваемое сообщение пользователю, а также изменять логику обработки ограничения.

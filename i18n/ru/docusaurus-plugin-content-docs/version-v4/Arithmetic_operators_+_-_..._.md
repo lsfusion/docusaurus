@@ -36,6 +36,7 @@ title: 'Арифметические операторы (+, -, \*, ...)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=arithmetic"/>
+```lsf
+sum(a, b) = a + b;
+transform(a, b, c) = -a * (b (+) c);
+```

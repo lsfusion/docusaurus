@@ -14,6 +14,11 @@ To declare an action implemented in **Java** use the  [**INTERNAL** operator](
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+showOnMap 'Show on map' INTERNAL 'lsfusion.server.logics.classes.data.utils.geo.ShowOnMapAction' (DOUBLE, DOUBLE, MapProvider, BPSTRING[100]);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=custom"/>
+serviceDBMT 'DB maintenance (multithreaded, threadCount, timeout)' INTERNAL 'lsfusion.server.physics.admin.service.action.ServiceDBMultiThreadAction' (INTEGER, INTEGER) NULL;
+
+printlnAction 'Print text to the console'  INTERNAL  <{System.out.println("action test"); }>;
+setNoCancelInTransaction()  INTERNAL  <{ context.getSession().setNoCancelInTransaction(true); }>; // here context is a parameter of executeInternal method
+```

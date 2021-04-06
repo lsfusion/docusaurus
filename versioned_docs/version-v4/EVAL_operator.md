@@ -31,8 +31,11 @@ A list of expressions whose values will be passed to the action being executed a
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+addProperty  { EVAL ACTION 'MESSAGE \'Hello World\''; }  // source code consisting of one instruction is specified with a string constant
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=eval"/>
+code 'Source code' = DATA BPSTRING[2000] ();              // a property to which the user can enter the source code
+execute 'Execute code'  { EVAL code(); }      // the action executing this code
+```
 
   

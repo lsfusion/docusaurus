@@ -10,6 +10,12 @@ title: 'Сигнатура свойства (CLASS)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A;
+a = ABSTRACT CASE STRING[100] (A);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=class"/>
+CLASS B : A;
+b = DATA STRING[100] (B);
+
+a(B b) += WHEN CLASS(b(b)) THEN b(b); // равносильно WHEN b IS B THEN b(b)
+```

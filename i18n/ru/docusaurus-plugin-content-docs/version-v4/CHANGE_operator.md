@@ -37,8 +37,28 @@ title: 'Оператор CHANGE'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// установить всем клиентам у кого сумма заказа больше 100 скидку в размере 15 процентов
+CLASS Customer;
+discount = DATA NUMERIC[5,2] (Customer);
+totalOrders = DATA NUMERIC[14,2] (Customer);
+setDiscount  {
+    discount(Customer c) <- 15 WHERE totalOrders(c) > 100;
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=assign"/>
+discount = DATA NUMERIC[5,2] (Customer, Item);
+in = DATA BOOLEAN (Item);
+// изменить скидку для выбранных товаров для клиента
+setDiscount (Customer c)  {
+    discount(c, Item i) <- 15 WHERE in(i);
+}
+
+// скопировать свойство g в свойство f
+f = DATA INTEGER (INTEGER);
+g = DATA INTEGER (INTEGER);
+copyFG  {
+    f(a) <- g(a);
+}
+```
 
   

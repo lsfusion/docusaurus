@@ -45,6 +45,20 @@ title: 'Оператор CASE'
 
 **Примеры** 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Color;
+id = DATA STRING[100] (Color);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=case"/>
+background 'Цвет' (Color c) = CASE
+    WHEN id(c) == 'Black' THEN RGB(0,0,0)
+    WHEN id(c) == 'Red' THEN RGB(255,0,0)
+    WHEN id(c) == 'Green' THEN RGB(0,255,0)
+;
+
+id (TypeExecEnv type) = CASE EXCLUSIVE
+    WHEN type == TypeExecEnv.materialize THEN 3
+    WHEN type == TypeExecEnv.disablenestloop THEN 2
+    WHEN type == TypeExecEnv.none THEN 1
+    ELSE 0
+;
+```

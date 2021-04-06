@@ -125,11 +125,39 @@ Names of object groups from the exported form for which you want to export data.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Store;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=exportplain"/>
+name = DATA STRING[20] (Sku);
+weight = DATA NUMERIC[10,2] (Sku);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=export"/>
+in = DATA BOOLEAN (Store, Sku);
+
+exportSkus (Store store)  {
+    EXPORT DBF CHARSET 'CP866' FROM id(Sku s), name(s), weight(s) WHERE in(store, s); // uploading to DBF all Sku for which in (Store, Sku) is specified for the desired warehouse
+    EXPORT CSV NOHEADER NOESCAPE FROM id(Sku s), name(s), weight(s) WHERE in(store, s); // uploads to CSV without header line and escaping special characters
+    EXPORT FROM id(Sku s), name(s), weight(s) WHERE in(store, s) ORDER name(s) DESC; // uploads JSON, sorting by property name[Sku] in descending order
+    EXPORT FROM ff='HI'; // uploads JSON {"ff":"HI"}, as by default it gets the name value, and the platform gets the object {"value":"HI"} to
+    EXPORT FROM 'HI'; // uploads JSON "HI", as by default it gets the name value, and the platform automatically converts the object {"value": "HI"} to "HI"
+}
+```
+
+```lsf
+FORM exportSku
+    OBJECTS st = Store
+
+    OBJECTS s = Sku
+    PROPERTIES(s) id, name, weight
+    FILTERS in(st, s)
+;
+
+exportSku (Store store)  {
+    // uploading to DBF all Sku for which in (Store, Sku) is specified for the desired warehouse
+    EXPORT exportSku OBJECTS st = store DBF CHARSET 'CP866';
+    EXPORT exportSku XML;
+    EXPORT exportSku OBJECTS st = store CSV ',';
+}
+```
 
   
 

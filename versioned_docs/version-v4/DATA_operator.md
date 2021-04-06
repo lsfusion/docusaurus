@@ -35,9 +35,11 @@ A list of class IDs for property arguments. 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Item;
+quantity = DATA LOCAL INTEGER (Item);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=data"/>
+CLASS Country;
+isDayOff = DATA BOOLEAN (Country, DATE);
+```
 
-**  
-**

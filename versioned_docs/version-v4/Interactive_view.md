@@ -20,7 +20,7 @@ The platform also allows to display multiple object groups in one table simultan
 Object trees also can be used to display hierarchical data (such as classifiers). In this case, the descendants of the object collection of a group in the tree can be not only object collections of lower groups but also object collections of the same group (such an object group shall be called *hierarchical*). To determine these child object collections in a hierarchical object group, it is necessary to define an additional filter for it – which, unlike regular filters, can refer not only to the values of the filtered object collections but also to the values of the "upper in the tree" object collection (the same approach is used in the [recursion](Recursion_RECURSION_.md) operator). It is highly desirable that the hierarchical filter uses all the values of the upper object collections, since otherwise, as with filters between different groups of objects, creating such a tree doesn't make sense. Initially, it is assumed that all values of the "upper in the tree" object collection are **NULL**.
 
 
-:::note
+:::info
 In the current platform implementation, hierarchical groups allow only trees to be displayed (not directed graphs). Accordingly, it is allowed to use only values of the upper object collections and properties that take lower (filtered) values of objects as input for a hierarchical filter (so that it is guaranteed that the same tree node cannot be reached in different ways)
 :::
 
@@ -37,7 +37,7 @@ Any property or action can be displayed on a form in one of the following *vi
 For each object group, you can specify which *default view* the properties of this group will be displayed in (by default, this view is a table column). If the property has no parameters (that is, it does not have a display group), it is displayed in a panel. Actions are always displayed in a panel by default.
 
 
-:::note
+:::info
 For the remainder of the section, the behavior of properties and actions is exactly the same and so we will use only the term property (behavior is absolutely identical for actions).
 :::
 
@@ -74,7 +74,7 @@ In the interactive form view, object group filters can change as a result of var
 If none of these options is explicitly specified, the platform will try to determine whether the permanent filters in the group of objects are a) mutually exclusive for different values of the upper objects (if any), and/or b) the filter selects a very small percentage of the total number of objects of the specified classes. In both of these cases, it makes no sense to search for the previous object and, by default, the first object is selected (**FIRST**); in all other cases, the previous object (**PREV**).
 
 
-:::note
+:::info
 It is worth noting that the selection of objects by default is pretty the same as the [object search](Search_SEEK_.md)operation, where the search objects are:
 
 -   for type PREV
@@ -117,7 +117,7 @@ To implement the mechanism for working with session owners the platform uses a n
 If necessary, the developer can explicitly specify when opening a form that this form is the owner of the session that it uses.
 
 
-:::note
+:::info
 Session ownership only affects the display / behavior of system actions for managing the life cycle of a form / session. When using the remaining actions, it is recommended that the developer should consider the risk of applying the "wrong" changes by himself (and, for example, use the mentioned above **System.sessionOwners** property).
 :::
 
@@ -159,8 +159,48 @@ To display the form in the interactive view, the corresponding [open form](Open_
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date = DATA DATE (Order);
+FORM showForm
+    OBJECTS dateFrom = DATE, dateTo = DATE PANEL
+    PROPERTIES VALUE(dateFrom), VALUE(dateTo)
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=show"/>
+    OBJECTS o = Order
+    FILTERS date(o) >= dateFrom, date(o) <= dateTo
+;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=dialog"/>
+testShow ()  {
+    SHOW showForm OBJECTS dateFrom = 2010_01_01, dateTo = 2010_12_31;
+
+    NEWSESSION {
+        NEW s = Sku {
+            SHOW sku OBJECTS s = s FLOAT;
+        }
+    }
+}
+```
+
+```lsf
+FORM selectSku
+    OBJECTS s = Sku
+    PROPERTIES(s) id
+;
+
+testDialog  {
+    DIALOG selectSku OBJECTS s INPUT DO {
+        MESSAGE 'Selected sku : ' + id(s);
+    }
+}
+
+sku = DATA Sku (OrderDetail);
+idSku (OrderDetail d) = id(sku(d));
+
+changeSku (OrderDetail d)  {
+    DIALOG selectSku OBJECTS s = sku(d) CHANGE;
+
+    //equivalent to the first option
+    DIALOG selectSku OBJECTS s = sku(d) INPUT NULL CONSTRAINTFILTER DO {
+        sku(d) <- s;
+    }
+}
+```

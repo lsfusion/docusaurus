@@ -7,7 +7,7 @@ The *form design* defines how a [form](Forms.md) is displayed in the [interact
 As with any GUI, form design is a hierarchy whose nodes are *components*. Components, in turn, can be:
 
 -   *containers*: components that contain other components.
--   *base components*: graphical vews of the elements described in the [form structure](Form_structure.md) and the form[interactive view](Interactive_view.md).
+-   *base components*: graphical vews of the elements described in the [form structure](Form_structure.md) and the form [interactive view](Interactive_view.md).
 
 Each component must have its own unique name within *the form*. 
 
@@ -24,7 +24,7 @@ All children of any container make an ordered list. It is necessary to determi
 -   *Scrollable container* (**SCROLL**): can be used only if the container has exactly one child component. This single component occupies all the space it needs in the container, and if there is not enough a scroll bar appears.
 
 
-:::note
+:::info
 In future versions, the last three types of containers (**SPLITV**, **SPLITH**, **SCROLL**) will be deprecated and [replaced](https://github.com/lsfusion/platform/issues/22) with the corresponding split and scroll options in vertical and horizontal containers.
 :::
 
@@ -65,12 +65,12 @@ For each container, one of the directions is considered to be *dynamic*, and th
 -   Static: *alignment* can be specified for each component (**alignment**). Its values can be *At the start* (**START**), *Center* (**CENTER**), *At the end* (**END**), or *Stretch* (**STRETCH**). In the first three cases, the component gets its base size as the final size, and is positioned in accordance with the specified type of alignment (that is, at the beginning, center, or end). If Stretch is used as the type of alignment, the final size of the component will be the size of the top container (but not less than the base size), and it will be located exactly in the center. 
 
 
-:::note
+:::info
 For example, in the case of a vertical upper container, if the component is set to align at the start then it will be located on the maximum left of the container; if it is set to Stretch, the component will occupy all the space from the left to the right border.
 :::
 
 
-:::note
+:::info
 This component layout algorithm is a special case of [CSS Flexible Box Layout](https://www.w3.org/TR/css-flexbox-1/) (and is implemented using it in the web client). For example, the CSS flex-grow property corresponds to the extension coefficient, and flex-basis corresponds to the base size.
 :::
 
@@ -81,7 +81,7 @@ For base components, you can specify the *automatic size* option (**autoSize**):
 The properties layout in a table (or rather, the columns that display their values) is done the same way as if the table were a horizontal container, and the columns of the table were internal components of this container. 
 
 
-:::note
+:::info
 Since the current implementation uses the [CSS Table Layout Fixed](https://www.w3schools.com/cssref/pr_tab_table-layout.asp) mechanism to place columns inside the table in the Web client, and its capabilities are significantly limited, the extension coefficient for properties displayed in the table can be equal either to 0 or to the base size.
 :::
 
@@ -105,8 +105,8 @@ By default, the extension coefficient and alignment for components are determine
 |---|---|---|
 |Table / Tree|1|STRETCH|
 |Component inside scrollable containers, splitters and tabbed panel|1|STRETCH|
-|Property panel inside a horizontal container or property in a table. The property values are objects of built-in classes of dynamic length (i.e. strings and numbers)|With of the value cell|START|
-|Property panel inside a vertical container. The property values are objects of builtin classes of dynamic length (i.e. strings and numbers)|0|STRETCH|
+|Property panel inside a horizontal container or property in a table. The property values are objects of [built-in classes](Built-in_classes.md) of dynamic length (i.e. strings and numbers)|With of the value cell|START|
+|Property panel inside a vertical container. The property values are objects of [built-in classes](Built-in_classes.md) of dynamic length (i.e. strings and numbers)|0|STRETCH|
 |All others|0|START|
 
 The base container size (except the tab panel) is equal by default to the sum of the base sizes of all its child components for the dynamic direction, and the maximum for the static direction. The base height of the tab panel is the sum of the base height of its current tab and the height of the tab title bar, the base width is the same as the base width of the current tab.
@@ -167,9 +167,15 @@ The automatic design is generated as follows:
 
 ### Default design example
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormDesignSample"/>
+FORM myForm 'myForm'
+    OBJECTS myObject = myClass
+    PROPERTIES(myObject) myProperty1, myProperty2 PANEL
+    FILTERGROUP myFilter
+        FILTER 'myFilter' myProperty1(myObject)
+;
+```
 
 The hierarchy of containers and components in the default design will look like this:
 
@@ -183,7 +189,59 @@ To set up the design of the form, use the [****DESIGN**** instruction](DESIGN_i
 
 ### Examples
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=design"/>
+```lsf
+DESIGN order { // customizing the design of the form, starting with the default design
+    // marking that all changes to the hierarchy will occur for the topmost container
+    NEW orderPane FIRST { // creating a new container as the very first one before the system buttons, in which we put two containers - header and specifications
+        fill = 1; // specifying that the container should occupy all the space available to it
+        type = SPLITV; // specifying that the container will be a vertical splitter
+        MOVE BOX(o) { // moving everything related to the object o to the new container
+            PANEL(o) { // configuring how properties are displayed in the object o panel
+                type = CONTAINERV; // making all descendants go from top to bottom
+                NEW headerRow1 { // creating a container - the first row
+                    type = CONTAINERH;
+                    MOVE PROPERTY(date(o)) { // moving the order date property
+                        caption = 'Date of the edited order'; // "override" the property caption in the form design (instead of the standard one)
+                        toolTip = 'Input here the date the order was made'; //setting a hint for the order date property
+                        background = #00FFFF; // making the background red
+                    }
+                    MOVE PROPERTY(time(o)) { // moving the order time property
+                        foreground = #FF00FF; // making the color green
+                    }
+                    MOVE PROPERTY(number(o)) { // moving the order number property
+                        charWidth = 5; // setting that the user should preferably be shown 5 characters
+                    }
+                    MOVE PROPERTY(series(o)); // moving the order series property
+                }
+                NEW headerRow2 {
+                    type = CONTAINERV; // descendants - from top to bottom
+                }
+                MOVE PROPERTY(note(o));
+            }
+
+            size = (400, 300); //specifying that the container o.box should have a base size of 400x300 pixels
+        }
+        NEW detailPane { // creating a container that will store various specifications for the order
+            type = TABBED; // marking that this container should be a tab panel, where its descendats are tabs
+            MOVE BOX(d) { // adding a container with order lines as one of the tabs in the top panel
+                caption = 'Lines'; // setting the caption of the tab panel
+                PROPERTY(index(d)) { focusable = FALSE; } // making the row number column never have focus
+                GRID(d) {
+                    defaultComponent = TRUE; // making sure that by default the focus when opening the form is set to the row table
+                }
+            }
+            MOVE BOX(s) { // adding a container with sku totals as one of the detailPane tabs
+                caption = 'Selection';
+            }
+        }
+    }
+}
+
+// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+DESIGN order {
+    REMOVE TOOLBARLEFT; // removing from the hierarchy the container with the print and export buttons to xls, thereby making them invisible
+}
+```
 
 The output is the following form:
 

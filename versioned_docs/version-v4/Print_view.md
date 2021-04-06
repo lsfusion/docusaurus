@@ -19,7 +19,7 @@ Similar to an object group, each report has a *parent* report, so all reports fo
 Based on the report hierarchy restrictions, only "chains" of object groups can be included in one report (i.e., G1, G2, G3, ... Gn, where G2 is the only linear child object of G1, G3 is the only child of G2, etc.). Thus, the decision on how to break object groups into reports comes down to whether to merge an object group with its only child (if there is one) or not. By default, such a merge is performed, however, if necessary, the developer can disable it by specifying the corresponding option (**SUBREPORT**) for a child object group.
 
 
-:::note
+:::info
 Using this option comes down to whether to display data for a parent object group when the child object group has no data.
 :::
 
@@ -27,15 +27,20 @@ Using this option comes down to whether to display data for a parent object grou
 
 The form is similar to the [example of building an object group hierarchy](Static_view.md#hierarchysample-broken):
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=GroupHierarchySample"/>
+FORM myForm 'myForm'
+    OBJECTS A, B SUBREPORT, C, D, E
+    PROPERTIES f(B, C), g(A, C)
+    FILTERS c(E) = C, h(B, D)
+;
+```
 
 The report hierarchy for this form is built as follows:
 
   
 
-![](download/temp/svgout8892903451953158670.png)
+![](download/temp/svgout3984245327843122838.png)
 
 ### Language
 
@@ -47,4 +52,29 @@ To display the form in print view, the corresponding [open form](Open_form.md)�
 
 ### Examples
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=print"/>
+```lsf
+FORM printOrder
+    OBJECTS o = Order
+    PROPERTIES(o) currency, customer
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) idSku, price
+    FILTERS order(d) == o
+;
+
+print (Order o)  {
+    PRINT printOrder OBJECTS o = o; // printing
+
+    LOCAL file = FILE ();
+    PRINT printOrder OBJECTS o = o DOCX TO file;
+    open(file());
+
+    //v 2.0-2.1 syntax
+    LOCAL sheetName = STRING[255]();
+    sheetName() <- 'encrypted';
+    PRINT printOrder OBJECTS o = o XLS SHEET sheetName PASSWORD 'pass';
+
+    //v 2.2 syntax
+    //PRINT printOrder OBJECTS o = o XLS SHEET 'encrypted' PASSWORD 'pass';
+}
+```

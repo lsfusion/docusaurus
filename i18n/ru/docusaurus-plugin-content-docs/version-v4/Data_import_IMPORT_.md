@@ -4,7 +4,7 @@ title: 'Импорт данных (IMPORT)'
 
 Оператор *импорта данных* создает [действие](Actions.md), которое читает файл из значения некоторого [свойства](Properties.md), затем, в зависимости от его [формата](Structured_view.md), определяет колонки (поля) данных в этом файле, после чего [записывает](Property_change_CHANGE_.md) значение каждой колонки (поля) в соответствующее свойство (параметр) - *назначение* импорта. Отображение колонок на свойства может идти как по порядку колонок, так и по их именам.
 
-Строки, в свою очередь, при импорте отображаются на объекты заданных классов (будем называть эти объекты *импортируемыми*). В текущей реализации платформы объект может быть максимум один, а заданный класс должны быть либо [числовым](Built-in_classes.md) либо [конкретным пользовательским](Static_objects.md#abstract). При этом отображение строк на импортируемый объект осуществляется следующим образом:
+Строки, в свою очередь, при импорте отображаются на объекты заданных классов (будем называть эти объекты *импортируемыми*). В текущей реализации платформы объект может быть максимум один, а заданный класс должны быть либо [числовым](Built-in_classes.md) либо [конкретным пользовательским](User_classes.md#abstract). При этом отображение строк на импортируемый объект осуществляется следующим образом:
 
 -   для числовых классов - все импортируемые строки нумеруются в порядке, в котором они идут в файле (начиная с 0).
 -   для конкретных пользовательских классов - для каждой импортируемой строки [создается новый объект](New_object_NEW_.md) заданного класса.
@@ -28,6 +28,53 @@ title: 'Импорт данных (IMPORT)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+import()  {
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=import"/>
+    LOCAL xlsFile = EXCELFILE ();
+
+    LOCAL field1 = BPSTRING[50] (INTEGER);
+    LOCAL field2 = BPSTRING[50] (INTEGER);
+    LOCAL field3 = BPSTRING[50] (INTEGER);
+    LOCAL field4 = BPSTRING[50] (INTEGER);
+
+    LOCAL headField1 = BPSTRING[50] ();
+    LOCAL headField2 = BPSTRING[50] ();
+
+    INPUT f = EXCELFILE DO {
+        IMPORT XLS SHEET 2 FROM f TO field1 = C, field2, field3 = F, field4 = A;
+        IMPORT XLS SHEET ALL FROM f TO field1 = C, field2, field3 = F, field4 = A;
+
+        FOR imported(INTEGER i) DO { // свойство imported - системное свойство, предназначенное для перебора данных
+            MESSAGE 'field1 value = ' + field1(i);
+            MESSAGE 'field2 value = ' + field2(i);
+            MESSAGE 'field3 value = ' + field3(i);
+            MESSAGE 'field4 value = ' + field4(i);
+       }
+    }
+
+    LOCAL t = FILE ();
+    EXTERNAL SQL 'jdbc:postgresql://localhost/test?user=postgres&password=12345' EXEC 'SELECT x.a,x.b,x.c,x.d FROM orders x WHERE x.id = $1;' PARAMS '4553' TO t;
+    IMPORT FROM t() FIELDS INTEGER a, DATE b, BPSTRING[50] c, BPSTRING[50] d DO        // импорт с опцией FIELDS
+        NEW o = Order {
+            number(o) <- a;
+            date(o) <- b;
+            customer(o) <- c;
+            currency(o) <- GROUP MAX Currency currency IF name(currency) = d; // находим currency с данным именем
+        }
+
+
+    INPUT f = FILE DO
+        IMPORT CSV '*' HEADER CHARSET 'utf-8' FROM f TO field1 = C, field2, field3 = F, field4 = A;
+    INPUT f = FILE DO
+        IMPORT XML ATTR FROM f TO field1, field2;
+    INPUT f = FILE DO
+        IMPORT XML ROOT 'element' ATTR FROM f TO field1, field2;
+    INPUT f = FILE DO
+        IMPORT XML ATTR FROM f TO() headField1, headField2;
+
+    INPUT f = FILE DO
+        INPUT memo = FILE DO
+            IMPORT DBF MEMO memo FROM f TO field1 = 'DBFField1', field2 = 'DBFField2';
+}
+```

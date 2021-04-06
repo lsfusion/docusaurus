@@ -25,6 +25,30 @@ Design component [selector](DESIGN_instruction.md#selector-broken). The compone
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+//Form with two tabs
+FORM tabbedForm 'Tabbed form'
+    OBJECTS u = CustomUser
+    PROPERTIES(u) name
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=activetab"/>
+    OBJECTS c = Chat
+    PROPERTIES(c) name
+;
+
+DESIGN tabbedForm {
+    NEW tabPane FIRST {
+        type = TABBED;
+        NEW contacts {
+            caption = 'Contacts';
+            MOVE BOX(u);
+        }
+        NEW recent {
+            caption = 'Recent';
+            MOVE BOX(c);
+        }
+    }
+}
+
+//If the 'Recent' tab is active
+recentActive() = ACTIVE TAB tabbedForm.recent;
+```

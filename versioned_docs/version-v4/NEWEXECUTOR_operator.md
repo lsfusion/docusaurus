@@ -25,8 +25,19 @@ An [expression](Expression.md) which value determines the number of threads in t
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=newexecutor"/>
+```lsf
+testExecutor  {
+    NEWEXECUTOR {
+        FOR id(Sku s) DO {
+            NEWTHREAD {
+                NEWSESSION {
+                    name(s) <- STRING[20](id(s)); // writing the code into the name in 10 threads
+                    APPLY;
+                }
+            }
+        }
+    } THREADS 10;
+}
+```
 
   

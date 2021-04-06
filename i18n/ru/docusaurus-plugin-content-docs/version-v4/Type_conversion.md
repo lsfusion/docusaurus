@@ -9,7 +9,7 @@ title: 'Преобразование типа'
 Строковые типы можно преобразовывать в файловые human-readable типы (**CSVFILE**, **XMLFILE**, **JSONFILE**, **HTMLFILE** и т.д.), и наоборот - файловые human-readable типы можно преобразовывать в строковые типы.
 
 
-:::note
+:::info
 Преобразовывать файлы динамического типа (**FILE**) к строкам и наоборот в текущей реализации запрещено, но, при необходимости, это можно сделать через промежуточный human-readable тип - то есть преобразовать сначала, к примеру, к **CSVFILE**, а уже потом к **FILE** (при этом у результирующего файла [будет расширение](Built-in_classes.md#csv-broken) csv)
 :::
 
@@ -19,6 +19,10 @@ title: 'Преобразование типа'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+itemCount = DATA INTEGER (Store);
+itemCountToString(s) = BPSTRING[10](itemCount(s));
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=explicitcast"/>
+barcode = DATA STRING[15] (Item);
+longBarcode(Item i) = LONG(barcode(i));
+```

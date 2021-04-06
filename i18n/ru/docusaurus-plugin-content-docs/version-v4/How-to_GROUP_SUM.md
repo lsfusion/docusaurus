@@ -8,15 +8,20 @@ title: 'How-to: GROUP SUM'
 
 Есть набор книг, привязанных к определенной категории.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book 'Книга';
+CLASS Category 'Категория';
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=sample1"/>
+category 'Категория' = DATA Category (Book);
+```
 
 Необходимо посчитать количество книг в категории.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=solution1"/>
+```lsf
+countBooks 'Количество книг' (Category c) = GROUP SUM 1 BY category(Book book);
+```
 
 ## Пример 2
 
@@ -24,13 +29,19 @@ import {CodeSample} from './CodeSample.mdx'
 
 Есть набор книг, привязанных к определенным тегам. Каждая книга может относиться к нескольким тегам одновременно.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=sample2"/>
+```lsf
+CLASS Tag 'Тег';
+
+in 'Вкл' = DATA BOOLEAN (Tag, Book);
+```
 
 Необходимо посчитать количество книг в теге.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=solution2"/>
+```lsf
+countBooks 'Количество книг' (Tag t) = GROUP SUM 1 IF in(t, Book b);
+```
 
 ## Пример 3
 
@@ -38,13 +49,26 @@ import {CodeSample} from './CodeSample.mdx'
 
 Существует информация о движении книг, где для каждой записи есть ссылка на книгу и склад, по которому было движение, а также количество и тип операции (приход/расход).
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=sample3"/>
+```lsf
+CLASS Stock 'Склад';
+
+
+CLASS Ledger 'Движение';
+book 'Книга' = DATA Book (Ledger);
+stock 'Склад' = DATA Stock (Ledger);
+
+quantity 'Кол-во' = DATA INTEGER (Ledger);
+out 'Расход' = DATA BOOLEAN (Ledger);
+```
 
 Необходимо посчитать текущей остаток по складу для книги.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=solution3"/>
+```lsf
+TABLE bookStock (Book, Stock);
+currentBalance 'Текущий остаток' (Book b, Stock s) = GROUP SUM IF out(Ledger l) THEN -quantity(l) ELSE quantity(l) BY book(l), stock(l) MATERIALIZED;
+```
 
 Свойство **currentBalance** лучше всего помечать как **[MATERIALIZED](Materializations.md)** для того, чтобы при чтении текущего остатка система не считала его на основе движения за все время, а обращалась бы к таблице **bookStock** с уже готовым значением. Это замедляет запись (так как при записи каждого движения будет требоваться обновление текущего остатка), однако значительно ускоряет чтение.
 
@@ -56,13 +80,21 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 3**, только для движения указана дата движения.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=sample4"/>
+```lsf
+date 'Дата' = DATA DATE (Ledger) INDEXED; // лучше добавлять индекс, чтобы быстро шла фильтрация по дате
+```
 
 Необходимо посчитать остаток по складу для книги на дату (на утро, без учета движений за выбранную дату).
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=solution4"/>
+```lsf
+// Вариант 1
+balance1 'Остаток на дату' (Book b, Stock s, DATE d) = GROUP SUM (IF out(Ledger l) THEN -quantity(l) ELSE quantity(l)) IF date(l) < d BY book(l), stock(l);
+
+// Вариант 2
+balance2 'Остаток на дату' (Book b, Stock s, DATE d) = currentBalance(b, s) (-) [ GROUP SUM (IF out(Ledger l) THEN -quantity(l) ELSE quantity(l)) IF date(l) >= d BY book(l), stock(l)](b, s);
+```
 
   
 
@@ -76,7 +108,9 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseSum&block=solution5"/>
+```lsf
+currentBalance 'Текущий остаток' (Book b) = GROUP SUM currentBalance(b, Stock s);
+```
 
   
 

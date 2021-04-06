@@ -15,6 +15,23 @@ To declare a property that returns a previous value, use the [**PREV** operator
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+f = DATA INTEGER (A);
+// outputs all changes f(a) in the session one by one
+messageFChanges  {
+    FOR CHANGED(f(A a)) DO
+        MESSAGE 'In this session f(a) changed from ' + PREV(f(a)) + ' TO ' + f(a);
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=prev"/>
+CLASS Document;
+date = DATA DATE (Document);
+
+CLASS Article;
+price = DATA NUMERIC[14,2] (Document, Article);
+// write in the price of the document the last used price in the database
+// PREV is important to ignore the prices entered in this document
+// this is especially important if the last used price is materialized, then the platform can simply read this value from the table
+setPrice  {
+    price(Document d, Article a) <- PREV((GROUP LAST price(d, a) ORDER date(d), d));
+}
+```

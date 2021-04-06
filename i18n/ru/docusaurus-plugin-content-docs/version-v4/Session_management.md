@@ -12,7 +12,7 @@ sidebar_label: Обзор
 -   [Операторы изменений (SET, CHANGED, ...)](Change_operators_SET_CHANGED_..._.md)
 
 
-:::note
+:::info
 Отметим, что последние два оператора создают свойства, а не действия.
 :::
 

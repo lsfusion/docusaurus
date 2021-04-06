@@ -23,7 +23,7 @@ A form being opened can be shown in two ways:
 By default, forms in the synchronous mode are shown as windows, in the asynchronous mode – as tabs.
 
 
-:::note
+:::info
 In the current implementation of the platform, a form shown as a window is always modal, which means that the "asynchronous window" mode is not supported.
 :::
 
@@ -59,11 +59,51 @@ To open a form in the interactive view, use the [**SHOW** operator](SHOW_opera
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date = DATA DATE (Order);
+FORM showForm
+    OBJECTS dateFrom = DATE, dateTo = DATE PANEL
+    PROPERTIES VALUE(dateFrom), VALUE(dateTo)
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=show"/>
+    OBJECTS o = Order
+    FILTERS date(o) >= dateFrom, date(o) <= dateTo
+;
+
+testShow ()  {
+    SHOW showForm OBJECTS dateFrom = 2010_01_01, dateTo = 2010_12_31;
+
+    NEWSESSION {
+        NEW s = Sku {
+            SHOW sku OBJECTS s = s FLOAT;
+        }
+    }
+}
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=dialog"/>
+```lsf
+FORM selectSku
+    OBJECTS s = Sku
+    PROPERTIES(s) id
+;
+
+testDialog  {
+    DIALOG selectSku OBJECTS s INPUT DO {
+        MESSAGE 'Selected sku : ' + id(s);
+    }
+}
+
+sku = DATA Sku (OrderDetail);
+idSku (OrderDetail d) = id(sku(d));
+
+changeSku (OrderDetail d)  {
+    DIALOG selectSku OBJECTS s = sku(d) CHANGE;
+
+    //equivalent to the first option
+    DIALOG selectSku OBJECTS s = sku(d) INPUT NULL CONSTRAINTFILTER DO {
+        sku(d) <- s;
+    }
+}
+```
 
   

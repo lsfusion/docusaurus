@@ -36,8 +36,16 @@ title: 'Оператор NEWTHREAD'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNewThread ()  {
+    //Показ всем сообщения 'Сообщение'
+    FOR user(Connection conn) AND connectionStatus(conn) == ConnectionStatus.connectedConnection AND conn != currentConnection() DO {
+        NEWTHREAD MESSAGE 'Сообщение'; CONNECTION conn;
+    }
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=newthread"/>
+    //Выполнение действия action с периодичностью в 10 секунд и задержкой 5 секунд
+    NEWTHREAD MESSAGE 'Hello World'; SCHEDULE PERIOD 10000 DELAY 5000;
+}
+```
 
   

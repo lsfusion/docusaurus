@@ -25,8 +25,16 @@ title: 'Оператор DELETE'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// удаление объекта
+deleteObject(obj)  { DELETE obj; }
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=delete"/>
+// удаление всех неактивных товаров
+CLASS Article;
+active = DATA BOOLEAN (Article);
+deleteInactiveArticles()  {
+    DELETE Article a WHERE a IS Article AND NOT active(a); // добавляется локальный параметр a, соответствующий перебираемым объектам
+}
+```
 
   

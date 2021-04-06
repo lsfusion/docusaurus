@@ -16,7 +16,7 @@ The **BEFORE** instruction defines an action (let's call it an *aspect*) that wi
 
 *action*
 
-The[ID](IDs.md#propertyid-broken) of the action before which the aspect will be called.
+The [ID](IDs.md#propertyid-broken) of the action before which the aspect will be called.
 
 *param1, ..., paramN*
 
@@ -29,8 +29,9 @@ A [context-dependent action operator](Action_operator.md#contextdependent) descr
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=before"/>
+```lsf
+changeName(Sku s, STRING[100] name)  { name(s) <- name; }
+BEFORE changeName(Sku s, STRING[100] name) DO MESSAGE 'Changing user name'; // The message will be shown before each call to changeName
+```
 
   

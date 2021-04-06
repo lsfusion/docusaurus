@@ -52,7 +52,7 @@ By default, the following modes are used in event handling:
 -   for the cancel changes operator - event mode (canceling the application, not clearing the session).
 
 
-:::note
+:::info
 For change operators and the previous value operator, when executing global synchronous event handlers, these modes (standard and event) coincide
 :::
 
@@ -62,8 +62,30 @@ To create actions that handle events, use the ON instruction.
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Sku;
+name = DATA STRING[100] (Sku);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=on"/>
+ON {
+    LOCAL changedName = BOOLEAN (Sku);
+    changedName(Sku s) <- CHANGED(name(s));
+    IF (GROUP SUM 1 IF changedName(Sku s)) THEN {
+        MESSAGE 'Changed ' + (GROUP SUM 1 IF changedName(Sku s)) + ' skus!!!';
+    }
+}
+
+CLASS Order;
+
+CLASS Customer;
+name = DATA STRING[50] (Customer);
+
+customer = DATA Customer (Order);
+discount = DATA NUMERIC[6,2] (Order);
+
+ON LOCAL {
+    FOR CHANGED(customer(Order o)) AND name(customer(o)) == 'Best customer' DO
+        discount(o) <- 50;
+}
+```
 
  

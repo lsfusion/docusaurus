@@ -126,8 +126,29 @@ title: 'Оператор DIALOG'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM selectSku
+    OBJECTS s = Sku
+    PROPERTIES(s) id
+;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=dialog"/>
+testDialog  {
+    DIALOG selectSku OBJECTS s INPUT DO {
+        MESSAGE 'Selected sku : ' + id(s);
+    }
+}
+
+sku = DATA Sku (OrderDetail);
+idSku (OrderDetail d) = id(sku(d));
+
+changeSku (OrderDetail d)  {
+    DIALOG selectSku OBJECTS s = sku(d) CHANGE;
+
+    //равносильно первому варианту
+    DIALOG selectSku OBJECTS s = sku(d) INPUT NULL CONSTRAINTFILTER DO {
+        sku(d) <- s;
+    }
+}
+```
 
   

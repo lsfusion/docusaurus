@@ -23,6 +23,24 @@ To declare a property using change operators, the following [syntax constructs](
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+quantity = DATA NUMERIC[14,2] (OrderDetail);
+price = DATA NUMERIC[14,2] (OrderDetail);
+sum(OrderDetail d) <- quantity(d) * price(d) WHEN CHANGED(quantity(d)) OR CHANGED(price(d));
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=changed"/>
+createdUser = DATA CustomUser (Order);
+createdUser (Order o) <- currentUser() WHEN SET(o IS Order);
+
+numerator = DATA Numerator (Order);
+number = DATA STRING[28] (Order);
+series = DATA BPSTRING[2] (Order);
+WHEN SETCHANGED(numerator(Order o)) AND
+     NOT CHANGED(number(o)) AND
+     NOT CHANGED(series(o))
+     DO {
+        number(o) <- curStringValue(numerator(o));
+        series(o) <- series(numerator(o));
+        incrementValueSession(numerator(o));
+     }
+;
+```

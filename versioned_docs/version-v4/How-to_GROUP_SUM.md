@@ -8,15 +8,20 @@ title: 'How-to: GROUP SUM'
 
 We have a set of books associated with certain category.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book 'Book';
+CLASS Category 'Category';
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=sample1"/>
+category 'Category' = DATA Category (Book);
+```
 
 We need to calculate the number of books in the category.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=solution1"/>
+```lsf
+countBooks 'Number of books' (Category c) = GROUP SUM 1 BY category(Book book);
+```
 
 ## Example 2
 
@@ -24,13 +29,19 @@ We need to calculate the number of books in the category.
 
 We have a set of books associated with certain tags. Each book can be associated with several tags at the same time.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=sample2"/>
+```lsf
+CLASS Tag 'Tag';
+
+in 'On' = DATA BOOLEAN (Tag, Book);
+```
 
 We need to calculate the number of books in the tag.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=solution2"/>
+```lsf
+countBooks 'Number of books' (Tag t) = GROUP SUM 1 IF in(t, Book b);
+```
 
 ## Example 3
 
@@ -38,13 +49,26 @@ We need to calculate the number of books in the tag.
 
 We have the information about the movement of books: each record is linked to the book itself and the warehouse where the movement occured, and also contains quantity and types of operations (receipt/shipment).
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=sample3"/>
+```lsf
+CLASS Stock 'Warehouse';
+
+
+CLASS Ledger 'Movement';
+book 'Book' = DATA Book (Ledger);
+stock 'Warehouse' = DATA Stock (Ledger);
+
+quantity 'Qty' = DATA INTEGER (Ledger);
+out 'Expenses' = DATA BOOLEAN (Ledger);
+```
 
 We need to calculate the current balance for a book at the warehouse.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=solution3"/>
+```lsf
+TABLE bookStock (Book, Stock);
+currentBalance 'Current balance' (Book b, Stock s) = GROUP SUM IF out(Ledger l) THEN -quantity(l) ELSE quantity(l) BY book(l), stock(l) MATERIALIZED;
+```
 
 It is recommended to mark the **currentBalance** property as **[MATERIALIZED](Materializations.md)**, so that when reading the current balances, the system could take the calculated value from the **bookStock** table instead of recalculating this value based on all movements. Though this will slow down the writing process (since writing each movement will require updating the current balance), the reading process will become much faster.
 
@@ -56,13 +80,21 @@ Note that you do not need to define explicitly in which table to keep the **curr
 
 Similar to **Example 3**, except that each movement is associated with the date of movement.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=sample4"/>
+```lsf
+date 'Date' = DATA DATE (Ledger) INDEXED; // it is better to add an index to filter by date quickly
+```
 
 We need to calculate the current balance for a given book at the warehouse for the specific date (as of the morning, without the movements occured on that day).
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=solution4"/>
+```lsf
+// Option 1
+balance1 'Balance as of date' (Book b, Stock s, DATE d) = GROUP SUM (IF out(Ledger l) THEN -quantity(l) ELSE quantity(l)) IF date(l) < d BY book(l), stock(l);
+
+// Option 2
+balance2 'Balance as of date' (Book b, Stock s, DATE d) = currentBalance(b, s) (-) [ GROUP SUM (IF out(Ledger l) THEN -quantity(l) ELSE quantity(l)) IF date(l) >= d BY book(l), stock(l)](b, s);
+```
 
   
 
@@ -76,7 +108,9 @@ Similar to **Example 3**, except that we need to calculate the current balance 
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseSum&block=solution5"/>
+```lsf
+currentBalance 'Current balance' (Book b) = GROUP SUM currentBalance(b, Stock s);
+```
 
   
 

@@ -13,6 +13,12 @@ title: 'Запись файла (WRITE)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=write"/>
+```lsf
+loadAndWrite ()  {
+    INPUT f = FILE DO {
+        WRITE f TO 'file:///home/user/loadedfile.csv' APPEND;
+        WRITE CLIENT f TO '/home/user/loadedfile.txt';
+        WRITE CLIENT DIALOG f TO 'loadedfile';
+    }
+}
+```

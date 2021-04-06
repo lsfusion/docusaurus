@@ -23,8 +23,6 @@ The **PRIORITY** instruction defines the list of additional [namespaces](Naming
 
 The **NAMESPACE** instruction defines the module's namespace.  
 
-**  
-**
 
 ## Parameters
 
@@ -46,6 +44,14 @@ The name of the module namespace. A simple ID that cannot contain an underscore.
 
 ### **Examples**
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+MODULE EmployeeExample;	 	// Defining the module name
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ModuleSample"/>
+REQUIRE System, Utils;	 	// Listing the modules that the Employee module depends on
+NAMESPACE Employee;		 	// Setting the namespace
+
+CLASS Employee 'Employee';	// Creating a class
+CLASS Position 'Position'; // Creating another class
+
+employeePosition(employee) = DATA Position (Employee); // Creating property
+```

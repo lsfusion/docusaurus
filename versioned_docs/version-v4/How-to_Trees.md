@@ -8,15 +8,26 @@ title: 'How-to: Trees'
 
 We have a set of books associated with certain categories.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Category 'Category';
+name 'Name' = DATA ISTRING[50] (Category);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseTree&block=sample1"/>
+CLASS Book 'Book';
+name 'Name' = DATA ISTRING[50] (Book);
+category 'Category' = DATA Category (Book);
+```
 
 We need to build a form with a tree, where the category is shown above and the product is shown below.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseTree&block=solution1"/>
+```lsf
+FORM books 'Books'
+    TREE cb c = Category, b = Book
+    PROPERTIES name(c), name(b)
+    FILTERS category(b) == c
+;
+```
 
 ## Example 2
 
@@ -24,13 +35,20 @@ We need to build a form with a tree, where the category is shown above and the p
 
 Similar to **Example 1**, except that each category has a parent in the hierarchy.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseTree&block=sample2"/>
+```lsf
+parent 'Parent' = DATA Category (Category);
+```
 
 We need to build a form with a tree, where the categories will be displayed as hierarchy.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseTree&block=solution2"/>
+```lsf
+FORM categories 'Categories'
+    TREE categories c = Category PARENT parent(c)
+    PROPERTIES(c) name
+;
+```
 
 ## Example 3
 
@@ -42,4 +60,25 @@ We need to create a form with a category tree, so that the books that belong to 
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseTree&block=solution3"/>
+```lsf
+level 'Level' (Category child, Category parent) = RECURSION 1l IF child IS Category AND parent == child
+                                                                 STEP 2l IF parent == parent($parent) MATERIALIZED;
+
+FORM categoryBooks 'Books by category'
+    TREE categories c = Category PARENT parent(c)
+    PROPERTIES(c) name
+
+    OBJECTS b = Book
+    PROPERTIES(b) name
+    FILTERS level(category(b), c)
+;
+
+DESIGN categoryBooks {
+    NEW pane FIRST {
+        fill = 1;
+        type = SPLITH;
+        MOVE BOX(TREE categories);
+        MOVE BOX(b);
+    }
+}
+```

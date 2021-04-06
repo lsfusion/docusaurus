@@ -15,7 +15,7 @@ title: 'Опции действия'
     IN groupName
     viewType
     ON eventType { actionOperator }
-    EDITKEY key [SHOW | HIDE]
+    CHANGEKEY key [SHOW | HIDE]
     ASON eventType [ACTION] propertyId
     IMAGE path
     CONFIRM
@@ -82,7 +82,7 @@ title: 'Опции действия'
 
 ### *Блок значений по умолчанию инструкции DESIGN*
 
-*EDITKEY key \[SHOW | HIDE\]*
+*CHANGEKEY key \[SHOW | HIDE\]*
 
 Указание [комбинации клавиш](Form_events.md#keyboard-broken), при нажатии которой будет выполнено это действие. Устанавливает значение для [дизайна по умолчанию](Form_design.md#defaultDesign), может быть переопределено в [инструкции** DESIGN**](DESIGN_instruction.md).
 

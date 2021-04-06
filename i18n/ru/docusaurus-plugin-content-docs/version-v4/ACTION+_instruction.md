@@ -35,8 +35,37 @@ title: 'Инструкция ACTION+'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Animal;
+whoAmI  ABSTRACT ( Animal);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=extendaction"/>
+CLASS Dog : Animal;
+whoAmI (Dog d) + {  MESSAGE 'I am a dog!'; }
+
+CLASS Cat : Animal;
+whoAmI (Cat c) + {  MESSAGE 'I am a сat!'; }
+
+ask ()  {
+    FOR Animal a IS Animal DO
+        whoAmI(a); // для каждого объекта будет выдано соответствующее сообщение
+}
+
+onStarted  ABSTRACT LIST ( );
+onStarted () + {
+    name(Sku s) <- '1';
+}
+onStarted () + {
+    name(Sku s) <- '2';
+}
+// сначала выполниться 1е действие, потом 2е действие
+
+CLASS Human;
+name = DATA STRING[100] (Human);
+
+testName  ABSTRACT CASE ( Human);
+
+testName (Human h) + WHEN name(h) == 'John' THEN {  MESSAGE 'I am John'; }
+testName (Human h) + WHEN name(h) == 'Bob' THEN {  MESSAGE 'I am Bob'; }
+```
 
   

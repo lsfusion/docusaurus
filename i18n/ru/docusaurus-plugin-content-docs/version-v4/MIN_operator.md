@@ -21,6 +21,9 @@ title: 'Оператор MIN'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+minPrice(Book b) = MIN price1(b), price2(b);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=min"/>
+date (INTEGER i) = DATA DATE (INTEGER);
+minDate (INTEGER i) = MIN date(i), 2001_01_01;
+```

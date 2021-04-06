@@ -31,8 +31,11 @@ title: 'Оператор EVAL'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+addProperty  { EVAL ACTION 'MESSAGE \'Hello World\''; }  // исходный код, состоящий из одной инструкции, задается строковой константой
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=eval"/>
+code 'Исходные код' = DATA BPSTRING[2000] ();              // свойство, в которое пользователь может ввести исходный код
+execute 'Выполнить код'  { EVAL code(); }      // действие, выполняющее этот код
+```
 
   

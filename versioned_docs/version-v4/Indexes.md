@@ -14,6 +14,11 @@ To create indexes, you must use the [**INDEX** instruction](INDEX_instruction.m
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+INDEX customer(Order o);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=index"/>
+date = DATA DATE (Order);
+INDEX date(Order o), o;
+
+INDEX name(Sku s), price(s, DATE d), d;
+```

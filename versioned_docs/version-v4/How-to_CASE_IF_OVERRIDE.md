@@ -8,15 +8,28 @@ title: 'How-to: CASE/IF/OVERRIDE'
 
 We have a set of white books and black books.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Color 'Color' {
+    white 'White',
+    black 'Black'
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=sample1"/>
+CLASS Book 'Book';
+
+color 'Color' = DATA Color (Book);
+```
 
 We need to define a property that returns the color of a given book.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=solution1"/>
+```lsf
+// Option 1
+nameColor1 'Color' (Book b) = staticCaption(color(b));
+
+// Option 2
+nameColor2 'Color' (Book b) = IF color(b) == Color.white THEN 'White' ELSE 'Black';
+```
 
 These two expressions provide identical results.
 
@@ -26,13 +39,39 @@ These two expressions provide identical results.
 
 We have multiple purchase orders to suppliers for books. For each purchase order defined it's status if it was placed, agreed and delivered. In this example these statuses are declared as [data](Data_properties_DATA_.md) properties, but in more sophisticated cases they may be calculated.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=sample2"/>
+```lsf
+CLASS Order 'Order';
+
+sent 'Sent' = DATA BOOLEAN (Order);
+agreed 'Agreed' = DATA BOOLEAN (Order);
+accepted 'Accepted' = DATA BOOLEAN (Order);
+```
 
 We need to obtain the current status of an order.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=solution2"/>
+```lsf
+// Option 1
+nameStatus1 'Status' (Order o) = CASE WHEN accepted(o) THEN 'Accepted'
+                                     WHEN agreed(o) THEN 'Agreed'
+                                     WHEN sent(o) THEN 'Sent'
+                                ELSE 'New';
+
+// Option 2
+CLASS Status 'Status' {
+    new 'New',
+    sent 'Sent',
+    agreed 'Agreed',
+    accepted 'Accepted'
+}
+
+status 'Status' (Order o) = CASE WHEN accepted(o) THEN Status.accepted
+                                 WHEN agreed(o) THEN Status.agreed
+                                 WHEN sent(o) THEN Status.sent
+                            ELSE Status.new;
+nameStatus2 'Status' (Order o) = staticCaption(status(o));
+```
 
 ## Example 3
 
@@ -44,7 +83,16 @@ We need to set a markup for the book and also provide an option for setting a de
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=solution3"/>
+```lsf
+dataMarkup 'Markup, %' = DATA NUMERIC[6,2] (Book);
+
+defaultMarkup 'Default markup' = DATA NUMERIC[6,2] ();
+
+markup1 'Markup, %' (Book b) = OVERRIDE dataMarkup(b), defaultMarkup();
+
+// Equivalent to:
+markup2 'Markup, %' (Book b) = IF dataMarkup(b) THEN dataMarkup(b) ELSE defaultMarkup();
+```
 
 ## Example 4
 
@@ -52,13 +100,21 @@ We need to set a markup for the book and also provide an option for setting a de
 
 The same set of books from **Example 1**, but categorized.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=sample4"/>
+```lsf
+CLASS Category 'Category';
+
+category 'Category' = DATA Category (Book);
+```
 
 We need to set a markup for a book and also provide an option for setting a default value for the corresponding category.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=solution4"/>
+```lsf
+markup 'Markup, %' = DATA NUMERIC[6,2] (Category);
+
+markup 'Markup, %' (Book b) = OVERRIDE dataMarkup(b), markup(category(b));
+```
 
 ## Example 5
 
@@ -66,12 +122,19 @@ We need to set a markup for a book and also provide an option for setting a defa
 
 We have a set of enumerated books.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=sample5"/>
+```lsf
+number 'Number' = DATA INTEGER (Book);
+```
 
 We need to find the number following the maximum book number.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseCIO&block=solution5"/>
+```lsf
+freeNumber1 () = (GROUP MAX number(Book b)) (+) 1;
+
+// Equivalent to:
+freeNumber2() = (OVERRIDE 0, (GROUP MAX number(Book b))) + 1;
+```
 
 We use the operator (+) instead of the regular operator +, because otherwise if no books are found, then the standard increment by 1 will return **NULL**.

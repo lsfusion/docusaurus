@@ -25,6 +25,31 @@ There is also an implicit fifth kind of simple constraint, *uniqueness*, but it 
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+is(Sku s) = s IS Sku;
+// the product must have a barcode and name specified
+is(Sku s) => barcode(s);
+is(Sku s) => name(s);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=means"/>
+
+CLASS Invoice;
+CLASS InvoiceLine;
+invoice = DATA Invoice (InvoiceLine);
+is(InvoiceLine l) = l IS InvoiceLine;
+// for a document line, a document must be specified, and when deleting a document, the lines of this document should be deleted
+is(InvoiceLine l) => invoice(l) RESOLVE RIGHT;
+// is equivalent to declaring document = DATA Invoice (InvoiceLine) NONULL DELETE;
+
+// aggregation for f(a, b) create an object of class x, whose property a(x) equals a, and property b(x) equals b
+CLASS A;
+CLASS B;
+f = DATA BOOLEAN (A, B);
+
+CLASS X;
+a = DATA A(X);
+b = DATA B(X);
+is (X x) = x IS X;
+
+f(a,b) => [ GROUP AGGR X x WHERE x IS X BY a(x), b(x)](a,b) RESOLVE LEFT;
+is(X x) => f(a(x), b(x)) RESOLVE RIGHT;
+```

@@ -16,6 +16,19 @@ To extend a class, use the [**EXTEND CLASS** instruction](EXTEND_CLASS_instructi
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Shape;
+CLASS Box : Shape;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=extendclass"/>
+CLASS Quadrilateral;
+EXTEND CLASS Box : Quadrilateral; // Adding inheritance
+
+CLASS ShapeType {
+	point 'Dot',
+	segment 'Line segment'
+}
+
+EXTEND CLASS ShapeType { // Adding a static object
+	circle 'Circle'
+}
+```

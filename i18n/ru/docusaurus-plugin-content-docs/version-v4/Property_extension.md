@@ -2,7 +2,7 @@
 title: 'Расширение свойств'
 ---
 
-Техника [расширения](Extensions.md) [свойств](Properties.md) позволяет разработчику объявлять *абстрактное* свойство в одном [модуле](Modules.md), а определять его реализацию в других модулях. Эта техника по сути является "отложенным заданием" [оператора выбора](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md), когда заголовок оператора определяется при объявлении свойства, а варианты выбора добавляются по мере добавления нового функционала ([классов](Classes.md), [статических объектов](User_classes.md)) в систему. При этом варианты выбора (если он не взаимосключающий) могут добавляться как в начало, так и в конец создаваемого абстрактного свойства.
+Техника [расширения](Extensions.md) [свойств](Properties.md) позволяет разработчику объявлять *абстрактное* свойство в одном [модуле](Modules.md), а определять его реализацию в других модулях. Эта техника по сути является "отложенным заданием" [оператора выбора](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md), когда заголовок оператора определяется при объявлении свойства, а варианты выбора добавляются по мере добавления нового функционала ([классов](Classes.md), [статических объектов](Static_objects.md)) в систему. При этом варианты выбора (если он не взаимосключающий) могут добавляться как в начало, так и в конец создаваемого абстрактного свойства.
 
 Для абстрактных свойств необходимо задать предполагаемые классы параметров, тогда платформа автоматически проверит, что добавляемые реализации соответствуют этим классам. Также, при необходимости, можно проверить, что для всех потомков классов параметров задана хотя бы одна реализация (или ровно одна, если условия [взаимоисключающие](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md)).
 
@@ -28,8 +28,32 @@ title: 'Расширение свойств'
 ### Пример
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Invoice;
+CLASS InvoiceDetail;
+CLASS Range;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=abstract"/>
+rateChargeExchange(invoice) = ABSTRACT NUMERIC[14,6] (Invoice);             // В данном случае создается ABSTRACT MULTI EXCLUSIVE
+backgroundSku 'Цвет' (d) = ABSTRACT CASE FULL COLOR (InvoiceDetail); // В данном случае создается ABSTRACT CASE OVERRIDE LAST, и если будут
+                                                                            // подходить несколько реализаций, то вычислена будет первая из них
+overVAT = ABSTRACT VALUE OVERRIDE FIRST Range (InvoiceDetail);          // Здесь же будет вычислена последняя из подходящих реализаций
+```
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=extendproperty"/>
+```lsf
+CLASS ABSTRACT AClass;
+CLASS BClass : AClass;
+CLASS CClass : AClass;
+CLASS DClass : AClass;
+
+name(AClass a) = ABSTRACT BPSTRING[50] (AClass);
+innerName(BClass b) = DATA BPSTRING[50] (BClass);
+innerName(CClass c) = DATA BPSTRING[50] (CClass);
+innerName(DClass d) = DATA BPSTRING[50] (DClass);
+
+name(BClass b) = 'B' + innerName(b);
+name(CClass c) = 'C' + innerName(c);
+
+name[AClass](BClass b) += name(b);
+name(CClass c) += name(c); // Здесь слева будет найден name[AClass], потому что поиск идет только среди абстрактных свойств, справа же будет найден name[CClass]
+name(DClass d) += 'DClass' + innerName(d) IF d IS DClass;
+```

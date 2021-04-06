@@ -29,8 +29,9 @@ A [context-dependent action operator](Action_operator.md#contextdependent) descr
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=after"/>
+```lsf
+changePrice(Sku s, DATE d, NUMERIC[10,2] price)  { price(s, d) <- price; }
+AFTER changePrice(Sku s, DATE d, NUMERIC[10,2] price) DO MESSAGE 'Price was changed'; // A message will be shown after each call to changePrice
+```
 
   

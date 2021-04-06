@@ -77,7 +77,7 @@ title: 'Блок свойств и действий'
 Заголовок добавляемого свойства или действия на форме. [Строковый литерал](Literals.md#strliteral-broken). Если заголовок не задан, то заголовком свойства (действия) на форме будет заголовок самого свойства.
 
 
-:::note
+:::info
 В текущей реализации платформы, если имя и заголовок не заданы одновременно, то при использовании выражений и операторов-действий **=** - обязательно (то есть f(a,b), но =a\*b+5)
 :::
 
@@ -280,6 +280,133 @@ title: 'Блок свойств и действий'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Order;
+date = DATA DATE (Order);
+time = DATA TIME (Order);
+number = DATA INTEGER (Order);
+series = DATA BPSTRING[2] (Order);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=FormSample&block=properties"/>
+note = DATA ISTRING[255] (Order);
+
+CLASS OrderDetail;
+order = DATA Order (OrderDetail) NONULL DELETE;
+date(OrderDetail d) = date(order(d));
+
+index (OrderDetail d) = PARTITION SUM 1 ORDER d BY order(d) CHARWIDTH 4;
+
+sku = DATA Sku (OrderDetail);
+nameSku (OrderDetail d) = name(sku(d));
+
+quantity = DATA NUMERIC[10,2] (OrderDetail);
+price = DATA NUMERIC[10,2] (OrderDetail);
+sum = DATA NUMERIC[12,2] (OrderDetail);
+
+sum (Order o) = GROUP SUM sum(OrderDetail d) BY order(d);
+
+quantity (Order o, Sku s) = GROUP SUM quantity(OrderDetail d) BY order(d), sku(d);
+lastDetail (Order o, Sku s) = GROUP MAX OrderDetail d BY order(d), sku(d);
+changeQuantity (Order o, Sku s)  {
+    INPUT n = NUMERIC[10,2] DO {
+        IF lastDetail(o, s) THEN {
+            IF n THEN
+                quantity(OrderDetail d) <- n WHERE d == lastDetail(o, s);
+            ELSE
+                DELETE OrderDetail d  WHERE d == lastDetail(o, s);
+        } ELSE IF n THEN {
+            NEW d = OrderDetail {
+                order(d) <- o;
+                sku(d) <- s;
+                quantity(d) <- n;
+            }
+        }
+    }
+}
+
+stopOrder = DATA BOOLEAN (Sku);
+onStock = DATA NUMERIC[10,2] (Sku);
+ordered = DATA NUMERIC[10,2] (Sku);
+
+CLASS Customer;
+name = DATA ISTRING[100] (Customer);
+FORM customers
+    OBJECTS c = Customer
+    PROPERTIES(c) READONLY name
+    LIST Customer OBJECT c
+;
+
+customer = DATA Customer (Order);
+nameCustomer (Order o) = name(customer(o));
+
+customer(OrderDetail d) = customer(order(d));
+
+CLASS Region;
+name = DATA STRING[100] (Region);
+
+region = DATA Region (Customer);
+
+// объявляем форму заказы
+FORM order 'Заказ'
+    OBJECTS o = Order PANEL // добавляем объект заказ на форму
+    PROPERTIES VALUE(o), // добавляем идентификатор заказа в базе данных
+               date(o), time(o), series(o), number(o), // добавляем свойства дата/время заказа, серия/номер заказа
+               nameCustomer(o), // добавляем наименование покупателя, которое по умолчанию будет доступным для редактирования
+                                     // при этом, при попытке его редактирования, будет вызываться диалог по выбору покупателя - форма, для которой установлен параметр LIST customer
+               note(o), // добавляем примечание
+               sum(o) READONLY // добавляем сумму по заказу без возможности редактирования, так как оно автоматически считается на основе суммы строк
+
+    OBJECTS d = OrderDetail // добавляем объект строка заказа
+    PROPERTIES(d) // все свойства в этом блоке будут иметь вход строка заказа
+                  index READONLY, // добавляем порядковый номер строки и делаем, чтобы его нельзя было редактировать
+                  nameSku, // добавляем наименование
+                  quantity, price, sum, // добавляем количество, цена, сумму
+                  NEW, // добавляем предопределенное действие NEW, которое добавляет новую строку заказа
+                  DELETE // добавляем действие, которое будет удалять строку заказа
+    FILTERS order(d) == o // указываем, что должны показываться только строки, относящиеся к данному заказу
+
+    OBJECTS s = Sku // добавляем объект sku, в который мы будем выводить итоги по каждому sku в заказе
+    PROPERTIES(s) name READONLY // добавляем наименование , при этом делая пометку, что его нельзя редактировать на этой форме
+
+    PROPERTIES quantity(o, s) // добавляем свойство, в котором будет показываться заказанное количество по sku в данном заказе
+               ON CHANGE changeQuantity(o, s) // по умолчанию, несмотря на то, что свойство не помечено как READONLY, и при попытке его изменения ничего происходить не будет, так как quantity - это агрегированное свойство
+                                                           // в данном случае делается пометка, что при попытке изменения будет вызвано действие changeQuantity
+                                                           // в этом свойство написан алгоритм, который будет создавать/удалять строки заказа или изменять в них количество
+               READONLYIF stopOrder(s) // делаем, чтобы свойство было недоступно для редактирования, в случае, если выставлен запрет на заказ по данному sku
+               BACKGROUND stopOrder(s) // кроме того, подсвечиваем в таком случае эту ячейку своим фоном, чтобы пользователь заранее видел такие позиции
+
+    EDIT Order OBJECT o // помечаем форму, как форму для редактирования заказов
+;
+
+EXTEND FORM order // расширяем форму при помощи концепции Mixin
+    PROPERTIES onStock(s) BEFORE quantity(d), // добавляем на форму свойство текущего остатка перед количеством в заказе
+               ordered(s) BEFORE quantity(d) // добавляем на форму количество уже заказанного товара в рамках всех заказов
+;
+
+FORM orders 'Заказы'
+    OBJECTS o = Order
+    PROPERTIES(o) READONLY VALUE, date, number // все свойства в этом блоке недоступны для редактирования
+    PROPERTIES(o) NEWSESSION NEW, EDIT, DELETE // добавляем предопределенные действия NEW и EDIT, которые будут вызывать форму order для добавления заказов
+;
+
+// создаем "отчет", в котором будут видны заказы за определенный интервал в разрезе покупателей в конкретном регионе
+FORM orderReport 'Продажи по складам'
+    OBJECTS interval = (dateFrom 'Дата (с)' = DATE, dateTo 'Дата (по)' = DATE) PANEL // объявляем группу объектов, состоящую из 2х объектов класса Дата с соответствующими заголовками, которая будет всегда отображаться в виде панели
+    PROPERTIES dateFrom = VALUE(dateFrom), dateTo = VALUE(dateTo) // добавляем на форму свойства значений объектов даты, при помощи которых пользователь сможет выбирать даты
+                                                                        // кроме того, присваиваем этим свойствам имена на форме dateFrom и dateTo соответственно
+
+    OBJECTS r = Region PANEL // добавляем объект регион, по которому будет происходить фильтрация покупателей
+    PROPERTIES(r) name SELECTOR // добавляем свойство наименование региона, при этом помечаем, что при его редактировании должен вызываться диалог по выбору региона, выбранное значение которого будет использовано как текущее значение
+
+    OBJECTS c = Customer // добавляем объект покупатели
+                         // специально не добавляем ни одного свойства, чтобы он был "невидимым", но он нужен для того, чтобы отображать покупателей в колонки
+    FILTERS region(c) == r // ставим фильтр на то, чтобы покупатели были только из этого региона
+
+    OBJECTS s = Sku // добавляем объект sku, в таблице которого и будет показываться основная информация
+    PROPERTIES(s) name READONLY // добавляем наименование sku и не забываем сделать его READONLY, иначе пользователь сможет изменять наименования товара непосредственно в отчете
+
+    PROPERTIES = [ GROUP SUM quantity(OrderDetail d) IF date(d) >= dateFrom AND date(d) <= dateTo BY sku(d), customer(d)](s, c)
+                // добавляем свойство, в котором рассчитана количество заказанного sku по покупателям за определенный интервал дат
+               COLUMNS (c) // помечаем, что покупатели должны отображаться в колонки, при этом колонок будет столько же, сколько и рядов с учетом фильтров будет в объекте покупателя, и идти они будут в том же порядке
+               HEADER name(c) // задаем, что в качестве заголовка колонок будет использоваться имя покупателя
+;
+```

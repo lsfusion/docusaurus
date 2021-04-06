@@ -133,9 +133,17 @@ TEXTVALIGN(alignType)
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// cоздание системных окон в модуле System
+WINDOW root 'Корень' TOOLBAR HIDETITLE HIDESCROLLBARS HORIZONTAL POSITION(0, 0, 100, 6);
+WINDOW toolbar 'Тулбар' TOOLBAR HIDETITLE VERTICAL POSITION(0, 6, 20, 64);
+WINDOW tree 'Дерево' TOOLBAR HIDETITLE POSITION(0, 6, 20, 64);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=window"/>
+// меню без скроллбаров под окном root
+WINDOW menu MENU HIDESCROLLBARS DRAWROOT POSITION(20, 6, 80, 4);
 
-**  
-**
+// горизонтальный тулбар внизу рабочего стола, в котором все кнопки будут выравниваться по центру, а текст выравниваться вверх
+// в этот тулбар можно, например, помещать формы для быстрого открытия
+WINDOW hotforms TOOLBAR HORIZONTAL VALIGN(CENTER) TEXTVALIGN(START) BOTTOM;
+```
+

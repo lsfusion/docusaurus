@@ -36,8 +36,51 @@ To open the form in the structured view, use the [**EXPORT** operator](EXPORT_
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM exportSku
+    OBJECTS st = Store
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=export"/>
+    OBJECTS s = Sku
+    PROPERTIES(s) id, name, weight
+    FILTERS in(st, s)
+;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=importForm"/>
+exportSku (Store store)  {
+    // uploading to DBF all Sku for which in (Store, Sku) is specified for the desired warehouse
+    EXPORT exportSku OBJECTS st = store DBF CHARSET 'CP866';
+    EXPORT exportSku XML;
+    EXPORT exportSku OBJECTS st = store CSV ',';
+}
+```
+
+```lsf
+
+date = DATA DATE (INTEGER);
+sku = DATA BPSTRING[50] (INTEGER);
+price = DATA NUMERIC[14,2] (INTEGER);
+order = DATA INTEGER (INTEGER);
+FORM import
+    OBJECTS o = INTEGER // orders
+    OBJECTS od = INTEGER // order lines
+    PROPERTIES (o) dateOrder = date // importing the date from the dateOrder field
+    PROPERTIES (od) sku = sku, price = price // importing product quantity from sku and price fields
+    FILTERS order(od) = o // writing the top order to order
+
+;
+
+importForm()  {
+    INPUT f = FILE DO {
+        IMPORT import JSON FROM f;
+        SHOW import; // showing what was imported
+
+        // creating objects in the database
+        FOR DATE date = date(INTEGER io) NEW o = Order DO {
+            date(o) <- date;
+            FOR order(INTEGER iod) = io NEW od = OrderDetail DO {
+                price(od) <- price(iod);
+                sku(od) <- GROUP MAX Sku sku IF name(sku) = sku(iod); // finding sku with this name
+            }
+        }
+    }
+}
+```

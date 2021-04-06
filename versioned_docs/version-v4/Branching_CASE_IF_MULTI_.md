@@ -25,7 +25,7 @@ This operator has the capability of an [implicit definition](Action_extension.m
 The *single *form of the branching operator checks exactly one condition. If this condition is met, the specified action is called. It is also possible to specify an *alternative action *that is called if the condition is not met.
 
 
-:::note
+:::info
 Type of mutual exclusion and implicit definition do not make sense/are not supported for this form of the operator
 :::
 
@@ -35,17 +35,44 @@ To declare an action implementing general form of branching, the [**CASE** opera
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+test = DATA INTEGER (INTEGER);
+caseActionTest(a)  {
+    CASE
+        WHEN test(a) > 7 THEN MESSAGE '>7';
+        WHEN test(a) > 6 THEN MESSAGE '>6';
+        WHEN test(a) > 5 THEN MESSAGE '>5';
+}
+```
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=case"/>
+
+```lsf
+// Action that compares the value of the count property to 3 and displays a message to the user
+moreThan3(obj)  {
+    IF count(obj) > 3 THEN
+        MESSAGE '>3';
+    ELSE
+        MESSAGE '<=3';
+}
+
+checkNullName (Store st) {
+    IF NOT name(st) THEN
+        MESSAGE 'Name is null';
+}
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=ifthena"/>
+```lsf
+CLASS Shape;
 
+CLASS Square : Shape;
+CLASS Circle : Shape;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=multi"/>
+message (Square s)  { MESSAGE 'Square'; }
+message (Circle c)  { MESSAGE 'Circle'; }
+
+message (Shape s) = MULTI message[Square](s), message[Circle](s);
+```
 
   
 
-**  
-**

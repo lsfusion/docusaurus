@@ -25,8 +25,16 @@ An [expression](Expression.md) whose value is for the action being created. If 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// deleting an object
+deleteObject(obj)  { DELETE obj; }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=delete"/>
+// deleting all inactive products
+CLASS Article;
+active = DATA BOOLEAN (Article);
+deleteInactiveArticles()  {
+    DELETE Article a WHERE a IS Article AND NOT active(a); // a local parameter a is added corresponding to the objects to be iterated over
+}
+```
 
   

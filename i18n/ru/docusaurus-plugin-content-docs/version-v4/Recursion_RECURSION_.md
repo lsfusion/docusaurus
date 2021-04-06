@@ -26,6 +26,21 @@ title: 'Рекурсия (RECURSION)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Node;
+edge = DATA BOOLEAN (Node, Node);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=recursion1"/>
+// итерация по integer от from к to (это свойство по умолчанию входит в модуль System)
+iterate(i, from, to) = RECURSION i==from AND from IS INTEGER AND to IS INTEGER STEP i==$i+1 AND i<=to CYCLES IMPOSSIBLE;
+
+// считает количество различных путей от a до b в графе
+pathes 'Кол-во путей' (a, b) = RECURSION 1 AND a IS Node AND b==a STEP 1 IF edge(b, $b);
+
+// определяет на каком уровне находится child от parent, и null если не является потомком (тем самым это свойство можно использовать для определения всех child'ов)
+parent = DATA Group (Group);
+level 'Уровень' (Group child, Group parent) = RECURSION 1 IF child IS Group AND parent == child
+                                                                  STEP 1 IF parent == parent($parent);
+
+// числа Фибоначчи, свойство высчитывает все числа Фибоначи до значения to, (после будет возвращать null)
+fib(i, to) = RECURSION 1 IF (i==0 OR i==1) AND to IS INTEGER STEP 1 IF (i==$i+1 OR i==$i+2) AND i<to CYCLES IMPOSSIBLE;
+```

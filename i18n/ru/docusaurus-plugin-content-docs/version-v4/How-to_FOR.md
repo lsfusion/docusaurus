@@ -8,15 +8,34 @@ title: 'How-to: FOR'
 
 Есть список книг с наименованиями.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[50] (Book);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=sample1"/>
+FORM books 'Книги'
+    OBJECTS b = Book
+    PROPERTIES(b) name, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 Нужно найти все книги, содержащие определенную строк и выдать сообщение с именем и внутренним кодом.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=solution1"/>
+```lsf
+findNemo 'Найти книгу' ()  {
+    FOR isSubstring(name(Book b), 'Nemo') DO {
+        MESSAGE 'Найдена книга ' + name(b) + ' с внутренним кодом ' + b;
+    }
+}
+EXTEND FORM books
+    PROPERTIES() findNemo
+;
+```
 
 Для определения содержит ли одна строка другую используется свойство isSubstring, определенное в системном [модуле](Modules.md) **Utils**.
 
@@ -30,7 +49,25 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=solution2"/>
+```lsf
+add100Books 'Добавить 100 книг' ()  {
+    // Вариант 1
+    FOR iterate(INTEGER i, 1, 100) NEW b = Book DO {
+        name(b) <- 'Книга ' + i;
+    }
+
+    // Вариант 2
+    FOR iterate(INTEGER i, 1, 100) DO {
+        NEW b = Book {
+            name(b) <- 'Книга ' + i;
+        }
+    }
+}
+
+EXTEND FORM books
+    PROPERTIES() add100Books
+;
+```
 
 Оба варианта идентичны с точки зрения полученного результата.
 
@@ -42,13 +79,37 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 1**, но добавлена логика заказов. Для каждого заказа заданы строки с указанием книги, цен со скидками.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=sample3"/>
+```lsf
+CLASS Order 'Заказ';
+
+CLASS OrderDetail 'Строка заказа';
+order 'Заказ' = DATA Order (OrderDetail) NONULL DELETE;
+book 'Книга' = DATA Book (OrderDetail);
+nameBook 'Книга' (OrderDetail d) = name(book(d));
+
+price 'Цена' = DATA NUMERIC[14,2] (OrderDetail);
+
+discount 'Скидка, %' = DATA NUMERIC[8,2] (OrderDetail);
+discountPrice 'Цена со скидкой' = DATA NUMERIC[14,2] (OrderDetail);
+```
 
 Нужно создать действие, которое проставит скидку всем строкам, у которых цена больше 100.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=solution3"/>
+```lsf
+makeDiscount 'Сделать скидку' (Order o)  {
+    // Вариант 1
+    FOR order(OrderDetail d) == o AND price(d) > 100 DO {
+        discount(d) <- 10;
+        discountPrice(d) <- price(d) * (100.0 - discount(d)) / 100.0;
+    }
+
+    // Вариант 2
+    discount(OrderDetail d) <- 10 WHERE order(d) == o AND price(d) > 100;
+    discountPrice(OrderDetail d) <- price(d) * (100.0 - discount(d)) / 100.0 WHERE order(d) == o AND price(d) > 100;
+}
+```
 
 Оба варианта идентичны с точки зрения полученного результата.
 
@@ -58,12 +119,30 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 3**, но для книги добавлена цена по умолчанию.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=sample4"/>
+```lsf
+price 'Цена' = DATA NUMERIC[14,2] (Book);
+```
 
 Нужно создать действие, которое добавит в заказ все книги с ценой больше 100.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFor&block=solution4"/>
+```lsf
+addSelectedBooks 'Добавить отмеченные книги' (Order o)  {
+    // Вариант 1
+    FOR price(Book b) > 100 NEW d = OrderDetail DO {
+        order(d) <- o;
+        book(d) <- b;
+        price(d) <- price(b);
+    }
+
+    // Вариант 2
+    FOR price(Book b) == NUMERIC[14,2] p AND p > 100 NEW d = OrderDetail DO {
+        order(d) <- o;
+        book(d) <- b;
+        price(d) <- p;
+    }
+}
+```
 
 Оба варианта идентичны с точки зрения полученного результата.

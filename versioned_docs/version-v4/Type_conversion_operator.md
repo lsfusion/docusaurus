@@ -25,9 +25,11 @@ The [expression](Expression.md) whose value will be converted into the value of 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+itemCount = DATA INTEGER (Store);
+itemCountToString(s) = BPSTRING[10](itemCount(s));
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=explicitcast"/>
+barcode = DATA STRING[15] (Item);
+longBarcode(Item i) = LONG(barcode(i));
+```
 
-**  
-**

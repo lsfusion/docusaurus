@@ -10,6 +10,14 @@ title: 'Рекурсивный цикл (WHILE)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+iterateDates (DATE dateFrom, DATE dateTo)  {
+    LOCAL dateCur = DATE();
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=while"/>
+    dateCur() <- dateFrom;
+    WHILE dateCur() <= dateTo DO {
+        MESSAGE 'I have a date ' + dateCur();
+        dateCur() <- sum(dateCur(), 1);
+    }
+}
+```

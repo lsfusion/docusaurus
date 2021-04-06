@@ -31,8 +31,19 @@ Context-dependent operator that describes an action that will be executed if the
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// Action that compares the value of the count property to 3 and displays a message to the user
+moreThan3(obj)  {
+    IF count(obj) > 3 THEN
+        MESSAGE '>3';
+    ELSE
+        MESSAGE '<=3';
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=ifthena"/>
+checkNullName (Store st) {
+    IF NOT name(st) THEN
+        MESSAGE 'Name is null';
+}
+```
 
   

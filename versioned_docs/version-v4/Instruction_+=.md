@@ -34,8 +34,23 @@ An expression whose value determines the selection condition of the implementati
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT AClass;
+CLASS BClass : AClass;
+CLASS CClass : AClass;
+CLASS DClass : AClass;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=extendproperty"/>
+name(AClass a) = ABSTRACT BPSTRING[50] (AClass);
+innerName(BClass b) = DATA BPSTRING[50] (BClass);
+innerName(CClass c) = DATA BPSTRING[50] (CClass);
+innerName(DClass d) = DATA BPSTRING[50] (DClass);
+
+name(BClass b) = 'B' + innerName(b);
+name(CClass c) = 'C' + innerName(c);
+
+name[AClass](BClass b) += name(b);
+name(CClass c) += name(c); // Here name[AClass] will be found on the left, because the search goes only among abstract properties, and on the right name[CClass] will be found
+name(DClass d) += 'DClass' + innerName(d) IF d IS DClass;
+```
 
   

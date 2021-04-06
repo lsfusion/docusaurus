@@ -19,6 +19,9 @@ Description of [logical operator syntax](AND_OR_NOT_XOR_operators.md).
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=aonx"/>
+```lsf
+likes = DATA BOOLEAN (Person, Person);
+likes(Person a, Person b, Person c) = likes(a, b) AND likes(a, c);
+outOfInterval1(value, left, right) = value < left OR value > right;
+outOfInterval2(value, left, right) = NOT (value >= left AND value <= right);
+```

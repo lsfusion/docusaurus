@@ -9,9 +9,36 @@ Each module consists of a sequence of [instructions](Instructions.md) divided i
 
 ### Example
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// Module header
+MODULE LanguageExample;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=LanguageSample"/>
+REQUIRE System;
 
-**  
-**
+NAMESPACE Example;
+
+// Module body
+
+// Classes declaration
+CLASS Employee;
+CLASS Company;
+
+// Properties declaration
+name(employee) = DATA BPSTRING[100](Employee);
+age(employee) = DATA INTEGER(Employee);
+company(employee) = DATA Company(Employee);
+
+name(company) = DATA BPSTRING[100](Company);
+
+// Form declaration
+FORM employeeForm
+    OBJECTS e = Employee
+    PROPERTIES(e) name, age, company
+;
+
+// Adding a form to the navigator
+NAVIGATOR {
+    NEW employeeForm;
+}
+```
+

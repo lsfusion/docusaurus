@@ -6,9 +6,21 @@ title: 'How-to: Интернационализация'
 
 Объявим логику обычным способом, только вместо задания названий в явную, вместо них будем использовать идентификаторы.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book '{use.case.i18n.book}';
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternationalization&block=sample1"/>
+name '{use.case.i18n.book.name}' = DATA STRING[40] (Book);
+price '{use.case.i18n.book.price}' = DATA STRING[40] (Book);
+
+FORM books '{use.case.i18n.books}'
+    OBJECTS b = Book
+    PROPERTIES(b) name, price, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 Затем создаем новый Resource Bundle, куда пропишем значения идентификаторов на разных языках :
 
@@ -36,7 +48,12 @@ import {CodeSample} from './CodeSample.mdx'
 
 Идентификаторы можно также использовать и в выражениях :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternationalization&block=sample2"/>
+```lsf
+description '{use.case.i18n.book.description}' (Book b) = STRING[60] (name(b) + ', {use.case.i18n.book.price} : ' + price(b));
+EXTEND FORM books
+    PROPERTIES(b) READONLY description
+;
+```
 
 При этом надо помнить, что такие выражения не следует использовать в [материализациях](Materializations.md). 
 

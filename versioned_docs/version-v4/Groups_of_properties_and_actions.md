@@ -3,7 +3,7 @@ title: 'Groups of properties and actions'
 ---
 
 
-:::note
+:::info
 The behavior of properties and actions in the context of working with groups is absolutely identical, therefore, in the rest of this section, we will use only the term property (the behavior for actions is completely similar).
 :::
 
@@ -22,7 +22,7 @@ In addition to **root** in the **System** module, the following groups of prop
     -   **private**
 
 
-:::note
+:::info
 All these groups (including **root**) are not used in form display mechanisms (i.e. containers in the [default form design](Form_design.md#defaultDesign) and elements of the [hierarchical](Structured_view.md#hierarchy) import / export hierarchy are not created for them).
 :::
 
@@ -43,8 +43,9 @@ Property groups are currently used in the following mechanisms:
 
 To add a new property/action group to the system, use the [**GROUP** instruction](GROUP_instruction.md).
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=group"/>
+```lsf
+GROUP base : root; // The caption of this group will be 'base'
+GROUP local 'Local properties'; // The parent group of local will be System.private
+```
 
   

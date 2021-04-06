@@ -30,12 +30,17 @@ title: 'Строковые операторы (+, CONCAT, SUBSTRING)'
 |<strong>NUMERIC</strong>|<strong>STRING[p.length]</strong>|
 |<strong>LOGICAL</strong>|<strong>STRING[1]</strong>|
 |<strong>FILE</strong>|<strong>TEXT</strong>|
-|[Объект](Static_objects.md)|<strong>STRING[10]</strong>|
+|[Объект](User_classes.md)|<strong>STRING[10]</strong>|
 |Остальные|<strong>STRING[8]</strong>|
 
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Person;
+firstName = DATA STRING[100] (Person);
+middleName = DATA STRING[100] (Person);
+lastName = DATA STRING[100] (Person);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=concat"/>
+fullName(Person p) = CONCAT ' ', firstName(p), middleName(p), lastName(p);     // если какая-то часть имени не задана, то эта часть будет пропущена вместе с пробелом
+```

@@ -5,7 +5,7 @@ title: 'How-to: Frontend'
 The easiest way to organize the interaction of a React application with an application based on lsFusion is [communication via the HTTP protocol](Access_from_an_external_system.md) through the JSON API. To export a list of objects meeting a specified condition, it is most convenient to use the interface located at the eval/action Url. You can pass lsFusion program code to it in BODY, and it will then be executed. If you need to return data from your request, use the [EXPORT](EXPORT_operator.md) operator. By default it returns data in JSON format, which is then easily processed using JavaScript.
 
 
-:::note
+:::info
 In these examples we will make requests without authorization. For the server to start accepting requests without authorization, you need to set the **enableAPI** option in the Administration/Settings form on the Settings tab to the value 2.
 
 A safer way would be to create a separate action for each request, with an @@api marker. and set **enableAPI** to the value 0. In this case, the server will only accept requests for these specific actions and from an authorized user. Inside these actions, before starting processing you can check for availability to the user using the **currentUser()** property.

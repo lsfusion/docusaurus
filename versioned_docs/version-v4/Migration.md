@@ -29,7 +29,7 @@ The migration file allows you to handle changes to [canonical names](Naming.md#c
 When renaming a [property](Properties.md)/[action](Actions.md) and/or when moving it to another [namespace](Naming.md#namespace), the canonical name of the property/action changes. Adding a **PROPERTY **change to the migration file specifying the old and new canonical names will allow you to preserve the security policy settings, as well as settings from the **Reflection.properties** table. If the property is [primary](Data_properties_DATA_.md), to preserve data when changing the canonical name of this property **it is necessary** to add a **STORED PROPERTY** change. Then, when the server starts, the field corresponding to this property in the database table will be renamed. Otherwise, the old field will be renamed to the field with the name **<old ID\>\_deleted** (for example, when deleting a property), and a new field will be created with empty values. Apart from that the **STORED PROPERTY** type is equivalent to the **PROPERTY** type.
 
 
-:::note
+:::info
 On the right side of **STORED PROPERTY** and **PROPERTY** changes it is not necessary to specify a signature, as here the signature is automatically taken from the left side.
 :::
 
@@ -42,7 +42,7 @@ When changing [the name of the property on a form](Properties_and_actions_block
 When renaming a [custom class](User_classes.md) and/or when moving it to another namespace, the canonical name of this class changes. In this case, it is **essential** to reflect these changes in the migration file in order to preserve objects of this class and all data associated with these objects. To do this, add a **CLASS** change to the migration file, specifying the old and new class names. This will also automatically rename [static objects](Static_objects.md) of this class, if they exist. 
 
 
-:::note
+:::info
 It is worth noting that changing the canonical name of a class can lead to changes in the canonical names of data properties. At present these changes are not automatically tracked, and they must also be added to the migration file.
 :::
 

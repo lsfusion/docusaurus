@@ -25,8 +25,15 @@ title: 'Инструкция @'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book;
+@objectProperties(book, INTEGER, 'Книга');
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=implementmeta"/>
+CLASS Flower;
+@objectProperties(flower, BPSTRING[100], ); // если не передать параметр, то он будет пустым
+
+CLASS Table;
+@objectProperties(table, NUMERIC[14,2]);
+```
 
   

@@ -135,12 +135,40 @@ The expression whose value will be used as the name of the  [report](Print_view
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Shipment;
+// declaring the delivery form
+FORM shipments 'Deliveries'
+    OBJECTS s = Shipment // adding one object of the shipment class
+                        PAGESIZE 100 // indicating that the table should always contain 100 rows
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=objects"/>
+    // ... adding properties and filters to the form
+;
+
+// Declaring a form that will display the turnover of the product for a specified interval
+name = DATA STRING[100] (Item);
+revenue = DATA NUMERIC[16,2] (Item, DATE, DATE);
+
+FORM revenues 'Product turnovers'
+    OBJECTS interval = (dateFrom 'Date (from)' = DATE, dateTo 'Date (to)' = DATE) PANEL, // declaring a group of objects, consisting of 2 objects of the Date class with the appropriate captions, which will always be displayed as a panel
+            i = Item // adding a list of products
+    PROPERTIES VALUE(dateFrom), VALUE(dateTo) // adding to the form the properties of the date objects values, with which the user can select dates
+    PROPERTIES name(i), revenue(i, dateFrom, dateTo) // adding the product name and the property with the product turnover for the date interval
+;
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=view"/>
+```lsf
+// creating a form for printing a price tag for a product
+labelFile = DATA STRING[100] (Item);
+printLabelFile (Item i)= OVERRIDE labelFile(i), 'MyModule_printLabel_i.jrxml' IF i IS Item;
+FORM printLabel 'Price tag printing'
+    OBJECTS i = Item               // adding the product for which the price tag will be printed
+    REPORT printLabelFile(i)       // marking that a file whose name is stored in the printLabelFile property should be used as a template (it is assumed that the i value will be passed in the OBJECTS block)
+                                   // for example, the user can input myLabel1.jrxml there, then the system will use a file named myLabel1.jrxml
+//  ... other properties required for printing
+;
+```
 
   
 
@@ -197,6 +225,44 @@ Specifying that the object tree should be added to the form structure immediatel
 ### Examples
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=tree"/>
+```lsf
+CLASS SkuGroup;
+name = DATA ISTRING[100] (SkuGroup);
+active = DATA BOOLEAN (SkuGroup);
+parent = DATA SkuGroup (SkuGroup) AUTOSET;
+
+CLASS Sku;
+name = DATA ISTRING[100] (Sku);
+skuGroup = DATA SkuGroup (Sku);
+
+
+FORM skus 'Sku'
+    TREE groupTree g=SkuGroup PARENT parent(g)
+    PROPERTIES READONLY name(g)
+    FILTERS active(g)
+
+    OBJECTS s = Sku
+    PROPERTIES(s) name
+    FILTERS skuGroup(s) == g
+;
+
+CLASS Group1;
+name = DATA STRING[100] (Group1);
+
+CLASS Group2;
+name = DATA STRING[100] (Group2);
+
+CLASS Group3;
+name = DATA STRING[100] (Group3);
+
+in = DATA BOOLEAN (Group1, Group2);
+in = DATA BOOLEAN (Group2, Group3);
+
+FORM groups
+    TREE groups g1 = Group1, g2 = Group2, g3 = Group3
+    PROPERTIES READONLY name(g1), name(g2), name(g3)
+    FILTERS in(g1, g2), in(g2, g3)
+;
+```
 
   

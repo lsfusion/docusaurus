@@ -13,6 +13,7 @@ To add a new action to the system, use [the **ACTION** instruction](ACTION_inst
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample"/>
+```lsf
+showMessage  { MESSAGE 'Hello World!'; } 								// action declaration
+loadImage 'Upload image'  ABSTRACT ( Item);
+```

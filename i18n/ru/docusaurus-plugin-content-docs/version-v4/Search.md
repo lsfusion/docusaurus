@@ -23,7 +23,7 @@ title: 'Поиск'
 |Тип элемента|Шаг поиска|Условия шага|Условия отбора|Операции выбора|
 |---|---|---|---|---|
 |[Модули](Modules.md)|<br /><br/>|<p><br /><br/></p>|<ul><br/><li>Совпадает имя[...](#name)</li><br/></ul>|<br /><br/>|
-|[Формы](Forms.md), [Классы](Static_objects.md), [Элементы навигатора](Navigator.md), [Группы свойств и действий](Groups_of_properties_and_actions.md), [Таблицы](Tables.md), [Дизайн навигатора](Navigator_design.md)|<br /><br/>|<p><br /><br/></p>|<ul><br/><li>Совпадает имя[...](#name)</li><br/><li>Находится в зависимом модуле[...](#module)</li><br/><li>Находится в заданном пространстве имен (если задано явно)[...](#namespace)</li><br/></ul>|<ul><br/><li>Выбор приоритетного пространства имен (если пространство имен не задано явно)[...](#priority)</li><br/></ul>|
+|[Формы](Forms.md), [Классы](User_classes.md), [Элементы навигатора](Navigator.md), [Группы свойств и действий](Groups_of_properties_and_actions.md), [Таблицы](Tables.md), [Дизайн навигатора](Navigator_design.md)|<br /><br/>|<p><br /><br/></p>|<ul><br/><li>Совпадает имя[...](#name)</li><br/><li>Находится в зависимом модуле[...](#module)</li><br/><li>Находится в заданном пространстве имен (если задано явно)[...](#namespace)</li><br/></ul>|<ul><br/><li>Выбор приоритетного пространства имен (если пространство имен не задано явно)[...](#priority)</li><br/></ul>|
 |<p>[Метакоды](Metaprogramming.md)</p>|<br /><br/>|<p><br /><br/></p>|<ul><br/><li>Совпадает имя[...](#name)</li><br/><li>Находится в зависимом модуле[...](#module)</li><br/><li>Находится в заданном пространстве имен (если задано явно)[...](#namespace)</li><br/><li>Количество параметров совпадает[...](#metacode)</li><br/></ul>|<ul><br/><li>Выбор приоритетного пространства имен (если пространство имен не задано явно)[...](#priority)</li><br/></ul>|
 |[Свойства](Properties.md), [Действия](Actions.md)|Локальные|<ul><br/><li>Поиск свойства внутри действия[...](#locals)</li><br/><li>Пространство имен не задано явно[...](#nonamespace)</li><br/></ul>|<ul><br/><li>Совпадает имя[...](#name)</li><br/><li>Находится сверху по стеку[...](#stack)</li><br/><li>Подходит по классам параметров[...](#direct)</li><br/></ul>|<ul><br/><li>Выбор более конкретных классов параметров[...](#concrete)</li><br/></ul>|
 |Локальные общие|<ul><br/><li>Поиск свойства внутри действия[...](#locals)</li><br/><li>Пространство имен не задано явно[...](#nonamespace)</li><br/></ul>|<ul><br/><li>Совпадает имя[...](#name)</li><br/><li>Находится сверху по стеку[...](#stack)</li><br/><li>Пересекается по классам параметров[...](#indirect)</li><br/></ul>|<p><br /><br/></p><br/><p><br /><br/></p>|
@@ -108,7 +108,7 @@ title: 'Поиск'
 -   для каждого параметра **i**, одно из следующих верно:
     -   Ai неизвестно (равно **?**)
     -   Bi неизвестно (равно **?**)
-    -   Ai [наследуется](Static_objects.md#inheritance) от Bi (а точнее множество классов-потомков Bi включает в себя множество классов-потомков Ai)
+    -   Ai [наследуется](User_classes.md#inheritance) от Bi (а точнее множество классов-потомков Bi включает в себя множество классов-потомков Ai)
 
 *Пересечение классов параметров*
 
@@ -149,15 +149,57 @@ title: 'Поиск'
 #### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+MODULE ResolveA;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ResolveASample"/>
+CLASS A;
+CLASS B : A;
+CLASS C : B;
+
+f = DATA INTEGER (A);
+f = DATA INTEGER (C);
+
+META defineSmth(prm1)
+    x = DATA INTEGER (prm1);
+END
+
+META defineSmth(prm1, prm2)
+    x = DATA INTEGER (prm1, prm2);
+END
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ResolveBSample"/>
+```lsf
+MODULE ResolveB;
+
+REQUIRE ResolveA;
+
+f = DATA INTEGER (B);
+
+h(C c) = f(c); // найдет верхнее объявление - ResolveB.f[B]
+j(C c) = ResolveA.f(c); // найдет объявление в ResolveA - ResolveA.f[C]
+z(C c) = f[A](c); // найдет объявление в ResolveA - ResolveA.f[A]
+
+test(C c, A a) {
+    LOCAL f = INTEGER (B);
+
+    f(c) <- 1; // найдет верхнее объявление - f[B]
+    MESSAGE f(a); // найдет верхнее объявление - f[B]
+    ResolveB.f(c) <- 1; // найдет верхнее объявление в ResolveB - ResolveB.f[B]
+}
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ResolveCSample"/>
+```lsf
+MODULE ResolveC;
 
-**  
-**
+REQUIRE ResolveB, ResolveA;
+
+NAMESPACE ResolveA;
+
+x(B b) = f(b); // найдет объявление в ResolveA - ResolveA.f[A]
+y(B b) = ResolveB.f(b); // найдет объявление в ResolveA - ResolveB.f[B]
+
+@defineSmth(A, B); // найдет объявление в ResolveA - ResolveA.defineSmth(prm1, prm2)
+```
+

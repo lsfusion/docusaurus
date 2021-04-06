@@ -5,9 +5,8 @@ title: 'GROUP instruction'
 The **GROUP** instruction creates a new [property group](Groups_of_properties_and_actions.md).
 
 ### Syntax
-```
-GROUP name [caption] [EXTID extID] [: parentName];
-```
+
+    GROUP name [caption] [EXTID extID] [: parentName];
 
 ### Description
 
@@ -37,9 +36,8 @@ Name of the parent group. [Сomposite ID](IDs.md#cid-broken). If the name of th
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+GROUP base : root; // The caption of this group will be 'base'
+GROUP local 'Local properties'; // The parent group of local will be System.private
+```
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=group"/>
-
-**  
-**

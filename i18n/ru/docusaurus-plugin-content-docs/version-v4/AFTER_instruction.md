@@ -29,8 +29,9 @@ title: 'Инструкция AFTER'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=after"/>
+```lsf
+changePrice(Sku s, DATE d, NUMERIC[10,2] price)  { price(s, d) <- price; }
+AFTER changePrice(Sku s, DATE d, NUMERIC[10,2] price) DO MESSAGE 'Price was changed'; // Сообщение будет показано после каждого вызова changePrice
+```
 
   

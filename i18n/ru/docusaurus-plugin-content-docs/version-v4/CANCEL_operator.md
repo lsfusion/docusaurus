@@ -30,8 +30,10 @@ title: 'Оператор CANCEL'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=cancel"/>
+```lsf
+dropChanges()  {
+    CANCEL NESTED (in[Sku]); // отменяем все изменения, кроме свойства in
+}
+```
 
   

@@ -25,9 +25,34 @@ List of filter expressions.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Stock;
+name = DATA ISTRING[100] (Stock);
+region = DATA Region (Stock);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=filters"/>
+CLASS Group;
+name = DATA ISTRING[100] (Group);
+
+group = DATA Group(Sku);
+nameGroup (Sku s) = name(group(s));
+
+active = DATA BOOLEAN (Sku);
+
+onStock = DATA NUMERIC[10,2] (Stock, Sku);
+
+FORM onStock 'Balances' // creating a form in which the balances of products can be viewed
+    OBJECTS r = Region PANEL // adding a region object
+    PROPERTIES name(r) SELECTOR // adding the property name of the region, when clicking on which the user can select it
+
+    OBJECTS st = Stock // adding the warehouse object
+    PROPERTIES name(st) READONLY // adding the warehouse name
+    FILTERS region(st) == r // adding a filter so that only warehouses of the selected region are shown
+
+    OBJECTS s = Sku // adding products
+    PROPERTIES READONLY groupName = nameGroup(s), name(s), onStock(st, s) // adding the name of the group of products, assigning it groupName as the name of the property on the form, as well as the name and balance of the product
+    FILTERS active(s) // turning it on to show only active products
+;
+```
 
   
 
@@ -73,7 +98,23 @@ A keyword specifying that the filter being added must be selected automatically 
 ### Examples
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=regularfilters"/>
+```lsf
+active = DATA BOOLEAN (Stock);
+
+EXTEND FORM onStock // extending the previously created form with balances
+    FILTERGROUP stockActive // creating a group of filters with one filter, which will be shown as a checkbox by which the user can enable/disable the filter
+        FILTER 'Active' active(st) 'F11' // adding filter for active warehouses only, which will be applied by pressing F11
+    FILTERGROUP skuAvailability // creating a new filter group in which the user can select one of the filters using the drop-down list
+        FILTER 'Is on stock' onStock (st, s) 'F10' DEFAULT // adding a filter that will display only products on stock, which will be selected by pressing F10 and will be automatically selected when the form is opened
+;
+
+// ...
+
+EXTEND FORM onStock
+    EXTEND FILTERGROUP skuAvailability
+        FILTER 'Negative balances' onStock (st, s) < 0 'F9' // adding filter by expression
+;
+```
 
   
 
@@ -102,4 +143,10 @@ Keyword. Specifies reverse order. By default, ascending order is used.
 ### Examples
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=sort"/>
+```lsf
+EXTEND FORM onStock // extending the previously created form with balances
+    ORDERS name(s) // enabling ordering by warehouse name in the warehouse list
+    ORDERS groupName, onStock(st, s) DESC // enabling ordering in ascending order of the group name, and inside in descending order of the balance in the warehouse
+                                            // it should be noted that the property is the property name on the form groupName, not just the property name nameGroupSku
+;
+```

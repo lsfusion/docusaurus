@@ -126,8 +126,29 @@ Keyword. If specified, the form is opened in [read-only](In_an_interactive_view_
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM selectSku
+    OBJECTS s = Sku
+    PROPERTIES(s) id
+;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=dialog"/>
+testDialog  {
+    DIALOG selectSku OBJECTS s INPUT DO {
+        MESSAGE 'Selected sku : ' + id(s);
+    }
+}
+
+sku = DATA Sku (OrderDetail);
+idSku (OrderDetail d) = id(sku(d));
+
+changeSku (OrderDetail d)  {
+    DIALOG selectSku OBJECTS s = sku(d) CHANGE;
+
+    //equivalent to the first option
+    DIALOG selectSku OBJECTS s = sku(d) INPUT NULL CONSTRAINTFILTER DO {
+        sku(d) <- s;
+    }
+}
+```
 
   

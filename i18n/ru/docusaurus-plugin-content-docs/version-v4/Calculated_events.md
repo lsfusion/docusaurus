@@ -12,6 +12,15 @@ title: 'Вычисляемые события'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// при добавлении клиента, по умолчанию, предоставить ему заданную скидку
+defaultDiscount = DATA NUMERIC[6,2] ();
+discount = DATA NUMERIC[6,2] (Customer);
+discount(Customer c) <- defaultDiscount() WHEN SET(c IS Customer);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=setwhen"/>
+quantity = DATA NUMERIC[10,2] (OrderDetail);
+price = DATA NUMERIC[10,2] (OrderDetail);
+sum = DATA NUMERIC[10,2] (OrderDetail);
+
+sum(OrderDetail d) <- quantity(d) * price(d) WHEN CHANGED(quantity(d)) OR CHANGED(price(d));
+```

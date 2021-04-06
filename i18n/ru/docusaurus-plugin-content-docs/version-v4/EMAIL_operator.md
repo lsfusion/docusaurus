@@ -59,6 +59,27 @@ title: 'Оператор EMAIL'
 ### Пример
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM remindUserPass
+    OBJECTS u=CustomUser PANEL
+    PROPERTIES(u) READONLY login, name[Contact]
+;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=email"/>
+emailUserPassUser 'Напоминание логина' (CustomUser user)  {
+    LOCAL bodyFile = FILE ();
+    PRINT remindUserPass OBJECTS u = user HTML TO bodyFile;
+    EMAIL
+    SUBJECT 'Напоминание логина'
+    TO email(user)
+    BODY bodyFile();
+}
+
+justSendEmail 'Отправить письмо' ()  {
+    stringToFile('<font color=#FF0000 size=+3>big red text</font>');
+    EMAIL
+    FROM 'luxsoft@adsl.by'
+    SUBJECT 'Тема письма'
+    TO 'xxx@tut.by'
+    BODY resultFile();
+}
+```

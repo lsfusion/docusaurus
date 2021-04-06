@@ -39,8 +39,19 @@ A [context-dependent action operator](Action_operator.md#contextdependent) that 
 ### Example
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testAsk ()  {
+    ASK 'Are you sure you want to continue?' DO {
+        MESSAGE 'You continued';
+    }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=ask"/>
+    ASK 'Use old values?' useOld = YESNO DO {
+        IF useOld THEN
+            MESSAGE 'Using old values';
+        ELSE
+            MESSAGE 'Using new values';
+    }
+}
+```
 
   

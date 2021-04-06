@@ -19,7 +19,7 @@ title: 'Оператор GROUP'
 Блок **BY** описывает группировочные выражения. Каждое выражение соответствует параметру, создаваемого свойства. Как и в остальных операторах, в этом операторе разрешено использовать верхние параметры, причем использованные параметры также неявно являются группировками создаваемого свойства. Соответственно, при использовании оператора в [инструкции **=**](Instruction_=.md) и явном задании в этой инструкции параметров слева, выражения из блока **BY** отображаются только на неиспользованные параметры. При этом, если классы или количество этих параметров будет не соответствовать количеству / классам выражений **BY**, платформа выдаст ошибку. 
 
 
-:::note
+:::info
 Если блок **BY** задан, этот оператор нельзя использовать внутри [выражений](Expression.md).
 :::
 
@@ -28,7 +28,7 @@ title: 'Оператор GROUP'
 Блок **WHERE** определяет условие, при выполнении которого наборы объектов будут участвовать в операции группировки. Можно задавать только для агрегирующих функций **AGGR**, **NAGGR**, **LAST**.
 
 
-:::note
+:::info
 Для **AGGR**, **NAGGR** использовать этот блок явно (а не, скажем, [оператор **IF**](IF_operator.md) в блоках **GROUP** и **BY**) имеет смысл, только с точки зрения возможности изменения создаваемого свойства на не **NULL** в некоторых автоматических механизмах платформы (например, в [автоматическом разрешении](Simple_constraints.md) простых ограничений).
 :::
 
@@ -61,9 +61,21 @@ groupExpr1, ..., groupExprN  
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Game;
+CLASS Team;
+hostGoals = DATA INTEGER (Game);
+hostTeam = DATA Team (Game);
+hostGoalsScored(team) = GROUP SUM hostGoals(Game game) BY hostTeam(game);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=group"/>
+name = DATA STRING[100] (Country);
+countryName = GROUP AGGR Country country WHERE country IS Country BY name(country); // получается свойство (STRING[100]) -> Country
 
-**  
-**
+CLASS Book;
+CLASS Tag;
+name = DATA STRING[100] (Tag);
+in = DATA BOOLEAN (Book, Tag);
+
+tags(Book b) = GROUP CONCAT name(Tag t) IF in(b, t), ', ' ORDER name(t), t;
+```
+

@@ -15,7 +15,7 @@ The following set of options is supported (the syntax of each option is indicate
     IN groupName
     viewType
     ON eventType { actionOperator }
-    EDITKEY key [SHOW | HIDE]
+    CHANGEKEY key [SHOW | HIDE]
     ASON eventType [ACTION] propertyId
     IMAGE path
     CONFIRM
@@ -82,7 +82,7 @@ Specifies the file with the image to be displayed as an action icon.
 
 ### *DESIGN instruction default values block*
 
-*EDITKEY key \[SHOW | HIDE\]*
+*CHANGEKEY key \[SHOW | HIDE\]*
 
 Specifies a [keyboard shortcut](Form_events.md#keyboard-broken) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [**DESIGN** instruction](DESIGN_instruction.md).
 

@@ -22,12 +22,33 @@ To declare an action that executes another action in a new thread, use the [**N
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNewThread ()  {
+    //Showing messages 'Message' to all
+    FOR user(Connection conn) AND connectionStatus(conn) == ConnectionStatus.connectedConnection AND conn != currentConnection() DO {
+        NEWTHREAD MESSAGE 'Message'; CONNECTION conn;
+    }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=newthread"/>
+    //Execution of the 'action' action with a frequency of 10 seconds and a delay of 5 seconds
+    NEWTHREAD MESSAGE 'Hello World'; SCHEDULE PERIOD 10000 DELAY 5000;
+}
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=newexecutor"/>
+```lsf
+testExecutor  {
+    NEWEXECUTOR {
+        FOR id(Sku s) DO {
+            NEWTHREAD {
+                NEWSESSION {
+                    name(s) <- STRING[20](id(s)); // writing the code into the name in 10 threads
+                    APPLY;
+                }
+            }
+        }
+    } THREADS 10;
+}
+```
 
   
 

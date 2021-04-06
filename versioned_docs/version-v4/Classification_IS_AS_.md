@@ -10,6 +10,9 @@ To implement classification operators, [**IS** and **AS** operators](IS_AS_ope
 
 ### Examples 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+asOrder(object) = object AS Order;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=isas"/>
+person = DATA Human (Order);
+isMale (Order o) = person(o) IS Male;
+```

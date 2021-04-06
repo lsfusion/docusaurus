@@ -10,6 +10,21 @@ title: 'Фильтр (FILTER)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Store;
+name = DATA STRING[100] (Store);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=groupobject"/>
+FORM stores
+    OBJECTS s = Store
+;
+countF 'Кол-во фильтр. складов' = GROUP SUM 1 IF [ VIEW stores.s](Store s);
+orderF 'Порядок в группе объектов' (Store s) = PARTITION SUM 1 IF [ FILTER stores.s](s) ORDER [ ORDER stores.s](s), s;
+setNameX 'Добавить X к имени'()  {
+    LOCAL k = INTEGER ();
+    k() <- 0;
+    FOR [ FILTER stores.s](Store s) ORDER [ ORDER stores.s](s) DO {
+        k() <- k() + 1;
+        name(s) <- 'X' + k() + name(s);
+    }
+}
+```

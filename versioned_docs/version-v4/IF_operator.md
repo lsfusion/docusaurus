@@ -25,9 +25,12 @@ An expression whose value defines the condition.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+name = DATA STRING[100] (Book);
+hasName (Book b) = TRUE IF name(b);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=if"/>
+background (Book b) = RGB(224, 255, 128) IF b IS Book;
 
-**  
-**
+countTags (Book b) = GROUP SUM 1 IF in(b, Tag t);
+```
+

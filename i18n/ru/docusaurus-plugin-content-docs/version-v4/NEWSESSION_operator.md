@@ -40,8 +40,35 @@ title: 'Оператор NEWSESSION'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNewSession ()  {
+    NEWSESSION {
+        NEW c = Currency {
+            name(c) <- 'USD';
+            code(c) <- 866;
+        }
+        APPLY;
+    }
+    // здесь новый объект класса Currency уже в базе данных
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=newsession"/>
+    LOCAL local = BPSTRING[10] (Currency);
+    local(Currency c) <- 'Local';
+    NEWSESSION {
+        MESSAGE (GROUP SUM 1 IF local(Currency c) == 'Local'); // возвратит NULL
+    }
+    NEWSESSION NESTED (local) {
+        MESSAGE (GROUP SUM 1 IF local(Currency c) == 'Local'); // возвратит кол-во объектов класса Currency
+    }
+
+    NEWSESSION {
+        NEW s = Sku {
+            id(s) <- 1234;
+            name(s) <- 'New Sku';
+            SHOW sku OBJECTS s = s;
+        }
+    }
+
+}
+```
 
   

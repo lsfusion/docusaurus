@@ -10,9 +10,22 @@ We need to implement an action that will display a message with the server's nam
 
 ### Solution
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+ip = DATA LOCAL TEXT();
+getIPJava INTERNAL 'GetIP';
+showIPJava 'Show computer name (Java)' {
+    getIPJava();
+    MESSAGE ip();
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution1"/>
+FORM info 'Information'
+    PROPERTIES() showIPJava
+;
+
+NAVIGATOR {
+    NEW info;
+}
+```
 
 To solve the task, create an action using the [INTERNAL](INTERNAL_operator.md) operator which will generate an object of the  **GetIP** class (if the class has a package, then you must also specify "package" in the class name) and will call the **executeInternal** method. The source code for this class will be as follows:
 
@@ -48,7 +61,17 @@ First, the action reads the server parameters using the built-in **InetAddress**
 
 There is also an alternative way to set this property:
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution1fusion"/>
+```lsf
+getIPFusion INTERNAL <{ findProperty("ip").change((Object)java.net.InetAddress.getLocalHost().toString(), context); }>;
+showIPFusion 'Show computer name (Fusion)' {
+    getIPFusion();
+    MESSAGE ip();
+}
+
+EXTEND FORM info
+    PROPERTIES() showIPFusion
+;
+```
 
 The platform will generate the target class, insert the specified code into it and then compile it using the Janino [compiler](https://janino-compiler.github.io/janino/). The advantage of this approach is that building the project does not require a dedicated step for compiling the Java code. However, the approach has a number of significant limitations and can be used only in the simplest cases.
 
@@ -60,7 +83,21 @@ We need to implement an action that calculates the maximum common divisor of the
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution2"/>
+```lsf
+gcd = DATA LOCAL INTEGER();
+calculateGCD 'Calculate GCD' INTERNAL 'CalculateGCD' (INTEGER, INTEGER);
+
+FORM gcd 'GCD'
+    OBJECTS (a = INTEGER, b = INTEGER) PANEL
+    PROPERTIES 'A' = VALUE(a), 'B' = VALUE(b)
+
+    PROPERTIES gcd(), calculateGCD(a, b)
+;
+
+NAVIGATOR {
+    NEW gcd;
+}
+```
 
 The key difference from the previous example is that the action has two **INTEGER** arguments. Keep this in mind when writing your own **CalculateGCD** class. Here is the source code:
 
@@ -105,7 +142,18 @@ We need to implement an action that calculates the greatest common divisor of tw
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution3"/>
+```lsf
+CLASS Calculation;
+a = DATA INTEGER (Calculation);
+b = DATA INTEGER (Calculation);
+gcd = DATA INTEGER (Calculation);
+calculateGCD 'Calculate GCD' INTERNAL 'CalculateGCDObject' (Calculation);
+
+EXTEND FORM gcd
+    OBJECTS c = Calculation
+    PROPERTIES(c) a, b, gcd, calculateGCD GRID, NEW, DELETE
+;
+```
 
 In this example we first need to read the values of the properties for the passed object, and then to write the result to a property with one input. This is done as follows:
 
@@ -154,7 +202,16 @@ We need to implement an action that will generate a sound signal 5 times on the 
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution4"/>
+```lsf
+beep INTERNAL 'Beep';
+FORM beep 'Signal'
+    PROPERTIES() beep
+;
+
+NAVIGATOR {
+    NEW beep;
+}
+```
 
 The Java code for an action created using the **INTERNAL** operator, runs on the server's virtual machine. So the signal cannot be called directly from the code of a class that inherits from **InternalAction**. For this purpose there is a method called **requestUserInteraction**, which must be passed a class that inherits from class **ClientAction**.
 

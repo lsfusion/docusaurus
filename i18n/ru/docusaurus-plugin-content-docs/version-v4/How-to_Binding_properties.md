@@ -8,15 +8,42 @@ title: 'How-to: Связывание свойств'
 
 Определены понятия Страна, Регион и Город. Регион и город всегда находятся к некоторой стране. Для города может быть выбран регион, но может быть и не задан.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Country 'Страна';
+name 'Имя' = DATA ISTRING[100] (Country) IN id;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseDependentProperties&block=sample1"/>
+CLASS Region 'Регион';
+name 'Имя' = DATA ISTRING[100] (Region) IN id;
+
+country 'Страна' = DATA Country (Region) NONULL DELETE;
+nameCountry 'Страна' (Region r)= name(country(r)) IN id;
+
+CLASS City 'Город';
+name 'Имя' = DATA ISTRING[100] (City);
+
+country 'Страна' = DATA Country (City) NONULL DELETE;
+nameCountry (City c) = name(country(c));
+
+region 'Регион' = DATA Region (City);
+nameRegion (City c) = name(region(c));
+
+FORM cities 'Города'
+    OBJECTS c = City
+    PROPERTIES(c) name, nameCountry, nameRegion, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW cities;
+}
+```
 
 Нужно определить логику, что город может быть привязан только к региону той же страны, в которой он находится.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseDependentProperties&block=solution1"/>
+```lsf
+CONSTRAINT country(City c) != country(region(c)) CHECKED BY region[City] MESSAGE 'Страна региона города должна совпадать со страной города';
+```
 
 При помощи инструкции [CONSTRAINT](CONSTRAINT_instruction.md) указывается условие, которое должно принимать всегда значение **NULL**. В данном случае ограничение на основе этого условия будет срабатывать в том случае, если заданы страна для города, регион для города, страна для региона, и страна региона не совпадет со страной города. Конструкция **CHECKED BY** указывает, что при выборе региона в диалоге будут, по умолчанию, фильтроваться регионы таким образом, чтобы не нарушить это ограничение. Следует отметить, что если страна для города при вводе еще не задана, то условие будет при любом условии **NULL**, и в диалоге будут показаны все существующие регионы.
 
@@ -30,7 +57,11 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseDependentProperties&block=solution2"/>
+```lsf
+WHEN LOCAL CHANGED(region(City c)) AND NOT CHANGED(country(c)) DO {
+    country(c) <- country(region(c));
+}
+```
 
 Следует отметить, что после того, как пользователь выберет регион и будет проставлена страна, то при повторном вызове диалога будут фильтроваться уже регионы выбранный страны. Если пользователь захочет опять увидеть все регионы, то ему нужно будет сначала сбросить страну. Выражение обозначающее, что страна не изменилась, добавляется для того, что если города будут изменяться внешними действиями, которые изменяют одновременно и страну и регион, то не происходило замещение страны этим событием.
 
@@ -44,7 +75,9 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseDependentProperties&block=solution3"/>
+```lsf
+CONSTRAINT region(City c) AND NOT country(c) = country(region(c)) CHECKED BY region[City] MESSAGE 'Страна региона города должна совпадать со страной города';
+```
 
 Разница с первым примером заключается в том, что в новом условии, если выбран регион, то оно будет истинным, если не задана страна. Таким образом и в диалоге в этом случае не будет отображаться ни один регион.
 
@@ -60,7 +93,11 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseDependentProperties&block=solution4"/>
+```lsf
+WHEN LOCAL CHANGED(country(City c)) AND country(c) != country(region(c)) DO {
+    region(c) <- NULL;
+}
+```
 
 ## Пример 5
 
@@ -74,4 +111,12 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseDependentProperties&block=solution5"/>
+```lsf
+// 1 вариант
+WHEN SETCHANGED(country(region(City c))) DO
+    country(c) <- country(region(c));
+
+// 2 вариант
+WHEN SETCHANGED(country(Region r)) DO
+    country(City c) <- country(r) WHERE region(c) = r;
+```

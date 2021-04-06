@@ -14,7 +14,7 @@ A view in which the user can interact with an open form: select current objects,
 In this view, when the [form opens](Open_form.md) all its data is read at once, after which this data is converted/sent to the client. This is a one-way view type.
 
 
-:::note
+:::info
 By default, depending on the implementation specifics, conversion can take place either on the server (before sending to the client) or directly on the client itself.
 :::
 
@@ -29,7 +29,5 @@ Some views are *graphic*, meaning that to display them the data read must be pla
 
 ### Stack
 
-**  
-**
 
-![](download/temp/svgout1879710157184064602.png)
+![](download/temp/svgout1906078644145589448.png)

@@ -21,6 +21,9 @@ A list of [expressions](Expression.md) of which values the minimum is selected.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+minPrice(Book b) = MIN price1(b), price2(b);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=min"/>
+date (INTEGER i) = DATA DATE (INTEGER);
+minDate (INTEGER i) = MIN date(i), 2001_01_01;
+```

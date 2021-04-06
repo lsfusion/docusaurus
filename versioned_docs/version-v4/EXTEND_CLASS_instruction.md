@@ -39,8 +39,21 @@ A list of names of new parent classes. Each name is definedÂ by a composite ID.Â
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Shape;
+CLASS Box : Shape;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=extendclass"/>
+CLASS Quadrilateral;
+EXTEND CLASS Box : Quadrilateral; // Adding inheritance
+
+CLASS ShapeType {
+	point 'Dot',
+	segment 'Line segment'
+}
+
+EXTEND CLASS ShapeType { // Adding a static object
+	circle 'Circle'
+}
+```
 
   

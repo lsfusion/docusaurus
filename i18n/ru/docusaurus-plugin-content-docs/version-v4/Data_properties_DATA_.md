@@ -15,6 +15,10 @@ title: 'Первичные свойства (DATA)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Item;
+quantity = DATA LOCAL INTEGER (Item);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=data"/>
+CLASS Country;
+isDayOff = DATA BOOLEAN (Country, DATE);
+```

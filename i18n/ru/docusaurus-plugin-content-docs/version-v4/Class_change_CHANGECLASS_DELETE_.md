@@ -5,14 +5,14 @@ title: 'Изменение класса (CHANGECLASS, DELETE)'
 Оператор *изменения класса* создает [действие](Actions.md), которое устанавливает заданный [класс](Classes.md) всем объектам, значение некоторого [свойства](Properties.md) (*условия*) которых не равно **NULL**. Условие можно не задавать, в этом случае оно считается равным **TRUE**.  
 
 
-:::note
+:::info
 Также в платформе существует встроенное действие changeClass с двумя параметрами: первый определяет объект, для которого необходимо изменить класс, а второй определяет объект нового класса. Так как при использовании встроенного действия определить возможные значения нового класса значительно сложнее, чем в случае с оператором (для которого новый класс задается явно), рекомендуется использовать именно оператор (а не встроенное действие)
 :::
 
 Если существуют не **NULL** значения некоторых [первичных свойств](Data_properties_DATA_.md), для которых "изменяемый" объект присутствует в параметрах или самом значении и не подходит по классам, такие значения автоматически изменяются на **NULL**.
 
 
-:::note
+:::info
 Реализуется такое поведение по аналогии с [вычисляемыми](Calculated_events.md) и [простыми](Simple_event.md) событиями.
 :::
 
@@ -22,9 +22,26 @@ title: 'Изменение класса (CHANGECLASS, DELETE)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// удаление объекта
+deleteObject(obj)  { DELETE obj; }
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=delete"/>
+// удаление всех неактивных товаров
+CLASS Article;
+active = DATA BOOLEAN (Article);
+deleteInactiveArticles()  {
+    DELETE Article a WHERE a IS Article AND NOT active(a); // добавляется локальный параметр a, соответствующий перебираемым объектам
+}
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=changeclass"/>
+```lsf
+CLASS Document;
+date = DATA DATE (Document);
+
+CLASS ClosedDocument : Document;
+// переводит все документы с датой старше 2-х недель в статус закрыт
+changeStatus()  {
+    CHANGECLASS Document d TO ClosedDocument WHERE sum(date(d), 14) <= currentDate();
+}
+```

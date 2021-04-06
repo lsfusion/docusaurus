@@ -24,6 +24,14 @@ title: 'Модули'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+MODULE EmployeeExample;	 	// Задаем имя модуля
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ModuleSample"/>
+REQUIRE System, Utils;	 	// Перечисляем модули, от которых зависит модуль Employee
+NAMESPACE Employee;		 	// Задаем пространство имен
+
+CLASS Employee 'Сотрудник';	// Создаем класс
+CLASS Position 'Должность'; // Создаем еще один класс
+
+employeePosition(employee) = DATA Position (Employee); // Создаем свойство
+```

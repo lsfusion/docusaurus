@@ -3,12 +3,12 @@ title: 'Execution (manual)'
 ---
 
 
-:::note
+:::info
 To install the application server, web server and client, Java version 8 or later must first be installed on the computer.
 :::
 
 
-:::note
+:::info
 For the application server to work, it must have access to the PostgreSQL database management server of at least version 9.6. The PostgreSQL server must accept connections using password authentication by the md5 or trust method. You can configure authorization by editing the pg\_hba.conf file, as described in the [PostgreSQL](http://www.postgresql.org/docs/9.2/static/auth-pg-hba-conf.html) documentation.
 :::
 
@@ -70,7 +70,7 @@ For the application server to work, it must have access to the PostgreSQL databa
 ### Installing the web server (web and desktop client) as a service {#appservice}
 
 
-:::note
+:::info
 To install the web server, Apache Tomcat version 8 or higher must be installed on the computer.
 :::
 
@@ -89,12 +89,12 @@ To install the web server, Apache Tomcat version 8 or higher must be installed o
         java -jar lsfusion-client-4.1.jar
 
 
-:::note
+:::info
 You can also use the method of installing the desktop client for development. To do this, just download the file lsfusion-client-<version\>.jnlp of the required version from the central server, and then run it locally on the client. This method is faster and more convenient, but less flexible.
 :::
 
 
-:::note
+:::info
 The latest versions that are currently under development (snapshots) can be downloaded directly from the maven repository [https://repo.lsfusion.org](https://repo.lsfusion.org/). For example, for the server, the full path is as follows: <https://repo.lsfusion.org/nexus/service/rest/repository/browse/public/lsfusion/platform/server/> (for server and desktop client you need to download jar files with the -assembly postfix)
 :::
 

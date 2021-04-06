@@ -36,9 +36,8 @@ title: 'Инструкция GROUP'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+GROUP base : root; // Заголовком этой группы будет 'base'
+GROUP local 'Локальные свойства'; // Родительской группой local будет являться System.private
+```
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=group"/>
-
-**  
-**

@@ -30,18 +30,23 @@ sidebar_label: Обзор
 -   После того как связи построены, иерархия строится таким образом, что родителем группы объектов **A** выбирается наиболее поздняя в списке групп объектов группа **B**, от которой **A** зависит (напрямую или косвенно).
 
 
-:::note
+:::info
 Как следует из алгоритма пустая группа объектов всегда является единственной корневой группой построенной иерархии
 :::
 
 ### Пример построения иерархии ****групп объектов****
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=GroupHierarchySample"/>
+FORM myForm 'myForm'
+    OBJECTS A, B SUBREPORT, C, D, E
+    PROPERTIES f(B, C), g(A, C)
+    FILTERS c(E) = C, h(B, D)
+;
+```
 
 Иерархия групп объектов для этой формы будет построена следующим образом:
 
-![](download/temp/svgout4931671302638670306.png)
+![](download/temp/svgout2352421869421388032.png)
 
   

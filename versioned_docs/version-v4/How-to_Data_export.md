@@ -8,15 +8,96 @@ title: 'How-to: Data export'
 
 We have sales orders for several books.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+REQUIRE Time;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExport&block=sample1"/>
+CLASS Book 'Book';
+name 'Name' = DATA ISTRING[100] (Book) IN id;
+
+CLASS Customer 'Customer';
+name 'Name' = DATA ISTRING[50] (Customer) IN id;
+address 'Address' = DATA ISTRING[50] (Customer) IN base;
+
+CLASS Currency 'Currency';
+name 'Name' = DATA ISTRING[50] (Currency) IN id;
+
+CLASS Order 'Order';
+date 'Date' = DATA DATE (Order);
+number 'Number' = DATA STRING[10] (Order);
+
+customer 'Customer' = DATA Customer (Order);
+nameCustomer 'Customer' (Order o) = name(customer(o));
+
+CLASS OrderDetail 'Order line';
+order 'Order' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Book' = DATA Book (OrderDetail) NONULL;
+nameBook 'Book' (OrderDetail d) = name(book(d));
+
+quantity 'Quantity' = DATA INTEGER (OrderDetail);
+price 'Price' = DATA NUMERIC[14,2] (OrderDetail);
+
+currency 'Currency' = DATA Currency (OrderDetail);
+nameCurrency 'Currency' (OrderDetail d) = name(currency(d));
+
+FORM order 'Order'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number, nameCustomer
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, nameCurrency, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Orders'
+    OBJECTS o = Order
+    PROPERTIES(o) READONLY date, number, nameCustomer
+    PROPERTIES(o) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 We need to create a button that exports the contents of the order in the XML format.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExport&block=solution1"/>
+```lsf
+GROUP Info;
+GROUP Customer : Info;
+
+GROUP Specification;
+
+GROUP price;
+
+FORM Order
+    PROPERTIES timeStamp = currentDateTime() ATTR
+
+    OBJECTS order = Order
+    PROPERTIES(order) IN Info date, number
+    PROPERTIES IN Customer nameCustomer(order) EXTID 'name', =address(customer(order)) EXTID 'address'
+
+    PROPERTIES IN Specification count = [GROUP SUM 1 BY order(OrderDetail d)](order) ATTR
+
+    OBJECTS Detail = OrderDetail IN Specification
+    PROPERTIES(Detail) nameBook, quantity,
+                       nameCurrency IN price EXTID 'currency' ATTR, price IN price EXTID 'value'
+    FILTERS order(Detail) = order
+;
+
+exportToXML 'Export to XML' (Order o) {
+    EXPORT Order OBJECTS order = o XML;
+    open(exportFile());
+}
+
+EXTEND FORM orders
+    PROPERTIES(o) exportToXML TOOLBAR
+;
+```
 
 To upload the data in the XML format, we need to create a form [with the corresponding structure](Structured_view.md) and then call the [EXPORT operator](EXPORT_operator.md). This operator will generate a file based on the form and then write the file to the **exportFile** property, which is then opened on the client side using the **open** action. The file will be opened in the software associated with its extension (i. e. ".json").
 
@@ -82,7 +163,16 @@ We need to create a button that exports the contents of the order in the JSON fo
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExport&block=solution2"/>
+```lsf
+exportToJSON 'Export to JSON' (Order o) {
+    EXPORT Order OBJECTS order = o JSON;
+    open(exportFile());
+}
+
+EXTEND FORM orders
+    PROPERTIES(o) exportToJSON TOOLBAR
+;
+```
 
 The resulting file will look like this:
 
@@ -125,7 +215,31 @@ We need to create a button that exports all the orders for a certain date in the
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExport&block=solution3"/>
+```lsf
+exportToCSV (DATE date) {
+    LOCAL file = FILE();
+    EXPORT CSV HEADER FROM number = number(order(OrderDetail d)),
+                    customer = nameCustomer(order(d)),
+                    book = nameBook(d),
+                    quantity(d),
+                    price(d)
+           WHERE date(order(d)) = date TO file;
+    WRITE CLIENT DIALOG file() TO 'orders';
+}
+
+FORM exportParameters 'Parameters'
+    OBJECTS d = DATE PANEL
+    PROPERTIES(d) 'Date' = VALUE
+;
+exportToCSV 'Export to CSV' () {
+    DIALOG exportParameters OBJECTS d INPUT DO
+        exportToCSV(d);
+}
+
+EXTEND FORM orders
+    PROPERTIES() exportToCSV DRAW o TOOLBAR
+;
+```
 
 The first action gets a date as input and then generates a flat CSV file with a semicolon delimiter using the **EXPORT** operator. The file will look like this:
 

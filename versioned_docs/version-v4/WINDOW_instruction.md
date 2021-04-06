@@ -133,9 +133,17 @@ Alignment type. This is specified using one of these keywords:
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// creating system windows in the System module
+WINDOW root 'Root' TOOLBAR HIDETITLE HIDESCROLLBARS HORIZONTAL POSITION(0, 0, 100, 6);
+WINDOW toolbar 'Toolbar' TOOLBAR HIDETITLE VERTICAL POSITION(0, 6, 20, 64);
+WINDOW tree 'Tree' TOOLBAR HIDETITLE POSITION(0, 6, 20, 64);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=window"/>
+// menu without scrollbars under the root window
+WINDOW menu MENU HIDESCROLLBARS DRAWROOT POSITION(20, 6, 80, 4);
 
-**  
-**
+// a horizontal toolbar at the bottom of the desktop, in which all buttons will be centered and text will be aligned up
+// in this toolbar, for example, it is possible to place forms for quick opening
+WINDOW hotforms TOOLBAR HORIZONTAL VALIGN(CENTER) TEXTVALIGN(START) BOTTOM;
+```
+

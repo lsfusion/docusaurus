@@ -16,6 +16,8 @@ title: 'Пользовательская формула (FORMULA)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=formula"/>
+```lsf
+round(number, digits) = FORMULA 'round(CAST(($1) as numeric),$2)';  // свойство с двумя параметрами: округляемым числом и количеством знаков после запятой
+toString15(str) = FORMULA BPSTRING[15] 'CAST($1 AS character(15))';   // свойство, преобразовывающее значение, переданное в качестве аргумента, к строковому типу длиной в 15 символов.
+jumpWorkdays = FORMULA NULL DATE PG 'jumpWorkdays($1, $2, $3)', MS 'dbo.jumpWorkdays($1, $2, $3)'; // свойство с двумя различными реализациями для разных диалектов SQL
+```

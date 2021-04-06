@@ -30,6 +30,19 @@ sidebar_label: Обзор
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// остаток не меньше 0
+CONSTRAINT balance(Sku s, Stock st) < 0
+    MESSAGE 'Остаток не может быть отрицательным для ' + (GROUP CONCAT 'Товар : ' + name(Sku ss) + ' Склад : ' + name(Stock sst), '\n' IF SET(balance(ss, sst) < 0));
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=constraint"/>
+barcode = DATA STRING[15] (Sku);
+// "эмуляция" политики безопасности
+CONSTRAINT DROPCHANGED(barcode(Sku s)) AND name(currentUser()) != 'admin' MESSAGE 'Изменять штрих-код для уже созданного товара разрешено только администратору';
+
+sku = DATA Sku (OrderDetail);
+in = DATA BOOLEAN (Sku, Customer);
+
+CONSTRAINT sku(OrderDetail d) AND NOT in(sku(d), customer(order(d)))
+    CHECKED BY sku[OrderDetail] // будет применяться фильтр по доступным sku при выборе товара для строки заказа
+    MESSAGE 'В заказе выбран недоступный пользователю товар для выбранного покупателя';
+```

@@ -6,25 +6,153 @@ title: 'How-to: Метапрограммирование'
 
 Рассмотрим задачу создания простого справочника, как описано в статье [How-to: CRUD](How-to_CRUD.md).
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[30] (Book) IN id;
+```
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=sample2"/>
+```lsf
+FORM book 'Книга' // форма для отображения "карточки" книги
+    OBJECTS b = Book PANEL
+    PROPERTIES(b) name
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=solution2"/>
+    EDIT Book OBJECT b
+;
+
+FORM books 'Книги'
+    OBJECTS b = Book
+    PROPERTIES(b) READONLY name
+    PROPERTIES(b) NEWSESSION NEW, EDIT, DELETE
+
+    LIST Book OBJECT b
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 На основе этого программного кода можно создать следующий метакод :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMeta&block=defineobject"/>
+```lsf
+META defineObject(class, id, shortId, caption, multiCaption)
+    CLASS class caption;
+    TABLE id(class);
+
+    name 'Наименование' = DATA ISTRING[100] (class);
+
+    FORM id caption
+        OBJECTS shortId = class PANEL
+        PROPERTIES(shortId) name
+
+        EDIT class OBJECT shortId
+    ;
+
+    FORM id##s multiCaption
+        OBJECTS shortId = class
+        PROPERTIES(shortId) READONLY name
+        PROPERTIES(shortId) NEWSESSION NEW, EDIT, DELETE
+
+        LIST class OBJECT shortId
+    ;
+
+    NAVIGATOR {
+        NEW id##s;
+    }
+END
+
+META defineObject(id, shortId, caption, multiCaption)
+    @defineObject(###id, id, shortId, caption, multiCaption-broken);
+END
+```
 
 Важно отметить, что один метакод может внутри вызывать другой.
 
 Использование метакода осуществляется следующим образом :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMeta&block=defineobject"/>
+```lsf
+META defineObject(class, id, shortId, caption, multiCaption)
+    CLASS class caption;
+    TABLE id(class);
+
+    name 'Наименование' = DATA ISTRING[100] (class);
+
+    FORM id caption
+        OBJECTS shortId = class PANEL
+        PROPERTIES(shortId) name
+
+        EDIT class OBJECT shortId
+    ;
+
+    FORM id##s multiCaption
+        OBJECTS shortId = class
+        PROPERTIES(shortId) READONLY name
+        PROPERTIES(shortId) NEWSESSION NEW, EDIT, DELETE
+
+        LIST class OBJECT shortId
+    ;
+
+    NAVIGATOR {
+        NEW id##s;
+    }
+END
+
+META defineObject(id, shortId, caption, multiCaption)
+    @defineObject(###id, id, shortId, caption, multiCaption-broken);
+END
+```
 
 В первом случае, при генерации результирующего кода система заменит все лексемы **id** на *book*, **shortId** на *b*, **caption** на *'Книга'*, а **multiCaption** на *'Книги'*. При этом при использовании склейки \#\# замена будет произведена без изменений, а при использовании \#\#\# первая буква значения будет заменена на заглавную. Сгенерированный код будет выглядеть следующим образом :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMetaResult&block=usedefineobject"/>
+```lsf
+CLASS Book 'Книга';
+TABLE book(Book);
+
+name 'Наименование' = DATA ISTRING[100] (Book);
+
+FORM book 'Книга'
+    OBJECTS b = Book PANEL
+    PROPERTIES(b) name
+
+    EDIT Book OBJECT b
+;
+
+FORM books 'Книги'
+    OBJECTS b = Book
+    PROPERTIES(b) READONLY name
+    PROPERTIES(b) NEWSESSION NEW, EDIT, DELETE
+
+    LIST Book OBJECT b
+;
+
+NAVIGATOR {
+    NEW books;
+}
+
+CLASS Magazine 'Журнал';
+TABLE magazine(Magazine);
+
+name 'Наименование' = DATA ISTRING[100] (Magazine);
+
+FORM magazine 'Журнал'
+    OBJECTS m = Magazine PANEL
+    PROPERTIES(m) name
+
+    EDIT Magazine OBJECT m
+;
+
+FORM magazines 'Журналы'
+    OBJECTS m = Magazine
+    PROPERTIES(m) READONLY name
+    PROPERTIES(m) NEWSESSION NEW, EDIT, DELETE
+
+    LIST Magazine OBJECT m
+;
+
+NAVIGATOR {
+    NEW magazines;
+}
+```
 
 Для того, чтобы IDE "видела" код сгенерированный метакодами, нужно включить соответствующий режим через пункт меню.
 
@@ -38,4 +166,8 @@ import {CodeSample} from './CodeSample.mdx'
 
 Объекты, созданные при помощи метакода, можно в дальнейшем расширять используя стандартные [механизмы](How-to_Extensions.md).
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMetaResult&block=extenddefineobject"/>
+```lsf
+genre 'Жанр' = DATA ISTRING[20] (Book);
+EXTEND FORM book PROPERTIES(b) genre;
+EXTEND FORM books PROPERTIES(b) genre;
+```

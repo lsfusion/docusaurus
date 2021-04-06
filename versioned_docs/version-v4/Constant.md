@@ -12,8 +12,18 @@ Static objects of built-in classes are specified by special [literals](Literals.
 
 Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Direction {
+    north, east, south, west                        // declaring static objects
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=PropertySample&block=constant"/>
+isNorth (Direction d) = d == Direction.north;  // here a constant property is created from a Direction.north object which is then used by the comparison operator to construct the isNorth property
+
+defaultDate() = 1982_07_13;                         // here a constant property is created from a literal describing the date
+
+CLASS Man;
+age 'Age' = DATA INTEGER (Man);
+isChild (Man m) = age(m) < 17;                        // here a constant property is used created from an integer (integer literal)
+```
 
   

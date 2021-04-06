@@ -27,6 +27,30 @@ title: 'Оператор ACTIVE TAB'
 
   
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+//Форма с двумя закладками
+FORM tabbedForm 'Форма с табами'
+    OBJECTS u = CustomUser
+    PROPERTIES(u) name
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=activetab"/>
+    OBJECTS c = Chat
+    PROPERTIES(c) name
+;
+
+DESIGN tabbedForm {
+    NEW tabPane FIRST {
+        type = TABBED;
+        NEW contacts {
+            caption = 'Контакты';
+            MOVE BOX(u);
+        }
+        NEW recent {
+            caption = 'Последние';
+            MOVE BOX(c);
+        }
+    }
+}
+
+//Активна ли закладка 'Последние'
+recentActive() = ACTIVE TAB tabbedForm.recent;
+```

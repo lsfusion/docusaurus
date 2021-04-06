@@ -8,9 +8,30 @@ title: 'How-to: Reports'
 
 We have a logic for books split into categories.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+NAMESPACE Sample;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=sample1"/>
+CLASS Category 'Category';
+name 'Name' = DATA ISTRING[50] (Category) IN id;
+
+CLASS Book 'Book';
+name 'Name' = DATA ISTRING[100] (Book) IN id;
+
+category 'Category' = DATA Category (Book) AUTOSET;
+nameCategory 'Category' (Book b) = name(category(b)) IN id;
+
+countBooks 'Number of books' (Category c) = GROUP SUM 1 BY category(Book b);
+
+FORM books 'Books'
+    OBJECTS b = Book
+    PROPERTIES(b) READONLY name, nameCategory
+    PROPERTIES(b) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 We need to create a [print form](Print_view.md) to display all the books by category. We also need to export this form to the XLSX format.
 
@@ -18,15 +39,36 @@ We need to create a [print form](Print_view.md) to display all the books by cate
 
 First, we need to declare a [form](Forms.md) to define the print form structure.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=solution1a"/>
+```lsf
+FORM booksByCategories 'Books by category'
+    OBJECTS c = Category
+    PROPERTIES(c) name, countBooks
+
+    OBJECTS b = Book
+    PROPERTIES(b) name, nameCategory
+    FILTERS category(b) == c
+;
+```
 
 Then, we add two actions that use the [PRINT](PRINT_operator.md) operator for creating a report and for previewing it and exporting to XLSX respectively.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=solution1b"/>
+```lsf
+printBooksByCategories 'Books by category' ()  {
+    PRINT booksByCategories;
+}
+
+xlsxBooksByCategories 'Books by category (XLSX)' ()  {
+    PRINT booksByCategories XLSX;
+}
+```
 
 Now let's display them on the **books** form in the toolbar of the table of books.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=solution1c"/>
+```lsf
+EXTEND FORM books
+    PROPERTIES() DRAW b TOOLBAR printBooksByCategories, xlsxBooksByCategories
+;
+```
 
 Then, we start the server from the IDE, launch the desktop client, open the form with books and click the created "Print" button. The system will automatically create a print-ready form and open it in the [preview](In_a_print_view_PRINT_.md#interactive) mode. Then, click the button below:
 
@@ -88,7 +130,7 @@ Once done, if you re-run the report generation procedure, it will use modified t
 ![](attachments/46367627/57738056.png)
 
 
-:::note
+:::info
 If the background process fails to synchronize development and execution folders for some reason, you just need to restart the server so that the project is re-built and changes are applied.
 :::
 
@@ -98,7 +140,41 @@ If the background process fails to synchronize development and execution folders
 
 The invoice logic has been defined.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=sample2"/>
+```lsf
+CLASS Invoice 'Invoice';
+date 'Date' = DATA DATE (Invoice);
+number 'Number' = DATA STRING[10] (Invoice);
+
+CLASS InvoiceDetail 'Invoice line';
+invoice 'Invoice' = DATA Invoice (InvoiceDetail) NONULL DELETE;
+
+book 'Book' = DATA Book (InvoiceDetail) NONULL;
+nameBook 'Book' (InvoiceDetail d) = name(book(d));
+
+quantity 'Quantity' = DATA INTEGER (InvoiceDetail);
+price 'Price' = DATA NUMERIC[14,2] (InvoiceDetail);
+
+FORM invoice 'Invoice'
+    OBJECTS i = Invoice PANEL
+    PROPERTIES(i) date, number
+
+    OBJECTS d = InvoiceDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS invoice(d) == i
+
+    EDIT Invoice OBJECT i
+;
+
+FORM invoices 'Invoices'
+    OBJECTS i = Invoice
+    PROPERTIES(i) READONLY date, number
+    PROPERTIES(i) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW invoices;
+}
+```
 
 We need to create a print form for invoices that will contain all of their parameters and lines. We also need to be able to export this form to the DOCX format.
 
@@ -106,7 +182,18 @@ We need to create a print form for invoices that will contain all of their para
 
 To create a print form, let's use the existing **invoice** form that works for us in terms of structure. However, we can create a new form, if necessary.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=solution2"/>
+```lsf
+print 'Print' (Invoice i)  {
+    PRINT invoice OBJECTS i = i;
+}
+printWord 'Print (DOCX)' (Invoice i)  {
+    PRINT invoice OBJECTS i = i DOCX;
+}
+
+EXTEND FORM invoices
+    PROPERTIES(i) print TOOLBAR, printWord TOOLBAR
+;
+```
 
 Since the **i** objects of the **invoice** form are displayed on the panel, the report will only contain data for the invoice that is passed to this object as a parameter in the **PRINT** operator.
 
@@ -171,7 +258,62 @@ The resulting report will look like this:
 
 Similar to **Example 2**, plus the buyer and order logic.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=sample3"/>
+```lsf
+CLASS Customer 'Customer';
+name 'Name' = DATA ISTRING[50] (Customer) IN id;
+
+FORM customers 'Customers'
+    OBJECTS c = Customer
+    PROPERTIES(c) READONLY name
+    PROPERTIES(c) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW customers;
+}
+
+customer 'Customer' = DATA Customer (Invoice);
+nameCustomer 'Customer' (Invoice i) = name(customer(i));
+
+EXTEND FORM invoice PROPERTIES(i) nameCustomer;
+
+CLASS Order 'Order';
+date 'Date' = DATA DATE (Order);
+number 'Number' = DATA STRING[10] (Order);
+
+customer 'Customer' = DATA Customer (Order);
+nameCustomer 'Customer' (Order o) = name(customer(o));
+
+CLASS OrderDetail 'Order line';
+order 'Order' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Book' = DATA Book (OrderDetail) NONULL;
+nameBook 'Book' (OrderDetail d) = name(book(d));
+
+quantity 'Quantity' = DATA INTEGER (OrderDetail);
+price 'Price' = DATA NUMERIC[14,2] (OrderDetail);
+
+FORM order 'Order'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number, nameCustomer
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Orders'
+    OBJECTS i = Order
+    PROPERTIES(i) READONLY date, number, nameCustomer
+    PROPERTIES(i) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 We need to create a print form with customer information that will include all orders and invoices.
 
@@ -179,7 +321,36 @@ We need to create a print form with customer information that will include all 
 
 First, let's create a form whose structure will correspond to the logic of the required print form. We will display the buyer object in the panel, as we only need to show data for a single buyer. The rest of the objects remain tables.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseReports&block=solution3"/>
+```lsf
+FORM customerInfo 'Customer information'
+    OBJECTS c = Customer PANEL
+    PROPERTIES(c) name
+
+    OBJECTS o = Order
+    PROPERTIES(o) date, number
+    FILTERS customer(o) == c
+
+    OBJECTS od = OrderDetail
+    PROPERTIES(od) nameBook, quantity, price
+    FILTERS order(od) == o
+
+    OBJECTS i = Invoice
+    PROPERTIES(i) date, number
+    FILTERS customer(i) == c
+
+    OBJECTS id = InvoiceDetail
+    PROPERTIES(id) nameBook, quantity, price
+    FILTERS invoice(id) == i
+;
+
+printInfo 'Print information' (Customer c)  {
+    PRINT customerInfo OBJECTS c = c;
+}
+
+EXTEND FORM customers
+    PROPERTIES(c) printInfo TOOLBAR
+;
+```
 
 The principle of this report is that objects with invoices and orders are independent of each other. Thus, they will be generated as different subreports (**Subreport**).
 

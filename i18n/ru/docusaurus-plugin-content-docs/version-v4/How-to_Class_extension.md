@@ -6,17 +6,32 @@ title: 'How-to: Расширение классов'
 
 Создаем модуль **MA**, в котором будет создаваться класс **A** :
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+MODULE MA;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseClassMA"/>
+CLASS ABSTRACT A; // объявляем абстрактный класс
+a = ABSTRACT BPSTRING[10] (A); // объявляем абстрактное свойство a
+```
 
 Создаем модуль **MB**, в котором будет создаваться класс **B** :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseClassMB"/>
+```lsf
+MODULE MB;
+
+CLASS B; // объявляем класс B
+b = DATA BPSTRING[10] (B); // объявляем первичное свойство b для класса B
+```
 
 Создаем модуль **MBA**, в котором будет определяться связь между классами **A** и **B** :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseClassMBA"/>
+```lsf
+MODULE MBA;
+
+REQUIRE MA, MB; // указываем, что модуль MBA зависит от модулей MA и MB, чтобы в нем можно было использовать элементы системы, объявляемые в них
+
+EXTEND CLASS B : A; // донаследуем класс B от A
+a(ba) += b(ba); // указываем, что для абстрактного свойства a, в качестве реализации должно использоваться свойство B
+```
 
 Таким образом, непосредственной зависимости между модулями **MA** и **MB**, что позволяет включать/отключать связь между ними при необходимости путем подключения модуля **MBA**. Следует отметить, что модуль **MBA** расширяет функциональность модуля **MB**, не изменяя при этом его кода.
 
@@ -24,8 +39,21 @@ import {CodeSample} from './CodeSample.mdx'
 
 Предположим, что у нас существует метакод, который объявляет класс и задает ему определенные свойства :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseClassMyModule&block=define"/>
+```lsf
+MODULE MyModule;
+
+META defineMyClass (className) // объявляем метакод defineMyClass с параметром className
+    CLASS className; // объявляем класс с именем className
+    myProperty###className = DATA BPSTRING[20] (className); // добавляем для созданного класса свойство с именем myProperty+className
+END
+```
 
 Следует отметить, что при вызове этого метакода, невозможно указать классы, от которого должно происходить наследование создаваемого класса. Однако, это можно реализовать посредством mixin'а классов следующим образом :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseClassMyModule&block=implement"/>
+```lsf
+CLASS MySuperClass;
+
+@defineMyClass(MyClass); // вызываем метакод, который создаст класс и свойство
+
+EXTEND CLASS MyClass : MySuperClass; // наследуем MyClass от MySuperClass, при этом MyClass "получит" все свойства, которые объявлены для класса MySuperClass
+```

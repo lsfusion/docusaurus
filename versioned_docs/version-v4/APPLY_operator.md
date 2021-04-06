@@ -38,8 +38,25 @@ A [context-dependent operator](Action_operator.md#contextdependent) that describ
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Sku;
+id = DATA INTEGER (Sku);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=apply"/>
+in = DATA LOCAL BOOLEAN (Sku);
+applyIn()  {
+    in(Sku s) <- TRUE WHERE id(s) == 123;
+    APPLY NESTED (in[Sku]) {};
+    IF canceled() THEN
+        MESSAGE applyMessage();
+    FOR in(Sku s) DO
+        MESSAGE id(s); // shows '123'
+}
+
+calculateInTransaction()  {
+    APPLY {
+        id(Sku s) <- (GROUP MAX id(Sku ss)) (+) 1; // putting down a new code inside the transaction
+    }
+}
+```
 
   

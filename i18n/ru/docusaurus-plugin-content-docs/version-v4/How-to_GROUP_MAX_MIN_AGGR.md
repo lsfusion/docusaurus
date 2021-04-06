@@ -8,15 +8,19 @@ title: 'How-to: GROUP MAX/MIN/AGGR'
 
 Есть набор книг, для каждой из которых задан уникальный номер.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book 'Книга';
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=sample1"/>
+id 'Номер' = DATA INTEGER (Book);
+```
 
 Необходимо найти максимальный номер книги.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=solution1"/>
+```lsf
+maxId 'Максимальный номер' () = GROUP MAX id(Book b);
+```
 
 ## Пример 2
 
@@ -28,7 +32,13 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=solution2"/>
+```lsf
+// Вариант 1
+book1 'Книга' (INTEGER i) = GROUP MAX Book b BY id(b);
+
+// Вариант 2
+book2 'Книга' (INTEGER i) = GROUP AGGR Book b BY id(b);
+```
 
 Вариант 2 отличается от варианта 1 тем, что объявление этого свойства добавляет [ограничение](Constraints.md) на уникальность номера для книги. При попытке добавить две книги с одинаковыми номерами будет выдано сообщение с ошибкой.
 
@@ -38,13 +48,20 @@ import {CodeSample} from './CodeSample.mdx'
 
 Есть набор книг, для каждой из которых задана категория и цена.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=sample3"/>
+```lsf
+CLASS Category 'Категория';
+
+category 'Категория' = DATA Category (Book);
+price 'Цена' = DATA NUMERIC[10,2] (Book);
+```
 
 Нужно посчитать минимальную цену по категории.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=solution3"/>
+```lsf
+minPrice 'Максимальный номер' (Category c) = GROUP MIN price(Book b) BY category(b);
+```
 
 ## Пример 4
 
@@ -52,12 +69,20 @@ import {CodeSample} from './CodeSample.mdx'
 
 Задан документ отгрузки книг.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=sample4"/>
+```lsf
+CLASS Shipment 'Отгрузка';
+CLASS ShipmentDetail 'Строка отгрузки';
+shipment 'Отгрузка' = DATA Shipment (ShipmentDetail) NONULL DELETE;
+
+book 'Книга' = DATA Book (ShipmentDetail);
+```
 
 Необходимо найти некоторую строку отгрузки по документу и книге.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseMMA&block=solution4"/>
+```lsf
+shipmentDetail 'Строка отгрузки' (Shipment s, Book b) = GROUP MAX ShipmentDetail d BY shipment(d), book(d);
+```
 
 Этот свойство может использоваться для реализации функционала Подбор при вводе документа отгрузки.

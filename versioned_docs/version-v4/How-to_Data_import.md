@@ -8,15 +8,78 @@ title: 'How-to: Data import'
 
 We have the books for which names and prices are defined. The order logic is also defined.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+REQUIRE Utils;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=sample1"/>
+CLASS Book 'Book';
+name 'Name' = DATA ISTRING[100] (Book) IN id;
+
+id 'Code' = DATA STRING[20] (Book) IN id;
+book 'Book' (STRING[20] id) = GROUP AGGR Book b BY id(b);
+
+CLASS Order 'Order';
+date 'Date' = DATA DATE (Order);
+number 'Number' = DATA STRING[10] (Order);
+
+CLASS OrderDetail 'Order line';
+order 'Order' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Book' = DATA Book (OrderDetail) NONULL;
+nameBook 'Book' (OrderDetail d) = name(book(d));
+
+quantity 'Quantity' = DATA INTEGER (OrderDetail);
+price 'Price' = DATA NUMERIC[14,2] (OrderDetail);
+
+FORM order 'Order'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Orders'
+    OBJECTS o = Order
+    PROPERTIES(o) READONLY date, number
+    PROPERTIES(o) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 We need to create a button that loads the contents of the order from the Excel file selected by the user on their computer.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=solution1"/>
+```lsf
+importXlsx 'Import from XLS' (Order o)  {
+    INPUT f = EXCELFILE DO {
+
+        LOCAL bookId = STRING[20] (INTEGER);
+        LOCAL quantity = INTEGER (INTEGER);
+        LOCAL price = NUMERIC[14,2] (INTEGER);
+
+        IMPORT XLS FROM f TO bookId = A, quantity = B, price = C;
+
+        FOR imported(INTEGER i) NEW d = OrderDetail DO {
+            order(d) <- o;
+
+            book(d) <- book(bookId(i));
+            quantity(d) <- quantity(i);
+            price(d) <- price(i);
+        }
+    }
+}
+
+EXTEND FORM order
+    PROPERTIES(o) importXlsx
+;
+```
 
 The [INPUT](INPUT_operator.md) operator which requests a file will display a dialog where the user will be able to choose an .xls or .xlsx file. Once the file is selected successfully, the system will call the [action](Actions.md) specified after **DO**.
 
@@ -30,13 +93,55 @@ The  [IMPORT](IMPORT_operator.md) operator reads the selected file and then w
 
 Similar to **Example 1**. In addition, we have specified a directory to which an external system puts orders. For each order, a separate CSV file is generated for storing the order date and number (in the denormalized form) along with the book code, quantity, and price.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=sample2"/>
+```lsf
+serverDirectory 'Directory on the server from which orders should be imported' = DATA STRING[100] ();
+
+EXTEND FORM orders PROPERTIES() serverDirectory;
+```
 
 We need to implement an action that will import orders from this folder into the system.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=solution2"/>
+```lsf
+importOrders 'Import orders from directory' ()  {
+
+    listFiles('file://' + serverDirectory());
+
+    FOR ISTRING[255] f = fileName(INTEGER j) AND NOT fileIsDirectory(j) DO NEWSESSION {
+
+        LOCAL file = FILE ();
+        READ 'file://' + serverDirectory() + '/' + f TO file;
+
+        LOCAL date = DATE (INTEGER);
+        LOCAL number = STRING[10] (INTEGER);
+
+        LOCAL bookId = STRING[20] (INTEGER);
+        LOCAL quantity = INTEGER (INTEGER);
+        LOCAL price = NUMERIC[14,2] (INTEGER);
+
+        IMPORT CSV '|' NOHEADER CHARSET 'CP1251' FROM file() TO date, number, bookId, quantity, price;
+
+        NEW o = Order {
+            date(o) <- date(0);
+            number(o) <- number(0);
+
+            FOR imported(INTEGER i) NEW d = OrderDetail DO {
+                order(d) <- o;
+
+                book(d) <- book(bookId(i));
+                quantity(d) <- quantity(i);
+                price(d) <- price(i);
+            }
+        }
+
+        APPLY;
+        move('file://' + serverDirectory() + '/' + f, 'file://' + serverDirectory() + '/' + (IF canceled() THEN 'error/' ELSE 'success/') + f);
+    }
+}
+
+EXTEND FORM orders PROPERTIES() importOrders;
+```
 
 The **listFiles** action is declared in the **Utils** system [module](Modules.md). The action scans the folder specified in the argument and reads all the files from it and writes their contents to the **fileName** and **fileIsDirectory** properties.
 
@@ -60,7 +165,29 @@ We need to create an action that will synchronize the book directory with this e
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=solution3"/>
+```lsf
+importBooks 'Import books' ()  {
+    LOCAL file = FILE ();
+    READ 'jdbc:sqlserver://localhost;databaseName=books;User=import;Password=password@SELECT id, name FROM books' TO file;
+
+    LOCAL id = STRING[20] (INTEGER);
+    LOCAL name = ISTRING[100] (INTEGER);
+    IMPORT TABLE FROM file() TO id, name;
+
+    //creating new books
+    FOR id(INTEGER i) AND NOT book(id(i)) NEW b = Book DO {
+        id(b) <- id(i);
+    }
+
+    // changing values
+    FOR id(Book b) == id(INTEGER i) DO {
+        name(b) <- name(i);
+    }
+
+    // deleting books
+    DELETE Book b WHERE b IS Book AND NOT [ GROUP SUM 1 BY id(INTEGER i)](id(b));
+}
+```
 
 Synchronization consists of the three main actions. First, we create books whose codes can be found in the external database, but not in our database. Then, we update the values for all books that can be found in our database. And finally, books that cannot be found in the external database are removed from our database.
 
@@ -74,7 +201,20 @@ Similar to **Example 1**.
 
 For each order line, we have added the decoding of this line by color and size.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=sample4"/>
+```lsf
+CLASS OrderDetailInfo 'Order line (transcript)';
+
+detail = DATA OrderDetail (OrderDetailInfo) NONULL DELETE;
+size = DATA STRING[100] (OrderDetailInfo);
+color = DATA STRING[100] (OrderDetailInfo);
+quantity = DATA INTEGER (OrderDetailInfo);
+
+EXTEND FORM order
+    OBJECTS i = OrderDetailInfo
+    PROPERTIES(i) size, color, quantity, NEW, DELETE
+    FILTERS detail(i) = d
+;
+```
 
 We need to implement the import of orders from the JSON file of the specified structure. A JSON file may look like this:
 
@@ -170,7 +310,40 @@ We need to implement the import of orders from the JSON file of the specified st
 
 Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseImport&block=solution4"/>
+```lsf
+version = DATA LOCAL STRING[100]();
+
+GROUP item;
+idItem = DATA LOCAL STRING[100] (OrderDetail);
+
+FORM importOrder
+    PROPERTIES() version
+
+    OBJECTS order = Order
+    PROPERTIES(order) date, number
+
+    OBJECTS detail = OrderDetail
+    PROPERTIES(detail) IN item idItem EXTID 'id'
+    PROPERTIES(detail) price
+    FILTERS order(detail) = order
+
+    OBJECTS detailInfo = OrderDetailInfo IN item EXTID 'info'
+    PROPERTIES(detailInfo) size, color, quantity
+    FILTERS detail(detailInfo) = detail
+;
+
+importOrderFromJSON 'Import from JSON' () {
+    INPUT f = FILE DO {
+        IMPORT importOrder JSON FROM f;
+        book(OrderDetail d) <- book(idItem(d)) WHERE idItem(d);
+        APPLY;
+    }
+}
+
+EXTEND FORM orders
+    PROPERTIES() importOrderFromJSON DRAW o TOOLBAR
+;
+```
 
 To implement the import process, we need to declare the form of the [structure](Structured_view.md) matching the structure of the JSON file.
 

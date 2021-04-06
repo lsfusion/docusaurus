@@ -28,8 +28,32 @@ The key instructions that implement the extension procedure are the [**ABSTRACT*
 ### Example
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Invoice;
+CLASS InvoiceDetail;
+CLASS Range;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=abstract"/>
+rateChargeExchange(invoice) = ABSTRACT NUMERIC[14,6] (Invoice);             // In this case, ABSTRACT MULTI EXCLUSIVE is created
+backgroundSku 'Color' (d) = ABSTRACT CASE FULL COLOR (InvoiceDetail); // In this case, ABSTRACT CASE OVERRIDE LAST is created, and if there are
+                                                                            // several suitable implementations, the first of them will be calculated
+overVAT = ABSTRACT VALUE OVERRIDE FIRST Range (InvoiceDetail);          // The last matching implementation will be calculated here
+```
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=extendproperty"/>
+```lsf
+CLASS ABSTRACT AClass;
+CLASS BClass : AClass;
+CLASS CClass : AClass;
+CLASS DClass : AClass;
+
+name(AClass a) = ABSTRACT BPSTRING[50] (AClass);
+innerName(BClass b) = DATA BPSTRING[50] (BClass);
+innerName(CClass c) = DATA BPSTRING[50] (CClass);
+innerName(DClass d) = DATA BPSTRING[50] (DClass);
+
+name(BClass b) = 'B' + innerName(b);
+name(CClass c) = 'C' + innerName(c);
+
+name[AClass](BClass b) += name(b);
+name(CClass c) += name(c); // Here name[AClass] will be found on the left, because the search goes only among abstract properties, and on the right name[CClass] will be found
+name(DClass d) += 'DClass' + innerName(d) IF d IS DClass;
+```

@@ -8,17 +8,32 @@ title: 'How-to: Расширение действий'
 
 Создаем абстрактный класс **Shape** с абстрактным действием **whoAmI** :
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseActionShape&block=shape"/>
+```lsf
+CLASS ABSTRACT Shape;
+whoAmI  ABSTRACT ( Shape);
+```
 
 Создаем классы **Square** и **Circle**, который наследуется от **Shape** :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseActionShape&block=concreteclass"/>
+```lsf
+CLASS Rectangle : Shape;
+CLASS Circle : Shape;
+```
 
 Определяем реализацию **whoAmI** для созданных классов :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseActionShape&block=concreteaction"/>
+```lsf
+whoAmI (Rectangle r) + {
+    IF r IS Rectangle THEN {
+        MESSAGE 'I am a rectangle';
+    }
+}
+whoAmI (Circle c) + {
+    IF c IS Circle THEN {
+        MESSAGE 'I am a circle';
+    }
+}
+```
 
 При выполнении действия **whoAmI** будут вызваны все действия, которые были добавлены в качестве реализации. В описанном случае будет выдано соответствующее сообщение в зависимости от переданного аргумента.
 
@@ -28,8 +43,27 @@ import {CodeSample} from './CodeSample.mdx'
 
 Объявляем класс **Book** и действия по его копированию :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseActionBook"/>
+```lsf
+MODULE Book;
+
+CLASS Book; // объявляем класс книга
+overCopy  ABSTRACT ( Book, Book); // абстрактное действие, которое принимает на вход две книги и является "точкой входа", в которую другие модули смогут добавлять реализацию
+copy (Book book)  { // создаем действие по копированию книги
+    NEW b = Book { // добавляем новую книгу
+        overCopy(b, book);
+    }
+}
+```
 
 В зависимом модуле **MyBook** расширяем класс **Book** новыми свойствами и делаем, чтобы они также копировались :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseActionMyBook"/>
+```lsf
+MODULE MyBook;
+
+REQUIRE Book;
+
+name = DATA STRING[100] (Book); // добавляем к товару некоторое свойство name
+overCopy (Book s, Book d) + {
+    name(d) <- name(s); // подключаем к действию копирования товара копирование созданного свойства
+}
+```

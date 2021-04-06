@@ -44,7 +44,7 @@ If more than one parameter is passed to BODY, then:
 In turn, if the request response type is multipart/\* or application/x-www-form-urlencoded, it will be split into parts, and each part will be considered a separate execution result. In this case, the order of these results is equal to the order of the corresponding parts in the request response.
 
 
-:::note
+:::info
 Note that the processing of parameters and request results is largely similar to their processing during [access from an external system](Access_from_an_external_system.md) over the HTTP protocol (here parameters are processed as results and, conversely, results are processed as parameters)
 :::
 
@@ -74,7 +74,7 @@ The way of defining an action in this type of interaction fully corresponds to t
 By default, this type of interaction is implemented via HTTP protocol using the corresponding interfaces for access [to](#http-broken) and [from](Access_from_an_external_system.md#http-broken) an external system.
 
 
-:::note
+:::info
 You can also use operators for [reading](Read_file_READ_.md) and [writing](Write_file_WRITE_.md) files to access external systems (if file exchange is the interface for this interaction).
 :::
 
@@ -84,6 +84,31 @@ To declare an action that accesses an external system, use the [**EXTERNAL** o
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testExportFile = DATA FILE ();
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=external"/>
+externalHTTP()  {
+    EXTERNAL HTTP GET 'https://www.cs.cmu.edu/~chuck/lennapg/len_std.jpg' TO exportFile;
+    open(exportFile());
+
+    EXTERNAL HTTP 'http://tryonline.lsfusion.org/exec?action=getExamples' PARAMS JSONFILE('\{"mode"=1,"locale"="en"\}') TO exportFile; // braces are escaped') TO exportFile; // braces are escaped as they are used in internationalization
+    IMPORT FROM exportFile() FIELDS () TEXT caption, TEXT code DO
+        MESSAGE 'Example : ' + caption + ', code : ' + code;
+
+    EXTERNAL HTTP 'http://tryonline.lsfusion.org/exec?action=doSomething&someprm=$1' BODYURL 'otherprm=$2&andonemore=$3' PARAMS 1,2,'3'; // passes the second and third parameters to BODY url-encoded
+}
+externalSQL ()  {
+    EXPORT TABLE FROM bc=barcode(Article a) WHERE name(a) LIKE '%Meat%'; // getting all barcodes of products with the name meat
+    EXTERNAL SQL 'jdbc:mysql://$1/test?user=root&password=' EXEC 'select price AS pc, articles.barcode AS brc from $2 x JOIN articles ON x.bc=articles.barcode' PARAMS 'localhost',exportFile() TO exportFile; // reading prices for read barcodes
+
+    // writing prices for all products with received barcodes
+    LOCAL price = INTEGER (INTEGER);
+    LOCAL barcode = STRING[30] (INTEGER);
+    IMPORT FROM exportFile() TO price=pc,barcode=brc;
+    FOR barcode(Article a) = barcode(INTEGER i) DO
+        price(a) <- price(i);
+}
+externalLSF()  {
+    EXTERNAL LSF 'http://localhost:7651' EXEC 'System.testAction[]';
+};
+```

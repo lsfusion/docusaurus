@@ -8,15 +8,38 @@ title: 'How-to: FORMULA'
 
 Задан список заказов.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Order 'Заказ';
+date 'Дата' = DATA DATE (Order);
+number 'Номер' = DATA STRING[30] (Order);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFormula&block=sample1"/>
+FORM orders 'Заказы на закупку'
+    OBJECTS o = Order
+    PROPERTIES(o) date, number, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 Необходимо экспортировать в CSV этот список, причем дату экспортировать в формате ISO (YYYY-MM-DD).
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFormula&block=solution1"/>
+```lsf
+toISO = FORMULA STRING[10] 'to_char($1,\'YYYY-MM-DD\')';
+
+exportToCSV 'Экспорт в CSV' () {
+    LOCAL file = FILE ();
+    EXPORT CSV FROM toISO(date(Order o)), number(o) TO file;
+    open(file());
+}
+
+EXTEND FORM orders
+    PROPERTIES() exportToCSV
+;
+```
 
 Для решения задачи создаем свойство при помощи оператора [FORMULA](FORMULA_operator.md), которое будет принимать на вход дату и возвращать значение в виде строки в формате YYYY-MM-DD. В выражении формулы используется стандартная функция PostgreSQL [to\_char](https://www.postgresql.org/docs/11/functions-formatting.html).
 
@@ -26,13 +49,37 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 1**. Также добавлены строки заказов с параметрами количество и сумма.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFormula&block=sample2"/>
+```lsf
+CLASS OrderDetail;
+order = DATA Order (OrderDetail) NONULL DELETE;
+
+quantity 'Кол-во' = DATA NUMERIC[14,3] (OrderDetail);
+sum 'Сумма' = DATA NUMERIC[14,2] (OrderDetail);
+
+EXTEND FORM orders
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) quantity, sum, NEW, DELETE
+    FILTERS order(d) = o
+;
+```
 
 Нужно выгрузить по одному заказу CSV-файл с его строками, в котором количества и суммы будут отформатированы до 3х и 2х знаков соответственно. Кроме того, нужно чтобы числа разбивались по триадам.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFormula&block=solution2"/>
+```lsf
+toString = FORMULA TEXT 'to_char($1,$2)';
+
+exportToCSV 'Экспорт в CSV' (Order o) {
+    LOCAL file = FILE ();
+    EXPORT CSV FROM toISO(date(o)), number(o), toString(quantity(OrderDetail d), '999 999.999'), toString(sum(d), '999 999.99') WHERE order(d) = o TO file;
+    open(file());
+}
+
+EXTEND FORM orders
+    PROPERTIES(o) exportToCSV
+;
+```
 
 Создаем свойство toString, которое принимает на вход два параметра (число и формат) и возвращает значение типа **TEXT**. При выгрузке передаем нужный формат в качестве второго параметра.
 
@@ -46,7 +93,13 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseFormula&block=solution3"/>
+```lsf
+onlyDigits = FORMULA NULL BOOLEAN 'CASE WHEN trim($1) ~ \'^[0-9]*$\' THEN 1 ELSE NULL END';
+
+EXTEND FORM orders
+    PROPERTIES 'Только цифры' = onlyDigits(number(o))
+;
+```
 
 Так как внутри формулы используются одинарные кавычки, то их требуется [экранировать](https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D1%80%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%BE%D0%B2) при помощи обратного слэша **\\**.
 

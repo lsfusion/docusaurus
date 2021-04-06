@@ -8,15 +8,34 @@ title: 'How-to: NEWSESSION'
 
 Есть заказ, для которого задана номер и признак того, является ли он проведенным.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Order 'Заказ';
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=sample1"/>
+isPosted 'Проведен' = DATA BOOLEAN (Order);
+number 'Номер' = DATA INTEGER (Order);
+
+FORM orders
+    OBJECTS o = Order
+    PROPERTIES(o) READONLY isPosted, number
+;
+```
 
 Нужно создать действие, которое проведет его в отдельной сессии изменений, и добавить его на форму со списком заказов .
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=solution1"/>
+```lsf
+post 'Провести' (Order o)  {
+    NEWSESSION {
+        isPosted(o) <- TRUE;
+        APPLY;
+    }
+}
+
+EXTEND FORM orders
+    PROPERTIES(o) post TOOLBAR
+;
+```
 
 Если не "оборачивать" действие по установлению свойства **isPosted** в оператор [NEWSESSION](NEWSESSION_operator.md), то во время выполнения оператора [APPLY](APPLY_operator.md) в базу данных будут записаны также другие изменения, возможно сделанные на форме **orders**.
 
@@ -26,13 +45,37 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 1**, только для заказа определена форма его редактирования.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=sample2"/>
+```lsf
+FORM order
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) isPosted, number
+
+    EDIT Order OBJECT o
+;
+```
 
 Нужно создать действие, которое создаст новый заказ и откроет форму по его редактированию. Это действие нужно добавить на форму со списком заказов.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=solution2"/>
+```lsf
+newOrder ()  {
+    NEWSESSION {
+        NEW o = Order {
+            number(o) <- (GROUP MAX number(Order oo)) (+) 1;
+            SHOW order OBJECTS o = o;
+        }
+    }
+}
+
+EXTEND FORM orders
+    // Вариант 1
+    PROPERTIES() newOrder DRAW o TOOLBAR
+
+    // Вариант 2
+    PROPERTIES(o) NEWSESSION NEW
+;
+```
 
 Если не использовать оператор **NEWSESSION**, то объект нового заказа будет создан в [сессии изменений](Change_sessions.md) формы **orders**. При этом если пользователь закроет форму не сохранив, то изменения "останутся" в сессии изменений формы, и созданный заказ будет отображен в форме со списком заказов.
 
@@ -42,13 +85,31 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 2**, только для заказа доступна возможность отметки.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=sample3"/>
+```lsf
+selected 'Отм' = DATA LOCAL BOOLEAN (Order);
+EXTEND FORM orders
+    PROPERTIES(o) selected
+;
+```
 
 Нужно создать действие, которое удалит отмеченные заказы и сразу сохранит изменения в базу данных (без необходимости нажимать пользователю кнопку Сохранить).
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=solution3"/>
+```lsf
+deleteSelectedOrders 'Удалить отмеченные заказы' ()  {
+    NEWSESSION NESTED(selected) {
+        DELETE Order o WHERE selected(o);
+        ASK 'Вы собираетесь удалить ' + (GROUP SUM 1 IF DROPPED(Order o)) + ' заказов. Продолжить ?' DO {
+            APPLY;
+        }
+    }
+}
+
+EXTEND FORM orders
+    PROPERTIES() deleteSelectedOrders DRAW o TOOLBAR
+;
+```
 
 По умолчанию, в новой сессии не учитываются изменения, сделанные в "верхней" сессии. Для того, чтобы свойство selected было доступно в новой сессии нужно использовать конструкцию **NESTED**. Без нее в свойстве **selected** всегда будет NULL. Кроме того, вместо указания конкретных свойств можно использовать конструкцию **NESTED LOCAL**. В этом случае будут доступны изменения всех локальных свойств верхней сессии.
 
@@ -58,13 +119,38 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 2**, только добавлена логика платежей по заказу.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=sample4"/>
+```lsf
+CLASS Payment 'Платеж';
+
+date 'Дата' = DATA DATE (Payment);
+sum 'Сумма' = DATA NUMERIC[14,2] (Payment);
+
+order 'Заказ' = DATA Order (Payment);
+```
 
 Нужно создать кнопку на форме, которая откроет отдельную форму по редактированию платежей в этом заказе.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNewSession&block=solution4"/>
+```lsf
+FORM orderPayments 'Платежи по заказу'
+    OBJECTS o = Order PANEL // Не добавляем свойств, чтобы этот объект не был вообще виден на форме
+
+    OBJECTS p = Payment
+    PROPERTIES(p) date, sum, NEW, DELETE
+    FILTERS order(p) == o
+;
+
+editPayments 'Редактировать платежи' (Order o)  {
+    NESTEDSESSION {
+        SHOW orderPayments OBJECTS o = o;
+    }
+}
+
+EXTEND FORM order
+    PROPERTIES(o) editPayments
+;
+```
 
 При использовании [оператора NESTEDSESSION](NESTEDSESSION_operator.md) все изменения, сделанные в "верхней" сессии изменений, будут доступны во вложенной сессии. Если пользователь закроет форму, не нажав ОК, то все изменения, сделанные непосредственно в форме, пропадут. Если пользователь нажмет ОК, то изменения будут записаны не в базу данных, а в "верхнюю" сессию изменений. В базу данных они запишутся вместе с изменениями сделанными в основной форме **orders**.
 

@@ -10,9 +10,22 @@ title: 'How-to: INTERNAL'
 
 ### Решение
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+ip = DATA LOCAL TEXT();
+getIPJava INTERNAL 'GetIP';
+showIPJava 'Показать имя компьютера (Java)' {
+    getIPJava();
+    MESSAGE ip();
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution1"/>
+FORM info 'Информация'
+    PROPERTIES() showIPJava
+;
+
+NAVIGATOR {
+    NEW info;
+}
+```
 
 Для решения задачи необходимо создать действие при помощи оператора [INTERNAL](INTERNAL_operator.md), которое создаст объект класса **GetIP** (если у класса есть package, то в названии класса нужно также указывать package) и вызовет у него метод **executeInternal**. Исходный код этого класса :
 
@@ -48,7 +61,17 @@ import {CodeSample} from './CodeSample.mdx'
 
 Существует также альтернативный способ задания данного свойства :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution1fusion"/>
+```lsf
+getIPFusion INTERNAL <{ findProperty("ip").change((Object)java.net.InetAddress.getLocalHost().toString(), context); }>;
+showIPFusion 'Показать имя компьютера (Fusion)' {
+    getIPFusion();
+    MESSAGE ip();
+}
+
+EXTEND FORM info
+    PROPERTIES() showIPFusion
+;
+```
 
 Платформа сама генерирует нужный класс, добавляя туда заданный код, а затем компилирует его при помощи компилятора [Janino](https://janino-compiler.github.io/janino/). Преимущество такого подхода в том, что при сборке проекта не потребуется отдельный шаг с компиляцией Java кода. Однако, такой подход имеет ряд существенных ограничений и может использоваться только в самых простых случаях.
 
@@ -60,7 +83,21 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution2"/>
+```lsf
+gcd = DATA LOCAL INTEGER();
+calculateGCD 'Рассчитать НОД' INTERNAL 'CalculateGCD' (INTEGER, INTEGER);
+
+FORM gcd 'НОД'
+    OBJECTS (a = INTEGER, b = INTEGER) PANEL
+    PROPERTIES 'A' = VALUE(a), 'B' = VALUE(b)
+
+    PROPERTIES gcd(), calculateGCD(a, b)
+;
+
+NAVIGATOR {
+    NEW gcd;
+}
+```
 
 Основное отличие от предыдущего примера в том, что действие принимает на вход 2 параметра типа **INTEGER**. Это нужно учитывать при написании класса **CalculateGCD**. Вот его исходный код :
 
@@ -105,7 +142,18 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution3"/>
+```lsf
+CLASS Calculation;
+a = DATA INTEGER (Calculation);
+b = DATA INTEGER (Calculation);
+gcd = DATA INTEGER (Calculation);
+calculateGCD 'Рассчитать НОД' INTERNAL 'CalculateGCDObject' (Calculation);
+
+EXTEND FORM gcd
+    OBJECTS c = Calculation
+    PROPERTIES(c) a, b, gcd, calculateGCD GRID, NEW, DELETE
+;
+```
 
 В этом примере необходимо сначала считать значения свойств для переданного объекта, а затем записать результат также в свойство с одним входом. Делается это следующим образом :
 
@@ -154,7 +202,16 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseInternal&block=solution4"/>
+```lsf
+beep INTERNAL 'Beep';
+FORM beep 'Сигнал'
+    PROPERTIES() beep
+;
+
+NAVIGATOR {
+    NEW beep;
+}
+```
 
 Java код действия, созданного при помощи оператора **INTERNAL**, выполняется в виртуальной машине сервера. Поэтому нельзя вызывать сигнал непосредственно в коде класса, наследуемого от **InternalAction**. Для этой цели существует метод **requestUserInteraction**, в который нужно передать класс, наследуемый от класса **ClientAction**.
 

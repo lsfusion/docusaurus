@@ -30,8 +30,10 @@ List of local properties. Each list element is a [property ID](IDs.md#propertyi
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=cancel"/>
+```lsf
+dropChanges()  {
+    CANCEL NESTED (in[Sku]); // cancel all changes except the in property
+}
+```
 
   

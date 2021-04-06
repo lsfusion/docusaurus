@@ -6,9 +6,10 @@ title: 'How-to: Явная типизация'
 
 Например создадим два свойства с именем **sum**, одно из которых вычисляет сумму строки заказа, а второе - сумму всего заказа:
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseTyping&block=sums"/>
+```lsf
+sum = DATA NUMERIC[10,2] (OrderDetail);
+sum = GROUP SUM sum(OrderDetail od) BY order(od);
+```
 
 Соответственно, первое свойство принимает на вход один параметр класса **OrderDetail**, а второе - один параметр класса **Order**.
 
@@ -18,7 +19,9 @@ import {CodeSample} from './CodeSample.mdx'
 
 Все такие обращения требуют явного указания класса параметров:
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseTyping&block=sref"/>
+```lsf
+CONSTRAINT sum(Order o) < 0 MESSAGE 'Сумма заказа должна быть положительной';
+```
 
   
 

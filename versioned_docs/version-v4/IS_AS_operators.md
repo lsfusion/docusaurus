@@ -28,9 +28,10 @@ Class name. [Class ID](IDs.md#classid-broken).
 ### Examples 
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+asOrder(object) = object AS Order;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=isas"/>
+person = DATA Human (Order);
+isMale (Order o) = person(o) IS Male;
+```
 
-**  
-**

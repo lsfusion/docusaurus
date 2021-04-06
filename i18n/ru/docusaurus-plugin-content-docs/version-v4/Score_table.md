@@ -18,25 +18,31 @@ title: 'Турнирная таблица'
 
 Объявляем [модуль](Modules.md), в рамках которого будет реализован требуемый функционал. Присваиваем модулю произвольное наименование (например, HockeyStats).
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=module"/>
+```lsf
+MODULE HockeyStats;
+```
 
 Зададим использование в модуле HockeyStats функциональности из других модулей. В частности, нам понадобится системный модуль **System**, в котором объявляются некоторые используемые в примере элементы системы.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=require&original=1"/>
+```lsf
+REQUIRE System;
+```
 
 ### Определение команды
 
 Вводим понятие команды, для чего создаем отдельный [класс](Classes.md) с помощью соответствующей инструкции [CLASS](CLASS_instruction.md). 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=classteam&original=1"/>
+```lsf
+CLASS Team 'Команда';
+```
 
 Создаваемому классу присваиваем название (например, Team), которое в дальнейшем будет использоваться при построении [выражений](Expression.md), а также подпись для отображения на пользовательских формах (например, "Команда").
 
 Чтобы при работе с созданными позднее формами все команды можно было легко идентифицировать, создаем для команды название. Иными словами, создаем [свойство](Properties.md) "Название", которое может быть определено для объектов класса Team.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=nameteam&original=1"/>
+```lsf
+name 'Название команды' = DATA STRING[30] (Team) IN base;
+```
 
 Таким образом, название команды является [первичным](Data_properties_DATA_.md) (вводимым пользователем) свойством строчного типа. Опцией IN созданное свойство добавляется в предопределенную [группу свойств](Groups_of_properties_and_actions.md) **base**. Свойства объекта, относящиеся к группе **base**, будут автоматически отображаться на диалоговой форме для выбора объекта класса Team.
 
@@ -44,59 +50,101 @@ import {CodeSample} from './CodeSample.mdx'
 
 Вводим понятие игры и ее атрибуты: дата, участники игры (команда хозяев и команда гостей) и их названия.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=game&original=1"/>
+```lsf
+CLASS Game 'Игра';
+
+date 'Дата' = DATA DATE (Game);
+hostTeam = DATA Team (Game);
+guestTeam = DATA Team (Game);
+hostTeamName 'Хозяева' (Game game) = name(hostTeam(game));
+guestTeamName 'Гости' (Game game) = name(guestTeam(game));
+```
 
 Свойства hostTeam и guestTeam являются [первичными](Data_properties_DATA_.md) объектными свойствами игры, дающими в качестве результата ссылку на команду хозяев и команду гостей соответственно (т.е. на конкретные объекты класса Team). Свойства названий команды хозяев и гостей игры (hostTeamName и guestTeamName) создаются для использования в дальнейшем на формах. Если на форму выносить сами свойства hostTeam и guestTeam, то пользователю будут отображаться внутренние идентификаторы объектов из базы данных.
 
 Введем ограничение, что участниками игры должны быть две разные команды.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=constrainthostguest&original=1"/>
+```lsf
+CONSTRAINT hostTeam(Game team) = guestTeam(team) CHECKED BY hostTeam, guestTeam MESSAGE 'Хозяйская и гостевая команды должны быть разными';
+```
 
 Механизм работы данного выражения следующий: при изменении у игры команды хозяев или команды гостей система проверяет условие равенства этих команд (hostTeam(team) == guestTeam(team)) и в случае его выполнения блокирует применение изменений в базу данных, а также выдает пользователю заданное сообщение ('Хозяйская и гостевая команды должны быть разными'). Иными словами, результатом выражения, заданном после оператора CONSTRAINT, должен быть NULL. В иных случаях ограничение будет считаться нарушенным.  Кроме того, благодаря конструкции CHECKED BY, добавленное ограничение будет фильтровать исходя из заданного правила команды при выборе для игры команды хозяев или команды гостей (т.е. в появляющемся диалоговом окне исключать из перечня команд уже заданную в качестве соперника команду).
 
 Задаем количество голов, забитых каждой из команд за время игры.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=goals&original=1"/>
+```lsf
+hostGoals 'Х голы' = DATA INTEGER (Game);
+guestGoals 'Г голы' = DATA INTEGER (Game);
+```
 
 В заданных свойствах используется тип INTEGER, поскольку количество забитых голов каждой из команд является целым числом.
 
 Вводим ограничение, что игра не может закончиться вничью. Система должна запретить пользователю задавать одинаковое количество голов для обоих команд игры, выдавая при этом сообщение с заданным текстом.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=constraintgoals&original=1"/>
+```lsf
+CONSTRAINT hostGoals(Game game) = guestGoals(game) MESSAGE 'Игра не может закончиться вничью';
+```
 
 ### Определение победителя игры
 
 Определяем победителя игры - команду, которая забила голов больше, чем соперник.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gamewinner&original=1"/>
+```lsf
+winner(Game game) = IF hostGoals(game) > guestGoals(game)
+                    THEN hostTeam(game)
+                    ELSE guestTeam(game);
+```
 
 В данном случае используется оператор [IF... THEN... ELSE](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) , который проверяет верность условия, что команда хозяев в данной игре забила больше голов, чем команда гостей, и в случае его выполнения победителем игры является команда хозяев, в противном случае - команда гостей.
 
 По аналогичному принципу команда, участвовавшая в игре и забившая голов меньше соперника, будет считаться проигравшей.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gamelooser&original=1"/>
+```lsf
+looser(Game game) = IF hostGoals(game) > guestGoals(game)
+                    THEN guestTeam(game)
+                    ELSE hostTeam(game);
+```
 
 ### Определение результата игры
 
 Вводим понятие возможного результата игры с предопределенным набором значений: победа в основное время, победа в овертайме, победа в серии буллитов.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gameresultclass&original=1"/>
+```lsf
+CLASS GameResult 'Р/И' {
+    win 'П',
+    winOT 'ПО',
+    winSO 'ПБ'
+}
+```
 
-Для этой цели создаем класс GameResult и добавляем ему три [статических объекта](User_classes.md), которые задаются с помощью выражений, заданных в фигурных скобках  { }. При этом значения win, winOT, winSO и П, ПО, ПБ будут находится в системных свойства staticName и staticCaption, соответственно.
+Для этой цели создаем класс GameResult и добавляем ему три [статических объекта](Static_objects.md), которые задаются с помощью выражений, заданных в фигурных скобках  { }. При этом значения win, winOT, winSO и П, ПО, ПБ будут находится в системных свойства staticName и staticCaption, соответственно.
 
 Создаем свойство resultName, которое будет возвращать заголовок результата игры (П, ПО или ПБ). Для этого берется системное свойство staticCaption, которое действует для всех объектов в системе, и ограничиваем его сигнатуру при помощи конструкции IF, указывая что объект должен быть класса Game. Это свойство добавляется в группу свойств base, чтобы оно показывалось в автоматическом диалоге по выбору объекта класса GameResult.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gameresultname&original=1"/>
+```lsf
+resultName 'Имя' (GameResult game) = staticCaption(game) IF game IS GameResult IN base;
+```
 
 Определяем результат конкретной игры. В том случае, если одна из команд победила с разницей в 2 и более гола, то результатом игры будем считать победу в основное время. В ином и только ином случае результат игры (тип победы при заданном счете) будет задаваться пользователем. При этом пользователь не может задать результатом игры победу в основное время.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gameresult&original=1"/>
+```lsf
+userResult = DATA GameResult (Game);
+result (Game game) = OVERRIDE userResult(game),
+    (GameResult.win IF ((hostGoals(game) (-) guestGoals(game)) > 1 OR (guestGoals(game) (-) hostGoals(game)) > 1));
+resultName 'Р/И' (Game game) = resultName(result(game));
+
+CONSTRAINT ((hostGoals(Game game) (-) guestGoals(game)) > 1 OR (hostGoals(game) (-) guestGoals(game)) < -1) AND userResult(game)
+    MESSAGE 'Результат игры определен автоматически';
+```
 
 Для определения результата игры используется оператор OVERRIDE, который возвращает первое значение по порядку задания выражений, которое не равняется **NULL**. В данном случае, результатом вычисления свойства result будет либо объект статического класса GameResult.win при условии, что разница голов в игре больше 1, либо значение первичного объектного свойства userResult.
 
 Для того, чтобы результат для игры определялся всегда, создаем ограничение, которое обеспечит обязательность задания пользователем значения свойства userResult, если результат не вычисляется исходя из счета игры.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gameresultset&original=1"/>
+```lsf
+CONSTRAINT ((hostGoals(Game game) (-) guestGoals(game)) < 2 AND (hostGoals(game) (-) guestGoals(game)) > -2) AND NOT userResult(game)
+    MESSAGE 'Укажите результат игры';
+```
 
 Результатом выражения NOT userResult(game) будет истина только в том случае, если userResult(game) не определено (т.е. является NULL). Таким образом, ограничение сработает в случае, если разница счета будет 1, а тип победы пользователем не будет задан.
 
@@ -108,7 +156,11 @@ import {CodeSample} from './CodeSample.mdx'
 
 -   количество игр, сыгранных командой дома и в гостях, и суммарное их количество  
       
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gamesplayed&original=1"/>
+```lsf
+hostGamesPlayed = GROUP SUM 1 BY hostTeam(Game game);
+guestGamesPlayed = GROUP SUM 1 BY guestTeam(Game game);
+gamesPlayed 'И' (Team team) = hostGamesPlayed(team) (+) guestGamesPlayed(team);
+```
 
 Здесь конструкция (+) используется вместо арифметического + для получения корректного результата в случае, если хотя бы одно из слагаемых имеет значение NULL. Использование (+) в данном случае равноценно замене возможного NULL на 0. Если одно из слагаемых равно NULL, то результатом использования арифметического + будет также значение NULL.
 
@@ -116,7 +168,13 @@ import {CodeSample} from './CodeSample.mdx'
 
 -   количество игр, выигранных в основное время, в овертайме и в дополнительное время  
       
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gameswon&original=1"/>
+```lsf
+gamesWonBy(Team team, GameResult type) = OVERRIDE [GROUP SUM 1 BY winner(Game game), result(game)](team, type), 0;
+
+gamesWon 'В' (Team team) = gamesWonBy(team, GameResult.win);
+gamesWonOT 'ВО' (Team team) = gamesWonBy(team, GameResult.winOT);
+gamesWonSO 'ВБ' (Team team) = gamesWonBy(team, GameResult.winSO);
+```
 
 Поскольку логика определения количества одержанных командой побед каждого типа практически идентична, создаем и используем промежуточное свойство gamesWonByResult, определяемое для пары объектов (аргументов). Данное свойство рассчитывает для команды (первый аргумент) количество побед данного типа (второй аргумент). Значение свойства gamesWonBy рассчитывается через оператор OVERRIDE, получающий на вход заданное в квадратных скобках (\[=...\]) выражение и 0. Если значение выражения будет равно **NULL**, то результатом всего свойства будет значение 0. В квадратных скобках задано вложенное выражение с использование конструкции [GROUP SUM](Grouping_GROUP_.md). Использование в квадратных скобках некоторого выражения идентично использованию некоторого ранее заданного свойства с аналогичным выражением. Таким образом конструкция \[=...\] позволяет просто уменьшить количество строк кода. В данном случае [GROUP SUM](Grouping_GROUP_.md) возвращает сумму единиц для игр, сгруппированных по победителю игры и результату игры.
 
@@ -124,19 +182,38 @@ import {CodeSample} from './CodeSample.mdx'
 
 -   количество игр, проигранных в основное время, в овертайме и в дополнительное время (определяем по аналогии с выше заданными свойствами количества побед)  
       
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=gameslost&original=1"/>
+```lsf
+gamesLostBy(Team team, GameResult type) = OVERRIDE [GROUP SUM 1 BY looser(Game game), result(game)](team, type), 0;
+
+gamesLost 'П' (Team team) = gamesLostBy(team, GameResult.win);
+gamesLostOT 'ПО' (Team team) = gamesLostBy(team, GameResult.winOT);
+gamesLostSO 'ПБ' (Team team) = gamesLostBy(team, GameResult.winSO);
+```
 
 Рассчитываем количество очков, набранных командой в турнире. Расчет представляет собой сумму умножений для каждой из команд количества побед конкретного типа на количество причитающихся в данном случае очков.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=points&original=1"/>
+```lsf
+points 'Очки' (Team team) = gamesWon(team) * 3 + (gamesWonSO(team) + gamesWonOT(team)) * 2 + gamesLostOT(team) + gamesLostSO(team);
+```
 
 Для использования в качестве дополнительных показателей ранжирования команд рассчитываем общее количество забитых и пропущенных командой голов.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=goalsresult&original=1"/>
+```lsf
+hostGoalsScored = GROUP SUM hostGoals(Game game) BY hostTeam(game);
+guestGoalsScored = GROUP SUM guestGoals(Game game) BY guestTeam(game);
+goalsScored 'Кол-во забитых голов' (Team team) = OVERRIDE hostGoalsScored(team) (+) guestGoalsScored(team), 0 IF team IS Team;
+
+hostGoalsConceded = GROUP SUM guestGoals(Game game) BY hostTeam(game);
+guestGoalsConceded = GROUP SUM hostGoals(Game game) BY guestTeam(game);
+goalsConceded 'Кол-во пропущенных голов' (Team team) = OVERRIDE hostGoalsConceded(team) (+) guestGoalsConceded(team), 0 IF team IS Team;
+```
 
 Определяем место команды в турнирной таблице.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=place&original=1"/>
+```lsf
+place 'Место' (Team team) = PARTITION SUM 1 ORDER DESC points(team), gamesWon(team), gamesWonOT(team), gamesWonSO(team),
+                                               (OVERRIDE goalsScored(team) (-) goalsConceded(team), 0), goalsScored(team);
+```
 
   
 
@@ -153,7 +230,12 @@ import {CodeSample} from './CodeSample.mdx'
 
 Объявляем форму с наименованием и подписью. Добавляем на форму блок объектов класса Game со всеми заданными в системе свойствами. Также выносим на форму кнопки добавления новой игры и ее удаления (эти кнопки автоматически определены для всех объектов в системе).
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=formgame&original=1"/>
+```lsf
+FORM MainForm 'Турнирная таблица'
+    OBJECTS game = Game
+    PROPERTIES(game) date, hostTeamName, hostGoals, guestGoals, guestTeamName, resultName, NEW, DELETE
+;
+```
 
 Инструкция FORM создает пустую форму с [некоторой функциональностью по умолчанию](Form_structure.md). С помощью выражения OBJECTS game=Game на форму добавляется объект game: блок табличного вида, содержащий все экземпляры класса Game, введенные в системе. Выражением PROPERTIES(game) с последующим перечислением подмножества свойств на форму добавляются указанные свойства и им на вход в качестве аргументов подставляются объекты блока game. Помимо ранее созданных свойств на форму выносятся также [действия](Actions.md) NEW и DELETE, которые визуально будут выглядеть в виде кнопок и позволят добавлять и удалять объекты класса Game.
 
@@ -161,18 +243,144 @@ import {CodeSample} from './CodeSample.mdx'
 
 Расширяем форму добавлением в нее блока турнирной таблицы. Турнирная таблица будет представлять список команд (объектов класса Team) с их статистическими показателями, отсортированных с помощью оператора ORDER BY по рейтинговому месту.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=formteam&original=1"/>
+```lsf
+EXTEND FORM MainForm
+    OBJECTS team = Team
+    PROPERTIES(team) place, name, gamesPlayed, gamesWon, gamesWonOT, gamesWonSO,
+                     gamesLostSO, gamesLostOT, gamesLost, goalsScored, goalsConceded, points, NEW, DELETE
+    ORDERS place(team)
+;
+```
 
 Указанную форму можно задать и одним блоком кода без использования конструкции EXTEND.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=formsingle&original=1"/>
+```lsf
+FORM MainFormSingle 'Турнирная таблица'
+    OBJECTS game = Game
+    PROPERTIES(game) date, hostTeamName, hostGoals, guestGoals, guestTeamName, resultName, NEW, DELETE
+
+    OBJECTS team = Team
+    PROPERTIES(team) place, name, gamesPlayed, gamesWon, gamesWonOT, gamesWonSO,
+                     gamesLostSO, gamesLostOT, gamesLost, goalsScored, goalsConceded, points, NEW, DELETE
+    ORDERS place(team)
+;
+```
 
 Выносим созданную форму на основное меню программы - предопределенную папку **root **навигатора, причем указываем, чтобы она располагалась самым первым элементом перед системным пунктом меню **Администрирование**.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats&block=navigator&original=1"/>
+```lsf
+NAVIGATOR {
+    NEW MainForm FIRST;
+}
+```
 
 Процесс создания информационной системы завершен.
 
 ## Исходный код целиком
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=hockeystats/HockeyStats"/>
+```lsf
+MODULE HockeyStats;
+// описание логики : https://documentation.lsfusion.org/pages/viewpage.action?pageId=2228240
+REQUIRE System;
+
+CLASS Team 'Команда';
+
+name 'Название команды' = DATA STRING[30] (Team) IN base;
+
+CLASS Game 'Игра';
+
+date 'Дата' = DATA DATE (Game);
+hostTeam = DATA Team (Game);
+guestTeam = DATA Team (Game);
+hostTeamName 'Хозяева' (Game game) = name(hostTeam(game));
+guestTeamName 'Гости' (Game game) = name(guestTeam(game));
+
+CONSTRAINT hostTeam(Game team) = guestTeam(team) CHECKED BY hostTeam, guestTeam MESSAGE 'Хозяйская и гостевая команды должны быть разными';
+
+hostGoals 'Х голы' = DATA INTEGER (Game);
+guestGoals 'Г голы' = DATA INTEGER (Game);
+
+CONSTRAINT hostGoals(Game game) = guestGoals(game) MESSAGE 'Игра не может закончиться вничью';
+
+winner(Game game) = IF hostGoals(game) > guestGoals(game)
+                    THEN hostTeam(game)
+                    ELSE guestTeam(game);
+
+looser(Game game) = IF hostGoals(game) > guestGoals(game)
+                    THEN guestTeam(game)
+                    ELSE hostTeam(game);
+
+CLASS GameResult 'Р/И' {
+    win 'П',
+    winOT 'ПО',
+    winSO 'ПБ'
+}
+
+resultName 'Имя' (GameResult game) = staticCaption(game) IF game IS GameResult IN base;
+
+userResult = DATA GameResult (Game);
+result (Game game) = OVERRIDE userResult(game),
+    (GameResult.win IF ((hostGoals(game) (-) guestGoals(game)) > 1 OR (guestGoals(game) (-) hostGoals(game)) > 1));
+resultName 'Р/И' (Game game) = resultName(result(game));
+
+CONSTRAINT ((hostGoals(Game game) (-) guestGoals(game)) > 1 OR (hostGoals(game) (-) guestGoals(game)) < -1) AND userResult(game)
+    MESSAGE 'Результат игры определен автоматически';
+
+CONSTRAINT ((hostGoals(Game game) (-) guestGoals(game)) < 2 AND (hostGoals(game) (-) guestGoals(game)) > -2) AND NOT userResult(game)
+    MESSAGE 'Укажите результат игры';
+
+hostGamesPlayed = GROUP SUM 1 BY hostTeam(Game game);
+guestGamesPlayed = GROUP SUM 1 BY guestTeam(Game game);
+gamesPlayed 'И' (Team team) = hostGamesPlayed(team) (+) guestGamesPlayed(team);
+
+gamesWonBy(Team team, GameResult type) = OVERRIDE [GROUP SUM 1 BY winner(Game game), result(game)](team, type), 0;
+
+gamesWon 'В' (Team team) = gamesWonBy(team, GameResult.win);
+gamesWonOT 'ВО' (Team team) = gamesWonBy(team, GameResult.winOT);
+gamesWonSO 'ВБ' (Team team) = gamesWonBy(team, GameResult.winSO);
+
+gamesLostBy(Team team, GameResult type) = OVERRIDE [GROUP SUM 1 BY looser(Game game), result(game)](team, type), 0;
+
+gamesLost 'П' (Team team) = gamesLostBy(team, GameResult.win);
+gamesLostOT 'ПО' (Team team) = gamesLostBy(team, GameResult.winOT);
+gamesLostSO 'ПБ' (Team team) = gamesLostBy(team, GameResult.winSO);
+
+points 'Очки' (Team team) = gamesWon(team) * 3 + (gamesWonSO(team) + gamesWonOT(team)) * 2 + gamesLostOT(team) + gamesLostSO(team);
+
+hostGoalsScored = GROUP SUM hostGoals(Game game) BY hostTeam(game);
+guestGoalsScored = GROUP SUM guestGoals(Game game) BY guestTeam(game);
+goalsScored 'Кол-во забитых голов' (Team team) = OVERRIDE hostGoalsScored(team) (+) guestGoalsScored(team), 0 IF team IS Team;
+
+hostGoalsConceded = GROUP SUM guestGoals(Game game) BY hostTeam(game);
+guestGoalsConceded = GROUP SUM hostGoals(Game game) BY guestTeam(game);
+goalsConceded 'Кол-во пропущенных голов' (Team team) = OVERRIDE hostGoalsConceded(team) (+) guestGoalsConceded(team), 0 IF team IS Team;
+
+place 'Место' (Team team) = PARTITION SUM 1 ORDER DESC points(team), gamesWon(team), gamesWonOT(team), gamesWonSO(team),
+                                               (OVERRIDE goalsScored(team) (-) goalsConceded(team), 0), goalsScored(team);
+
+FORM MainForm 'Турнирная таблица'
+    OBJECTS game = Game
+    PROPERTIES(game) date, hostTeamName, hostGoals, guestGoals, guestTeamName, resultName, NEW, DELETE
+;
+
+EXTEND FORM MainForm
+    OBJECTS team = Team
+    PROPERTIES(team) place, name, gamesPlayed, gamesWon, gamesWonOT, gamesWonSO,
+                     gamesLostSO, gamesLostOT, gamesLost, goalsScored, goalsConceded, points, NEW, DELETE
+    ORDERS place(team)
+;
+
+FORM MainFormSingle 'Турнирная таблица'
+    OBJECTS game = Game
+    PROPERTIES(game) date, hostTeamName, hostGoals, guestGoals, guestTeamName, resultName, NEW, DELETE
+
+    OBJECTS team = Team
+    PROPERTIES(team) place, name, gamesPlayed, gamesWon, gamesWonOT, gamesWonSO,
+                     gamesLostSO, gamesLostOT, gamesLost, goalsScored, goalsConceded, points, NEW, DELETE
+    ORDERS place(team)
+;
+
+NAVIGATOR {
+    NEW MainForm FIRST;
+}
+```

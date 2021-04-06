@@ -14,11 +14,41 @@ To create a property that determines whether a tab is active, use the [**ACTIVE 
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+//Form with two tabs
+FORM tabbedForm 'Tabbed form'
+    OBJECTS u = CustomUser
+    PROPERTIES(u) name
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=activetab"/>
+    OBJECTS c = Chat
+    PROPERTIES(c) name
+;
+
+DESIGN tabbedForm {
+    NEW tabPane FIRST {
+        type = TABBED;
+        NEW contacts {
+            caption = 'Contacts';
+            MOVE BOX(u);
+        }
+        NEW recent {
+            caption = 'Recent';
+            MOVE BOX(c);
+        }
+    }
+}
+
+//If the 'Recent' tab is active
+recentActive() = ACTIVE TAB tabbedForm.recent;
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=activeform"/>
+```lsf
+FORM exampleForm;
+testActive  {
+    ACTIVE FORM exampleForm;
+    IF isActiveForm() THEN MESSAGE 'Example form is active';
+}
+```
 
   

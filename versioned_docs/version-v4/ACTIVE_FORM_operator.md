@@ -21,8 +21,12 @@ Form name. [Composite ID](IDs.md#cid-broken).
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=activeform"/>
+```lsf
+FORM exampleForm;
+testActive  {
+    ACTIVE FORM exampleForm;
+    IF isActiveForm() THEN MESSAGE 'Example form is active';
+}
+```
 
   

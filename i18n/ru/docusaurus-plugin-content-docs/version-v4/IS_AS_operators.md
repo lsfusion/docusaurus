@@ -28,9 +28,10 @@ title: 'Операторы IS, AS'
 ### Примеры 
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+asOrder(object) = object AS Order;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=isas"/>
+person = DATA Human (Order);
+isMale (Order o) = person(o) IS Male;
+```
 
-**  
-**

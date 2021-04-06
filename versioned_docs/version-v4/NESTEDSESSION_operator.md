@@ -21,8 +21,31 @@ A [context-dependent action operator](Action_operator.md#contextdependent) that 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNestedSession ()  {
+    NESTEDSESSION {
+        name(Sku s) <- 'aaa';
+        APPLY; // in fact, the changes will not be applied to the database, but to the "upper" session
+    }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=nestedsession"/>
+    MESSAGE (GROUP SUM 1 IF name(Sku s) == 'aaa'); // returns all rows
+    CANCEL;
+    MESSAGE (GROUP SUM 1 IF name(Sku s) == 'aaa'); // returns NULL if there was no Sku named aaa in the database before
+
+}
+
+FORM sku
+    OBJECTS s = Sku PANEL
+    PROPERTIES(s) id, name
+;
+newNestedSession()  {
+    NESTEDSESSION {
+        NEW s = Sku {
+            // shows the form, but any changes in it will not be applied to the database, but will be saved in the "upper session" session
+            SHOW sku OBJECTS s = s;
+        }
+    }
+}
+```
 
   

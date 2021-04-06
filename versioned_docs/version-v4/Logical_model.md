@@ -15,7 +15,5 @@ It includes everything related to the display of information to entities using t
 
 ### Stack
 
-**  
-**
 
-![](download/temp/svgout3247550251917708472.png)
+![](download/temp/svgout4632478949595340763.png)

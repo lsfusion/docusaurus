@@ -25,8 +25,15 @@ The list of instruction parameters that will be substituted for the parameters o
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book;
+@objectProperties(book, INTEGER, 'Book');
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=implementmeta"/>
+CLASS Flower;
+@objectProperties(flower, BPSTRING[100], ); // if the parameter is not passed, then it will be empty
+
+CLASS Table;
+@objectProperties(table, NUMERIC[14,2]);
+```
 
   

@@ -15,7 +15,7 @@ The following set of options is supported (the syntax of each option is indicate
     IN groupName
     viewType
     ON eventType { actionOperator }
-    EDITKEY key [SHOW | HIDE]
+    CHANGEKEY key [SHOW | HIDE]
     MATERIALIZED
     TABLE tableName
     INDEXED
@@ -151,6 +151,10 @@ Default filter type. [String literal](Literals.md#strliteral-broken). Can be one
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+cost 'Cost' (i) = DATA NUMERIC[12,3] (Item);		// property defined by the context-independent DATA property operator
+weightedSum 'Weighted amount' (a, b) = 2*a + 3*b; 		// property defined by expression
+diff = a - b; 											// the caption of this property will be 'diff' and the parameters will be (a, b)
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=PropertySample"/>
+teamName 'Team name' = DATA BPSTRING[30](Team) IN baseGroup TABLE team; // property defined by DATA operator with additional property options
+```

@@ -125,11 +125,39 @@ charsetStr - строковый литерал, определяющий код�
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Store;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=exportplain"/>
+name = DATA STRING[20] (Sku);
+weight = DATA NUMERIC[10,2] (Sku);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=export"/>
+in = DATA BOOLEAN (Store, Sku);
+
+exportSkus (Store store)  {
+    EXPORT DBF CHARSET 'CP866' FROM id(Sku s), name(s), weight(s) WHERE in(store, s); // выгружаем в DBF все Sku, для которых задано in (Store, Sku) для нужного склада
+    EXPORT CSV NOHEADER NOESCAPE FROM id(Sku s), name(s), weight(s) WHERE in(store, s); // выгружает CSV без строки заголовков и без экранирования спецсимволов
+    EXPORT FROM id(Sku s), name(s), weight(s) WHERE in(store, s) ORDER name(s) DESC; // выгружает JSON, сортируем по свойству name[Sku] в порядке убывания
+    EXPORT FROM ff='HI'; // выгружает JSON {"ff":"HI"}, так как по умолчанию получает имя value, а платформа объект {"value":"HI"} автоматически преобразует в
+    EXPORT FROM 'HI'; // выгружает JSON "HI", так как по умолчанию получает имя value, а платформа объект {"value":"HI"} автоматически преобразует в "HI"
+}
+```
+
+```lsf
+FORM exportSku
+    OBJECTS st = Store
+
+    OBJECTS s = Sku
+    PROPERTIES(s) id, name, weight
+    FILTERS in(st, s)
+;
+
+exportSku (Store store)  {
+    // выгружаем в DBF все Sku, для которых задано in (Store, Sku) для нужного склада
+    EXPORT exportSku OBJECTS st = store DBF CHARSET 'CP866';
+    EXPORT exportSku XML;
+    EXPORT exportSku OBJECTS st = store CSV ',';
+}
+```
 
   
 

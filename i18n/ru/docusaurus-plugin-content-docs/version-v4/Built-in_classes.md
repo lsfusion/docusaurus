@@ -135,4 +135,4 @@ title: 'Встроенные классы'
 |<strong><strong>DATETIME,</strong> DATE, TIME, YEAR</strong>|exportDateTime, exportDate, exportTime, exportYear|
 |<strong><strong>LINK,</strong> RAWLINK, WORDLINK, IMAGELINK, PDFLINK, EXCELLINK<strong>, CSVLINK, HTMLLINK, JSONLINK, XMLLINK, TABLELINK</strong></strong>|exportFile, exportRawFile, exportWordFile, exportImageFile, exportPdfFile, exportExcelFile, exportCsvFile, exportHtmlFile, exportJsonFile, exportXmlFile|
 |<strong>BOOLEAN, COLOR</strong>|exportBoolean, exportColor|
-|[Пользовательские классы](Static_objects.md)|exportObject|
+|[Пользовательские классы](User_classes.md)|exportObject|

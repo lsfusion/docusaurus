@@ -18,9 +18,28 @@ Static objects of custom classes are defined in the [CLASS **instruction**](CLAS
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Direction 'Direction'
+{
+    north 'North',
+    east 'East',
+    south 'South',
+    west 'West'
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=StaticObjectSample"/>
+direction = DATA Direction ();
 
-**  
-**
+showDirection  {
+    MESSAGE staticName(direction());
+    MESSAGE staticCaption(direction());
+}
+
+// creating a form by choosing an object of Direction class
+FORM directions 'Directions'
+    OBJECTS d = Direction
+    PROPERTIES(d) READONLY staticCaption
+
+    LIST Direction OBJECT d
+;
+```
+

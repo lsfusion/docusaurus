@@ -39,8 +39,19 @@ title: 'Оператор ASK'
 ### Пример
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testAsk ()  {
+    ASK 'Вы действительно хотите продолжать ?' DO {
+        MESSAGE 'Вы продолжили';
+    }
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=ask"/>
+    ASK 'Использовать старые значения ?' useOld = YESNO DO {
+        IF useOld THEN
+            MESSAGE 'Используем старые значения';
+        ELSE
+            MESSAGE 'Используем новые значения';
+    }
+}
+```
 
   

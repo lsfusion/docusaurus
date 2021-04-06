@@ -21,9 +21,8 @@ List of [expressions](Expression.md) whose values will be elements of the struct
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+objectStruct(a, b) = STRUCT(a, f(b));
+stringStruct() = STRUCT(1, 'two', 3.0);
+```
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=struct"/>
-
-**  
-**

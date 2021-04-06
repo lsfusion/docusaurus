@@ -30,18 +30,23 @@ The platform builds object group hierarchy based on the [form structure](Form_st
 -   After the relations are built, the hierarchy is constructed in such a way that the parent of object group **A** is the group **B** that is latest in the object group list on which **A** depends (directly or indirectly).
 
 
-:::note
+:::info
 As follows from the algorithm, the empty object group is always the only root group of the constructed hierarchy
 :::
 
 ### An example of constructing ****object group**** hierarchy
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=GroupHierarchySample"/>
+FORM myForm 'myForm'
+    OBJECTS A, B SUBREPORT, C, D, E
+    PROPERTIES f(B, C), g(A, C)
+    FILTERS c(E) = C, h(B, D)
+;
+```
 
 The hierarchy of groups of objects for this form will be constructed as follows:
 
-![](download/temp/svgout5696341712500413108.png)
+![](download/temp/svgout5075616957434477942.png)
 
   

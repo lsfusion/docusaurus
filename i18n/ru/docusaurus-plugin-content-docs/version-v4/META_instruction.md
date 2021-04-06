@@ -35,8 +35,16 @@ title: 'Инструкция META'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+META objectProperties(object, type, caption)
+    object##Name 'Имя'##caption = DATA BPSTRING[100](###object-broken); // делаем заглавной первую букву
+    object##Type 'Тип'##caption = DATA type (###object-broken);
+    object##Value 'Стоимость'##caption = DATA INTEGER (###object-broken);
+END
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=meta"/>
+META objectProperties(object, type)
+    @objectProperties(object, type, '');
+END
+```
 
   

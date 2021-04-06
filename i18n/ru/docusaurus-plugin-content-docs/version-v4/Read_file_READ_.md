@@ -12,6 +12,27 @@ title: 'Чтение файла (READ)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+readFiles()  {
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=read"/>
+    LOCAL importFile = FILE ();
+
+    //чтение из FTP
+    READ 'ftp://ftp.lsfusion.org/file.xlsx' TO importFile;
+    //чтение из SFTP
+    READ 'sftp://sftp.lsfusion.org/file.xlsx' TO importFile;
+    //чтение из FILE
+    READ 'D://lsfusion/file.xlsx' TO importFile;
+    READ 'file://D://lsfusion/file.xlsx' TO importFile;
+}
+
+connectionString = DATA STRING[100]();
+importXls 'Импортировать надбавки'()  {
+    LOCAL importFile = FILE ();
+    READ connectionString() + '@SELECT field1, field2 FROM myTable' TO importFile;
+
+    LOCAL field1 = INTEGER (INTEGER);
+    LOCAL field2 = BPSTRING[10] (INTEGER);
+    IMPORT TABLE FROM importFile() TO field1, field2;
+}
+```

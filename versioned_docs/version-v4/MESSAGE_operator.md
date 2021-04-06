@@ -28,8 +28,31 @@ Specifies when the created action should be completed:
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+message  { MESSAGE 'Hello World!'; }                                // plain text message
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=message"/>
+isGood = DATA BOOLEAN (Item);
+stringData(Item i)   {
+    MESSAGE IF isGood(i) THEN 'Good' ELSE 'Bad';   // depending on which item will be passed to the action, a window will be shown either with the text 'Good' or with the text 'Bad'
+}
+
+testMessage()  {                    // In this case, five text messages will be shown to the user
+    LOCAL i = INTEGER();
+    i() <- 0;
+    WHILE i() < 5 DO {
+        i() <- i() + 1;
+        MESSAGE i();
+    }
+}
+
+testMessageNowait()  {              // In the case of NOWAIT, one text message combining messages from five MESSAGE calls will be shown to the user
+    LOCAL i = INTEGER();
+    i() <- 0;
+    WHILE i() < 5 DO {
+        i() <- i() + 1;
+        MESSAGE i() NOWAIT;
+    }
+}
+```
 
   

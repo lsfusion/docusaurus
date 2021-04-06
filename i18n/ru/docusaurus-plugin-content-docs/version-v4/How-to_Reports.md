@@ -8,9 +8,30 @@ title: 'How-to: Отчеты'
 
 Задана логика книг, разбитых по категориям.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+NAMESPACE Sample;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=sample1"/>
+CLASS Category 'Категория';
+name 'Наименование' = DATA ISTRING[50] (Category) IN id;
+
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[100] (Book) IN id;
+
+category 'Категория' = DATA Category (Book) AUTOSET;
+nameCategory 'Категория' (Book b) = name(category(b)) IN id;
+
+countBooks 'Кол-во книг' (Category c) = GROUP SUM 1 BY category(Book b);
+
+FORM books 'Книги'
+    OBJECTS b = Book
+    PROPERTIES(b) READONLY name, nameCategory
+    PROPERTIES(b) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 Нужно сделать [печатную форму](Print_view.md), в которой будут отображаться все книги с разбивкой по категориям. Также нужно сделать экспорт этой формы в формат XLSX.
 
@@ -18,15 +39,36 @@ import {CodeSample} from './CodeSample.mdx'
 
 Сначала объявим [форму](Forms.md), которая описывает структуру печатной формы.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=solution1a"/>
+```lsf
+FORM booksByCategories 'Книги по категориям'
+    OBJECTS c = Category
+    PROPERTIES(c) name, countBooks
+
+    OBJECTS b = Book
+    PROPERTIES(b) name, nameCategory
+    FILTERS category(b) == c
+;
+```
 
 Затем добавим два действия, которые при помощи оператора [PRINT](PRINT_operator.md) формируют отчет и выводят его на предпросмотр и в XLSX соответственно.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=solution1b"/>
+```lsf
+printBooksByCategories 'Книги по категориям' ()  {
+    PRINT booksByCategories;
+}
+
+xlsxBooksByCategories 'Книги по категориям (XLSX)' ()  {
+    PRINT booksByCategories XLSX;
+}
+```
 
 Выведем их на форму **books** в тулбар таблицы с книгами.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=solution1c"/>
+```lsf
+EXTEND FORM books
+    PROPERTIES() DRAW b TOOLBAR printBooksByCategories, xlsxBooksByCategories
+;
+```
 
 Затем запускаем сервер из IDE, запускаем десктоп-клиент, открываем форму с книгами и жмем созданную кнопку печати. Система создаст автоматическую печатную форму и откроет ее в режиме [предпросмотра](In_a_print_view_PRINT_.md#interactive). Далее нужно нажать указанную ниже кнопку :
 
@@ -142,7 +184,7 @@ import {CodeSample} from './CodeSample.mdx'
 ![](attachments/46367627/57738056.png)
 
 
-:::note
+:::info
 Если по каким-то причинам фоновый процесс не может синхронизировать папки между директориями разработки и выполнения, то нужно просто перезапустить сервер, чтобы изменения применились вместе с перестроением проекта.
 :::
 
@@ -152,7 +194,41 @@ import {CodeSample} from './CodeSample.mdx'
 
 Задана логика счетов.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=sample2"/>
+```lsf
+CLASS Invoice 'Счет';
+date 'Дата' = DATA DATE (Invoice);
+number 'Номер' = DATA STRING[10] (Invoice);
+
+CLASS InvoiceDetail 'Строка счета';
+invoice 'Счет' = DATA Invoice (InvoiceDetail) NONULL DELETE;
+
+book 'Книга' = DATA Book (InvoiceDetail) NONULL;
+nameBook 'Книга' (InvoiceDetail d) = name(book(d));
+
+quantity 'Количество' = DATA INTEGER (InvoiceDetail);
+price 'Цена' = DATA NUMERIC[14,2] (InvoiceDetail);
+
+FORM invoice 'Счет'
+    OBJECTS i = Invoice PANEL
+    PROPERTIES(i) date, number
+
+    OBJECTS d = InvoiceDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS invoice(d) == i
+
+    EDIT Invoice OBJECT i
+;
+
+FORM invoices 'Счета'
+    OBJECTS i = Invoice
+    PROPERTIES(i) READONLY date, number
+    PROPERTIES(i) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW invoices;
+}
+```
 
 Нужно сделать печатную форму счета, в которой будут отображаться его параметры и все строки. Также нужно сделать экспорт этой формы в формат DOCX.
 
@@ -160,7 +236,18 @@ import {CodeSample} from './CodeSample.mdx'
 
 Для создания печатной формы воспользуемся уже существующей формой **invoice**, которая подходит нам по структуре. Однако, при необходимости можно было бы создать новую форму.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=solution2"/>
+```lsf
+print 'Печать' (Invoice i)  {
+    PRINT invoice OBJECTS i = i;
+}
+printWord 'Печать (DOCX)' (Invoice i)  {
+    PRINT invoice OBJECTS i = i DOCX;
+}
+
+EXTEND FORM invoices
+    PROPERTIES(i) print TOOLBAR, printWord TOOLBAR
+;
+```
 
 Поскольку объекты **i** формы **invoice** отображается в панель, то в отчете будут данные только касательного того счета, который передается параметром в этот объект в операторе **PRINT**.
 
@@ -267,7 +354,62 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 2**, только добавлена логика покупателей и заказов.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=sample3"/>
+```lsf
+CLASS Customer 'Покупатель';
+name 'Наименование' = DATA ISTRING[50] (Customer) IN id;
+
+FORM customers 'Покупатели'
+    OBJECTS c = Customer
+    PROPERTIES(c) READONLY name
+    PROPERTIES(c) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW customers;
+}
+
+customer 'Покупатель' = DATA Customer (Invoice);
+nameCustomer 'Покупатель' (Invoice i) = name(customer(i));
+
+EXTEND FORM invoice PROPERTIES(i) nameCustomer;
+
+CLASS Order 'Заказ';
+date 'Дата' = DATA DATE (Order);
+number 'Номер' = DATA STRING[10] (Order);
+
+customer 'Покупатель' = DATA Customer (Order);
+nameCustomer 'Покупатель' (Order o) = name(customer(o));
+
+CLASS OrderDetail 'Строка заказа';
+order 'Заказ' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Книга' = DATA Book (OrderDetail) NONULL;
+nameBook 'Книга' (OrderDetail d) = name(book(d));
+
+quantity 'Количество' = DATA INTEGER (OrderDetail);
+price 'Цена' = DATA NUMERIC[14,2] (OrderDetail);
+
+FORM order 'Заказ'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number, nameCustomer
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Заказы'
+    OBJECTS i = Order
+    PROPERTIES(i) READONLY date, number, nameCustomer
+    PROPERTIES(i) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 Нужно сделать печатную форму с информацией о клиенте, в которой будут показаны по нему все заказы и счета.
 
@@ -275,7 +417,36 @@ import {CodeSample} from './CodeSample.mdx'
 
 Сначала создаем форму, структура которой должна соответствовать логике печатной формы. Объект покупателя отображаем в панель, поскольку необходимо выводить только данные по одному покупателю. Все же остальные объекты остаются таблицами.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseReports&block=solution3"/>
+```lsf
+FORM customerInfo 'Информация по клиенту'
+    OBJECTS c = Customer PANEL
+    PROPERTIES(c) name
+
+    OBJECTS o = Order
+    PROPERTIES(o) date, number
+    FILTERS customer(o) == c
+
+    OBJECTS od = OrderDetail
+    PROPERTIES(od) nameBook, quantity, price
+    FILTERS order(od) == o
+
+    OBJECTS i = Invoice
+    PROPERTIES(i) date, number
+    FILTERS customer(i) == c
+
+    OBJECTS id = InvoiceDetail
+    PROPERTIES(id) nameBook, quantity, price
+    FILTERS invoice(id) == i
+;
+
+printInfo 'Распечатать информацию' (Customer c)  {
+    PRINT customerInfo OBJECTS c = c;
+}
+
+EXTEND FORM customers
+    PROPERTIES(c) printInfo TOOLBAR
+;
+```
 
 Специфика данного отчета заключается в том, что объекты со счетами и заказами не зависят друг от друга. Таким образом, они будут сформированы в разные подотчеты (**Subreport**).
 

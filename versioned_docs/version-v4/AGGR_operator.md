@@ -14,7 +14,7 @@ The **AGGR** operator creates an [aggregation](Aggregations.md).
 In addition to the property that is the result of this operator and contains the value of the aggregated object, for each parameter the **AGGR** operator also creates a data property with one parameter, whose [class](User_classes.md) is equal to the class of the aggregated object. The value class and name of this property are equal to the class and name of the parameter for which this property is created. Accordingly, when creating an aggregated object, the value of the parameter for which the aggregated object is created is automatically written to this property.
 
 
-:::note
+:::info
 Creating an aggregation is in many ways similar to the following instructions (example for 2 parameters):
 
     prm1 = DATA class1 (aggrClass);
@@ -49,8 +49,22 @@ An [expression](Expression.md) whose value defines an aggregated property.
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A; CLASS B; CLASS C;
+f = DATA INTEGER (A, B);
+c = AGGR C WHERE f(A a, B b) MATERIALIZED INDEXED;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=AggregationSample&block=aggr"/>
+CLASS AB;
+ab = AGGR AB WHERE A a IS A AND B b IS B; // for each A B pair creates an object AB
+
+CLASS Shipment 'Delivery';
+date = ABSTRACT DATE (Shipment);
+CLASS Invoice 'Invoice';
+createShipment 'Create delivery' = DATA BOOLEAN (Invoice);
+date 'Shipment date' = DATA DATE (Invoice);
+CLASS ShipmentInvoice 'Delivery by invoice' : Shipment;
+shipment(Invoice invoice) = AGGR ShipmentInvoice WHERE createShipment(invoice); // creating a delivery by invoice, if the option for delivery creation is defined for the invoice
+date(ShipmentInvoice si) += sum(date(invoice(si)),1); // delivery date = invoice date + 1
+```
 
   

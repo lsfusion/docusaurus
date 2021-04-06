@@ -46,7 +46,7 @@ title: 'Блоки объектов'
 
 *name*
 
-Имя объекта. Простой идентификатор. Должно быть задано, если класс объекта является [встроенным классом](Built-in_classes.md). В случае, когда класс объекта является [пользовательским классом](Static_objects.md), имя может не задаваться. В этом случае оно будет равняться имени класса объекта. 
+Имя объекта. Простой идентификатор. Должно быть задано, если класс объекта является [встроенным классом](Built-in_classes.md). В случае, когда класс объекта является [пользовательским классом](User_classes.md), имя может не задаваться. В этом случае оно будет равняться имени класса объекта. 
 
 *classId*
 
@@ -135,12 +135,40 @@ title: 'Блоки объектов'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Shipment;
+// объявляем форму поставки
+FORM shipments 'Поставки'
+    OBJECTS s = Shipment // добавляем один объект класса shipment
+                        PAGESIZE 100 // указываем, что таблица всегда должна содержать 100 рядов
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=FormSample&block=objects"/>
+    // ... добавляем свойства и фильтры на форму
+;
+
+// Объявляем форму, которая будет отображать обороты по товару за заданный интервал
+name = DATA STRING[100] (Item);
+revenue = DATA NUMERIC[16,2] (Item, DATE, DATE);
+
+FORM revenues 'Обороты по товарам'
+    OBJECTS interval = (dateFrom 'Дата (с)' = DATE, dateTo 'Дата (по)' = DATE) PANEL, // объявляем группу объектов, состоящую из 2х объектов класса Дата с соответствующими заголовками, которая будет всегда отображаться в виде панели
+            i = Item // добавляем список товаров
+    PROPERTIES VALUE(dateFrom), VALUE(dateTo) // добавляем на форму свойства значений объектов даты, при помощи которых пользователь сможет выбирать даты
+    PROPERTIES name(i), revenue(i, dateFrom, dateTo) // добавляем имя товаров и свойство с оборотами товара за интервал дат
+;
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=FormSample&block=view"/>
+```lsf
+// делаем форму печати ценника для товара
+labelFile = DATA STRING[100] (Item);
+printLabelFile (Item i)= OVERRIDE labelFile(i), 'MyModule_printLabel_i.jrxml' IF i IS Item;
+FORM printLabel 'Печать ценника'
+    OBJECTS i = Item               // добавляем товар, для которого будет печататься ценник
+    REPORT printLabelFile(i)       // помечаем, что в качестве шаблона должен использоваться файл, имя которого лежит в свойстве printLabelFile (предполагается что значение i будет передаваться в блоке OBJECTS)
+                                   // например, пользователь может ввести туда myLabel1.jrxml, тогда система будет использовать файл, с именем myLabel1.jrxml
+//  ... другие свойства, необходимые для печати
+;
+```
 
   
 
@@ -197,6 +225,44 @@ BEFORE groupName
 ### Примеры
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=FormSample&block=tree"/>
+```lsf
+CLASS SkuGroup;
+name = DATA ISTRING[100] (SkuGroup);
+active = DATA BOOLEAN (SkuGroup);
+parent = DATA SkuGroup (SkuGroup) AUTOSET;
+
+CLASS Sku;
+name = DATA ISTRING[100] (Sku);
+skuGroup = DATA SkuGroup (Sku);
+
+
+FORM skus 'Sku'
+    TREE groupTree g=SkuGroup PARENT parent(g)
+    PROPERTIES READONLY name(g)
+    FILTERS active(g)
+
+    OBJECTS s = Sku
+    PROPERTIES(s) name
+    FILTERS skuGroup(s) == g
+;
+
+CLASS Group1;
+name = DATA STRING[100] (Group1);
+
+CLASS Group2;
+name = DATA STRING[100] (Group2);
+
+CLASS Group3;
+name = DATA STRING[100] (Group3);
+
+in = DATA BOOLEAN (Group1, Group2);
+in = DATA BOOLEAN (Group2, Group3);
+
+FORM groups
+    TREE groups g1 = Group1, g2 = Group2, g3 = Group3
+    PROPERTIES READONLY name(g1), name(g2), name(g3)
+    FILTERS in(g1, g2), in(g2, g3)
+;
+```
 
   

@@ -62,9 +62,14 @@ List of class names of property arguments. Each name is defined by a class ID.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Invoice;
+CLASS InvoiceDetail;
+CLASS Range;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=abstract"/>
+rateChargeExchange(invoice) = ABSTRACT NUMERIC[14,6] (Invoice);             // In this case, ABSTRACT MULTI EXCLUSIVE is created
+backgroundSku 'Color' (d) = ABSTRACT CASE FULL COLOR (InvoiceDetail); // In this case, ABSTRACT CASE OVERRIDE LAST is created, and if there are
+                                                                            // several suitable implementations, the first of them will be calculated
+overVAT = ABSTRACT VALUE OVERRIDE FIRST Range (InvoiceDetail);          // The last matching implementation will be calculated here
+```
 
-**  
-**

@@ -34,8 +34,23 @@ title: 'Инструкция +='
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT AClass;
+CLASS BClass : AClass;
+CLASS CClass : AClass;
+CLASS DClass : AClass;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=extendproperty"/>
+name(AClass a) = ABSTRACT BPSTRING[50] (AClass);
+innerName(BClass b) = DATA BPSTRING[50] (BClass);
+innerName(CClass c) = DATA BPSTRING[50] (CClass);
+innerName(DClass d) = DATA BPSTRING[50] (DClass);
+
+name(BClass b) = 'B' + innerName(b);
+name(CClass c) = 'C' + innerName(c);
+
+name[AClass](BClass b) += name(b);
+name(CClass c) += name(c); // Здесь слева будет найден name[AClass], потому что поиск идет только среди абстрактных свойств, справа же будет найден name[CClass]
+name(DClass d) += 'DClass' + innerName(d) IF d IS DClass;
+```
 
   

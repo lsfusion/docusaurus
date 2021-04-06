@@ -31,8 +31,19 @@ title: 'Оператор IF ... THEN (д)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// Действие, сравнивающее значение свойства count с числом 3 и выдающее пользователю сообщение
+moreThan3(obj)  {
+    IF count(obj) > 3 THEN
+        MESSAGE '>3';
+    ELSE
+        MESSAGE '<=3';
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=ifthena"/>
+checkNullName (Store st) {
+    IF NOT name(st) THEN
+        MESSAGE 'Name is null';
+}
+```
 
   

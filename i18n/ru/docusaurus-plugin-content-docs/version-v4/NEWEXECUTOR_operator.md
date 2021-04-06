@@ -25,8 +25,19 @@ title: 'Оператор NEWEXECUTOR'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=newexecutor"/>
+```lsf
+testExecutor  {
+    NEWEXECUTOR {
+        FOR id(Sku s) DO {
+            NEWTHREAD {
+                NEWSESSION {
+                    name(s) <- STRING[20](id(s)); // записываем в наименование код в 10 потоков
+                    APPLY;
+                }
+            }
+        }
+    } THREADS 10;
+}
+```
 
   

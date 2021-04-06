@@ -25,11 +25,14 @@ The **CONCAT** operator creates a property that concatenates values using the 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Person;
+firstName = DATA STRING[100] (Person);
+middleName = DATA STRING[100] (Person);
+lastName = DATA STRING[100] (Person);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=concat"/>
+fullName(Person p) = CONCAT ' ', firstName(p), middleName(p), lastName(p);     // if some part of the name is not specified, then this part will be skipped along with a space
+```
 
-**  
-**
 
   

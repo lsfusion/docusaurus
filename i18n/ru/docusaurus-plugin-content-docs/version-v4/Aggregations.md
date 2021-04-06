@@ -14,6 +14,20 @@ title: 'Агрегации'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A; CLASS B; CLASS C;
+f = DATA INTEGER (A, B);
+c = AGGR C WHERE f(A a, B b) MATERIALIZED INDEXED;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=AggregationSample&block=aggr"/>
+CLASS AB;
+ab = AGGR AB WHERE A a IS A AND B b IS B; // для каждой пары A B создает объект AB
+
+CLASS Shipment 'Поставка';
+date = ABSTRACT DATE (Shipment);
+CLASS Invoice 'Инвойс';
+createShipment 'Создавать поставку' = DATA BOOLEAN (Invoice);
+date 'Дата накладной' = DATA DATE (Invoice);
+CLASS ShipmentInvoice 'Поставка по инвойсу' : Shipment;
+shipment(Invoice invoice) = AGGR ShipmentInvoice WHERE createShipment(invoice); // создаем поставку по инвойсу, если для инвойса задана опция создавать поставку
+date(ShipmentInvoice si) += sum(date(invoice(si)),1); // дата поставки = дата инвойса + 1
+```

@@ -11,7 +11,7 @@ All conditions and results are defined as some properties and/or parameters. Acc
 The platform also allows you to define a condition and the corresponding result with one property. In this case, the condition may be either matching the property's [signature](Property_signature_CLASS_.md), or the property itself. We will call this the*polymorphic* form of the operator.
 
 
-:::note
+:::info
 Note that the [extremum operator](Extremum_MAX_MIN_.md) and logical operators basically are also varieties of the selection operator (and of its polymorphic form, i.e. the conditions and result are defined by one property)
 :::
 
@@ -30,7 +30,7 @@ This operator supports [implicit definition](Property_extension.md) using the 
 The *single *form of the selection operator checks exactly one condition. If this condition is met, the value of the specified result is returned. It is also possible to specify an *alternative result *which value is returned if the condition is not met.
 
 
-:::note
+:::info
 Type of mutual exclusion and implicit definition do not make sense/are not supported for this form of the operator
 :::
 
@@ -44,25 +44,82 @@ To create a property implementing a general form of selection, the **[CASE](CAS
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Color;
+id = DATA STRING[100] (Color);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=case"/>
+background 'Color' (Color c) = CASE
+    WHEN id(c) == 'Black' THEN RGB(0,0,0)
+    WHEN id(c) == 'Red' THEN RGB(255,0,0)
+    WHEN id(c) == 'Green' THEN RGB(0,255,0)
+;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=multi"/>
+id (TypeExecEnv type) = CASE EXCLUSIVE
+    WHEN type == TypeExecEnv.materialize THEN 3
+    WHEN type == TypeExecEnv.disablenestloop THEN 2
+    WHEN type == TypeExecEnv.none THEN 1
+    ELSE 0
+;
+```
+
+```lsf
+nameMulti (Human h) = MULTI 'Male' IF h IS Male, 'Female' IF h IS Female;
+
+CLASS Ledger;
+CLASS InLedger : Ledger;
+quantity = DATA INTEGER (InLedger);
+
+CLASS OutLedger : Ledger;
+quantity = DATA INTEGER (OutLedger);
+
+signedQuantity (Ledger l) = MULTI quantity[InLedger](l), quantity[OutLedger](l);
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=override"/>
+```lsf
+CLASS Group;
+markup = DATA NUMERIC[8,2] (Group);
+
+markup = DATA NUMERIC[8,2] (Book);
+group = DATA Group (Book);
+overMarkup (Book b) = OVERRIDE markup(b), markup(group(b));
+
+notNullDate (INTEGER i) = OVERRIDE date(i), 2010_01_01;
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=exclusive"/>
+```lsf
+background 'Color' (INTEGER i) = EXCLUSIVE RGB(255,238,165) IF i <= 5,
+                                                   RGB(255,160,160) IF i > 5;
+
+CLASS Human;
+
+CLASS Male : Human;
+CLASS Female : Human;
+
+name(Human h) = EXCLUSIVE 'Male' IF h IS Male, 'Female' IF h IS Female;
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=if"/>
+```lsf
+name = DATA STRING[100] (Book);
+hasName (Book b) = TRUE IF name(b);
+
+background (Book b) = RGB(224, 255, 128) IF b IS Book;
+
+countTags (Book b) = GROUP SUM 1 IF in(b, Tag t);
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=ifthen"/>
+```lsf
+price1 = DATA NUMERIC[10,2] (Book);
+price2 = DATA NUMERIC[10,2] (Book);
+maxPrice (Book b) = IF price1(b) > price2(b) THEN price1(b) ELSE price2(b);
 
-**  
-**
+sex (Human h) = IF h IS Male THEN 'Male' ELSE ('Female' IF h IS Female); // if h is of another class, it will be NULL
+
+isDifferent(a, b) = IF a != b THEN TRUE;
+```
+
 
   

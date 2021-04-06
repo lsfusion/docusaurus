@@ -2,7 +2,7 @@
 title: 'Расширение классов'
 ---
 
-Техника [расширения](Extensions.md) классов позволяет разработчику *донаследовать* один [класс](Classes.md) от другого после его создания. Также при помощи этого механизма можно добавлять в класс дополнительные [статические объекты](User_classes.md).
+Техника [расширения](Extensions.md) классов позволяет разработчику *донаследовать* один [класс](Classes.md) от другого после его создания. Также при помощи этого механизма можно добавлять в класс дополнительные [статические объекты](Static_objects.md).
 
 Расширение классов вместе с техникой [расширения свойств](Property_extension.md) и [действий](Action_extension.md) позволяет:
 
@@ -16,6 +16,19 @@ title: 'Расширение классов'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Shape;
+CLASS Box : Shape;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=extendclass"/>
+CLASS Quadrilateral;
+EXTEND CLASS Box : Quadrilateral; // Добавляем наследование
+
+CLASS ShapeType {
+	point 'Точка',
+	segment 'Отрезок'
+}
+
+EXTEND CLASS ShapeType { // Добавляем статический объект
+	circle 'Окружность'
+}
+```

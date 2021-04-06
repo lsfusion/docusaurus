@@ -12,6 +12,10 @@ To materialize a property, use the [**MATERIALIZED** option](Property_options.md
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+sum = GROUP SUM sum(OrderDetail od) BY order(od) MATERIALIZED;
+date(OrderDetail od) = date(order(od)) MATERIALIZED;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=materialized"/>
+ // such a property cannot be materialized, since it is not NULL for an infinite number of dates
+lastDate(Customer customer, DATE date) = GROUP LAST date(Order order) IF customer(order) = customer AND date(order) < date;
+```

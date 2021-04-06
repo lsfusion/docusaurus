@@ -25,7 +25,7 @@ title: 'Ветвление (CASE, IF, MULTI)'
 Оператор ветвления в *одиночной *форме проверяет ровно одно условие. Если это условие выполняется, то вызывается указанное действие. Также существует возможность указать *альтернативное действие, *которое будет вызвано, если условие не выполняется.
 
 
-:::note
+:::info
 Тип взаимоисключения и неявное задание для этой формы оператора не имеют смысла / не поддерживаются
 :::
 
@@ -35,17 +35,44 @@ title: 'Ветвление (CASE, IF, MULTI)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+test = DATA INTEGER (INTEGER);
+caseActionTest(a)  {
+    CASE
+        WHEN test(a) > 7 THEN MESSAGE '>7';
+        WHEN test(a) > 6 THEN MESSAGE '>6';
+        WHEN test(a) > 5 THEN MESSAGE '>5';
+}
+```
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=case"/>
+
+```lsf
+// Действие, сравнивающее значение свойства count с числом 3 и выдающее пользователю сообщение
+moreThan3(obj)  {
+    IF count(obj) > 3 THEN
+        MESSAGE '>3';
+    ELSE
+        MESSAGE '<=3';
+}
+
+checkNullName (Store st) {
+    IF NOT name(st) THEN
+        MESSAGE 'Name is null';
+}
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=ifthena"/>
+```lsf
+CLASS Shape;
 
+CLASS Square : Shape;
+CLASS Circle : Shape;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=multi"/>
+message (Square s)  { MESSAGE 'Square'; }
+message (Circle c)  { MESSAGE 'Circle'; }
+
+message (Shape s) = MULTI message[Square](s), message[Circle](s);
+```
 
   
 
-**  
-**

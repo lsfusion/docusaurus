@@ -53,8 +53,51 @@ List of action parameters. Each parameter is specified with the object name on 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+showImpossibleMessage()  { MESSAGE 'It\'s impossible'; };
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=events"/>
+posted = DATA BOOLEAN (Invoice);
+
+FORM invoice 'Invoice' // creating a form for editing an invoice
+    OBJECTS i = Invoice PANEL // creating an object of the invoice class
+
+//    ...  setting the rest of the form behavior
+
+    EVENTS
+        ON OK { posted(i) <- TRUE; }, // specifying that when the user clicks OK, an action should be executed that will execute actions to "conduction" this invoice
+        ON DROP showImpossibleMessage() // by clicking the formDrop button, showing a message that this cannot be, since this button by default will be shown only in the form for choosing an invoice, and this form is basically an invoice edit form
+;
+
+CLASS Shift;
+currentShift = DATA Shift();
+
+CLASS Cashier;
+currentCashier = DATA Cashier();
+
+CLASS Receipt;
+shift = DATA Shift (Receipt);
+cashier = DATA Cashier (Receipt);
+
+FORM POS 'POS' // declaring the form for product sale to the customer in the salesroom
+
+    OBJECTS r = Receipt PANEL // adding an object that will store the current receipt
+//    ... declaring the behavior of the form
+
+;
+
+createReceipt ()  {
+    NEW r = Receipt {
+        shift(r) <- currentShift();
+        cashier(r) <- currentCashier();
+
+        SEEK POS.r = r;
+    }
+}
+
+EXTEND FORM POS // adding a property through the form extension so that SEEK could be applied to the already created object on the form
+    EVENTS
+        ON INIT createReceipt() // when opening the form, executing the action to create a new receipt, which fills in the shift, cashier and other information
+;
+```
 
 

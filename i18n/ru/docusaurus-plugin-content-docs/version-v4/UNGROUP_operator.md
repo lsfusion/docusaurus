@@ -31,8 +31,6 @@ title: 'Оператор UNGROUP'
 
 ### Параметры
 
-**  
-**
 
 *propertyId*
 

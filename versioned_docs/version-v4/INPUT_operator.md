@@ -52,8 +52,27 @@ A [context-dependent action operator](Action_operator.md#contextdependent) that 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+changeCustomer (Order o)  {
+    INPUT s = STRING[100] DO {
+        customer(o) <- s;
+        IF s THEN
+            MESSAGE 'Customer changed to ' + s;
+        ELSE
+            MESSAGE 'Customer dropped';
+    }
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=input"/>
+FORM order
+    OBJECTS o = Order
+    PROPERTIES(o) customer ON CHANGE changeCustomer(o)
+;
+
+testFile  {
+    INPUT f = FILE DO { // requesting a dialog to select a file
+        open(f); // opening the selected file
+    }
+}
+```
 
   

@@ -27,9 +27,11 @@ The sequence number of an object. [Numeric literal](Literals.md#intliteral-broke
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Letter;
+attachment1 = DATA FILE (Letter);
+attachment2 = DATA FILE (Letter);
+letterAttachments (Letter l) = STRUCT(attachment1(l), attachment2(l));
+secondAttachment(Letter l) = letterAttachments(l)[2]; // returns attachment2
+```
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=brackets"/>
-
-**  
-**

@@ -29,8 +29,9 @@ title: 'Инструкция BEFORE'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=before"/>
+```lsf
+changeName(Sku s, STRING[100] name)  { name(s) <- name; }
+BEFORE changeName(Sku s, STRING[100] name) DO MESSAGE 'Changing user name'; // Сообщение будет показано перед каждым вызовом changeName
+```
 
   

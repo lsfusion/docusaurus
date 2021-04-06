@@ -12,7 +12,7 @@ The system has the following operators for working with sessions:
 -   [Change operators (SET, CHANGED, ...)](Change_operators_SET_CHANGED_..._.md)
 
 
-:::note
+:::info
 Note that the latter two operators create properties, not actions.
 :::
 

@@ -8,30 +8,67 @@ title: 'Метапрограммирование'
 
 В языке l**sFusion **в качестве средства метапрограммирования используется *метакод*, который описывается [инструкцией **META**](META_instruction.md). Метакод состоит из заголовка и блока кода на языке **lsFusion**, описывающего последовательность [инструкций](Instructions.md).** **Этот блок кода должен завершаться ключевым словом **END**. Рассмотрим пример метакода, который позволяет добавить на произвольную [форму](Forms.md) два [действия](Actions.md):
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=MetaSample&block=definemeta1"/>
+```lsf
+META addActions(formName)
+    EXTEND FORM formName
+        PROPERTIES() showMessage, closeForm
+    ;
+END
+```
 
 В первой строке приведенного примера находится заголовок метакода. Он состоит из ключевого слова **META**, имени метакода и списка параметров. В данном примере метакод **addActions** имеет один параметр **formName**. Это имя формы, на которую будут добавлены действия. Рассмотрим возможные варианты использования этого метакода, которые описываются [инструкцией @](Instruction_.md). 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=MetaSample&block=implementmeta1"/>
+```lsf
+@addActions(documentForm);
+@addActions(orderForm);
+```
 
 Инструкция использования метакода обозначается специальным символом @, затем идет имя метакода и передаваемые параметры. При генерации кода каждый параметр метакода будет заменен на значение, передаваемое в качестве параметра инструкции @, во всех местах использования параметра метакода. В данном примере параметр метакода **formName** будет заменяться на **documentForm** и на **orderForm**. Приведенные выше использования метакода порождают следующий блок кода:
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=MetaSampleResult&block=resultmeta1"/>
+```lsf
+EXTEND FORM documentForm
+    PROPERTIES() showMessage, closeForm
+;
+
+EXTEND FORM orderForm
+    PROPERTIES() showMessage, closeForm
+;
+```
 
 ### Объединение лексем  {#concat}
 
 Простой подстановки идентификатора вместо параметра метакода часто бывает недостаточно. Например, при создании большого количества новых [элементов системы](Element_identification.md) внутри метакода нужно иметь возможность задавать эти новые имена. Передавать все имена в качестве параметров метакода бывает неудобно. Поэтому в метакоде существует специальная операция \#\#, которая работает на уровне [лексем](Tokens.md). Эта операция может объединить две соседние лексемы в одну. Если же одна из объединяемых лексем является [строковым литералом](Literals.md#strliteral-broken), то результатом объединения будет один строковый литерал.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=MetaSample&block=definemeta2"/>
+```lsf
+META objectProperties(object, caption)
+    object##Name 'Имя '##caption = DATA BPSTRING[100](object);
+    object##Type 'Тип '##caption = DATA Type (object);
+    object##Value 'Стоимость '##caption = DATA INTEGER (object);
+END
+
+@objectProperties(Document, 'документа');
+```
 
 Результатом использования метакода **objectProperties** будет следующий код:
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=MetaSampleResult&block=resultmeta2"/>
+```lsf
+DocumentName 'Имя документа' = DATA BPSTRING[100](Document);
+DocumentType 'Тип документа' = DATA Type (Document);
+DocumentValue 'Стоимость документа' = DATA INTEGER (Document);
+```
 
 Также существует специальная операция \#\#\#, эквивалентная операции \#\#, за исключением того, что во втором из объединяемых литералов первый символ, если он является буквой, переводится в верхний регистр.
 
 ### Примеры
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=meta"/>
+```lsf
+META objectProperties(object, type, caption)
+    object##Name 'Имя'##caption = DATA BPSTRING[100](###object-broken); // делаем заглавной первую букву
+    object##Type 'Тип'##caption = DATA type (###object-broken);
+    object##Value 'Стоимость'##caption = DATA INTEGER (###object-broken);
+END
+
+META objectProperties(object, type)
+    @objectProperties(object, type, '');
+END
+```

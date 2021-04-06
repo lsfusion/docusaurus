@@ -9,9 +9,36 @@ sidebar_label: Обзор
 
 ### Пример
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// Заголовок модуля
+MODULE LanguageExample;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=LanguageSample"/>
+REQUIRE System;
 
-**  
-**
+NAMESPACE Example;
+
+// Тело модуля
+
+// Объявление классов
+CLASS Employee;
+CLASS Company;
+
+// Объявление свойств
+name(employee) = DATA BPSTRING[100](Employee);
+age(employee) = DATA INTEGER(Employee);
+company(employee) = DATA Company(Employee);
+
+name(company) = DATA BPSTRING[100](Company);
+
+// Объявление формы
+FORM employeeForm
+    OBJECTS e = Employee
+    PROPERTIES(e) name, age, company
+;
+
+// Добавление формы в навигатор
+NAVIGATOR {
+    NEW employeeForm;
+}
+```
+

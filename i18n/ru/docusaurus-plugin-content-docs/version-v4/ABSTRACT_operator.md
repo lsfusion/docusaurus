@@ -62,9 +62,14 @@ title: 'Оператор ABSTRACT'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Invoice;
+CLASS InvoiceDetail;
+CLASS Range;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=abstract"/>
+rateChargeExchange(invoice) = ABSTRACT NUMERIC[14,6] (Invoice);             // В данном случае создается ABSTRACT MULTI EXCLUSIVE
+backgroundSku 'Цвет' (d) = ABSTRACT CASE FULL COLOR (InvoiceDetail); // В данном случае создается ABSTRACT CASE OVERRIDE LAST, и если будут
+                                                                            // подходить несколько реализаций, то вычислена будет первая из них
+overVAT = ABSTRACT VALUE OVERRIDE FIRST Range (InvoiceDetail);          // Здесь же будет вычислена последняя из подходящих реализаций
+```
 
-**  
-**

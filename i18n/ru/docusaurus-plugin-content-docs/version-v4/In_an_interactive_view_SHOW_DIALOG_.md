@@ -23,7 +23,7 @@ title: 'В интерактивном представлении (SHOW, DIALOG)'
 По умолчанию, в синхронном режиме работы форма показывается как окно, а в асинхронном - как закладка.
 
 
-:::note
+:::info
 В текущей реализации платформы форма, показываемая как окно, всегда модальная, поэтому режим "асинхронное окно" не поддерживается.
 :::
 
@@ -59,11 +59,51 @@ title: 'В интерактивном представлении (SHOW, DIALOG)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date = DATA DATE (Order);
+FORM showForm
+    OBJECTS dateFrom = DATE, dateTo = DATE PANEL
+    PROPERTIES VALUE(dateFrom), VALUE(dateTo)
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=show"/>
+    OBJECTS o = Order
+    FILTERS date(o) >= dateFrom, date(o) <= dateTo
+;
+
+testShow ()  {
+    SHOW showForm OBJECTS dateFrom = 2010_01_01, dateTo = 2010_12_31;
+
+    NEWSESSION {
+        NEW s = Sku {
+            SHOW sku OBJECTS s = s FLOAT;
+        }
+    }
+}
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=dialog"/>
+```lsf
+FORM selectSku
+    OBJECTS s = Sku
+    PROPERTIES(s) id
+;
+
+testDialog  {
+    DIALOG selectSku OBJECTS s INPUT DO {
+        MESSAGE 'Selected sku : ' + id(s);
+    }
+}
+
+sku = DATA Sku (OrderDetail);
+idSku (OrderDetail d) = id(sku(d));
+
+changeSku (OrderDetail d)  {
+    DIALOG selectSku OBJECTS s = sku(d) CHANGE;
+
+    //равносильно первому варианту
+    DIALOG selectSku OBJECTS s = sku(d) INPUT NULL CONSTRAINTFILTER DO {
+        sku(d) <- s;
+    }
+}
+```
 
   

@@ -10,12 +10,20 @@ The maximum property is created using the [**MAX** operator](MAX_operator.md), t
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date1 = DATA DATE(INTEGER);
+date2 = DATA DATE(INTEGER);
+maxDate (INTEGER i) = MAX date1(i), date2(i);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=max"/>
+balance = DATA INTEGER (Item);
+outcome 'Balance (non-negative)' (Item i) = MAX balance(i), 0;
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=min"/>
+```lsf
+minPrice(Book b) = MIN price1(b), price2(b);
 
-**  
-**
+date (INTEGER i) = DATA DATE (INTEGER);
+minDate (INTEGER i) = MIN date(i), 2001_01_01;
+```
+

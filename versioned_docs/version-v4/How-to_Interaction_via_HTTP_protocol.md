@@ -8,15 +8,52 @@ title: 'How-to: Interaction via HTTP protocol'
 
 We have a certain set of cities associated with their countries.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Country 'Country';
+id 'Code' = DATA STRING[20] (Country) IN id;
+name 'Name' = DATA ISTRING[100] (Country) IN id;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=sample1"/>
+country (STRING[20] id) = GROUP AGGR Country c BY id(c);
+
+CLASS City 'City';
+name 'Name' = DATA ISTRING[100] (City) IN id;
+
+country 'Country' = DATA Country (City);
+nameCountry 'Country' (City c) = name(country(c));
+
+FORM cities 'Cities'
+    OBJECTS c = City
+    PROPERTIES(c) name, nameCountry, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW cities;
+}
+```
 
 We need to send an HTTP request for adding a city in the JSON format to a certain url.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution1"/>
+```lsf
+postCity 'Send' (City c)  {
+    EXPORT JSON FROM countryId = id(country(c)), name = name(c);
+
+    LOCAL result = FILE();
+    EXTERNAL HTTP 'http://localhost:7651/exec?action=Location.createCity' PARAMS exportFile() TO result;
+
+    LOCAL code = STRING[10]();
+    LOCAL message = STRING[100]();
+    IMPORT JSON FROM result() TO() code, message;
+    IF NOT code() == '0' THEN {
+        MESSAGE 'Error: ' + message();
+    }
+}
+
+EXTEND FORM cities
+    PROPERTIES(c) postCity
+;
+```
 
 The [EXPORT](Data_export_EXPORT_.md) operator will create a JSON in the [FILE](Built-in_classes.md) format and then will write it to the exportFile property. Here is an example of the generated file: 
 
@@ -40,7 +77,29 @@ We need to handle the incoming HTTP request and create a new city in the databas
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution2"/>
+```lsf
+createCity (FILE f)  {
+
+    LOCAL cy = STRING[20] ();
+    LOCAL ne = STRING[100] ();
+
+    IMPORT JSON FROM f AS FILE TO() cy = countryId, ne = name;
+
+    IF NOT country(cy()) THEN {
+        EXPORT JSON FROM code = '1', message = 'Invalid country code';
+        RETURN;
+    }
+
+    NEW c = City {
+        name(c) <- ne();
+        country(c) <- country(cy());
+
+        APPLY;
+    }
+
+    EXPORT JSON FROM code = '0', message = 'OK';
+}
+```
 
 Since the property is named **createCity** and located in the [module](Modules.md) with the namespace **Location**, the url on which the request will be handled looks like this:
 
@@ -58,13 +117,73 @@ If all the actions are completed successfully, the corresponding "OK message" is
 
 We have the logic of book orders.
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=sample3"/>
+```lsf
+CLASS Book 'Book';
+id 'Code' = DATA STRING[10] (Book) IN id;
+name 'Name' = DATA ISTRING[100] (Book) IN id;
+
+book (STRING[10] id) = GROUP AGGR Book b BY id(b);
+
+CLASS Order 'Order';
+date 'Date' = DATA DATE (Order);
+number 'Number' = DATA STRING[10] (Order);
+
+CLASS OrderDetail 'Order line';
+order 'Order' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Book' = DATA Book (OrderDetail) NONULL;
+nameBook 'Book' (OrderDetail d) = name(book(d));
+
+quantity 'Quantity' = DATA INTEGER (OrderDetail);
+price 'Price' = DATA NUMERIC[14,2] (OrderDetail);
+
+FORM order 'Order'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Orders'
+    OBJECTS i = Order
+    PROPERTIES(i) READONLY date, number
+    PROPERTIES(i) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 We need to send an HTTP request for creating a new order in the JSON format to a certain url.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution3"/>
+```lsf
+FORM exportOrder
+    OBJECTS order = Order PANEL
+    PROPERTIES dt = date(order), nm = number(order)
+
+    OBJECTS detail = OrderDetail
+    PROPERTIES id = id(book(detail)), qn = quantity(detail), pr = price(detail)
+    FILTERS order(detail) == order
+;
+
+exportOrder 'Send' (Order o)  {
+    EXPORT exportOrder OBJECTS order = o JSON;
+
+    LOCAL result = FILE();
+    EXTERNAL HTTP 'http://localhost:7651/exec?action=Location.importOrder' PARAMS exportFile() TO result;
+}
+
+EXTEND FORM orders
+    PROPERTIES(i) exportOrder;
+;
+```
 
 To create a JSON with nested tags, we need to create a form with the corresponding objects linked via the **FILTERS** block of operators. Based on the dependencies between objects, the system will generate a JSON file with the corresponding structure. In the considering example, the output JSON structure will look like this:
 
@@ -98,7 +217,37 @@ We need to handle the incoming HTTP request and create a new order in the databa
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution4"/>
+```lsf
+date = DATA LOCAL DATE();
+number = DATA LOCAL STRING[10]();
+
+id = DATA LOCAL STRING[10] (INTEGER);
+quantity = DATA LOCAL INTEGER (INTEGER);
+price = DATA LOCAL NUMERIC[14,2] (INTEGER);
+FORM importOrder
+    PROPERTIES dt = date(), nm = number()
+
+    OBJECTS detail = INTEGER
+    PROPERTIES id = id(detail), qn = quantity(detail), pr = price(detail)
+;
+
+importOrder (FILE f)  {
+    IMPORT importOrder JSON FROM f;
+
+    NEW o = Order {
+        date(o) <- date();
+        number(o) <- number();
+        FOR id(INTEGER detail) DO NEW d = OrderDetail {
+            order(d) <- o;
+            book(d) <- book(id(detail));
+            quantity(d) <- quantity(detail);
+            price(d) <- price(detail);
+        }
+
+        APPLY;
+    }
+}
+```
 
 To import the corresponding file in the JSON format, we need to create a form of a similar structure, except that the INTEGER type will be used as object classes. During the import process, the tag values will be placed in the properties with the corresponding names. The **date** and **number** properties have no parameters, since their values in JSON are provided at the topmost level.
 
@@ -112,7 +261,28 @@ We need to send an HTTP request to create an order in the JSON format to a certa
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution5"/>
+```lsf
+GROUP order;
+FORM exportOrderNew
+    OBJECTS o = Order
+    PROPERTIES IN order dt = date(o), nm = number(o)
+
+    OBJECTS detail = OrderDetail IN order
+    PROPERTIES id = id(book(detail)), qn = quantity(detail), pr = price(detail)
+    FILTERS order(detail) == o
+;
+
+exportOrderNew 'Send (new)' (Order o)  {
+    EXPORT exportOrderNew OBJECTS o = o JSON;
+
+    LOCAL result = FILE();
+    EXTERNAL HTTP 'http://localhost:7651/exec?action=Location.importOrderNew' PARAMS exportFile() TO result;
+}
+
+EXTEND FORM orders
+    PROPERTIES(i) exportOrderNew;
+;
+```
 
   
 
@@ -147,7 +317,31 @@ We need to handle the incoming HTTP request and create a new order in the databa
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution6"/>
+```lsf
+FORM importOrderNew
+    PROPERTIES IN order dt = date(), nm = number()
+
+    OBJECTS detail = INTEGER IN order
+    PROPERTIES id = id(detail), qn = quantity(detail), pr = price(detail)
+;
+
+importOrderNew (FILE f)  {
+    IMPORT importOrderNew JSON FROM f;
+
+    NEW o = Order {
+        date(o) <- date();
+        number(o) <- number();
+        FOR id(INTEGER detail) DO NEW d = OrderDetail {
+            order(d) <- o;
+            book(d) <- book(id(detail));
+            quantity(d) <- quantity(detail);
+            price(d) <- price(detail);
+        }
+
+        APPLY;
+    }
+}
+```
 
 Just as in the export process, we put all the properties and the **detail** object to the "order" group to correctly receive the new version of JSON.
 
@@ -161,7 +355,19 @@ We need to return a list of order numbers for a given date using an HTTP GET req
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution7"/>
+```lsf
+FORM exportOrders
+    OBJECTS date = DATE PANEL
+
+    OBJECTS order = Order
+    PROPERTIES nm = number(order)
+    FILTERS date(order) = date
+;
+
+getOrdersByDate (DATE d) {
+    EXPORT exportOrders OBJECTS date = d JSON;
+}
+```
 
 The url to which the HTTP request should be sent will look like this:   http://localhost:7651/exec?action=Location.getOrdersByDate&p=12.11.2018 .
 

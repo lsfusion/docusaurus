@@ -21,8 +21,31 @@ title: 'Оператор NESTEDSESSION'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNestedSession ()  {
+    NESTEDSESSION {
+        name(Sku s) <- 'aaa';
+        APPLY; // на самом деле изменения применятся не в базу данных, а в "верхнюю" сессию
+    }
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=nestedsession"/>
+    MESSAGE (GROUP SUM 1 IF name(Sku s) == 'aaa'); // возвращает все строки
+    CANCEL;
+    MESSAGE (GROUP SUM 1 IF name(Sku s) == 'aaa'); // возвращает NULL, если в базе не было раньше Sku с именем aaa
+
+}
+
+FORM sku
+    OBJECTS s = Sku PANEL
+    PROPERTIES(s) id, name
+;
+newNestedSession()  {
+    NESTEDSESSION {
+        NEW s = Sku {
+            // показывает форму, но любые изменения в ней не будут применены в базу данных, а будут сохранены в "верхней сессии"
+            SHOW sku OBJECTS s = s;
+        }
+    }
+}
+```
 
   

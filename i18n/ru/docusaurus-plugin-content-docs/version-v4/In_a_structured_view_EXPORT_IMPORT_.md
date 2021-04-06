@@ -16,7 +16,7 @@ title: 'В структурированном представлении (EXPORT
 
 Так как оператор импорта это по сути "оператор ввода", на импортируемую форму накладываются следующие ограничения:
 
--   Все объекты формы должны быть [числовых](Built-in_classes.md#inheritance) или [конкретных](Static_objects.md#abstract) [пользовательских](Static_objects.md) классов, причем группы объектов должны состоять ровно из одного объекта (это ограничение вытекает из того что все используемые форматы это по сути списки, то есть отображения чисел на значения).
+-   Все объекты формы должны быть [числовых](Built-in_classes.md#inheritance) или [конкретных](User_classes.md#abstract) [пользовательских](User_classes.md) классов, причем группы объектов должны состоять ровно из одного объекта (это ограничение вытекает из того что все используемые форматы это по сути списки, то есть отображения чисел на значения).
 
 -   Свойства на форме и [фильтры](Form_structure.md#filters) должны иметь возможность [изменения](Property_change_CHANGE_.md) на заданное значение (то есть, как правило, быть [первичными](Data_properties_DATA_.md)). Перед импортом все существующие изменения импортируемых свойств в текущей сессии отменяются.
 
@@ -36,8 +36,51 @@ title: 'В структурированном представлении (EXPORT
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM exportSku
+    OBJECTS st = Store
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=export"/>
+    OBJECTS s = Sku
+    PROPERTIES(s) id, name, weight
+    FILTERS in(st, s)
+;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=importForm"/>
+exportSku (Store store)  {
+    // выгружаем в DBF все Sku, для которых задано in (Store, Sku) для нужного склада
+    EXPORT exportSku OBJECTS st = store DBF CHARSET 'CP866';
+    EXPORT exportSku XML;
+    EXPORT exportSku OBJECTS st = store CSV ',';
+}
+```
+
+```lsf
+
+date = DATA DATE (INTEGER);
+sku = DATA BPSTRING[50] (INTEGER);
+price = DATA NUMERIC[14,2] (INTEGER);
+order = DATA INTEGER (INTEGER);
+FORM import
+    OBJECTS o = INTEGER // заказы
+    OBJECTS od = INTEGER // строки заказов
+    PROPERTIES (o) dateOrder = date // импортируем дату из поля dateOrder
+    PROPERTIES (od) sku = sku, price = price // импортируем товар количество из полей sku и price
+    FILTERS order(od) = o // в order - записываем верхний заказ
+
+;
+
+importForm()  {
+    INPUT f = FILE DO {
+        IMPORT import JSON FROM f;
+        SHOW import; // показываем что импортировалось
+
+        // создаем объекты в базе
+        FOR DATE date = date(INTEGER io) NEW o = Order DO {
+            date(o) <- date;
+            FOR order(INTEGER iod) = io NEW od = OrderDetail DO {
+                price(od) <- price(iod);
+                sku(od) <- GROUP MAX Sku sku IF name(sku) = sku(iod); // находим sku с данным именем
+            }
+        }
+    }
+}
+```

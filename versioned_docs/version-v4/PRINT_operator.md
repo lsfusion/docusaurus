@@ -90,8 +90,31 @@ Determines when the created action should be continued:
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM printOrder
+    OBJECTS o = Order
+    PROPERTIES(o) currency, customer
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=print"/>
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) idSku, price
+    FILTERS order(d) == o
+;
+
+print (Order o)  {
+    PRINT printOrder OBJECTS o = o; // printing
+
+    LOCAL file = FILE ();
+    PRINT printOrder OBJECTS o = o DOCX TO file;
+    open(file());
+
+    //v 2.0-2.1 syntax
+    LOCAL sheetName = STRING[255]();
+    sheetName() <- 'encrypted';
+    PRINT printOrder OBJECTS o = o XLS SHEET sheetName PASSWORD 'pass';
+
+    //v 2.2 syntax
+    //PRINT printOrder OBJECTS o = o XLS SHEET 'encrypted' PASSWORD 'pass';
+}
+```
 
   

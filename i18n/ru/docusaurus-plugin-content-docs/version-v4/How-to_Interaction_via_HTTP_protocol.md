@@ -8,15 +8,52 @@ title: 'How-to: Взаимодействие через HTTP-протокол'
 
 Задан некоторый набор городов, привязанных к странам.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Country 'Страна';
+id 'Код' = DATA STRING[20] (Country) IN id;
+name 'Имя' = DATA ISTRING[100] (Country) IN id;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=sample1"/>
+country (STRING[20] id) = GROUP AGGR Country c BY id(c);
+
+CLASS City 'Город';
+name 'Имя' = DATA ISTRING[100] (City) IN id;
+
+country 'Страна' = DATA Country (City);
+nameCountry 'Страна' (City c) = name(country(c));
+
+FORM cities 'Города'
+    OBJECTS c = City
+    PROPERTIES(c) name, nameCountry, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW cities;
+}
+```
 
 Нужно отправить на определенный url HTTP-запрос на добавление города в формате JSON.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution1"/>
+```lsf
+postCity 'Отправить' (City c)  {
+    EXPORT JSON FROM countryId = id(country(c)), name = name(c);
+
+    LOCAL result = FILE();
+    EXTERNAL HTTP 'http://localhost:7651/exec?action=Location.createCity' PARAMS exportFile() TO result;
+
+    LOCAL code = STRING[10]();
+    LOCAL message = STRING[100]();
+    IMPORT JSON FROM result() TO() code, message;
+    IF NOT code() == '0' THEN {
+        MESSAGE 'Ошибка: ' + message();
+    }
+}
+
+EXTEND FORM cities
+    PROPERTIES(c) postCity
+;
+```
 
 Оператор [EXPORT](Data_export_EXPORT_.md) создаст JSON в формате [FILE](Built-in_classes.md) и сохранит его в свойство exportFile. Пример сформированного файла : 
 
@@ -40,7 +77,29 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution2"/>
+```lsf
+createCity (FILE f)  {
+
+    LOCAL cy = STRING[20] ();
+    LOCAL ne = STRING[100] ();
+
+    IMPORT JSON FROM f AS FILE TO() cy = countryId, ne = name;
+
+    IF NOT country(cy()) THEN {
+        EXPORT JSON FROM code = '1', message = 'Некорректный код страны';
+        RETURN;
+    }
+
+    NEW c = City {
+        name(c) <- ne();
+        country(c) <- country(cy());
+
+        APPLY;
+    }
+
+    EXPORT JSON FROM code = '0', message = 'OK';
+}
+```
 
 Так как свойство имеет название **createCity** и расположено в [модуле](Modules.md) с пространством имен **Location**, то url, на котором будет принят запрос, имеет следующий вид :
 
@@ -58,13 +117,73 @@ Body HTTP-запроса будет передан параметром с ти�
 
 Задана логика заказов книг.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=sample3"/>
+```lsf
+CLASS Book 'Книга';
+id 'Код' = DATA STRING[10] (Book) IN id;
+name 'Наименование' = DATA ISTRING[100] (Book) IN id;
+
+book (STRING[10] id) = GROUP AGGR Book b BY id(b);
+
+CLASS Order 'Заказ';
+date 'Дата' = DATA DATE (Order);
+number 'Номер' = DATA STRING[10] (Order);
+
+CLASS OrderDetail 'Строка заказа';
+order 'Заказ' = DATA Order (OrderDetail) NONULL DELETE;
+
+book 'Книга' = DATA Book (OrderDetail) NONULL;
+nameBook 'Книга' (OrderDetail d) = name(book(d));
+
+quantity 'Количество' = DATA INTEGER (OrderDetail);
+price 'Цена' = DATA NUMERIC[14,2] (OrderDetail);
+
+FORM order 'Заказ'
+    OBJECTS o = Order PANEL
+    PROPERTIES(o) date, number
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) nameBook, quantity, price, NEW, DELETE
+    FILTERS order(d) == o
+
+    EDIT Order OBJECT o
+;
+
+FORM orders 'Заказы'
+    OBJECTS i = Order
+    PROPERTIES(i) READONLY date, number
+    PROPERTIES(i) NEWSESSION NEW, EDIT, DELETE
+;
+
+NAVIGATOR {
+    NEW orders;
+}
+```
 
 Нужно отправить на определенный url HTTP-запрос на создание заказа в формате JSON.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution3"/>
+```lsf
+FORM exportOrder
+    OBJECTS order = Order PANEL
+    PROPERTIES dt = date(order), nm = number(order)
+
+    OBJECTS detail = OrderDetail
+    PROPERTIES id = id(book(detail)), qn = quantity(detail), pr = price(detail)
+    FILTERS order(detail) == order
+;
+
+exportOrder 'Отправить' (Order o)  {
+    EXPORT exportOrder OBJECTS order = o JSON;
+
+    LOCAL result = FILE();
+    EXTERNAL HTTP 'http://localhost:7651/exec?action=Location.importOrder' PARAMS exportFile() TO result;
+}
+
+EXTEND FORM orders
+    PROPERTIES(i) exportOrder;
+;
+```
 
 Для создания JSON с вложенными тэгами нужно создать форму с соответствующими объектами, связанными через конструкцию **FILTERS**. На основе зависимостей между ними создается JSON с соответствующей структурой. В данном случае, JSON будет выглядеть следующим образом :
 
@@ -98,7 +217,37 @@ Body HTTP-запроса будет передан параметром с ти�
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution4"/>
+```lsf
+date = DATA LOCAL DATE();
+number = DATA LOCAL STRING[10]();
+
+id = DATA LOCAL STRING[10] (INTEGER);
+quantity = DATA LOCAL INTEGER (INTEGER);
+price = DATA LOCAL NUMERIC[14,2] (INTEGER);
+FORM importOrder
+    PROPERTIES dt = date(), nm = number()
+
+    OBJECTS detail = INTEGER
+    PROPERTIES id = id(detail), qn = quantity(detail), pr = price(detail)
+;
+
+importOrder (FILE f)  {
+    IMPORT importOrder JSON FROM f;
+
+    NEW o = Order {
+        date(o) <- date();
+        number(o) <- number();
+        FOR id(INTEGER detail) DO NEW d = OrderDetail {
+            order(d) <- o;
+            book(d) <- book(id(detail));
+            quantity(d) <- quantity(detail);
+            price(d) <- price(detail);
+        }
+
+        APPLY;
+    }
+}
+```
 
 Для импорта соответствующего файла в формате JSON создается форма аналогичной структуры, только в качестве классов объектов используется тип INTEGER. При импорте значения тэгов будут помещены в свойства с соответствующими именами. Свойства **date** и **number** не имеют параметров, так как в JSON значения для них идут на самом верхнем уровне.
 
@@ -112,7 +261,28 @@ Body HTTP-запроса будет передан параметром с ти�
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution5"/>
+```lsf
+GROUP order;
+FORM exportOrderNew
+    OBJECTS o = Order
+    PROPERTIES IN order dt = date(o), nm = number(o)
+
+    OBJECTS detail = OrderDetail IN order
+    PROPERTIES id = id(book(detail)), qn = quantity(detail), pr = price(detail)
+    FILTERS order(detail) == o
+;
+
+exportOrderNew 'Отправить (новый)' (Order o)  {
+    EXPORT exportOrderNew OBJECTS o = o JSON;
+
+    LOCAL result = FILE();
+    EXTERNAL HTTP 'http://localhost:7651/exec?action=Location.importOrderNew' PARAMS exportFile() TO result;
+}
+
+EXTEND FORM orders
+    PROPERTIES(i) exportOrderNew;
+;
+```
 
   
 
@@ -147,7 +317,31 @@ Body HTTP-запроса будет передан параметром с ти�
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution6"/>
+```lsf
+FORM importOrderNew
+    PROPERTIES IN order dt = date(), nm = number()
+
+    OBJECTS detail = INTEGER IN order
+    PROPERTIES id = id(detail), qn = quantity(detail), pr = price(detail)
+;
+
+importOrderNew (FILE f)  {
+    IMPORT importOrderNew JSON FROM f;
+
+    NEW o = Order {
+        date(o) <- date();
+        number(o) <- number();
+        FOR id(INTEGER detail) DO NEW d = OrderDetail {
+            order(d) <- o;
+            book(d) <- book(id(detail));
+            quantity(d) <- quantity(detail);
+            price(d) <- price(detail);
+        }
+
+        APPLY;
+    }
+}
+```
 
 Точно также как и при экспорте, добавляем все свойств и объект **detail** в группу order для корректного приема новой версии JSON.
 
@@ -161,7 +355,19 @@ Body HTTP-запроса будет передан параметром с ти�
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseExternal&block=solution7"/>
+```lsf
+FORM exportOrders
+    OBJECTS date = DATE PANEL
+
+    OBJECTS order = Order
+    PROPERTIES nm = number(order)
+    FILTERS date(order) = date
+;
+
+getOrdersByDate (DATE d) {
+    EXPORT exportOrders OBJECTS date = d JSON;
+}
+```
 
 Url, на который следует слать HTTP запрос, будет выглядеть следующим образом :  http://localhost:7651/exec?action=Location.getOrdersByDate&p=12.11.2018 .
 

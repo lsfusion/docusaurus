@@ -53,8 +53,51 @@ title: 'Блок событий'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+showImpossibleMessage()  { MESSAGE 'It\'s impossible'; };
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=FormSample&block=events"/>
+posted = DATA BOOLEAN (Invoice);
+
+FORM invoice 'Инвойс' // создаем форму по редактированию инвойса
+    OBJECTS i = Invoice PANEL // создаем объект класса инвойс
+
+//    ...  задаем остальное поведение формы
+
+    EVENTS
+        ON OK { posted(i) <- TRUE; }, // указываем, что при нажатии пользователем OK должно выполняться действия, которое выполнит действия по "проведению" данного инвойса
+        ON DROP showImpossibleMessage() // по нажатию кнопки formDrop выдаем сообщение, что такого не может быть, так как эта кнопка по умолчанию будет показываться только в форме по выбору инвойса, а эта форма по сути является формой редактирования инвойса
+;
+
+CLASS Shift;
+currentShift = DATA Shift();
+
+CLASS Cashier;
+currentCashier = DATA Cashier();
+
+CLASS Receipt;
+shift = DATA Shift (Receipt);
+cashier = DATA Cashier (Receipt);
+
+FORM POS 'POS' // объявляем форму для продажи товара покупателю в торговом зале
+
+    OBJECTS r = Receipt PANEL // добавляем объект, в котором будет храниться текущий чек
+//    ... объявляем поведение формы
+
+;
+
+createReceipt ()  {
+    NEW r = Receipt {
+        shift(r) <- currentShift();
+        cashier(r) <- currentCashier();
+
+        SEEK POS.r = r;
+    }
+}
+
+EXTEND FORM POS // добавляем свойство через расширение формы, чтобы можно было сделать SEEK к уже созданному объекту на форме
+    EVENTS
+        ON INIT createReceipt() // при открытии формы выполняем действие по созданию нового чека, которое заполняет смену, кассира и прочую информацию
+;
+```
 
 

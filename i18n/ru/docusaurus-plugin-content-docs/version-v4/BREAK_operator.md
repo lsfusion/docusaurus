@@ -15,8 +15,12 @@ title: 'Оператор BREAK'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=break"/>
+```lsf
+testBreak ()  {
+    FOR iterate(INTEGER i, 1, 100) DO {
+        IF i == 50 THEN BREAK; // дойдет только до 50
+    }
+}
+```
 
   

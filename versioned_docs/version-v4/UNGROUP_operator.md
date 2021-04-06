@@ -31,8 +31,6 @@ The **WHERE **block defines a condition under which an object collection will 
 
 ### Parameters
 
-**  
-**
 
 *propertyId*
 

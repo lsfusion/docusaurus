@@ -32,8 +32,16 @@ A list of [context dependent action operators](Action_operator.md#contextdepend
 ### Example
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Shape;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=multi"/>
+CLASS Square : Shape;
+CLASS Circle : Shape;
+
+message (Square s)  { MESSAGE 'Square'; }
+message (Circle c)  { MESSAGE 'Circle'; }
+
+message (Shape s) = MULTI message[Square](s), message[Circle](s);
+```
 
   

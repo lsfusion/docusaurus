@@ -30,6 +30,19 @@ Constraints are created using the [**CONSTRAINT** instruction](CONSTRAINT_instr
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// balance not less than 0
+CONSTRAINT balance(Sku s, Stock st) < 0
+    MESSAGE 'The balance cannot be negative for ' + (GROUP CONCAT 'Product: ' + name(Sku ss) + ' Warehouse: ' + name(Stock sst), '\n' IF SET(balance(ss, sst) < 0));
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=constraint"/>
+barcode = DATA STRING[15] (Sku);
+// "emulation" security policy
+CONSTRAINT DROPCHANGED(barcode(Sku s)) AND name(currentUser()) != 'admin' MESSAGE 'Only the administrator is allowed to change the barcode for an already created product';
+
+sku = DATA Sku (OrderDetail);
+in = DATA BOOLEAN (Sku, Customer);
+
+CONSTRAINT sku(OrderDetail d) AND NOT in(sku(d), customer(order(d)))
+    CHECKED BY sku[OrderDetail] // a filter by available sku when selecting an item for an order line will be applied
+    MESSAGE 'In the order, a product unavailable to the user is selected for the selected customer';
+```

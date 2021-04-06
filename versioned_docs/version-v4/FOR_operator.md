@@ -59,8 +59,47 @@ Context-dependent action operator defining an alternative action. Parameters add
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+name = DATA STRING[100] (Store);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=for"/>
+testFor  {
+    LOCAL sum = INTEGER ();
+    FOR iterate(i, 1, 100) DO {
+        sum() <- sum() (+) i;
+    }
+
+    FOR in(Sku s) DO {
+        MESSAGE 'Sku ' + id(s) + ' was selected';
+    }
+
+    FOR Store st IS Store DO { // iterating over all objects of the Store class
+        FOR in(st, Sku s) DO { // iterating over all Sku for which in is set
+            MESSAGE 'There is Sku ' + id(s) + ' in store ' + name(st);
+        }
+
+    }
+}
+
+newSku ()  {
+    NEW s = Sku {
+        id(s) <- 425;
+        name(s) <- 'New Sku';
+    }
+}
+
+copy (Sku old)  {
+    NEW new = Sku {
+        id(new) <- id(old);
+        name(new) <- name(old);
+    }
+}
+
+createDetails (Order o)  {
+    FOR in(Sku s) NEW d = OrderDetail DO {
+        order(d) <- o;
+        sku(d) <- s;
+    }
+}
+```
 
   

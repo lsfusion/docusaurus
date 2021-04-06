@@ -93,6 +93,23 @@ title: 'Оператор SHOW'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date = DATA DATE (Order);
+FORM showForm
+    OBJECTS dateFrom = DATE, dateTo = DATE PANEL
+    PROPERTIES VALUE(dateFrom), VALUE(dateTo)
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=show"/>
+    OBJECTS o = Order
+    FILTERS date(o) >= dateFrom, date(o) <= dateTo
+;
+
+testShow ()  {
+    SHOW showForm OBJECTS dateFrom = 2010_01_01, dateTo = 2010_12_31;
+
+    NEWSESSION {
+        NEW s = Sku {
+            SHOW sku OBJECTS s = s FLOAT;
+        }
+    }
+}
+```

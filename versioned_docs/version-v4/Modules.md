@@ -24,6 +24,14 @@ Each module in the platform corresponds to exactly one file, which starts with a
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+MODULE EmployeeExample;	 	// Defining the module name
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ModuleSample"/>
+REQUIRE System, Utils;	 	// Listing the modules that the Employee module depends on
+NAMESPACE Employee;		 	// Setting the namespace
+
+CLASS Employee 'Employee';	// Creating a class
+CLASS Position 'Position'; // Creating another class
+
+employeePosition(employee) = DATA Position (Employee); // Creating property
+```

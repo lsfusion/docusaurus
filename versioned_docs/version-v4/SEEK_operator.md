@@ -65,9 +65,23 @@ A list of expressions whose values are the required values of the corresponding 
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+number = DATA INTEGER (Order);
+FORM orders
+    OBJECTS o = Order
+    PROPERTIES(o) READONLY number, currency, customer
+;
+newOrder  {
+    NEW new = Order {
+        number(new) <- (GROUP MAX number(Order o)) (+) 1;
+        SEEK orders.o = new;
+    }
+}
+seekFirst  { SEEK FIRST orders.o; }
+seekLast  { SEEK LAST orders.o; }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=seek"/>
+EXTEND FORM orders
+    PROPERTIES(o) newOrder, seekFirst, seekLast
+;
+```
 
-**  
-**

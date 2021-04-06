@@ -11,7 +11,7 @@ title: 'Выбор (CASE, IF, MULTI, OVERRIDE, EXCLUSIVE)'
 Также в платформе существует возможность задавать условие и соответствующий ему результат одним свойством. В этом случае условием может являться либо принадлежность [сигнатуре](Property_signature_CLASS_.md) этого свойства, либо само это свойство. Такую форму оператора выбора будем называть *полиморфной*.
 
 
-:::note
+:::info
 Отметим то, что [оператор экстремума](Extremum_MAX_MIN_.md) и логические операторы также по сути являются разновидностями оператора выбора (причем его полиморфной формой, то есть условия и результат определяются одним свойством)
 :::
 
@@ -30,13 +30,13 @@ title: 'Выбор (CASE, IF, MULTI, OVERRIDE, EXCLUSIVE)'
 Оператор выбора в *одиночной *форме проверяет ровно одно условие. Если это условие выполняется, возвращается значение указанного результата. Также в этой форме существует возможность указать *альтернативный результат, *значение которого будет возвращаться, если условие не выполняется.
 
 
-:::note
+:::info
 Тип взаимоисключения и неявное задание для этой формы оператора не имеют смысла / не поддерживаются
 :::
 
 ### Определение класса результата
 
-Результирующим классом оператора выбора является общий предок его операндов ([встроенный](Built-in_classes.md#commonparentclass) или [пользовательский](Static_objects.md#commonparentclass)).
+Результирующим классом оператора выбора является общий предок его операндов ([встроенный](Built-in_classes.md#commonparentclass) или [пользовательский](User_classes.md#commonparentclass)).
 
 ### Язык
 
@@ -44,25 +44,82 @@ title: 'Выбор (CASE, IF, MULTI, OVERRIDE, EXCLUSIVE)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Color;
+id = DATA STRING[100] (Color);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=case"/>
+background 'Цвет' (Color c) = CASE
+    WHEN id(c) == 'Black' THEN RGB(0,0,0)
+    WHEN id(c) == 'Red' THEN RGB(255,0,0)
+    WHEN id(c) == 'Green' THEN RGB(0,255,0)
+;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=multi"/>
+id (TypeExecEnv type) = CASE EXCLUSIVE
+    WHEN type == TypeExecEnv.materialize THEN 3
+    WHEN type == TypeExecEnv.disablenestloop THEN 2
+    WHEN type == TypeExecEnv.none THEN 1
+    ELSE 0
+;
+```
+
+```lsf
+nameMulti (Human h) = MULTI 'Male' IF h IS Male, 'Female' IF h IS Female;
+
+CLASS Ledger;
+CLASS InLedger : Ledger;
+quantity = DATA INTEGER (InLedger);
+
+CLASS OutLedger : Ledger;
+quantity = DATA INTEGER (OutLedger);
+
+signedQuantity (Ledger l) = MULTI quantity[InLedger](l), quantity[OutLedger](l);
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=override"/>
+```lsf
+CLASS Group;
+markup = DATA NUMERIC[8,2] (Group);
+
+markup = DATA NUMERIC[8,2] (Book);
+group = DATA Group (Book);
+overMarkup (Book b) = OVERRIDE markup(b), markup(group(b));
+
+notNullDate (INTEGER i) = OVERRIDE date(i), 2010_01_01;
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=exclusive"/>
+```lsf
+background 'Цвет' (INTEGER i) = EXCLUSIVE RGB(255,238,165) IF i <= 5,
+                                                   RGB(255,160,160) IF i > 5;
+
+CLASS Human;
+
+CLASS Male : Human;
+CLASS Female : Human;
+
+name(Human h) = EXCLUSIVE 'Male' IF h IS Male, 'Female' IF h IS Female;
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=if"/>
+```lsf
+name = DATA STRING[100] (Book);
+hasName (Book b) = TRUE IF name(b);
+
+background (Book b) = RGB(224, 255, 128) IF b IS Book;
+
+countTags (Book b) = GROUP SUM 1 IF in(b, Tag t);
+```
 
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=ifthen"/>
+```lsf
+price1 = DATA NUMERIC[10,2] (Book);
+price2 = DATA NUMERIC[10,2] (Book);
+maxPrice (Book b) = IF price1(b) > price2(b) THEN price1(b) ELSE price2(b);
 
-**  
-**
+sex (Human h) = IF h IS Male THEN 'Male' ELSE ('Female' IF h IS Female); // если h будет другого класса, то будет NULL
+
+isDifferent(a, b) = IF a != b THEN TRUE;
+```
+
 
   

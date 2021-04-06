@@ -29,9 +29,22 @@ title: 'Оператор REQUEST'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=request"/>
+requestCustomer (Order o)  {
+    LOCAL resultValue = STRING[100] ();
+    REQUEST {
+        ASK 'Choose from list?' DO
+            DIALOG customers OBJECTS c = resultValue() CHANGE;
+        ELSE
+            INPUT = resultValue() CHANGE;
+    } DO
+        customer(o) <- resultValue();
+}
 
-**  
-**
+FORM request
+    OBJECTS o = Order
+    PROPERTIES(o) customer ON CHANGE requestCustomer(o) // будет работать, к примеру, групповая корректировка
+;
+```
+

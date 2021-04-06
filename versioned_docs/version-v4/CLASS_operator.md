@@ -21,9 +21,13 @@ An [expression](Expression.md) whose result is a property. For this property, a 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A;
+a = ABSTRACT CASE STRING[100] (A);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=class"/>
+CLASS B : A;
+b = DATA STRING[100] (B);
 
-**  
-**
+a(B b) += WHEN CLASS(b(b)) THEN b(b); // is equivalent to WHEN b IS B THEN b(b)
+```
+

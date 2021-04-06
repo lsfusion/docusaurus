@@ -58,13 +58,17 @@ An [expression](Expression.md) whose value equals to the file that will be writt
 
 Keyword. If specified, the file is re-read from  fileExpr and appended to the file at urlExpr;. For the CSV extension, data is added to the end of the file. For xls and xlsx , all sheets from the fileExpr file are copied to the file at the specified location urlExpr. Not supported for other extensions. By default, the file is rewritten.
 
-**  
-**
 
 ### **Examples**
 
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=write"/>
+```lsf
+loadAndWrite ()  {
+    INPUT f = FILE DO {
+        WRITE f TO 'file:///home/user/loadedfile.csv' APPEND;
+        WRITE CLIENT f TO '/home/user/loadedfile.txt';
+        WRITE CLIENT DIALOG f TO 'loadedfile';
+    }
+}
+```
 

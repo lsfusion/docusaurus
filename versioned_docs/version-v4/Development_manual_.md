@@ -3,19 +3,19 @@ title: 'Development (manual)'
 ---
 
 
-:::note
+:::info
 To install the application server, IDE, and client, Java version 8 or later must first be installed on the computer.
 :::
 
 
-:::note
+:::info
 For the application server to work, it must have access to the PostgreSQL database management server of at least version 9.6. The PostgreSQL server must accept connections using password authentication by the md5 or trust method. You can configure authorization by editing the pg\_hba.conf file, as described in the PostgreSQL [documentation](http://www.postgresql.org/docs/9.2/static/auth-pg-hba-conf.html).
 :::
 
 ### Installing the IDE Plugin
 
 
-:::note
+:::info
 To install the plug-in, Intellij IDEA version 2020.1 or higher must be installed on the computer.
 :::
 
@@ -26,7 +26,7 @@ To install the plug-in, Intellij IDEA version 2020.1 or higher must be installed
 -   When [creating a new lsFusion project](IDE.md#newproject) click the Download button opposed to the lsFusion library: IDEA automatically downloads the JAR file of the latest (non-beta) version of the lsFusion server from the [central server](https://download.lsfusion.org/java) and installs this file as a dependency of this project (or rather, as its only module: File → Project Structure → Modules → project name → Dependencies tab). Also, if necessary, you can download another version of the server (different from the latest) or select a previously downloaded server JAR file on the local disk.  
 
 
-:::note
+:::info
 Note that IDEA remembers the downloaded/specified application server file in its settings and automatically sets it when creating other lsFusion projects. 
 :::
 
@@ -44,7 +44,7 @@ Note that IDEA remembers the downloaded/specified application server file in its
 -   Create a [startup configuration](IDE.md#configuration) (when creating a new lsFusion project, this and the upper two sections are done automatically). If the platform is loaded as a library, instead of creating a configuration you can use a Spring bean with the logicsInstance ID from the lsfusion.xml configuration file, and its start() and stop() methods, responsible for starting and stopping the application server, respectively.
 
 
-:::note
+:::info
 For an existing maven project, server installation and loading can (and should) be done differently (see below). 
 :::
 
@@ -79,6 +79,6 @@ For an existing maven project, server installation and loading can (and should) 
     As for other projects not created using the operation for creating a new lsFusion project, for a maven project you must manually create a [settings file](Launch_parameters.md#filesettings-broken) and a [startup configuration](IDE.md#configuration) (or, if the platform needs to be loaded as a library, use a [special Spring bean](#bean-broken))
 
 
-:::note
+:::info
 If working with a large project, and [metacodes](Metaprogramming.md) are actively being used in it (such as [ERP](https://github.com/lsfusion-solutions/erp)), it is recommended that in the IDEA startup parameters (idea.exe.vmoptions or idea64.exe.vmoptions) the Xmx be increased to at least 2gb.
 :::

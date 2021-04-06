@@ -7,7 +7,7 @@ title: 'Группировка (GROUP)'
 Группы в этом операторе задаются как множество свойств (*группировок*), порядок задается как список свойств и признак возрастания или убывания. Если агрегирующая функция не [коммутативна](Set_operations.md#commutative-broken), то порядок должен быть однозначно определяемым. 
 
 
-:::note
+:::info
 Однозначно определяемого порядка можно гарантированно добиться, если при задании порядка, например, указать идентификаторы всех объектов, для которых выполняется группировка
 :::
 
@@ -22,6 +22,20 @@ title: 'Группировка (GROUP)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Game;
+CLASS Team;
+hostGoals = DATA INTEGER (Game);
+hostTeam = DATA Team (Game);
+hostGoalsScored(team) = GROUP SUM hostGoals(Game game) BY hostTeam(game);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=group"/>
+name = DATA STRING[100] (Country);
+countryName = GROUP AGGR Country country WHERE country IS Country BY name(country); // получается свойство (STRING[100]) -> Country
+
+CLASS Book;
+CLASS Tag;
+name = DATA STRING[100] (Tag);
+in = DATA BOOLEAN (Book, Tag);
+
+tags(Book b) = GROUP CONCAT name(Tag t) IF in(b, t), ', ' ORDER name(t), t;
+```

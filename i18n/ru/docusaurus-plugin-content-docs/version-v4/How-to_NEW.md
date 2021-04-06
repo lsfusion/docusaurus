@@ -8,15 +8,30 @@ title: 'How-to: NEW'
 
 Есть заказ, с заданной датой и покупателем.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Order 'Заказ';
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNew&block=sample1"/>
+CLASS Customer 'Покупатель';
+name = DATA ISTRING[50] (Customer);
+
+date 'Дата' = DATA DATE (Order);
+
+customer 'Покупатель' = DATA Customer (Order);
+nameCustomer 'Покупатель' (Order o) = name(customer(o));
+```
 
 Нужно создать действие, которое создаст новый заказ на основе заданного.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNew&block=solution1"/>
+```lsf
+copyOrder 'Копировать' (Order o)  {
+    NEW n = Order {
+        date(n) <- date(o);
+        customer(n) <- customer(o);
+    }
+}
+```
 
 ## Пример 2
 
@@ -24,10 +39,32 @@ import {CodeSample} from './CodeSample.mdx'
 
 Аналогично **Примеру 1**, но для заказа заданы строки заказов.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNew&block=sample2"/>
+```lsf
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[50] (Book);
+
+CLASS OrderDetail 'Строка заказа';
+order 'Заказ' = DATA Order (OrderDetail) NONULL DELETE;
+book 'Книга' = DATA Book (OrderDetail);
+nameBook 'Книга' (OrderDetail d) = name(book(d));
+
+price 'Цена' = DATA NUMERIC[14,2] (OrderDetail);
+```
 
 Нужно создать действие, которое создаст новый заказ на основе выбранного, с идентичными строками.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNew&block=solution2"/>
+```lsf
+copyDetail (Order o)  {
+    NEW n = Order {
+        date(n) <- date(o);
+        customer(n) <- customer(o);
+        FOR order(OrderDetail od) == o NEW nd = OrderDetail DO {
+            order(nd) <- n;
+            book(nd) <- book(od);
+            price(nd) <- price(od);
+        }
+    }
+}
+```

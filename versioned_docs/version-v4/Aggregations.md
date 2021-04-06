@@ -14,6 +14,20 @@ To create aggregations, use the [operator**AGGR**](AGGR_operator.md).
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A; CLASS B; CLASS C;
+f = DATA INTEGER (A, B);
+c = AGGR C WHERE f(A a, B b) MATERIALIZED INDEXED;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=AggregationSample&block=aggr"/>
+CLASS AB;
+ab = AGGR AB WHERE A a IS A AND B b IS B; // for each A B pair creates an object AB
+
+CLASS Shipment 'Delivery';
+date = ABSTRACT DATE (Shipment);
+CLASS Invoice 'Invoice';
+createShipment 'Create delivery' = DATA BOOLEAN (Invoice);
+date 'Shipment date' = DATA DATE (Invoice);
+CLASS ShipmentInvoice 'Delivery by invoice' : Shipment;
+shipment(Invoice invoice) = AGGR ShipmentInvoice WHERE createShipment(invoice); // creating a delivery by invoice, if the option for delivery creation is defined for the invoice
+date(ShipmentInvoice si) += sum(date(invoice(si)),1); // delivery date = invoice date + 1
+```

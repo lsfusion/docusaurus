@@ -28,6 +28,6 @@ When you open a form, you can pass a value for each of its objects from the call
 By default, all passed values of objects must be defined (not **NULL**);** **otherwise the action will not be executed and will simply transfer control to the next action. However, in the interactive view, the developer can change this behavior using the corresponding option (that is, allowing **NULL** values). In this case (as in the case when no object is passed at all), the [default object](Interactive_view.md#defaultobject) will be selected as the current object. 
 
 
-:::note
+:::info
 It is worth noting that passing objects in the interactive view is basically the same as the [object seek](Search_SEEK_.md) operation after the form is opened. In this case, the passed objects are the seek objects, and the [seek direction](Search_SEEK_.md#direction) is determined by the default object type (**PREV** here is equivalent to **FIRST**).
 :::

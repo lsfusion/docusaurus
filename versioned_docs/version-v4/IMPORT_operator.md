@@ -41,7 +41,7 @@ If * *the format of the imported file* *is not specified, it is determined aut
   
 
 
-:::note
+:::info
 The first passed file is used to automatically determine a flat file format by its extension
 :::
 
@@ -147,8 +147,85 @@ Keyword. Specifies that **NULL** values during import (if the imported format 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+import()  {
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=import"/>
+    LOCAL xlsFile = EXCELFILE ();
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=importForm"/>
+    LOCAL field1 = BPSTRING[50] (INTEGER);
+    LOCAL field2 = BPSTRING[50] (INTEGER);
+    LOCAL field3 = BPSTRING[50] (INTEGER);
+    LOCAL field4 = BPSTRING[50] (INTEGER);
+
+    LOCAL headField1 = BPSTRING[50] ();
+    LOCAL headField2 = BPSTRING[50] ();
+
+    INPUT f = EXCELFILE DO {
+        IMPORT XLS SHEET 2 FROM f TO field1 = C, field2, field3 = F, field4 = A;
+        IMPORT XLS SHEET ALL FROM f TO field1 = C, field2, field3 = F, field4 = A;
+
+        FOR imported(INTEGER i) DO { // imported property - a system property for iterating data
+            MESSAGE 'field1 value = ' + field1(i);
+            MESSAGE 'field2 value = ' + field2(i);
+            MESSAGE 'field3 value = ' + field3(i);
+            MESSAGE 'field4 value = ' + field4(i);
+       }
+    }
+
+    LOCAL t = FILE ();
+    EXTERNAL SQL 'jdbc:postgresql://localhost/test?user=postgres&password=12345' EXEC 'SELECT x.a,x.b,x.c,x.d FROM orders x WHERE x.id = $1;' PARAMS '4553' TO t;
+    IMPORT FROM t() FIELDS INTEGER a, DATE b, BPSTRING[50] c, BPSTRING[50] d DO        // import with FIELDS option
+        NEW o = Order {
+            number(o) <- a;
+            date(o) <- b;
+            customer(o) <- c;
+            currency(o) <- GROUP MAX Currency currency IF name(currency) = d; // finding currency with this name
+        }
+
+
+    INPUT f = FILE DO
+        IMPORT CSV '*' HEADER CHARSET 'utf-8' FROM f TO field1 = C, field2, field3 = F, field4 = A;
+    INPUT f = FILE DO
+        IMPORT XML ATTR FROM f TO field1, field2;
+    INPUT f = FILE DO
+        IMPORT XML ROOT 'element' ATTR FROM f TO field1, field2;
+    INPUT f = FILE DO
+        IMPORT XML ATTR FROM f TO() headField1, headField2;
+
+    INPUT f = FILE DO
+        INPUT memo = FILE DO
+            IMPORT DBF MEMO memo FROM f TO field1 = 'DBFField1', field2 = 'DBFField2';
+}
+```
+
+```lsf
+
+date = DATA DATE (INTEGER);
+sku = DATA BPSTRING[50] (INTEGER);
+price = DATA NUMERIC[14,2] (INTEGER);
+order = DATA INTEGER (INTEGER);
+FORM import
+    OBJECTS o = INTEGER // orders
+    OBJECTS od = INTEGER // order lines
+    PROPERTIES (o) dateOrder = date // importing the date from the dateOrder field
+    PROPERTIES (od) sku = sku, price = price // importing product quantity from sku and price fields
+    FILTERS order(od) = o // writing the top order to order
+
+;
+
+importForm()  {
+    INPUT f = FILE DO {
+        IMPORT import JSON FROM f;
+        SHOW import; // showing what was imported
+
+        // creating objects in the database
+        FOR DATE date = date(INTEGER io) NEW o = Order DO {
+            date(o) <- date;
+            FOR order(INTEGER iod) = io NEW od = OrderDetail DO {
+                price(od) <- price(iod);
+                sku(od) <- GROUP MAX Sku sku IF name(sku) = sku(iod); // finding sku with this name
+            }
+        }
+    }
+}
+```

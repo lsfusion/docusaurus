@@ -35,9 +35,16 @@ An expression whose value is a condition for the generated event.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// when adding a client, by default, give him the specified discount
+defaultDiscount = DATA NUMERIC[6,2] ();
+discount = DATA NUMERIC[6,2] (Customer);
+discount(Customer c) <- defaultDiscount() WHEN SET(c IS Customer);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=setwhen"/>
+quantity = DATA NUMERIC[10,2] (OrderDetail);
+price = DATA NUMERIC[10,2] (OrderDetail);
+sum = DATA NUMERIC[10,2] (OrderDetail);
 
-**  
-**
+sum(OrderDetail d) <- quantity(d) * price(d) WHEN CHANGED(quantity(d)) OR CHANGED(price(d));
+```
+

@@ -32,9 +32,16 @@ title: 'Оператор MULTI'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+nameMulti (Human h) = MULTI 'Male' IF h IS Male, 'Female' IF h IS Female;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=multi"/>
+CLASS Ledger;
+CLASS InLedger : Ledger;
+quantity = DATA INTEGER (InLedger);
 
-**  
-**
+CLASS OutLedger : Ledger;
+quantity = DATA INTEGER (OutLedger);
+
+signedQuantity (Ledger l) = MULTI quantity[InLedger](l), quantity[OutLedger](l);
+```
+

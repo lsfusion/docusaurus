@@ -11,6 +11,13 @@ The syntax of the exit statement is described by [the **RETURN** operator](RET
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+importFile  {
+    LOCAL file = FILE ();
+    INPUT f = FILE DO {
+        file () <- f;
+    }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=return"/>
+    IF NOT file() THEN RETURN;
+}
+```

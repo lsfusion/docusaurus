@@ -20,12 +20,12 @@ Each object on the form has a *current value* at any time. It changes either as
 After defining objects, you can add properties and actions to the form, passing these objects to them as arguments.
 
 
-:::note
+:::info
 Adding actions is relevant only for [interactive](Interactive_view.md) view. In [static](Static_view.md) view added actions are ignored.
 :::
 
 
-:::note
+:::info
 The behavior of properties and actions in the context of their display on the form is absolutely identical, therefore, in the rest of this section, we will use only the term property (the behavior for actions is completely similar).
 :::
 
@@ -68,6 +68,54 @@ To create a new form and define its structure, the [**FORM** instruction](FORM_i
 
  
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Document;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=FormSample&block=form"/>
+// declaring the Documents form
+FORM documents 'Documents'
+    OBJECTS d = Document // Adding one object of the Document class. The object will be available by this name in the DESIGN, SHOW, EXPORT, DIALOG, etc. operators.
+
+
+    // ... adding properties and filters to the form
+
+    LIST Document OBJECT d // marking that this form should be used when it is necessary to select a document, while the d object should be used as a return value
+;
+
+CLASS Item;
+
+// declaring the Product form
+FORM item 'Product'
+    OBJECTS i = Item PANEL // adding an object of the Item class and marking that it should be displayed in the panel (i.e., only one value is visible)
+
+    // ... adding properties and filters to the form
+
+    EDIT Item OBJECT i // marking that this form should be used when it is necessary to add or edit a product
+;
+
+// declaring a form with a list of Products
+FORM items 'Products'
+    OBJECTS i = Item
+
+    // ... adding properties and filters to the form
+
+    PROPERTIES(i) NEWSESSION NEW, EDIT // adding buttons that will create and edit the product using the item form
+;
+
+CLASS Invoice;
+CLASS InvoiceDetail;
+
+// declaring the invoice print form
+FORM printInvoice
+    OBJECTS i = Invoice // adding an object of the invoice class for which printing will be executed
+
+    // ... adding properties and filters to the form
+;
+
+// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+EXTEND FORM printInvoice
+    OBJECTS d = InvoiceDetail // adding invoice lines, each of which will be used in the report as a detail
+
+    // ... adding properties and filters to the form
+;
+print (Invoice invoice)  { PRINT printInvoice OBJECTS i = invoice; } // declaring an action that will open the invoice print form
+```

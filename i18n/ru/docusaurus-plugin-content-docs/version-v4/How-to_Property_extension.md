@@ -6,24 +6,44 @@ title: 'How-to: Расширение свойств'
 
 Создаем абстрактный класс **Shape** с абстрактным свойством **square** :
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCasePropertyShape&block=shape"/>
+```lsf
+CLASS ABSTRACT Shape;
+square 'Площадь' = ABSTRACT DOUBLE (Shape);
+```
 
 Создаем классы **Rectangle **и **Circle**, который наследуется от **Shape** :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCasePropertyShape&block=concrete"/>
+```lsf
+CLASS Rectangle : Shape;
+width 'Ширина' = DATA DOUBLE (Rectangle);
+height 'Высота' = DATA DOUBLE (Rectangle);
+
+CLASS Circle : Shape;
+radius 'Радиус окружности' = DATA DOUBLE (Circle);
+```
 
 Определяем реализацию абстрактного свойства **square **для созданных классов :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCasePropertyShape&block=extendsimple"/>
+```lsf
+square(rectangle) += width(rectangle) * height(rectangle);
+square(circle) += radius(circle) * radius(circle) * 3.14;
+```
 
 Предположим, необходимо сделать таким образом, чтобы в определенных случаях можно было переопределить способ расчета площади для класса **Circle**. В таком случае, в строке с определением реализации площади для окружности можно вставить своеобразную "точку входа" в виде абстрактного свойства, реализацию которого можно изменить в другом модуле :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCasePropertyShape&block=extendover"/>
+```lsf
+overSquareCircle 'Перегруженная площадь' = ABSTRACT DOUBLE (Circle);
+square(circle) += OVERRIDE overSquareCircle(circle), (radius(circle) * radius(circle) * 3.14);
+```
 
 Если ни в одном модуле свойство **overSquareCircle** не будет реализовано, то его значение всегда будет равно **NULL** и будет использоваться базовый механизм расчета площади. Для изменения же расчета можно в некотором модуле **MyShape** задать иную реализацию, которая и будет использоваться :
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCasePropertyMyShape"/>
+```lsf
+MODULE MyShape;
+
+REQUIRE Shape;
+
+overSquareCircle (circle) += radius(circle) * radius(circle) * 3.14159265359; // используем формулу с более высокой точностью
+```
 
 Следует отметить, что вместо [оператора OVERRIDE](OVERRIDE_operator.md) можно использовать любые другие выражения. В частности, наиболее часто используемыми могут быть [операторы (+) и (-)](Arithmetic_operators_+_-_..._.md).

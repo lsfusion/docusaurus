@@ -47,9 +47,20 @@ List of parent class names. Each name is defined by a [composite ID](IDs.md#cid
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Document; // The caption of this class will be 'Document'
+CLASS IncomeDocument 'Income' : Document;
+CLASS OutcomeDocument 'Expenses' : Document;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=class"/>
+CLASS Person;
+CLASS Worker;
+CLASS Musician : Person, Worker; // multiple inheritance
 
-**  
-**
+CLASS Barcode 'Barcode'; // The parent class of Barcode will be the System.Object class
+
+CLASS PrintOrientation {
+    portrait 'Portrait',
+    landscape 'Landscape'
+}
+```
+

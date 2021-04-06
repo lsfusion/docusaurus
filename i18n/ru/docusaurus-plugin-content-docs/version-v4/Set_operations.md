@@ -34,13 +34,30 @@ sidebar_label: Обзор
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A;
+d = DATA INTEGER (A);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=PropertySample&block=set"/>
+f (b) = GROUP SUM 1 IF d(a) < b;
+messageF  { MESSAGE f(5); } // успешно выполнится
 
-**  
-**
+g = GROUP SUM f(b);
+messageG  { MESSAGE g(); } // f(b) не NULL для бесконечного числа b, платформа выдаст ошибку
+
+FORM f
+    OBJECTS d=DATE
+;
+
+printFWithD { PRINT f OBJECTS d=currentDate(); } // успешно выполнится
+
+printFWithoutD { PRINT f; } // фильтра для дат нет, а d IS DATE не NULL для бесконечного числа d, платформа выдаст ошибку
+```
+
 
 Существует несколько нетривиальных случаев, когда операция является корректной, но платформа не может это определить. Например, если единственным ограничивающим условием на параметр является вхождение его в диапазон:
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=PropertySample&block=set2"/>
+```lsf
+hs = GROUP SUM 1 IF (a AS INTEGER) >= 4 AND a <= 6;
+messageHS  { MESSAGE hs(); } // теоретически должна выдать 3, но платформа все равно выдаст ошибку
+hi = GROUP SUM 1 IF iterate(a, 4, 6); // workaround: для работы с интервалами можно использовать свойство iterate (оно в свою очередь реализуется через рекурсию)
+```

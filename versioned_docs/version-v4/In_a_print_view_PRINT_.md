@@ -21,7 +21,7 @@ Apart from the export in a specified format, the print view allows to display in
 Similarly to the [interactive view](In_an_interactive_view_SHOW_DIALOG_.md), the interactive modes of the print view enable the developer to set options for  [flow management](In_an_interactive_view_SHOW_DIALOG_.md#flow) and [form location](In_an_interactive_view_SHOW_DIALOG_.md#location) (their behavior is identical to the corresponding options in the form opening operator in the interactive view).
 
 
-:::note
+:::info
 Сurrent implementation: in the **MESSAGE** mode, the form is always shown as a window (the "asynchronous window" option is not supported in this case); in the asynchronous **PREVIEW** mode the form is always shown as a tab; in the synchronous **PREVIEW** mode - as a window. The **NOPREVIEW** mode is always asynchronous and the form location in it does not make sense (since no forms are shown to the user directly)
 :::
 
@@ -31,6 +31,29 @@ To open the form in the print view, [**PRINT** operator](PRINT_operator.md) is
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM printOrder
+    OBJECTS o = Order
+    PROPERTIES(o) currency, customer
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=print"/>
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) idSku, price
+    FILTERS order(d) == o
+;
+
+print (Order o)  {
+    PRINT printOrder OBJECTS o = o; // printing
+
+    LOCAL file = FILE ();
+    PRINT printOrder OBJECTS o = o DOCX TO file;
+    open(file());
+
+    //v 2.0-2.1 syntax
+    LOCAL sheetName = STRING[255]();
+    sheetName() <- 'encrypted';
+    PRINT printOrder OBJECTS o = o XLS SHEET sheetName PASSWORD 'pass';
+
+    //v 2.2 syntax
+    //PRINT printOrder OBJECTS o = o XLS SHEET 'encrypted' PASSWORD 'pass';
+}
+```

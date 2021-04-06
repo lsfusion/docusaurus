@@ -10,6 +10,10 @@ The interrupt operator syntax is described by the [**BREAK** operator](BREAK_ope
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=break"/>
+```lsf
+testBreak ()  {
+    FOR iterate(INTEGER i, 1, 100) DO {
+        IF i == 50 THEN BREAK; // will only come up to 50
+    }
+}
+```

@@ -20,9 +20,10 @@ title: 'Операторы AND, OR, NOT, XOR'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+likes = DATA BOOLEAN (Person, Person);
+likes(Person a, Person b, Person c) = likes(a, b) AND likes(a, c);
+outOfInterval1(value, left, right) = value < left OR value > right;
+outOfInterval2(value, left, right) = NOT (value >= left AND value <= right);
+```
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=aonx"/>
-
-**  
-**

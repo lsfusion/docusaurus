@@ -21,9 +21,12 @@ title: 'Оператор MAX'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date1 = DATA DATE(INTEGER);
+date2 = DATA DATE(INTEGER);
+maxDate (INTEGER i) = MAX date1(i), date2(i);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=max"/>
+balance = DATA INTEGER (Item);
+outcome 'Остаток (неотрицательный)' (Item i) = MAX balance(i), 0;
+```
 
-**  
-**

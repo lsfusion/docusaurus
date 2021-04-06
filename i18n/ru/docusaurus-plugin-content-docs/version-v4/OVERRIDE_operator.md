@@ -21,9 +21,14 @@ title: 'Оператор OVERRIDE'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Group;
+markup = DATA NUMERIC[8,2] (Group);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=override"/>
+markup = DATA NUMERIC[8,2] (Book);
+group = DATA Group (Book);
+overMarkup (Book b) = OVERRIDE markup(b), markup(group(b));
 
-**  
-**
+notNullDate (INTEGER i) = OVERRIDE date(i), 2010_01_01;
+```
+

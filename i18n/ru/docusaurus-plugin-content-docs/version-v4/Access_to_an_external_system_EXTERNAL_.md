@@ -44,7 +44,7 @@ title: 'Обращение к внешней системе (EXTERNAL)'
 В свою очередь, если ответ запроса имеет тип multipart/\* или application/x-www-form-urlencoded, то он разбирается на части, и каждая из этих частей считается отдельным результатом выполнения. При этом порядок этих результатов совпадает с порядком соответствующих частей в ответе запроса.
 
 
-:::note
+:::info
 Отметим, что обработка параметров и результатов http запроса во многом аналогична их обработке в [обращении из внешней системы](Access_from_an_external_system.md) по протоколу HTTP (параметры при этом обрабатываются как результаты, и, наоборот, результаты обрабатываются как параметры)
 :::
 
@@ -74,7 +74,7 @@ title: 'Обращение к внешней системе (EXTERNAL)'
 По умолчанию этот тип взаимодействия реализуется по протоколу HTTP с использованием соответствующих интерфейсов обращений [к](#http-broken) и [из](Access_from_an_external_system.md#http-broken) внешней системы.
 
 
-:::note
+:::info
 Также для обращения к внешним системам можно использовать операторы [записи](Write_file_WRITE_.md) и [чтения](Read_file_READ_.md) файлов (в том случае, если интерфейсом такого взаимодействия является обмен файлами).
 :::
 
@@ -84,6 +84,31 @@ title: 'Обращение к внешней системе (EXTERNAL)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testExportFile = DATA FILE ();
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=external"/>
+externalHTTP()  {
+    EXTERNAL HTTP GET 'https://www.cs.cmu.edu/~chuck/lennapg/len_std.jpg' TO exportFile;
+    open(exportFile());
+
+    EXTERNAL HTTP 'http://tryonline.lsfusion.org/exec?action=getExamples' PARAMS JSONFILE('\{"mode"=1\}') TO exportFile; // фигурные скобки escape'ся так как используются в интернационализации
+    IMPORT FROM exportFile() FIELDS () TEXT caption, TEXT code DO
+        MESSAGE 'Example : ' + caption + ', code : ' + code;
+
+    EXTERNAL HTTP 'http://tryonline.lsfusion.org/exec?action=doSomething&someprm=$1' BODYURL 'otherprm=$2&andonemore=$3' PARAMS 1,2,'3'; // передает в BODY url-encoded второй и третий параметры
+}
+externalSQL ()  {
+    EXPORT TABLE FROM bc=barcode(Article a) WHERE name(a) LIKE '%Мясо%'; // получаем все штрих-коды товаров с именем мясо
+    EXTERNAL SQL 'jdbc:mysql://$1/test?user=root&password=' EXEC 'select price AS pc, articles.barcode AS brc from $2 x JOIN articles ON x.bc=articles.barcode' PARAMS 'localhost',exportFile() TO exportFile; // читаем цены для считанных штрих-кодов
+
+    // для всех товаров с полученными штрих-кодами записываем цены
+    LOCAL price = INTEGER (INTEGER);
+    LOCAL barcode = STRING[30] (INTEGER);
+    IMPORT FROM exportFile() TO price=pc,barcode=brc;
+    FOR barcode(Article a) = barcode(INTEGER i) DO
+        price(a) <- price(i);
+}
+externalLSF()  {
+    EXTERNAL LSF 'http://localhost:7651' EXEC 'System.testAction[]';
+};
+```

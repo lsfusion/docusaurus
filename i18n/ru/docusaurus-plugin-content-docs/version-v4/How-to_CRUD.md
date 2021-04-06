@@ -8,15 +8,27 @@ title: 'How-to: CRUD'
 
 Есть множество предопределенных типов книг.
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=sample1"/>
+```lsf
+CLASS Type 'Тип' {
+    novel 'Роман',
+    thriller 'Триллер',
+    fiction 'Фантастика'
+}
+name 'Наименование' (Type g) = staticCaption(g) IF g IS Type;
+```
 
 Необходимо создать форму для выбора типа из списка.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=solution1"/>
+```lsf
+FORM types 'Список типов'
+    OBJECTS g = Type
+    PROPERTIES(g) READONLY name
+
+    LIST Type OBJECT g
+;
+```
 
 Конструкция *DIALOG* обозначает, что данная форма будет использоваться при необходимости выбора списка типов (например, при попытке изменения типа для книги).
 
@@ -26,10 +38,13 @@ import {CodeSample} from './CodeSample.mdx'
 
 Есть набор книг с заданными наименованиями.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=sample2"/>
+```lsf
+CLASS Book 'Книга';
+name 'Наименование' = DATA ISTRING[30] (Book) IN id;
+```
 
 
-:::note
+:::info
 Следует отметить, что все свойства **name** рекомендуется добавлять в группу **id**. Значения этого свойства будут идентифицировать объект в случае нарушения ограничения. Также оно будет добавлено на автоматические формы, если для класса не будут заданы формы редактирования и выбора.
 :::
 
@@ -39,7 +54,26 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=solution2"/>
+```lsf
+FORM book 'Книга' // форма для отображения "карточки" книги
+    OBJECTS b = Book PANEL
+    PROPERTIES(b) name
+
+    EDIT Book OBJECT b
+;
+
+FORM books 'Книги'
+    OBJECTS b = Book
+    PROPERTIES(b) READONLY name
+    PROPERTIES(b) NEWSESSION NEW, EDIT, DELETE
+
+    LIST Book OBJECT b
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 ## Пример 3
 
@@ -47,12 +81,39 @@ import {CodeSample} from './CodeSample.mdx'
 
 Есть набор жанров книг с заданными наименованиями.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=sample3"/>
+```lsf
+CLASS Genre 'Жанр';
+name 'Наименование' = DATA ISTRING[30] (Genre);
+```
 
 Необходимо создать форму со списком жанров, с возможностью их добавления, редактирования и удаления, и отдельную форму для выбора без такой возможности.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseCRUD&block=solution3"/>
+```lsf
+FORM genre 'Жанр'
+    OBJECTS g = Genre PANEL
+    PROPERTIES(g) name
+
+    EDIT Genre OBJECT g
+;
+
+FORM genres 'Жанры'
+    OBJECTS g = Genre
+    PROPERTIES(g) READONLY name
+    PROPERTIES(g) NEWSESSION NEW, EDIT, DELETE
+;
+
+FORM dialogGenre 'Жанры'
+    OBJECTS g = Genre
+    PROPERTIES(g) READONLY name
+
+    LIST Genre OBJECT g
+;
+
+NAVIGATOR {
+    NEW genres;
+}
+```
 
 Такая схема (с тремя формами, вместо двух) наиболее подходит для того, чтобы отключить возможность редактирования жанров при их выборе, с целью минимизировать вероятность случайного исправления пользователем информации о жанрах. В таком случае, изменять жанры можно только на специальной форме.

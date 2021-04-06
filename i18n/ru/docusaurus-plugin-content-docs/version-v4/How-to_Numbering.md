@@ -4,29 +4,58 @@ title: 'How-to: Нумерация'
 
 Предположим есть некоторый набор книг. Для каждой из них определяется номер как целое число.
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNumerating&block=numbermaster"/>
+```lsf
+CLASS Book 'Книга';
+number 'Номер' = DATA INTEGER (Book) IN id;
+name 'Название' = DATA ISTRING[50] (Book) IN id;
+```
 
 Реализуем свойство, которое будет по номеру находить книгу. Оно может быть полезно, например, при импорте данных, в котором книга идентифицируется своим номером. При помощи него можно получать ссылку на объект книги, получив параметром ее номер.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNumerating&block=numberaggr"/>
+```lsf
+book (INTEGER number) = GROUP AGGR Book b BY number(b);
+
+bookExists (INTEGER number)  {
+    IF book(number) THEN
+        MESSAGE 'Книга с номером ' + number + ' существует. Ее название : ' + name(book(number));
+    ELSE
+        MESSAGE 'Книги с номером ' + number + ' не существует';
+}
+```
 
 Оператор [GROUP AGGR](Grouping_GROUP_.md) автоматически добавляет ограничение на уникальность номера. При попытки записать в базу данных повторный номер будет выдано сообщение об ошибке.
 
 Добавляем [событие](Events.md), которое будет автоматически проставлять книге номер, равный следующий за максимальным из существующих в базе данных.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNumerating&block=numbergenerate"/>
+```lsf
+WHEN SET(Book b IS Book) AND NOT number(b) DO {
+    number(b) <- (GROUP MAX number(Book bb)) (+) 1;
+}
+```
 
 Событие будет вызвано в момент сохранения создания книги в базу данных в той же транзакции.
 
 В некоторых ситуациях существует необходимость делать разную нумерацию для одного и того же объекта. Для этой цели можно добавить специальный класс **Numerator**.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNumerating&block=numerator"/>
+```lsf
+CLASS Numerator 'Нумератор';
+name 'Наименование' = DATA ISTRING[50] (Numerator) IN id;
+
+value = DATA INTEGER (Numerator);
+```
 
 В свойстве **value** будет храниться текущее значение нумератора, которое будет записываться в номер нужного объекта. Чтобы достичь этого, для объекта (например, заказ) задается ссылка на соответствующей нумератор. В момент создания объекта, если она задана, то нужно автоматически проставить номеру заказа текущее значение нумератора и увеличить его на один.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNumerating&block=numeratororder"/>
+```lsf
+CLASS Order 'Заказ';
+number 'Номер' = DATA INTEGER (Order) IN id;
+
+numerator 'Нумератор' = DATA Numerator (Order);
+WHEN CHANGED(numerator(Order o)) AND NOT CHANGED(number(o)) DO {
+    number(o) <- value(numerator(o));
+    value (Numerator n) <- value(n) (+) 1 WHERE n == numerator(o);
+}
+```
 
 В условии события проверяется на то, что номер не был изменен, чтобы не изменять его, если пользователь вручную задал номер (или он проставился при импорте).
 
@@ -34,4 +63,9 @@ import {CodeSample} from './CodeSample.mdx'
 
 Для того, чтобы пользователю не приходилось постоянно выбирать нумератор для заказа, можно ввести свойство без входов, которое будет указывать на нумератор по умолчанию. После этого добавить событие, которое будет автоматически проставлять нумератор, в случае если пользователь не выбрал его вручную.
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNumerating&block=numeratororderdefault"/>
+```lsf
+defaultNumerator 'Нумератор по умолчанию' = DATA Numerator();
+
+WHEN SET(Order o IS Order) AND NOT CHANGED(numerator(o)) DO
+    numerator(o) <- defaultNumerator();
+```

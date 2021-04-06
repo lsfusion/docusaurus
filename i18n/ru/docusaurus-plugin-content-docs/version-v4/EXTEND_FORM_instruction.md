@@ -29,8 +29,19 @@ title: 'Инструкция EXTEND FORM'
 ### Пример
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ItemGroup;
+name = DATA ISTRING[100] (ItemGroup);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=FormSample&block=extendform"/>
+itemGroup = DATA ItemGroup (Item);
+
+EXTEND FORM items
+    PROPERTIES(i) NEWSESSION DELETE // добавляем на форму кнопку удаления
+
+    OBJECTS g = ItemGroup BEFORE i // добавляем на форму объект группы товаров перед товаром
+    PROPERTIES(g) READONLY name
+    FILTERS itemGroup(i) == g // если бы объект был добавлен после объекта с товарами, то фильтрация шла бы по группе товаров, а не по товарам
+;
+```
 
   

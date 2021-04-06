@@ -149,15 +149,57 @@ If the parameter classes of a property (action) are not explicitly specified, th
 #### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+MODULE ResolveA;
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ResolveASample"/>
+CLASS A;
+CLASS B : A;
+CLASS C : B;
+
+f = DATA INTEGER (A);
+f = DATA INTEGER (C);
+
+META defineSmth(prm1)
+    x = DATA INTEGER (prm1);
+END
+
+META defineSmth(prm1, prm2)
+    x = DATA INTEGER (prm1, prm2);
+END
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ResolveBSample"/>
+```lsf
+MODULE ResolveB;
+
+REQUIRE ResolveA;
+
+f = DATA INTEGER (B);
+
+h(C c) = f(c); // will find the upper declaration - ResolveB.f[B]
+j(C c) = ResolveA.f(c); // will find the declaration in ResolveA - ResolveA.f[C]
+z(C c) = f[A](c); // will find the declaration in ResolveA - ResolveA.f[A]
+
+test(C c, A a) {
+    LOCAL f = INTEGER (B);
+
+    f(c) <- 1; // will find the upper declaration - f[B]
+    MESSAGE f(a); // will find the upper declaration - f[B]
+    ResolveB.f(c) <- 1; // will find the upper declaration in ResolveB - ResolveB.f[B]
+}
+```
 
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ResolveCSample"/>
+```lsf
+MODULE ResolveC;
 
-**  
-**
+REQUIRE ResolveB, ResolveA;
+
+NAMESPACE ResolveA;
+
+x(B b) = f(b); // will find the declaration in ResolveA - ResolveA.f[A]
+y(B b) = ResolveB.f(b); // will find the declaration in ResolveA - ResolveB.f[B]
+
+@defineSmth(A, B); // will find the declaration in ResolveA - ResolveA.defineSmth(prm1, prm2)
+```
+

@@ -16,7 +16,7 @@ title: 'Инструкция EXTEND CLASS'
 
 ### Описание
 
-Инструкция **EXTEND CLASS** расширяет существующий [пользовательский класс](Static_objects.md) дополнительными родительскими классами и новыми [статическими объектами](User_classes.md). Расширять можно в том числе и [абстрактные классы](Static_objects.md#abstract), добавляя им родительские классы.
+Инструкция **EXTEND CLASS** расширяет существующий [пользовательский класс](User_classes.md) дополнительными родительскими классами и новыми [статическими объектами](Static_objects.md). Расширять можно в том числе и [абстрактные классы](User_classes.md#abstract), добавляя им родительские классы.
 
 ### Параметры
 
@@ -39,8 +39,21 @@ title: 'Инструкция EXTEND CLASS'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Shape;
+CLASS Box : Shape;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=extendclass"/>
+CLASS Quadrilateral;
+EXTEND CLASS Box : Quadrilateral; // Добавляем наследование
+
+CLASS ShapeType {
+	point 'Точка',
+	segment 'Отрезок'
+}
+
+EXTEND CLASS ShapeType { // Добавляем статический объект
+	circle 'Окружность'
+}
+```
 
   

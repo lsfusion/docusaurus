@@ -9,7 +9,7 @@ title: 'Изменение свойства (CHANGE)'
 В общем случае записываемое свойство должно быть [первичным](Data_properties_DATA_.md), однако в платформе также допускается запись в свойства, созданные при помощи оператора [выбора](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md). В этом случае для записываемого свойства определяется условие, которое выполняется в операторе выбора, при помощи которого это записываемое свойство создано, и запись идет в свойство результата, который соответствует этому условию. Соответственно, все свойства, в которые допускается запись, будем называть *изменяемыми*.
 
 
-:::note
+:::info
 Помимо вышеперечисленных, изменяемыми свойствами также являются свойства, созданные при помощи [оператора экстремума](Extremum_MAX_MIN_.md) и [логических операторов](Logical_operators_AND_OR_NOT_XOR_.md) (которые по сути являются разновидностями оператора выбора)
 :::
 
@@ -19,6 +19,26 @@ title: 'Изменение свойства (CHANGE)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// установить всем клиентам у кого сумма заказа больше 100 скидку в размере 15 процентов
+CLASS Customer;
+discount = DATA NUMERIC[5,2] (Customer);
+totalOrders = DATA NUMERIC[14,2] (Customer);
+setDiscount  {
+    discount(Customer c) <- 15 WHERE totalOrders(c) > 100;
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=assign"/>
+discount = DATA NUMERIC[5,2] (Customer, Item);
+in = DATA BOOLEAN (Item);
+// изменить скидку для выбранных товаров для клиента
+setDiscount (Customer c)  {
+    discount(c, Item i) <- 15 WHERE in(i);
+}
+
+// скопировать свойство g в свойство f
+f = DATA INTEGER (INTEGER);
+g = DATA INTEGER (INTEGER);
+copyFG  {
+    f(a) <- g(a);
+}
+```

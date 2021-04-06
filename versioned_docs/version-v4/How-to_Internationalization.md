@@ -6,9 +6,21 @@ The system supports  [internationalization](Internationalization.md) by passing
 
 We will declare logic in the usual way, but instead of specifying names explicitly, we will be using IDs.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Book '{use.case.i18n.book}';
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternationalization&block=sample1"/>
+name '{use.case.i18n.book.name}' = DATA STRING[40] (Book);
+price '{use.case.i18n.book.price}' = DATA STRING[40] (Book);
+
+FORM books '{use.case.i18n.books}'
+    OBJECTS b = Book
+    PROPERTIES(b) name, price, NEW, DELETE
+;
+
+NAVIGATOR {
+    NEW books;
+}
+```
 
 We will then create a new Resource Bundle and will save our Id values in different languages to it:
 
@@ -36,7 +48,12 @@ In this case, when the user logs in to the system again, everything will be show
 
 Ids can also be used in expressions:
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseInternationalization&block=sample2"/>
+```lsf
+description '{use.case.i18n.book.description}' (Book b) = STRING[60] (name(b) + ', {use.case.i18n.book.price} : ' + price(b));
+EXTEND FORM books
+    PROPERTIES(b) READONLY description
+;
+```
 
 Remember that such expressions cannot be used in [materializations](Materializations.md). 
 

@@ -40,8 +40,35 @@ A [context-dependent action operator](Action_operator.md#contextdependent) that 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNewSession ()  {
+    NEWSESSION {
+        NEW c = Currency {
+            name(c) <- 'USD';
+            code(c) <- 866;
+        }
+        APPLY;
+    }
+    // here a new object of class Currency is already in the database
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=newsession"/>
+    LOCAL local = BPSTRING[10] (Currency);
+    local(Currency c) <- 'Local';
+    NEWSESSION {
+        MESSAGE (GROUP SUM 1 IF local(Currency c) == 'Local'); // will return NULL
+    }
+    NEWSESSION NESTED (local) {
+        MESSAGE (GROUP SUM 1 IF local(Currency c) == 'Local'); // will return the number of objects of class Currency
+    }
+
+    NEWSESSION {
+        NEW s = Sku {
+            id(s) <- 1234;
+            name(s) <- 'New Sku';
+            SHOW sku OBJECTS s = s;
+        }
+    }
+
+}
+```
 
   

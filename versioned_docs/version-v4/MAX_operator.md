@@ -21,9 +21,12 @@ A list of [expressions](Expression.md) of which values the maximum is selected.
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+date1 = DATA DATE(INTEGER);
+date2 = DATA DATE(INTEGER);
+maxDate (INTEGER i) = MAX date1(i), date2(i);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=max"/>
+balance = DATA INTEGER (Item);
+outcome 'Balance (non-negative)' (Item i) = MAX balance(i), 0;
+```
 
-**  
-**

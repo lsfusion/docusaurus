@@ -56,9 +56,31 @@ title: 'Оператор ABSTRACT (д)'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+exportXls 'Выгрузить в Excel'  ABSTRACT CASE ( Order);         // В данном случае создается ABSTRACT CASE OVERRIDE LAST
+exportXls (Order o) + WHEN name(currency(o)) == 'USD' THEN {
+    MESSAGE 'Export USD not implemented';
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=abstract"/>
+CLASS Task;
+run 'Выполнить'  ABSTRACT ( Task);                           // ABSTRACT MULTI EXCLUSIVE
 
-**  
-**
+CLASS Task1 : Task;
+name = DATA STRING[100] (Task);
+run (Task1 t) + {
+    MESSAGE 'Run Task1 ' + name(t);
+}
+
+
+CLASS OrderDetail;
+price = DATA NUMERIC[14,2] (OrderDetail);
+
+CLASS InvoiceDetail;
+price = DATA NUMERIC[14,2] (InvoiceDetail);
+fill  ABSTRACT LIST ( OrderDetail, InvoiceDetail);   // ABSTRACT LIST LAST
+
+fill (OrderDetail od, InvoiceDetail id) + {
+    price(id) <- price(od);
+}
+```
+

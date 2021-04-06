@@ -21,9 +21,15 @@ title: 'Оператор EXCLUSIVE'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+background 'Цвет' (INTEGER i) = EXCLUSIVE RGB(255,238,165) IF i <= 5,
+                                                   RGB(255,160,160) IF i > 5;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=OperatorPropertySample&block=exclusive"/>
+CLASS Human;
 
-**  
-**
+CLASS Male : Human;
+CLASS Female : Human;
+
+name(Human h) = EXCLUSIVE 'Male' IF h IS Male, 'Female' IF h IS Female;
+```
+

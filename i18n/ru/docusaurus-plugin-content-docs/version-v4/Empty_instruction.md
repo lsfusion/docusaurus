@@ -15,8 +15,13 @@ title: 'Пустая инструкция'
 ### Пример
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Result {
+    yes 'Да',
+    no 'Нет'
+};  // точка с запятой здесь не нужна, но ее наличие не является ошибкой
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=empty"/>
+;;;; // это является допустимым кодом на lsFusion
+```
 
   

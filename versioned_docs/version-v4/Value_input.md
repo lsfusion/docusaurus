@@ -23,6 +23,6 @@ Value input often assumes the presence of a certain *initial* (previous) value t
 Also, in many cases (especially in property [change event](Form_events.md#property-broken) handlers), it is sometimes necessary to not just input value, but also to [write](Property_change_CHANGE_.md) this value to a certain property (as a rule, the one for which the change event handler is invoked. This is necessary to ensure WYSYWIG). In most cases, the changed property equals the initial value property. To make the implementation of such a scenario more convenient, you can specify a special option (**CHANGE**) in value input operators. This option will automatically add property change to the end of the main action. The changed property, in this case, will be the initial value property, and changed value — the input result (however, if necessary, the developer can specify changed property explicitly). It is worth noting that the described feature is nothing more than syntactic sugar, however, it allows to make the code a lot more concise and readable.
 
 
-:::note
+:::info
 In the current platform implementation, initial values and automatic change s are supported only for primitive input operators (**INPUT**) and dialog form opening ( **DIALOG** ).
 :::

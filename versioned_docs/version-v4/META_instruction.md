@@ -35,8 +35,16 @@ A sequence of  [instructions](Instructions.md) represented by a block of code. 
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+META objectProperties(object, type, caption)
+    object##Name 'Name'##caption = DATA BPSTRING[100](###object-broken); // capitalizing the first letter
+    object##Type 'Type'##caption = DATA type (###object-broken);
+    object##Value 'Cost'##caption = DATA INTEGER (###object-broken);
+END
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=meta"/>
+META objectProperties(object, type)
+    @objectProperties(object, type, '');
+END
+```
 
   

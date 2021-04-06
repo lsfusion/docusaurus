@@ -8,15 +8,33 @@ title: 'How-to: EXEC'
 
 We have a category of books for which a title, a numerical code, and a start date for sales are defined.
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Category 'Category';
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExec&block=sample1"/>
+name 'Name' = DATA ISTRING[50] (Category);
+id 'Code' = DATA INTEGER (Category);
+saleDate 'Sales start date' = DATA DATE (Category);
+```
 
 We need to create an action that creates 3 new predefined categories.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExec&block=solution1"/>
+```lsf
+createCategory 'Create category' (ISTRING[50] name, INTEGER id, DATE saleDate)  {
+    NEW c = Category {
+        name(c) <- name;
+        id(c) <- id;
+        saleDate(c) <- saleDate;
+    }
+}
+
+create3Categories 'Create 3 categories' ()  {
+    createCategory('Category 1', 1, 2010_02_14);
+    createCategory('Category 2', 2, 2011_03_08);
+    createCategory('Category 3', 3, 2014_07_01);
+}
+```
 
 ## Example 2
 
@@ -24,10 +42,24 @@ We need to create an action that creates 3 new predefined categories.
 
 Similar to **Example 1**, except that each category has a "parent".
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExec&block=sample2"/>
+```lsf
+parent 'Parent' = DATA Category (Category); // if the value is NULL, then there is no parent
+```
 
 We need to create an action that fills category depth for each category.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseExec&block=solution2"/>
+```lsf
+depth = DATA INTEGER (Category);
+fillDepth (Category c, INTEGER depth)  {
+    FOR parent(Category i) == c DO {
+        depth(i) <- depth;
+        fillDepth(i, depth + 1);
+    }
+}
+
+run()  {
+    fillDepth(NULL, 0);
+}
+```

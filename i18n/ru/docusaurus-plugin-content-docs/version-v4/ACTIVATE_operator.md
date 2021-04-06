@@ -30,8 +30,50 @@ title: 'Оператор ACTIVATE'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+//Форма с двумя закладками
+FORM myForm 'Моя форма'
+    OBJECTS u = CustomUser
+    PROPERTIES(u) name
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=activate"/>
+    OBJECTS c = Chat
+    PROPERTIES(c) name
+;
+
+DESIGN myForm {
+    NEW tabbedPane FIRST {
+        type = TABBED;
+        NEW contacts {
+            caption = 'Контакты';
+            MOVE BOX(u);
+        }
+        NEW recent {
+            caption = 'Последние';
+            MOVE BOX(c);
+        }
+    }
+}
+
+testAction()  {
+    ACTIVATE FORM myForm;
+    ACTIVATE TAB myForm.recent;
+}
+
+CLASS ReceiptDetail;
+barcode = DATA STRING[30] (ReceiptDetail);
+quantity = DATA STRING[30] (ReceiptDetail);
+
+FORM POS
+    OBJECTS d = ReceiptDetail
+    PROPERTIES(d) barcode, quantityGrid = quantity
+;
+
+createReceiptDetail 'Добавить строку продажи'(STRING[30] barcode)  {
+    NEW d = ReceiptDetail {
+        barcode(d) <- barcode;
+        ACTIVATE PROPERTY POS.quantityGrid;
+    }
+}
+```
 
   

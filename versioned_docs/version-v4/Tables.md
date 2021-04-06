@@ -35,7 +35,7 @@ The values of each property are always stored exactly in one field, which name, 
 If necessary, for each property, the developer can explicitly specify the name of the field in which this property will be stored. Also, it is possible to create a custom policy for naming property fields if the above does not suit for some reason.
 
 
-:::note
+:::info
 Using too short property naming policy (in case the number of materialized properties is large enough) can significantly complicate [naming](Naming.md) these properties (keeping them unique), or, accordingly, lead to the case when you will need to explicitly name the fields in which these properties will be stored too often.
 :::
 
@@ -73,6 +73,14 @@ To create tables, use the [**TABLE** instruction](TABLE_instruction.md). To spe
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+TABLE book (Book);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=table"/>
+in = DATA BOOLEAN (Sku, Stock);
+TABLE skuStock (Sku, Stock); // it will store the in property
+
+price = DATA NUMERIC[10,2] (Sku, DATE);
+TABLE skuDate (Sku, DATE); // it will store the Sku property
+
+TABLE sku (Sku) FULL;
+```

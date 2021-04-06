@@ -8,15 +8,23 @@ title: 'How-to: Navigator'
 
 We have the forms with a list of books and categories.
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseNavigator&block=sample1"/>
+```lsf
+FORM categories 'Categories';
+FORM books 'Books';
+```
 
 We need to add them to the [navigator](Navigator.md) to the new folder called **Application** under the main toolbar.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseNavigator&block=solution1"/>
+```lsf
+NAVIGATOR {
+    NEW FOLDER application 'Application' WINDOW toolbar FIRST {
+        NEW categories;
+        NEW books;
+    }
+}
+```
 
 By specifying **WINDOW** for the **application** element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called **toolbar**. This will look like this:
 
@@ -32,7 +40,16 @@ We need to place the same forms in the subfolder called Directories.
 
 ### Solution
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=UseCaseNavigator&block=solution2"/>
+```lsf
+NAVIGATOR {
+    application {
+        NEW FOLDER masterData 'Directories' {
+            NEW categories;
+            NEW books;
+        }
+    }
+}
+```
 
 Result:
 

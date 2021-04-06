@@ -60,7 +60,7 @@ At the same time, if the number of results being returned is more than one, then
 -   Otherwise, the response content type during transmission is set to multipart/mixed, and the results are passed as internal parts of this response. 
 
 
-:::note
+:::info
 Note that the processing of parameters and request results is largely similar to their processing during [access to an external system](Access_to_an_external_system_EXTERNAL_.md) over the HTTP protocol (in this case, parameters are processed as results and vice versa, results are processed as parameters).
 :::
 
@@ -69,12 +69,12 @@ Note that the processing of parameters and request results is largely similar to
 The API described above is a REST API. Accordingly, the [change session](Change_sessions.md) is created when a call is initiated, and closes immediately after the call ends. However, there are situations where such behavior is undesirable, and you need to accumulate changes for a certain period of time (for example, while the user is inputting data), which means that the session must be saved and handed over between sessions. In order to do this, you can add a string of the following format to the end of the query string: &session=<session ID\>, where <session ID\> is any non-empty string. In this case, the session will not be closed after the call, but will be associated with a previously passed ID, so that all subsequent calls with this ID will be executed in this session. In order to close a session (after the end of a call), you need to add the \_close postfix (for example,&session=0\_close) to its ID in the request string.
 
 
-:::note
+:::info
 Since cookie files are implicitly used for working with HTTP sessions, it is important not to forget to save / pass cookies between stateful http calls (this, however, is typically done automatically by a browser, the HttpClient in Java, etc.)
 :::
 
 
-:::note
+:::info
 The current implementation of the platform assumes that if sessions are used, the elements of the system (for example, local properties) created in the current call are deleted — that is, they are not visible in subsequent calls.
 :::
 
@@ -126,7 +126,7 @@ The library exports the following functions:
 As the names of object groups and properties, not names on the form are used, but [export/import](Structured_view.md#extid) names (which, however, match the names on forms if not explicitly defined). While working with a form via Form API, actions created using operators for [object operations](Interactive_view.md#objectoperators) **NEW** and **DELETE** automatically get export/import names **NEW** and **DELETE**, respectively (that is you can call change(setState, {game : {NEW:true}} for adding an object, for example) ). Also, when Form API is used, it automatically adds a property called logMessage to the form to which all dialog messages are written (including those generated when [constraints](Constraints.md) were violated).
 
 
-:::note
+:::info
 Authentication, stateful and form API are only supported when executing http requests on the web server. When an application server (or specifically, a built-in web server) executes an HTTP request, authentication headers, as well as parameters with the session ID, are ignored (the user is considered anonymous). Form API is completely unsupported by the built-in web server.
 :::
 

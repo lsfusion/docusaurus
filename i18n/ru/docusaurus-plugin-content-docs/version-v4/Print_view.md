@@ -19,7 +19,7 @@ sidebar_label: Обзор
 Как следует из ограничений на иерархию отчетов, в один отчет можно включать только "цепочки" групп объектов (то есть, G1, G2, G3, ... Gn,  где G2 - единственный прямой потомок G1, G3 - единственный прямой потомок G2 и т.д.). Соответственно решение о том, как разбивать группы объектов на отчеты сводится к тому, надо ли сливать группу объектов с ее единственным прямым потомком (при наличии такого) или нет. По умолчанию, такое слияние выполняется, однако, при необходимости, разработчик может запретить его задав соответствующую опцию (**SUBREPORT**) для группы объектов-потомка.
 
 
-:::note
+:::info
 Использование этой опции сводится к тому, нужно ли отображать данные для группы объектов-родителя при отсутствии данных в группе объектов-потомке.
 :::
 
@@ -27,15 +27,20 @@ sidebar_label: Обзор
 
 Форма такая же как и в [примере построения иерархии групп объектов](Static_view.md#hierarchysample-broken):
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=GroupHierarchySample"/>
+FORM myForm 'myForm'
+    OBJECTS A, B SUBREPORT, C, D, E
+    PROPERTIES f(B, C), g(A, C)
+    FILTERS c(E) = C, h(B, D)
+;
+```
 
 Иерархия отчетов для этой формы будет построена следующим образом:
 
   
 
-![](download/temp/svgout6080600897799900016.png)
+![](download/temp/svgout7618474234164938229.png)
 
 ### Язык
 
@@ -47,4 +52,29 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Примеры
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=print"/>
+```lsf
+FORM printOrder
+    OBJECTS o = Order
+    PROPERTIES(o) currency, customer
+
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) idSku, price
+    FILTERS order(d) == o
+;
+
+print (Order o)  {
+    PRINT printOrder OBJECTS o = o; // выводим на печать
+
+    LOCAL file = FILE ();
+    PRINT printOrder OBJECTS o = o DOCX TO file;
+    open(file());
+
+    //v 2.0-2.1 syntax
+    LOCAL sheetName = STRING[255]();
+    sheetName() <- 'enctypted';
+    PRINT printOrder OBJECTS o = o XLS SHEET sheetName PASSWORD 'pass';
+
+    //v 2.2 syntax
+    //PRINT printOrder OBJECTS o = o XLS SHEET 'enctypted' PASSWORD 'pass';
+}
+```

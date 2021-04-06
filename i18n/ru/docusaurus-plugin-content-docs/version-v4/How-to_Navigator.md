@@ -8,15 +8,23 @@ title: 'How-to: Навигатор'
 
 Есть формы со списком книг и категорий.
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNavigator&block=sample1"/>
+```lsf
+FORM categories 'Категории';
+FORM books 'Книги';
+```
 
 Нужно добавить их в [навигатор](Navigator.md) в новую папку **Приложение** снизу от основного тулбара.
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNavigator&block=solution1"/>
+```lsf
+NAVIGATOR {
+    NEW FOLDER application 'Приложение' WINDOW toolbar FIRST {
+        NEW categories;
+        NEW books;
+    }
+}
+```
 
 Указав **WINDOW** для элемента **application**, мы указали, что все его потомки должны отображаться в системном [окне](Navigator_design.md) **toolbar**. Это будет выглядеть следующим образом :
 
@@ -32,7 +40,16 @@ import {CodeSample} from './CodeSample.mdx'
 
 ### Решение
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=UseCaseNavigator&block=solution2"/>
+```lsf
+NAVIGATOR {
+    application {
+        NEW FOLDER masterData 'Справочники' {
+            NEW categories;
+            NEW books;
+        }
+    }
+}
+```
 
 Результат :
 

@@ -21,7 +21,7 @@ title: 'В печатном представлении (PRINT)'
 Также как и в [интерактивном представлении](In_an_interactive_view_SHOW_DIALOG_.md), в интерактивных режимах печатного представления разработчик может задавать опции [управления потоком](In_an_interactive_view_SHOW_DIALOG_.md#flow) и [расположения форм](In_an_interactive_view_SHOW_DIALOG_.md#location) (их поведение аналогично соответствующим опциям в операторе открытия формы в интерактивном представлении).
 
 
-:::note
+:::info
 В текущей реализации: в режиме **MESSAGE** форма всегда показывается как окно (при этом опция "асинхронное окно" поддерживается), в режиме асинхронный **PREVIEW** форма всегда показывается как закладка, в режиме синхронный **PREVIEW** - как окно. Режим **NOPREVIEW** всегда асинхронный, расположение форм в нем не имеет смысла (так как никакая форма непосредственно пользователю не показывается)
 :::
 
@@ -31,6 +31,29 @@ title: 'В печатном представлении (PRINT)'
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM printOrder
+    OBJECTS o = Order
+    PROPERTIES(o) currency, customer
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=print"/>
+    OBJECTS d = OrderDetail
+    PROPERTIES(d) idSku, price
+    FILTERS order(d) == o
+;
+
+print (Order o)  {
+    PRINT printOrder OBJECTS o = o; // выводим на печать
+
+    LOCAL file = FILE ();
+    PRINT printOrder OBJECTS o = o DOCX TO file;
+    open(file());
+
+    //v 2.0-2.1 syntax
+    LOCAL sheetName = STRING[255]();
+    sheetName() <- 'enctypted';
+    PRINT printOrder OBJECTS o = o XLS SHEET sheetName PASSWORD 'pass';
+
+    //v 2.2 syntax
+    //PRINT printOrder OBJECTS o = o XLS SHEET 'enctypted' PASSWORD 'pass';
+}
+```

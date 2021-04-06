@@ -15,8 +15,13 @@ An empty instruction is intended to prevent extra semicolons from being diagnose
 ### Example
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Result {
+    yes 'Yes',
+    no 'No'
+};  // semicolon is not needed here, but its presence is not an error
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=InstructionSample&block=empty"/>
+;;;; // this is valid lsFusion code
+```
 
   

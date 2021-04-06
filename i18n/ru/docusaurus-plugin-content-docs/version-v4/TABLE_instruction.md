@@ -35,8 +35,16 @@ title: 'Инструкция TABLE'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+TABLE book (Book);
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=table"/>
+in = DATA BOOLEAN (Sku, Stock);
+TABLE skuStock (Sku, Stock); // в ней будет храниться свойство in
+
+price = DATA NUMERIC[10,2] (Sku, DATE);
+TABLE skuDate (Sku, DATE); // в ней будет храниться свойство Sku
+
+TABLE sku (Sku) FULL;
+```
 
   

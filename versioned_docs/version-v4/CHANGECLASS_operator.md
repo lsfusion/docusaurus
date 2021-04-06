@@ -29,6 +29,13 @@ An expression whose value is a condition for the created action. If not specifi
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Document;
+date = DATA DATE (Document);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=changeclass"/>
+CLASS ClosedDocument : Document;
+// sets status to closed for all documents with a date older than 2 weeks
+changeStatus()  {
+    CHANGECLASS Document d TO ClosedDocument WHERE sum(date(d), 14) <= currentDate();
+}
+```

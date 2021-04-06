@@ -13,6 +13,7 @@ sidebar_label: Обзор
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample"/>
+```lsf
+showMessage  { MESSAGE 'Hello World!'; } 								// объявление действия
+loadImage 'Загрузить изображение'  ABSTRACT ( Item);
+```

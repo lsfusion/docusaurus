@@ -48,6 +48,7 @@ The [context-independent](Action_operator.md#contextindependent) action operato
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
-
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample"/>
+```lsf
+showMessage  { MESSAGE 'Hello World!'; } 								// action declaration
+loadImage 'Upload image'  ABSTRACT ( Item);
+```

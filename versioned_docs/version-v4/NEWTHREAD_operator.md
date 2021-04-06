@@ -34,8 +34,16 @@ An expression which value is a property that returns the delay before the first 
  **Examples**
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+testNewThread ()  {
+    //Showing messages 'Message' to all
+    FOR user(Connection conn) AND connectionStatus(conn) == ConnectionStatus.connectedConnection AND conn != currentConnection() DO {
+        NEWTHREAD MESSAGE 'Message'; CONNECTION conn;
+    }
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=newthread"/>
+    //Execution of the 'action' action with a frequency of 10 seconds and a delay of 5 seconds
+    NEWTHREAD MESSAGE 'Hello World'; SCHEDULE PERIOD 10000 DELAY 5000;
+}
+```
 
   

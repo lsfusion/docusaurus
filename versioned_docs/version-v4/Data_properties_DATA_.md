@@ -15,6 +15,10 @@ To declare a primary property, use the [**DATA** operator](DATA_operator.md).
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Item;
+quantity = DATA LOCAL INTEGER (Item);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=data"/>
+CLASS Country;
+isDayOff = DATA BOOLEAN (Country, DATE);
+```

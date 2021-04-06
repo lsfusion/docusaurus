@@ -23,6 +23,6 @@ Thus, the platform has four different types of integration:
 -   [Access to an internal system (INTERNAL, FORMULA)](Access_to_an_internal_system_INTERNAL_FORMULA_.md)
 
 
-:::note
+:::info
 Additionally, it is worth noting that the ability to interact with internal systems can be used not only for purposes of integration but also for purposes of extensibility when platform capabilities are insufficient for some reason.
 :::

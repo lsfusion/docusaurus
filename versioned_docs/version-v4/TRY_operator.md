@@ -33,9 +33,29 @@ A context-dependent operator that describes an action to be executed after the a
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+tryToImport(FILE f)  {
+    TRY {
+        LOCAL a = BPSTRING[10] (INTEGER);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=try"/>
+        IMPORT XLS FROM f TO a = A;
+    }
+}
 
-**  
-**
+CLASS MyLock {
+    lock 'Blocking'
+}
+
+singleDo ()  {
+    NEWSESSION {
+        lock(MyLock.lock);
+        IF lockResult() THEN
+        TRY {
+            MESSAGE 'Lock Obtained';
+        } CATCH {
+            MESSAGE messageCaughtException();
+        } FINALLY unlock(MyLock.lock);
+    }
+}
+```
+

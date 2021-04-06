@@ -51,6 +51,10 @@ sidebar_label: Обзор
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+cost 'Стоимость' (i) = DATA NUMERIC[12,3] (Item);		// cвойство задано контекстно-независимым оператором-свойством DATA
+weightedSum 'Взвешенная сумма' (a, b) = 2*a + 3*b; 		// cвойство задано выражением
+diff = a - b; 											// заголовком этого свойства будет 'diff', а параметрами - (a, b)
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=PropertySample"/>
+teamName 'Название команды' = DATA BPSTRING[30](Team) IN baseGroup TABLE team; // свойство задано оператором DATA с указанием дополнительных опций свойства
+```

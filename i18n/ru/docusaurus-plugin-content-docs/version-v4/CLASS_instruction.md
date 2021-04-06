@@ -2,7 +2,7 @@
 title: 'Инструкция CLASS'
 ---
 
-Инструкция **CLASS - **создание нового [пользовательского класса](Static_objects.md).
+Инструкция **CLASS - **создание нового [пользовательского класса](User_classes.md).
 
 ### Синтаксис
 
@@ -20,7 +20,7 @@ title: 'Инструкция CLASS'
 
 Инструкция **CLASS** объявляет новый класс и добавляет его в текущий [модуль](Modules.md). 
 
-Инструкция бывает двух видов: **CLASS ABSTRACT** для объявления [абстрактного класса](Static_objects.md#abstract) и просто **CLASS** для объявления обычного класса. Во втором случае при объявлении класса можно объявить [статические объекты](User_classes.md) этого класса, имена и заголовки которых указываются в ограниченном фигурными скобками блоке.   
+Инструкция бывает двух видов: **CLASS ABSTRACT** для объявления [абстрактного класса](User_classes.md#abstract) и просто **CLASS** для объявления обычного класса. Во втором случае при объявлении класса можно объявить [статические объекты](Static_objects.md) этого класса, имена и заголовки которых указываются в ограниченном фигурными скобками блоке.   
 
 ### Параметры
 
@@ -34,7 +34,7 @@ title: 'Инструкция CLASS'
 
 *objectName1, ..., objectNameM*
 
-Имена [статических](User_classes.md) объектов данного класса. Каждое имя задается простым идентификатором. Значения имен хранятся в системном свойстве **System.staticName**.
+Имена [статических](Static_objects.md) объектов данного класса. Каждое имя задается простым идентификатором. Значения имен хранятся в системном свойстве **System.staticName**.
 
 *objectCaption1, ..., objectCaptionM*
 
@@ -47,9 +47,20 @@ title: 'Инструкция CLASS'
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS ABSTRACT Document; // Заголовком этого класса будет 'Document'
+CLASS IncomeDocument 'Приход' : Document;
+CLASS OutcomeDocument 'Расход' : Document;
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=class"/>
+CLASS Person;
+CLASS Worker;
+CLASS Musician : Person, Worker; // множественное наследование
 
-**  
-**
+CLASS Barcode 'Штрих-код'; // Родительским классом Barcode будет класс System.Object
+
+CLASS PrintOrientation {
+    portrait 'Книжная',
+    landscape 'Альбомная'
+}
+```
+

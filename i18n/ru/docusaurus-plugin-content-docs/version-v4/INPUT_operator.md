@@ -52,8 +52,27 @@ expr
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+changeCustomer (Order o)  {
+    INPUT s = STRING[100] DO {
+        customer(o) <- s;
+        IF s THEN
+            MESSAGE 'Customer changed to ' + s;
+        ELSE
+            MESSAGE 'Customer dropped';
+    }
+}
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=input"/>
+FORM order
+    OBJECTS o = Order
+    PROPERTIES(o) customer ON CHANGE changeCustomer(o)
+;
+
+testFile  {
+    INPUT f = FILE DO { // запрашиваем диалог по выбору файла
+        open(f); // открываем выбранный файл
+    }
+}
+```
 
   

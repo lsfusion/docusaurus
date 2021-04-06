@@ -96,6 +96,6 @@ title: 'Журналы и логи'
   
 
 
-:::note
+:::info
 При [автоматической установке](Execution_auto_.md) под Linux для этих папок (как и для файлов [lsFusion параметров запуска](Launch_parameters.md#applsfusion)) автоматически создаются symlink'и на [другие папки](Execution_auto_.md#logs-broken), расположение которых лучше соответствует идеологии Linux.
 :::

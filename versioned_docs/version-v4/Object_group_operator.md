@@ -29,9 +29,22 @@ Global [object group ID](IDs.md#groupobjectid-broken).
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS Store;
+name = DATA STRING[100] (Store);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=OperatorPropertySample&block=groupobject"/>
+FORM stores
+    OBJECTS s = Store
+;
+countF 'Number of filtered warehouses' = GROUP SUM 1 IF [ VIEW stores.s](Store s);
+orderF 'Order in an object group' (Store s) = PARTITION SUM 1 IF [ FILTER stores.s](s) ORDER [ ORDER stores.s](s), s;
+setNameX 'Add X to name'()  {
+    LOCAL k = INTEGER ();
+    k() <- 0;
+    FOR [ FILTER stores.s](Store s) ORDER [ ORDER stores.s](s) DO {
+        k() <- k() + 1;
+        name(s) <- 'X' + k() + name(s);
+    }
+}
+```
 
-**  
-**

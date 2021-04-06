@@ -41,7 +41,7 @@ title: 'Оператор IMPORT'
   
 
 
-:::note
+:::info
 Для автоматического определения плоского формата файла по его расширению используется первый переданный файл
 :::
 
@@ -147,8 +147,85 @@ charsetStr - строковый литерал, определяющий код�
 ### Примеры
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+import()  {
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=import"/>
+    LOCAL xlsFile = EXCELFILE ();
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=ActionSample&block=importForm"/>
+    LOCAL field1 = BPSTRING[50] (INTEGER);
+    LOCAL field2 = BPSTRING[50] (INTEGER);
+    LOCAL field3 = BPSTRING[50] (INTEGER);
+    LOCAL field4 = BPSTRING[50] (INTEGER);
+
+    LOCAL headField1 = BPSTRING[50] ();
+    LOCAL headField2 = BPSTRING[50] ();
+
+    INPUT f = EXCELFILE DO {
+        IMPORT XLS SHEET 2 FROM f TO field1 = C, field2, field3 = F, field4 = A;
+        IMPORT XLS SHEET ALL FROM f TO field1 = C, field2, field3 = F, field4 = A;
+
+        FOR imported(INTEGER i) DO { // свойство imported - системное свойство, предназначенное для перебора данных
+            MESSAGE 'field1 value = ' + field1(i);
+            MESSAGE 'field2 value = ' + field2(i);
+            MESSAGE 'field3 value = ' + field3(i);
+            MESSAGE 'field4 value = ' + field4(i);
+       }
+    }
+
+    LOCAL t = FILE ();
+    EXTERNAL SQL 'jdbc:postgresql://localhost/test?user=postgres&password=12345' EXEC 'SELECT x.a,x.b,x.c,x.d FROM orders x WHERE x.id = $1;' PARAMS '4553' TO t;
+    IMPORT FROM t() FIELDS INTEGER a, DATE b, BPSTRING[50] c, BPSTRING[50] d DO        // импорт с опцией FIELDS
+        NEW o = Order {
+            number(o) <- a;
+            date(o) <- b;
+            customer(o) <- c;
+            currency(o) <- GROUP MAX Currency currency IF name(currency) = d; // находим currency с данным именем
+        }
+
+
+    INPUT f = FILE DO
+        IMPORT CSV '*' HEADER CHARSET 'utf-8' FROM f TO field1 = C, field2, field3 = F, field4 = A;
+    INPUT f = FILE DO
+        IMPORT XML ATTR FROM f TO field1, field2;
+    INPUT f = FILE DO
+        IMPORT XML ROOT 'element' ATTR FROM f TO field1, field2;
+    INPUT f = FILE DO
+        IMPORT XML ATTR FROM f TO() headField1, headField2;
+
+    INPUT f = FILE DO
+        INPUT memo = FILE DO
+            IMPORT DBF MEMO memo FROM f TO field1 = 'DBFField1', field2 = 'DBFField2';
+}
+```
+
+```lsf
+
+date = DATA DATE (INTEGER);
+sku = DATA BPSTRING[50] (INTEGER);
+price = DATA NUMERIC[14,2] (INTEGER);
+order = DATA INTEGER (INTEGER);
+FORM import
+    OBJECTS o = INTEGER // заказы
+    OBJECTS od = INTEGER // строки заказов
+    PROPERTIES (o) dateOrder = date // импортируем дату из поля dateOrder
+    PROPERTIES (od) sku = sku, price = price // импортируем товар количество из полей sku и price
+    FILTERS order(od) = o // в order - записываем верхний заказ
+
+;
+
+importForm()  {
+    INPUT f = FILE DO {
+        IMPORT import JSON FROM f;
+        SHOW import; // показываем что импортировалось
+
+        // создаем объекты в базе
+        FOR DATE date = date(INTEGER io) NEW o = Order DO {
+            date(o) <- date;
+            FOR order(INTEGER iod) = io NEW od = OrderDetail DO {
+                price(od) <- price(iod);
+                sku(od) <- GROUP MAX Sku sku IF name(sku) = sku(iod); // находим sku с данным именем
+            }
+        }
+    }
+}
+```

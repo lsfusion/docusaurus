@@ -34,13 +34,30 @@ You should consider that during each operation on a set of object collections, t
 
 ### Examples
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+CLASS A;
+d = DATA INTEGER (A);
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=PropertySample&block=set"/>
+f (b) = GROUP SUM 1 IF d(a) < b;
+messageF  { MESSAGE f(5); } // will be executed successfully
 
-**  
-**
+g = GROUP SUM f(b);
+messageG  { MESSAGE g(); } // f(b) is not NULL for infinite number b, the platform will throw an error
+
+FORM f
+    OBJECTS d=DATE
+;
+
+printFWithD { PRINT f OBJECTS d=currentDate(); } // will be executed successfully
+
+printFWithoutD { PRINT f; } // there is no filter for dates, and d IS DATE is not NULL for an infinite number d, the platform will throw an error
+```
+
 
 There are several non-trivial cases when the operation is correct but the platform cannot determine this. For example, if the only limiting condition for a parameter is whether it falls within the range:
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=PropertySample&block=set2"/>
+```lsf
+hs = GROUP SUM 1 IF (a AS INTEGER) >= 4 AND a <= 6;
+messageHS  { MESSAGE hs(); } // theoretically, it should return 3, but the platform will still throw an error
+hi = GROUP SUM 1 IF iterate(a, 4, 6); // workaround: to work with intervals, the iterate property can be used (which, in turn, is implemented through recursion)
+```

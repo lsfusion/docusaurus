@@ -21,6 +21,29 @@ sidebar_label: Обзор
 
 ### Примеры
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+FORM items;
+FORM stocks;
+FORM legalEntities;
+FORM shipments;
+hello()  { MESSAGE 'Hello world'; }
+hi()  { MESSAGE 'Hi'; }
 
-<CodeSample url="https://ru-documentation.lsfusion.org/sample?file=InstructionSample&block=navigator"/>
+NAVIGATOR {
+    NEW FOLDER catalogs 'Справочники' WINDOW toolbar { // создаем новую папку навигатора и делаем, чтобы все ее потомки отображались в окно с вертикальным тулбаром
+        NEW items; // создаем в папке элемент-форму для формы items, имя элемента по умолчанию равняется имени формы
+    }
+    catalogs {  // инструкция редактирования элемента навигатора
+        NEW FORM stocksNavigator 'Склады' = stocks; // создаем элемент-форму stocksNavigator для формы stocls и добавляем в папку catalogs последним элементом
+        NEW legalEntities AFTER items; // создаем элемент-форму с именем legalEntities в папку catalogs непосредственно за элементом items
+        NEW shipments;
+    }
+    NEW FOLDER documents 'Документы' WINDOW toolbar { // создаем еще одну папку, элементы которой будут также отображаться в окно с вертикальным тулбаром
+                                                      // сами папки будут отображаться в окне root, и при выборе одной из них в окне с вертикальным
+                                                      // тулбаром будут показаны потомки именно этой папки
+        NEW ACTION hi;   // создаем элемент-действие
+        NEW ACTION h=hello;   // создаем элемент-действие
+        MOVE shipments BEFORE h; // инструкция перемещения элемента shipments из папки catalogs в папку document перед элементом hello
+    }
+}
+```

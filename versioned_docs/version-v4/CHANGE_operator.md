@@ -37,8 +37,28 @@ An expression whose value is a condition for the change being created. If not sp
 ### Examples
 
 
-import {CodeSample} from './CodeSample.mdx'
+```lsf
+// set a 15 percent discount for all customers who have an order amount over 100
+CLASS Customer;
+discount = DATA NUMERIC[5,2] (Customer);
+totalOrders = DATA NUMERIC[14,2] (Customer);
+setDiscount  {
+    discount(Customer c) <- 15 WHERE totalOrders(c) > 100;
+}
 
-<CodeSample url="https://documentation.lsfusion.org/sample?file=ActionSample&block=assign"/>
+discount = DATA NUMERIC[5,2] (Customer, Item);
+in = DATA BOOLEAN (Item);
+// change the discount for selected products for a customer
+setDiscount (Customer c)  {
+    discount(c, Item i) <- 15 WHERE in(i);
+}
+
+// copy property g to property f
+f = DATA INTEGER (INTEGER);
+g = DATA INTEGER (INTEGER);
+copyFG  {
+    f(a) <- g(a);
+}
+```
 
   
