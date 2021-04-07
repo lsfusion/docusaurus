@@ -1,5 +1,5 @@
 ---
-title: 'Operator \[\]'
+title: 'Operator []'
 ---
 
 The **\[\]** operator creates a [property](Properties.md) that returns an object from a [structure](Structure_operations_STRUCT_.md).
