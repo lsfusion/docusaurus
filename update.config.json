@@ -1,0 +1,10 @@
+[
+  {
+    "id": "v4",
+    "branch": "v4"
+  },
+  {
+    "id": "next",
+    "branch": "master"
+  }
+]
