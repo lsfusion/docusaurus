@@ -20,13 +20,13 @@ module.exports = {
         {
           type: 'doc',
           docId: 'Install',
-          activeSidebarClassName: 'navbar__link--active',        
+          label: 'Install',
           position: 'left',
         },
         {
           type: 'doc',
           docId: 'Learn', 
-          activeSidebarClassName: 'navbar__link--active',        
+          label: 'Learn',
           position: 'left',
         },
 //        {to: 'blog', label: 'Blog', position: 'left'},
