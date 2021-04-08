@@ -18,15 +18,15 @@ module.exports = {
       },
       items: [
         {
-          to: 'Install',
-          activeBasePath: 'docs',
-          label: 'Install',
+          type: 'doc',
+          docId: 'Install',
+          activeSidebarClassName: 'navbar__link--active',        
           position: 'left',
         },
         {
-          to: '/',
-          activeBasePath: 'docs',
-          label: 'Learn',
+          type: 'doc',
+          docId: 'Learn', 
+          activeSidebarClassName: 'navbar__link--active',        
           position: 'left',
         },
 //        {to: 'blog', label: 'Blog', position: 'left'},
