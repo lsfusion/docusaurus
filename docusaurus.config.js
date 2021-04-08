@@ -118,10 +118,10 @@ module.exports = {
 //          showLastUpdateTime: true,
           versions: {
             current: {
-              label: 'Version 5 (Next)',
+              label: '5 (Next)',
             },
             'v4': {
-              label: 'Version 4',
+              label: '4.x',
             },
          },          
         },

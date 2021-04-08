@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "Версия 4",
+    "message": "4.x",
     "description": "The label for version current"
   },
   "sidebar.install.category.Automatic installation": {
