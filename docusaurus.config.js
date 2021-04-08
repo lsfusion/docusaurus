@@ -113,6 +113,16 @@ module.exports = {
             'https://github.com/danchanka/platform/edit/master/',
           editLocalizedFiles: true,
           routeBasePath: '/',
+//          showLastUpdateAuthor: true,
+//          showLastUpdateTime: true,
+          versions: {
+            current: {
+              label: 'Version 5 (Next)',
+            },
+            'v4': {
+              label: 'Version 4',
+            },
+         },          
         },
         blog: {
           showReadingTime: true,
