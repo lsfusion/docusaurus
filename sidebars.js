@@ -2,6 +2,7 @@ module.exports = {
   install: [
     'Install', 
     {
+      collapsed: false,
       type: 'category',
       label: 'Automatic installation',
       items: [
@@ -11,6 +12,7 @@ module.exports = {
       ]
     },
     {
+      collapsed: false,
       type: 'category',
       label: 'Manual installation',
       items: [
@@ -23,6 +25,7 @@ module.exports = {
   learn: [
     'Learn', 
     {
+      collapsed: false,
       type: 'category',
       label: 'Paradigm',
       items: [
@@ -412,6 +415,7 @@ module.exports = {
       ]
     },
     {
+      collapsed: false,
       type: 'category',
       label: 'Language',
       items: [
@@ -578,6 +582,7 @@ module.exports = {
     },
     'IDE', 
     {
+      collapsed: false,
       type: 'category',
       label: 'Examples',
       items: [
