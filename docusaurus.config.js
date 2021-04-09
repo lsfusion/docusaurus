@@ -119,15 +119,13 @@ module.exports = {
                  }) {
                    if (version == 'current') {
                      return `https://github.com/danchanka/platform/edit/master/docs/${locale}/${docPath}`;
-                   } else if (version == 'v4') {
-                     return `https://github.com/danchanka/platform/edit/v4/docs/${locale}/${docPath}`;
                    } else {
-                     return 'https://github.com/danchanka/platform/edit/master/';
-                   }
+                     return `https://github.com/danchanka/platform/edit/${version}/docs/${locale}/${docPath}`;
+                   } 
                  },
           editLocalizedFiles: true,
           routeBasePath: '/',
-          showLastUpdateAuthor: true,
+//          showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           versions: {
             current: {
