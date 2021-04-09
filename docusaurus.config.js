@@ -127,8 +127,8 @@ module.exports = {
                  },
           editLocalizedFiles: true,
           routeBasePath: '/',
-//          showLastUpdateAuthor: true,
-//          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
           versions: {
             current: {
               label: '5 (Next)',
