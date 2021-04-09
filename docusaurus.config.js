@@ -110,8 +110,21 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/danchanka/platform/edit/master/',
+          editUrl: function ({
+                   locale,
+                   version,
+                   versionDocsDirPath,
+                   docPath,
+                   permalink,
+                 }) {
+                   if (version == 'current') {
+                     return `https://github.com/danchanka/platform/edit/master/docs/${locale}/${docPath}`;
+                   } else if (version == 'v4') {
+                     return `https://github.com/danchanka/platform/edit/v4/docs/${locale}/${docPath}`;
+                   } else {
+                     return 'https://github.com/danchanka/platform/edit/master/';
+                   }
+                 },
           editLocalizedFiles: true,
           routeBasePath: '/',
 //          showLastUpdateAuthor: true,
