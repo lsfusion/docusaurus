@@ -30,33 +30,33 @@ The `ABSTRACT` operator cannot be used inside [expressions](Expression.md).
 - `type`
 
     Type of abstract property. It is specified by one of the keywords:
-
-    -   `CASE`
-    -   `MULTI`
-    -   `VALUE`
     
-    The default value is `MULTI`.
+    - `CASE`
+    - `MULTI`
+    - `VALUE`
+    
+  The default value is `MULTI`.
 
 - `exclusionType`
 
     Type of mutual exclusion. One of these keywords: `EXCLUSIVE` or `OVERRIDE`. Unless explicitly specified, in a `MULTI` abstract property the default type of mutual exclusion is `EXCLUSIVE`, and in all other cases the default mutual exclusion type is `OVERRIDE`.
     
-    -   `FIRST`
-    -   `LAST`
+    - `FIRST`
+    - `LAST`
     
     Keywords. Determine which of the matching implementations will be selected. When the word `FIRST` is specified, implementations will be added to the top of the implementations list, so that the last added implementation will be selected. When the word `LAST` is specified, implementations will be added to the end of the implementations list, so that the implementation added first will be selected. If not specified, the default is `FIRST`. 
 
 - `FULL`
 
-Keyword. If specified, the platform will automatically check that at least one implementation is specified for all child objects of the argument classes (or exactly one if the conditions are mutually exclusive).
+    Keyword. If specified, the platform will automatically check that at least one implementation is specified for all child objects of the argument classes (or exactly one if the conditions are mutually exclusive).
 
 - `returnClassName`
 
-Class of the return value of the property. [Class ID](IDs.md#classid-broken).
+    Class of the return value of the property. [Class ID](IDs.md#classid-broken).
 
 - `argClassName1, ..., argClassNameN`
 
-List of class names of property arguments. Each name is defined by a class ID.
+    List of class names of property arguments. Each name is defined by a class ID.
 
 ### Examples
 
