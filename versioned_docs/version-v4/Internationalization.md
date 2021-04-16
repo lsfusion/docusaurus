@@ -4,9 +4,9 @@ title: 'Internationalization'
 
 *Internationalization* consists of software development techniques that allow adapting the software to the linguistic and cultural particularities of different countries and regions.
 
-### Locale  {#locale}
+### Locale  {#locale}
 
-*Locale* is a set of parameters that defines regional settings, such as:
+*Locale* is a set of parameters that defines regional settings, such as:
 
 -   Language
 -   Country (which in turn determines the formats for displaying numbers and dates)
@@ -15,7 +15,7 @@ title: 'Internationalization'
 
 ### Formats for specifying locale parameters
 
-The language and country are specified in [standard Java](https://docs.oracle.com/javase/tutorial/i18n/locale/create.html) format. For example, the language can be specified using the lines "ru", "en", and "fr", and the country, respectively, using "RU", "US", and "CA". The timezone is specified in the format supported by the Java method [TimeZone.getTimeZone](https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html#getTimeZone-java.lang.String-) (examples: "PST", "Europe/Minsk", "GMT-8:00").  The year is specified as a number (example: 1960).
+The language and country are specified in [standard Java](https://docs.oracle.com/javase/tutorial/i18n/locale/create.html) format. For example, the language can be specified using the lines "ru", "en", and "fr", and the country, respectively, using "RU", "US", and "CA". The timezone is specified in the format supported by the Java method [TimeZone.getTimeZone](https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html#getTimeZone-java.lang.String-) (examples: "PST", "Europe/Minsk", "GMT-8:00").  The year is specified as a number (example: 1960).
 
 ### Determining the current locale {#current}
 

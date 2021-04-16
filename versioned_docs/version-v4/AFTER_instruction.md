@@ -2,7 +2,7 @@
 title: 'AFTER instruction'
 ---
 
-The **AFTER** instruction  calls an [action](Actions.md) after calling another action. 
+The **AFTER** instruction  calls an [action](Actions.md) after calling another action. 
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The **AFTER** instruction  calls an [action](Actions.md) after calling anot
 
 ### Description
 
-The **AFTER** instruction defines an action (let's call it an *aspect*) that will be called after the specified action.
+The **AFTER** instruction defines an action (let's call it an *aspect*) that will be called after the specified action.
 
 ### Parameters
 
@@ -20,7 +20,7 @@ The [ID](IDs.md#propertyid-broken) of the action after which the aspect will be 
 
 *param1, ..., paramN*
 
-List of action parameter names. Each name is defined [by a simple ID](IDs.md#id-broken). These parameters can be accessed when defining an aspect.
+List of action parameter names. Each name is defined [by a simple ID](IDs.md#id-broken). These parameters can be accessed when defining an aspect.
 
 *aspectAction*
 

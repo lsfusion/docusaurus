@@ -2,9 +2,9 @@
 title: 'CASE operator (action)'
 ---
 
-The **CASE** operator creates an [action](Actions.md) that implements [branching](Branching_CASE_IF_MULTI_.md).
+The **CASE** operator creates an [action](Actions.md) that implements [branching](Branching_CASE_IF_MULTI_.md).
 
-**Syntax** 
+**Syntax** 
 
     CASE [exclusionType]
         WHEN condition1 THEN action1
@@ -14,24 +14,24 @@ The **CASE** operator creates an [action](Actions.md) that implements [branchi
 
 Description
 
-The CASE operator creates an action that executes one of the actions passed to it depending on whether the selection conditions are met. Selection conditions are defined using the properties specified in the WHEN block. If a selection condition is met, the action specified in the corresponding THEN block is executed. If none of the conditions is met, the action specified in the ELSE block will be executed if this block is specified.
+The CASE operator creates an action that executes one of the actions passed to it depending on whether the selection conditions are met. Selection conditions are defined using the properties specified in the WHEN block. If a selection condition is met, the action specified in the corresponding THEN block is executed. If none of the conditions is met, the action specified in the ELSE block will be executed if this block is specified.
 
 ### Parameters
 
-** ** *exclusionType*
+** ** *exclusionType*
 
-** **[Type of mutual exclusion](Branching_CASE_IF_MULTI_.md#exclusive). Determines whether several conditions can be met simultaneously for a certain set of parameters. It is specified by one of the keywords:
+** **[Type of mutual exclusion](Branching_CASE_IF_MULTI_.md#exclusive). Determines whether several conditions can be met simultaneously for a certain set of parameters. It is specified by one of the keywords:
 
 -   **EXCLUSIVE**
 -   **OVERRIDE**
 
-The **EXCLUSIVE** type indicates that none of the conditions listed can be met simultaneously. The **OVERRIDE** type allows several conditions to be met simultaneously, in this case, the action corresponding to the first met condition is executed
+The **EXCLUSIVE** type indicates that none of the conditions listed can be met simultaneously. The **OVERRIDE** type allows several conditions to be met simultaneously, in this case, the action corresponding to the first met condition is executed
 
-The **OVERRIDE** type is used by default.
+The **OVERRIDE** type is used by default.
 
 *condition1 ... conditionN*
 
- [Expressions](Expression.md) whose values determine the selection conditions. 
+ [Expressions](Expression.md) whose values determine the selection conditions. 
 
 *action1 ... actionN*
 
@@ -39,7 +39,7 @@ The **OVERRIDE** type is used by default.
 
 *elseAction*
 
-A context-dependent operator that describes an action to be executed if none of the conditions is met. 
+A context-dependent operator that describes an action to be executed if none of the conditions is met. 
 
 ### Examples
 

@@ -6,7 +6,7 @@ The **EMAIL** operator creates an [action](Actions.md) that [sends email](Send_m
 
 ### Syntax
 
-    EMAIL [FROM fromExpr] 
+    EMAIL [FROM fromExpr] 
     [SUBJECT subjExpr]
     recipientType1 recipientExpr1
     ...
@@ -18,15 +18,15 @@ The **EMAIL** operator creates an [action](Actions.md) that [sends email](Send_m
 
 ### Description
 
-The **EMAIL** operator creates an action that sends emails. 
+The **EMAIL** operator creates an action that sends emails. 
 
-It is assumed that the file extension is not specified in the attachment name, i.e. period (.) is also considered part of the file name. This extension is automatically determined similar to the [**WRITE** operator](WRITE_operator.md#extension-broken).
+It is assumed that the file extension is not specified in the attachment name, i.e. period (.) is also considered part of the file name. This extension is automatically determined similar to the [**WRITE** operator](WRITE_operator.md#extension-broken).
 
 ### Parameters
 
 *fromExpr*
 
-An [expression](Expression.md) which value determines the sender address. 
+An [expression](Expression.md) which value determines the sender address. 
 
 *subjExpr*
 
@@ -48,11 +48,11 @@ Expressions which values determine the addresses of the message recipients.
 
 An expression which value is the mail body. Can be either a string or file type.
 
-*attachFileExpr1 .... *attachFileExprM**
+*attachFileExpr1 .... *attachFileExprM**
 
 Expressions which values are files attached to the message.
 
-*attachNameExpr1 ... *attachNameExprM**
+*attachNameExpr1 ... *attachNameExprM**
 
 An expression which values determine the names of the attachments.
 

@@ -2,17 +2,17 @@
 title: 'ASK operator'
 ---
 
-The **ASK** operator creates an action that shows the user a message in a [dialog form](Show_message_MESSAGE_ASK_.md#dialog).
+The **ASK** operator creates an action that shows the user a message in a [dialog form](Show_message_MESSAGE_ASK_.md#dialog).
 
 ### Syntax
 
-    ASK expression 
+    ASK expression 
     [[alias =] YESNO]
     [DO actionOperator [ELSE elseOperator]]
 
 ### Description
 
-The **ASK** operator creates an action that asks the user for confirmation/asks the user a question.
+The **ASK** operator creates an action that asks the user for confirmation/asks the user a question.
 
 ### Parameters
 
@@ -26,7 +26,7 @@ If specified, the user is asked a question (Yes/No)
 
 *alias*
 
-The name of the local parameter in which the user's response to the question will be written (Yes = **TRUE**, No = **NULL**). [Simple ID](IDs.md#id-broken).
+The name of the local parameter in which the user's response to the question will be written (Yes = **TRUE**, No = **NULL**). [Simple ID](IDs.md#id-broken).
 
 *actionOperator*
 

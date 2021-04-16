@@ -11,7 +11,7 @@ Describes the mechanisms by which system elements in the platform can access eac
 
 [Modularity](Modularity.md)
 
-Allows you to simplify the task of designing IS and distributing the IS development process among development teams.
+Allows you to simplify the task of designing IS and distributing the IS development process among development teams.
 
 [Metaprogramming](Metaprogramming.md)
 

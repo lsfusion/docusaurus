@@ -11,7 +11,7 @@ CLASS ABSTRACT Shape;
 square 'Area' = ABSTRACT DOUBLE (Shape);
 ```
 
-Now, let's create classes **Rectangle **and **Circle** inherited from **Shape**:
+Now, let's create classes **Rectangle **and **Circle** inherited from **Shape**:
 
 ```lsf
 CLASS Rectangle : Shape;
@@ -22,7 +22,7 @@ CLASS Circle : Shape;
 radius 'Circle radius' = DATA DOUBLE (Circle);
 ```
 
-Define the implementation of the abstract property **square ** for the created classes:
+Define the implementation of the abstract property **square ** for the created classes:
 
 ```lsf
 square(rectangle) += width(rectangle) * height(rectangle);

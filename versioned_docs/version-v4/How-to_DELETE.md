@@ -37,7 +37,7 @@ delete (Book b)  {
 
 ### Task
 
-Similar to **Example 1**.
+Similar to **Example 1**.
 
 We need to create an action that clears the order by deleting all its lines.
 

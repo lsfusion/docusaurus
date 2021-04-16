@@ -2,9 +2,9 @@
 title: 'AGGR operator'
 ---
 
-The **AGGR** operator creates an [aggregation](Aggregations.md).
+The **AGGR** operator creates an [aggregation](Aggregations.md).
 
-****Syntax **  
+****Syntax **  
 **
 
     AGGR aggrClass WHERE aggrExpr
@@ -35,7 +35,7 @@ Creating an aggregation is in many ways similar to the following instructions (e
 but it is a more declarative and readable instruction, and therefore using it is recommended
 :::
 
-Unlike other context-dependent operators, the **AGGR** operator cannot be used in [expressions](Expression.md) inside other operators (in this sense it is more like context-independent operators), or in the [**JOIN** operator](JOIN_operator.md) (inside \[= \])
+Unlike other context-dependent operators, the **AGGR** operator cannot be used in [expressions](Expression.md) inside other operators (in this sense it is more like context-independent operators), or in the [**JOIN** operator](JOIN_operator.md) (inside \[= \])
 
 ### Parameters
 
@@ -45,7 +45,7 @@ The value class of the aggregated object.
 
 *aggrExpr*
 
-An [expression](Expression.md) whose value defines an aggregated property.
+An [expression](Expression.md) whose value defines an aggregated property.
 
 ### Examples
 

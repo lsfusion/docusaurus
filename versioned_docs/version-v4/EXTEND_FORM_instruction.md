@@ -22,7 +22,7 @@ The **EXTEND FORM** instruction allows you to extend an existing form with addit
 
 The name of the form being extended. [Composite ID](IDs.md#cid-broken) .
 
-*formBlock1 ... formBlockN *
+*formBlock1 ... formBlockN *
 
 Form blocks.
 

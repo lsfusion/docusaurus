@@ -63,7 +63,7 @@ Events of type **LOCAL** count all property changes relative not to the state of
 
 ### Condition
 
-Similar to **Example 2**, but a book is specified for the order line. Each book also has a default price.
+Similar to **Example 2**, but a book is specified for the order line. Each book also has a default price.
 
 ```lsf
 CLASS Book 'Book';
@@ -150,13 +150,13 @@ WHEN LOCAL (CHANGED(quantity(OrderDetail d)) OR CHANGED(price(d)))
 }
 ```
 
-Events of type **LOCAL** count all property changes relative not to the state of the database but to the values at the time of the previous occurrence of this event (or rather, the end of its handling). We need to check that **sum** has not changed, to avoid erasing changes made by previous changes. For example, if order lines have been imported from a file, in which the quantity, price and amount are recorded, then this event will no longer take effect.
+Events of type **LOCAL** count all property changes relative not to the state of the database but to the values at the time of the previous occurrence of this event (or rather, the end of its handling). We need to check that **sum** has not changed, to avoid erasing changes made by previous changes. For example, if order lines have been imported from a file, in which the quantity, price and amount are recorded, then this event will no longer take effect.
 
 ## Example 3
 
 ### Condition
 
-Similar to **Example 2**, but a book is specified for the order line. Each book also has a default price.
+Similar to **Example 2**, but a book is specified for the order line. Each book also has a default price.
 
 ```lsf
 CLASS Book 'Book';
@@ -194,7 +194,7 @@ Without the **FORMS** block, this event would be triggered by any change to the 
 
 ### Condition
 
-Similar to **Example 1**.
+Similar to **Example 1**.
 
 We need to organize logging of the deletion of orders
 
@@ -219,4 +219,4 @@ WHEN DROPPED(Order o IS Order) DO {
 }
 ```
 
-When deleting an order and triggering an event with the **DROPPED** modifier, it is important to remember that the object no longer exists and all properties that take it as input will give **NULL** values. Therefore, we need to access them not directly, but through the **PREV** operator.
+When deleting an order and triggering an event with the **DROPPED** modifier, it is important to remember that the object no longer exists and all properties that take it as input will give **NULL** values. Therefore, we need to access them not directly, but through the **PREV** operator.

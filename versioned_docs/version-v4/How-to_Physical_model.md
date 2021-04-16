@@ -13,7 +13,7 @@ TABLE animal(Animal);
 name 'Name' = DATA STRING[50] (Animal);
 ```
 
-With a standard [field naming policy](Tables.md#name), a <[Namespace](Naming.md)\>**\_animal** table will be created within the database, with a key **key0** with the internal ID of an animal and a <[Namespace](Naming.md)\>**\_name\_Animal** field storing its name.
+With a standard [field naming policy](Tables.md#name), a <[Namespace](Naming.md)\>**\_animal** table will be created within the database, with a key **key0** with the internal ID of an animal and a <[Namespace](Naming.md)\>**\_name\_Animal** field storing its name.
 
 For properties with multiple parameters, we can create a table as follows:
 

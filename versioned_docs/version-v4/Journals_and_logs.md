@@ -17,13 +17,13 @@ This log contains all errors that occurred during the operation. Errors are divi
 
 ![](attachments/60555482/65241132.png)
 
- Fig. 1 Error log.
+ Fig. 1 Error log.
 
-The «Exception trace» section displays the java stack for the error; the «Exception LSF trace» displays the lsfusion stack. 
+The «Exception trace» section displays the java stack for the error; the «Exception LSF trace» displays the lsfusion stack. 
 
 -   Connection Log (fig. 2).
 
-![](attachments/60555482/65241133.png)** **
+![](attachments/60555482/65241133.png)** **
 
 Fig. 2 Connection Log.
 
@@ -61,7 +61,7 @@ How much information should be stored in these logs is indicated in the Admin fo
 
 Fig. 5 Setting the number of days for logging.
 
-If you need to track changes to the individual values of any  Properties (columns), a mechanism for user logging has been developed to allow you to do it. For example, let's say you need to record changes to an employee's last name in the Employees directory. To do this:
+If you need to track changes to the individual values of any  Properties (columns), a mechanism for user logging has been developed to allow you to do it. For example, let's say you need to record changes to an employee's last name in the Employees directory. To do this:
 
 1.  go to any entry in the «Surname» column and right-click to bring up the «Configure property policy» menu (fig. 6.);
 
@@ -90,8 +90,8 @@ The following set of logs is supported for each platform component in the platfo
 |Component|Folder|Logs|
 |---|---|---|
 |Application server (Server)|$FUSION_DIR$/logs, where $FUSION_DIR$ is the application server startup folder|<div class="content-wrapper"><br/><ul><br/><li>stdout - standard output log (output to the standard output stream, i.e. to the OS console, IDE, etc.). Includes start and explain logs.</li><br/><li>stderr - general error log</li><br/><li>start - a log of the stop and start process</li><br/><li>remote, invocation - logs of processes related to accessing the application server</li><br/><li>sql, sqlhand, sqlconnection, sqlconflict, sqladjust - logs of processes related to accessing the database server</li><br/><li>explain, explaincompile - logs where query plans are displayed (database server and application server, respectively)</li><br/><li>lru - log of memory management processes (mainly LRU caches)</li><br/><li>allocatedbytes - log of memory allocation processes</li><br/><li>assert - a log of various checks on meeting specified conditions (or rather, non-meeting)</li><br/><li>mail - mail log</li><br/><li>jasperReports - JasperReports log</li><br/><li>jdbc - jdbc driver log</li><br/><li>exinfo - a log of additional information (not included in the above)</li><br/></ul><br/></div>|
-|Web server (Client)|$CATALINA_BASE$/logs,  where $CATALINA_BASE$ is the folder where Tomcat is installed|<ul><br/><li>catalina.out - general output log</li><br/><li>gwtlog, gwtlog-err - GWT logs</li><br/><li>invocation - logs of processes related to accessing the web server</li><br/></ul>|
-|Desktop client|$USER_DIR$/.fusion/logs, where $USER_DIR$ is the user folder|<ul><br/><li>stdout - standard output log (output to the standard output stream, i.e. to the OS console, IDE, etc.).</li><br/><li>stderr - general error log</li><br/><li>remote, invocation - logs of processes related to accessing the application server</li><br/><li>jasperReports - JasperReports log</li><br/></ul>|
+|Web server (Client)|$CATALINA_BASE$/logs,  where $CATALINA_BASE$ is the folder where Tomcat is installed|<ul><br/><li>catalina.out - general output log</li><br/><li>gwtlog, gwtlog-err - GWT logs</li><br/><li>invocation - logs of processes related to accessing the web server</li><br/></ul>|
+|Desktop client|$USER_DIR$/.fusion/logs, where $USER_DIR$ is the user folder|<ul><br/><li>stdout - standard output log (output to the standard output stream, i.e. to the OS console, IDE, etc.).</li><br/><li>stderr - general error log</li><br/><li>remote, invocation - logs of processes related to accessing the application server</li><br/><li>jasperReports - JasperReports log</li><br/></ul>|
 
   
 

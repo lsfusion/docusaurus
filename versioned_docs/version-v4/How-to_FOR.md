@@ -77,7 +77,7 @@ To solve this task, use the **iterate** property (defined in the **Utils** syste
 
 ### Task
 
-Similar to **Example 1**, but with the order logic. Each order contains lines where books and discount prices are specified.
+Similar to **Example 1**, but with the order logic. Each order contains lines where books and discount prices are specified.
 
 ```lsf
 CLASS Order 'Order';
@@ -117,7 +117,7 @@ Both these implementations will provide the same result.
 
 ### Task
 
-Similar to **Example 3**, but a default price was added for each book.
+Similar to **Example 3**, but a default price was added for each book.
 
 ```lsf
 price 'Price' = DATA NUMERIC[14,2] (Book);

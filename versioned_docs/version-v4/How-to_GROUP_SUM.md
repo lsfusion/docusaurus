@@ -104,7 +104,7 @@ The second option is preferable. Since requests usually refer to recent dates, t
 
 ### Condition
 
-Similar to **Example 3**, except that we need to calculate the current balance for a given book across all the warehouses.
+Similar to **Example 3**, except that we need to calculate the current balance for a given book across all the warehouses.
 
 ### Solution
 

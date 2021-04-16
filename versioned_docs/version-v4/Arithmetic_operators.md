@@ -18,7 +18,7 @@ title: 'Arithmetic operators'
 
 *expression1, expression2*
 
-[Expressions](Expression.md) whose values will be arguments for arithmetic operators.
+[Expressions](Expression.md) whose values will be arguments for arithmetic operators.
 
 ### Examples
 

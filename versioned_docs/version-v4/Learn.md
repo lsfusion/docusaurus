@@ -6,11 +6,11 @@ slug: /
 
 Overview
 
-        A set of articles ([1](https://habr.com/ru/company/lsfusion/blog/458376/), [2](https://habr.com/ru/company/lsfusion/blog/460141/), [3](https://habr.com/ru/company/lsfusion/blog/460887/)) fthat is a step-by-step guide (tutorial) to learn more about the platform's features.
+A set of articles ([1](https://habr.com/ru/company/lsfusion/blog/458376/), [2](https://habr.com/ru/company/lsfusion/blog/460141/), [3](https://habr.com/ru/company/lsfusion/blog/460887/)) fthat is a step-by-step guide (tutorial) to learn more about the platform's features.
 
 [Paradigm](Paradigm.md)
 
-This section describes the general concepts and terms used in the platform.
+This section describes the general concepts and terms used in the platform.
 
 [Language](Language.md)
 
@@ -22,7 +22,7 @@ This section describes the basic actions in the lsFusion platform development en
 
 [Examples](Examples.md)
 
-        This section contains examples of tasks and their solutions on the lsFusion platform.
+This section contains examples of tasks and their solutions on the lsFusion platform.
 
 [Online demo](Online_demo.md)
 

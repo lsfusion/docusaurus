@@ -2,7 +2,7 @@
 title: 'IF ... THEN operator (action)'
 ---
 
-The **IF ... THEN** operator creates an [action](Actions.md) that implements [branching](Branching_CASE_IF_MULTI_.md#single) with one condition (single form).
+The **IF ... THEN** operator creates an [action](Actions.md) that implements [branching](Branching_CASE_IF_MULTI_.md#single) with one condition (single form).
 
 ### Syntax
 

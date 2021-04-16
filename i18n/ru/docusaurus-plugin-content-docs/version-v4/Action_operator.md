@@ -21,7 +21,7 @@ sidebar_label: Обзор
 -   [Оператор **BREAK**](BREAK_operator.md)
 -   [Оператор **CANCEL**](CANCEL_operator.md)
 -   [Оператор **CASE** (д)](CASE_operator_action_.md)
--   [Оператор **CHANGE**](CHANGE_operator.md)
+-   [Оператор **CHANGE**](CHANGE_operator.md)
 -   [Оператор **CHANGECLASS**](CHANGECLASS_operator.md)
 -   [Оператор **DELETE**](DELETE_operator.md)
 -   [Оператор **DIALOG**](DIALOG_operator.md)
@@ -45,16 +45,16 @@ sidebar_label: Обзор
 -   [Оператор **REQUEST**](REQUEST_operator.md)
 -   [Оператор **RETURN**](RETURN.md)
 -   [Оператор **SEEK**](SEEK_operator.md)
--   [Оператор **SHOW**](SHOW_operator.md)
+-   [Оператор **SHOW**](SHOW_operator.md)
 -   [Оператор **TRY**](TRY_operator.md)
 -   [Оператор **WHILE**](WHILE_operator.md)
 -   [Оператор **WRITE**](WRITE_operator.md)
 
 ### Контекстно-независимые операторы {#contextindependent}
 
-Контекстно-независимые операторы-действия не могут использовать параметры из внешнего контекста. Из-за этого они могут могут быть использованы только в [инструкции** ACTION**](ACTION_instruction.md):
+Контекстно-независимые операторы-действия не могут использовать параметры из внешнего контекста. Из-за этого они могут могут быть использованы только в [инструкции** ACTION**](ACTION_instruction.md):
 
 -   [Оператор **ABSTRACT**](ABSTRACT_operator_action_.md)
 -   [Оператор **INTERNAL**](INTERNAL_operator.md)
 
- 
+ 

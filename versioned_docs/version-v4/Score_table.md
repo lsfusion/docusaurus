@@ -4,7 +4,7 @@ title: 'Score table'
 
 ## "Score table" task description
 
-This information system, created using the **lsFusion Platform**, should contain the functionality for keeping score at a hockey tournament.
+This information system, created using the **lsFusion Platform**, should contain the functionality for keeping score at a hockey tournament.
 
 A tournament is understood to mean a subset of games between teams (with two teams participating in each game), which result in points being awarded to the teams.
 
@@ -30,7 +30,7 @@ REQUIRE System, Utils;
 
 ### Team definition
 
-We introduce the concept of a team, for which we create a separate [class](Classes.md) using the corresponding instruction [CLASS](CLASS_instruction.md). 
+We introduce the concept of a team, for which we create a separate [class](Classes.md) using the corresponding instruction [CLASS](CLASS_instruction.md). 
 
 ```lsf
 CLASS Team 'Team';
@@ -38,7 +38,7 @@ CLASS Team 'Team';
 
 We assign a name to the class created (for example, "Team"), which will subsequently be used when building [expressions](Expression.md), as well as a caption to display on custom forms (for example, "Team").
 
-So that all teams can be easily identified when working with forms created later, we create a name for the team. In other words, we create a "Name" [property](Properties.md) that can be defined for objects of the "Team" class.
+So that all teams can be easily identified when working with forms created later, we create a name for the team. In other words, we create a "Name" [property](Properties.md) that can be defined for objects of the "Team" class.
 
 ```lsf
 name 'Team name' = DATA STRING[30] (Team) IN base;
@@ -60,7 +60,7 @@ hostTeamName 'Hosts' (Game game) = name(hostTeam(game));
 guestTeamName 'Guests' (Game game) = name(guestTeam(game));
 ```
 
-The hostTeam and guestTeam properties are [data](Data_properties_DATA_.md) object properties of a game, whose values are links to the host team and guest team, respectively (that is, to specific Team-class objects). Properties of the team names of the game hosts and guests (hostTeamName and guestTeamName) are created for subsequent use on forms. If the hostTeam and guestTeam properties are added to the form, the user will see the internal IDs of objects from the database.
+The hostTeam and guestTeam properties are [data](Data_properties_DATA_.md) object properties of a game, whose values are links to the host team and guest team, respectively (that is, to specific Team-class objects). Properties of the team names of the game hosts and guests (hostTeamName and guestTeamName) are created for subsequent use on forms. If the hostTeam and guestTeam properties are added to the form, the user will see the internal IDs of objects from the database.
 
 We introduce the constraint that the game participants must be two different teams.
 
@@ -68,7 +68,7 @@ We introduce the constraint that the game participants must be two different tea
 CONSTRAINT hostTeam(Game team) = guestTeam(team) CHECKED BY hostTeam, guestTeam MESSAGE 'Host and guest teams must be different';
 ```
 
-The operating mechanism of this expression is as follows: when the host team or guest team of a game changes, the system checks the condition of equality of these teams (hostTeam(team) == guestTeam(team)), and if it is met the system blocks the application of changes to the database, and also gives the user the specified message ('Host and guest teams must be different'). In other words, the result of the expression specified after the CONSTRAINT operator must be NULL. In all other cases the restriction will be considered violated.  In addition, thanks to the CHECKED BY block, the created constraint will filter teams when selecting a home team or a guest team for a game (that is, it will exclude the team already set as the opponent from the list of teams in the dialog that appears upon selecting a team).
+The operating mechanism of this expression is as follows: when the host team or guest team of a game changes, the system checks the condition of equality of these teams (hostTeam(team) == guestTeam(team)), and if it is met the system blocks the application of changes to the database, and also gives the user the specified message ('Host and guest teams must be different'). In other words, the result of the expression specified after the CONSTRAINT operator must be NULL. In all other cases the restriction will be considered violated.  In addition, thanks to the CHECKED BY block, the created constraint will filter teams when selecting a home team or a guest team for a game (that is, it will exclude the team already set as the opponent from the list of teams in the dialog that appears upon selecting a team).
 
 We define the number of goals scored by each team during the game.
 
@@ -117,7 +117,7 @@ CLASS GameResult 'G/R' {
 }
 ```
 
-For this purpose we create a GameResult class and add three [static objects](Static_objects.md) to it that are specified using expressions specified in braces { }. In this case, the values win, winOT, winSO and W, OW, SW will be stored in the system properties staticName and staticCaption, respectively.
+For this purpose we create a GameResult class and add three [static objects](Static_objects.md) to it that are specified using expressions specified in braces { }. In this case, the values win, winOT, winSO and W, OW, SW will be stored in the system properties staticName and staticCaption, respectively.
 
 We create the resultName property, which will return the caption of the game result (W, OW, or SW). To do this, we take the system property staticCaption, which is supported for all objects in the system, and constrain its signature using the IF operator, indicating that the object must be of the Game class. This property is added to the "base" property group so that it appears in the automatic dialog for selecting an object of the GameResult class.
 
@@ -162,7 +162,7 @@ guestGamesPlayed = GROUP SUM 1 BY guestTeam(Game game);
 gamesPlayed 'G' (Team team) = hostGamesPlayed(team) (+) guestGamesPlayed(team);
 ```
 
-Here, the construction (+) is used instead of the arithmetic + to obtain the correct result if at least one of the terms has a value of NULL. Using (+) in this case is equivalent to replacing a possible NULL with 0. If one of the terms is NULL, then using the arithmetic + will also result in a value of NULL.
+Here, the construction (+) is used instead of the arithmetic + to obtain the correct result if at least one of the terms has a value of NULL. Using (+) in this case is equivalent to replacing a possible NULL with 0. If one of the terms is NULL, then using the arithmetic + will also result in a value of NULL.
 
 To determine the number of games played by the team at home and away, the [GROUP SUM](Grouping_GROUP_.md) operator is used, which allows you to get the sum of the calculation results of a given expression for objects of a certain class, grouped by one or more of their attributes (similar to subtotals in Excel). Here the number 1 is specified for summation, and all games are grouped by guest team and host team (the BY instruction). As a result, for example, the hostGamesPlayed property determines for the team (since the result of the hostTeam property calculation is the Team-class object) the number (that is, the sum of the number 1 for all games where the host team is equal to the defined one) of games played as hosts (the hostTeam property is specified only for objects of the Game class). With this calculation the system analyzes all games entered into the system.
 
@@ -217,12 +217,12 @@ place 'Rank' (Team team) = PARTITION SUM 1 ORDER DESC points(team), gamesWon(tea
 
   
 
-The "place" property "Team place on the score table" is determined using the construction [PARTITION SUM](Partitioning_sorting_PARTITION_..._ORDER_.md), which for all objects of a certain class in a cumulative total, the sequence of which is specified by the ORDER operator, calculates the sum of the results of the calculation of a specified expression. It is important to remember that the values of all properties involved in determining the order must not be NULL. For this purpose, the penultimate expression uses the OVERRIDE operator so that the number 0 is used instead of NULL.
+The "place" property "Team place on the score table" is determined using the construction [PARTITION SUM](Partitioning_sorting_PARTITION_..._ORDER_.md), which for all objects of a certain class in a cumulative total, the sequence of which is specified by the ORDER operator, calculates the sum of the results of the calculation of a specified expression. It is important to remember that the values of all properties involved in determining the order must not be NULL. For this purpose, the penultimate expression uses the OVERRIDE operator so that the number 0 is used instead of NULL.
 
 Thus, the logic for determining the "place" property for each command is as follows:
 
 -   all teams are arranged in a sequence (ranked) in descending order of the values of certain parameters (number of points scored, games won in regular time, and other properties specified after the ORDER DESC operator)
--   The sum of the values of the specified SUM expression (in this case, number 1) is calculated for each team. The sum is calculated for all teams preceding that team in the ranked list (including that team). That is, 1 for the first team, 1+1 for the second, 1+1+1 for the third, etc.
+-   The sum of the values of the specified SUM expression (in this case, number 1) is calculated for each team. The sum is calculated for all teams preceding that team in the ranked list (including that team). That is, 1 for the first team, 1+1 for the second, 1+1+1 for the third, etc.
 
 ## Defining view logic
 
@@ -239,7 +239,7 @@ FORM MainForm 'Score table'
 
 The FORM instruction creates an empty form with [a certain default functionality](Form_structure.md). Using the OBJECTS game=Game expression, a "game" object is added to the form: a table view block containing all instances of the Game class entered in the system. Using the expression PROPERTIES(game) with a the subsequent listing of a subset of properties, the specified properties are added to the form, and objects of the "game" block are passed to them as arguments. In addition to previously created properties, the [actions](Actions.md) NEW and DELETE are also placed on the form, which will visually appear as buttons and allow you to add and remove objects of the Game class.
 
-Data properties displayed on a form that are of a primitive type (date, hostGoals, guestGoals) will visually appear as cells that can be filled and changed by the user. Calculated properties that return an attribute of another object (hostTeamName, guestTeamName, resultName) will appear as cells. When these are clicked, a dialog box with the list of their objects and base group properties will be shown (for example, when clicking on the cell hostTeamName "Guests" a dialog box appears with the list of teams). In the dialog box you can select one of the objects, thus changing the property value for the object of the original form (for example, changing the game host team).
+Data properties displayed on a form that are of a primitive type (date, hostGoals, guestGoals) will visually appear as cells that can be filled and changed by the user. Calculated properties that return an attribute of another object (hostTeamName, guestTeamName, resultName) will appear as cells. When these are clicked, a dialog box with the list of their objects and base group properties will be shown (for example, when clicking on the cell hostTeamName "Guests" a dialog box appears with the list of teams). In the dialog box you can select one of the objects, thus changing the property value for the object of the original form (for example, changing the game host team).
 
 We extend the form by adding a score table block to it. The score table will be shown as a list of teams (objects of the Team class) with their statistical indicators, sorted by rating using the ORDER BY operator.
 

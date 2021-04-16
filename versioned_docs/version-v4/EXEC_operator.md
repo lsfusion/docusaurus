@@ -2,7 +2,7 @@
 title: 'EXEC operator'
 ---
 
-The **EXEC** operator creates an [action](Actions.md) that [executes](Call_EXEC_.md) another action.
+The **EXEC** operator creates an [action](Actions.md) that [executes](Call_EXEC_.md) another action.
 
 ### Syntax
 
@@ -16,7 +16,7 @@ The **EXEC** operator creates an action that executes another action, passing it
 
 *actionId*
 
-[Action ID](IDs.md#propertyid-broken). 
+[Action ID](IDs.md#propertyid-broken). 
 
 *expression1, ..., expressionN*
 

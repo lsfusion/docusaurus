@@ -10,7 +10,7 @@ The **FORMULA** operator creates a [property](Properties.md) that implements a [
 
 ### Description
 
-The **FORMULA** operator creates a property that executes an arbitrary formula in SQL. It is possible to specify different formulas for different SQL dialects so that these properties are portable between different DBMSs. 
+The **FORMULA** operator creates a property that executes an arbitrary formula in SQL. It is possible to specify different formulas for different SQL dialects so that these properties are portable between different DBMSs. 
 
 This property operator cannot be used inside [expressions](Expression.md).
 
@@ -22,7 +22,7 @@ Keyword specifying that the property being created may return **NULL** if all pa
 
 *className*
 
-The name of the [builtin class](Built-in_classes.md) of the value returned by the property. If not specified, the resulting class is considered to be the [common ancestor](Built-in_classes.md#commonparentclass) of all property operands.
+The name of the [builtin class](Built-in_classes.md) of the value returned by the property. If not specified, the resulting class is considered to be the [common ancestor](Built-in_classes.md#commonparentclass) of all property operands.
 
 *syntaxType1, ..., syntaxTypeN*
 

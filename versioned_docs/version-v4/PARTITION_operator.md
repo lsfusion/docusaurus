@@ -2,7 +2,7 @@
 title: 'PARTITION operator'
 ---
 
-The **PARTITION** operator creates a [property](Properties.md) that implements [partition/order](Partitioning_sorting_PARTITION_..._ORDER_.md) or [simple distribution](Distribution_UNGROUP_.md).
+The **PARTITION** operator creates a [property](Properties.md) that implements [partition/order](Partitioning_sorting_PARTITION_..._ORDER_.md) or [simple distribution](Distribution_UNGROUP_.md).
 
 ### Syntax
 
@@ -25,16 +25,16 @@ where *distributionType* can be described in several ways:
     PROPORTION [STRICT] ROUND(digits)
     LIMIT [STRICT]
 
- **Description**
+ **Description**
 
-The **PARTITION** operator creates a property that divides all object collections in the system into groups, and taking into account the specified order:
+The **PARTITION** operator creates a property that divides all object collections in the system into groups, and taking into account the specified order:
 
--   calculates an [aggregate function](Set_operations.md) for each object collection. In case of partition/order,
+-   calculates an [aggregate function](Set_operations.md) for each object collection. In case of partition/order,
 -   it distributes a certain value among the object collections of one group in the case of distribution.
 
-The **BY** block describes the groups into which numerous sets of object collections will be divided. If the **BY** block is not specified, all object collections are considered to belong to the same group. 
+The **BY** block describes the groups into which numerous sets of object collections will be divided. If the **BY** block is not specified, all object collections are considered to belong to the same group. 
 
-The **ORDER** block defines the order in which the aggregate function will be calculated or the distribution will take place. If this function is [non-commutative](Set_operations.md), the specified order must be uniquely determined. If a new parameter (not used earlier in the  **PARTITION** and **BY** options and in the upper context) is declared in the expressions defining the order, when calculating the resulting value the condition of non-**NULLness** of all these expressions is automatically added.
+The **ORDER** block defines the order in which the aggregate function will be calculated or the distribution will take place. If this function is [non-commutative](Set_operations.md), the specified order must be uniquely determined. If a new parameter (not used earlier in the  **PARTITION** and **BY** options and in the upper context) is declared in the expressions defining the order, when calculating the resulting value the condition of non-**NULLness** of all these expressions is automatically added.
 
 ### Parameters
 
@@ -62,7 +62,7 @@ When this keyword is specified, the value of the distributed property must be ex
 
 Specifies the number of decimal places the value will be rounded to.
 
-*digits –* [Integer literal](Literals.md#intliteral-broken) specifying the number of decimal places. 
+*digits –* [Integer literal](Literals.md#intliteral-broken) specifying the number of decimal places. 
 
 **LIMIT**
 
@@ -70,23 +70,23 @@ A keyword specifying the use of distribution with specified limits. In this case
 
 *STRICT*
 
-When this keyword is specified, the value of the distributed property must be exactly (without a remainder) distributed between the object collections belonging to the group. If after distribution there is a remainder, it is added to the last object collection in accordance with the order defined in the **ORDER** block.
+When this keyword is specified, the value of the distributed property must be exactly (without a remainder) distributed between the object collections belonging to the group. If after distribution there is a remainder, it is added to the last object collection in accordance with the order defined in the **ORDER** block.
 
 *expr*
 
-An [expression](Expression.md) whose value is passed as an input to the aggregating function as an operand in case of partition/order. In case of distribution with type **PROPORTION** it defines the proportion, and with type **LIMIT** it defines the limit.
+An [expression](Expression.md) whose value is passed as an input to the aggregating function as an operand in case of partition/order. In case of distribution with type **PROPORTION** it defines the proportion, and with type **LIMIT** it defines the limit.
 
-*groupExpr1, ..., groupExprM*  
+*groupExpr1, ..., groupExprM*  
 
- List of group expressions (groups). 
+ List of group expressions (groups). 
 
 *DESC*
 
-Keyword. Specifies a reverse iteration order for object collections. 
+Keyword. Specifies a reverse iteration order for object collections. 
 
 *orderExpr1, ..., orderExprK*
 
-A list of expressions that define the order in which object collections will be iterated when calculating the aggregate function or during distribution. To determine the order, first the value of the first expression is used; then, if equal, the value of the second is used, etc. 
+A list of expressions that define the order in which object collections will be iterated when calculating the aggregate function or during distribution. To determine the order, first the value of the first expression is used; then, if equal, the value of the second is used, etc. 
 
 ### Examples
 

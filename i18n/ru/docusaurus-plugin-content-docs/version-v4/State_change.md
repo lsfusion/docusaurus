@@ -5,7 +5,7 @@ sidebar_label: Обзор
 
 Операторы изменения состояния системы включают в себя следующие операторы.
 
--   [Изменение свойства (CHANGE)](Property_change_CHANGE_.md)
+-   [Изменение свойства (CHANGE)](Property_change_CHANGE_.md)
 -   [Добавление объекта (NEW)](New_object_NEW_.md)
 -   [Изменение класса (DELETE / CHANGECLASS)](Class_change_CHANGECLASS_DELETE_.md)
 

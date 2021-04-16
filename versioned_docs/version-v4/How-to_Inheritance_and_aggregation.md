@@ -36,7 +36,7 @@ NAVIGATOR {
 }
 ```
 
-For the purposes of this example, let's use a simplified scheme with a single class. In reality, you would be using two classes: **Receipt** (for documents) and **ReceiptDetail **(for document lines).
+For the purposes of this example, let's use a simplified scheme with a single class. In reality, you would be using two classes: **Receipt** (for documents) and **ReceiptDetail **(for document lines).
 
 In a similar way, let's create a Production class to be used for manufactured products:
 
@@ -83,7 +83,7 @@ CLASS ReceiptBatch 'Arrival based batch';
 batch (Receipt receipt) = AGGR ReceiptBatch WHERE posted(receipt);
 ```
 
-Use the [AGGR](AGGR_operator.md) operator for each object of the **Receipt**,  class with a defined **posted** property to automatically create (and delete) an object of the **ReceiptBatch** class. At this time, the system creates two properties with reciprocal object links: **batch(Receipt r)** and **receipt(ReceiptBatch b)**.
+Use the [AGGR](AGGR_operator.md) operator for each object of the **Receipt**,  class with a defined **posted** property to automatically create (and delete) an object of the **ReceiptBatch** class. At this time, the system creates two properties with reciprocal object links: **batch(Receipt r)** and **receipt(ReceiptBatch b)**.
 
 Now we need to inherit the **ReceiptBatch** class from **Batch** to make sure that all batches created by the receipt document also become objects of the abstract class (that is, previously declared batches):
 
@@ -94,7 +94,7 @@ item(ReceiptBatch rb) += item(receipt(rb));
 type(ReceiptBatch rb) += 'Arrival' IF rb IS ReceiptBatch;
 ```
 
-Inheritance is implemented with the help of the [EXTEND CLASS](EXTEND_CLASS_instruction.md) operator. After that, for each abstract property of **Batch**, we define how exactly it should be calculated for a specific **ReceiptBatch** class. Date and product values are retrieved from the receipt document through the **receipt(ReceiptBatch b)** link. The necessary string is substituted into the batch type under the condition that the object belongs to the right class (otherwise, the expression will be defined for objects of any class, and the system will generate a signature mismatch error).
+Inheritance is implemented with the help of the [EXTEND CLASS](EXTEND_CLASS_instruction.md) operator. After that, for each abstract property of **Batch**, we define how exactly it should be calculated for a specific **ReceiptBatch** class. Date and product values are retrieved from the receipt document through the **receipt(ReceiptBatch b)** link. The necessary string is substituted into the batch type under the condition that the object belongs to the right class (otherwise, the expression will be defined for objects of any class, and the system will generate a signature mismatch error).
 
 Note that you could inherit a class directly while declaring the **ReceiptBatch** class.
 

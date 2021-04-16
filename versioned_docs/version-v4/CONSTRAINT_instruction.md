@@ -31,11 +31,11 @@ but it also has [a number of advantages](Constraints.md).
 
 *eventClause*
 
-[Event description block](Event_description_block.md). Describes [the event](Events.md) upon occurrence of which the created constraint will be checked.
+[Event description block](Event_description_block.md). Describes [the event](Events.md) upon occurrence of which the created constraint will be checked.
 
 *constraintExpr*
 
-An [expression](Expression.md) whose value is a condition for the constraint being created. If the obtained property does not contain the **PREV** operator, the platform automatically wraps it into the **SET**operator.
+An [expression](Expression.md) whose value is a condition for the constraint being created. If the obtained property does not contain the **PREV** operator, the platform automatically wraps it into the **SET**operator.
 
 *propertyId1, ..., propertyIdN*
 
@@ -43,7 +43,7 @@ List of [property IDs](IDs.md#propertyid-broken). When showing change dialog for
 
 *messageExpr*
 
-An expression whose value is shown as a message to the user when the set constraint is violated. It may be either a [string literal](IDs.md#strliteral-broken) or a property without parameters.
+An expression whose value is shown as a message to the user when the set constraint is violated. It may be either a [string literal](IDs.md#strliteral-broken) or a property without parameters.
 
 ### Examples
 

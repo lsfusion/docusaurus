@@ -2,9 +2,9 @@
 title: 'RECURSION operator'
 ---
 
-The **RECURSION **operator creates a [property](Properties.md) that implements [recursion](Recursion_RECURSION_.md).
+The **RECURSION **operator creates a [property](Properties.md) that implements [recursion](Recursion_RECURSION_.md).
 
-### Syntax 
+### Syntax 
 
     RECURSION initialExpr STEP stepExpr [CYCLES YES | CYCLES NO | CYCLES IMPOSSIBLE]
 
@@ -24,15 +24,15 @@ An expression whose value is a property of a recursion step. Allows a special sy
 
 *CYCLES YES*
 
-        Specifies that cycles are allowed.
+        Specifies that cycles are allowed.
 
 *CYCLES NO*
 
-        Specifies that cycles are not allowed. This option is used by default.
+        Specifies that cycles are not allowed. This option is used by default.
 
 *CYCLES IMPOSSIBLE*
 
-        Specifies that cycles are not possible.
+        Specifies that cycles are not possible.
 
 ### Examples
 
@@ -63,4 +63,4 @@ Note that Fibonacci numbers can be implemented without adding the to parameter:
 fib(i) = RECURSION 1 IF (i==0 OR i==1) STEP 1 IF (i==$i+1 OR i==$i+2);
 ```
 
-In the current implementation, however, the platform optimizer is less focused on working with numbers, so it cannot yet determine that the step function is increasing and stop the recursion on its own, artificially creating the corresponding condition, as is done in the above example. Even more questions arise when this property needs to be displayed in a dynamic list (and in a static list this cannot be done at all, since the number of non-**NULL** values is infinite). In this case, the current order in this list must also be taken into account and also pushed into the query. These limitations will be removed in future versions, but in the current version it is recommended to take them into account.
+In the current implementation, however, the platform optimizer is less focused on working with numbers, so it cannot yet determine that the step function is increasing and stop the recursion on its own, artificially creating the corresponding condition, as is done in the above example. Even more questions arise when this property needs to be displayed in a dynamic list (and in a static list this cannot be done at all, since the number of non-**NULL** values is infinite). In this case, the current order in this list must also be taken into account and also pushed into the query. These limitations will be removed in future versions, but in the current version it is recommended to take them into account.

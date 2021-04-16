@@ -2,7 +2,7 @@
 title: 'Order (ORDER)'
 ---
 
-The *order* operator creates a [property](Properties.md) that returns the sequence number of an object collection in the specified group of objects, in accordance with the current [order](Form_structure.md#sort) of this group.
+The *order* operator creates a [property](Properties.md) that returns the sequence number of an object collection in the specified group of objects, in accordance with the current [order](Form_structure.md#sort) of this group.
 
 ### Language
 

@@ -37,7 +37,7 @@ We need to create a [print form](Print_view.md) to display all the books by cate
 
 ### Solution
 
-First, we need to declare a [form](Forms.md) to define the print form structure.
+First, we need to declare a [form](Forms.md) to define the print form structure.
 
 ```lsf
 FORM booksByCategories 'Books by category'
@@ -50,7 +50,7 @@ FORM booksByCategories 'Books by category'
 ;
 ```
 
-Then, we add two actions that use the [PRINT](PRINT_operator.md) operator for creating a report and for previewing it and exporting to XLSX respectively.
+Then, we add two actions that use the [PRINT](PRINT_operator.md) operator for creating a report and for previewing it and exporting to XLSX respectively.
 
 ```lsf
 printBooksByCategories 'Books by category' ()  {
@@ -62,7 +62,7 @@ xlsxBooksByCategories 'Books by category (XLSX)' ()  {
 }
 ```
 
-Now let's display them on the **books** form in the toolbar of the table of books.
+Now let's display them on the **books** form in the toolbar of the table of books.
 
 ```lsf
 EXTEND FORM books
@@ -74,11 +74,11 @@ Then, we start the server from the IDE, launch the desktop client, open the form
 
 ![](attachments/46367627/46367670.png)
 
-The system will save automatic templates for [Jasper Reports](https://community.jaspersoft.com/project/jasperreports-library) to the source code folder (src/main/lsfusion).
+The system will save automatic templates for [Jasper Reports](https://community.jaspersoft.com/project/jasperreports-library) to the source code folder (src/main/lsfusion).
 
 ![](attachments/46367627/57738054.png)
 
-The system will then start the editor associated with the jrxml format where these files will be opened. You can use [JasperSoft Studio](https://community.jaspersoft.com/project/jaspersoft-studio) as an editor. In addition, a background process will be launched to constantly synchronize report files in the src / main / lsfusion and out / production folders (or target / classes if Maven is used to start the configuration instead of IDEA Build) to eliminate the need for rebuilding the project after the templates are modified in the editor.
+The system will then start the editor associated with the jrxml format where these files will be opened. You can use [JasperSoft Studio](https://community.jaspersoft.com/project/jaspersoft-studio) as an editor. In addition, a background process will be launched to constantly synchronize report files in the src / main / lsfusion and out / production folders (or target / classes if Maven is used to start the configuration instead of IDEA Build) to eliminate the need for rebuilding the project after the templates are modified in the editor.
 
 Since categories and books are associated, a single flat report will be created with categories represented as groups of books. Report data will be transmitted in a flat, denormalized form, where a separate (**Field)** field will be created for each property. A group (**Group**) and a corresponding header block (**Group Header**) will be created for categories.
 
@@ -87,7 +87,7 @@ Let's make a few changes in the automatic template and save it:
 ![](attachments/46367627/57738052.png)
 
 #### Template: Sample\_booksByCategories.jrxml
- Expand source
+ Expand source
 
     <?xml version="1.0" encoding="UTF-8"?>
     <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -176,11 +176,11 @@ NAVIGATOR {
 }
 ```
 
-We need to create a print form for invoices that will contain all of their parameters and lines. We also need to be able to export this form to the DOCX format.
+We need to create a print form for invoices that will contain all of their parameters and lines. We also need to be able to export this form to the DOCX format.
 
 ### Solution
 
-To create a print form, let's use the existing **invoice** form that works for us in terms of structure. However, we can create a new form, if necessary.
+To create a print form, let's use the existing **invoice** form that works for us in terms of structure. However, we can create a new form, if necessary.
 
 ```lsf
 print 'Print' (Invoice i)  {
@@ -204,7 +204,7 @@ Let's move the invoice data from the group header (**Group Header**) to the invo
   
 
 #### Template: Sample\_invoice\_i.jrxml
- Expand source
+ Expand source
 
     <?xml version="1.0" encoding="UTF-8"?>
     <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -315,7 +315,7 @@ NAVIGATOR {
 }
 ```
 
-We need to create a print form with customer information that will include all orders and invoices.
+We need to create a print form with customer information that will include all orders and invoices.
 
 ### Solution
 
@@ -356,11 +356,11 @@ The principle of this report is that objects with invoices and orders are indepe
 
 Since the dependency between objects forms a tree with two leaf nodes, a total of three templates will be formed:
 
-1.  *Sample\_customerInfo* is a top report that will show buyer data (in this case, for a single buyer). It will contain links to subreports *Sample\_customerInfo\_i* and *Sample\_customerInfo\_o*.  
+1.  *Sample\_customerInfo* is a top report that will show buyer data (in this case, for a single buyer). It will contain links to subreports *Sample\_customerInfo\_i* and *Sample\_customerInfo\_o*.  
     ![](attachments/46367627/57738063.png)
 
     **Template: Sample\_customerInfo.jrxml**
-     Expand source
+     Expand source
 
         <?xml version="1.0" encoding="UTF-8"?>
         <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -397,7 +397,7 @@ Since the dependency between objects forms a tree with two leaf nodes, a total o
 2.  *Sample\_customerInfo\_o* is a report that will contain all the orders along with their lines.
 
     **Template: Sample\_customerInfo\_o.jrxml**
-     Expand source
+     Expand source
 
         <?xml version="1.0" encoding="UTF-8"?>
         <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -430,10 +430,10 @@ Since the dependency between objects forms a tree with two leaf nodes, a total o
             <group name="designGroup1560">
                 <groupExpression><![CDATA[String.valueOf($F{o.object})]]></groupExpression>\n\t\t<groupHeader>\n\t\t\t<band height="18" splitType="Prevent">\n\t\t\t\t<textField isStretchWithOverflow="true">\n\t\t\t\t\t<reportElement style="GroupCellStyle0" stretchType="RelativeToBandHeight" x="0" y="0" width="32" height="18" uuid="7a140661-f62c-48e3-a050-2667b8215684"/>\n\t\t\t\t\t<textElement textAlignment="Center"/>\n\t\t\t\t\t<textFieldExpression><![CDATA["Date"]]></textFieldExpression>\n\t\t\t\t</textField>\n\t\t\t\t<textField isStretchWithOverflow="true" isBlankWhenNull="true">\n\t\t\t\t\t<reportElement style="GroupCellStyle0" positionType="Float" stretchType="RelativeToBandHeight" x="32" y="0" width="96" height="18" uuid="0764778b-b7e8-47af-9bb1-f8e8c0b3a50a"/>\n\t\t\t\t\t<textElement textAlignment="Right"/>\n\t\t\t\t\t<textFieldExpression><![CDATA[$F{date(o)}]]></textFieldExpression>\n\t\t\t\t</textField>\n\t\t\t\t<textField isStretchWithOverflow="true">\n\t\t\t\t\t<reportElement style="GroupCellStyle0" stretchType="RelativeToBandHeight" x="128" y="0" width="40" height="18" uuid="9d4386c3-8b68-4d22-9a57-72a1b9f4edb0"/>\n\t\t\t\t\t<textElement textAlignment="Center"/>\n\t\t\t\t\t<textFieldExpression><![CDATA["ID"]]></textFieldExpression>\n\t\t\t\t</textField>\n\t\t\t\t<textField isStretchWithOverflow="true" isBlankWhenNull="true">\n\t\t\t\t\t<reportElement style="GroupCellStyle0" positionType="Float" stretchType="RelativeToBandHeight" x="168" y="0" width="634" height="18" uuid="bcc4aee3-1e1a-4373-bc23-2c71a5193277"/>\n\t\t\t\t\t<textElement textAlignment="Left"/>\n\t\t\t\t\t<textFieldExpression><![CDATA[$F{number(o)}]]></textFieldExpression>\n\t\t\t\t</textField>\n\t\t\t</band>\n\t\t</groupHeader>\n\t</group>\n\t<title>\n\t\t<band height="45">\n\t\t\t<staticText>\n\t\t\t\t<reportElement x="0" y="0" width="802" height="45" uuid="bedb580c-7ea1-4962-b012-273c455d18db"/>\n\t\t\t\t<textElement textAlignment="Center">\n\t\t\t\t\t<font size="20"/>\n\t\t\t\t</textElement>\n\t\t\t\t<text><![CDATA[Orders]]></text>\n\t\t\t</staticText>\n\t\t</band>\n\t</title>\n\t<pageHeader>\n\t\t<band height="18">\n\t\t\t<textField isStretchWithOverflow="true">\n\t\t\t\t<reportElement style="GroupCellStyle1" stretchType="RelativeToBandHeight" x="0" y="0" width="606" height="18" uuid="2ed4a155-b17f-4c87-93bb-ccb3c17f99d6"/>\n\t\t\t\t<textElement textAlignment="Center"/>\n\t\t\t\t<textFieldExpression><![CDATA["Book"]]></textFieldExpression>\n\t\t\t</textField>\n\t\t\t<textField isStretchWithOverflow="true">\n\t\t\t\t<reportElement style="GroupCellStyle1" stretchType="RelativeToBandHeight" x="606" y="0" width="97" height="18" uuid="55aeb106-a5f3-42ac-a43f-571457fc26c8"/>\n\t\t\t\t<textElement textAlignment="Center"/>\n\t\t\t\t<textFieldExpression><![CDATA["Quantity"]]></textFieldExpression>\n\t\t\t</textField>\n\t\t\t<textField isStretchWithOverflow="true">\n\t\t\t\t<reportElement style="GroupCellStyle1" stretchType="RelativeToBandHeight" x="703" y="0" width="99" height="18" uuid="186d6da9-1a7a-49e8-b7a4-6df9dcec61e6"/>\n\t\t\t\t<textElement textAlignment="Center"/>\n\t\t\t\t<textFieldExpression><![CDATA["Price"]]></textFieldExpression>\n\t\t\t</textField>\n\t\t</band>\n\t</pageHeader>\n\t<detail>\n\t\t<band height="18">\n\t\t\t<textField isStretchWithOverflow="true" isBlankWhenNull="true">\n\t\t\t\t<reportElement style="GroupCellStyle1" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="606" height="18" uuid="4161551d-97d3-48d5-a26a-11b0a145f131"/>\n\t\t\t\t<textElement textAlignment="Left"/>\n\t\t\t\t<textFieldExpression><![CDATA[$F{nameBook(od)}]]></textFieldExpression>\n\t\t\t</textField>\n\t\t\t<textField isStretchWithOverflow="true" isBlankWhenNull="true">\n\t\t\t\t<reportElement style="GroupCellStyle1" positionType="Float" stretchType="RelativeToBandHeight" x="606" y="0" width="97" height="18" uuid="8739e7c6-7536-4ff4-93a0-4dfe576a376e"/>\n\t\t\t\t<textElement textAlignment="Right"/>\n\t\t\t\t<textFieldExpression><![CDATA[$F{quantity(od)}]]></textFieldExpression>\n\t\t\t</textField>\n\t\t\t<textField isStretchWithOverflow="true" isBlankWhenNull="true">\n\t\t\t\t<reportElement style="GroupCellStyle1" positionType="Float" stretchType="RelativeToBandHeight" x="703" y="0" width="99" height="18" uuid="345899e3-a8b5-4532-b8e5-ddadf1ca95b5"/>\n\t\t\t\t<textElement textAlignment="Right"/>\n\t\t\t\t<textFieldExpression><![CDATA[$F{price(od)}]]></textFieldExpression>\n\t\t\t</textField>\n\t\t</band>\n\t</detail>\n</jasperReport>\n
 
-3.  *Sample\_customerInfo\_i * is a report that will contain all the invoices with their lines.
+3.  *Sample\_customerInfo\_i * is a report that will contain all the invoices with their lines.
 
     **Template: Sample\_customerInfo\_i.jrxml**
-     Expand source
+     Expand source
 
         <?xml version="1.0" encoding="UTF-8"?>
         <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->

@@ -20,7 +20,7 @@ Context dependent action operators can use external context parameters. They can
 -   [**BREAK** operator](BREAK_operator.md)
 -   [**CANCEL** operator](CANCEL_operator.md)
 -   [**CASE** operator (action)](CASE_operator_action_.md)
--   [**CHANGE** operator](CHANGE_operator.md)
+-   [**CHANGE** operator](CHANGE_operator.md)
 -   [**CHANGECLASS** operator](CHANGECLASS_operator.md)
 -   [**DELETE** operator](DELETE_operator.md)
 -   [**DIALOG** operator](DIALOG_operator.md)
@@ -44,14 +44,14 @@ Context dependent action operators can use external context parameters. They can
 -   [**REQUEST** operator](REQUEST_operator.md)
 -   [**RETURN** operator](RETURN.md)
 -   [**SEEK** operator](SEEK_operator.md)
--   [**SHOW** operator](SHOW_operator.md)
+-   [**SHOW** operator](SHOW_operator.md)
 -   [**TRY** operator](TRY_operator.md)
 -   [**WHILE** operator](WHILE_operator.md)
 -   [**WRITE** operator](WRITE_operator.md)
 
 ### Context independent operators {#contextindependent}
 
-Context independent action operators cannot use external context parameters. Thus they can only be used in the [**ACTION** instruction](ACTION_instruction.md):
+Context independent action operators cannot use external context parameters. Thus they can only be used in the [**ACTION** instruction](ACTION_instruction.md):
 
 -   [**ABSTRACT** operator](ABSTRACT_operator_action_.md)
 -   [**INTERNAL** operator](INTERNAL_operator.md)

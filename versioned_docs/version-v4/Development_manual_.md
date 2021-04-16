@@ -9,7 +9,7 @@ To install the application server, IDE, and client, Java version 8 or later must
 
 
 :::info
-For the application server to work, it must have access to the PostgreSQL database management server of at least version 9.6. The PostgreSQL server must accept connections using password authentication by the md5 or trust method. You can configure authorization by editing the pg\_hba.conf file, as described in the PostgreSQL [documentation](http://www.postgresql.org/docs/9.2/static/auth-pg-hba-conf.html).
+For the application server to work, it must have access to the PostgreSQL database management server of at least version 9.6. The PostgreSQL server must accept connections using password authentication by the md5 or trust method. You can configure authorization by editing the pg\_hba.conf file, as described in the PostgreSQL [documentation](http://www.postgresql.org/docs/9.2/static/auth-pg-hba-conf.html).
 :::
 
 ### Installing the IDE Plugin
@@ -19,33 +19,33 @@ For the application server to work, it must have access to the PostgreSQL databa
 To install the plug-in, Intellij IDEA version 2020.1 or higher must be installed on the computer.
 :::
 
--   In the IDEA settings (File > Settings), select Plugins > Browse repositories, find the [lsFusion plugin](https://plugins.jetbrains.com/plugin/7601-lsfusion), click Install, and restart IDEA.
+-   In the IDEA settings (File > Settings), select Plugins > Browse repositories, find the [lsFusion plugin](https://plugins.jetbrains.com/plugin/7601-lsfusion), click Install, and restart IDEA.
 
 ### Installing an application server via IDE
 
--   When [creating a new lsFusion project](IDE.md#newproject) click the Download button opposed to the lsFusion library: IDEA automatically downloads the JAR file of the latest (non-beta) version of the lsFusion server from the [central server](https://download.lsfusion.org/java) and installs this file as a dependency of this project (or rather, as its only module: File → Project Structure → Modules → project name → Dependencies tab). Also, if necessary, you can download another version of the server (different from the latest) or select a previously downloaded server JAR file on the local disk.  
+-   When [creating a new lsFusion project](IDE.md#newproject) click the Download button opposed to the lsFusion library: IDEA automatically downloads the JAR file of the latest (non-beta) version of the lsFusion server from the [central server](https://download.lsfusion.org/java) and installs this file as a dependency of this project (or rather, as its only module: File → Project Structure → Modules → project name → Dependencies tab). Also, if necessary, you can download another version of the server (different from the latest) or select a previously downloaded server JAR file on the local disk.  
 
 
 :::info
-Note that IDEA remembers the downloaded/specified application server file in its settings and automatically sets it when creating other lsFusion projects. 
+Note that IDEA remembers the downloaded/specified application server file in its settings and automatically sets it when creating other lsFusion projects. 
 :::
 
 ### Installing a desktop client
 
--   After the server starts, in the start log one of the last lines will be a line with a link to the JNLP file (for example, <https://download.lsfusion.org/java/lsfusion-client-4.1.jnlp>), which when run will automatically install the client using Java Web Start technology.
+-   After the server starts, in the start log one of the last lines will be a line with a link to the JNLP file (for example, <https://download.lsfusion.org/java/lsfusion-client-4.1.jnlp>), which when run will automatically install the client using Java Web Start technology.
 
 ## Installation in existing Java projects
 
 ### Installing an application server via IDE
 
--   Download the lsfusion-server-<version\>.jar file of the required version (for example, lsfusion-server-4.1.jar) from the [central server](https://download.lsfusion.org/java) to the folder of the required project module (we will call this folder *$FUSION\_DIR$*).
--   If the database server is located on another computer, and if authorization is enabled on the database server (for example, for Postgres, using the md5 method and if the postgres password is not empty), set the [database server connection parameters](Launch_parameters.md#connectdb-broken) (e.g., by creating a startup [settings file](Launch_parameters.md#filesettings-broken) in the project folder)
--   Add the downloaded file as a dependency of the required project module (File → Project Structure → Modules → module name → Dependencies tab → +) 
--   Create a [startup configuration](IDE.md#configuration) (when creating a new lsFusion project, this and the upper two sections are done automatically). If the platform is loaded as a library, instead of creating a configuration you can use a Spring bean with the logicsInstance ID from the lsfusion.xml configuration file, and its start() and stop() methods, responsible for starting and stopping the application server, respectively.
+-   Download the lsfusion-server-<version\>.jar file of the required version (for example, lsfusion-server-4.1.jar) from the [central server](https://download.lsfusion.org/java) to the folder of the required project module (we will call this folder *$FUSION\_DIR$*).
+-   If the database server is located on another computer, and if authorization is enabled on the database server (for example, for Postgres, using the md5 method and if the postgres password is not empty), set the [database server connection parameters](Launch_parameters.md#connectdb-broken) (e.g., by creating a startup [settings file](Launch_parameters.md#filesettings-broken) in the project folder)
+-   Add the downloaded file as a dependency of the required project module (File → Project Structure → Modules → module name → Dependencies tab → +) 
+-   Create a [startup configuration](IDE.md#configuration) (when creating a new lsFusion project, this and the upper two sections are done automatically). If the platform is loaded as a library, instead of creating a configuration you can use a Spring bean with the logicsInstance ID from the lsfusion.xml configuration file, and its start() and stop() methods, responsible for starting and stopping the application server, respectively.
 
 
 :::info
-For an existing maven project, server installation and loading can (and should) be done differently (see below). 
+For an existing maven project, server installation and loading can (and should) be done differently (see below). 
 :::
 
 ### Installing the application server via Maven (only for Maven projects) {#maven}
@@ -76,7 +76,7 @@ For an existing maven project, server installation and loading can (and should) 
 
     In the second case, all of the above must be manually configured directly by the developer.
 
-    As for other projects not created using the operation for creating a new lsFusion project, for a maven project you must manually create a [settings file](Launch_parameters.md#filesettings-broken) and a [startup configuration](IDE.md#configuration) (or, if the platform needs to be loaded as a library, use a [special Spring bean](#bean-broken))
+    As for other projects not created using the operation for creating a new lsFusion project, for a maven project you must manually create a [settings file](Launch_parameters.md#filesettings-broken) and a [startup configuration](IDE.md#configuration) (or, if the platform needs to be loaded as a library, use a [special Spring bean](#bean-broken))
 
 
 :::info

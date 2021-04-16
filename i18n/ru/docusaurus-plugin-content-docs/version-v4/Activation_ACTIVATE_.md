@@ -60,4 +60,4 @@ createReceiptDetail 'Добавить строку продажи'(STRING[30] ba
 }
 ```
 
- 
+ 

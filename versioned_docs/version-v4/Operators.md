@@ -3,7 +3,7 @@ title: 'Operators'
 sidebar_label: Overview
 ---
 
-The platform currently supports the following property creation operators: 
+The platform currently supports the following property creation operators: 
 
 -   [Data properties (DATA)](Data_properties_DATA_.md)
 -   [Composition (JOIN)](Composition_JOIN_.md)

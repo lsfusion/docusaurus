@@ -8,4 +8,4 @@ sidebar_label: Обзор
 -   [Классификация (AS/IS)](Classification_IS_AS_.md)
 -   [Сигнатура (SIGNATURE)](Property_signature_CLASS_.md)
 
- 
+ 

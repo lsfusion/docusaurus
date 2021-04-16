@@ -2,7 +2,7 @@
 title: 'Type conversion'
 ---
 
-The *type conversion* operator creates a [property](Properties.md) that converts an object of one [built-in class](Built-in_classes.md) to an object of another built-in class. If type conversion is not possible, the property value will be **NULL**.
+The *type conversion* operator creates a [property](Properties.md) that converts an object of one [built-in class](Built-in_classes.md) to an object of another built-in class. If type conversion is not possible, the property value will be **NULL**.
 
 ### String and file types
 
@@ -15,7 +15,7 @@ Converting dynamic-type files (**FILE**) to strings and vice versa is prohibited
 
 ### Language
 
-To implement conversion, the [type conversion operator](Type_conversion_operator.md) is used.
+To implement conversion, the [type conversion operator](Type_conversion_operator.md) is used.
 
 ### Examples
 

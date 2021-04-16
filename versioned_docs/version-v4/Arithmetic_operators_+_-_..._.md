@@ -2,7 +2,7 @@
 title: 'Arithmetic operators (+, -, *, ...)'
 ---
 
-*Arithmetic operators* create [properties](Properties.md) whose value is the result of an arithmetic operation. The arguments of these operators must be properties whose values are instances of [number classes](Built-in_classes.md) . The platform currently supports the following arithmetic operators:
+*Arithmetic operators* create [properties](Properties.md) whose value is the result of an arithmetic operation. The arguments of these operators must be properties whose values are instances of [number classes](Built-in_classes.md) . The platform currently supports the following arithmetic operators:
 
 |Operator|Name|Description|Example|Result|
 |---|---|---|---|---|
@@ -11,7 +11,7 @@ title: 'Arithmetic operators (+, -, *, ...)'
 |<strong>*</strong>|Multiplication|Accepts two input operands and returns their product|3 * 5|15|
 |<strong>/</strong>|Ratio|Takes two input operands and returns their ratio|15 / 3|5|
 
-All of these operators return **NULL** if one of the operands is **NULL** . It is also possible to use a special form of summation and difference operators with brackets, in which case **NULL** will be equivalent to 0. The reverse is also true for these type of operators: if the result of an operator in such form is 0, then **NULL is returned** (e. g., 5 (-) 5 = **NULL**):
+All of these operators return **NULL** if one of the operands is **NULL** . It is also possible to use a special form of summation and difference operators with brackets, in which case **NULL** will be equivalent to 0. The reverse is also true for these type of operators: if the result of an operator in such form is 0, then **NULL is returned** (e. g., 5 (-) 5 = **NULL**):
 
 |<strong>Operator</strong>|<strong>Name</strong>|<strong>Description</strong>|<strong>Example</strong>|<strong>Result</strong>|
 |---|---|---|---|---|

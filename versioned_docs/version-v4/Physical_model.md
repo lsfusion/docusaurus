@@ -3,7 +3,7 @@ title: 'Physical model'
 sidebar_label: Overview
 ---
 
-The physical model consists of three parts: 
+The physical model consists of three parts: 
 
 [Development](Development.md)
 
@@ -11,7 +11,7 @@ Includes everything related to the development process.
 
 [Execution](Execution.md)
 
-Includes everything related to the system performance improvement.
+Includes everything related to the system performance improvement.
 
 [Management](Management.md)
 

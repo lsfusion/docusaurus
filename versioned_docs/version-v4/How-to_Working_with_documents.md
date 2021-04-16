@@ -63,7 +63,7 @@ EXTEND FORM order
 ;
 ```
 
-We need to do so that instead of the **ОК** button on the order form, there is a **Post** button that simultaneously sets the **Posted** property for the order, saves changes, and closes the form.
+We need to do so that instead of the **ОК** button on the order form, there is a **Post** button that simultaneously sets the **Posted** property for the order, saves changes, and closes the form.
 
 ### Solution
 
@@ -136,7 +136,7 @@ The form will look like this:
 
 ![](attachments/46367481/46367490.png)![](attachments/46367481/46367491.png)
 
-If the quantity changes on the **Selection** tab, the system will automatically change order lines. If the order lines are changed, the quantity on the **Selection** tab will change as well.
+If the quantity changes on the **Selection** tab, the system will automatically change order lines. If the order lines are changed, the quantity on the **Selection** tab will change as well.
 
 If an order has two or more lines with one book, the system will reset the quantity in the first lines and set the total in the last line. If you want the change to affect the last line only, you need to use the following action during saving:
 

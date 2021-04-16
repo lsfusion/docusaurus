@@ -2,7 +2,7 @@
 title: 'Access from an external system'
 ---
 
-The platform allows external systems   to access an lsFusion-based system using various network protocols. The interface of such interaction is a call for an action with specified parameters and, if necessary, the return of certain property values (without parameters) as  *results*. It is assumed that all parameter and result objects are objects of [built-in classes](Built-in_classes.md).
+The platform allows external systems   to access an lsFusion-based system using various network protocols. The interface of such interaction is a call for an action with specified parameters and, if necessary, the return of certain property values (without parameters) as  *results*. It is assumed that all parameter and result objects are objects of [built-in classes](Built-in_classes.md).
 
 ### Defining an action {#actiontype}
 
@@ -24,40 +24,40 @@ The URL format, depending on the method of [action definition](#actiontype), loo
 
 -   EXEC - http://server address:port/exec?action=<action name\>. The "action" parameter must always be specified.
 -   EVAL - http://server address:port/eval?script=<code\>. If the "script" parameter is not specified, it is assumed that the code is passed in the first BODY parameter.
--   EVAL ACTION – http://server address:port/eval/action?script=<action code\>. If the "script" parameter is not specified, it is assumed that the code is passed in the first BODY parameter.
+-   EVAL ACTION – http://server address:port/eval/action?script=<action code\>. If the "script" parameter is not specified, it is assumed that the code is passed in the first BODY parameter.
 
 *Parameters*
 
 Parameters can be passed both in the request string (by appending constructs like &p=<parameter value\> to the end of the string), as well as in the request body (BODY). It is assumed that URL parameters are substituted (in the order of their appearance in the request) for the executed action before BODY parameters.
 
-When processing BODY parameters, parameters with the content type from the following [table](https://github.com/lsfusion/platform/blob/master/api/src/main/resources/MIMETypes.properties) are considered files and are passed to the action parameters as objects of the file class ( **FILE** , ****PDFFILE****  , etc.). During this process, the corresponding file extension is taken from the table mentioned above. If a particular content type is not found in the table, but it starts with "application", the parameter is still considered a file, and the file extension is taken from the right part of the content type (for example, it will be "abc" for the "application/abc" content type). Parameters with the application/null content type are considered to be equal to **NULL**.
+When processing BODY parameters, parameters with the content type from the following [table](https://github.com/lsfusion/platform/blob/master/api/src/main/resources/MIMETypes.properties) are considered files and are passed to the action parameters as objects of the file class ( **FILE** , ****PDFFILE****  , etc.). During this process, the corresponding file extension is taken from the table mentioned above. If a particular content type is not found in the table, but it starts with "application", the parameter is still considered a file, and the file extension is taken from the right part of the content type (for example, it will be "abc" for the "application/abc" content type). Parameters with the application/null content type are considered to be equal to **NULL**.
 
 BODY parameters with types of content different from the ones mentioned above are considered strings and are automatically converted into parameter classes of the called action upon being called. Empty strings are converted into **NULL**.
 
-[Headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields) of an executed request are automatically saved to the **System.headers\[TEXT\]** property. The name of the header is written to the only parameter of this property, and the value of the header is written to the property's value.
+[Headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields) of an executed request are automatically saved to the **System.headers\[TEXT\]** property. The name of the header is written to the only parameter of this property, and the value of the header is written to the property's value.
 
 *Results*
 
-Properties whose values must be returned as the result are passed in the request string by adding strings like &return=<property name\> to its end. It is assumed that the values of specified properties are returned in the order of their appearance in the request string. By default, if no result properties are specified, the resulting property is the first one with a non-**NULL** value from the following [list](Built-in_classes.md#export-broken). 
+Properties whose values must be returned as the result are passed in the request string by adding strings like &return=<property name\> to its end. It is assumed that the values of specified properties are returned in the order of their appearance in the request string. By default, if no result properties are specified, the resulting property is the first one with a non-**NULL** value from the following [list](Built-in_classes.md#export-broken). 
 
-If the result of a request is a file (**FILE**, **PDFFILE**, etc.), the response [content type](https://en.wikipedia.org/wiki/Media_type) , depending on the file extension, is determined in accordance with the following [table](https://github.com/lsfusion/platform/blob/master/api/src/main/resources/MIMETypes.properties). If the file extension is not found in this table, the content type is set to application/<file extension\>.
+If the result of a request is a file (**FILE**, **PDFFILE**, etc.), the response [content type](https://en.wikipedia.org/wiki/Media_type) , depending on the file extension, is determined in accordance with the following [table](https://github.com/lsfusion/platform/blob/master/api/src/main/resources/MIMETypes.properties). If the file extension is not found in this table, the content type is set to application/<file extension\>.
 
-The file extension in this case is determined automatically, similarly to the [**WRITE** operator](WRITE_operator.md#extension-broken).
+The file extension in this case is determined automatically, similarly to the [**WRITE** operator](WRITE_operator.md#extension-broken).
 
 In all of the three cases above, if the result value is **NULL**, a null string (for example, application/null) is substituted for the file extension in the content type, and an empty string is returned as the response itself.
 
 Request results different from files are converted into strings and are passed as a text/plain content type. **NULL** values are returned as empty strings.
 
-The values of the **System.headersTo\[TEXT\]** property are automatically written to the [headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields) of the request result. So, the header name is read from the only parameter of this property, and the header value is read from the property value.
+The values of the **System.headersTo\[TEXT\]** property are automatically written to the [headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields) of the request result. So, the header name is read from the only parameter of this property, and the header value is read from the property value.
 
-*Several *results/ *parameters *in BODY**
+*Several *results/ *parameters *in BODY**
 
 If the type of request BODY is multipart/\* or application/x-www-form-urlencoded, it will be split into parts, and each part will be considered a separate request parameter. In this case, the order of these parameters is equal to the order in corresponding parts of the request BODY.
 
 At the same time, if the number of results being returned is more than one, then the following happens:
 
--   If the request has a returnmultitype=bodyurl parameter, the response content type on transmission is set to application/x-www-form-urlencoded and the results are encoded as if they were [passed in the request string](#url-broken).
--   Otherwise, the response content type during transmission is set to multipart/mixed, and the results are passed as internal parts of this response. 
+-   If the request has a returnmultitype=bodyurl parameter, the response content type on transmission is set to application/x-www-form-urlencoded and the results are encoded as if they were [passed in the request string](#url-broken).
+-   Otherwise, the response content type during transmission is set to multipart/mixed, and the results are passed as internal parts of this response. 
 
 
 :::info
@@ -66,7 +66,7 @@ Note that the processing of parameters and request results is largely similar to
 
 *Stateful API*
 
-The API described above is a REST API. Accordingly, the [change session](Change_sessions.md) is created when a call is initiated, and closes immediately after the call ends. However, there are situations where such behavior is undesirable, and you need to accumulate changes for a certain period of time (for example, while the user is inputting data), which means that the session must be saved and handed over between sessions. In order to do this, you can add a string of the following format to the end of the query string: &session=<session ID\>, where <session ID\> is any non-empty string. In this case, the session will not be closed after the call, but will be associated with a previously passed ID, so that all subsequent calls with this ID will be executed in this session. In order to close a session (after the end of a call), you need to add the \_close postfix (for example,&session=0\_close) to its ID in the request string.
+The API described above is a REST API. Accordingly, the [change session](Change_sessions.md) is created when a call is initiated, and closes immediately after the call ends. However, there are situations where such behavior is undesirable, and you need to accumulate changes for a certain period of time (for example, while the user is inputting data), which means that the session must be saved and handed over between sessions. In order to do this, you can add a string of the following format to the end of the query string: &session=<session ID\>, where <session ID\> is any non-empty string. In this case, the session will not be closed after the call, but will be associated with a previously passed ID, so that all subsequent calls with this ID will be executed in this session. In order to close a session (after the end of a call), you need to add the \_close postfix (for example,&session=0\_close) to its ID in the request string.
 
 
 :::info
@@ -84,24 +84,24 @@ When executing an http request, it is often necessary to identify the user on wh
 
 -   [Basic identification](https://en.wikipedia.org/wiki/Basic_access_authentication) - the user name and password are passed in an encoded form in the "Authorization: Basic <credentials\>"heading.
 -   Token-based authentication consists of two stages:
-    -   At the first stage, you need to execute the  **Authentication.getAuthToken\[\]** action with basic authentication. The result of this action will be an authentication token with a fixed lifetime (one day [by default](Working_parameters.md#authTokenExpiration-broken)). An example of a request:  <http://localhost/exec?action=getAuthToken.>
+    -   At the first stage, you need to execute the  **Authentication.getAuthToken\[\]** action with basic authentication. The result of this action will be an authentication token with a fixed lifetime (one day [by default](Working_parameters.md#authTokenExpiration-broken)). An example of a request:  <http://localhost/exec?action=getAuthToken.>
     -   The token you receive can be used for authentication during its lifetime by passing it in the "Authorization: Bearer <token\>" header (similarly to JWT which is used in the current implementation of the platform for generating authentication tokens).
 
 *Form API*
 
-Apart from executing actions, the platform also supports an API (similar to JSON API) for working with [forms](Forms.md), or specifically, their [interactive views](Interactive_view.md). Since it's a stateful API designed for the asynchronous mode (which means that the HTTPS interface itself has a number of system parameters, such as a request index, index of the latest received response, etc.), it's easier to use this API with the help of special libraries for specific languages/platforms that you want to integrate with:
+Apart from executing actions, the platform also supports an API (similar to JSON API) for working with [forms](Forms.md), or specifically, their [interactive views](Interactive_view.md). Since it's a stateful API designed for the asynchronous mode (which means that the HTTPS interface itself has a number of system parameters, such as a request index, index of the latest received response, etc.), it's easier to use this API with the help of special libraries for specific languages/platforms that you want to integrate with:
 
 -   **JavaScript**
 
-The JavaScript library is available in the central npm-repository under the name  [@lsfusion/core](https://www.npmjs.com/~lsfusion).
+The JavaScript library is available in the central npm-repository under the name  [@lsfusion/core](https://www.npmjs.com/~lsfusion).
 
 The key concept in this API is the concept of *state*. A state is a JS object with a structure corresponding to form elements in the following way:
 
 -   [An object group](Form_structure.md#objects) corresponds to a JS object that is stored in the js field of the state object. The name of the field matches the name of the object group. Each JS object from the object group, in turn, stores an array of JS objects (with [filters](Form_structure.md#filters) and [orders](Form_structure.md#sort) taken into account) in the **list** field. The JS object of the object group corresponds to the [current](Form_structure.md#currentObject-broken) object collection. Also, each JS object of an array (including the JS object of the object group) in the **value** field stores the value of objects – only values if there is just one object in the object group or, if there are multiple objects, a JS object with fields whose names are equal to object names and values are equal to object values.
--   [Properties](Properties.md) correspond to a value stored in a field (the name of the field is equal to the property name) of a JS object which is determined in the following way depending on the existence of parameters and [its view](Interactive_view.md#property):
+-   [Properties](Properties.md) correspond to a value stored in a field (the name of the field is equal to the property name) of a JS object which is determined in the following way depending on the existence of parameters and [its view](Interactive_view.md#property):
     -   A property has parameters:
         -   The property view is equal to **GRID** of each JS object in the **list** array of the JS object of this property's [display group](Form_structure.md#drawgroup-broken).
-        -   The property's view is equal to **PANEL**, **TOOLBAR**  of the JS object of this property's display group
+        -   The property's view is equal to **PANEL**, **TOOLBAR**  of the JS object of this property's display group
     -   A property has no parameters - of a JS state object.
 
 The task of the library is to automatically keep this state described above up to date, both during form creation and during its subsequent modification (this behavior is often called reactivity).
@@ -110,7 +110,7 @@ The library exports the following functions:
 
 -   create - creates a new form. Parameters:
     1.  setState - a state change request function. This function is supposed to take a single parameter – a state change function (which, in turn, has just one parameter, the previous state, and outputs the next state as the result) and as a result of execution add this function to the state change queue (or, for example, apply it right away depending on the implementation of the view logic). This state management logic is fully identical to the state management logic in React and, as a rule, if used inside a React component, the setState parameter is passed as updateState => this.setState(updateState).
-    2.  baseUrl - the URL of the lsFusion web server - a string, for example 'https://demo.lsfusion.org/hockeystats'.
+    2.  baseUrl - the URL of the lsFusion web server - a string, for example 'https://demo.lsfusion.org/hockeystats'.
     3.  formData - an object describing the form. Must contain either a name field with the name of the form (for example {name: "MainForm"}) or a script field with the form code (for example, script:"OBJECTS i = Invoice PROPERTIES (i) date, stock")
 -   change - changes the form data. Parameters:
     1.  setState - a state change request function.

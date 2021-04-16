@@ -2,7 +2,7 @@
 title: 'BEFORE instruction'
 ---
 
-The **BEFORE** instruction calls an [action](Actions.md) before calling another action. 
+The **BEFORE** instruction calls an [action](Actions.md) before calling another action. 
 
 ### Syntax
 
@@ -16,7 +16,7 @@ The **BEFORE** instruction defines an action (let's call it an *aspect*) that wi
 
 *action*
 
-The [ID](IDs.md#propertyid-broken) of the action before which the aspect will be called.
+The [ID](IDs.md#propertyid-broken) of the action before which the aspect will be called.
 
 *param1, ..., paramN*
 

@@ -26,7 +26,7 @@ NAVIGATOR {
 }
 ```
 
-By specifying **WINDOW** for the **application** element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called **toolbar**. This will look like this:
+By specifying **WINDOW** for the **application** element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called **toolbar**. This will look like this:
 
 ![](attachments/46367463/46367465.png)
 
@@ -34,7 +34,7 @@ By specifying **WINDOW** for the **application** element, we indicated that all 
 
 ### Condition
 
-Similar to **Example 1**.
+Similar to **Example 1**.
 
 We need to place the same forms in the subfolder called Directories.
 

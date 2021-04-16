@@ -4,7 +4,7 @@ title: 'MAX operator'
 
 The **MAX** operator creates a [property](Properties.md) that implements finding [maximum](Extremum_MAX_MIN_.md) value.
 
-**Syntax** 
+**Syntax** 
 
     MAX expr1, ..., exprN
 

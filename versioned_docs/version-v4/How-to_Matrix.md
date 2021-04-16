@@ -82,7 +82,7 @@ DESIGN pricesAndGracePeriods {
 
 Only objects that meet the filter condition for object **c** will be shown in the columns. Besides, the columns will be shown in the same order as the objects.
 
-All properties with the same ID after the word **COLUMNS** will go side by side for the same objects. In this case, the price and the deferred payment period for the first buyer, then the price and deferral for the second one, and so forth. If IDs were different or unspecified, prices for all buyers would have been shown first followed by deferred payment values.
+All properties with the same ID after the word **COLUMNS** will go side by side for the same objects. In this case, the price and the deferred payment period for the first buyer, then the price and deferral for the second one, and so forth. If IDs were different or unspecified, prices for all buyers would have been shown first followed by deferred payment values.
 
 The form will look like this:
 

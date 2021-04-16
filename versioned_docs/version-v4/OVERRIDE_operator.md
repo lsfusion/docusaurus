@@ -2,7 +2,7 @@
 title: 'OVERRIDE operator'
 ---
 
-The **OVERRIDE** operator creates a [property](Properties.md) that implements the [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive) of one of the values (polymorphic form).
+The **OVERRIDE** operator creates a [property](Properties.md) that implements the [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive) of one of the values (polymorphic form).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The **OVERRIDE** operator creates a [property](Properties.md) that implements�
 
 ### Description
 
-The **OVERRIDE** operator creates a property whose value will be the value of one of the properties specified in the operator. Selection is made among properties with a non-**NULL** value. If multiple properties are non-**NULL**, the value of the first of these properties is selected.
+The **OVERRIDE** operator creates a property whose value will be the value of one of the properties specified in the operator. Selection is made among properties with a non-**NULL** value. If multiple properties are non-**NULL**, the value of the first of these properties is selected.
 
 ### Parameters
 

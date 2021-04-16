@@ -6,7 +6,7 @@ title: 'Security policy'
 
 The system uses the concept of User. A user is an object that contains information about one person working in the system. The system can store information about both its own employees and employees of other organizations.
 
-The functionality available to a User is determined by their Role or list of  Roles. The Role determines which forms, fields, and buttons are available.
+The functionality available to a User is determined by their Role or list of  Roles. The Role determines which forms, fields, and buttons are available.
 
 The User’s card (Admin \\\\ Access \\\\ Users) indicates the Main role; if necessary, Additional roles are assigned (Fig. 1.).
 
@@ -16,7 +16,7 @@ Fig. 1. Assigning Employee Roles
 
 ### Setting access to system elements
 
-The security policy for each Role is configured in the Admin \\\\ Access \\\\ Security Policy \\\\ Roles tab. This is where the makeup of the Roles is determined, using the «Add», «Delete», and «Copy» buttons. When a Role is copied, all rights are copied too. If «default main role» is specified, then when a new employee is saved without a primary role they will be assigned a role from this field.
+The security policy for each Role is configured in the Admin \\\\ Access \\\\ Security Policy \\\\ Roles tab. This is where the makeup of the Roles is determined, using the «Add», «Delete», and «Copy» buttons. When a Role is copied, all rights are copied too. If «default main role» is specified, then when a new employee is saved without a primary role they will be assigned a role from this field.
 
 ![](attachments/60555484/65241093.png)
 

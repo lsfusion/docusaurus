@@ -11,13 +11,13 @@ The += instruction adds an implementation (selection option) to an [abstract pro
 
 ### Description
 
-The += instruction adds an implementation to an abstract property. The syntax for adding an implementation depends on the type of abstract property. If the abstract property is of type **CASE**, then the implementation should be described using **WHEN ... THEN ...** otherwise, the implementation should be described simply as a property. 
+The += instruction adds an implementation to an abstract property. The syntax for adding an implementation depends on the type of abstract property. If the abstract property is of type **CASE**, then the implementation should be described using **WHEN ... THEN ...** otherwise, the implementation should be described simply as a property. 
 
 ### Parameters
 
 *propertyId*
 
-[ID](IDs.md#propertyid-broken) of the abstract property. 
+[ID](IDs.md#propertyid-broken) of the abstract property. 
 
 *param1, ..., paramN*
 
@@ -29,7 +29,7 @@ List of parameters that will be used to define the implementation. Each element 
 
 *whenExpr*
 
-An expression whose value determines the selection condition of the implementation of an abstract property (action) that has type **CASE**. 
+An expression whose value determines the selection condition of the implementation of an abstract property (action) that has type **CASE**. 
 
 ### Examples
 

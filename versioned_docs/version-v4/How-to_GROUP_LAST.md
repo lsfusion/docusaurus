@@ -24,9 +24,9 @@ We need to find the latest received book in the selected category.
 book 'Last book' (Category c) = GROUP LAST Book b ORDER date(b), b BY category(b);
 ```
 
-It is important to remember that order in the  **ORDER* *** clause should be uniquely determined. To do this, the book (specifically, its internal ID) should be used as the second parameter since several books may have the same date of receipt.
+It is important to remember that order in the  **ORDER* *** clause should be uniquely determined. To do this, the book (specifically, its internal ID) should be used as the second parameter since several books may have the same date of receipt.
 
-## Example 2 
+## Example 2 
 
 ### Condition
 

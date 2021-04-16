@@ -2,11 +2,11 @@
 title: 'IF operator'
 ---
 
-The **IF** operator - creating a [property](Properties.md) implementing [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) of a value by condition (single form). 
+The **IF** operator - creating a [property](Properties.md) implementing [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) of a value by condition (single form). 
 
 ### Syntax
 
-    result IF condition 
+    result IF condition 
 
 ### Description
 
@@ -16,7 +16,7 @@ The **IF** operator creates a property that returns the given value when a certa
 
 *result*
 
-[Expression](Expression.md) whose value defines the result.
+[Expression](Expression.md) whose value defines the result.
 
 *condition*
 

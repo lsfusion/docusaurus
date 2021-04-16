@@ -39,13 +39,13 @@ messageCountOrders 'Count the number of orders' (DATE dFrom, DATE dTo)  {
 
 Both these options will provide the same result.
 
-The **sum** property defined in the **Time** system [module](Modules.md) is used to add one day to the given date.
+The **sum** property defined in the **Time** system [module](Modules.md) is used to add one day to the given date.
 
 ## Example 2
 
 ### Condition
 
-Similar to **Example 1**. We have also defined order lines, so that each line contains the (full) amount and the discount.
+Similar to **Example 1**. We have also defined order lines, so that each line contains the (full) amount and the discount.
 
 ```lsf
 CLASS OrderDetail 'Order line';

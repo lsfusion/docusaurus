@@ -10,13 +10,13 @@ The type conversion operator creates a [property](Properties.md) that performs [
 
 ### Description
 
-The operator creates a property that converts the value of a certain expression into a value of a specified [built-in class](Built-in_classes.md). If conversion is impossible, the value of the property will be **NULL**.
+The operator creates a property that converts the value of a certain expression into a value of a specified [built-in class](Built-in_classes.md). If conversion is impossible, the value of the property will be **NULL**.
 
 ### Parameters
 
 *typeName*
 
-The name of the * *[built-in class](Built-in_classes.md) that the values will be converted into.
+The name of the * *[built-in class](Built-in_classes.md) that the values will be converted into.
 
 *expression*
 

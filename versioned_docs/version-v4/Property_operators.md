@@ -3,13 +3,13 @@ title: 'Property operators'
 sidebar_label: Overview
 ---
 
-*Property operator* is a syntax construct that describes an [operator](Operators.md) creating a [property](Properties.md). 
+*Property operator* is a syntax construct that describes an [operator](Operators.md) creating a [property](Properties.md). 
 
 Property operators can be divided into *context dependent* and *context independent*.
 
 ### Context dependent operators
 
-Context dependent property operators can be part of [expressions](Expression.md) and use common parameters (context). These operators are:
+Context dependent property operators can be part of [expressions](Expression.md) and use common parameters (context). These operators are:
 
 -   [Arithmetic operators](Arithmetic_operators.md)
 
@@ -43,7 +43,7 @@ Context dependent property operators can be part of [expressions](Expression.md)
 
 -   [**PARTITION** operator](PARTITION_operator.md)
 
--   [**GROUP** operator](GROUP_operator.md) (without BY block)
+-   [**GROUP** operator](GROUP_operator.md) (without BY block)
 
 -   [**PREV** operator](PREV_operator.md)
 
@@ -58,10 +58,10 @@ Context dependent property operators can be part of [expressions](Expression.md)
 
 ### Context independent operators {#contextindependent}
 
-Context independent property operators differ from the context dependent ones in that they do not just use the upper parameters but define the parameters themselves. As a result, they cannot be part of expressions and can only be used in the [**=** instruction](Instruction_=.md) and the [**JOIN** operator](JOIN_operator.md): 
+Context independent property operators differ from the context dependent ones in that they do not just use the upper parameters but define the parameters themselves. As a result, they cannot be part of expressions and can only be used in the [**=** instruction](Instruction_=.md) and the [**JOIN** operator](JOIN_operator.md): 
 
 -   [**DATA** operator](DATA_operator.md)
--   [**GROUP** operator](GROUP_operator.md) (with BY block)
+-   [**GROUP** operator](GROUP_operator.md) (with BY block)
 -   [**FORMULA** operator](FORMULA_operator.md)
 -   [**ABSTRACT** operator](ABSTRACT_operator.md)
 -   [Object group operators](Object_group_operator.md)

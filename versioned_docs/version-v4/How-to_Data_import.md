@@ -83,9 +83,9 @@ EXTEND FORM order
 
 The [INPUT](INPUT_operator.md) operator which requests a file will display a dialog where the user will be able to choose an .xls or .xlsx file. Once the file is selected successfully, the system will call the [action](Actions.md) specified after **DO**.
 
-It is assumed that a file consists of three columns. The first one (A) contains book codes, the second one (B) contains quantities, and the third one (C) contains prices. 
+It is assumed that a file consists of three columns. The first one (A) contains book codes, the second one (B) contains quantities, and the third one (C) contains prices. 
 
-The  [IMPORT](IMPORT_operator.md) operator reads the selected file and then writes its contents to local properties which take only one argument — line number. The numbering starts from 0. The **imported** property will be set to **TRUE** if the file contains a line with the corresponding number. Then, a corresponding line is created in the order for each of these lines.
+The  [IMPORT](IMPORT_operator.md) operator reads the selected file and then writes its contents to local properties which take only one argument — line number. The numbering starts from 0. The **imported** property will be set to **TRUE** if the file contains a line with the corresponding number. Then, a corresponding line is created in the order for each of these lines.
 
 ## Example 2
 
@@ -149,7 +149,7 @@ The [READ](READ_operator.md) operator reads the specified file and writes its co
 
 It is assumed that dates and numbers in each line will have the same values. This is why their values are read from the first line with number 0.
 
-Each file is processed in a separate new [change session](Change_sessions.md) and then is saved using the [APPLY](APPLY_operator.md) operator. This operator writes **TRUE** to the **canceled** property when a certain [constraint](Constraints.md) has been violated. Then, the **MOVE** statement of the **READ** operator moves the file either to "success" folder or "error" folder. This allows us to call the action again without processing the same orders several times.
+Each file is processed in a separate new [change session](Change_sessions.md) and then is saved using the [APPLY](APPLY_operator.md) operator. This operator writes **TRUE** to the **canceled** property when a certain [constraint](Constraints.md) has been violated. Then, the **MOVE** statement of the **READ** operator moves the file either to "success" folder or "error" folder. This allows us to call the action again without processing the same orders several times.
 
 Since the result action has no arguments, we can add it to the scheduler for automatic launch at certain intervals.
 
@@ -197,7 +197,7 @@ This guarantees that when the action is started, the book directory will be abso
 
 ### Condition
 
-Similar to **Example 1**.
+Similar to **Example 1**.
 
 For each order line, we have added the decoding of this line by color and size.
 
@@ -349,8 +349,8 @@ To implement the import process, we need to declare the form of the [structure](
 
 We declare the **version** tag at the upmost level without inputs and then add it to the form.
 
-Since the **order** tag is an array, we declare an object with the same name on the form. The platform will create a new object for each array element in the JSON. The **date** and **number** properties for the order will be automatically imported from the corresponding tags in the JSON.
+Since the **order** tag is an array, we declare an object with the same name on the form. The platform will create a new object for each array element in the JSON. The **date** and **number** properties for the order will be automatically imported from the corresponding tags in the JSON.
 
 Similarly, for the **detail** tag, we create an object with the same name and then link this object to the **order** object using **FILTERS**. During the import process, the system will fill the link in the order line based on this filter and the nesting of tags.
 
-To import values from tags nested in the **item** tag, we create a new [group](Groups_of_properties_and_actions.md) called **item** and then place the properties and objects into it. In particular, the local property **idItem** is created and then added to the form in this group. Since the property name does not match the tag name, we specify the corresponding name for the property on the form using the **EXTID** keyword.
+To import values from tags nested in the **item** tag, we create a new [group](Groups_of_properties_and_actions.md) called **item** and then place the properties and objects into it. In particular, the local property **idItem** is created and then added to the form in this group. Since the property name does not match the tag name, we specify the corresponding name for the property on the form using the **EXTID** keyword.

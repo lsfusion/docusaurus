@@ -9,6 +9,6 @@ sidebar_label: Обзор
 -   [Операции с группами объектов](Object_group_operations.md)
 -   [Управление фокусом](Focus_operations.md)
 
- 
+ 
 
- 
+ 

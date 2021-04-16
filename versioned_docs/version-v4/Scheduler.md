@@ -4,7 +4,7 @@ title: 'Scheduler'
 
 The scheduler is designed to automatically execute certain tasks with specified frequency.
 
-The scheduler is configured in the Administration\\\\Scheduler\\\\Tasks menu. You can start the scheduler on this form by clicking «Start scheduler» button and stop it by clicking «Stop scheduler» (Fig. 7.11.). If the Server is specified in the system settings, then the scheduler can be launched from this server only (Fig. 1.).
+The scheduler is configured in the Administration\\\\Scheduler\\\\Tasks menu. You can start the scheduler on this form by clicking «Start scheduler» button and stop it by clicking «Stop scheduler» (Fig. 7.11.). If the Server is specified in the system settings, then the scheduler can be launched from this server only (Fig. 1.).
 
 ![](attachments/60555472/65241101.png)
 
@@ -14,7 +14,7 @@ Fig. 1. Specifying a server to run the scheduler
 
 Fig. 2. Scheduler start/stop
 
-This form determines the composition of Tasks – buttons «Add», «Delete».  The scheduler will execute only active Tasks – «Active» mark. For each task the following required parameters are set:
+This form determines the composition of Tasks – buttons «Add», «Delete».  The scheduler will execute only active Tasks – «Active» mark. For each task the following required parameters are set:
 
 -   Start date – the task will be executed only after the specified date. The time in this field is not tied to the start date; it is tied to the current date and indicates the time of the first task launch within a day. The task repetition is counted from this time. The frequency is set in the «Repeat every (seconds)» field. If the period is more than a day (86400 seconds), then the starting date is the date of the server start (restart).
 -   Repeat every (seconds) – the task execution frequency.

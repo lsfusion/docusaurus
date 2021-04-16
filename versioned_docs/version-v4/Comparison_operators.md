@@ -2,7 +2,7 @@
 title: 'Comparison operators'
 ---
 
-**==, =**, **!=**, **<**, **\>**, **<=**, **\>=** operators create [properties](Properties.md) that implement [comparison operations](Comparison_operators_=_..._.md).
+**==, =**, **!=**, **<**, **\>**, **<=**, **\>=** operators create [properties](Properties.md) that implement [comparison operations](Comparison_operators_=_..._.md).
 
 ### Syntax
 

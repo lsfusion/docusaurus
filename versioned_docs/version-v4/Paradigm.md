@@ -11,7 +11,7 @@ Describes the system's immediate functionality, i.e. what the system knows how t
 
 Physical model
 
-It includes everything else - everything related to the development, performance improvement and management of a working system.
+It includes everything else - everything related to the development, performance improvement and management of a working system.
 
 ### Stack
 

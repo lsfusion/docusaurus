@@ -3,21 +3,21 @@ title: 'ON instruction'
 sidebar_label: Overview
 ---
 
-The **ON** instruction adds an [event](Events.md) handler.
+The **ON** instruction adds an [event](Events.md) handler.
 
-### Syntax 
+### Syntax 
 
     ON eventClause eventAction;
 
 ### Description
 
-The **ON** instruction adds an event handler for the specified event. 
+The **ON** instruction adds an event handler for the specified event. 
 
 ### Parameters
 
 *eventClause*
 
-This [event description block](Event_description_block.md) describes an event for which a handler needs to be added.
+This [event description block](Event_description_block.md) describes an event for which a handler needs to be added.
 
 *eventAction*
 
@@ -51,7 +51,7 @@ ON LOCAL {
 }
 ```
 
- 
+ 
 
 *  
 *

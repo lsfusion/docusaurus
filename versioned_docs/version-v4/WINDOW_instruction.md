@@ -2,7 +2,7 @@
 title: 'WINDOW instruction'
 ---
 
-The **WINDOW** instruction creates a new [window](Navigator_design.md).
+The **WINDOW** instruction creates a new [window](Navigator_design.md).
 
 ### Syntax
 
@@ -10,9 +10,9 @@ The **WINDOW** instruction creates a new [window](Navigator_design.md).
 
 The options that go at the end of the instruction has the following syntax (the syntax for each option is indicated on a separate line):
 
-    HIDETITLE 
-    HIDESCROLLBARS 
-    DRAWROOT 
+    HIDETITLE 
+    HIDESCROLLBARS 
+    DRAWROOT 
     VERTICAL | HORIZONTAL
     POSITION(x, y, width, height)
     LEFT | RIGHT | TOP | BOTTOM
@@ -23,21 +23,21 @@ The options that go at the end of the instruction has the following syntax (the 
 
 ### Description
 
-The **WINDOW** instruction declares a new window and adds it to the current [module](Modules.md). Options are listed one after another in arbitrary order, separated by spaces or line breaks. Depending on the selected window type – **TOOLBAR**, **PANEL**, **TREE**, or **MENU** – a toolbar, panel, tree, or menu* *will be created.
+The **WINDOW** instruction declares a new window and adds it to the current [module](Modules.md). Options are listed one after another in arbitrary order, separated by spaces or line breaks. Depending on the selected window type – **TOOLBAR**, **PANEL**, **TREE**, or **MENU** – a toolbar, panel, tree, or menu* *will be created.
 
 ### Parameters
 
 *name*
 
-Window name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+Window name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
 
 *caption*
 
-Window caption. [String literal](Literals.md#strliteral-broken). If caption is not specified, the caption of the window will be its name.  
+Window caption. [String literal](Literals.md#strliteral-broken). If caption is not specified, the caption of the window will be its name.  
 
 *type*
 
-Type of window to create. Specified with one of the keywords **TOOLBAR**, **PANEL**, **TREE**, or **MENU**.
+Type of window to create. Specified with one of the keywords **TOOLBAR**, **PANEL**, **TREE**, or **MENU**.
 
 ### *Window options*
 
@@ -59,7 +59,7 @@ Specifying the vertical or horizontal orientation of the toolbar or panel being 
 
 POSITION (x, y, width, height)
 
-Specifying the size and location of the window. 
+Specifying the size and location of the window. 
 
 *x*
 
@@ -67,15 +67,15 @@ The left window coordinate. [Integer literal](Literals.md#intliteral-broken) ran
 
 *y*
 
-Top window coordinate. Integer literal ranging from 0 to 100.
+Top window coordinate. Integer literal ranging from 0 to 100.
 
 *width*
 
-Window width. Integer literal ranging from 0 to 100.
+Window width. Integer literal ranging from 0 to 100.
 
 *height*
 
-Window height. Integer literal ranging from 0 to 100.
+Window height. Integer literal ranging from 0 to 100.
 
 LEFT | RIGHT | TOP | BOTTOM
 
@@ -89,45 +89,45 @@ Specifying the horizontal alignment of the buttons in a vertical toolbar. This o
 
 Alignment type. This is specified using one of these keywords:
 
--   -   **START **- all buttons will have the same left coordinate. Used by default.
-    -   **CENTER** - all buttons will be centered along the X axis.
-    -   **END **- all buttons will have the same right coordinate.
+-   -   **START **- all buttons will have the same left coordinate. Used by default.
+    -   **CENTER** - all buttons will be centered along the X axis.
+    -   **END **- all buttons will have the same right coordinate.
 
 TEXTHALIGN(alignType)
 
-Specifies the horizontal alignment of text on the buttons in a vertical toolbar. This option makes sense only for **TOOLBAR** windows with** VERTICAL** orientation. 
+Specifies the horizontal alignment of text on the buttons in a vertical toolbar. This option makes sense only for **TOOLBAR** windows with** VERTICAL** orientation. 
 
 *alignType*
 
 Alignment type. This is specified using one of these keywords:
 
--   -   **START **- the text will be located on the button on the left. Used by default.
-    -   **CENTER** – the text will be located in the center of the button.
-    -   **END **- the text will be located on the button on the right.
+-   -   **START **- the text will be located on the button on the left. Used by default.
+    -   **CENTER** – the text will be located in the center of the button.
+    -   **END **- the text will be located on the button on the right.
 
 VALIGN(alignType)
 
-Specifies the vertical alignment of the buttons in a horizontal toolbar. This option only makes sense for **TOOLBAR** windows with **HORIZONTAL** orientation. 
+Specifies the vertical alignment of the buttons in a horizontal toolbar. This option only makes sense for **TOOLBAR** windows with **HORIZONTAL** orientation. 
 
 *alignType*
 
 Alignment type. This is specified using one of these keywords:
 
--   -   **START **- all buttons will have the same upper coordinate. Used by default.
-    -   **CENTER** - all buttons will be centered along the Y axis.
-    -   **END **- all buttons will have the same lower coordinate.
+-   -   **START **- all buttons will have the same upper coordinate. Used by default.
+    -   **CENTER** - all buttons will be centered along the Y axis.
+    -   **END **- all buttons will have the same lower coordinate.
 
 TEXTVALIGN(alignType)
 
-Specifying the vertical alignment of text on the buttons in a horizontal toolbar. This option makes sense only for **TOOLBAR** windows with** HORIZONTAL** orientation. 
+Specifying the vertical alignment of text on the buttons in a horizontal toolbar. This option makes sense only for **TOOLBAR** windows with** HORIZONTAL** orientation. 
 
 *alignType*
 
 Alignment type. This is specified using one of these keywords:
 
--   -   **START **- the text will be located at the top of the button.
-    -   **CENTER** - the text will be located in the center of the button. Used by default.
-    -   **END **- the text will be located at the bottom of the button.  
+-   -   **START **- the text will be located at the top of the button.
+    -   **CENTER** - the text will be located in the center of the button. Used by default.
+    -   **END **- the text will be located at the bottom of the button.  
           
 
 ### Examples

@@ -13,7 +13,7 @@ Explains how to configure the graphical user interface.
 
 Interpreter
 
-Describes the mechanisms that the admin can use to execute code in the lsFusion language on an already working system (that is, after its start).
+Describes the mechanisms that the admin can use to execute code in the lsFusion language on an already working system (that is, after its start).
 
 [Security policy](Security_policy.md)
 

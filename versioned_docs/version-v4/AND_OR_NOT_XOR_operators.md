@@ -13,7 +13,7 @@ title: 'AND, OR, NOT, XOR operators'
 
 ### Parameters
 
-*expression1, expression2 *
+*expression1, expression2 *
 
 [Expressions](Expression.md) whose values will be the operator arguments. Expression values are considered to be BOOLEAN class values depending on whether they are **NULL** or not.
 

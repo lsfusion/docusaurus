@@ -2,7 +2,7 @@
 title: 'UNGROUP operator'
 ---
 
-The **UNGROUP** operator creates a [property](Properties.md) that implements [distribution](Distribution_UNGROUP_.md) in an extended form.
+The **UNGROUP** operator creates a [property](Properties.md) that implements [distribution](Distribution_UNGROUP_.md) in an extended form.
 
 ### Syntax
 
@@ -17,17 +17,17 @@ where *distributionType* can be described in several ways:
     PROPORTION [STRICT] ROUND(digits)
     LIMIT [STRICT]
 
- **Description**
+ **Description**
 
-The **UNGROUP** operator creates a property that distributes a certain value among object collections of the same group on a "many-to-many"basis.
+The **UNGROUP** operator creates a property that distributes a certain value among object collections of the same group on a "many-to-many"basis.
 
-The first block, **BY**, describes groups that the set of object collections will be broken into. If the **BY** block is not specified, all object collections are considered to belong to the same group. 
+The first block, **BY**, describes groups that the set of object collections will be broken into. If the **BY** block is not specified, all object collections are considered to belong to the same group. 
 
-The second **BY** block describes additional groups that the result will be grouped by for checking constraints / calculating proportions. If the second block **BY** is not specified, all object collections are considered to belong to the same group. 
+The second **BY** block describes additional groups that the result will be grouped by for checking constraints / calculating proportions. If the second block **BY** is not specified, all object collections are considered to belong to the same group. 
 
-The **ORDER **block defines the order in which distribution will be done. The defined order must be uniquely determined.
+The **ORDER **block defines the order in which distribution will be done. The defined order must be uniquely determined.
 
-The **WHERE **block defines a condition under which an object collection will participate in distribution operation.
+The **WHERE **block defines a condition under which an object collection will participate in distribution operation.
 
 ### Parameters
 
@@ -36,9 +36,9 @@ The **WHERE **block defines a condition under which an object collection will 
 
 [ID](IDs.md#propertyid-broken) of the distributed property. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the **BY** block. When calculating the values of group/partition expressions will be passed to this property as an input.
 
-*groupExpr1, ..., groupExprM*  
+*groupExpr1, ..., groupExprM*  
 
- List of group expressions. 
+ List of group expressions. 
 
 *distributionType*
 
@@ -56,7 +56,7 @@ When this keyword is specified, the value of the distributed property must be ex
 
 Specifies the number of decimal places the value will be rounded to.
 
-*digits* – [Integer literal](Literals.md#intliteral-broken) specifying the number of decimal places. 
+*digits* – [Integer literal](Literals.md#intliteral-broken) specifying the number of decimal places. 
 
 **LIMIT**
 
@@ -64,27 +64,27 @@ A keyword specifying the use of distribution with specified limits. In this case
 
 *STRICT*
 
-When this keyword is specified, the value of the distributed property must be exactly (without a remainder) distributed between the object collections belonging to the group. If after distribution there is a remainder, it is added to the last object collection in accordance with the order specified in the **ORDER** block.
+When this keyword is specified, the value of the distributed property must be exactly (without a remainder) distributed between the object collections belonging to the group. If after distribution there is a remainder, it is added to the last object collection in accordance with the order specified in the **ORDER** block.
 
 *exPropertyId*
 
-[ID](IDs.md#propertyid-broken) of the property that defines a proportion for **PROPORTION** type distributions, and defines limits for **LIMIT** type distributions. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the **BY** block. 
+[ID](IDs.md#propertyid-broken) of the property that defines a proportion for **PROPORTION** type distributions, and defines limits for **LIMIT** type distributions. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the **BY** block. 
 
-*exGroupExpr1, ..., exGroupExprM*  
+*exGroupExpr1, ..., exGroupExprM*  
 
- List of additional group expressions. 
+ List of additional group expressions. 
 
 *DESC*
 
-Keyword. Specifies a reverse iterate order for object collections. 
+Keyword. Specifies a reverse iterate order for object collections. 
 
 *orderExpr1, ..., orderExprK*
 
-A list of expressions that determine the order in which object collections will be iterated when calculating the aggregate function or during distribution. To determine the order, first the value of the first expression is used; then, if equal, the value of the second one is used, etc. 
+A list of expressions that determine the order in which object collections will be iterated when calculating the aggregate function or during distribution. To determine the order, first the value of the first expression is used; then, if equal, the value of the second one is used, etc. 
 
 *whereExpr*
 
-Filtering expression. Only object groups for which the value of the filtering expression is not **NULL** will participate in the grouping.
+Filtering expression. Only object groups for which the value of the filtering expression is not **NULL** will participate in the grouping.
 
 At the moment, the support of the **UNGROUP** operator is not implemented.
 

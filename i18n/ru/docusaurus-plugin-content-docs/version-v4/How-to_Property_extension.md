@@ -11,7 +11,7 @@ CLASS ABSTRACT Shape;
 square 'Площадь' = ABSTRACT DOUBLE (Shape);
 ```
 
-Создаем классы **Rectangle **и **Circle**, который наследуется от **Shape** :
+Создаем классы **Rectangle **и **Circle**, который наследуется от **Shape** :
 
 ```lsf
 CLASS Rectangle : Shape;
@@ -22,7 +22,7 @@ CLASS Circle : Shape;
 radius 'Радиус окружности' = DATA DOUBLE (Circle);
 ```
 
-Определяем реализацию абстрактного свойства **square **для созданных классов :
+Определяем реализацию абстрактного свойства **square **для созданных классов :
 
 ```lsf
 square(rectangle) += width(rectangle) * height(rectangle);
@@ -46,4 +46,4 @@ REQUIRE Shape;
 overSquareCircle (circle) += radius(circle) * radius(circle) * 3.14159265359; // используем формулу с более высокой точностью
 ```
 
-Следует отметить, что вместо [оператора OVERRIDE](OVERRIDE_operator.md) можно использовать любые другие выражения. В частности, наиболее часто используемыми могут быть [операторы (+) и (-)](Arithmetic_operators_+_-_..._.md).
+Следует отметить, что вместо [оператора OVERRIDE](OVERRIDE_operator.md) можно использовать любые другие выражения. В частности, наиболее часто используемыми могут быть [операторы (+) и (-)](Arithmetic_operators_+_-_..._.md).

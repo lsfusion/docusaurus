@@ -6,11 +6,11 @@ slug: /
 
 Обзор
 
-        Набор статей ([1](https://habr.com/ru/company/lsfusion/blog/458376/), [2](https://habr.com/ru/company/lsfusion/blog/460141/), [3](https://habr.com/ru/company/lsfusion/blog/460887/)) для пошагового ознакомления с возможностями платформы.
+Набор статей ([1](https://habr.com/ru/company/lsfusion/blog/458376/), [2](https://habr.com/ru/company/lsfusion/blog/460141/), [3](https://habr.com/ru/company/lsfusion/blog/460887/)) для пошагового ознакомления с возможностями платформы.
 
 [Парадигма](Paradigm.md)
 
-В этом разделе описываются общие понятия и термины, используемые в платформе.
+В этом разделе описываются общие понятия и термины, используемые в платформе.
 
 [Язык](Language.md)
 
@@ -22,7 +22,7 @@ slug: /
 
 [Примеры](Examples.md)
 
-        Этот раздел содержит примеры задач и их решений на платформе lsFusion.
+Этот раздел содержит примеры задач и их решений на платформе lsFusion.
 
 [Онлайн демо](Online_demo.md)
 

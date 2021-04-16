@@ -2,7 +2,7 @@
 title: 'IF ... THEN operator'
 ---
 
-The **IF ... THEN** operator creates a [property](Properties.md) that implements [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) with one condition (single form).
+The **IF ... THEN** operator creates a [property](Properties.md) that implements [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) with one condition (single form).
 
 ### Syntax
 
@@ -12,13 +12,13 @@ The **IF ... THEN** operator creates a [property](Properties.md) that implements
 
 ### Description
 
-The **IF ... THEN** operator creates an action that implements conditional selection. The condition is defined using a property. If this condition is met, that is, the value of the property does not equal **NULL**, then the value of the created property will be the value of the property specified in the **THEN** block; otherwise, the value will be the value of the property in the **ELSE** block, or **NULL** if no **ELSE** block was specified.** **
+The **IF ... THEN** operator creates an action that implements conditional selection. The condition is defined using a property. If this condition is met, that is, the value of the property does not equal **NULL**, then the value of the created property will be the value of the property specified in the **THEN** block; otherwise, the value will be the value of the property in the **ELSE** block, or **NULL** if no **ELSE** block was specified.** **
 
 ### Parameters
 
 *condition*
 
-[Expression](Expression.md) defining a condition. 
+[Expression](Expression.md) defining a condition. 
 
 *value*
 

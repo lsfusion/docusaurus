@@ -5,7 +5,7 @@ sidebar_label: Overview
 
 *Java interaction*
 
-To implement this type of interaction, platform uses the [internal call (INTERNAL)](Internal_call_INTERNAL_.md) operator, which allows calling Java code inside the JVM lsFusion server.
+To implement this type of interaction, platform uses the [internal call (INTERNAL)](Internal_call_INTERNAL_.md) operator, which allows calling Java code inside the JVM lsFusion server.
 
 *SQL interaction*
 

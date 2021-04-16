@@ -37,7 +37,7 @@ copyOrder 'Copy' (Order o)  {
 
 ### Condition
 
-Similar to **Example 1**, except that the order contains lines with other orders.
+Similar to **Example 1**, except that the order contains lines with other orders.
 
 ```lsf
 CLASS Book 'Book';

@@ -3,7 +3,7 @@ title: 'Expression'
 sidebar_label: Overview
 ---
 
-An *expression* is a combination of [property operators](Property_operators.md) and [parameters](Properties.md). When an expression is evaluated sequentially in [priority](Operator_priority.md)  order, all the operators are executed.
+An *expression* is a combination of [property operators](Property_operators.md) and [parameters](Properties.md). When an expression is evaluated sequentially in [priority](Operator_priority.md)  order, all the operators are executed.
 
 The result of that execution will be either a [property](Properties.md) or a parameter (in the case of single-parameter expression). Their value shall be called the *value* of the expression.
 

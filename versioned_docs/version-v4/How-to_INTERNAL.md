@@ -27,7 +27,7 @@ NAVIGATOR {
 }
 ```
 
-To solve the task, create an action using the [INTERNAL](INTERNAL_operator.md) operator which will generate an object of the  **GetIP** class (if the class has a package, then you must also specify "package" in the class name) and will call the **executeInternal** method. The source code for this class will be as follows:
+To solve the task, create an action using the [INTERNAL](INTERNAL_operator.md) operator which will generate an object of the  **GetIP** class (if the class has a package, then you must also specify "package" in the class name) and will call the **executeInternal** method. The source code for this class will be as follows:
 
 #### GetIP.java
 
@@ -269,6 +269,6 @@ The system halts code execution when this method is called, then passes **Client
         }
     }
 
-The object returned by the **dispatch** method is returned to the server as the result of executing the **requestUserInteraction** method. In this example, the message *succeed* will be displayed on the server's standard console. Thus, results of code execution on the client can be read on the server.
+The object returned by the **dispatch** method is returned to the server as the result of executing the **requestUserInteraction** method. In this example, the message *succeed* will be displayed on the server's standard console. Thus, results of code execution on the client can be read on the server.
 
 Since java code cannot be executed directly in the browser, this action will only work with a desktop client.

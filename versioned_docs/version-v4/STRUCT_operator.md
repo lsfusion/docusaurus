@@ -2,7 +2,7 @@
 title: 'STRUCT operator'
 ---
 
-The **STRUCT** operator creates a [property](Properties.md) that creates a [structure](Structure_operations_STRUCT_.md).
+The **STRUCT** operator creates a [property](Properties.md) that creates a [structure](Structure_operations_STRUCT_.md).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The **STRUCT** operator creates a [property](Properties.md) that creates a [str
 
 ### Description
 
-The **STRUCT** operator creates a property whose value will be a structure created from the objects passed. 
+The **STRUCT** operator creates a property whose value will be a structure created from the objects passed. 
 
 ### Parameters
 

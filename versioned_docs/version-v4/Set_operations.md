@@ -3,13 +3,13 @@ title: 'Set operations'
 sidebar_label: Overview
 ---
 
-One of the key features of the platform is the ability to execute certain operations for all object collections for which the values of one or more [properties](Properties.md) are not **NULL**. In the property logic such an operation is the calculation of various *aggregate functions*. 
+One of the key features of the platform is the ability to execute certain operations for all object collections for which the values of one or more [properties](Properties.md) are not **NULL**. In the property logic such an operation is the calculation of various *aggregate functions*. 
 
 ### Aggregate functions {#func}
 
-An aggregate function calculates a certain *result* as a single object on a set of object collections. This function is defined by the *initial value* (typically **NULL**), [properties](Properties.md) that it uses (*operands*), *operation of addition* to the *intermediate result* of the current operand values, and *conversion function* of the intermediate result to the final (typically the intermediate result is the final result).
+An aggregate function calculates a certain *result* as a single object on a set of object collections. This function is defined by the *initial value* (typically **NULL**), [properties](Properties.md) that it uses (*operands*), *operation of addition* to the *intermediate result* of the current operand values, and *conversion function* of the intermediate result to the final (typically the intermediate result is the final result).
 
-Aggregate function is *commutative* if the order in which the object collections of the original set are iterated over does not matter when calculating the result. 
+Aggregate function is *commutative* if the order in which the object collections of the original set are iterated over does not matter when calculating the result. 
 
 The table below shows the currently supported types of aggregate functions:
 
@@ -30,7 +30,7 @@ From the perspective of determining the set of object collections and the result
 
 ### Operation correctness {#correct}
 
-You should consider that during each operation on a set of object collections, this set must be finite. In this case, the operation is called *correct*.
+You should consider that during each operation on a set of object collections, this set must be finite. In this case, the operation is called *correct*.
 
 ### Examples
 

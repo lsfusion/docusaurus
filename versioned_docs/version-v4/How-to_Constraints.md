@@ -58,7 +58,7 @@ CONSTRAINT CHANGED(date(Order o)) AND posted(o)
 
 ### Condition
 
-Identical to  **Example 2**.
+Identical to  **Example 2**.
 
 You need to prohibit the deletion of a posted order.
 
@@ -102,7 +102,7 @@ Since the expression contains no change operators, this constraint will be trigg
 
 ### Condition
 
-Similar to  **Example 4**. Here are added the concept of a customer and the possibility to select books that will be available to the customer.
+Similar to  **Example 4**. Here are added the concept of a customer and the possibility to select books that will be available to the customer.
 
 ```lsf
 CLASS Customer 'Customer';
@@ -123,13 +123,13 @@ CONSTRAINT book(OrderDetail d) AND NOT in(customer(d), book(d))
     MESSAGE 'A book is selected in the order line that is not allowed for the customer';
 ```
 
-It is important to check that the **book** property for the order line is set because otherwise, the constraint will be applied to all order lines with the yet unselected book. The **CHECKED BY ** block adds the filter for the order line on the book selection form in order to avoid violating the defined constraint. This way, the user will only see books available to the buyer.
+It is important to check that the **book** property for the order line is set because otherwise, the constraint will be applied to all order lines with the yet unselected book. The **CHECKED BY ** block adds the filter for the order line on the book selection form in order to avoid violating the defined constraint. This way, the user will only see books available to the buyer.
 
 ## Example 6
 
 ### Condition
 
-Identical to  **Example 4**.
+Identical to  **Example 4**.
 
 We need to prohibit the entry of books that are unavailable to the buyer for the order line, but only for posted orders.
 

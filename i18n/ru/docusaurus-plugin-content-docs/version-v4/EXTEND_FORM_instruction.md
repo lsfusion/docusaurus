@@ -22,7 +22,7 @@ title: 'Инструкция EXTEND FORM'
 
 Имя расширяемой формы. [Составной идентификатор](IDs.md#cid-broken).
 
-*formBlock1 ... formBlockN *
+*formBlock1 ... formBlockN *
 
 Блоки формы.
 

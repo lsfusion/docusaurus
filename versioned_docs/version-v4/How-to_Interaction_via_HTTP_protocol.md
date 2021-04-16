@@ -55,11 +55,11 @@ EXTEND FORM cities
 ;
 ```
 
-The [EXPORT](Data_export_EXPORT_.md) operator will create a JSON in the [FILE](Built-in_classes.md) format and then will write it to the exportFile property. Here is an example of the generated file: 
+The [EXPORT](Data_export_EXPORT_.md) operator will create a JSON in the [FILE](Built-in_classes.md) format and then will write it to the exportFile property. Here is an example of the generated file: 
 
     {"countryId":"123","name":"San Francisco"}
 
-Then we call the [EXTERNAL](Access_to_an_external_system_EXTERNAL_.md) operator, which sends a request to the specified url passing there the contents of the generated file as Body. In this case, since the property in the FROM block has the type JSON, *application/json* will be used as the content type. <namespace\><property name\> is encoded in the url. In this case, the namespace of the action being called (**createCity**) is **Location**. All parameters are passed consequently with the ID **p**.  The response from the server will be written to the **result** property. Suppose that the response is received in the JSON format and has one of the following types:
+Then we call the [EXTERNAL](Access_to_an_external_system_EXTERNAL_.md) operator, which sends a request to the specified url passing there the contents of the generated file as Body. In this case, since the property in the FROM block has the type JSON, *application/json* will be used as the content type. <namespace\><property name\> is encoded in the url. In this case, the namespace of the action being called (**createCity**) is **Location**. All parameters are passed consequently with the ID **p**.  The response from the server will be written to the **result** property. Suppose that the response is received in the JSON format and has one of the following types:
 
     {"code":"0","message":"OK"}
 
@@ -71,7 +71,7 @@ The response is handled by the [IMPORT](Data_import_IMPORT_.md) operator which p
 
 ### Task
 
-Similar to **Example 1**. 
+Similar to **Example 1**. 
 
 We need to handle the incoming HTTP request and create a new city in the database with the parameters provided in the request.
 
@@ -211,7 +211,7 @@ In this example, the response to the HTTP request is ignored.
 
 ### Task
 
-Similar to **Example 3**. 
+Similar to **Example 3**. 
 
 We need to handle the incoming HTTP request and create a new order in the database with the parameters provided in the request.
 
@@ -255,7 +255,7 @@ To import the corresponding file in the JSON format, we need to create a form of
 
 ### Condition
 
-Similar to **Example 4**. 
+Similar to **Example 4**. 
 
 We need to send an HTTP request to create an order in the JSON format to a certain url as in the previous example, except that everything must be wrapped in the **order** tag.
 
@@ -311,7 +311,7 @@ Unlike the previous example, here we create a property [group](Groups_of_propert
 
 ### Condition
 
-Similar to **Example 5**. 
+Similar to **Example 5**. 
 
 We need to handle the incoming HTTP request and create a new order in the database with the parameters provided in the request.
 
@@ -349,7 +349,7 @@ Just as in the export process, we put all the properties and the **detail** obje
 
 ### Task
 
-Similar to **Example 3**. 
+Similar to **Example 3**. 
 
 We need to return a list of order numbers for a given date using an HTTP GET request in which this date is provided.
 
@@ -369,7 +369,7 @@ getOrdersByDate (DATE d) {
 }
 ```
 
-The url to which the HTTP request should be sent will look like this:   http://localhost:7651/exec?action=Location.getOrdersByDate&p=12.11.2018 .
+The url to which the HTTP request should be sent will look like this:   http://localhost:7651/exec?action=Location.getOrdersByDate&p=12.11.2018 .
 
 The response JSON will look like this:
 

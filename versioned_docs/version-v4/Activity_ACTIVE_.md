@@ -2,10 +2,10 @@
 title: 'Activity (ACTIVE)'
 ---
 
-The *activity* operator creates a property that determines whether one of the following form elements is active:
+The *activity* operator creates a property that determines whether one of the following form elements is active:
 
--   Property - whether the focus is on the specified [property](Properties.md) on the form.
--   Tab - whether one of the tabs in the specified [tab panel](Form_design.md#tab-broken) is active.
+-   Property - whether the focus is on the specified [property](Properties.md) on the form.
+-   Tab - whether one of the tabs in the specified [tab panel](Form_design.md#tab-broken) is active.
 -   Form - determines whether the specified [form](Forms.md) is active for the user.
 
 ### Language

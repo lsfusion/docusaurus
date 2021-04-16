@@ -45,7 +45,7 @@ We need to define the logic such that a city can only be linked to a region belo
 CONSTRAINT country(City c) != country(region(c)) CHECKED BY region[City] MESSAGE 'The country of the city region must match the country of the city';
 ```
 
-The [CONSTRAINT](CONSTRAINT_instruction.md) instruction defines a condition that must always be **NULL**. In this case, the constraint based on this condition will be violated if there is a country defined for the region, a region for the city, and a country for the region, and the region's country is not the same as the city's country. The **CHECKED BY** block indicates that when you select a region in a dialog, the regions will be filtered by default so as not to violate this constraint. It should be noted that if no country has yet been set for the given city then the condition will always be **NULL**, and all existing regions will be shown in the dialog.
+The [CONSTRAINT](CONSTRAINT_instruction.md) instruction defines a condition that must always be **NULL**. In this case, the constraint based on this condition will be violated if there is a country defined for the region, a region for the city, and a country for the region, and the region's country is not the same as the city's country. The **CHECKED BY** block indicates that when you select a region in a dialog, the regions will be filtered by default so as not to violate this constraint. It should be noted that if no country has yet been set for the given city then the condition will always be **NULL**, and all existing regions will be shown in the dialog.
 
 ## Example 2
 
@@ -69,7 +69,7 @@ It should be noted that after the user has chosen a region and a country is set,
 
 ### Condition
 
-Similar to Example 1.
+Similar to Example 1.
 
 We need to create the same kind of association between the region and the city, but in such a way that a region cannot be selected until a country has been set first.
 
@@ -85,7 +85,7 @@ The difference from the first example is that the new condition will also be tru
 
 ### Condition
 
-Similar to **Example 1**.
+Similar to **Example 1**.
 
 If the user first selects a region, and then a country that does not correspond to the original region, the user will receive an error message when trying to save.
 
@@ -103,7 +103,7 @@ WHEN LOCAL CHANGED(country(City c)) AND country(c) != country(region(c)) DO {
 
 ### Condition
 
-Similar to **Example 1**.
+Similar to **Example 1**.
 
 The solution to the first example has one drawback. The system will not allow you to change the country of a particular region, if the city links to it. The constraint will be violated.
 

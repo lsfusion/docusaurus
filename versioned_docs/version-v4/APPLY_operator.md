@@ -8,24 +8,24 @@ The **APPLY** operator creates an [action](Actions.md) that [applies changes](Ap
 
     APPLY [nestedBlock] [SERIALIZABLE] [action]
 
-where *nestedBlock* has one of two possible syntaxes:
+where *nestedBlock* has one of two possible syntaxes:
 
     NESTED LOCAL
     NESTED (propertyId1, ..., propertyIdN)
 
 ### Description
 
-The **APPLY** operator creates an action that applies changes to the database. By specifying the keyword **NESTED** you can specify [local properties](Data_properties_DATA_.md#local) whose changes are not dropped when applying the changes. This operator also includes an action to be executed before applying the changes to the database.
+The **APPLY** operator creates an action that applies changes to the database. By specifying the keyword **NESTED** you can specify [local properties](Data_properties_DATA_.md#local) whose changes are not dropped when applying the changes. This operator also includes an action to be executed before applying the changes to the database.
 
 ### Parameters
 
 *LOCAL*
 
-Keyword. If specified, all local properties preserve their changes after the **APPLY** operator is executed. 
+Keyword. If specified, all local properties preserve their changes after the **APPLY** operator is executed. 
 
 *propertyId1, ..., propertyIdN*
 
-List of local properties. Each list element is a [property ID](IDs.md#propertyid-broken). The local properties specified in the list will preserve their changes after the operator is executed.
+List of local properties. Each list element is a [property ID](IDs.md#propertyid-broken). The local properties specified in the list will preserve their changes after the operator is executed.
 
 *SERIALIZABLE*
 

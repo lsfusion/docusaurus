@@ -10,11 +10,11 @@ The **CHANGE** operator creates an [action](Actions.md) that [changes properties
 
 ### Description
 
-The **CHANGE** operator creates an action that changes a property when a condition is met. This operator  can add its own local parameters when specifying the property whose value is to be changed. These parameters correspond to the objects being iterated and are not parameters of the created action. 
+The **CHANGE** operator creates an action that changes a property when a condition is met. This operator  can add its own local parameters when specifying the property whose value is to be changed. These parameters correspond to the objects being iterated and are not parameters of the created action. 
 
-The condition is defined by the **WHERE** block. If this block is not specified, it is assumed that the condition is always met. 
+The condition is defined by the **WHERE** block. If this block is not specified, it is assumed that the condition is always met. 
 
-The keyword **CHANGE**, which defines an operator, may be omitted.** **
+The keyword **CHANGE**, which defines an operator, may be omitted.** **
 
 ### Parameters
 
@@ -24,7 +24,7 @@ The keyword **CHANGE**, which defines an operator, may be omitted.** **
 
 *expr1, ..., exprN*
 
-A list of expressions or typed parameters defining arguments to the property being changed. When using typed parameters, you can both access already declared parameters and declare new local parameters. When using expressions, new local parameters cannot be added. The number of expressions in this list must equal to the number of parameters of the property being changed. 
+A list of expressions or typed parameters defining arguments to the property being changed. When using typed parameters, you can both access already declared parameters and declare new local parameters. When using expressions, new local parameters cannot be added. The number of expressions in this list must equal to the number of parameters of the property being changed. 
 
 *valueExpr*
 

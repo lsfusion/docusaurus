@@ -11,7 +11,7 @@ It determines what information the system stores and what you can do with this i
 
 [View logic](View_logic.md)
 
-It includes everything related to the display of information to entities using the information system – users and other information systems.
+It includes everything related to the display of information to entities using the information system – users and other information systems.
 
 ### Stack
 

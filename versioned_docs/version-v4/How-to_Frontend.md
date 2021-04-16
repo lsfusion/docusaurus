@@ -95,7 +95,7 @@ To implement a request to the backend to receive shipments with filtering, we de
       return fetch(url, params).then(response => response.json());
     }
 
-The first **select** function makes a POST request with content type multipart/form-data, passing the text of the request to the server as its first parameter and the values of the request as its other parameters.
+The first **select** function makes a POST request with content type multipart/form-data, passing the text of the request to the server as its first parameter and the values of the request as its other parameters.
 
 For example, a function call of the form
 
@@ -208,7 +208,7 @@ It will be necessary to pass the set of lines from a specific document to the se
       return fetch(url, params).then(handleErrors);
     }
 
-If an object is passed as a field in the **data** object, it is now converted to JSON and passed as a file of type application/json.
+If an object is passed as a field in the **data** object, it is now converted to JSON and passed as a file of type application/json.
 
 In order to accept this file as the final parameter ($5 in this example) and update the lines by deleting the old ones and creating new ones, we will use the following code on the platform:
 
@@ -221,7 +221,7 @@ In order to accept this file as the final parameter ($5 in this example) and upd
             sum(d) <- sum; 
         }
 
-To parse the JSON we use the special [IMPORT](IMPORT_operator.md) operator. It assumes that it will receive a flat JSON as an array of objects with numerical fields **item**, **quantity**, **price** and **sum**. A **ShipmentDetail** will be created for each object. It is then linked to the corresponding object **s** of class **Shipment**. After this the SKU with the internal code equals to the passed one is written, and then the other properties are written. Parsing of more complex JSON can be found in examples [How-to: Data import](How-to_Data_import.md) and [How-to: Interaction via HTTP protocol](How-to_Interaction_via_HTTP_protocol.md).
+To parse the JSON we use the special [IMPORT](IMPORT_operator.md) operator. It assumes that it will receive a flat JSON as an array of objects with numerical fields **item**, **quantity**, **price** and **sum**. A **ShipmentDetail** will be created for each object. It is then linked to the corresponding object **s** of class **Shipment**. After this the SKU with the internal code equals to the passed one is written, and then the other properties are written. Parsing of more complex JSON can be found in examples [How-to: Data import](How-to_Data_import.md) and [How-to: Interaction via HTTP protocol](How-to_Interaction_via_HTTP_protocol.md).
 
 Saving changes may violate a [constraint](Constraints.md). In this case, the changes will not be saved to the database (however, they will remain in the [change session](Change_sessions.md)). In this event the value **TRUE** will be written to the **canceled** property, and a constraint message will be written to the **applyMessage** property. In order to handle this situation, we will use the following code on the platform:
 
@@ -282,7 +282,7 @@ The implementation of the entire task may look as follows:
 
 ### Example 5
 
-By analogy with **Example 1**, we implement the Score table form with editing ability using the [Form API](Access_from_an_external_system.md#form-broken). To use it, you need to link the [@lsfusion/core](https://www.npmjs.com/package/@lsfusion/core) library.
+By analogy with **Example 1**, we implement the Score table form with editing ability using the [Form API](Access_from_an_external_system.md#form-broken). To use it, you need to link the [@lsfusion/core](https://www.npmjs.com/package/@lsfusion/core) library.
 
 First of all, you need to initialize the form using the **create** function after loading the main component:
 
@@ -405,7 +405,7 @@ The first parameter passed is the callback function to which the initial state o
 
 The returned JSON also has other utility fields.
 
-Object tables can be read from **game.list** and **team.list** respectively. Current objects are stored in **game.value** and **team.value**. We use this data to form two tables, of games and of teams. To mark the current row we use the equals function, which compares, for example, the values from **game.value** and **game.list\[<row\>\].value**. This is necessary because **value** may contain more complex objects, if several objects are declared in the object group.
+Object tables can be read from **game.list** and **team.list** respectively. Current objects are stored in **game.value** and **team.value**. We use this data to form two tables, of games and of teams. To mark the current row we use the equals function, which compares, for example, the values from **game.value** and **game.list\[<row\>\].value**. This is necessary because **value** may contain more complex objects, if several objects are declared in the object group.
 
 Until the form has loaded, the helper function **formCreated** returns **false** and tables are not displayed.
 
@@ -438,7 +438,7 @@ To change the value of a property, we can use the following code:
 
 This call changes the current object to the game with the ID 6063 and the value of the host team's goals to the passed value (3). If you do not pass the **value** tag, then the goal change will be made for the previously selected game.
 
-The same scheme is used to change properties that are not data, but are a simple [composition](Composition_JOIN_.md) of object properties: 
+The same scheme is used to change properties that are not data, but are a simple [composition](Composition_JOIN_.md) of object properties: 
 
     change(updateState => this.setState(updateState), { game : { value : 6063, hostTeamName: "Montreal Canadiens" } });
 

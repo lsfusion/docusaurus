@@ -2,7 +2,7 @@
 title: 'EXTEND CLASS instruction'
 ---
 
-The **EXTEND CLASS** instruction [extends](Class_extension.md) an existing class.
+The **EXTEND CLASS** instruction [extends](Class_extension.md) an existing class.
 
 ### Syntax
 
@@ -11,18 +11,18 @@ The **EXTEND CLASS** instruction [extends](Class_extension.md) an existing cla
         objectName1 [objectCaption1],
         ...
         objectNameM [objectCaptionM]
-    }] 
+    }] 
     [: parent1, ..., parentN];
 
 ### Description
 
-The **EXTEND CLASS** instruction extends an existing [custom class](User_classes.md) with additional parent classes and new[static objects](Static_objects.md). You can also extend [abstract classes](User_classes.md#abstract) by adding parent classes to them.
+The **EXTEND CLASS** instruction extends an existing [custom class](User_classes.md) with additional parent classes and new[static objects](Static_objects.md). You can also extend [abstract classes](User_classes.md#abstract) by adding parent classes to them.
 
 ### Parameters
 
-*name *
+*name *
 
-Class name. A [Composite ID](IDs.md#cid-broken). 
+Class name. A [Composite ID](IDs.md#cid-broken). 
 
 *objectName1, ..., objectNameM*
 
@@ -30,11 +30,11 @@ Names of new static objects of the specified class. Each name is defined [by a s
 
 *objectCaption1, ..., objectCaptionM*
 
-Captions of new static objects of the specified class. Each caption is a [string literal](IDs.md#strliteral-broken). If the caption is not defined, the name of the static object will be its caption. Caption values are stored in the **System.staticCaption** system property.
+Captions of new static objects of the specified class. Each caption is a [string literal](IDs.md#strliteral-broken). If the caption is not defined, the name of the static object will be its caption. Caption values are stored in the **System.staticCaption** system property.
 
 *parent1, ..., parentN*
 
-A list of names of new parent classes. Each name is defined by a composite ID. 
+A list of names of new parent classes. Each name is defined by a composite ID. 
 
 ### Examples
 

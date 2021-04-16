@@ -2,9 +2,9 @@
 title: 'CASE operator'
 ---
 
-The **CASE** operator  creates a [property](Properties.md) that [selects](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) a result by condition.
+The **CASE** operator  creates a [property](Properties.md) that [selects](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) a result by condition.
 
-**Syntax** 
+**Syntax** 
 
     CASE [exclusionType]
         WHEN condition1 THEN result1
@@ -18,20 +18,20 @@ The CASE operator creates a property that implements a conditional selection. Se
 
 ### Parameters
 
-** ***exclusionType*
+** ***exclusionType*
 
-** **[Type of mutual exclusion](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Determines whether several conditions can be met simultaneously for a certain set of parameters. It is specified by one of the keywords:
+** **[Type of mutual exclusion](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Determines whether several conditions can be met simultaneously for a certain set of parameters. It is specified by one of the keywords:
 
 -   **EXCLUSIVE**
 -   **OVERRIDE**
 
-The **EXCLUSIVE** type indicates that none of the conditions listed can be met simultaneously. The **OVERRIDE** type allows several conditions to be met simultaneously, in this case, the property value will be the value of the value property for the first met condition. 
+The **EXCLUSIVE** type indicates that none of the conditions listed can be met simultaneously. The **OVERRIDE** type allows several conditions to be met simultaneously, in this case, the property value will be the value of the value property for the first met condition. 
 
 The **OVERRIDE** type is used by default.
 
 *condition1 ... conditionN*
 
- [Expressions](Expression.md) whose values define the selection condition. 
+ [Expressions](Expression.md) whose values define the selection condition. 
 
 *result1 ... resultN*
 

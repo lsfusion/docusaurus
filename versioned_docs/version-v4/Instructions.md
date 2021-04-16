@@ -3,7 +3,7 @@ title: 'Instructions'
 sidebar_label: Overview
 ---
 
-The code of any [module](Modules.md) in **[lsFusion](Language.md)** consists of a sequence of *instructions. *
+The code of any [module](Modules.md) in **[lsFusion](Language.md)** consists of a sequence of *instructions. *
 
 Instructions are of the following kinds:
 
@@ -23,10 +23,10 @@ Instructions are of the following kinds:
 -   [The **WINDOW** instruction](WINDOW_instruction.md)
 -   [The **EXTEND CLASS** instruction](EXTEND_CLASS_instruction.md)
 -   [The **EXTEND FORM** instruction](EXTEND_FORM_instruction.md)
--   The [+=](Instruction_+=.md) instruction 
+-   The [+=](Instruction_+=.md) instruction 
 -   [The **ACTION+** instruction](ACTION+_instruction.md)
 -   [The **META** instruction](META_instruction.md)
--   [Instruction** **@](Instruction_.md)
+-   [Instruction** **@](Instruction_.md)
 -   [The **TABLE** instruction](TABLE_instruction.md)
 -   [The **INDEX** instruction](INDEX_instruction.md)
 -   [The **BEFORE** instruction](BEFORE_instruction.md)
@@ -34,7 +34,7 @@ Instructions are of the following kinds:
 -   The LOGGABLE instruction
 -   [Empty instruction](Empty_instruction.md)
 
-Each instruction in **lsFusion** ends with a semicolon, with two exceptions:
+Each instruction in **lsFusion** ends with a semicolon, with two exceptions:
 
 1.  An instruction followed by a closing brace
 2.  The **META** instruction

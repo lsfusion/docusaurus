@@ -37,7 +37,7 @@ NAVIGATOR {
 
 ### Решение
 
-Сначала объявим [форму](Forms.md), которая описывает структуру печатной формы.
+Сначала объявим [форму](Forms.md), которая описывает структуру печатной формы.
 
 ```lsf
 FORM booksByCategories 'Книги по категориям'
@@ -50,7 +50,7 @@ FORM booksByCategories 'Книги по категориям'
 ;
 ```
 
-Затем добавим два действия, которые при помощи оператора [PRINT](PRINT_operator.md) формируют отчет и выводят его на предпросмотр и в XLSX соответственно.
+Затем добавим два действия, которые при помощи оператора [PRINT](PRINT_operator.md) формируют отчет и выводят его на предпросмотр и в XLSX соответственно.
 
 ```lsf
 printBooksByCategories 'Книги по категориям' ()  {
@@ -62,7 +62,7 @@ xlsxBooksByCategories 'Книги по категориям (XLSX)' ()  {
 }
 ```
 
-Выведем их на форму **books** в тулбар таблицы с книгами.
+Выведем их на форму **books** в тулбар таблицы с книгами.
 
 ```lsf
 EXTEND FORM books
@@ -74,11 +74,11 @@ EXTEND FORM books
 
 ![](attachments/46367627/46367670.png)
 
-Система сохранит автоматические шаблоны для [Jasper Reports](https://community.jaspersoft.com/project/jasperreports-library) в папку исходников (src/main/lsfusion).
+Система сохранит автоматические шаблоны для [Jasper Reports](https://community.jaspersoft.com/project/jasperreports-library) в папку исходников (src/main/lsfusion).
 
 ![](attachments/46367627/57738054.png)
 
-Затем откроется редактор, ассоциированный с форматом jrxml, в котором будут открыты эти файлы. В качестве редактора можно использовать [JasperSoft Studio](https://community.jaspersoft.com/project/jaspersoft-studio). Кроме того, будет запущен фоновый процесс, который будет в постоянном режиме синхронизировать файлы отчетов в каталогах src/main/lsfusion и out/production (или target/classes, если для запуска конфигурации используется Maven, а не IDEA Build), чтобы избавить от необходимости перестраивать проект после изменений шаблонов в редакторе.
+Затем откроется редактор, ассоциированный с форматом jrxml, в котором будут открыты эти файлы. В качестве редактора можно использовать [JasperSoft Studio](https://community.jaspersoft.com/project/jaspersoft-studio). Кроме того, будет запущен фоновый процесс, который будет в постоянном режиме синхронизировать файлы отчетов в каталогах src/main/lsfusion и out/production (или target/classes, если для запуска конфигурации используется Maven, а не IDEA Build), чтобы избавить от необходимости перестраивать проект после изменений шаблонов в редакторе.
 
 Так как категории и книги зависят друг от друга, то будет создан один плоский отчет, где категории будут идти как группировка книг. Данные для отчета будут передаваться в плоском денормализованном виде, где для каждого свойства будет создано свое поле (**Field)**. Для категорий будет создана группа (**Group**) и соответствующий блок заголовка (**Group Header**).
 
@@ -87,7 +87,7 @@ EXTEND FORM books
 ![](attachments/46367627/57738052.png)
 
 #### Шаблон : Sample\_booksByCategories.jrxml
- Expand source
+ Expand source
 
     <?xml version="1.0" encoding="UTF-8"?>
     <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -230,11 +230,11 @@ NAVIGATOR {
 }
 ```
 
-Нужно сделать печатную форму счета, в которой будут отображаться его параметры и все строки. Также нужно сделать экспорт этой формы в формат DOCX.
+Нужно сделать печатную форму счета, в которой будут отображаться его параметры и все строки. Также нужно сделать экспорт этой формы в формат DOCX.
 
 ### Решение
 
-Для создания печатной формы воспользуемся уже существующей формой **invoice**, которая подходит нам по структуре. Однако, при необходимости можно было бы создать новую форму.
+Для создания печатной формы воспользуемся уже существующей формой **invoice**, которая подходит нам по структуре. Однако, при необходимости можно было бы создать новую форму.
 
 ```lsf
 print 'Печать' (Invoice i)  {
@@ -258,7 +258,7 @@ EXTEND FORM invoices
   
 
 #### Шаблон : Sample\_invoice\_i.jrxml
- Expand source
+ Expand source
 
     <?xml version="1.0" encoding="UTF-8"?>
     <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -411,7 +411,7 @@ NAVIGATOR {
 }
 ```
 
-Нужно сделать печатную форму с информацией о клиенте, в которой будут показаны по нему все заказы и счета.
+Нужно сделать печатную форму с информацией о клиенте, в которой будут показаны по нему все заказы и счета.
 
 ### Решение
 
@@ -452,11 +452,11 @@ EXTEND FORM customers
 
 Поскольку зависимость между объектами формирует дерево с двумя листьями, то всего будет сформировано три шаблона :
 
-1.  *Sample\_customerInfo* - верхний отчет, который будет отображать данные по покупателям (в данном случае, по одному единственному покупателю). В нем будут содержаться ссылки на подотчеты *Sample\_customerInfo\_i* и *Sample\_customerInfo\_o*.  
+1.  *Sample\_customerInfo* - верхний отчет, который будет отображать данные по покупателям (в данном случае, по одному единственному покупателю). В нем будут содержаться ссылки на подотчеты *Sample\_customerInfo\_i* и *Sample\_customerInfo\_o*.  
     ![](attachments/46367627/57738063.png)
 
     **Шаблон : Sample\_customerInfo.jrxml**
-     Expand source
+     Expand source
 
         <?xml version="1.0" encoding="UTF-8"?>
         <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -530,7 +530,7 @@ EXTEND FORM customers
 2.  *Sample\_customerInfo\_o* - отчет, в котором будут отображаться все заказы вместе с их строками.
 
     **Шаблон : Sample\_customerInfo\_o.jrxml**
-     Expand source
+     Expand source
 
         <?xml version="1.0" encoding="UTF-8"?>
         <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
@@ -638,10 +638,10 @@ EXTEND FORM customers
             </detail>
         </jasperReport>
 
-3.  *Sample\_customerInfo\_i *- отчет, в котором будут отображаться все счета вместе с их строками.
+3.  *Sample\_customerInfo\_i *- отчет, в котором будут отображаться все счета вместе с их строками.
 
     **Шаблон : Sample\_customerInfo\_i.jrxml**
-     Expand source
+     Expand source
 
         <?xml version="1.0" encoding="UTF-8"?>
         <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->

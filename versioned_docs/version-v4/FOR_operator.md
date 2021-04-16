@@ -20,7 +20,7 @@ It is possible to include a **NEW** block in the operator but not to specify a c
 
 The **FOR** operator creates an action that implements loop. This operator must add its local parameters when defining a condition. These parameters correspond to the objects being iterated and are not parameters of the created action. You can also use a **NEW** block to specify the name of the [class](Classes.md) of the object that will be created for each object collection that meets the condition. The name of this object needs to be specified. This name will be used as the name of the local parameter that the created object will be written to.
 
-The object iteration order in the **FOR** operator can be specified with an **ORDER** block. If a new parameter is declared in the expressions that define the order (meaning that the parameter not met earlier in the **FOR** option or in the upper context), the condition of all these expressions being non- **NULL** is automatically added.
+The object iteration order in the **FOR** operator can be specified with an **ORDER** block. If a new parameter is declared in the expressions that define the order (meaning that the parameter not met earlier in the **FOR** option or in the upper context), the condition of all these expressions being non- **NULL** is automatically added.
 
 The main action is specified after the keyword **DO**; an alternative may be specified after the keyword **ELSE**.
 
@@ -34,7 +34,7 @@ In the case when the operator contains a **NEW** block, and no condition is spec
 
 *DESC*
 
-Keyword. Specifies a reverse iteration order for object collections. 
+Keyword. Specifies a reverse iteration order for object collections. 
 
 *orderExpr1, ..., orderExprK*
 

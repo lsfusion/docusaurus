@@ -2,7 +2,7 @@
 title: 'EXTERNAL operator'
 ---
 
-The **EXTERNAL** operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL_.md). 
+The **EXTERNAL** operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL_.md). 
 
 ### Syntax
 
@@ -16,7 +16,7 @@ externalCall - an external call defined by one of the following syntaxes:
 
 ### Description
 
-The **EXTERNAL** operator creates an action that makes a request to an external system.
+The **EXTERNAL** operator creates an action that makes a request to an external system.
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Keyword. Defines the [method](https://en.wikipedia.org/wiki/Hypertext_Transfer_P
 -   **PUT**
 -   **DELETE**
 
-The default value is **POST**.**  
+The default value is **POST**.**  
 **
 
 *SQL*
@@ -47,23 +47,23 @@ Keyword. Specifies that the operator executes an action of another lsFusion serv
 *connectionStrExpr  
 *
 
-[Expression](Expression.md). ****HTTP****: http request string. **SQL**: DBMS connection string. **LSF**: URL of an lsFusion server (application).
+[Expression](Expression.md). ****HTTP****: http request string. **SQL**: DBMS connection string. **LSF**: URL of an lsFusion server (application).
 
     bodyStrExpr
 
-[Expression](Expression.md). Continuation of http request string in BODY. Relevant when BODY has > 1 parameter. If not specified, the parameters are passed in multipart format.
+[Expression](Expression.md). Continuation of http request string in BODY. Relevant when BODY has > 1 parameter. If not specified, the parameters are passed in multipart format.
 
 *headersPropertyId*
 
 ### headersToPropertyId
 
-[Property ID](IDs.md#propertyid-broken) containing request headers. The property must have exactly one parameter: the name of the request's header. This parameter must belong to a string class. If the property is not specified, headers are ignored/not set.
+[Property ID](IDs.md#propertyid-broken) containing request headers. The property must have exactly one parameter: the name of the request's header. This parameter must belong to a string class. If the property is not specified, headers are ignored/not set.
 
 *cookiesPropertyId*
 
 *cookiesToPropertyId*
 
-[Property ID](IDs.md#propertyid-broken) containing request cookies. The property must have exactly one parameter: the name of the cookie. This parameter must belong to a string class. If the property is not specified, cookies are ignored/not set.
+[Property ID](IDs.md#propertyid-broken) containing request cookies. The property must have exactly one parameter: the name of the cookie. This parameter must belong to a string class. If the property is not specified, cookies are ignored/not set.
 
 lsfExecType
 
@@ -84,7 +84,7 @@ List of expressions whose values will be used as the call parameters.
 
 *propertyId1, ..., propertyIdM*
 
-List of property IDs (without parameters) to which the results will be written.
+List of property IDs (without parameters) to which the results will be written.
 
 ### Examples
 

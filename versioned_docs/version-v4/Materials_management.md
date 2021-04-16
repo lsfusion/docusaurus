@@ -4,7 +4,7 @@ title: 'Materials management'
 
 ## Description of the "Materials management" task
 
-The information system being created using the **lsFusion**  platform must support very basic supply chain execution capabilities.
+The information system being created using the **lsFusion**  platform must support very basic supply chain execution capabilities.
 
 For simplicity, let's define one type of document in our system that increases the stock balance — a receipt from the supplier; and one type of document that does the opposite — a shipment for a wholesale to a customer.
 
@@ -103,7 +103,7 @@ CLASS ReceiptDetail 'Receipt line';
 
   
 
-Each receipt line contains a link to the document header, so in the end, the header and the subset of lines with links to this document together define the receipt from the user perspective. The  NONULL parameter indicates that the link must be defined. The  DELETE  parameter specifies that if the main Receipt object is deleted, all ReceiptDetail lines linking to it will also be deleted. By default, when an object is deleted, all links to it are nullified. This way, without the DELETE  parameter, the system will show an error message about an undefined link.
+Each receipt line contains a link to the document header, so in the end, the header and the subset of lines with links to this document together define the receipt from the user perspective. The  NONULL parameter indicates that the link must be defined. The  DELETE  parameter specifies that if the main Receipt object is deleted, all ReceiptDetail lines linking to it will also be deleted. By default, when an object is deleted, all links to it are nullified. This way, without the DELETE  parameter, the system will show an error message about an undefined link.
 
 ```lsf
 receipt 'Line document' = DATA Receipt (ReceiptDetail) NONULL DELETE;
@@ -155,7 +155,7 @@ Let's create a module where we will define all instances and attributes required
 MODULE Shipment;
 ```
 
- We define the use of functionality from other modules in the Shipment module.
+ We define the use of functionality from other modules in the Shipment module.
 
 ```lsf
 REQUIRE Stock, Item, LegalEntity;
@@ -223,7 +223,7 @@ MODULE StockItem;
 
   
 
- We define the use of functionality from other modules in the StockItem module.
+ We define the use of functionality from other modules in the StockItem module.
 
 ```lsf
 REQUIRE Shipment, Receipt;
@@ -347,7 +347,7 @@ FORM shipments 'Shipments'
 ;
 ```
 
-Next, in the StockItem module, let's create a form for displaying current balances. A form should be a table whose lines contain information about the item (its name and barcode), the name of the stock, and the current balance for this item at this stock. The count of lines on the form will be equal to the count of items entered into the system multiplied by the count of entered stocks. To display only relevant data (i.e. only those items and stocks, for whose intersection the current balance is not NULL), let's add a filter to the form.
+Next, in the StockItem module, let's create a form for displaying current balances. A form should be a table whose lines contain information about the item (its name and barcode), the name of the stock, and the current balance for this item at this stock. The count of lines on the form will be equal to the count of items entered into the system multiplied by the count of entered stocks. To display only relevant data (i.e. only those items and stocks, for whose intersection the current balance is not NULL), let's add a filter to the form.
 
 ```lsf
 FORM currentBalanceItemStock 'Current balances'

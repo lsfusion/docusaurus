@@ -2,7 +2,7 @@
 title: 'Оператор EXEC'
 ---
 
-Оператор **EXEC** - создание [действия](Actions.md), [выполняющего](Call_EXEC_.md) другое действие.
+Оператор **EXEC** - создание [действия](Actions.md), [выполняющего](Call_EXEC_.md) другое действие.
 
 ### Синтаксис
 
@@ -16,7 +16,7 @@ title: 'Оператор EXEC'
 
 *actionId*
 
-[Идентификатор действия](IDs.md#propertyid-broken). 
+[Идентификатор действия](IDs.md#propertyid-broken). 
 
 *expression1, ..., expressionN*
 

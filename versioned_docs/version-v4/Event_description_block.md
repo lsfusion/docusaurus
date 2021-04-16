@@ -10,17 +10,17 @@ title: 'Event description block'
 
 ### Parameters
 
-*GLOBAL *
+*GLOBAL *
 
 The keyword specifying that the described event will be global. This is the default behavior.
 
 *LOCAL*
 
-The keyword specifying that the described event will be local.
+The keyword specifying that the described event will be local.
 
 *formName1, ..., formNameN*
 
-A list of names of the  [forms](Forms.md) in which the event will occur. Each element of the list is a  [composite ID](IDs.md#cid-broken). If the list is not defined, the event will occur in all forms.
+A list of names of the  [forms](Forms.md) in which the event will occur. Each element of the list is a  [composite ID](IDs.md#cid-broken). If the list is not defined, the event will occur in all forms.
 
 *propertyId1, ..., propertyIdM*
 
