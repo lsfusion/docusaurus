@@ -41,9 +41,8 @@ The `ABSTRACT` operator cannot be used inside [expressions](Expression.md).
 
     Type of mutual exclusion. One of these keywords: `EXCLUSIVE` or `OVERRIDE`. Unless explicitly specified, in a `MULTI` abstract property the default type of mutual exclusion is `EXCLUSIVE`, and in all other cases the default mutual exclusion type is `OVERRIDE`.
     
-    - `FIRST`
-    - `LAST`
-    
+    - `FIRST` | `LAST`
+
     Keywords. Determine which of the matching implementations will be selected. When the word `FIRST` is specified, implementations will be added to the top of the implementations list, so that the last added implementation will be selected. When the word `LAST` is specified, implementations will be added to the end of the implementations list, so that the implementation added first will be selected. If not specified, the default is `FIRST`. 
 
 - `FULL`
