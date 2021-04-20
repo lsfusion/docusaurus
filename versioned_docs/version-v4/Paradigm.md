@@ -15,4 +15,6 @@ It includes everything else - everything related to the development, performance
 
 ### Stack
 
-![](download/temp/svgout6225808558605984241.png)
+import ParadigmENSvg from './images/ParadigmEN.svg';
+
+<ParadigmENSvg />

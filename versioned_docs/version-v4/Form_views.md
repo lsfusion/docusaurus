@@ -29,5 +29,6 @@ Some views are *graphic*, meaning that to display them the data read must be pla
 
 ### Stack
 
+import FormPresentationENSvg from './images/FormPresentationEN.svg';
 
-![](download/temp/svgout1906078644145589448.png)
+<FormPresentationENSvg />

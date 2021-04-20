@@ -19,5 +19,6 @@ Includes everything related to operations on an already working system.
 
 ### Stack
 
+import PhysicalModelENSvg from './images/PhysicalModelEN.svg';
 
-![](download/temp/svgout7741212016876622307.png)
+<PhysicalModelENSvg />

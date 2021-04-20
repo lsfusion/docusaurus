@@ -11,5 +11,6 @@ In the simplest version of the user interface the user opens several fixed forms
 
 ### Stack
 
+import PresentationENSvg from './images/PresentationEN.svg';
 
-![](download/temp/svgout412413601144893449.png)
+<PresentationENSvg />

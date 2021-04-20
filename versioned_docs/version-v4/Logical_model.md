@@ -15,5 +15,6 @@ It includes everything related to the display of information to entities using t
 
 ### Stack
 
+import DomainandPresentationENSvg from './images/DomainandPresentationEN.svg';
 
-![](download/temp/svgout4632478949595340763.png)
+<DomainandPresentationENSvg />
