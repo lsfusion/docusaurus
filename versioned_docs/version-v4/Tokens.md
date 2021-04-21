@@ -7,9 +7,9 @@ A *token* in a programming language is the smallest significant sequence of char
 Tokens are usually separated by *delimiters* (spaces, line breaks, tabs), but separators can be omitted in cases where ambiguity does not occur.
 
 ### Examples
-
-|Keywords|<strong>CLASS</strong>, <strong>FORM</strong>, <strong>DATA</strong>, <strong>IF</strong>, <strong>INTEGER</strong>|
-|---|---|
-|IDs|System, base, Object, incomeDocument|
-|Literals|5, 1.25, 'Text String', #FF00FF, 1982_07_13|
-|Special characters|:, ->, !=, (+), ###|
+| Token type      | Example                                         |
+|-----------------|-------------------------------------------------|
+|Keyword          |`CLASS` `FORM` `DATA` `IF` `INTEGER`             |
+|ID               |`System` `base` `Object` `incomeDocument`        |
+|Literal          |`5` `1.25` `'Text String'` `#FF00FF` `1982_07_13`|
+|Special character|`:` `->` `!=` `(+)` `###`                        |
