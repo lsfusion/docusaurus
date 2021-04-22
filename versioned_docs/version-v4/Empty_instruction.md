@@ -14,7 +14,6 @@ An empty instruction is intended to prevent extra semicolons from being diagnose
 
 ### Example
 
-
 ```lsf
 CLASS Result {
     yes 'Yes',
@@ -23,5 +22,3 @@ CLASS Result {
 
 ;;;; // this is valid lsFusion code
 ```
-
-  
