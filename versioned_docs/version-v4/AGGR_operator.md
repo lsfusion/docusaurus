@@ -2,17 +2,15 @@
 title: 'AGGR operator'
 ---
 
-The **AGGR** operator creates an [aggregation](Aggregations.md).
+The `AGGR` operator creates an [aggregation](Aggregations.md).
 
-****Syntax **  
-**
+### Syntax  
 
     AGGR aggrClass WHERE aggrExpr
 
-### **Description**
+### Description
 
-In addition to the property that is the result of this operator and contains the value of the aggregated object, for each parameter the **AGGR** operator also creates a data property with one parameter, whose [class](User_classes.md) is equal to the class of the aggregated object. The value class and name of this property are equal to the class and name of the parameter for which this property is created. Accordingly, when creating an aggregated object, the value of the parameter for which the aggregated object is created is automatically written to this property.
-
+In addition to the property that is the result of this operator and contains the value of the aggregated object, for each parameter the `AGGR` operator also creates a data property with one parameter, whose [class](User_classes.md) is equal to the class of the aggregated object. The value class and name of this property are equal to the class and name of the parameter for which this property is created. Accordingly, when creating an aggregated object, the value of the parameter for which the aggregated object is created is automatically written to this property.
 
 :::info
 Creating an aggregation is in many ways similar to the following instructions (example for 2 parameters):
@@ -35,17 +33,17 @@ Creating an aggregation is in many ways similar to the following instructions (e
 but it is a more declarative and readable instruction, and therefore using it is recommended
 :::
 
-Unlike other context-dependent operators, the **AGGR** operator cannot be used in [expressions](Expression.md) inside other operators (in this sense it is more like context-independent operators), or in the [**JOIN** operator](JOIN_operator.md) (inside \[= \])
+Unlike other context-dependent operators, the `AGGR` operator cannot be used in [expressions](Expression.md) inside other operators (in this sense it is more like context-independent operators), or in the [`JOIN` operator](JOIN_operator.md) (inside `[= ]`)
 
 ### Parameters
 
-*aggrClass*
+- `aggrClass`
 
-The value class of the aggregated object.
+    The value class of the aggregated object.
 
-*aggrExpr*
+- `aggrExpr`
 
-An [expression](Expression.md) whose value defines an aggregated property.
+    An [expression](Expression.md) whose value defines an aggregated property.
 
 ### Examples
 
@@ -66,5 +64,3 @@ CLASS ShipmentInvoice 'Delivery by invoice' : Shipment;
 shipment(Invoice invoice) = AGGR ShipmentInvoice WHERE createShipment(invoice); // creating a delivery by invoice, if the option for delivery creation is defined for the invoice
 date(ShipmentInvoice si) += sum(date(invoice(si)),1); // delivery date = invoice date + 1
 ```
-
-  

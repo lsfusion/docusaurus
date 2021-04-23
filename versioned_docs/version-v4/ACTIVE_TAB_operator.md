@@ -2,7 +2,7 @@
 title: 'ACTIVE TAB operator'
 ---
 
-The **ACTIVE TAB** operator creates a [property](Properties.md) that checks if specified tab is [active](Activity_ACTIVE_.md).
+The `ACTIVE TAB` operator creates a [property](Properties.md) that checks if specified tab is [active](Activity_ACTIVE_.md).
 
 ### Syntax 
 
@@ -10,18 +10,17 @@ The **ACTIVE TAB** operator creates a [property](Properties.md) that checks if s
 
 ### Description
 
-The **ACTIVE TAB** operator creates a property that returns **TRUE** if the specified tab is active on a [form](Forms.md). 
+The `ACTIVE TAB` operator creates a property that returns `TRUE` if the specified tab is active on a [form](Forms.md). 
 
 ### Parameters
 
-*formName*
+- `formName`
 
-Form name. [Composite ID](IDs.md#cid-broken).
+    Form name. [Composite ID](IDs.md#cid-broken).
 
-**componentSelector*  
-*
+- `componentSelector`  
 
-Design component [selector](DESIGN_instruction.md#selector-broken). The component must be a tab in the tab panel.
+    Design component [selector](DESIGN_instruction.md#selector-broken). The component must be a tab in the tab panel.
 
 ### Examples
 

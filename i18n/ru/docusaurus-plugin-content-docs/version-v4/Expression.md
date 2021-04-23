@@ -9,13 +9,13 @@ sidebar_label: Обзор
 
 Выражение можно описать набором следующих рекурсивных правил:
 
-|<strong>Правило</strong>|<strong>Описание</strong>|
+|Правило|Описание|
 |---|---|
-|<pre><code>expression := parameter \| constant \| prefixOperator</code></pre>|Одиночный параметр, [константа](Constant.md) или префиксный неарифметический оператор|
-|<pre><code>expression := prefixArithmOp expression</code></pre>|Унарный префиксный арифметический оператор, с переданным ему в качестве операнда выражением|
-|<pre><code>expression := expression postfixOp</code></pre>|Унарный постфиксный оператор, с переданным ему в качестве операнда выражением|
-|<pre><code>expression := expression binaryOp expression</code></pre>|Бинарный оператор с переданными ему в качестве операндов выражениями|
-|<pre><code>expression := ( expression )</code></pre>|Выражение в круглых скобках|
+|`expression` := `parameter` \| `constant` \| `prefixOperator` | Одиночный параметр, [константа](Constant.md) или префиксный неарифметический оператор|
+|`expression` := `prefixArithmOp expression`|Унарный префиксный арифметический оператор, с переданным ему в качестве операнда выражением|
+|`expression` := `expression postfixOp`|Унарный постфиксный оператор, с переданным ему в качестве операнда выражением|
+|`expression` := `expression binaryOp expression`|Бинарный оператор с переданными ему в качестве операндов выражениями|
+|`expression` := `( expression )`|Выражение в круглых скобках|
 
 В состав выражения не могут входить [контекстно-независимые](Property_operators.md#contextindependent) операторы-свойства.
 
