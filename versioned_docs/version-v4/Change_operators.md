@@ -14,23 +14,22 @@ Change operators create [actions](Properties.md) which determine whether some ty
 
 ### Parameters
 
-*typeChange*
+- `typeChange`
 
-Type of the change operator. It is specified by one of the keywords:
+    Type of the change operator. It is specified by one of the keywords:
 
--   **SET**
--   **CHANGED**
--   **DROPPED**
--   **SETCHANGED**
--   **DROPCHANGED**
--   **SETDROPPED**
+    - `SET`
+    - `CHANGED`
+    - `DROPPED`
+    - `SETCHANGED`
+    - `DROPCHANGED`
+    - `SETDROPPED`
 
-*propExpr*
+- `propExpr`
 
-An [expression](Expression.md) which value defines the property that should be checked for the presence of a change.
+    An [expression](Expression.md) which value defines the property that should be checked for the presence of a change.
 
 ### Examples
-
 
 ```lsf
 quantity = DATA NUMERIC[14,2] (OrderDetail);
@@ -53,4 +52,3 @@ WHEN SETCHANGED(numerator(Order o)) AND
      }
 ;
 ```
-

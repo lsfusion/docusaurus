@@ -14,23 +14,22 @@ title: 'Операторы изменений'
 
 ### Параметры
 
-*typeChange*
+- `typeChange`
 
-Тип оператора изменений. Задается одним из ключевых слов:
+    Тип оператора изменений. Задается одним из ключевых слов:
 
--   **SET**
--   **CHANGED**
--   **DROPPED**
--   **SETCHANGED**
--   **DROPCHANGED**
--   **SETDROPPED**
+    - `SET`
+    - `CHANGED`
+    - `DROPPED`
+    - `SETCHANGED`
+    - `DROPCHANGED`
+    - `SETDROPPED`
 
-*propExpr*
+- `propExpr`
 
-[Выражения](Expression.md), значение которого определяет свойство, для которого необходимо определить наличие изменения.
+    [Выражения](Expression.md), значение которого определяет свойство, для которого необходимо определить наличие изменения.
 
 ### Примеры
-
 
 ```lsf
 quantity = DATA NUMERIC[14,2] (OrderDetail);
@@ -53,4 +52,3 @@ WHEN SETCHANGED(numerator(Order o)) AND
      }
 ;
 ```
-
