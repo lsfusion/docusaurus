@@ -2,13 +2,13 @@
 title: 'Event block'
 ---
 
-The event block of the  [FORM instruction](FORM_instruction.md) - a set of constructions controlling [events](Form_events.md) in an interactive form view.
+The event block of the  [`FORM` instruction](FORM_instruction.md) - a set of constructions controlling [events](Form_events.md) in an interactive form view.
 
 ### Syntax
 
     EVENTS formEventDecl1, ..., formEventDeclN
 
-Where each *formEventDecli* has the following syntax:
+Where each `formEventDecli` has the following syntax:
 
     ON eventType eventActionId(param1, ..., paramK) | { eventActionOperator }
 
@@ -18,40 +18,38 @@ The event block allows to define handlers for [form events](Form_events.md) that
 
 ### Parameters 
 
-*eventType*
+- `eventType`
 
-Type of form event. It is specified with one of the following keywords:
+    Type of form event. It is specified with one of the following keywords:
 
--   **INIT** 
--   **OK**
--   **OK BEFORE**
--   **OK AFTER**
--   **APPLY**
--   **APPLY BEFORE** 
--   **APPLY AFTER** 
--   **CANCEL**
--   **CLOSE**
--   **DROP**
--   **CHANGE** objName – specifies that the action will be executed when the object *objName* is changed.
--   **QUERYOK**
--   **QUERYCANCEL**
+    - `INIT` 
+    - `OK`
+    - `OK BEFORE`
+    - `OK AFTER`
+    - `APPLY`
+    - `APPLY BEFORE` 
+    - `APPLY AFTER` 
+    - `CANCEL`
+    - `CLOSE`
+    - `DROP`
+    - `CHANGE objName` – specifies that the action will be executed when the object `objName` is changed.
+    - `QUERYOK`
+    - `QUERYCANCEL`
 
-*eventActionId*
+- `eventActionId`
 
-The [ID of the action](IDs.md#propertyid-broken), that will be the event handler.
+    The [ID of the action](IDs.md#propertyid-broken), that will be the event handler.
 
-*param1, ..., paramK*
+- `param1, ..., paramK`
 
-List of action parameters. Each parameter is specified with the object name on the form. The object name, in turn, is specified with a [simple ID](IDs.md#id-broken).
+    List of action parameters. Each parameter is specified with the object name on the form. The object name, in turn, is specified with a [simple ID](IDs.md#id-broken).
 
-*actionOperator*
+- `actionOperator`
 
-[Context-dependent action operator](Action_operator.md#contextdependent). You can use the names of already declared objects on the form as parameters.
+    [Context-dependent action operator](Action_operator.md#contextdependent). You can use the names of already declared objects on the form as parameters.
 
-  
 
 ### Examples
-
 
 ```lsf
 showImpossibleMessage()  { MESSAGE 'It\'s impossible'; };
@@ -99,5 +97,3 @@ EXTEND FORM POS // adding a property through the form extension so that SEEK cou
         ON INIT createReceipt() // when opening the form, executing the action to create a new receipt, which fills in the shift, cashier and other information
 ;
 ```
-
-

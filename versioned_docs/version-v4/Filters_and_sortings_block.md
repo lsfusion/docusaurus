@@ -2,9 +2,9 @@
 title: 'Filters and sortings block'
 ---
 
-The filter and order block of the [FORM instruction](FORM_instruction.md) – add [filters](Form_structure.md#filters) and [orderings](Form_structure.md#sort) to the form structure; add [filter groups](Interactive_view.md#filtergroup) to the interactive form view.
+The filter and order block of the [`FORM` instruction](FORM_instruction.md) – add [filters](Form_structure.md#filters) and [orderings](Form_structure.md#sort) to the form structure; add [filter groups](Interactive_view.md#filtergroup) to the interactive form view.
 
-Fixed filter block
+## Fixed filter block
 
 ### Syntax
 
@@ -18,12 +18,11 @@ Each filter is defined with an  [expression](Expression.md) that defines the fil
 
 ### Parameters
 
-*expression1, ..., expressionN*
+- `expression1, ..., expressionN`
 
-List of filter expressions.
+    List of filter expressions.
 
 ### Examples
-
 
 ```lsf
 CLASS Stock;
@@ -54,9 +53,7 @@ FORM onStock 'Balances' // creating a form in which the balances of products can
 ;
 ```
 
-  
-
-### Filter group block {#filtergroup}
+## Filter group block {#filtergroup}
 
 ### Syntax
 
@@ -67,36 +64,34 @@ FORM onStock 'Balances' // creating a form in which the balances of products can
 
 ### Description
 
-The filter group block adds a set of filters to the form. A special UI component is then created for them, making it possible to apply one filter at a time. If the keyword **EXTEND** is specified , the component is not created, but used for extension. In one block, you can define a single group of filters consisting of an arbitrary number of filters that will be shown to the user in the order of listing. 
+The filter group block adds a set of filters to the form. A special UI component is then created for them, making it possible to apply one filter at a time. If the keyword `EXTEND` is specified , the component is not created, but used for extension. In one block, you can define a single group of filters consisting of an arbitrary number of filters that will be shown to the user in the order of listing. 
 
 Each filter is defined with an [expression](Expression.md) that defines the filtering condition. In all expressions and context-dependent action operators you can use the names of the objects already declared on the form as parameters.
 
 ### Parameters
 
-*groupName*
+- `groupName`
 
-Internal name of a filter group [Simple ID](IDs.md#id-broken). If the **EXTEND** keyword is specified, the platform will search the form for the created filter group with the specified name — otherwise a new filter group with the specified name will be created.
+    Internal name of a filter group [Simple ID](IDs.md#id-broken). If the `EXTEND` keyword is specified, the platform will search the form for the created filter group with the specified name — otherwise a new filter group with the specified name will be created.
 
-*caption1, ..., captionN*
+- `caption1, ..., captionN`
 
-Captions that will be shown in the user interface for the corresponding filter being added. Each caption is defined with a [string literal](IDs.md#strliteral-broken).
+    Captions that will be shown in the user interface for the corresponding filter being added. Each caption is defined with a [string literal](IDs.md#strliteral-broken).
 
-*expression1, ..., expressionN*
+- `expression1, ..., expressionN`
 
-Expressions describing filters.
+    Expressions describing filters.
 
-*keystroke1, ..., keystrokeN*
+- `keystroke1, ..., keystrokeN`
 
-Keyboard shortcuts that, when pressed by the user, will select a corresponding filter in the group. Each keyboard shortcut is defined with a string literal and the definition method is similar to that for a parameter in the Java class method [Keystroke.getKeystroke(String)](http://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html#getKeyStroke(java.lang.String)).
+    Keyboard shortcuts that, when pressed by the user, will select a corresponding filter in the group. Each keyboard shortcut is defined with a string literal and the definition method is similar to that for a parameter in the Java class method [Keystroke.getKeystroke(String)](http://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html#getKeyStroke(java.lang.String)).
 
-*DEFAULT*
+- `DEFAULT`
 
-A keyword specifying that the filter being added must be selected automatically when the form is added. Can be specified for one filter in the group only.
+    A keyword specifying that the filter being added must be selected automatically when the form is added. Can be specified for one filter in the group only.
 
-  
 
 ### Examples
-
 
 ```lsf
 active = DATA BOOLEAN (Stock);
@@ -116,9 +111,8 @@ EXTEND FORM onStock
 ;
 ```
 
-  
 
-### Order block {#sort}
+## Order block {#sort}
 
 ### Syntax
 
@@ -132,16 +126,15 @@ An order block adds orderings to the form that will be automatically applied whe
 
 ### Parameters
 
-*formPropertyName1, ..., formPropertyNameN*
+- `formPropertyName1, ..., formPropertyNameN`
 
-Names of properties or form actions specifying the order.
+    Names of properties or form actions specifying the order.
 
-*DESC*
+- `DESC`
 
-Keyword. Specifies reverse order. By default, ascending order is used.
+    Keyword. Specifies reverse order. By default, ascending order is used.
 
 ### Examples
-
 
 ```lsf
 EXTEND FORM onStock // extending the previously created form with balances

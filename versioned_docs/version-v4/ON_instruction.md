@@ -3,7 +3,7 @@ title: 'ON instruction'
 sidebar_label: Overview
 ---
 
-The **ON** instruction adds an [event](Events.md) handler.
+The `ON` instruction adds an [event](Events.md) handler.
 
 ### Syntax 
 
@@ -11,17 +11,17 @@ The **ON** instruction adds an [event](Events.md) handler.
 
 ### Description
 
-The **ON** instruction adds an event handler for the specified event. 
+The `ON` instruction adds an event handler for the specified event. 
 
 ### Parameters
 
-*eventClause*
+- `eventClause`
 
-This [event description block](Event_description_block.md) describes an event for which a handler needs to be added.
+    This [event description block](Event_description_block.md) describes an event for which a handler needs to be added.
 
-*eventAction*
+- `eventAction`
 
-This [context-dependent action operator](Action_operator.md#contextdependent) describes the event handler.
+    This [context-dependent action operator](Action_operator.md#contextdependent) describes the event handler.
 
 ### Examples
 
@@ -50,8 +50,3 @@ ON LOCAL {
         discount(o) <- 50;
 }
 ```
-
- 
-
-*  
-*

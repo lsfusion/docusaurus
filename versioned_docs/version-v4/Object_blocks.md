@@ -4,13 +4,13 @@ title: 'Object blocks'
 
 Object block of the [FORM instruction](FORM_instruction.md)  adds [objects](#objects) (including object groups) to the form structure, as well as [object trees](#tree) to the interactive form view.
 
-### Object block {#objects}
+## Object block {#objects}
 
 ### Syntax
 
     OBJECTS groupDeclaration1 [groupOptions1], ...., groupDeclarationN [groupOptionsN]
 
-Each *groupDeclaration *is a declaration of an object group consisting of several objects:
+Each `groupDeclaration` is a declaration of an object group consisting of several objects:
 
     [groupName =] (objectDeclaration1, ..., objectDeclarationK)
 
@@ -18,11 +18,11 @@ Each *groupDeclaration *is a declaration of an object group consisting of severa
 
     objectDeclaration
 
-Each *objectDeclaration* declaring an object has the following syntax:
+Each `objectDeclaration` declaring an object has the following syntax:
 
     [[name] [caption] =] classId [ON CHANGE actionId(param1, ..., paramM) | { actionOperator } ]
 
-The declaration of each object group may be followed by a set of options called *groupOptions*:
+The declaration of each object group may be followed by a set of options called `groupOptions`:
 
     viewType
     INIT | FIXED
@@ -36,104 +36,104 @@ The declaration of each object group may be followed by a set of options called 
 
 ### Description
 
-A single **OBJECTS** block can contain several comma-delimited declarations of [object groups](Interactive_view.md#objects). An object group can contain just one object or several ones. In case of a single object, you can use simplified syntax without specifying the name of an object group and using parentheses. The declaration of an object group may be followed by the options of this group. They are listed one after another in an arbitrary order.
+A single `OBJECTS` block can contain several comma-delimited declarations of [object groups](Interactive_view.md#objects). An object group can contain just one object or several ones. In case of a single object, you can use simplified syntax without specifying the name of an object group and using parentheses. The declaration of an object group may be followed by the options of this group. They are listed one after another in an arbitrary order.
 
 ### Parameters
 
-*groupName*
+- `groupName`
 
-Name of an object group. [Simple ID](IDs.md#id-broken). Must be specified if you need to access an object group consisting of several objects. If an object group consists of a single object, the name of the object group will be equal to the name of the object and doesn't need to be specified.
+    Name of an object group. [Simple ID](IDs.md#id-broken). Must be specified if you need to access an object group consisting of several objects. If an object group consists of a single object, the name of the object group will be equal to the name of the object and doesn't need to be specified.
 
-*name*
+- `name`
 
-Object name. Simple ID. Must be specified if the object class is a [built-in class](Built-in_classes.md). If the object class is a [custom class](User_classes.md), the name doesn't need to be specified. In this case, it will be equal to the name of the class object. 
+    Object name. Simple ID. Must be specified if the object class is a [built-in class](Built-in_classes.md). If the object class is a [custom class](User_classes.md), the name doesn't need to be specified. In this case, it will be equal to the name of the class object. 
 
-*classId*
+- `classId`
 
-[Object class ID](IDs.md#classid-broken) . 
+    [Object class ID](IDs.md#classid-broken). 
 
-*caption*
+- `caption`
 
-Caption of the object being added. [String literal](Literals.md#strliteral-broken). If the caption is not specified, the class caption will become the object caption.
+    Caption of the object being added. [String literal](Literals.md#strliteral-broken). If the caption is not specified, the class caption will become the object caption.
 
-*ON CHANGE actionName(param1, ..., paramM) | { actionOperator }*
+- `ON CHANGE actionName(param1, ..., paramM) | { actionOperator }`
 
-Specifying an [action](Actions.md) that will be called when the current object value is changed.
+    Specifying an [action](Actions.md) that will be called when the current object value is changed.
 
-*actionID*
+    - `actionID`
 
-[Action ID](IDs.md#propertyid-broken).
+        [Action ID](IDs.md#propertyid-broken).
 
-*param1, ..., paramM*
+    - `param1, ..., paramM`
+    
+        A list of object names on the form that will be used as action parameters. The number of these objects must be equal to the number of action parameters. The name of the object is defined with a [simple ID](IDs.md#id-broken).
 
-A list of object names on the form that will be used as action parameters. The number of these objects must be equal to the number of action parameters. The name of the object is defined with a [simple ID](IDs.md#id-broken).
+    - `actionOperator`
 
-*actionOperator*
+        [Context-dependent action operator](Action_operator.md#contextdependent). You can use the names of already declared objects on the form as parameters.
 
-[Context-dependent action operator](Action_operator.md#contextdependent). You can use the names of already declared objects on the form as parameters.
+### Object group options
 
-### *Object group options*
+- `viewType`
 
-*viewType*
+    [Default view](Interactive_view.md#defaultPropertyView-broken) for an object group. It is specified with one of the keywords:
+    
+    - `PANEL` - *panel* view.
+    - `TOOLBAR` - *toolbar* display mode.
+    - `GRID` - *table column* view;. Used by default.
 
-[Default view](Interactive_view.md#defaultPropertyView-broken) for an object group. It is specified with one of the keywords:
+- `PAGESIZE pageSize`
 
--   **PANEL** - *panel* view.
--   **TOOLBAR** - toolbar display mode.
--   **GRID*** - tablecolumn*  view;. Used by default.
+    Specification of the number of readable objects in the table. By default, the quantity is determined dynamically depending on the size of the component in the user interface and equals to `3 * <number of visible rows in the table>`. A value of `0` means that all objects must be read.
 
-*PAGESIZE* pageSize
+    - `pageSize`
 
-Specification of the number of readable objects in the table. By default, the quantity is determined dynamically depending on the size of the component in the user interface and equals to 3\*<number of visible rows in the table\>. A value of 0 means that all objects must be read.
+        Number of objects read. [Integer literal](Literals.md#intliteral-broken).
 
-*pageSize*
+- `AFTER` groupName
+- `BEFORE` groupName
 
-Number of objects read. [Integer literal](Literals.md#intliteral-broken).
+    Specifying that the object tree should be added to the form structure immediately before (keyword `BEFORE`) or after (keyword `AFTER`) of a specified object group. Typically used with the [form extension](Form_extension.md) mechanism . If a group is added before the group in a tree, then this group should the first in this tree. Accordingly, if a group is added after the group in a tree, this group should be the last in this tree.
 
-*AFTER* groupName
+    - `groupName`
 
-*BEFORE* groupName
+        [Object group name](#groupName-broken). 
 
-Specifying that the object tree should be added to the form structure immediately before (keyword **BEFORE**) or after (keyword **AFTER**) of a specified object group. Typically used with the [form extension](Form_extension.md) mechanism . If a group is added before the group in a tree, then this group should the first in this tree. Accordingly, if a group is added after the group in a tree, this group should be the last in this tree.
+- `defaultObjectsType`
 
-*groupName*
+    Specifying which object collection from the added object group will be current after the change of the active filters:
 
-[Object group name](#groupName-broken). 
+    - `FIRST`– specifies that the first object collection will be the [default objects](Interactive_view.md#defaultobject)
+    - `LAST` - last one
+    - `PREV` - previous one
 
-*defaultObjectsType*
+  If this option is not specified, the platform determines the option to be used depending on the current filters.
 
-Specifying which object collection from the added object group will be current after the change of the active filters:
+- `IN propertyGroup`
 
--   **FIRST**– specifies that the first object collection will be the [default objects](Interactive_view.md#defaultobject)
--   **LAST** - last one
--   **PREV** - previous one
+    Specifying the [property/action group](Groups_of_properties_and_actions.md) that the object group belongs to. Used only in the [hierarchical](Structured_view.md#hierarchy) view.
 
-If this option is not specified, the platform determines the option to be used depending on the current filters.
+    - `propertyGroup`
+    
+        The property group name. [Composite ID](IDs.md#cid-broken).
 
-*IN** **propertyGroup*
+- `EXTID extID`
 
-Specifying the [property/action group](Groups_of_properties_and_actions.md) that the object group belongs to. Used only in the [hierarchical](Structured_view.md#hierarchy) view.
+    Specifying the name to be used for [export/import](Structured_view.md#extid) operations performed by this object group. Used only in the [structured](Structured_view.md) view.
 
-**propertyGroup* – *the property group name. [Composite ID](IDs.md#cid-broken).
+    - `extId`
 
-*EXTID extID*
+        String literal.
 
-Specifying the name to be used for [export/import](Structured_view.md#extid) operations performed by this object group. Used only in the [structured](Structured_view.md) view.
+- `SUBREPORT [subReportExpression]`
 
-*extId*
+    Specifies that you need to generate a separate [report](Print_view.md) file for this object group while [building the report hierarchy](Print_view.md#buildhierarchy).
 
-String literal.
+    - `subReportExpression`
 
-*SUBREPORT*
-
-Specifies that you need to generate a separate [report](Print_view.md) file for this object group while [building the report hierarchy](Print_view.md#buildhierarchy).
-
-*subReportExpression*
-
-The expression whose value will be used as the name of the  [report](Print_view.md) file for the created object group. You can use the names of already declared objects on the form as parameters. It is assumed that the values of these objects will be [passed](Open_form.md#params) when the form is opened [in the print view](In_a_print_view_PRINT_.md) (if it's not done, they will be considered equal **NULL**).
+        The expression whose value will be used as the name of the  [report](Print_view.md) file for the created object group. You can use the names of already declared objects on the form as parameters. It is assumed that the values of these objects will be [passed](Open_form.md#params) when the form is opened [in the print view](In_a_print_view_PRINT_.md) (if it's not done, they will be considered equal `NULL`).
 
 ### Examples
-
 
 ```lsf
 CLASS Shipment;
@@ -169,23 +169,22 @@ FORM printLabel 'Price tag printing'
 //  ... other properties required for printing
 ;
 ```
-
   
 
-### **Object tree block** {#tree}
+## Object tree block {#tree}
 
 ### Syntax
 
     TREE [name] groupDeclaration1 [parentBlock1], ...., groupDeclarationN [parentBlockN] [treeOptions]
 
-Each *groupDeclaration* is a declaration of an object group that is similar to the declaration in an object block described above. Each *parentBlock* can be described in one of the following ways:
+Each `groupDeclaration` is a declaration of an object group that is similar to the declaration in an object block described above. Each `parentBlock` can be described in one of the following ways:
 
     PARENT propertyId
     (PARENT propertyId1, ..., propertyIdK)
 
 The first option is used if an object group for which the block is specified consists of a single object, the second one is used for groups of two and more objects.
 
-The tree*Options* options set may be specified after the declaration of each object tree.
+The `treeOptions` options set may be specified after the declaration of each object tree.
 
     AFTER groupName
     BEFORE groupName
@@ -194,36 +193,34 @@ The tree*Options* options set may be specified after the declaration of each obj
 
 *Object tree block* lets you create an [object tree](Interactive_view.md#tree). The first specified object group will form a list of top-level objects, each of which will have a child list of objects of the second specified object group and so  on.
 
-Use the **PARENT** block to create [hierarchical object groups](Interactive_view.md#treegroup-broken). To do that, specify a property that will define the parent element for an object (or several objects if an object group contains several ones).
+Use the `PARENT` block to create [hierarchical object groups](Interactive_view.md#treegroup-broken). To do that, specify a property that will define the parent element for an object (or several objects if an object group contains several ones).
 
 ### Parameters
 
-*name*
+- `name`
 
-The name of the object tree being created*.* [Simple ID](IDs.md#id-broken). 
+    The name of the object tree being created. [Simple ID](IDs.md#id-broken). 
 
-*propertyId*
+- `propertyId`
 
-[ID of the property](IDs.md#propertyid-broken) defining the hierarchy for an object group consisting of a single object. The specified property must have a single parameter and return the parent object of the passed object as its value (or **NULL**  if the passed object is the top one).
+    [ID of the property](IDs.md#propertyid-broken) defining the hierarchy for an object group consisting of a single object. The specified property must have a single parameter and return the parent object of the passed object as its value (or `NULL`  if the passed object is the top one).
 
-*propertyId1, ..., propertyIdK*
+- `propertyId1, ..., propertyIdK`
 
-A list of property ID's defining the hierarchy for an object group consisting of several objects. All specified properties must have the same number of parameters as the number of objects in the object group. Each of these properties must return one of the parent objects of the passed objects as a value (or  **NULL**  if the passed object collection is the top one). The first property should return the first parent object, the second property - the second object, etc.  on.
+    A list of property ID's defining the hierarchy for an object group consisting of several objects. All specified properties must have the same number of parameters as the number of objects in the object group. Each of these properties must return one of the parent objects of the passed objects as a value (or `NULL` if the passed object collection is the top one). The first property should return the first parent object, the second property - the second object, etc.  on.
 
-### *Object tree options*
+### Object tree options
 
-AFTER groupName
+- `AFTER groupName`
+- `BEFORE groupName`
 
-BEFORE groupName
+    Specifying that the object tree should be added to the form structure immediately before (keyword `BEFORE`) or after (keyword `AFTER`) of a specified object group. Typically used with the [form extension](Form_extension.md) mechanism . If a group is added before the group in a tree, then this group should the first in this tree. Accordingly, if a group is added after the group in a tree, this group should be the last in this tree.
 
-Specifying that the object tree should be added to the form structure immediately before (keyword **BEFORE**) or after (keyword **AFTER**) of a specified object group. Typically used with the [form extension](Form_extension.md) mechanism . If a group is added before the group in a tree, then this group should the first in this tree. Accordingly, if a group is added after the group in a tree, this group should be the last in this tree.
+- `groupName`
 
-*groupName*
-
-[Object group name](#groupName-broken). 
+    [Object group name](#groupName-broken). 
 
 ### Examples
-
 
 ```lsf
 CLASS SkuGroup;
@@ -264,5 +261,3 @@ FORM groups
     FILTERS in(g1, g2), in(g2, g3)
 ;
 ```
-
-  

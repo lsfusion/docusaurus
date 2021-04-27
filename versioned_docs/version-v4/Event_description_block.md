@@ -10,18 +10,18 @@ title: 'Event description block'
 
 ### Parameters
 
-*GLOBAL *
+- `GLOBAL`
 
-The keyword specifying that the described event will be global. This is the default behavior.
+    The keyword specifying that the described event will be global. This is the default behavior.
 
-*LOCAL*
+- `LOCAL`
 
-The keyword specifying that the described event will be local.
+    The keyword specifying that the described event will be local.
 
-*formName1, ..., formNameN*
+- `formName1, ..., formNameN`
 
-A list of names of the  [forms](Forms.md) in which the event will occur. Each element of the list is a  [composite ID](IDs.md#cid-broken). If the list is not defined, the event will occur in all forms.
+    A list of names of the  [forms](Forms.md) in which the event will occur. Each element of the list is a  [composite ID](IDs.md#cid-broken). If the list is not defined, the event will occur in all forms.
 
-*propertyId1, ..., propertyIdM*
+- `propertyId1, ..., propertyIdM`
 
-List of [property IDs](IDs.md#propertyid-broken). This list means that all event handlers that change one of the specified properties must be [executed earlier](Events.md#order-broken) than the handlers that will be defined in the instruction for which this event description block is being defined.
+    List of [property IDs](IDs.md#propertyid-broken). This list means that all event handlers that change one of the specified properties must be [executed earlier](Events.md#order-broken) than the handlers that will be defined in the instruction for which this event description block is being defined.

@@ -2,7 +2,7 @@
 title: 'BREAK operator'
 ---
 
-The **BREAK** operator creates an [action](Actions.md) that implements a [loop interruption](Interruption_BREAK_.md).
+The `BREAK` operator creates an [action](Actions.md) that implements a [loop interruption](Interruption_BREAK_.md).
 
 ### Syntax
 
@@ -10,10 +10,9 @@ The **BREAK** operator creates an [action](Actions.md) that implements a [loop i
 
 ### Description
 
-The **BREAK** operator creates an action that exits the most nested loop within which it is located.
+The `BREAK` operator creates an action that exits the most nested loop within which it is located.
 
 ### Examples
-
 
 ```lsf
 testBreak ()  {
@@ -22,5 +21,3 @@ testBreak ()  {
     }
 }
 ```
-
-  
