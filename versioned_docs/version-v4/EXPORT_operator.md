@@ -2,14 +2,14 @@
 title: 'EXPORT operator'
 ---
 
-The **EXPORT** operator: creates an [action](Actions.md) that exports [specified properties](Data_export_EXPORT_.md) to a file, or, in common case, that [opens a form](In_a_structured_view_EXPORT_IMPORT_.md) in a structured view. 
+The `EXPORT` operator: creates an [action](Actions.md) that exports [specified properties](Data_export_EXPORT_.md) to a file, or, in common case, that [opens a form](In_a_structured_view_EXPORT_IMPORT_.md) in a structured view. 
 
-### Syntax
+## Syntax
 
     EXPORT [exportFormat] [TOP n] FROM [columnId1 =] propertyExpr1, ..., [columnIdN = ] propertyExprN [WHERE whereExpr] [ORDER orderExpr1 [DESC], ..., orderExprL [DESC]] [TO propertyId]
     EXPORT formName [OBJECTS objName1 = expr1, ..., objNameK = exprK] [exportFormat] [TOP n] [TO (propertyId | (groupId1 = propertyId1, ..., groupIdN = propertyIdM))]
 
-*exportFormat* can be specified by one of the following options:
+`exportFormat` can be specified by one of the following options:
 
     JSON [CHARSET charsetStr]
     XML [ATTR] [CHARSET charsetStr]
@@ -19,111 +19,109 @@ The **EXPORT** operator: creates an [action](Actions.md) that exports [specified
     DBF [CHARSET charsetStr]
     TABLE
 
-**  
-Description**
+## Description
 
-The **EXPORT** operator creates an action that exports data from the specified properties or form to a file. The following file formats are supported: **XML**, **JSON**,** **CSV****, **XLS**, **XLSX**, **DBF**, **TABLE**. 
+The `EXPORT` operator creates an action that exports data from the specified properties or form to a file. The following file formats are supported: **XML**, **JSON**, **CSV**, **XLS**, **XLSX**, **DBF**, **TABLE**. 
 
-If no* *export file format* *is specified, it is considered to be **JSON**.
+If no export file format is specified, it is considered to be `JSON`.
 
-If the property to which the data is exported is of class **FILE**, then the extension of the resulting file is determined depending on the format as follows:
+If the property to which the data is exported is of class `FILE`, then the extension of the resulting file is determined depending on the format as follows:
 
-|<p>Format</p>|<p>Extension</p>|
-|---|---|
-|<strong>JSON</strong>|json|
-|<strong>XML</strong>|xml|
-|<strong>CSV</strong>|csv|
-|<strong>XLS</strong>|xls|
-|<strong>XLSX</strong>|xlsx|
-|<strong>DBF</strong>|dbf|
-|<strong>TABLE</strong>|table|
+|Format|Extension|
+|---------|-----|
+|**JSON** |json |
+|**XML**  |xml  |
+|**CSV**  |csv  |
+|**XLS**  |xls  |
+|**XLSX** |xlsx |
+|**DBF**  |dbf  |
+|**TABLE**|table|
 
-When exporting a form in an **OBJECTS** block, it is possible to add extra filters to check for the equality of the objects on the form with [the values passed](Open_form.md#params). These objects [will not participate](Structured_view.md#objects-broken) in building the object group hierarchy.
+When exporting a form in an `OBJECTS` block, it is possible to add extra filters to check for the equality of the objects on the form with [the values passed](Open_form.md#params). These objects [will not participate](Structured_view.md#objects-broken) in building the object group hierarchy.
 
-### Parameters
+## Parameters
 
-### *Source of export *
+### Source of export
 
-*formName*
+- `formName`
 
-The name of the form from which you want to export data. [Composite ID](IDs.md#cid-broken).
+    The name of the form from which you want to export data. [Composite ID](IDs.md#cid-broken).
 
-*objName1 ... objNameK*
+- `objName1 ... objNameK`
 
-Names of form objects for which filtered (fixed) values are specified. [Simple IDs](IDs.md#id-broken).
+    Names of form objects for which filtered (fixed) values are specified. [Simple IDs](IDs.md#id-broken).
 
-*expr1 ... exprK*
+- `expr1 ... exprK`
 
-[Expressions](Expression.md) whose values determine the filtered (fixed) values for form objects.
+    [Expressions](Expression.md) whose values determine the filtered (fixed) values for form objects.
 
-*propertyExpr1, ..., propertyExprN*
+- `propertyExpr1, ..., propertyExprN`
 
-List of [expressions](Expression.md) from whose values the data is exported. Each property is mapped to a table column of the result file.
+    List of [expressions](Expression.md) from whose values the data is exported. Each property is mapped to a table column of the result file.
 
-*columnId1, ..., columnIdN*
+- `columnId1, ..., columnIdN`
 
-A list of column IDs in the resulting file into which data from the corresponding property will be exported. Each list element is either [a simple ID](IDs.md#id-broken) or a [string literal](Literals.md#strliteral-broken). If no ID is specified, it is considered equal to expr<Column number\> by default.
+    A list of column IDs in the resulting file into which data from the corresponding property will be exported. Each list element is either [a simple ID](IDs.md#id-broken) or a [string literal](Literals.md#strliteral-broken). If no ID is specified, it is considered equal to `expr<Column number>` by default.
 
-*whereExpr*
+- `whereExpr`
 
-An expression whose value is a condition for the export. If not specified, it is considered equal to the [disjunction](Logical_operators_AND_OR_NOT_XOR_.md) of all exported properties (that is, at least one of the properties must be non-**NULL**).
+    An expression whose value is a condition for the export. If not specified, it is considered equal to the [disjunction](Logical_operators_AND_OR_NOT_XOR_.md) of all exported properties (that is, at least one of the properties must be non-`NULL`).
 
-*orderExpr1, ..., orderExprL*
+- `orderExpr1, ..., orderExprL`
 
-List of [expressions](Expression.md) by which the exported data is sorted. Only properties present in the list *propertyExpr1, ..., propertyExprN* can be used
+    List of [expressions](Expression.md) by which the exported data is sorted. Only properties present in the list `propertyExpr1, ..., propertyExprN` can be used
 
-*DESC*
+- `DESC`
 
-Keyword. Specifies reverse sort order. By default, ascending sort is used.
+    Keyword. Specifies reverse sort order. By default, ascending sort is used.
 
-### *Export format*
+### Export format
 
-*ATTR*
+- `ATTR`
 
-A keyword that specifies that values should be exported to the attributes of the parent tag. If not specified, the values are exported to child tags. Only applicable for export to **XML**.
+    A keyword that specifies that values should be exported to the attributes of the parent tag. If not specified, the values are exported to child tags. Only applicable for export to **XML**.
 
-*separator*
+- `separator`
 
-Delimiter in a **CSV** file. [String literal](Literals.md#strliteral-broken). If not specified, then the default delimiter is '**;** '.
+    Delimiter in a **CSV** file. [String literal](Literals.md#strliteral-broken). If not specified, then the default delimiter is `;`.
 
-*HEADER | NOHEADER*
+- `HEADER | NOHEADER`
 
-Keywords specifying the presence (HEADER) or absence (NOHEADER) of a header string in a **CSV**, **xls**, or **xlsx** file. The default is NOHEADER.
+    Keywords specifying the presence (`HEADER`) or absence (`NOHEADER`) of a header string in a **CSV**, **XLS**, or **XLSX** file. The default is `NOHEADER`.
 
-When using the NOHEADER option:
+    When using the `NOHEADER` option if the column name is one of the predefined names (`A`, `B`, ..., `Z`, `AA`, ..., `AE`), it is exported to the column with the corresponding number, and the following columns are exported to the columns next in order after this column.
 
--   -   if the column name is one of the predefined names (A, B, ..., Z, AA, ..., AE), it is exported to the column with the corresponding number, and the following columns are exported to the columns next in order after this column.
+- `ESCAPE | NOESCAPE`
 
-*ESCAPE | NOESCAPE*
+    Keywords specifying the presence (`ESCAPE`) or absence (`NOESCAPE`) of escaping for special characters (`\r`, `\n`, `"` (double quotes) and the specified delimiter (`separator`) in a **CSV** file. It makes sense to use `NOESCAPE` only in cases where the specified delimiter is guaranteed not to occur in the data. The default is `ESCAPE`.
 
-Keyword specifying the presence (ESCAPE) or absence (NOESCAPE) of escaping for special characters (\\\\r, \\\\n, " (double quotes) and the specified delimiter (*separator*) in a **CSV** file. It makes sense to use NOESCAPE only in cases where the specified delimiter is guaranteed not to occur in the data. The default is ESCAPE.
+- `CHARSET charsetStr`
 
-*CHARSET charsetStr*
+    An option specifying the encoding used for export.
 
-An option specifying the encoding used for export.
+    - `charsetStr`
+     
+        String literal that defines the encoding. 
+     
+- `TOP n`
 
-charsetStr is a string literal that defines the encoding. 
+    Exports only the first `n` records. [Integer literal](Literals.md#intliteral-broken).
 
-*TOP n*
+### Export destination
 
-Exports only the first n records. [Integer literal](Literals.md#intliteral-broken).
+- `propertyId`
 
-### *Export destination*
+    [Property ID](IDs.md#propertyid-broken) to which the generated file will be written. This property must not have parameters and its value must be of a file class (`FILE`, `RAWFILE`, `JSONFILE`, etc.). If this property is not specified, the `System.exportFile` property is used by default.
 
-*propertyId*
+- `groupId1, ..., groupIdM`
 
-[Property ID](IDs.md#propertyid-broken) to which the generated file will be written. This property must not have parameters and its value must be of a file class (**FILE**, **RAWFILE**, **JSONFILE**, etc.). If this property is not specified, the **System.exportFile** property is used by default.
+    Names of object groups from the exported form for which you want to export data. [Simple IDs](IDs.md#id-broken). Used only for exporting forms to flat formats.
 
-*groupId1, ..., groupIdM*
+- `propertyId1 , ..., propertyIdM`
 
-Names of object groups from the exported form for which you want to export data. [Simple IDs](IDs.md#id-broken). Used only for exporting forms to flat formats.
+    [Property IDs](IDs.md#propertyid-broken) to which the generated files for specified object groups will be written. These properties must not have parameters and their value must be of file classes (`FILE`, `RAWFILE`, `JSONFILE`, etc.). Used only for exporting forms to flat formats. For the [empty group](Static_view.md#empty) of objects, the name `root` is used. 
 
-### propertyIdM *, ..., *propertyIdM
-
-[Property IDs](IDs.md#propertyid-broken) to which the generated files for specified object groups will be written. These properties must not have parameters and their value must be of file classes (**FILE**, **RAWFILE**, **JSONFILE**, etc.). Used only for exporting forms to flat formats. For the[empty group](Static_view.md#empty) of objects, the name **root** is used. 
-
-### Examples
-
+## Examples
 
 ```lsf
 CLASS Store;
@@ -158,7 +156,3 @@ exportSku (Store store)  {
     EXPORT exportSku OBJECTS st = store CSV ',';
 }
 ```
-
-  
-
-  
