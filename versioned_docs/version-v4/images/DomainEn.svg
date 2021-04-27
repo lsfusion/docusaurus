@@ -294,10 +294,10 @@
        id="path204"
        style="fill:none;stroke:#26c4f7;stroke-opacity:1" />
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Classes"
-       id="a559"
+       xlink:href="Classes"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-148.8209,119.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a559">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -311,10 +311,10 @@
            style="fill:#26c4f7;fill-opacity:1">Classes</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Aggregations"
-       id="a567"
+       xlink:href="Aggregations"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-200.8209,111.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a567">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -328,10 +328,10 @@
            style="fill:#26c4f7;fill-opacity:1">Aggregations</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Simple_constraints"
-       id="a575"
+       xlink:href="Simple_constraints"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-204.8209,113.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a575">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -345,10 +345,10 @@
            style="fill:#26c4f7;fill-opacity:1">Simple constraints</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Constraints"
-       id="a583"
+       xlink:href="Constraints"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-210.8209,121.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a583">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -362,10 +362,10 @@
            style="fill:#26c4f7;fill-opacity:1">Constraints</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Simple_event"
-       id="a591"
+       xlink:href="Simple_event"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-172.8209,119.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a591">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -379,10 +379,10 @@
            style="fill:#26c4f7;fill-opacity:1">Simple events</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Events"
-       id="a599"
+       xlink:href="Events"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-160.8209,119.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a599">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -396,10 +396,10 @@
            style="fill:#26c4f7;fill-opacity:1">Events</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Actions"
-       id="a607"
+       xlink:href="Actions"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-159.8209,118.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a607">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -413,10 +413,10 @@
            style="fill:#26c4f7;fill-opacity:1">Actions</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Properties"
-       id="a615"
+       xlink:href="Properties"
+       style="text-decoration:none;text-decoration-line:none"
        transform="translate(-168.8209,119.88281)"
-       style="text-decoration:none;text-decoration-line:none">
+       id="a615">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
@@ -430,10 +430,10 @@
            style="fill:#26c4f7;fill-opacity:1">Properties</tspan></text>
     </a>
     <a
-       xlink:href="file:///D:/LuxSoft/Docusaurus/Calculated_events"
-       id="a652"
+       xlink:href="Calculated_events"
+       transform="translate(-182.8209,115.88281)"
        style="text-decoration:none;text-decoration-line:none"
-       transform="translate(-182.8209,115.88281)">
+       id="a652">
       <text
          xml:space="preserve"
          style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-decoration:none;text-decoration-line:none"
