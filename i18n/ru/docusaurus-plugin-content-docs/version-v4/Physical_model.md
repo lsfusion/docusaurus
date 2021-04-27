@@ -19,6 +19,7 @@ sidebar_label: Обзор
 
 ### Стек
 
-![](download/temp/svgout5141328366480751469.png)
+import PhysicalModelRuSvg from './images/PhysicalModelRu.svg';
 
+<PhysicalModelRuSvg />
   

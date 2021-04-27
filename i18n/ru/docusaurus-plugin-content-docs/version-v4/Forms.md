@@ -12,5 +12,7 @@ sidebar_label: Обзор
 
 ### Стек
 
+import FormRuSvg from './images/FormRu.svg';
 
-![](download/temp/svgout3522787876719260930.png)
+<FormRuSvg />
+

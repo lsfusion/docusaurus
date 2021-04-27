@@ -15,5 +15,6 @@ sidebar_label: Обзор
 
 ### Стек
 
+import ParadigmRuSvg from './images/ParadigmRu.svg';
 
-![](download/temp/svgout8010603290789995159.png)
+<ParadigmRuSvg />
