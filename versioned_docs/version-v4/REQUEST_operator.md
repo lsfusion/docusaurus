@@ -2,7 +2,7 @@
 title: 'REQUEST operator'
 ---
 
-The **REQUEST** operator creates an [action](Actions.md) that [requests a value](Value_request_REQUEST_.md).
+The `REQUEST` operator creates an [action](Actions.md) that [requests a value](Value_request_REQUEST_.md).
 
 ### Syntax
 
@@ -11,26 +11,25 @@ The **REQUEST** operator creates an [action](Actions.md) that [requests a value]
 
 ### Description
 
-The **REQUEST** operator creates an action that allows the separation of a request for a value from its handling.
+The `REQUEST` operator creates an action that allows the separation of a request for a value from its handling.
 
 ### Parameters
 
-*requestAction*
+- `requestAction`
 
-A [context-dependent action operator](Action_operator.md#contextdependent) that requests a value.
+    A [context-dependent action operator](Action_operator.md#contextdependent) that requests a value.
 
-*doAction*
+- `doAction`
 
-A context-dependent action operator that is executed if the input was completed successfully.
+    A context-dependent action operator that is executed if the input was completed successfully.
 
-*elseAction*
+- `elseAction`
 
-A context-dependent action operator that is executed if the input was [cancelled](Value_input.md#result).
+    A context-dependent action operator that is executed if the input was [cancelled](Value_input.md#result).
 
 ### Examples
 
 ```lsf
-
 requestCustomer (Order o)  {
     LOCAL resultValue = STRING[100] ();
     REQUEST {
@@ -47,4 +46,3 @@ FORM request
     PROPERTIES(o) customer ON CHANGE requestCustomer(o) // for example, group adjustment will be performed
 ;
 ```
-
