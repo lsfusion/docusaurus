@@ -4,7 +4,7 @@ title: 'How-to: INTERNAL'
 
 ## Example 1
 
-### Condition
+### Task
 
 We need to implement an action that will display a message with the server's name and IP address.
 
@@ -77,7 +77,7 @@ The platform will generate the target class, insert the specified code into it a
 
 ## Example 2
 
-### Condition
+### Task
 
 We need to implement an action that calculates the maximum common divisor of the two integers.
 
@@ -136,7 +136,7 @@ Values of input properties are read using the **getParam** method, in which the 
 
 ## Example 2
 
-### Condition
+### Task
 
 We need to implement an action that calculates the greatest common divisor of two integers, but they are specified as properties for an object.
 
@@ -196,7 +196,7 @@ The full canonical name of the property is used in the **findProperty** method, 
 
 ## Example 4
 
-### Condition
+### Task
 
 We need to implement an action that will generate a sound signal 5 times on the client machine.
 

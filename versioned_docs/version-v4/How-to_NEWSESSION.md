@@ -4,7 +4,7 @@ title: 'How-to: NEWSESSION'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have an order with a number and a posted/not posted flag.
 
@@ -41,7 +41,7 @@ If you do not "wrap" the action that sets the **isPosted** property in the [NEWS
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**, except that the dedicated edit form is available for the order.
 
@@ -81,7 +81,7 @@ If you do not use the **NEWSESSION** operator, then the object for the new order
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**, except that the order can be marked.
 
@@ -115,7 +115,7 @@ By default, a new session ignores changes made in the "upper" session. To make t
 
 ## Example 4
 
-### Condition
+### Task
 
 Similar to  **Example 2**, except that the payment logic for the order has been added.
 

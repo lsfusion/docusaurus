@@ -4,7 +4,7 @@ title: 'How-to: Navigator'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the forms with a list of books and categories.
 
@@ -32,7 +32,7 @@ By specifying **WINDOW** for the **application** element, we indicated that all 
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 

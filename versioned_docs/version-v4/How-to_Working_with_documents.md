@@ -4,7 +4,7 @@ title: 'How-to: Working with documents'
 
 ## Posting documents
 
-### Condition
+### Task
 
 There is some logic for working with orders.
 
@@ -84,7 +84,7 @@ Each time the renamed **OK** button is pressed, the **post** action will be exec
 
 ## Line selection
 
-### Condition
+### Task
 
 We have an order with an edit form similar to the **Posting documents** example.
 
@@ -148,7 +148,7 @@ However, users may not understand this behavior, since after they enter a partic
 
 ## Aggregated documents
 
-### Condition
+### Task
 
 We have the order logic.
 

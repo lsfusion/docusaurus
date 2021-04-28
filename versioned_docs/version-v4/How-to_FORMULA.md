@@ -4,7 +4,7 @@ title: 'How-to: FORMULA'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a list of orders.
 
@@ -45,7 +45,7 @@ To solve this task we use the [FORMULA](FORMULA_operator.md) operator to create 
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**. New lines containing quantity and amount have been added to the orders.
 
@@ -85,7 +85,7 @@ We create the toString property that takes two parameters (numeric value and for
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**.
 

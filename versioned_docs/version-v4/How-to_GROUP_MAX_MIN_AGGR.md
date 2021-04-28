@@ -4,7 +4,7 @@ title: 'How-to: GROUP MAX/MIN/AGGR'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a set of books, where each book has a unique ID.
 
@@ -24,7 +24,7 @@ maxId 'Maximum number' () = GROUP MAX id(Book b);
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 
@@ -44,7 +44,7 @@ The difference between Option 2 and Option 1 is that declaration of this propert
 
 ## Example 3
 
-### Condition
+### Task
 
 We have a set of books, where each book is associated with a category and price.
 
@@ -65,7 +65,7 @@ minPrice 'Maximum number' (Category c) = GROUP MIN price(Book b) BY category(b);
 
 ## Example 4
 
-### Condition
+### Task
 
 We have a book shipment document.
 

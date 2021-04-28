@@ -4,7 +4,7 @@ title: 'How-to: PARTITION'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have an order with the lines.
 
@@ -27,7 +27,7 @@ In this case, we sort by internal ID of lines in the order, since we know for su
 
 ## Example 2
 
-### Condition
+### Task
 
 We have a list of customer orders with specified dates.
 
@@ -50,7 +50,7 @@ Similar to **[How-to: GROUP CONCAT](How-to_GROUP_CONCAT.md)**, the order should 
 
 ## Example 3
 
-### Condition
+### Task
 
 We have the current balance for books by batches.
 

@@ -4,7 +4,7 @@ title: 'How-to: WHILE'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have an order for which a date is defined.
 
@@ -43,7 +43,7 @@ The **sum** property defined in the **Time** system [module](Modules.md) is used
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**. We have also defined order lines, so that each line contains the (full) amount and the discount.
 
@@ -80,7 +80,7 @@ distributeDiscount 'Distribute discount' (Order o, NUMERIC[14,2] discount)  {
 
 ## Example 3
 
-### Condition
+### Task
 
 The logic for changing the balance for the book is defined as follows:
 

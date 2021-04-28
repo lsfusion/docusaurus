@@ -4,7 +4,7 @@ title: 'How-to: GROUP CONCAT'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a set of books associated with certain priority tags.
 
@@ -28,7 +28,7 @@ It is recommended that you specify the sizes of all the properties created using
 
 ## Example 2
 
-### Condition
+### Task
 
 We have a set of books associated with certain categories and authors.
 

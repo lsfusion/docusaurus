@@ -4,7 +4,7 @@ title: 'How-to: Reports'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a logic for books split into categories.
 
@@ -136,7 +136,7 @@ If the background process fails to synchronize development and execution folders
 
 ## Example 2
 
-### Condition
+### Task
 
 The invoice logic has been defined.
 
@@ -254,7 +254,7 @@ The resulting report will look like this:
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**, plus the buyer and order logic.
 

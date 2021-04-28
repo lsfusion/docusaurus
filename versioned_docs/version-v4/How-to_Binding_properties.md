@@ -4,7 +4,7 @@ title: 'How-to: Binding properties'
 
 ## Example 1
 
-### Condition
+### Task
 
 The concepts of Country, Region and City are defined. A region and a city are always located in a certain country. A city may have a specified region, but need not.
 
@@ -49,7 +49,7 @@ The [CONSTRAINT](CONSTRAINT_instruction.md) instruction defines a condition that
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to Example 1.
 
@@ -67,7 +67,7 @@ It should be noted that after the user has chosen a region and a country is set,
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to Example 1.
 
@@ -83,7 +83,7 @@ The difference from the first example is that the new condition will also be tru
 
 ## Example 4
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 
@@ -101,7 +101,7 @@ WHEN LOCAL CHANGED(country(City c)) AND country(c) != country(region(c)) DO {
 
 ## Example 5
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 

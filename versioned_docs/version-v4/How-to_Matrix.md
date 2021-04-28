@@ -4,7 +4,7 @@ title: 'How-to: Matrix'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the concepts of books and buyers defined. A price is defined for each book and buyer.
 
@@ -39,7 +39,7 @@ The form will look like this:
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**, only there is a deferred payment period for each book and buyer.
 
@@ -90,7 +90,7 @@ The form will look like this:
 
 ## Example 3
 
-### Condition
+### Task
 
 We need to create a form containing a matrix with a specified number of rows and columns. The user should be able to check each cell.
 

@@ -4,7 +4,7 @@ title: 'How-to: Events'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have an order with a date, a number and a marker of whether it is closed.
 
@@ -33,7 +33,7 @@ In the first case, the event will only be executed in one transaction at the tim
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**, but the order contains lines with quantity, price and total.
 
@@ -61,7 +61,7 @@ Events of type **LOCAL** count all property changes relative not to the state of
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**, but a book is specified for the order line. Each book also has a default price.
 
@@ -97,7 +97,7 @@ Event
 
 ## Example 1
 
-### Condition
+### Task
 
 We have an order with a date, a number and a marker of whether it is closed.
 
@@ -126,7 +126,7 @@ In the first case, the event will only be executed in one transaction at the tim
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**, but the order contains lines for the quantity, price and total.
 
@@ -154,7 +154,7 @@ Events of type **LOCAL** count all property changes relative not to the state of
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**, but a book is specified for the order line. Each book also has a default price.
 
@@ -192,7 +192,7 @@ Without the **FORMS** block, this event would be triggered by any change to the 
 
 ## Example 4
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 

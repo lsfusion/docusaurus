@@ -4,7 +4,7 @@ title: 'How-to: IF/CASE'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a list of books associated with certain categories. Each book is assigned a price.
 
@@ -40,7 +40,7 @@ setPriceIf 'Set price' (Book b)  {
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 

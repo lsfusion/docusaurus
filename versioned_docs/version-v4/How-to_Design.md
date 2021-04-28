@@ -4,7 +4,7 @@ title: 'How-to: Design'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a form with the list of orders, where each order is associated with a list of books and its posted payments.
 
@@ -80,7 +80,7 @@ The form will look like this:
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to Example 1, except we have added filters by date and customer to the form.
 

@@ -4,7 +4,7 @@ title: 'How-to: Table status'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the concept of books, for which title, genre and price are defined.
 
@@ -43,7 +43,7 @@ The solution uses the [FILTER](Filter_FILTER_.md) operator, which returns **TRUE
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 

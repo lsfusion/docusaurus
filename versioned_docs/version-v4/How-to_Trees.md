@@ -4,7 +4,7 @@ title: 'How-to: Trees'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a set of books associated with certain categories.
 
@@ -31,7 +31,7 @@ FORM books 'Books'
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**, except that each category has a parent in the hierarchy.
 
@@ -52,7 +52,7 @@ FORM categories 'Categories'
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**.
 

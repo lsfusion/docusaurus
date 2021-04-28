@@ -4,7 +4,7 @@ title: 'How-to: Documents with lines'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the orders and their specification lines.
 
@@ -58,7 +58,7 @@ We do not add a link to the order for the line object on the *order* form, since
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to Example 1.
 

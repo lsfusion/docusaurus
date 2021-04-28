@@ -4,7 +4,7 @@ title: 'How-to: Constraints'
 
 ## Example 1
 
-### Condition
+### Task
 
 There is a book for which a price is defined.
 
@@ -34,7 +34,7 @@ Both options are identical from the execution perspective. If the platform does 
 
 ## Example 2
 
-### Condition
+### Task
 
 We have an order with a date, ID and a posted/not posted flag.
 
@@ -56,7 +56,7 @@ CONSTRAINT CHANGED(date(Order o)) AND posted(o)
 
 ## Example 3
 
-### Condition
+### Task
 
 Identical to  **Example 2**.
 
@@ -73,7 +73,7 @@ When an order is deleted, all of its properties will be **NULL**. That is why yo
 
 ## Example 4
 
-### Condition
+### Task
 
 Similar to **Example 1** and **Example 2**. Also, the order contains lines with a price and a link to the book.
 
@@ -100,7 +100,7 @@ Since the expression contains no change operators, this constraint will be trigg
 
 ## Example 5
 
-### Condition
+### Task
 
 Similar to  **Example 4**. Here are added the concept of a customer and the possibility to select books that will be available to the customer.
 
@@ -127,7 +127,7 @@ It is important to check that the **book** property for the order line is set be
 
 ## Example 6
 
-### Condition
+### Task
 
 Identical to  **Example 4**.
 

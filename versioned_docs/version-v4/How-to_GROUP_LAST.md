@@ -4,7 +4,7 @@ title: 'How-to: GROUP LAST'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a set of books associated with a certain category, and the dates of their receipt.
 
@@ -28,7 +28,7 @@ It is important to remember that order in the  **ORDER* *** clause should be uni
 
 ## Example 2 
 
-### Condition
+### Task
 
 Similar to **Example 1**, but the author and genre list are specified for each book.
 
@@ -53,7 +53,7 @@ category (Author a, Genre g) = GROUP LAST Category c ORDER countBooks(c, a, g), 
 
 ## Example 3
 
-### Condition
+### Task
 
 We have a certain set of books and the information about price changes per book and warehouse. Each object of the **Ledger** class reflects a single change in price since a specific date.
 
@@ -78,7 +78,7 @@ currentPrice (Book b, Stock s) = GROUP LAST price(Ledger l) ORDER date(l), l BY 
 
 ## Example 4
 
-### Condition
+### Task
 
 Similar to **Example 3**.
 
@@ -92,7 +92,7 @@ price (Book b, Stock s, DATE d) = GROUP LAST price(Ledger l) ORDER date(l), l WH
 
 ## Example 5
 
-### Condition
+### Task
 
 Similar to Example 4, except that a change in price has an expiration date. If this date is not specified, then the price is not limited in time.
 

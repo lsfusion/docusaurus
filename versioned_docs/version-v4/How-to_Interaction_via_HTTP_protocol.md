@@ -253,7 +253,7 @@ To import the corresponding file in the JSON format, we need to create a form of
 
 ## Example 5
 
-### Condition
+### Task
 
 Similar to **Example 4**. 
 
@@ -309,7 +309,7 @@ Unlike the previous example, here we create a property [group](Groups_of_propert
 
 ## Example 6
 
-### Condition
+### Task
 
 Similar to **Example 5**. 
 

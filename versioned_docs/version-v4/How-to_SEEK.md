@@ -4,7 +4,7 @@ title: 'How-to: SEEK'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a defined logic for books and categories. A form has been created with a list of books categorized.
 
@@ -67,7 +67,7 @@ After closing the form, we need to call the [SEEK](SEEK_operator.md) operator wh
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**. We have also added the customer logic. The user can set a price for each customer and book in the dedicated form.
 
@@ -110,7 +110,7 @@ The property with the default customer is added to the Settings form on the Gene
 
 ## Example 2
 
-### Condition
+### Task
 
 Let's assume that we have a report form for which a date range is specified.
 

@@ -4,7 +4,7 @@ title: 'How-to: GROUP SUM'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a set of books associated with certain category.
 
@@ -25,7 +25,7 @@ countBooks 'Number of books' (Category c) = GROUP SUM 1 BY category(Book book);
 
 ## Example 2
 
-### Condition
+### Task
 
 We have a set of books associated with certain tags. Each book can be associated with several tags at the same time.
 
@@ -45,7 +45,7 @@ countBooks 'Number of books' (Tag t) = GROUP SUM 1 IF in(t, Book b);
 
 ## Example 3
 
-### Condition
+### Task
 
 We have the information about the movement of books: each record is linked to the book itself and the warehouse where the movement occured, and also contains quantity and types of operations (receipt/shipment).
 
@@ -76,7 +76,7 @@ Note that you do not need to define explicitly in which table to keep the **curr
 
 ## Example 4
 
-### Condition
+### Task
 
 Similar to **Example 3**, except that each movement is associated with the date of movement.
 
@@ -102,7 +102,7 @@ The second option is preferable. Since requests usually refer to recent dates, t
 
 ## Example 5
 
-### Condition
+### Task
 
 Similar to **Example 3**, except that we need to calculate the current balance for a given book across all the warehouses.
 

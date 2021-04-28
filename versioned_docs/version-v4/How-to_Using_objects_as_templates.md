@@ -4,7 +4,7 @@ title: 'How-to: Using objects as templates'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a book for which a name and price are defined. List and edit forms are defined for the book.
 
@@ -51,7 +51,7 @@ When the button is pressed, a new [change session](Change_sessions.md) will be c
 
 ## Example 2
 
-### Condition
+### Task
 
 We have the concepts of order documents and invoices, as well as forms for listing and editing them. Lines are defined for each document.
 
@@ -141,7 +141,7 @@ EXTEND FORM orders
 
 ## Example 3
 
-### Condition
+### Task
 
 Similar to **Example 2**.
 

@@ -4,7 +4,7 @@ title: 'How-to: Filtering and ordering'
 
 ## Example 1
 
-### Condition
+### Task
 
 There are remaining books in stock.
 
@@ -47,7 +47,7 @@ Option 1 sets up a fixed filter that the user cannot remove. Option 2 allows the
 
 ## Example 2
 
-### Condition
+### Task
 
 Similar to **Example 1**.
 
@@ -74,7 +74,7 @@ In this case a warehouse cannot be declared via the *OBJECTS* block, because the
 
 ## Example 3
 
-### Condition
+### Task
 
 There is a list of orders for certain customers
 
