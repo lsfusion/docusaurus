@@ -42,7 +42,7 @@ setPriceIf 'Set price' (Book b)  {
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to create an action that sets pre-defined prices for books associated with any of the three categories and sets zero price for all other books.
 

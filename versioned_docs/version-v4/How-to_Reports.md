@@ -256,7 +256,7 @@ The resulting report will look like this:
 
 ### Task
 
-Similar to **Example 2**, plus the buyer and order logic.
+Similar to [**Example 2**](#example-2), plus the buyer and order logic.
 
 ```lsf
 CLASS Customer 'Customer';

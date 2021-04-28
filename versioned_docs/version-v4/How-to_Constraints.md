@@ -58,7 +58,7 @@ CONSTRAINT CHANGED(date(Order o)) AND posted(o)
 
 ### Task
 
-Identical to  **Example 2**.
+Identical to [**Example 2**](#example-2).
 
 You need to prohibit the deletion of a posted order.
 
@@ -75,7 +75,7 @@ When an order is deleted, all of its properties will be **NULL**. That is why yo
 
 ### Task
 
-Similar to **Example 1** and **Example 2**. Also, the order contains lines with a price and a link to the book.
+Similar to [**Example 1**](#example-1) and [**Example 2**](#example-2). Also, the order contains lines with a price and a link to the book.
 
 ```lsf
 CLASS OrderDetail 'Order line';
@@ -102,7 +102,7 @@ Since the expression contains no change operators, this constraint will be trigg
 
 ### Task
 
-Similar to  **Example 4**. Here are added the concept of a customer and the possibility to select books that will be available to the customer.
+Similar to [**Example 4**](#example-4). Here are added the concept of a customer and the possibility to select books that will be available to the customer.
 
 ```lsf
 CLASS Customer 'Customer';
@@ -129,7 +129,7 @@ It is important to check that the **book** property for the order line is set be
 
 ### Task
 
-Identical to  **Example 4**.
+Identical to [**Example 4**](#example-4).
 
 We need to prohibit the entry of books that are unavailable to the buyer for the order line, but only for posted orders.
 

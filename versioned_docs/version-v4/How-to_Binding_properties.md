@@ -51,7 +51,7 @@ The [CONSTRAINT](CONSTRAINT_instruction.md) instruction defines a condition that
 
 ### Task
 
-Similar to Example 1.
+Similar to [**Example 1**](#example-1).
 
 We need to make it so that the country is automatically filled when a region is chosen.
 
@@ -69,7 +69,7 @@ It should be noted that after the user has chosen a region and a country is set,
 
 ### Task
 
-Similar to Example 1.
+Similar to [**Example 1**](#example-1).
 
 We need to create the same kind of association between the region and the city, but in such a way that a region cannot be selected until a country has been set first.
 
@@ -85,7 +85,7 @@ The difference from the first example is that the new condition will also be tru
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 If the user first selects a region, and then a country that does not correspond to the original region, the user will receive an error message when trying to save.
 
@@ -103,7 +103,7 @@ WHEN LOCAL CHANGED(country(City c)) AND country(c) != country(region(c)) DO {
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 The solution to the first example has one drawback. The system will not allow you to change the country of a particular region, if the city links to it. The constraint will be violated.
 

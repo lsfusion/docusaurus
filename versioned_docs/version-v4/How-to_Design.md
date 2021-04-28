@@ -82,7 +82,7 @@ The form will look like this:
 
 ### Task
 
-Similar to Example 1, except we have added filters by date and customer to the form.
+Similar to [**Example 1**](#example-1), except we have added filters by date and customer to the form.
 
 ```lsf
 CLASS Customer 'Customer';

@@ -33,7 +33,7 @@ FORM books 'Books'
 
 ### Task
 
-Similar to **Example 1**, except that each category has a parent in the hierarchy.
+Similar to [**Example 1**](#example-1), except that each category has a parent in the hierarchy.
 
 ```lsf
 parent 'Parent' = DATA Category (Category);
@@ -54,7 +54,7 @@ FORM categories 'Categories'
 
 ### Task
 
-Similar to **Example 2**.
+Similar to [**Example 2**](#example-2).
 
 We need to create a form with a category tree, so that the books that belong to the current category and all its subcategories are shown to the right.
 

@@ -34,7 +34,7 @@ By specifying **WINDOW** for the **application** element, we indicated that all 
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to place the same forms in the subfolder called Directories.
 

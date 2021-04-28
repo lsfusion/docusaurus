@@ -49,7 +49,7 @@ Option 1 sets up a fixed filter that the user cannot remove. Option 2 allows the
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to create a form to display remaining books in several warehouses, with the possibility of filtering by a specific warehouse. Ordering should be first by warehouse, and within that by book title.
 

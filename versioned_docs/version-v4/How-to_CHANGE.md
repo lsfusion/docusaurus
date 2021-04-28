@@ -46,7 +46,7 @@ EXTEND FORM order
 
 ### Task
 
-Similar to **Example 1**, except that a specification was added to the order. The current price for each book is also defined.
+Similar to [**Example 1**](#example-1), except that a specification was added to the order. The current price for each book is also defined.
 
 ```lsf
 CLASS Book 'Book';

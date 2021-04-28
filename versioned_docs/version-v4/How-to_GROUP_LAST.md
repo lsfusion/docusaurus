@@ -30,7 +30,7 @@ It is important to remember that order in the  **ORDER* *** clause should be uni
 
 ### Task
 
-Similar to **Example 1**, but the author and genre list are specified for each book.
+Similar to [**Example 1**](#example-1), but the author and genre list are specified for each book.
 
 ```lsf
 CLASS Author 'Author';
@@ -80,7 +80,7 @@ currentPrice (Book b, Stock s) = GROUP LAST price(Ledger l) ORDER date(l), l BY 
 
 ### Task
 
-Similar to **Example 3**.
+Similar to [**Example 3**](#example-3).
 
 We need to find the price valid for a specific date for a book at the warehouse.
 
@@ -94,7 +94,7 @@ price (Book b, Stock s, DATE d) = GROUP LAST price(Ledger l) ORDER date(l), l WH
 
 ### Task
 
-Similar to Example 4, except that a change in price has an expiration date. If this date is not specified, then the price is not limited in time.
+Similar to [**Example 4**](#example-4), except that a change in price has an expiration date. If this date is not specified, then the price is not limited in time.
 
 ```lsf
 dateTo 'Valid until (inclusive)' = DATA DATE (Ledger);

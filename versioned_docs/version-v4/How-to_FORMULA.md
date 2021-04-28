@@ -47,7 +47,7 @@ To solve this task we use the [FORMULA](FORMULA_operator.md) operator to create 
 
 ### Task
 
-Similar to **Example 1**. New lines containing quantity and amount have been added to the orders.
+Similar to [**Example 1**](#example-1). New lines containing quantity and amount have been added to the orders.
 
 ```lsf
 CLASS OrderDetail;
@@ -87,7 +87,7 @@ We create the toString property that takes two parameters (numeric value and for
 
 ### Task
 
-Similar to **Example 2**.
+Similar to [**Example 2**](#example-2).
 
 We need to add a column that will be marked when the given order number contains only digits.
 

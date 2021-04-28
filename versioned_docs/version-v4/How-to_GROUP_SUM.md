@@ -78,7 +78,7 @@ Note that you do not need to define explicitly in which table to keep the **curr
 
 ### Task
 
-Similar to **Example 3**, except that each movement is associated with the date of movement.
+Similar to [**Example 3**](#example-3), except that each movement is associated with the date of movement.
 
 ```lsf
 date 'Date' = DATA DATE (Ledger) INDEXED; // it is better to add an index to filter by date quickly
@@ -104,7 +104,7 @@ The second option is preferable. Since requests usually refer to recent dates, t
 
 ### Task
 
-Similar to **Example 3**, except that we need to calculate the current balance for a given book across all the warehouses.
+Similar to [**Example 3**](#example-3), except that we need to calculate the current balance for a given book across all the warehouses.
 
 ### Solution
 

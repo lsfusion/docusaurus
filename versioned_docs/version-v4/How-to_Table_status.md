@@ -45,7 +45,7 @@ The solution uses the [FILTER](Filter_FILTER_.md) operator, which returns **TRUE
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to display the serial number of the book in the table with books taking into account the current filter and order made by the user.
 

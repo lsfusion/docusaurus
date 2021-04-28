@@ -143,7 +143,7 @@ EXTEND FORM orders
 
 ### Task
 
-Similar to **Example 2**.
+Similar to [**Example 2**](#example-2).
 
 We need to implement an [action](Actions.md) that will open a dialog for the invoice with a list of orders and add lines from the selected one.
 

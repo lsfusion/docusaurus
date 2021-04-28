@@ -26,7 +26,7 @@ maxId 'Maximum number' () = GROUP MAX id(Book b);
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to find a *Book* object by book ID.
 

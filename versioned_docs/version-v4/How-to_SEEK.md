@@ -69,7 +69,7 @@ After closing the form, we need to call the [SEEK](SEEK_operator.md) operator wh
 
 ### Task
 
-Similar to **Example 1**. We have also added the customer logic. The user can set a price for each customer and book in the dedicated form.
+Similar to [**Example 1**](#example-1). We have also added the customer logic. The user can set a price for each customer and book in the dedicated form.
 
 ```lsf
 CLASS Customer 'Customer';

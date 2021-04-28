@@ -77,7 +77,7 @@ nameStatus2 'Status' (Order o) = staticCaption(status(o));
 
 ### Task
 
-We have a set of books described in **Example 1**.
+We have a set of books described in [**Example 1**](#example-1).
 
 We need to set a markup for the book and also provide an option for setting a default value.
 
@@ -98,7 +98,7 @@ markup2 'Markup, %' (Book b) = IF dataMarkup(b) THEN dataMarkup(b) ELSE defaultM
 
 ### Task
 
-The same set of books from **Example 1**, but categorized.
+The same set of books from [**Example 1**](#example-1), but categorized.
 
 ```lsf
 CLASS Category 'Category';

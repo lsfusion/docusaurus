@@ -60,7 +60,7 @@ We do not add a link to the order for the line object on the *order* form, since
 
 ### Task
 
-Similar to Example 1.
+Similar to [**Example 1**](#example-1).
 
 We need to add order specification to the order list form.
 

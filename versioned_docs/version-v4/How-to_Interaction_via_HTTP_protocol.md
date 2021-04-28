@@ -71,7 +71,7 @@ The response is handled by the [IMPORT](Data_import_IMPORT_.md) operator which p
 
 ### Task
 
-Similar to **Example 1**. 
+Similar to [**Example 1**](#example-1). 
 
 We need to handle the incoming HTTP request and create a new city in the database with the parameters provided in the request.
 
@@ -211,7 +211,7 @@ In this example, the response to the HTTP request is ignored.
 
 ### Task
 
-Similar to **Example 3**. 
+Similar to [**Example 3**](#example-3). 
 
 We need to handle the incoming HTTP request and create a new order in the database with the parameters provided in the request.
 
@@ -255,7 +255,7 @@ To import the corresponding file in the JSON format, we need to create a form of
 
 ### Task
 
-Similar to **Example 4**. 
+Similar to [**Example 4**](#example-4). 
 
 We need to send an HTTP request to create an order in the JSON format to a certain url as in the previous example, except that everything must be wrapped in the **order** tag.
 
@@ -311,7 +311,7 @@ Unlike the previous example, here we create a property [group](Groups_of_propert
 
 ### Task
 
-Similar to **Example 5**. 
+Similar to [**Example 5**](#example-5). 
 
 We need to handle the incoming HTTP request and create a new order in the database with the parameters provided in the request.
 
@@ -349,7 +349,7 @@ Just as in the export process, we put all the properties and the **detail** obje
 
 ### Task
 
-Similar to **Example 3**. 
+Similar to [**Example 3**](#example-3). 
 
 We need to return a list of order numbers for a given date using an HTTP GET request in which this date is provided.
 

@@ -41,7 +41,7 @@ The form will look like this:
 
 ### Task
 
-Similar to **Example 1**, only there is a deferred payment period for each book and buyer.
+Similar to [**Example 1**](#example-1), only there is a deferred payment period for each book and buyer.
 
 ```lsf
 gracePeriod 'Delay, days' = DATA INTEGER (Book, Customer);

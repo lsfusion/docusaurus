@@ -91,7 +91,7 @@ The  [IMPORT](IMPORT_operator.md) operator reads the selected file and then writ
 
 ### Task
 
-Similar to **Example 1**. In addition, we have specified a directory to which an external system puts orders. For each order, a separate CSV file is generated for storing the order date and number (in the denormalized form) along with the book code, quantity, and price.
+Similar to [**Example 1**](#example-1). In addition, we have specified a directory to which an external system puts orders. For each order, a separate CSV file is generated for storing the order date and number (in the denormalized form) along with the book code, quantity, and price.
 
 ```lsf
 serverDirectory 'Directory on the server from which orders should be imported' = DATA STRING[100] ();
@@ -157,7 +157,7 @@ Since the result action has no arguments, we can add it to the scheduler for aut
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 An external database stores a book directory with their codes and names.
 
@@ -197,7 +197,7 @@ This guarantees that when the action is started, the book directory will be abso
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 For each order line, we have added the decoding of this line by color and size.
 

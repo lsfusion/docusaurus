@@ -43,7 +43,7 @@ If you do not "wrap" the action that sets the **isPosted** property in the [NEWS
 
 ### Task
 
-Similar to **Example 1**, except that the dedicated edit form is available for the order.
+Similar to [**Example 1**](#example-1), except that the dedicated edit form is available for the order.
 
 ```lsf
 FORM order
@@ -83,7 +83,7 @@ If you do not use the **NEWSESSION** operator, then the object for the new order
 
 ### Task
 
-Similar to **Example 2**, except that the order can be marked.
+Similar to [**Example 2**](#example-2), except that the order can be marked.
 
 ```lsf
 selected 'Mark' = DATA LOCAL BOOLEAN (Order);
@@ -117,7 +117,7 @@ By default, a new session ignores changes made in the "upper" session. To make t
 
 ### Task
 
-Similar to  **Example 2**, except that the payment logic for the order has been added.
+Similar to [**Example 2**](#example-2), except that the payment logic for the order has been added.
 
 ```lsf
 CLASS Payment 'Payment';

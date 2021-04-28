@@ -45,7 +45,7 @@ The **sum** property defined in the **Time** system [module](Modules.md) is used
 
 ### Task
 
-Similar to **Example 1**. We have also defined order lines, so that each line contains the (full) amount and the discount.
+Similar to [**Example 1**](#example-1). We have also defined order lines, so that each line contains the (full) amount and the discount.
 
 ```lsf
 CLASS OrderDetail 'Order line';

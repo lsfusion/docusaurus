@@ -40,7 +40,7 @@ create3Categories 'Create 3 categories' ()  {
 
 ### Task
 
-Similar to **Example 1**, except that each category has a "parent".
+Similar to [**Example 1**](#example-1), except that each category has a "parent".
 
 ```lsf
 parent 'Parent' = DATA Category (Category); // if the value is NULL, then there is no parent
