@@ -43,7 +43,7 @@ FORM onStockObject 'Balances'
 ;
 ```
 
-Option 1 sets up a fixed filter that the user cannot remove. Option 2 allows the user to choose between predefined criteria (by default the one for which the *DEFAULT* option is set).
+Option 1 sets up a fixed filter that the user cannot remove. Option 2 allows the user to choose between predefined criteria (by default the one for which the `DEFAULT` option is set).
 
 ## Example 2
 
@@ -70,7 +70,7 @@ FORM onStockLocal 'Balances'
 ;
 ```
 
-In this case a warehouse cannot be declared via the *OBJECTS* block, because then not specifying a warehouse for filtering will not be an option.
+In this case a warehouse cannot be declared via the `OBJECTS` block, because then not specifying a warehouse for filtering will not be an option.
 
 ## Example 3
 
@@ -113,4 +113,4 @@ FORM orders 'Orders'
 
 It should be noted that the dates in this case should always be selected (by default, the current date will be set when the form is opened). But it is possible not to select a customer.
 
-Also, note that what is set in *ORDER BY* is not an expression but a specific property added to the form. Thus, we cannot order by a property that has not been added to the form.
+Also, note that what is set in `ORDER BY` is not an expression but a specific property added to the form. Thus, we cannot order by a property that has not been added to the form.

@@ -28,7 +28,7 @@ maxId 'Maximum number' () = GROUP MAX id(Book b);
 
 Similar to [**Example 1**](#example-1).
 
-We need to find a *Book* object by book ID.
+We need to find a `Book` object by book ID.
 
 ### Solution
 

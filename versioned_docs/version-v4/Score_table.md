@@ -36,7 +36,7 @@ We introduce the concept of a team, for which we create a separate [class](Class
 CLASS Team 'Team';
 ```
 
-We assign a name to the class created (for example, `Team`), which will subsequently be used when building [expressions](Expression.md), as well as a caption to display on custom forms (for example, `Team`).
+We assign a name to the class created (for example, `Team`), which will subsequently be used when building [expressions](Expression.md), as well as a caption to display on custom forms (for example, `'Team'`).
 
 So that all teams can be easily identified when working with forms created later, we create a name for the team. In other words, we create a `name` [property](Properties.md) that can be defined for objects of the `Team` class.
 
@@ -68,7 +68,7 @@ We introduce the constraint that the game participants must be two different tea
 CONSTRAINT hostTeam(Game team) = guestTeam(team) CHECKED BY hostTeam, guestTeam MESSAGE 'Host and guest teams must be different';
 ```
 
-The operating mechanism of this expression is as follows: when the host team or guest team of a game changes, the system checks the condition of equality of these teams (`hostTeam(team) == guestTeam(team)`), and if it is met the system blocks the application of changes to the database, and also gives the user the specified message (`'Host and guest teams must be different'`). In other words, the result of the expression specified after the `CONSTRAINT` operator must be `NULL`. In all other cases the restriction will be considered violated.  In addition, thanks to the `CHECKED BY` block, the created constraint will filter teams when selecting a home team or a guest team for a game (that is, it will exclude the team already set as the opponent from the list of teams in the dialog that appears upon selecting a team).
+The operating mechanism of this expression is as follows: when the host team or guest team of a game changes, the system checks the condition of equality of these teams `hostTeam(team) == guestTeam(team)`, and if it is met the system blocks the application of changes to the database, and also gives the user the specified message `'Host and guest teams must be different'`. In other words, the result of the expression specified after the `CONSTRAINT` operator must be `NULL`. In all other cases the restriction will be considered violated.  In addition, thanks to the `CHECKED BY` block, the created constraint will filter teams when selecting a home team or a guest team for a game (that is, it will exclude the team already set as the opponent from the list of teams in the dialog that appears upon selecting a team).
 
 We define the number of goals scored by each team during the game.
 
@@ -266,7 +266,7 @@ FORM MainFormSingle 'Score table'
 ;
 ```
 
-We place the created form on the main menu of the program - the predefined navigator `root` folder - and indicate that it should be positioned by the very first element in front of the system menu item `Administration`.
+We place the created form on the main menu of the program - the predefined navigator `root` folder - and indicate that it should be positioned by the very first element in front of the system menu item `'Administration'`.
 
 ```lsf
 NAVIGATOR {

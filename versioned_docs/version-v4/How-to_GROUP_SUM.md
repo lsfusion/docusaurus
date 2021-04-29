@@ -70,9 +70,9 @@ TABLE bookStock (Book, Stock);
 currentBalance 'Current balance' (Book b, Stock s) = GROUP SUM IF out(Ledger l) THEN -quantity(l) ELSE quantity(l) BY book(l), stock(l) MATERIALIZED;
 ```
 
-It is recommended to mark the **currentBalance** property as **[MATERIALIZED](Materializations.md)**, so that when reading the current balances, the system could take the calculated value from the **bookStock** table instead of recalculating this value based on all movements. Though this will slow down the writing process (since writing each movement will require updating the current balance), the reading process will become much faster.
+It is recommended to mark the `currentBalance` property as [`MATERIALIZED`](Materializations.md), so that when reading the current balances, the system could take the calculated value from the `bookStock` table instead of recalculating this value based on all movements. Though this will slow down the writing process (since writing each movement will require updating the current balance), the reading process will become much faster.
 
-Note that you do not need to define explicitly in which table to keep the **currentBalance** property, since the system will use the signature to find out the most suitable table for it (in this case, this will be **bookStock**).
+Note that you do not need to define explicitly in which table to keep the `currentBalance` property, since the system will use the signature to find out the most suitable table for it (in this case, this will be `bookStock`).
 
 ## Example 4
 
@@ -114,4 +114,4 @@ currentBalance 'Current balance' (Book b) = GROUP SUM currentBalance(b, Stock s)
 
   
 
-Unlike the current balance for all the warehouses, it is not reasonable to mark this property as MATERIALIZED if you have only few warehouses — otherwise, UPDATE CONFLICT may occur when several users try to write the movement of the same book at different warehouses simultaneously.
+Unlike the current balance for all the warehouses, it is not reasonable to mark this property as `MATERIALIZED` if you have only few warehouses — otherwise, UPDATE CONFLICT may occur when several users try to write the movement of the same book at different warehouses simultaneously.

@@ -24,7 +24,7 @@ We need to find the latest received book in the selected category.
 book 'Last book' (Category c) = GROUP LAST Book b ORDER date(b), b BY category(b);
 ```
 
-It is important to remember that order in the  **ORDER* *** clause should be uniquely determined. To do this, the book (specifically, its internal ID) should be used as the second parameter since several books may have the same date of receipt.
+It is important to remember that order in the `ORDER` clause should be uniquely determined. To do this, the book (specifically, its internal ID) should be used as the second parameter since several books may have the same date of receipt.
 
 ## Example 2 
 
@@ -55,7 +55,7 @@ category (Author a, Genre g) = GROUP LAST Category c ORDER countBooks(c, a, g), 
 
 ### Task
 
-We have a certain set of books and the information about price changes per book and warehouse. Each object of the **Ledger** class reflects a single change in price since a specific date.
+We have a certain set of books and the information about price changes per book and warehouse. Each object of the `Ledger` class reflects a single change in price since a specific date.
 
 ```lsf
 CLASS Stock 'Warehouse';
@@ -107,4 +107,4 @@ currentPriceDate (Book b, Stock s) = GROUP LAST price(Ledger l) ORDER date(l), l
 priceDate(Book b, Stock s, DATE d) = GROUP LAST price(Ledger l) ORDER date(l), l WHERE date(l) <= d AND NOT dateTo(l) < d BY book(l), stock(l);
 ```
 
-Note that the expression *NOT dateTo(l) < date* does not always mean the same as *dateTo(l) \>= date*. The difference occurs when the value *dateTo(l)* equals *NULL*. In the first case, *dateTo(l) < date* equals *NULL*(i. e. FALSE), while *NOT NULL* equals TRUE. In the second case, the expression obviously equals *NULL* (i. e. FALSE).
+Note that the expression `NOT dateTo(l) < date` does not always mean the same as `dateTo(l) >= date`. The difference occurs when the value `dateTo(l)` equals `NULL`. In the first case, `dateTo(l) < date` equals `NULL` (i. e. false), while `NOT NULL` equals `TRUE`. In the second case, the expression obviously equals `NULL` (i. e. false).

@@ -24,7 +24,7 @@ We need to retrieve a list of book tags separated by commas in alphabetical orde
 tags 'Tags' (Book b) = GROUP CONCAT name(Tag t) IF in(t, b), ',' ORDER name(t), t CHARWIDTH 10;
 ```
 
-It is recommended that you specify the sizes of all the properties created using **GROUP CONCAT** that will be visible on a form. By default, the system implements the "pessimistic" scenario and reserves a lot of space for such properties.
+It is recommended that you specify the sizes of all the properties created using `GROUP CONCAT` that will be visible on a form. By default, the system implements the "pessimistic" scenario and reserves a lot of space for such properties.
 
 ## Example 2
 

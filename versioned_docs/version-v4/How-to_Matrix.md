@@ -31,7 +31,7 @@ FORM prices 'Prices'
 ;
 ```
 
-Object **c** will not be displayed on the form, since no properties have been added for it.
+Object `c` will not be displayed on the form, since no properties have been added for it.
 
 The form will look like this:
 
@@ -80,9 +80,9 @@ DESIGN pricesAndGracePeriods {
 }
 ```
 
-Only objects that meet the filter condition for object **c** will be shown in the columns. Besides, the columns will be shown in the same order as the objects.
+Only objects that meet the filter condition for object `c` will be shown in the columns. Besides, the columns will be shown in the same order as the objects.
 
-All properties with the same ID after the word **COLUMNS** will go side by side for the same objects. In this case, the price and the deferred payment period for the first buyer, then the price and deferral for the second one, and so forth. If IDs were different or unspecified, prices for all buyers would have been shown first followed by deferred payment values.
+All properties with the same ID after the word `COLUMNS` will go side by side for the same objects. In this case, the price and the deferred payment period for the first buyer, then the price and deferral for the second one, and so forth. If IDs were different or unspecified, prices for all buyers would have been shown first followed by deferred payment values.
 
 The form will look like this:
 
@@ -121,7 +121,7 @@ DESIGN matrix {
 }
 ```
 
-In real projects, we recommend limiting the number of rows and columns during data entry or filtering. Otherwise, if the user enters too many rows or columns, the system will generate a CTE query for the **iterate** property which, in turn, will produce a table containing entered (very big) number of records and that may cause the server database to crash.
+In real projects, we recommend limiting the number of rows and columns during data entry or filtering. Otherwise, if the user enters too many rows or columns, the system will generate a CTE query for the `iterate` property which, in turn, will produce a table containing entered (very big) number of records and that may cause the server database to crash.
 
 Result:
 

@@ -4,7 +4,7 @@ title: 'Materials management'
 
 ## Description of the "Materials management" task
 
-The information system being created using the **lsFusion**  platform must support very basic supply chain execution capabilities.
+The information system being created using the **lsFusion** platform must support very basic supply chain execution capabilities.
 
 For simplicity, let's define one type of document in our system that increases the stock balance — a receipt from the supplier; and one type of document that does the opposite — a shipment for a wholesale to a customer.
 
@@ -78,7 +78,7 @@ We define the uniqueness of the Tax ID for the legal entity.
 legalEntityINN = GROUP AGGR LegalEntity legalEntity BY inn(legalEntity);
 ```
 
-The legalEntityINN property binds an organization and a Tax ID one-to-one and allows to find a legal entity by a Tax ID. The expression of the property can be interpreted as follows: when grouping legal entities by Tax ID (innLegalEntity property), each group must contain a non-repeating legal entity.
+The `legalEntityINN` property binds an organization and a Tax ID one-to-one and allows to find a legal entity by a Tax ID. The expression of the property can be interpreted as follows: when grouping legal entities by Tax ID (`inn` property), each group must contain a non-repeating legal entity.
 
 ### Defining a receipt
 
@@ -88,7 +88,7 @@ Let's create a module where we'll define all instances and attributes required f
 MODULE Receipt;
 ```
 
-Let's define the use of functionality from other modules in the Receipt module.
+Let's define the use of functionality from other modules in the `Receipt` module.
 
 ```lsf
 REQUIRE Stock, Item, LegalEntity;
@@ -103,7 +103,7 @@ CLASS ReceiptDetail 'Receipt line';
 
   
 
-Each receipt line contains a link to the document header, so in the end, the header and the subset of lines with links to this document together define the receipt from the user perspective. The  NONULL parameter indicates that the link must be defined. The  DELETE  parameter specifies that if the main Receipt object is deleted, all ReceiptDetail lines linking to it will also be deleted. By default, when an object is deleted, all links to it are nullified. This way, without the DELETE  parameter, the system will show an error message about an undefined link.
+Each receipt line contains a link to the document header, so in the end, the header and the subset of lines with links to this document together define the receipt from the user perspective. The `NONULL` parameter indicates that the link must be defined. The `DELETE` parameter specifies that if the main `Receipt` object is deleted, all `ReceiptDetail` lines linking to it will also be deleted. By default, when an object is deleted, all links to it are nullified. This way, without the `DELETE` parameter, the system will show an error message about an undefined link.
 
 ```lsf
 receipt 'Line document' = DATA Receipt (ReceiptDetail) NONULL DELETE;
@@ -119,9 +119,9 @@ index 'Line number' (ReceiptDetail d) =
         ORDER d BY receipt(d);
 ```
 
-The use of the name of an object class in expressions is similar to using its identification number (id) created by the system for all objects by an automatic counter. In this case, the use of the ORDER receiptDetail construct helps sort the lines of the receipt by the order of ascension of their id, i.e. basically in the order of their creation.
+The use of the name of an object class in expressions is similar to using its identification number (id) created by the system for all objects by an automatic counter. In this case, the use of the `ORDER d` construct helps sort the lines of the receipt by the order of ascension of their id, i.e. basically in the order of their creation.
 
-Here, the PARTITION instruction uses the BY block that groups objects by a certain attribute. The calculation of the expression cumulative total is performed in each group. In this case, the line number is determined only within this line's document (receipt(d) property).
+Here, the `PARTITION` instruction uses the `BY` block that groups objects by a certain attribute. The calculation of the expression cumulative total is performed in each group. In this case, the line number is determined only within this line's document (`receipt` property).
 
 We define a set of key attributes of a receipt header: number, date, supplier and its name, the stock where the product is received and its name. The name of the supplier and the stock will be needed in the future for displaying them on the form.
 
@@ -155,7 +155,7 @@ Let's create a module where we will define all instances and attributes required
 MODULE Shipment;
 ```
 
- We define the use of functionality from other modules in the Shipment module.
+ We define the use of functionality from other modules in the `Shipment` module.
 
 ```lsf
 REQUIRE Stock, Item, LegalEntity;
@@ -203,7 +203,7 @@ sum 'Sale amount' (ShipmentDetail d) = quantity(d) * price(d);
 
   
 
-We implement the auto filling of the item sale price in the shipment with the value of the wholesale price defined by the user for item (salePrice property). Auto filling for the shipment line should work when the item is changed (WHEN CHANGED instruction).
+We implement the auto filling of the item sale price in the shipment with the value of the wholesale price defined by the user for item (`salePrice` property). Auto filling for the shipment line should work when the item is changed (`WHEN CHANGED` instruction).
 
 ```lsf
 price(ShipmentDetail d) <- salePrice(item(d)) WHEN CHANGED(item(d));
@@ -223,7 +223,7 @@ MODULE StockItem;
 
   
 
- We define the use of functionality from other modules in the StockItem module.
+ We define the use of functionality from other modules in the `StockItem` module.
 
 ```lsf
 REQUIRE Shipment, Receipt;
@@ -255,7 +255,7 @@ In order to be able to work with the created solution, let's add directory forms
 
 First, let's create directory forms.
 
-In the Stock module, we add a form that provides the user with the functionality of creating and deleting stocks, as well as changing their attributes.
+In the `Stock` module, we add a form that provides the user with the functionality of creating and deleting stocks, as well as changing their attributes.
 
 ```lsf
 FORM stocks 'Warehouses'
@@ -264,7 +264,7 @@ FORM stocks 'Warehouses'
 ;
 ```
 
-In a similar manner, we'll create an item form in the Item module, and a legal entity form in the LegalEntity module.
+In a similar manner, we'll create an item form in the `Item` module, and a legal entity form in the `LegalEntity` module.
 
 ```lsf
 CLASS Item 'Product';
@@ -283,7 +283,7 @@ inn 'TIN' = DATA BPSTRING[9](LegalEntity) IN base;
 
 Let's create edit forms for a receipt and a shipment. These forms will be used for creating new documents or editing existing ones. The layout of the forms will be similar: two vertical blocks, the top one containing a panel with the header attributes of the document being created/edited, and the lower one containing the document lines in a grid view and their attributes.
 
-In the Receipt module, we should create a receipt edit form. For the form we are building, we specify that it will be used as a default form for creating/editing receipts (the EDIT instruction).
+In the Receipt module, we should create a receipt edit form. For the form we are building, we specify that it will be used as a default form for creating/editing receipts (the `EDIT` instruction).
 
 ```lsf
 FORM receipt 'Receipt'
@@ -298,11 +298,11 @@ FORM receipt 'Receipt'
 ;
 ```
 
-Line filtering for the current receipt is performed with the help of the FILTERS receipt(d) == r expression. The FILTERS construct displays an object of a corresponding class on the form if the filter expression returns a value different from NULL. In this case, the receipt line will be displayed on the form if the header of the document to which the line is linked ("receipt" property) equals to the current object of the top block. In other words, only the lines of the created/edited document will be displayed.
+Line filtering for the current receipt is performed with the help of the `FILTERS receipt(d) == r` expression. The `FILTERS` construct displays an object of a corresponding class on the form if the filter expression returns a value different from `NULL`. In this case, the receipt line will be displayed on the form if the header of the document to which the line is linked (`receipt` property) equals to the current object of the top block. In other words, only the lines of the created/edited document will be displayed.
 
-In addition, if a filter is specified for objects of this class on the form, then when the user presses the NEW button, the property of the newly added object will be automatically filled in a way that will make this object meet the filter conditions. In this case, when a new receipt line is created, the "receipt" property of this line will be automatically filled with a link to the current header of the receipt.
+In addition, if a filter is specified for objects of this class on the form, then when the user presses the `NEW` button, the property of the newly added object will be automatically filled in a way that will make this object meet the filter conditions. In this case, when a new receipt line is created, the `receipt` property of this line will be automatically filled with a link to the current header of the receipt.
 
-Let's create an edit form for the shipment in the Shipment module. For the form we are creating, we specify that it will be used as the default form for creating/editing shipments (EDIT instruction).
+Let's create an edit form for the shipment in the `Shipment` module. For the form we are creating, we specify that it will be used as the default form for creating/editing shipments (`EDIT` instruction).
 
 ```lsf
 FORM shipment 'Shipment'
@@ -319,7 +319,7 @@ FORM shipment 'Shipment'
 
 Visually, supplier receipt and shipment forms will look almost identical and consist of two vertical blocks: one with a table for document headers and one with a table of document lines. Document lines should support visual filtering by documents and their subsets displayed on the form will change when navigating in the top block.
 
-Let's create a receipt form. On this form, we will display all the properties defined above for document headers and their lines. Additionally, we will place automatically defined buttons for creating/editing a receipt using the edit form created above. All properties of document headers and their lines, except the buttons for creating/editing a receipt, should be read-only for editing directly on the form (READONLY operator).
+Let's create a receipt form. On this form, we will display all the properties defined above for document headers and their lines. Additionally, we will place automatically defined buttons for creating/editing a receipt using the edit form created above. All properties of document headers and their lines, except the buttons for creating/editing a receipt, should be read-only for editing directly on the form (`READONLY` operator).
 
 ```lsf
 FORM receipts 'Receipts'
@@ -347,7 +347,7 @@ FORM shipments 'Shipments'
 ;
 ```
 
-Next, in the StockItem module, let's create a form for displaying current balances. A form should be a table whose lines contain information about the item (its name and barcode), the name of the stock, and the current balance for this item at this stock. The count of lines on the form will be equal to the count of items entered into the system multiplied by the count of entered stocks. To display only relevant data (i.e. only those items and stocks, for whose intersection the current balance is not NULL), let's add a filter to the form.
+Next, in the `StockItem` module, let's create a form for displaying current balances. A form should be a table whose lines contain information about the item (its name and barcode), the name of the stock, and the current balance for this item at this stock. The count of lines on the form will be equal to the count of items entered into the system multiplied by the count of entered stocks. To display only relevant data (i.e. only those items and stocks, for whose intersection the current balance is not `NULL`), let's add a filter to the form.
 
 ```lsf
 FORM currentBalanceItemStock 'Current balances'
@@ -357,7 +357,7 @@ FORM currentBalanceItemStock 'Current balances'
 ;
 ```
 
-The OBJECTS si = (s = Stock, i = Item) construct adds an object group with the name si, which is a Cartesian product of Stock and Item class objects.
+The `OBJECTS si = (s = Stock, i = Item)` construct adds an object group with the name `si`, which is a Cartesian product of `Stock` and `Item` class objects.
 
 Finally, let's declare the head module and specify what functionality from other modules will be used in it.
 
@@ -367,7 +367,7 @@ MODULE StockAccounting;
 REQUIRE Stock, Item, LegalEntity, Receipt, Shipment, StockItem;
 ```
 
-In the StockAccounting module, we compose the system menu. Directories should be added to the predefined **masterData** folder of the navigator that we show immediately after the directories. We place the current balance form to the main menu (horizontal window **root**). Links to directory and document forms will be shown on the vertical **toolbar** when the user selects a corresponding **root** folder.
+In the `StockAccounting` module, we compose the system menu. Directories should be added to the predefined `masterData` folder of the navigator that we show immediately after the directories. We place the current balance form to the main menu (horizontal window `root`). Links to directory and document forms will be shown on the vertical `toolbar` when the user selects a corresponding `root` folder.
 
 ```lsf
 NAVIGATOR {

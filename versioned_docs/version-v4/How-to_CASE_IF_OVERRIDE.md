@@ -137,4 +137,4 @@ freeNumber1 () = (GROUP MAX number(Book b)) (+) 1;
 freeNumber2() = (OVERRIDE 0, (GROUP MAX number(Book b))) + 1;
 ```
 
-We use the operator (+) instead of the regular operator +, because otherwise if no books are found, then the standard increment by 1 will return **NULL**.
+We use the operator `(+)` instead of the regular operator `+`, because otherwise if no books are found, then the standard increment by `1` will return `NULL`.

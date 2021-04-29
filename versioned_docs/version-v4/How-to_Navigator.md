@@ -13,7 +13,7 @@ FORM categories 'Categories';
 FORM books 'Books';
 ```
 
-We need to add them to the [navigator](Navigator.md) to the new folder called **Application** under the main toolbar.
+We need to add them to the [navigator](Navigator.md) to the new folder called `'Application'` under the main toolbar.
 
 ### Solution
 
@@ -26,7 +26,7 @@ NAVIGATOR {
 }
 ```
 
-By specifying **WINDOW** for the **application** element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called **toolbar**. This will look like this:
+By specifying `WINDOW` for the `application` element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called `toolbar`. This will look like this:
 
 ![](attachments/46367463/46367465.png)
 
@@ -36,7 +36,7 @@ By specifying **WINDOW** for the **application** element, we indicated that all 
 
 Similar to [**Example 1**](#example-1).
 
-We need to place the same forms in the subfolder called Directories.
+We need to place the same forms in the subfolder called `'Directories'`.
 
 ### Solution
 
