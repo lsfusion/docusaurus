@@ -101,6 +101,7 @@ module.exports = {
     prism: {
       theme: require('prism-react-renderer/themes/nightOwlLight'),
       darkTheme: require('prism-react-renderer/themes/vsDark'),
+      additionalLanguages: ['java'],
     },
   },
   presets: [
