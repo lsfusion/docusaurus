@@ -63,7 +63,7 @@ EXTEND FORM books
 ;
 ```
 
-After closing the form, we need to call the [SEEK](SEEK_operator.md) operator which will make the added object active.
+After closing the form, we need to call the [`SEEK` operator](SEEK_operator.md) which will make the added object active.
 
 ## Example 2
 
@@ -106,7 +106,7 @@ EXTEND FORM prices
 ;
 ```
 
-The property with the default customer is added to the Settings form on the General tab. The current object will change once the user opens the form, since the [ON INIT](Event_block.md) event will be triggered.
+The property with the default customer is added to the `'Settings'` form on the `'General'` tab. The current object will change once the user opens the form, since the [`ON INIT` event](Event_block.md) will be triggered.
 
 ## Example 2
 
@@ -148,4 +148,4 @@ EXTEND FORM report
 ;
 ```
 
-Date properties can be found in the **Time** [system module](Modules.md) which is loaded at the very beginning using the **REQUIRE** instruction.
+Date properties can be found in the `Time` [system module](Modules.md) which is loaded at the very beginning using the `REQUIRE` instruction.

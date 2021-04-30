@@ -28,9 +28,9 @@ CONSTRAINT SET(price(Book b) > 100)
     MESSAGE 'The book price cannot be more than 100 rubles';
 ```
 
-If a user tries to save a book costing over 100 on any form, the user will see a message with a corresponding text. This message will also contain all objects of the **Book** class for which the constraint is violated. Values of properties from the **id** group will be shown for each object.
+If a user tries to save a book costing over 100 on any form, the user will see a message with a corresponding text. This message will also contain all objects of the `Book` class for which the constraint is violated. Values of properties from the `id` group will be shown for each object.
 
-Both options are identical from the execution perspective. If the platform does not find any [change operator](Change_operators_SET_CHANGED_..._.md) in a constraint, the entire expression is automatically "wrapped" into a **SET** operator.
+Both options are identical from the execution perspective. If the platform does not find any [change operator](Change_operators_SET_CHANGED_..._.md) in a constraint, the entire expression is automatically "wrapped" into a `SET` operator.
 
 ## Example 2
 
@@ -69,7 +69,7 @@ CONSTRAINT DROPPED(Order o IS Order) AND PREV(date(o)) < currentDate()
     MESSAGE 'It is forbidden to delete old orders';
 ```
 
-When an order is deleted, all of its properties will be **NULL**. That is why you need to you use the **PREV** operator to access its property values.
+When an order is deleted, all of its properties will be `NULL`. That is why you need to you use the `PREV` operator to access its property values.
 
 ## Example 4
 
@@ -123,7 +123,7 @@ CONSTRAINT book(OrderDetail d) AND NOT in(customer(d), book(d))
     MESSAGE 'A book is selected in the order line that is not allowed for the customer';
 ```
 
-It is important to check that the **book** property for the order line is set because otherwise, the constraint will be applied to all order lines with the yet unselected book. The **CHECKED BY ** block adds the filter for the order line on the book selection form in order to avoid violating the defined constraint. This way, the user will only see books available to the buyer.
+It is important to check that the `book` property for the order line is set because otherwise, the constraint will be applied to all order lines with the yet unselected book. The `CHECKED BY` block adds the filter for the order line on the book selection form in order to avoid violating the defined constraint. This way, the user will only see books available to the buyer.
 
 ## Example 6
 

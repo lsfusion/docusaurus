@@ -6,21 +6,21 @@ We can use the following scheme to implement polymorphism:
 
 ### Example 1
 
-Create an abstract class **Shape** with an abstract action **whoAmI**:
+Create an abstract class `Shape` with an abstract action `whoAmI`:
 
 ```lsf
 CLASS ABSTRACT Shape;
 whoAmI  ABSTRACT ( Shape);
 ```
 
-Then, create **Square** and **Circle** classes inherited from **Shape** :
+Then, create `Square` and `Circle` classes inherited from `Shape`:
 
 ```lsf
 CLASS Rectangle : Shape;
 CLASS Circle : Shape;
 ```
 
-Define the implementation of **whoAmI** for the created classes:
+Define the implementation of `whoAmI` for the created classes:
 
 ```lsf
 whoAmI (Rectangle r) + {
@@ -35,13 +35,13 @@ whoAmI (Circle c) + {
 }
 ```
 
-When executing the **whoAmI** action, all the actions added as an implementation will be called. In this case, a corresponding message will appear depending on the argument.
+When executing the `whoAmI` action, all the actions added as an implementation will be called. In this case, a corresponding message will appear depending on the argument.
 
 ### Example 2
 
-Suppose that we need to implement an action that copies an object (e. g. the **Book** class) with its semantics defined in multiple modules. This can be implemented as follows:
+Suppose that we need to implement an action that copies an object (e. g. the `Book` class) with its semantics defined in multiple modules. This can be implemented as follows:
 
-Declare the **Book** class and the actions to copy it:
+Declare the `Book` class and the actions to copy it:
 
 ```lsf
 MODULE Book;
@@ -55,7 +55,7 @@ copy (Book book)  { // creating action on book copy
 }
 ```
 
-In the dependent module **MyBook**, we want to extend the **Book** class with new properties and also define the action to copy them:
+In the dependent module `MyBook`, we want to extend the `Book` class with new properties and also define the action to copy them:
 
 ```lsf
 MODULE MyBook;

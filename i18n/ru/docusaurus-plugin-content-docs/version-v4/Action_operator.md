@@ -33,7 +33,7 @@ sidebar_label: Обзор
 -   [Оператор `IMPORT`](IMPORT_operator.md)
 -   [Оператор `INPUT`](INPUT_operator.md)
 -   [Оператор `MESSAGE`](MESSAGE_operator.md)
--   [Оператор `MULTI` (д)](MULTI_operator_action_.md)
+-   [Оператор `MULTI`](MULTI_operator_action_.md)
 -   [Оператор `NEW`](NEW_operator.md)
 -   [Оператор `NESTEDSESSION`](NESTEDSESSION_operator.md)
 -   [Оператор `NEWEXECUTOR`](NEWEXECUTOR_operator.md)

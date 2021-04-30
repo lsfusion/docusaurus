@@ -4,7 +4,7 @@ title: 'How-to: Class extension'
 
 The typical scheme for extracting relations between classes to a separate module is as follows:
 
-Create the **MA** module in which the **A** class will be created:
+Create the `MA` module in which the `A` class will be created:
 
 ```lsf
 MODULE MA;
@@ -13,7 +13,7 @@ CLASS ABSTRACT A; // declaring an abstract class
 a = ABSTRACT BPSTRING[10] (A); // declaring an abstract property a
 ```
 
-Create the **MB** module in which the **B** class will be created:
+Create the `MB` module in which the `B` class will be created:
 
 ```lsf
 MODULE MB;
@@ -22,7 +22,7 @@ CLASS B; // declaring class B
 b = DATA BPSTRING[10] (B); // declaring the data property b for class B
 ```
 
-Create the **MBA** module in which the relation between the **A** and **B** class will be defined:
+Create the `MBA` module in which the relation between the `A` and `B` class will be defined:
 
 ```lsf
 MODULE MBA;
@@ -33,7 +33,7 @@ EXTEND CLASS B : A; // inheriting class B from A
 a(ba) += b(ba); // specifying that for the abstract property a, property B should be used as an implementation
 ```
 
-Therefore, the **MA** and **MB** modules do not directly depend on each other and the relation between them can be enabled (disabled) by linking (unlinking) the **MBA** module. Note that the **MBA** module extends the functionality of the **MB** module without any changes to its code.
+Therefore, the `MA` and `MB` modules do not directly depend on each other and the relation between them can be enabled (disabled) by linking (unlinking) the `MBA` module. Note that the `MBA` module extends the functionality of the `MB` module without any changes to its code.
 
 You can use mixin classes when using the metacode as follows:
 

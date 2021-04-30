@@ -37,7 +37,7 @@ EXTEND FORM books
 ;
 ```
 
-Use the isSubstring property (defined in the **Utils** system [module](Modules.md)) to identify whether a given line contains another line.
+Use the isSubstring property (defined in the `Utils` system [module](Modules.md)) to identify whether a given line contains another line.
 
 ## Example 2
 
@@ -71,7 +71,7 @@ EXTEND FORM books
 
 Both these implementations will provide the same result.
 
-To solve this task, use the **iterate** property (defined in the **Utils** system module) which returns **TRUE** for all integers in the range.
+To solve this task, use the `iterate` property (defined in the `Utils` system module) which returns `TRUE` for all integers in the range.
 
 ## Example 3
 
