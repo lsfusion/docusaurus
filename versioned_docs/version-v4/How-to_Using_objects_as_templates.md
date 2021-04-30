@@ -47,7 +47,7 @@ EXTEND FORM books
 ;
 ```
 
-When the button is pressed, a new [change session](Change_sessions.md) will be created within which the book will be created and the new form will work with. If the user closes the form without saving, the new book will not be saved to the database and will be lost. The word **TOOLBAR** specifies that this button should be displayed in the toolbar of the table with the list of orders.
+When the button is pressed, a new [change session](Change_sessions.md) will be created within which the book will be created and the new form will work with. If the user closes the form without saving, the new book will not be saved to the database and will be lost. The word `TOOLBAR` specifies that this button should be displayed in the toolbar of the table with the list of orders.
 
 ## Example 2
 

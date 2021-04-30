@@ -26,7 +26,7 @@ We will then create a new Resource Bundle and will save our Id values in differe
 
 ![](attachments/60555378/60555382.png)
 
-Let's call it **I18nResourceBundle** (the system will only read files ending in **ResourceBundle**) and choose the languages to be used:
+Let's call it `I18nResourceBundle` (the system will only read files ending in `'ResourceBundle'`) and choose the languages to be used:
 
 ![](attachments/60555378/60555383.png)
 

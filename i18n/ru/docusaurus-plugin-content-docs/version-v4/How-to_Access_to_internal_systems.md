@@ -5,7 +5,7 @@ sidebar_label: Обзор
 
 ### Порядок ознакомления
 
-1.  [FORMULA](How-to_FORMULA.md). Вычисление SQL функций на уровне базы данных.
-2.  [INTERNAL](How-to_INTERNAL.md). Выполнение Java кода на уровне сервера приложений.
+1.  [`FORMULA`](How-to_FORMULA.md). Вычисление SQL функций на уровне базы данных.
+2.  [`INTERNAL`](How-to_INTERNAL.md). Выполнение Java кода на уровне сервера приложений.
 
   
