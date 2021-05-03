@@ -10,25 +10,21 @@ title: 'Онлайн демо'
 
 Демо-версия находится по адресу <https://demo.lsfusion.org/hockeystats>.
 
-Логин : **guest**
-
+Логин : **guest**<br/>
 Пароль : **guest**
 
-Исходный код на GitHub находится [здесь](https://github.com/lsfusion/samples/tree/master/hockeystats).**  
-**
+Исходный код на GitHub находится [здесь](https://github.com/lsfusion/samples/tree/master/hockeystats).
 
 ### Управление материальными потоками (УМП) {#mm}
 
 Приложение из примера [Управление материальными потоками](Materials_management.md).
 
-Демо-версия находится по адресу <https://demo.lsfusion.org/mm>[.](http://demo.lsfusion.org/hockeystats)
+Демо-версия находится по адресу <https://demo.lsfusion.org/mm>.
 
-Логин : **guest**
-
+Логин : **guest**<br/>
 Пароль : **guest**
 
-Исходный код на GitHub находится [здесь](https://github.com/lsfusion/samples/tree/master/mm).**  
-**
+Исходный код на GitHub находится [здесь](https://github.com/lsfusion/samples/tree/master/mm).
 
 ### MyCompany
 
@@ -38,10 +34,9 @@ title: 'Онлайн демо'
 
 Коммерческая ERP-система с широким функционалом, работающая на предприятиях с более чем 500 одновременно работающих пользователей.
 
-Демо-версия находится по адресу <https://demo.lsfusion.org/erp>[.](http://demo.lsfusion.org/hockeystats)
+Демо-версия находится по адресу <https://demo.lsfusion.org/erp>.
 
-Логин : **guest**
-
+Логин : **guest**<br/>
 Пароль : **guest**
 
 Исходный код на GitHub находится [здесь](https://github.com/lsfusion-solutions/erp). В качестве демо-версии используется модуль equ-erp-logics, который включает в себя : базовую ERP логику (erp-logics) + интерфейсы общения (equ-srv) с сервером оборудования (который, в свою очередь, находится в equ-clt).
