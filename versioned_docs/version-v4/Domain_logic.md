@@ -13,12 +13,12 @@ As a rule, the business logic does not allow just any data changes: only changes
 
 Accordingly, the summary table for all elements of the business logic is as follows:
 
-|System elements|Answer the question|Character|
-|---|---|---|
-|Properties|What to store and calculate|static / declarative|
-|Actions|What to do|dynamic / imperative|
-|Events|When to do|dynamic / imperative|
-|Constraints|What can be done|static / declarative|
+|System elements|Answer the question        |Character           |
+|---------------|---------------------------|--------------------|
+|Properties     |What to store and calculate|static / declarative|
+|Actions        |What to do                 |dynamic / imperative|
+|Events         |When to do                 |dynamic / imperative|
+|Constraints    |What can be done           |static / declarative|
 
 ### Stack
 
