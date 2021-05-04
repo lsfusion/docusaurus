@@ -76,7 +76,7 @@ DESIGN orders {
 
 The form will look like this:
 
-![](attachments/36307439/46367472.png)
+![](images/How-to_Design_ex1.png)
 
 ## Example 2
 
@@ -135,4 +135,4 @@ DESIGN orders {
 
 Result:
 
-![](attachments/36307439/46367474.png)
+![](images/How-to_Design_ex2.png)

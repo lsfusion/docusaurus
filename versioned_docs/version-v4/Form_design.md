@@ -179,7 +179,7 @@ FORM myForm 'myForm'
 
 The hierarchy of containers and components in the default design will look like this:
 
-![](attachments/29884443/57738024.png)
+![](images/Form_design_default_hierachy.png)
 
   
 
@@ -245,4 +245,4 @@ DESIGN order {
 
 The output is the following form:
 
-![](attachments/29884443/57738025.jpg)
+![](images/Form_design_example.jpg)

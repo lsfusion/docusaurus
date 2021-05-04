@@ -31,6 +31,6 @@ The algorithm of the operator’s work likewise changes accordingly.
 
 ### Language
 
-Since the simple form of the operator is semantically very similar to the operator partition/sort, to declare a property that implements a simple distribution the [**PARTITION** operator](PARTITION_operator.md) is also used.
+Since the simple form of the operator is semantically very similar to the operator partition/sort, to declare a property that implements a simple distribution the [`PARTITION` operator](PARTITION_operator.md) is also used.
 
-For the extended form, use the [**UNGROUP** operator](UNGROUP_operator.md)**.**
+For the extended form, use the [`UNGROUP` operator](UNGROUP_operator.md).

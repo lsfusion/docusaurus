@@ -10,7 +10,7 @@ Note that the partition/order operator is very similar to the [grouping operator
 
 ### Language
 
-To declare a property that implements partition/order, use the [**PARTITION** operator](PARTITION_operator.md). 
+To declare a property that implements partition/order, use the [`PARTITION` operator](PARTITION_operator.md). 
 
 ### Examples
 

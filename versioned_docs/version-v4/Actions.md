@@ -9,7 +9,7 @@ The type and behavior of each action is determined by the [operator](Оperators.
 
 ### Language
 
-To add a new action to the system, use [the **ACTION** instruction](ACTION_instruction.md).
+To add a new action to the system, use [the `ACTION` instruction](ACTION_instruction.md).
 
 ### Examples
 

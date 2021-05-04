@@ -2,13 +2,13 @@
 title: 'Selection (CASE, IF, MULTI, OVERRIDE, EXCLUSIVE)'
 ---
 
-The *selection* operator creates a property that determines for a set of *conditions *which condition is met, and returns the value of the *result* corresponding to that condition. If none of the conditions is met, then the value of the created property will be **NULL**. 
+The *selection* operator creates a property that determines for a set of *conditions* which condition is met, and returns the value of the *result* corresponding to that condition. If none of the conditions is met, then the value of the created property will be `NULL`. 
 
-All conditions and results are defined as some properties and/or parameters. Accordingly, a condition *is satisfied* if the value of the property or parameter by which this condition is set is not equal to **NULL**. 
+All conditions and results are defined as some properties and/or parameters. Accordingly, a condition *is satisfied* if the value of the property or parameter by which this condition is set is not equal to `NULL`. 
 
 ### Polymorphic form {#poly}
 
-The platform also allows you to define a condition and the corresponding result with one property. In this case, the condition may be either matching the property's [signature](Property_signature_CLASS_.md), or the property itself. We will call this the*polymorphic* form of the operator.
+The platform also allows you to define a condition and the corresponding result with one property. In this case, the condition may be either matching the property's [signature](Property_signature_CLASS_.md), or the property itself. We will call this the *polymorphic* form of the operator.
 
 
 :::info
@@ -27,7 +27,7 @@ This operator supports [implicit definition](Property_extension.md) using the te
 
 ### Single form {#single}
 
-The *single *form of the selection operator checks exactly one condition. If this condition is met, the value of the specified result is returned. It is also possible to specify an *alternative result *which value is returned if the condition is not met.
+The *single* form of the selection operator checks exactly one condition. If this condition is met, the value of the specified result is returned. It is also possible to specify an *alternative result* which value is returned if the condition is not met.
 
 
 :::info
@@ -40,7 +40,7 @@ The result class of the selection operator is the common ancestor (builtin or [u
 
 ### Language
 
-To create a property implementing a general form of selection, the **[CASE](CASE_operator.md)** operator is used. The polymorphic form of the selection operator is implemented using the **[MULTI](MULTI_operator.md)**, **[OVERRIDE](OVERRIDE_operator.md) and [EXCLUSIVE](EXCLUSIVE_operator.md)**,** operators; the**single form using the **[IF](IF_operator.md)** and **IF ... THEN** operator (the only operator that allows the specification of an alternative result).
+To create a property implementing a general form of selection, the [`CASE`](CASE_operator.md) operator is used. The polymorphic form of the selection operator is implemented using the [`MULTI`](MULTI_operator.md), [`OVERRIDE`](OVERRIDE_operator.md) and [`EXCLUSIVE`](EXCLUSIVE_operator.md), operators; the single form using the [`IF`](IF_operator.md) and [`IF ... THEN`](IF_..._THEN_operator.md) operator (the only operator that allows the specification of an alternative result).
 
 ### Examples
 
@@ -120,6 +120,3 @@ sex (Human h) = IF h IS Male THEN 'Male' ELSE ('Female' IF h IS Female); // if h
 
 isDifferent(a, b) = IF a != b THEN TRUE;
 ```
-
-
-  

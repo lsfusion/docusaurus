@@ -283,4 +283,4 @@ DESIGN order {
 
 The output is the following form:
 
-![](attachments/4718609/43648025.png)
+![](images/DESIGN_instruction.png)
