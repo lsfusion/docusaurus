@@ -10,9 +10,9 @@ By default, the created action stops the thread until the user closes the messag
 
 ### Dialog form {#dialog}
 
-It is also often necessary not only to inform the user about something, but also, for example, to request confirmation to continue an action. For such cases, the operator allows, instead of simply displaying the message (with a single OK button), to ask a question with the option of canceling (OK/Cancel) and thereby essentially to implement [a value input](Value_input.md). This input is considered to have been [canceled](Value_input.md#result) if the Cancel button is pressed (there is no input value in that case).
+It is also often necessary not only to inform the user about something, but also, for example, to request confirmation to continue an action. For such cases, the operator allows, instead of simply displaying the message (with a single `OK` button), to ask a question with the option of canceling (`OK`/`Cancel`) and thereby essentially to implement [a value input](Value_input.md). This input is considered to have been [canceled](Value_input.md#result) if the `Cancel` button is pressed (there is no input value in that case).
 
-In addition, a third option can be added to the question: Yes / No / Cancel. In this case, it is considered that [the input result](Value_input.md#result) will be a value of logical class (Yes - **TRUE**, No - **NULL**). As in the first case, the input is considered to be canceled if the Cancel button is selected.
+In addition, a third option can be added to the question: `Yes` / `No` / `Cancel`. In this case, it is considered that [the input result](Value_input.md#result) will be a value of logical class (`Yes` - `TRUE`, `No` - `NULL`). As in the first case, the input is considered to be canceled if the `Cancel` button is selected.
 
 The form of the operator in which the user is asked a question shall be called the *dialog* form. 
 
@@ -22,7 +22,7 @@ The operator dialog form is available in synchronous mode only.
 
 ### Language
 
-To declare an action showing a message, use [the **MESSAGE** operator](MESSAGE_operator.md). To display the message in dialog form, use the [**ASK** operator](ASK_operator.md).
+To declare an action showing a message, use the [`MESSAGE` operator](MESSAGE_operator.md). To display the message in dialog form, use the [`ASK` operator](ASK_operator.md).
 
 ### Examples
 

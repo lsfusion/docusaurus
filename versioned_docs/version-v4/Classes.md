@@ -7,11 +7,11 @@ The base element in **lsFusion** is the object. Each object is an *instance* of 
 
 ### Inheritance
 
-Classes can *inherit* from each other. When class **B** inherits from class **A**, class **A** shall be called the *parent*, and class **B** shall be called the *child*.
+Classes can *inherit* from each other. When class `B` inherits from class `A`, class `A` shall be called the *parent*, and class `B` shall be called the *child*.
 
-The idea of inheritance is as follows: if class **B** inherits from class **A**, then all instances of class **B **will have all the qualities of class **A**. Thus, with inheritance, each class determines the qualities not only of all instances of this class but also of all instances of this class descendants.  
+The idea of inheritance is as follows: if class `B` inherits from class `A`, then all instances of class `B` will have all the qualities of class `A`. Thus, with inheritance, each class determines the qualities not only of all instances of this class but also of all instances of this class descendants.  
 
-Let's say that an object *belongs to* class **A** if that object is either an instance of class **A** or an instance of a class **A** descendant.  
+Let's say that an object *belongs to* class `A` if that object is either an instance of class `A` or an instance of a class `A` descendant.  
 
 To implement polymorphism, inheritance is usually used together with properties and actions extension mechanism. 
 

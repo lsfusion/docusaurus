@@ -6,7 +6,7 @@ The *interrupt operator* creates an [action](Actions.md) that exits the most nes
 
 ### Language
 
-The interrupt operator syntax is described by the [**BREAK** operator](BREAK_operator.md). 
+The interrupt operator syntax is described by the [`BREAK` operator](BREAK_operator.md). 
 
 ### Examples
 

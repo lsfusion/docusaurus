@@ -10,7 +10,7 @@ This operator is calculated differently inside the [event](Events.md#change) han
 
 ### Language
 
-To declare a property that returns a previous value, use the [**PREV** operator](PREV_operator.md). 
+To declare a property that returns a previous value, use the [`PREV` operator](PREV_operator.md). 
 
 ### Examples
 

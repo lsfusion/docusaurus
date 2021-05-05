@@ -6,7 +6,7 @@ The *recursive loop operator* is similar to a regular [loop](Loop_FOR_.md) opera
 
 ### Language
 
-The syntax of the recursive loop operator is described by the [**WHILE** operator](WHILE_operator.md).
+The syntax of the recursive loop operator is described by the [`WHILE` operator](WHILE_operator.md).
 
 ### Examples
 

@@ -6,4 +6,4 @@ The *send mail* operator creates an [action](Actions.md) that sends an email to 
 
 ### Language
 
-To declare an action that sends mail, use the [**EMAIL** operator](EMAIL_operator.md).
+To declare an action that sends mail, use the [`EMAIL` operator](EMAIL_operator.md).

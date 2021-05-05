@@ -12,7 +12,7 @@ It is also possible to create a new *nested* session. In this case, all changes 
 
 ### Language
 
-To create an action that executes another action in a new session, use the [**NEWSESSION** operator](NEWSESSION_operator.md) (for nested sessions, use the [**NESTEDSESSION** operator](NESTEDSESSION_operator.md)).
+To create an action that executes another action in a new session, use the [`NEWSESSION` operator](NEWSESSION_operator.md) (for nested sessions, use the [`NESTEDSESSION` operator](NESTEDSESSION_operator.md)).
 
 ### Examples
 

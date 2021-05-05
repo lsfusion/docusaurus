@@ -12,7 +12,7 @@ title: 'Создание сессий (NEWSESSION, NESTEDSESSION)'
 
 ### Язык
 
-Для создания действия, выполняющего другое действие в новой сессии, используется [оператор **NEWSESSION**](NEWSESSION_operator.md) (для вложенных сессий используется [оператор **NESTEDSESSION**](NESTEDSESSION_operator.md)).
+Для создания действия, выполняющего другое действие в новой сессии, используется [оператор `NEWSESSION`](NEWSESSION_operator.md) (для вложенных сессий используется [оператор `NESTEDSESSION`](NESTEDSESSION_operator.md)).
 
 ### Примеры
 

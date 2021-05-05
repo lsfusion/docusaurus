@@ -18,7 +18,7 @@ The number of threads is defined as a property.
 
 ### Language
 
-To declare an action that executes another action in a new thread, use the [**NEWTHREAD** operator](NEWTHREAD_operator.md). To perform an action in a new thread pool, use the [**NEWEXECUTOR** operator](NEWEXECUTOR_operator.md).
+To declare an action that executes another action in a new thread, use the [`NEWTHREAD` operator](NEWTHREAD_operator.md). To perform an action in a new thread pool, use the [`NEWEXECUTOR` operator](NEWEXECUTOR_operator.md).
 
 ### Examples
 

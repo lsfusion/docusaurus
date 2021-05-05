@@ -58,7 +58,7 @@ For change operators and the previous value operator, when executing global sync
 
 ### Language
 
-To create actions that handle events, use the ON instruction.
+To create actions that handle events, use the [`ON` instruction](ON_instruction.md).
 
 ### Examples
 

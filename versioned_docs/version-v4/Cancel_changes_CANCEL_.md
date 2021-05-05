@@ -12,7 +12,7 @@ This operator works differently if executed inside [events](Events.md#change) ha
 
 ### Language
 
-To declare an action that implements cancellation, use the [**CANCEL** operator](CANCEL_operator.md).
+To declare an action that implements cancellation, use the [`CANCEL` operator](CANCEL_operator.md).
 
 ### Examples
 

@@ -8,7 +8,7 @@ The source is set as a [property](Properties.md) whose values are instances of [
 
 ### Language
 
-To declare an action that writes a file, use the [**WRITE** operator](WRITE_operator.md).
+To declare an action that writes a file, use the [`WRITE` operator](WRITE_operator.md).
 
 ### Examples
 

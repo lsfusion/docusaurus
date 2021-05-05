@@ -4,7 +4,7 @@ title: 'Branching (CASE, IF, MULTI)'
 
 *The branching operator* creates an [action](Actions.md) that determines for a set of *conditions* which condition is met, and calls the corresponding action.
 
-All conditions are defined as [properties](Properties.md) and/or parameters. Accordingly, a condition is *met* if the value of the [p](Properties.md)roperty or parameter by which it is set is not equal to **NULL**.
+All conditions are defined as [properties](Properties.md) and/or parameters. Accordingly, a condition is *met* if the value of the property or parameter by which it is set is not equal to `NULL`.
 
 ### Polymorphic form {#poly}
 
@@ -22,7 +22,7 @@ This operator has the capability of an [implicit definition](Action_extension.md
 
 ### Single form {#single}
 
-The *single *form of the branching operator checks exactly one condition. If this condition is met, the specified action is called. It is also possible to specify an *alternative action *that is called if the condition is not met.
+The *single* form of the branching operator checks exactly one condition. If this condition is met, the specified action is called. It is also possible to specify an *alternative action* that is called if the condition is not met.
 
 
 :::info
@@ -31,7 +31,7 @@ Type of mutual exclusion and implicit definition do not make sense/are not suppo
 
 ### Language
 
-To declare an action implementing general form of branching, the [**CASE** operator](CASE_operator_action_.md) is used. For the single form of branching, the IF operator is used, and for the polymorphic form the [**MULTI** operator](MULTI_operator_action_.md). 
+To declare an action implementing general form of branching, the [`CASE` operator](CASE_operator_action_.md) is used. For the single form of branching, the [`IF` operator](IF_..._THEN_operator_action_.md) is used, and for the polymorphic form the [`MULTI` operator](MULTI_operator_action_.md). 
 
 ### Examples
 

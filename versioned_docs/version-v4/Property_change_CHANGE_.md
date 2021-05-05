@@ -2,7 +2,7 @@
 title: 'Property change (CHANGE)'
 ---
 
-The *property change* operator allows you to change the values of one property (*write*) to the value of another property (*read*) for all object collections for which the value of a third property (*condition*) is not **NULL**. The condition can be omitted (in which case it is considered to be equal to **TRUE**).
+The *property change* operator allows you to change the values of one property (*write*) to the value of another property (*read*) for all object collections for which the value of a third property (*condition*) is not `NULL`. The condition can be omitted (in which case it is considered to be equal to `TRUE`).
 
 ### Changeable properties {#changeable}
 
@@ -15,7 +15,7 @@ In addition to the above, mutable properties are also properties created using t
 
 ### Language
 
-To declare an action that implements property change, use the [**CHANGE** operator](CHANGE_operator.md).
+To declare an action that implements property change, use the [`CHANGE` operator](CHANGE_operator.md).
 
 ### Examples
 

@@ -10,7 +10,7 @@ The *exception handling* operator enables you to execute an action and do the fo
 
 ### Language
 
-To declare an exception handling action, use the [**TRY** operator](TRY_operator.md).
+To declare an exception handling action, use the [`TRY` operator](TRY_operator.md).
 
 ### Examples
 
