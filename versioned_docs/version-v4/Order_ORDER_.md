@@ -6,7 +6,7 @@ The *order* operator creates a [property](Properties.md) that returns the sequen
 
 ### Language
 
-To declare a property that determines the order in a group of objects, use the [**ORDER** operator](Object_group_operator.md).
+To declare a property that determines the order in a group of objects, use the [`ORDER` operator](Object_group_operator.md).
 
 ### Examples
 

@@ -10,7 +10,7 @@ The *activity* operator creates a property that determines whether one of the fo
 
 ### Language
 
-To create a property that determines whether a tab is active, use the [**ACTIVE TAB** operator](ACTIVE_TAB_operator.md). Whether a form is active is determined by creating an action using the [**ACTIVE FORM** operator](ACTIVE_FORM_operator.md).
+To create a property that determines whether a tab is active, use the [`ACTIVE TAB` operator](ACTIVE_TAB_operator.md). Whether a form is active is determined by creating an action using the [`ACTIVE FORM` operator](ACTIVE_FORM_operator.md).
 
 ### Examples
 

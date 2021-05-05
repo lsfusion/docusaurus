@@ -30,39 +30,39 @@ The behavior of properties and actions in the context of their display on the fo
 :::
 
   
-*Display group*
+#### Display group
 
 Each property is displayed exactly in one of the object groups on the form (this group shall be called a *display group* of this property). By default, the display group is the last group for the set of objects which this property receives as an input. If necessary, the developer can specify the display group explicitly (with certain [constraints](Structured_view.md#drawgroup-broken) when used in a structured view)
 
-*Groups-in-columns*
+#### Groups-in-columns
 
 By default, a property is displayed in its display group exactly once. In this case, the values of objects which are not in the display group of this property (these objects shall be called *upper*) are used as their current values. However, it is also possible to display one property multiple times so that all object collections are used as the values of certain upper objects (not their current values). With this display of the property, a kind of "matrix" is formed - upper objects x objects of the display group. Thus, to create such a matrix, when adding a property to the form you must specify which *upper* objects (specifically, object groups) must be used to create columns (these object groups shall be called *groups-in-columns*).
 
 When determining a [display group](#drawgroup-broken), properties of the group-to-columns are ignored.
 
-*Property groups*
+#### Property groups
 
 Properties on the form can be combined into [groups](Groups_of_properties_and_actions.md) which, in turn, are used in the interactive ([default design](Form_design.md#defaultDesign)) and [hierarchical](Structured_view.md#hierarchy) form views. By default, a property is included in a group globally (i.e., this inclusion is defined for a property for all forms at once), however, this inclusion can be redefined for particular forms.
 
-*Default settings*
+#### Default settings
 
-Properties on the form have a large number of display settings in various [views](Form_views.md), most of which can be set not only directly for the property on the form, but also for the property itself (when creating it). These settings will be the default settings, i.e., if the setting is not explicitly set for a specific property on the form, then the setting of the property itself is used. In addition, these default settings are "inherited" when using [composition](Composition_JOIN_.md), [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) and [previous value](Previous_value_PREV_.md) operators (i.e., if property f(a) has the default width of 10, then the property g(a) = f(a) IF h(a) will also have a width of 10 by default).
+Properties on the form have a large number of display settings in various [views](Form_views.md), most of which can be set not only directly for the property on the form, but also for the property itself (when creating it). These settings will be the default settings, i.e., if the setting is not explicitly set for a specific property on the form, then the setting of the property itself is used. In addition, these default settings are "inherited" when using [composition](Composition_JOIN_.md), [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) and [previous value](Previous_value_PREV_.md) operators (i.e., if property `f(a)` has the default width of `10`, then the property `g(a) = f(a) IF h(a)` will also have a width of `10` by default).
 
 ### Filters {#filters}
 
 For each form, the developer can create *filters* which will limit the list of object collections available for viewing/selection on the form.
 
-To define a filter, you must specify a property that will be used as a filter condition. The filter will be applied to the table of the object group that is the last for the set of objects which this property takes as input (i.e., similar to the definition of the property *display group*). In this case, only those object collections (rows) for which property values are not **NULL** will be shown.
+To define a filter, you must specify a property that will be used as a filter condition. The filter will be applied to the table of the object group that is the last for the set of objects which this property takes as input (i.e., similar to the definition of the property *display group*). In this case, only those object collections (rows) for which property values are not `NULL` will be shown.
 
 ### Orders {#sort}
 
 By default, in all object group views, object collections are displayed in a certain non-deterministic order, which is determined by the specific implementation of the platform (most often, internal identifiers are used to determine the order). If necessary, the developer can define this order explicitly by specifying a list of properties on the form that will be used as orders. At the same time, for each property in this list, you can specify whether the order should be ascending or descending (by default, the ascending option is used).
 
-**NULL** value is always considered to be the smallest value. 
+`NULL` value is always considered to be the smallest value. 
 
 ### Language
 
-To create a new form and define its structure, the [**FORM** instruction](FORM_instruction.md) is used.
+To create a new form and define its structure, the [`FORM` instruction](FORM_instruction.md) is used.
 
 ### Examples
 

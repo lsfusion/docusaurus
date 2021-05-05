@@ -7,10 +7,10 @@ sidebar_label: Обзор
 
 ### Действия
 
--   [Поиск (SEEK)](Search_SEEK_.md)
+-   [Поиск (`SEEK`)](Search_SEEK_.md)
 
 ### Свойства
 
--   [Фильтр (FILTER)](Filter_FILTER_.md)
--   [Порядок (ORDER)](Order_ORDER_.md)
--   [Отображение (VIEW)](View_VIEW_.md)
+-   [Фильтр (`FILTER`)](Filter_FILTER_.md)
+-   [Порядок (`ORDER`)](Order_ORDER_.md)
+-   [Отображение (`VIEW`)](View_VIEW_.md)

@@ -10,7 +10,7 @@ The *activation* operator creates an [action](Actions.md) that activates one of 
 
 ### Language
 
-To create an action that activates a form element, use the [**ACTIVATE** operator](ACTIVATE_operator.md).
+To create an action that activates a form element, use the [`ACTIVATE` operator](ACTIVATE_operator.md).
 
 ### Examples
 

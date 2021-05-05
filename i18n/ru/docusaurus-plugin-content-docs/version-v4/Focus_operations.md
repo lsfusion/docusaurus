@@ -5,7 +5,7 @@ sidebar_label: Обзор
 
 Эта категория включает в себя операторы, отвечающие за управление активностью компонент:
 
--   [Активация (ACTIVATE)](Activation_ACTIVATE_.md)
--   [Активность (ACTIVE)](Activity_ACTIVE_.md)
+-   [Активация (`ACTIVATE`)](Activation_ACTIVATE_.md)
+-   [Активность (`ACTIVE`)](Activity_ACTIVE_.md)
 
  

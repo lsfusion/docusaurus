@@ -5,11 +5,11 @@ sidebar_label: Overview
 
 A [form](Forms.md) view can be classified as follows:
 
-[Interactive](Interactive_view.md)
+#### [Interactive](Interactive_view.md)
 
 A view in which the user can interact with an open form: select current objects, call [actions](Actions.md), change [data properties](Data_properties_DATA_.md), and so on. Data is usually read as needed depending on user actions. It is this view (along with the [programming interface](Integration.md)) that is responsible for data input into the system.
 
-[Static](Static_view.md)
+#### [Static](Static_view.md)
 
 In this view, when the [form opens](Open_form.md) all its data is read at once, after which this data is converted/sent to the client. This is a one-way view type.
 
