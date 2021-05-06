@@ -2,17 +2,17 @@
 title: 'Modules'
 ---
 
-A *module* is a functionally complete part of a [project](Projects.md). A module consists of declarations of [p](Element_identification.md)[roperties](Properties.md), [actions](Actions.md), [events](Events.md), [constraints](Constraints.md), and other [system elements](Naming.md).
+A *module* is a functionally complete part of a [project](Projects.md). A module consists of declarations of [properties](Properties.md), [actions](Actions.md), [events](Events.md), [constraints](Constraints.md), and other [system elements](Naming.md).
 
 Each module has a name, which must be unique within the [project](Projects.md).
 
 ### Dependencies between modules {#depends}
 
-Usually modules use elements from other modules to describe part of their functionality. Accordingly, if module **B** uses elements from module **A**, it must be specified in module **B **that it*** ****depends* on **A**. Based on these dependencies, all modules in the project are arranged in a certain order in which they are initialized. It is guaranteed that if module **B **depends on module **A**, module **A **will be initialized before module **B**. Circular dependencies between project modules are not* *allowed.  
+Usually modules use elements from other modules to describe part of their functionality. Accordingly, if module `B` uses elements from module `A`, it must be specified in module `B` that it *depends* on `A`. Based on these dependencies, all modules in the project are arranged in a certain order in which they are initialized. It is guaranteed that if module `B` depends on module `A`, module `A` will be initialized before module `B`. Circular dependencies between project modules are not allowed.  
 
-If module **C** depends on module **B**, and module **B** depends on module **A**, we will also assume that module **C** depends on module **A**.
+If module `C` depends on module `B`, and module `B` depends on module `A`, we will also assume that module `C` depends on module `A`.
 
-Any module always automatically depends on the system module **[System](https://github.com/lsfusion/platform/blob/master/server/src/main/lsfusion/system/System.lsf)**, regardless of whether or not this is specified explicitly.
+Any module always automatically depends on the system module [`System`](https://github.com/lsfusion/platform/blob/master/server/src/main/lsfusion/system/System.lsf), regardless of whether or not this is specified explicitly.
 
 ### Namespaces
 

@@ -294,7 +294,7 @@ evaluate("...").then(response =>
 
 Реализация всей задачи может выглядеть следующим образом :
 
-<iframe src="https://codesandbox.io/embed/1y0o894rx4?fontsize=14" title="1y0o894rx4" width="100%" height="500px" border="0" border-radius="4px" overflow="hidden" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://codesandbox.io/embed/suspicious-shockley-r16kv?fontsize=14" title="suspicious-shockley-r16kv" width="100%" height="500px" border="0" border-radius="4px" overflow="hidden" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ### Пример 5
 

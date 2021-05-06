@@ -23,7 +23,7 @@ It is worth noting that this check is no more than a hint to the platform (for b
 
 ### Language
 
-The key instructions that implement the extension procedure are the [**ABSTRACT** operator](ABSTRACT_operator.md),for declaring an abstract action, and the [**+=** instruction](Instruction_+=.md), for defining its implementation.
+The key instructions that implement the extension procedure are the [`ABSTRACT` operator](ABSTRACT_operator.md),for declaring an abstract action, and the [`+=` instruction](Instruction_+=.md), for defining its implementation.
 
 ### Example
 

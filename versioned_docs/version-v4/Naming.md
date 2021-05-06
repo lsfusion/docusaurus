@@ -15,7 +15,7 @@ You can [find](Search.md) more details on how namespaces are used when [finding]
 
 The namespace in which elements are created is determined by the [module](Modules.md), and cannot be changed in the future. The same limitation applies to additional priority namespaces.
 
-Each namespace has its own name, which is its unique ID. Accordingly, the string obtained by concatenating (via a dot) the name of its namespace with the name of each element itself will be called the element's *full name*. For example, if the namespace is called **System**, and inside it there is a class **Element**, then the full name of this class will be **System.Element**.
+Each namespace has its own name, which is its unique ID. Accordingly, the string obtained by concatenating (via a dot) the name of its namespace with the name of each element itself will be called the element's *full name*. For example, if the namespace is called `System`, and inside it there is a class `Element`, then the full name of this class will be `System.Element`.
 
 ### Uniqueness
 
@@ -30,37 +30,37 @@ For some elements of the system, string *canonical names* are determined and are
     Item.name
     Sale.Document
 
-Since properties and actions can have the same names within the same namespace, the full name of a property may not be unique. Therefore, the canonical name of the properties / actions also includes a signature, that is, a list of the canonical names of the classes of the property / action's parameters, separated by commas. If a parameter's class is not determined, then the question mark character '**?**' is used instead of the canonical class name:
+Since properties and actions can have the same names within the same namespace, the full name of a property may not be unique. Therefore, the canonical name of the properties / actions also includes a signature, that is, a list of the canonical names of the classes of the property / action's parameters, separated by commas. If a parameter's class is not determined, then the question mark character `?` is used instead of the canonical class name:
 
-    <namespace name>.<Property/action name> [<class1>,..., <classN>]
+    <namespace name>.<Property/action name>[<class1>,...,<classN>]
 
     Item.gender[Item.Article]
-    Date.between [DATE, DATE, DATE]
-    Document.addHeader [Document. Document, STRING]
-    Math.sum [?,?]
+    Date.between[DATE,DATE,DATE]
+    Document.addHeader[Document.Document,STRING]
+    Math.sum[?,?]
 
-Since the signature of properties/actions do not have to contain only custom classes, canonical names are also determined for builtin classes: 
+Since the signature of properties/actions do not have to contain only custom classes, canonical names are also determined for built-in classes: 
 
-|Class name|Canonical name|
-|---|---|
-|<strong>INTEGER</strong>|<strong>INTEGER</strong>|
-|<strong>LONG</strong>|<strong>LONG</strong>|
-|<strong>DOUBLE</strong>|<strong>DOUBLE</strong>|
-|<strong>NUMERIC[ , ]</strong>|<strong>NUMERIC</strong>|
-|<strong>BOOLEAN</strong>|<strong>BOOLEAN</strong>|
-|<strong>DATE</strong>|<strong>DATE</strong>|
-|<strong>DATETIME</strong>|<strong>DATETIME</strong>|
-|<strong>TIME</strong>|<strong>TIME</strong>|
-|<strong>YEAR</strong>|<strong>YEAR</strong>|
-|<strong>STRING, STRING[ ]</strong>|<strong>STRING</strong>|
-|<strong>ISTRING, ISTRING[ ]</strong>|<strong>STRING</strong>|
-|<strong>BPSTRING[ ]</strong>|<strong>STRING</strong>|
-|<strong>BPISTRING[ ]</strong>|<strong>STRING</strong> |
-|<strong>TEXT</strong>|<strong>STRING</strong> |
-|<strong>ITEXT</strong>|<strong>STRING</strong> |
-|<strong>RICHTEXT</strong>|<strong>STRING</strong> |
-|<strong>COLOR</strong>|<strong>COLOR</strong>|
-|<strong>FILE,RAWFILE...</strong>|<strong>FILE,RAWFILE...</strong>|
+| Class name              | Canonical name    |
+| ----------------------- | ----------------- |
+| `INTEGER`               | `INTEGER`         |
+| `LONG`                  | `LONG`            |
+| `DOUBLE`                | `DOUBLE`          |
+| `NUMERIC[ , ]`          | `NUMERIC`         |
+| `BOOLEAN`               | `BOOLEAN`         |
+| `DATE`                  | `DATE`            |
+| `DATETIME`              | `DATETIME`        |
+| `TIME`                  | `TIME`            |
+| `YEAR`                  | `YEAR`            |
+| `STRING`, `STRING[ ]`   | `STRING`          |
+| `ISTRING`, `ISTRING[ ]` | `STRING`          |
+| `BPSTRING[ ]`           | `STRING`          |
+| `BPISTRING[ ]`          | `STRING`          |
+| `TEXT`                  | `STRING`          |
+| `ITEXT`                 | `STRING`          |
+| `RICHTEXT`              | `STRING`          |
+| `COLOR`                 | `COLOR`           |
+| `FILE,RAWFILE...`       | `FILE,RAWFILE...` |
 
 
 :::info
@@ -71,15 +71,15 @@ In some cases, an element of the property signature may be not a single class bu
 
 To avoid name collision, as well as for better readability, it is recommended that you use the following name policy:
 
-*System elements*
+#### System elements
 
 -   The name must begin with a lowercase letter (excluding classes).
 
--   If the name consists of several words, then each subsequent word should begin with a capital letter. For example, **myFirstName** , **MySuperClass**.
+-   If the name consists of several words, then each subsequent word should begin with a capital letter. For example, `myFirstName`.
 
-*Classes*
+#### Classes
 
--   The name of each class should begin with a capital letter.
+-   The name of each class should begin with a capital letter. For example, `MySuperClass`.
 
 ### Language
 

@@ -8,8 +8,8 @@ This operator creates an action that [opens a form](Open_form.md) in the [intera
 
 The operator works in two modes:
 
--   *Synchronous* (**WAIT**) - waits for the user to **close **the form, then saves the execution results and passes control to the next action.
--   *Asynchronous* (**NOWAIT**) - passes control to the next action right after **opening **a form on the client end.
+-   *Synchronous* (`WAIT`) - waits for the user to **close** the form, then saves the execution results and passes control to the next action.
+-   *Asynchronous* (`NOWAIT`) - passes control to the next action right after **opening** a form on the client end.
 
 By default, the operator works in the synchronous mode.
 
@@ -17,8 +17,8 @@ By default, the operator works in the synchronous mode.
 
 A form being opened can be shown in two ways:
 
--   As a *window* (**FLOAT**)- the form is shown as a floating window.
--   As a *tab* (**DOCKED**) - the form is opened as a tab in the system [window](Navigator_design.md) **System.forms**.
+-   As a *window* (`FLOAT`)- the form is shown as a floating window.
+-   As a *tab* (`DOCKED`) - the form is opened as a tab in the system [window](Navigator_design.md) `System.forms`.
 
 By default, forms in the synchronous mode are shown as windows, in the asynchronous mode – as tabs.
 
@@ -33,9 +33,9 @@ By default, when the interactive view is enabled, the platform [automatically de
 
 ### Dialog form {#dialog}
 
-This operator also allows to return the latest [current value](Form_structure.md#currentObject-broken) of a specified object (or, if necessary, of several objects), thus, essentially, performing [value input](Value_input.md). In this case, [input is considered to be canceled](Value_input.md#result) if the user closes the form using **System.formClose (**not **System.formOk**).
+This operator also allows to return the latest [current value](Form_structure.md#currentObject-broken) of a specified object (or, if necessary, of several objects), thus, essentially, performing [value input](Value_input.md). In this case, [input is considered to be canceled](Value_input.md#result) if the user closes the form using `System.formClose` (not `System.formOk`).
 
-While inputting a value, it is sometimes necessary to not just choose one from a list, but also allow the user to return a **NULL** value. For this purpose, the dialog form has a special option that, if enabled, shows the drop action (**System.formDrop**) on the form. Calling this action closes the form and returns a **NULL** value as a result.
+While inputting a value, it is sometimes necessary to not just choose one from a list, but also allow the user to return a `NULL` value. For this purpose, the dialog form has a special option that, if enabled, shows the drop action (`System.formDrop`) on the form. Calling this action closes the form and returns a `NULL` value as a result.
 
 Similar to the other value input operators, the dialog form of this operator allows to:
 
@@ -55,7 +55,7 @@ Also, when calling the form, you can specify that it will be opened in a [new](N
 
 ### Language
 
-To open a form in the interactive view, use the [**SHOW** operator](SHOW_operator.md). To show the form in the dialog mode, use the [**DIALOG** operator](DIALOG_operator.md).
+To open a form in the interactive view, use the [`SHOW` operator](SHOW_operator.md). To show the form in the dialog mode, use the [`DIALOG` operator](DIALOG_operator.md).
 
 ### Examples
 

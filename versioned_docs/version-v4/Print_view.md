@@ -16,7 +16,7 @@ Similar to an object group, each report has a *parent* report, so all reports fo
 
 ### Building report hierarchy {#buildhierarchy}
 
-Based on the report hierarchy restrictions, only "chains" of object groups can be included in one report (i.e., G1, G2, G3, ... Gn, where G2 is the only linear child object of G1, G3 is the only child of G2, etc.). Thus, the decision on how to break object groups into reports comes down to whether to merge an object group with its only child (if there is one) or not. By default, such a merge is performed, however, if necessary, the developer can disable it by specifying the corresponding option (**SUBREPORT**) for a child object group.
+Based on the report hierarchy restrictions, only "chains" of object groups can be included in one report (i.e., G1, G2, G3, ... Gn, where G2 is the only linear child object of G1, G3 is the only child of G2, etc.). Thus, the decision on how to break object groups into reports comes down to whether to merge an object group with its only child (if there is one) or not. By default, such a merge is performed, however, if necessary, the developer can disable it by specifying the corresponding option (`SUBREPORT`) for a child object group.
 
 
 :::info
@@ -44,7 +44,7 @@ The report hierarchy for this form is built as follows:
 
 ### Language
 
-All of the above options, as well as defining the form structure, can be done using the [**FORM** instruction](FORM_instruction.md).
+All of the above options, as well as defining the form structure, can be done using the [`FORM` instruction](FORM_instruction.md).
 
 ### Open form
 
