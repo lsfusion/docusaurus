@@ -63,4 +63,4 @@ The property with the current order, defined using the [`ORDER` operator](Order_
 
 The form obtained in both examples, with user-defined filter and order, will look like this:
 
-![](attachments/46367766/46367772.png)
+![](images/How-to_Table_status.png)

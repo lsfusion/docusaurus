@@ -6,15 +6,15 @@ title: 'IDE'
 
 Launch **IDEA** and select `Create New Project`, or when **IDEA** is already opened, select `File > New > Project` from the menu.
 
-![](attachments/46367442/65241572.png)![](attachments/46367442/65241575.png)
+![](images/IDE_welcome_screen.png)![](images/IDE_create_project.png)
 
 Select project type `lsFusion`. Make sure that the JDK is set and the link to the library with the `lsFusion` is selected (when [automatic installation](Development_auto_.md) is used, this link is set automatically; otherwise, click `Download` or select the previously downloaded library `Create`) and then click `Next`.
 
-![](attachments/46367442/65241577.png)
+![](images/IDE_project_type.png)
 
 Fill in the name of the project and the directory where the source files will be stored. Adjust the connection parameters for the database and application server when necessary. Click `Finish`.
 
-![](attachments/46367442/65241579.png)
+![](images/IDE_project_name.png)
 
 ### Developing an application {#dev}
 
@@ -22,7 +22,7 @@ All the source code written in **lsFusion** is stored by default in `src/main/ls
 
 To add a new [module](Modules.md), right-click the corresponding folder and select `New > lsFusion Module` from the menu:
 
-![](attachments/46367442/65241581.png)
+![](images/IDE_add_module.png)
 
   
 
@@ -30,11 +30,11 @@ You can also create subfolders (by choosing `Package`) to group similar modules 
 
 ### Starting up a server {#run}
 
-When you create a new project, a server startup configuration is also created by default. You can run it by selecting `Run -> Run 'Run lsFusion server'` or by clicking on the symbol ![](attachments/46367442/46367451.png) next to the caption `Run lsFusion server` in the upper right corner. If startup is successful, the last line in the log should be `Server has successfully started`.
+When you create a new project, a server startup configuration is also created by default. You can run it by selecting `Run -> Run 'Run lsFusion server'` or by clicking on the symbol ![](images/IDE_run_symbol.png) next to the caption `Run lsFusion server` in the upper right corner. If startup is successful, the last line in the log should be `Server has successfully started`.
 
-![](attachments/46367442/65241582.png)
+![](images/IDE_run_command.png)
 
-![](attachments/46367442/65241583.png)
+![](images/IDE_run_in_operationbar.png)
 
 After the server has been successfully started, you can connect to it over a web-based or desktop client via a shortcut on your desktop.
 
@@ -44,15 +44,15 @@ If the platform is embedded to an existing project (for example, [via Maven](Dev
 
 In the menu, select `Edit configurations`:
 
-![](attachments/46367442/57737363.png)
+![](images/IDE_edit_conf.png)
 
 In the window that opens, click `+` in the upper left corner and select `lsFusion Server` from the drop-down list
 
-![](attachments/46367442/57737364.png)
+![](images/IDE_add_server.png)
 
 Set the configuration name and the module (if there are several) for which you need to start the lsFusion application server. In the same window, if necessary, you can specify the build process to be followed at configuration startup, additional parameters for the Java virtual machine, etc.
 
-![](attachments/46367442/57737376.png)
+![](images/IDE_conf_name.png)
 
 ### Building an application (with embedded server) {#build}
 

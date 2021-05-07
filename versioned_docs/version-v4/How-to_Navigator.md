@@ -28,7 +28,7 @@ NAVIGATOR {
 
 By specifying `WINDOW` for the `application` element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called `toolbar`. This will look like this:
 
-![](attachments/46367463/46367465.png)
+![](images/How-to_Navigator_ex1.png)
 
 ## Example 2
 
@@ -53,4 +53,4 @@ NAVIGATOR {
 
 Result:
 
-![](attachments/46367463/46367468.png)
+![](images/How-to_Navigator_ex2.png)

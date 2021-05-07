@@ -77,4 +77,4 @@ overMarkup 'Overidden markup' (Book b) = OVERRIDE markup(b), overMarkup(category
 
 As a result, the form with the filled data will look like this:
 
-![](attachments/46367603/46367612.png)
+![](images/How-to_Overriding_values.png)

@@ -134,7 +134,7 @@ DESIGN order {
 
 The form will look like this:
 
-![](attachments/46367481/46367490.png)![](attachments/46367481/46367491.png)
+![](images/How-to_Working_with_documents_line.png)![](images/How-to_Working_with_documents_select.png)
 
 If the quantity changes on the `Selection` tab, the system will automatically change order lines. If the order lines are changed, the quantity on the `Selection` tab will change as well.
 
