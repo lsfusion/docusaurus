@@ -38,9 +38,9 @@ FORM myForm 'myForm'
 
 Иерархия отчетов для этой формы будет построена следующим образом:
 
-  
+import ReportHierarchyRuSvg from './images/ReportHierarchyRu.svg';
 
-![](download/temp/svgout7618474234164938229.png)
+<ReportHierarchyRuSvg /> 
 
 ### Язык
 

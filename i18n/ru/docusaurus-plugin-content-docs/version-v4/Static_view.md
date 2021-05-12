@@ -47,6 +47,8 @@ FORM myForm 'myForm'
 
 Иерархия групп объектов для этой формы будет построена следующим образом:
 
-![](download/temp/svgout2352421869421388032.png)
+import GroupHierarchyRuSvg from './images/GroupHierarchyRu.svg';
+
+<GroupHierarchyRuSvg />
 
   
