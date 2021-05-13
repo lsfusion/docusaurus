@@ -24,27 +24,27 @@ NAVIGATOR {
 
 Затем создаем новый Resource Bundle, куда пропишем значения идентификаторов на разных языках:
 
-![](attachments/60555378/60555382.png)
+![](images/How-to_Internationalization_newRB.png)
 
 Называем его, например, `I18nResourceBundle` (система будет считывать только файлы, которые заканчиваются на `'ResourceBundle'`) и выбираем языки, которые будут использоваться :
 
-![](attachments/60555378/60555383.png)
+![](images/How-to_Internationalization_RBlang.png)
 
 Далее, для каждого идентификатора прописываем значения на каждом из выбранных языков:
 
-![](attachments/60555378/60555384.png)
+![](images/How-to_Internationalization_RBprop.png)
 
 После запуска, по умолчанию, все названия будут показываться на языке сервера (который, в свою очередь, по умолчанию, определяется по языку операционной системы) :
 
-![](attachments/60555378/60555385.png)
+![](images/How-to_Internationalization_exRU.png)
 
 Для конкретного пользователя можно изменить язык и страну в его профиле:
 
-![](attachments/60555378/60555386.png)
+![](images/How-to_Internationalization_langChange.png)
 
 В таком случае, когда пользователь зайдет заново в систему, то все названия будут показываться ему на выбранном языке:
 
-![](attachments/60555378/60555387.png)
+![](images/How-to_Internationalization_exEN.png)
 
 Идентификаторы можно также использовать и в выражениях:
 

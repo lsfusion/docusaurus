@@ -177,7 +177,7 @@ FORM myForm 'myForm'
 
 Иерархия контейнеров и компонентов в дизайне по умолчанию будет выглядеть следующим образом :
 
-![](attachments/29884443/57738024.png)
+![](images/Form_design_default_hierachy.png)
 
   
 
@@ -243,4 +243,4 @@ DESIGN order {
 
 На выходе получаем следующую форму :
 
-![](attachments/29884443/57738025.jpg)
+![](images/Form_design_example.jpg)

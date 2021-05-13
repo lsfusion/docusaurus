@@ -26,7 +26,6 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1"
      objecttolerance="10"
@@ -39,7 +38,7 @@
      id="namedview128"
      showgrid="false"
      inkscape:zoom="1.8158348"
-     inkscape:cx="274.52938"
+     inkscape:cx="258.55876"
      inkscape:cy="185.5"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -73,7 +72,7 @@
      stroke="#000000"
      pointer-events="none"
      id="ellipse8"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <path
      d="M 85 80 L 85 56.37"
      fill="none"
@@ -99,7 +98,7 @@
      stroke="#000000"
      pointer-events="none"
      id="ellipse20"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <circle
      cx="-85"
      cy="-25"
@@ -109,7 +108,7 @@
      id="ellipse28"
      r="25"
      transform="scale(-1)"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <ellipse
      cx="155"
      cy="265"
@@ -119,7 +118,7 @@
      stroke="#000000"
      pointer-events="none"
      id="ellipse36"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <path
      d="M 155 320 L 155 296.37"
      fill="none"
@@ -145,7 +144,7 @@
      stroke="#000000"
      pointer-events="none"
      id="ellipse48"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <ellipse
      cx="25"
      cy="265"
@@ -155,7 +154,7 @@
      stroke="#000000"
      pointer-events="none"
      id="ellipse56"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <path
      d="M 43 247 L 63.95 208.59"
      fill="none"
@@ -197,7 +196,7 @@
      stroke="#000000"
      pointer-events="none"
      id="rect72"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <rect
      x="480"
      y="135"
@@ -207,7 +206,7 @@
      stroke="#000000"
      pointer-events="none"
      id="rect86"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <rect
      x="430"
      y="215"
@@ -217,7 +216,7 @@
      stroke="#000000"
      pointer-events="none"
      id="rect94"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <g
      transform="translate(450.5,233.5)"
      id="g100" />
@@ -230,7 +229,7 @@
      stroke="#000000"
      pointer-events="none"
      id="rect102"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <path
      d="M 455 215 L 499.54 188.28"
      fill="none"
@@ -295,7 +294,7 @@
      stroke-miterlimit="10"
      pointer-events="none"
      id="path124"
-     style="stroke:#26c4f7;stroke-opacity:1" />
+     style="stroke:#26c4f7;stroke-opacity:1;fill:#ffffff;fill-opacity:0" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:12px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"

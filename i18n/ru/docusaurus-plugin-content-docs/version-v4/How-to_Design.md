@@ -76,7 +76,7 @@ DESIGN orders {
 
 Форма будет выглядеть следующим образом :
 
-![](attachments/36307439/46367472.png)
+![](images/How-to_Design_ex1.png) 
 
 ## Пример 2
 
@@ -135,4 +135,4 @@ DESIGN orders {
 
 Результат :
 
-![](attachments/36307439/46367474.png)
+![](images/How-to_Design_ex2.png)

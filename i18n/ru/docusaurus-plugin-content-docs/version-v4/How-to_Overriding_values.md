@@ -77,4 +77,4 @@ overMarkup 'Надбавка перегруженная' (Book b) = OVERRIDE mar
 
 В итоге форма с заполненным данными будет выглядеть следующим образом:
 
-![](attachments/46367603/46367612.png)
+![](images/How-to_Overriding_values.png)

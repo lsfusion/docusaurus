@@ -72,11 +72,11 @@ EXTEND FORM books
 
 Затем запускаем сервер из IDE, запускаем десктоп-клиент, открываем форму с книгами и жмем созданную кнопку печати. Система создаст автоматическую печатную форму и откроет ее в режиме [предпросмотра](In_a_print_view_PRINT_.md#interactive). Далее нужно нажать указанную ниже кнопку :
 
-![](attachments/46367627/46367670.png)
+![](images/How-to_Reports_ex1_Preview.png)
 
 Система сохранит автоматические шаблоны для [Jasper Reports](https://community.jaspersoft.com/project/jasperreports-library) в папку исходников (src/main/lsfusion).
 
-![](attachments/46367627/57738054.png)
+![](images/How-to_Reports_ex1_autotemplate.png)
 
 Затем откроется редактор, ассоциированный с форматом jrxml, в котором будут открыты эти файлы. В качестве редактора можно использовать [JasperSoft Studio](https://community.jaspersoft.com/project/jaspersoft-studio). Кроме того, будет запущен фоновый процесс, который будет в постоянном режиме синхронизировать файлы отчетов в каталогах src/main/lsfusion и out/production (или target/classes, если для запуска конфигурации используется Maven, а не IDEA Build), чтобы избавить от необходимости перестраивать проект после изменений шаблонов в редакторе.
 
@@ -84,7 +84,7 @@ EXTEND FORM books
 
 Внесем некоторые изменения в автоматическом шаблоне и сохраним :
 
-![](attachments/46367627/57738052.png)
+![](images/How-to_Reports_ex1_template_change.png)
 
 **Шаблон** `Sample_booksByCategories.jrxml`:
  
@@ -182,7 +182,7 @@ EXTEND FORM books
 
 После этого, если повторно запустить формирование отчета, то будут использованы уже измененные шаблоны и результат будет выглядеть следующим образом :
 
-![](attachments/46367627/57738056.png)
+![](images/How-to_Reports_ex1_result.png)
 
 
 :::info
@@ -254,7 +254,7 @@ EXTEND FORM invoices
 
 Перенесем данные о счете из заголовка группы (**Group Header**) в шапку всего отчета, чтобы он отрисовывался над названиями колонок.
 
-![](attachments/46367627/57738059.png)
+![](images/How-to_Reports_ex2_template_change.png)
 
   
 
@@ -348,7 +348,7 @@ EXTEND FORM invoices
 
 Результирующий отчет будет выглядеть следующим образом :
 
-![](attachments/46367627/57738060.png)
+![](images/How-to_Reports_ex2_result.png)
 
 ## Пример 3
 
@@ -455,7 +455,7 @@ EXTEND FORM customers
 Поскольку зависимость между объектами формирует дерево с двумя листьями, то всего будет сформировано три шаблона :
 
 1.  `Sample_customerInfo` - верхний отчет, который будет отображать данные по покупателям (в данном случае, по одному единственному покупателю). В нем будут содержаться ссылки на подотчеты `Sample_customerInfo_i` и `Sample_customerInfo_o`.  
-    ![](attachments/46367627/57738063.png)
+    ![](images/How-to_Reports_ex3_templates.png)
 
     **Шаблон** `Sample_customerInfo.jrxml`:
     ```xml
@@ -753,4 +753,4 @@ EXTEND FORM customers
     
 Результат такого, слегка подправленного, отчета будет выглядеть следующим образом :
 
-![](attachments/46367627/57738064.png)
+![](images/How-to_Reports_ex3_result.png)
