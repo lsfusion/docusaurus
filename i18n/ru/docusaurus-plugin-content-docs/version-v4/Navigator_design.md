@@ -12,23 +12,28 @@ title: 'Дизайн навигатора'
 
 Каждому элементу навигатора можно задать, в какое окно должны рисоваться его потомки. При необходимости, в него может рисоваться и сам элемент. Таким образом, для каждого окна однозначно определяется множество *поддеревьев* *элементов* навигатора, которое в нем отображается. Графически это можно представить следующим образом:
 
-![](images/Navigator_designRu.png)
+import ThemedImage from '@theme/ThemedImage';
+
+<ThemedImage
+    alt="Docusaurus themed image"
+    sources={{
+        light: require('./images/Navigator_designRu.png').default,
+        dark: require('./images/Navigator_designRu_dark.png').default,
+    }}
+/>
 
 ### Расположение окон на рабочем столе
 
 Каждое окно занимает предопределенный участок рабочего стола. Графически это можно представить следующим образом:
 
-|<p>Окно 1</p><br/><p> </p>|
-|---|
-|<p><br /><br/><br /><br/><br /><br/><br /><br/>Окно 2<br /><br/><br /><br/><br /><br/><br /><br/></p><br/><p> </p>|<br /><br/>Окно 4<br /><br/><br /><br/>|
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-| | | | | | | |
-|<br /><br/>Окно 3<br /><br/><br /><br/><br /><br/>| | | | | | | |
-| | | | | | | |
-| | | | | | | |
+<ThemedImage
+    alt="Docusaurus themed image"
+    sources={{
+        light: require('./images/Navigator_design_light_Ru.png').default,
+        dark: require('./images/Navigator_design_dark_Ru.png').default,
+    }}
+/>
+
 
 Весь рабочий стол имеет размеры `100 x 100` *точек*. При создании окна необходимо указать левую верхнюю координату, ширину и высоту окна, выраженную в *точках*. Желательно, чтобы окна "накрывали" всю область рабочего стола. Если этого не происходит, то свободная область будет отдана одному из окон (не гарантируется какому именно). Также допускается, чтобы два окна имели абсолютно идентичные координаты и размеры. В таком случае они будут отображаться на одном и том же месте, но переключение между ними будет идти при помощи вкладок.
 
@@ -65,11 +70,13 @@ title: 'Дизайн навигатора'
 
 По умолчанию, рабочий стол имеет следующее расположение (в скобках указаны левая координата, верхняя координата, ширина, высота):
 
-|<strong>root</strong> (0, 0, 100, 6)|
-|---|
-|<p><strong><br /><br/></strong></p><br/><p><strong>toolbar/tree</strong></p><br/><p>(0, 6, 20, 64)</p><br/><p> </p>|<p> </p><br/><p> </p><br/><p><strong>forms</strong> (20, 20, 80, 79)</p><br/><p> </p>|
-|<p><strong>log</strong></p><br/><p>(0, 70, 20, 29)</p>|
-|<strong>status</strong> (0, 99, 100, 1)|
+<ThemedImage
+    alt="Docusaurus themed image"
+    sources={{
+        light: require('./images/Navigator_design_default.png').default,
+        dark: require('./images/Navigator_design_default_dark.png').default,
+    }}
+/>
 
 ### Язык
 

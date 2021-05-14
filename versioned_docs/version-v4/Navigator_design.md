@@ -12,23 +12,28 @@ Each window must have a *caption* which will be used when displaying the window 
 
 For each navigator element, you can specify the window in which its descendants should be displayed. If necessary, the element itself can be displayed there. Thus, the set of *subtrees* (navigator *elements*) that is displayed in each window is uniquely determined. Graphically, this can be represented as follows:
 
-![](images/Navigator_design.png)
+
+import ThemedImage from '@theme/ThemedImage';
+
+<ThemedImage
+    alt="Docusaurus themed image"
+    sources={{
+        light: require('./images/Navigator_design.png').default,
+        dark: require('./images/Navigator_design_dark.png').default,
+    }}
+/>
 
 ### Window layout on the desktop
 
 Each window occupies a predefined section of the desktop. Graphically, this can be represented as follows:
 
-|<p>Window 1</p><br/><p><br /><br/></p>|
-|---|
-|<p><br /><br/><br /><br/><br /><br/><br /><br/>Window 2<br /><br/><br /><br/><br /><br/><br /><br/></p><br/><p><br /><br/></p>|<br /><br/>Window 4<br /><br/><br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>Window 3<br /><br/><br /><br/><br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
-|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|<br /><br/>|
+<ThemedImage
+    alt="Docusaurus themed image"
+    sources={{
+        light: require('./images/Navigator_design_light_En.png').default,
+        dark: require('./images/Navigator_design_dark_En.png').default,
+    }}
+/>
 
 The entire desktop is `100 x 100` *pixels* in size. When creating a window, you must specify the window's upper left coordinate, width and height, expressed in *pixels*. It is desirable that windows should "cover" the entire area of the desktop. If this does not happen, then the free area will be given to one of the windows (there is no guarantee as to which one). Two windows are allowed to have absolutely identical coordinates and sizes. In this case they will be displayed in the same place, but switching between them will be possible using tabs.
 
@@ -65,11 +70,14 @@ Also, three additional windows are automatically created for ease of development
 
 By default, the desktop has the following layout (the left coordinate, upper coordinate, width, and height are indicated in brackets):
 
-|<strong>root</strong> (0, 0, 100, 6)|
-|---|
-|<p><strong><br /><br/></strong></p><br/><p><strong>toolbar/tree</strong></p><br/><p>(0, 6, 20, 64)</p><br/><p><br /><br/></p>|<p><br /><br/></p><br/><p><br /><br/></p><br/><p><strong>forms</strong> (20, 20, 80, 79)</p><br/><p><br /><br/></p>|
-|<p><strong>log</strong></p><br/><p>(0, 70, 20, 29)</p>|
-|<strong>status</strong> (0, 99, 100, 1)|
+
+<ThemedImage
+    alt="Docusaurus themed image"
+    sources={{
+        light: require('./images/Navigator_design_default.png').default,
+        dark: require('./images/Navigator_design_default_dark.png').default,
+    }}
+/>
 
 ### Language
 
