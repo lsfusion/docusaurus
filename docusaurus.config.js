@@ -2,12 +2,12 @@
 module.exports = {
   title: 'lsfusion documentation',
   tagline: 'lsfusion documentation',
-  url: 'https://danchanka.github.io',
+  url: 'https://lsfusion.github.io',
   baseUrl: '/platform/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'danchanka', // Usually your GitHub org/user name.
+  organizationName: 'lsfusion', // Usually your GitHub org/user name.
   projectName: 'platform', // Usually your repo name.
   themeConfig: {
     navbar: {
@@ -31,7 +31,7 @@ module.exports = {
         },
 //        {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/danchanka/platform',
+          href: 'https://github.com/lsfusion/platform',
           label: 'GitHub',
           position: 'right',
         },
