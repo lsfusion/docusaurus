@@ -11,7 +11,7 @@ While the application is running, there is a number of events for each form that
 
 *For objects on the form*
 
--   `CHANGE` - user [changed](Interactive_view.md#objects) the [current value](Form_structure.md#currentObject-broken) of an object.
+-   `CHANGE` - user [changed](Interactive_view.md#objects) the [current value](Form_structure.md#currentObject) of an object.
 
 *For properties or actions on the form*
 
@@ -94,7 +94,7 @@ For an *object request* from the user, depending on the type of class, the follo
 For properties and actions on the form, it is also possible to define the following *standard* change event handlers (`CHANGE`, `CHANGEWYS`, `GROUPCHANGE`, `EDIT`): 
 
 -   *Read Only* (`READONLY`) - if the property is displayed in the table, the handler will be similar to `CHANGE` default handler when the property is not mutable (that is, the user filter mechanism will be called). If the property is not displayed in the table, nothing will happen. You can also make this option conditional (`READONLYIF`) (that is, change only if the value of some property is not `NULL`).
--   *Selector* (`SELECTOR`) - when you try to make a change, a dialog will be shown in which the user will be asked to change the [current value](Form_structure.md#currentObject-broken) of the object.
+-   *Selector* (`SELECTOR`) - when you try to make a change, a dialog will be shown in which the user will be asked to change the [current value](Form_structure.md#currentObject) of the object.
 
 ### Language
 

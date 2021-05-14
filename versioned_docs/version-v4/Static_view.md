@@ -12,7 +12,7 @@ As a rule, structured view is used to load data into other information systems, 
 
 ### Empty object group {#empty}
 
-In static view, any form has a predefined *empty* object group, which is considered to be the first object group on the form, does not contain any objects and is considered to be the [display group](Form_structure.md#drawgroup-broken) for properties/filters without parameters. Accordingly, in this display group there is always a maximum of one empty object collection (exactly one, if there are no filters without parameters).
+In static view, any form has a predefined *empty* object group, which is considered to be the first object group on the form, does not contain any objects and is considered to be the [display group](Form_structure.md#drawgroup) for properties/filters without parameters. Accordingly, in this display group there is always a maximum of one empty object collection (exactly one, if there are no filters without parameters).
 
 ### Object group hierarchy {#hierarchy}
 

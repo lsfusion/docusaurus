@@ -2,7 +2,7 @@
 title: 'Search (SEEK)'
 ---
 
-*Search* operator tries to make the specified object collection [current](Form_structure.md#currentObject-broken) for the specified form object group. The objects from the specified object collection shall be called *seek objects*.
+*Search* operator tries to make the specified object collection [current](Form_structure.md#currentObject) for the specified form object group. The objects from the specified object collection shall be called *seek objects*.
 
 ### Seek direction {#direction}
 

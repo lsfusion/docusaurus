@@ -74,7 +74,7 @@ The following set of options is supported (the syntax of each option is indicate
     - `TOOLBAR` - toolbar
     - `PANEL` - panel
 
-  It is similar to specifying the `viewType` option in the [property block](Properties_and_actions_block.md) of the [`FORM`instruction](FORM_instruction.md). Thus, if this option is not specified either in the property options or in the property block directly on the form, the [default view](Interactive_view.md#defaultPropertyView-broken) of the property display group on the form is used.
+  It is similar to specifying the `viewType` option in the [property block](Properties_and_actions_block.md) of the [`FORM`instruction](FORM_instruction.md). Thus, if this option is not specified either in the property options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the property display group on the form is used.
 
 - `ON eventType { actionOperator }`
 

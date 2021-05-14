@@ -76,7 +76,7 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
 - `viewType`
 
-    [Default view](Interactive_view.md#defaultPropertyView-broken) for an object group. It is specified with one of the keywords:
+    [Default view](Interactive_view.md#property) for an object group. It is specified with one of the keywords:
     
     - `PANEL` - *panel* view.
     - `TOOLBAR` - *toolbar* display mode.

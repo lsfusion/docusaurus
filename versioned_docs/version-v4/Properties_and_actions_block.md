@@ -197,7 +197,7 @@ In the current platform implementation, if the name and caption are not specifie
     - `TOOLBAR` — toolbar
     - `PANEL` — panel
 
-  If not specified, the corresponding option from the [property options](Property_options.md) is used. If it is also not specified, then the [default view type](Interactive_view.md#defaultPropertyView-broken) is used for the display group of this property or action.
+  If not specified, the corresponding option from the [property options](Property_options.md) is used. If it is also not specified, then the [default view type](Interactive_view.md#property) is used for the display group of this property or action.
 
 - `NEWSESSION` | `NESTEDSESSION`
 

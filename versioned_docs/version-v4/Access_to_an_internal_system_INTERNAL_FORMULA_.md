@@ -3,7 +3,7 @@ title: 'Access to an internal system (INTERNAL, FORMULA)'
 sidebar_label: Overview
 ---
 
-### Java interaction
+### Java interaction {#javato}
 
 To implement this type of interaction, platform uses the [internal call (`INTERNAL`)](Internal_call_INTERNAL_.md) operator, which allows calling Java code inside the JVM lsFusion server.
 

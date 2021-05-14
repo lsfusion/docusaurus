@@ -142,7 +142,7 @@ An automatic design can be created for each form, based on the form's structure.
 The automatic design is generated as follows:
 
 -   `BOX`: contains all the components of this form. Vertical container. Extension coefficient: `1`, alignment: `STRETCH`.
-    -   `PANEL`: contains components of the properties that are displayed in `PANEL` view  and [display group](Form_structure.md#drawgroup-broken) of which is undefined (the property has no parameters). The internal structure and layout are similar to the internal structure and layout of the object group container. 
+    -   `PANEL`: contains components of the properties that are displayed in `PANEL` view  and [display group](Form_structure.md#drawgroup) of which is undefined (the property has no parameters). The internal structure and layout are similar to the internal structure and layout of the object group container. 
         -   `GROUP...`
     -   `OBJECTS`: contains all the components that are created for object groups/trees on this form. Vertical container. Extension coefficient: `1`, alignment: `STRETCH`.
         -   `BOX(<object group/tree>)`:  contains all the components of this group of objects. Vertical container. Extension coefficient: `1`, alignment: `STRETCH`.

@@ -9,7 +9,7 @@ A form opened in *interactive* mode is a graphical component with a certain [des
 
 In the interactive view, object groups can be displayed in a table. The rows in the table are object collections, and the columns are properties. The records displayed in the table and their order are determined by the current [filters](Form_structure.md#filters) and [orders](Form_structure.md#sort).
 
-[Current values](Form_structure.md#currentObject-broken) of objects can change either as a result of an action created using the special search operator [(`SEEK`)](Search_SEEK_.md), or as a result of a change to the current row, if an object group is displayed in a table.
+[Current values](Form_structure.md#currentObject) of objects can change either as a result of an action created using the special search operator [(`SEEK`)](Search_SEEK_.md), or as a result of a change to the current row, if an object group is displayed in a table.
 
 When an object group is displayed in a table, the number of rows (object collections) displayed can either be determined automatically based on the height of the visible part of the table, or specified by the developer explicitly when creating the form.
 
@@ -64,7 +64,7 @@ The user can change existing orders or add their own, as well as add their own f
 
 ### Default objects selection {#defaultobject}
 
-In the interactive form view, object group filters can change as a result of various user actions (for example, changing the upper objects of these filters, selecting filters in the filter group, etc.), after which the [current](Form_structure.md#currentObject-broken) objects may no longer meet the conditions of the new filters. Also, when [a form is opened](Open_form.md), some objects may not be [passed](Open_form.md#params) or may be passed equal to `NULL`. In both of these cases, it is necessary to change the current objects, to some current *default objects*. The platform provides several options for selecting new current objects:
+In the interactive form view, object group filters can change as a result of various user actions (for example, changing the upper objects of these filters, selecting filters in the filter group, etc.), after which the [current](Form_structure.md#currentObject) objects may no longer meet the conditions of the new filters. Also, when [a form is opened](Open_form.md), some objects may not be [passed](Open_form.md#params) or may be passed equal to `NULL`. In both of these cases, it is necessary to change the current objects, to some current *default objects*. The platform provides several options for selecting new current objects:
 
 -   First (`FIRST`) - the first object collection (in accordance with the current order)
 -   Last (`LAST`) – last object collection.

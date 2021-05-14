@@ -33,7 +33,7 @@ By default, when the interactive view is enabled, the platform [automatically de
 
 ### Dialog form {#dialog}
 
-This operator also allows to return the latest [current value](Form_structure.md#currentObject-broken) of a specified object (or, if necessary, of several objects), thus, essentially, performing [value input](Value_input.md). In this case, [input is considered to be canceled](Value_input.md#result) if the user closes the form using `System.formClose` (not `System.formOk`).
+This operator also allows to return the latest [current value](Form_structure.md#currentObject) of a specified object (or, if necessary, of several objects), thus, essentially, performing [value input](Value_input.md). In this case, [input is considered to be canceled](Value_input.md#result) if the user closes the form using `System.formClose` (not `System.formOk`).
 
 While inputting a value, it is sometimes necessary to not just choose one from a list, but also allow the user to return a `NULL` value. For this purpose, the dialog form has a special option that, if enabled, shows the drop action (`System.formDrop`) on the form. Calling this action closes the form and returns a `NULL` value as a result.
 

@@ -127,7 +127,7 @@ When files of a specific type (`JSONFILE`, `XMLFILE`, ...) are cast into a file 
 |`IMAGEFILE`|jpg             |
 |`TABLEFILE`|table           |
 
-## The order of determining the result property when [accessing from an external system](Access_from_an_external_system.md#httpresult-broken)
+## The order of determining the result property when [accessing from an external system](Access_from_an_external_system.md#httpresult) {#export}
 
 |Class name|Property name|
 |---|---|

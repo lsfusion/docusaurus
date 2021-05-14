@@ -21,7 +21,7 @@ In the current implementation the [group-in-columns](Form_structure.md#groupcolu
 
 When building an object group [hierarchy](Static_view.md#hierarchy) in a structured view, the object groups that have all their objects [passed](Open_form.md#params) on the form opening are ignored (as if these object groups did not exist).
 
-If the property [display group](Form_structure.md#drawgroup-broken) is specified explicitly in a structured view, then this group should not be earlier than the default one (if the specified group appears earlier, then the default display group will be used anyway).
+If the property [display group](Form_structure.md#drawgroup) is specified explicitly in a structured view, then this group should not be earlier than the default one (if the specified group appears earlier, then the default display group will be used anyway).
 
 ### Export/import name {#extid}
 
@@ -41,7 +41,7 @@ Unlike property names on the form, property export/import names (`EXTID`) of dif
 
 Before directly proceeding with the form export/import, the platform builds a hierarchy of properties, groups of objects/properties as follows:
 
--   The hierarchy of objects/properties groups is built in accordance with the [hierarchy](Static_view.md) of object groups and property [display groups](Form_structure.md#drawgroup-broken): a property display group is considered the parent of this property, the hierarchy of object groups is preserved.
+-   The hierarchy of objects/properties groups is built in accordance with the [hierarchy](Static_view.md) of object groups and property [display groups](Form_structure.md#drawgroup): a property display group is considered the parent of this property, the hierarchy of object groups is preserved.
 -   Then for each `X` object group:
     -   [property groups](Groups_of_properties_and_actions.md) that all `X` descendants belong to are determined, then these property groups and their ancestors are automatically included in the hierarchy. Also:
         -   property groups become the parents of `X` descendants that belong to those groups
@@ -149,7 +149,7 @@ Working with namespaces is similar when importing properties, as well as when wo
 Each file for an object group in flat view is a table in which:
 
 -   Rows are object collections of this object group.
--   Columns are properties, which [display groups](Form_structure.md#drawgroup-broken) are equal to this object group.
+-   Columns are properties, which [display groups](Form_structure.md#drawgroup) are equal to this object group.
 
 In CSV format (when there is no first header line), the columns are named similarly to XLS (i.e., `A` is the first, `B` is the second, etc.)
 

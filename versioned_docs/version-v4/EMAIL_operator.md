@@ -20,7 +20,7 @@ The `EMAIL` operator creates an [action](Actions.md) that [sends email](Send_mai
 
 The `EMAIL` operator creates an action that sends emails. 
 
-It is assumed that the file extension is not specified in the attachment name, i.e. period `.` is also considered part of the file name. This extension is automatically determined similar to the [`WRITE` operator](WRITE_operator.md#extension-broken).
+It is assumed that the file extension is not specified in the attachment name, i.e. period `.` is also considered part of the file name. This extension is automatically determined similar to the [`WRITE` operator](WRITE_operator.md).
 
 ### Parameters
 

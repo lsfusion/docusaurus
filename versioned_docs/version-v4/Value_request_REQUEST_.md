@@ -32,7 +32,7 @@ The *value request* operator creates an [action](Actions.md) in which *requestin
 
 - Group change (`GROUPCHANGE`) default handler
 
-    By default, group change handler is created as follows: `CHANGE` is called first for objects' [current values](Form_structure.md#currentObject-broken), then if the input has not been canceled, the same handler is called for all other values of objects (matching the filter), with the value of the `System.requestPushed` property set to `TRUE` (it is assumed that the result of the input does not change during its handling, thus the behavior is emulated as if the first value was pushed).
+    By default, group change handler is created as follows: `CHANGE` is called first for objects' [current values](Form_structure.md#currentObject), then if the input has not been canceled, the same handler is called for all other values of objects (matching the filter), with the value of the `System.requestPushed` property set to `TRUE` (it is assumed that the result of the input does not change during its handling, thus the behavior is emulated as if the first value was pushed).
 
 
 :::info

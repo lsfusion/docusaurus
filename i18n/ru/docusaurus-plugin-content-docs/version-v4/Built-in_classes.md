@@ -127,7 +127,7 @@ title: 'Встроенные классы'
 |`IMAGEFILE`|jpg          |
 |`TABLEFILE`|table        |
 
-## Порядок определения результирующего свойства при [обращении из внешней системы](Access_from_an_external_system.md#httpresult-broken)
+## Порядок определения результирующего свойства при [обращении из внешней системы](Access_from_an_external_system.md#httpresult) {#export}
 
 |Имя класса|Имя свойства|
 |----------|------------|
