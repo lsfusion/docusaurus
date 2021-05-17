@@ -16,7 +16,7 @@ For the application server to work, it must have access to the PostgreSQL databa
 
 -   Download the file `lsfusion-server-<version>.jar` of the required version (for example `lsfusion-server-4.1.jar`) from [the central server](https://download.lsfusion.org/java) to some folder (we will call this folder `$FUSION_DIR$`).
 
--   If the database server is located on another computer, and if authorization is enabled on the database server (for example, for Postgres, using the md5 method and if the password postgres is not empty), set the [parameters for connecting to the database server](Launch_parameters.md#connectdb-broken) (e.g. by creating a startup [settings file](Launch_parameters.md#filesettings-broken) in the `$FUSION_DIR$` folder)
+-   If the database server is located on another computer, and if authorization is enabled on the database server (for example, for Postgres, using the md5 method and if the password postgres is not empty), set the [parameters for connecting to the database server](Launch_parameters.md#connectdb-broken) (e.g. by creating a startup [settings file](Launch_parameters.md#filesettings) in the `$FUSION_DIR$` folder)
 
 -   Place [modules](Modules.md) developed in the lsFusion language as files with the extension lsf to the `$FUSION_DIR$` folder (or any subfolder). In addition, the rest of the resource files if any must also be placed there (e.g. report files, compiled Java files, pictures, etc.).
 

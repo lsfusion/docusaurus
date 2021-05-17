@@ -36,7 +36,7 @@ lsFusion startup parameters for server applications can be set in one of the fol
 |`db.denyDropModules`, `db.denyDropTables`|`boolean`, `boolean`|Ban on deletion at startup:<ul><li>`db.denyDropModules` - modules</li><li>`db.denyDropTables` - tables</li></ul>|`false`, `false`|
 |`logics.initialAdminPassword`|`string`|Default admin password||
 
-### Example conf/settings.properties file ([section 3](#appp3-broken)):
+### Example conf/settings.properties file ([section 3](#appp3-broken)): {#filesettings}
 
 **$FUSION\_DIR$/conf/settings.properties**
 

@@ -36,10 +36,10 @@ Note that IDEA remembers the downloaded/specified application server file in its
 
 ## Installation in existing Java projects
 
-### Installing an application server via IDE
+### Installing an application server via IDE {#existingide}
 
 -   Download the `lsfusion-server-<version>.jar` file of the required version (for example, `lsfusion-server-4.1.jar`) from the [central server](https://download.lsfusion.org/java) to the folder of the required project module (we will call this folder `$FUSION_DIR$`).
--   If the database server is located on another computer, and if authorization is enabled on the database server (for example, for Postgres, using the md5 method and if the postgres password is not empty), set the [database server connection parameters](Launch_parameters.md#connectdb-broken) (e.g., by creating a startup [settings file](Launch_parameters.md#filesettings-broken) in the project folder)
+-   If the database server is located on another computer, and if authorization is enabled on the database server (for example, for Postgres, using the md5 method and if the postgres password is not empty), set the [database server connection parameters](Launch_parameters.md#connectdb-broken) (e.g., by creating a startup [settings file](Launch_parameters.md#filesettings) in the project folder)
 -   Add the downloaded file as a dependency of the required project module (`File > Project Structure > Modules > module name > Dependencies tab > +`) 
 -   Create a [startup configuration](IDE.md#configuration) (when creating a new lsFusion project, this and the upper two sections are done automatically). If the platform is loaded as a library, instead of creating a configuration you can use a Spring bean with the `logicsInstance` ID from the `lsfusion.xml` configuration file, and its `start()` and `stop()` methods, responsible for starting and stopping the application server, respectively.
 
@@ -76,7 +76,7 @@ For an existing maven project, server installation and loading can (and should) 
 
     In the second case, all of the above must be manually configured directly by the developer.
 
-    As for other projects not created using the operation for creating a new lsFusion project, for a maven project you must manually create a [settings file](Launch_parameters.md#filesettings-broken) and a [startup configuration](IDE.md#configuration) (or, if the platform needs to be loaded as a library, use a [special Spring bean](#bean-broken))
+    As for other projects not created using the operation for creating a new lsFusion project, for a maven project you must manually create a [settings file](Launch_parameters.md#filesettings) and a [startup configuration](IDE.md#configuration) (or, if the platform needs to be loaded as a library, use a [special Spring bean](#existingide))
 
 
 :::info

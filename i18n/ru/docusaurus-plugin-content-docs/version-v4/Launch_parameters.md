@@ -36,7 +36,7 @@ lsFusion параметры запуска сервера приложений �
 |`db.denyDropModules`, `db.denyDropTables`|`boolean`, `boolean`|Запреты на удаления при запуске:<ul><li>`db.denyDropModules` - модулей</li><li>`db.denyDropTables` - таблиц</li></ul>|`false`, `false`|
 |`logics.initialAdminPassword`|`string`|Пароль администратора по умолчанию||
 
-### Пример файла conf/settings.properties ([3-й пункт](#appp3-broken)):
+### Пример файла conf/settings.properties ([3-й пункт](#appp3-broken)): {#filesettings}
 
 **$FUSION\_DIR$/conf/settings.properties**
 
