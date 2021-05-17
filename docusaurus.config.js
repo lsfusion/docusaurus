@@ -3,12 +3,12 @@ module.exports = {
   title: 'lsfusion documentation',
   tagline: 'lsfusion documentation',
   url: 'https://lsfusion.github.io',
-  baseUrl: '/platform/',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'lsfusion', // Usually your GitHub org/user name.
-  projectName: 'platform', // Usually your repo name.
+  projectName: 'lsfusion.github.io', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: '',
