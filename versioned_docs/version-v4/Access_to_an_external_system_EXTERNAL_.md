@@ -52,7 +52,7 @@ Note that the processing of parameters and request results is largely similar to
 
 For this type of interaction, a connection string and the SQL command(s) to be executed are specified. Parameters can be passed both in the connection string and in the SQL command. To access the parameter, the special character `$` and the parameter number are used (starting from `1`).
 
-### Parameters
+### Parameters {#table}
 
 File class parameters (`FILE`, `PDFFILE`, etc.) can be used only in an SQL command (not in the connection string). Furthermore, if any of the parameters, when executed, is a file in `TABLE` format (`TABLEFILE` or `FILE` with the extension `table`), that parameter is considered to be a table and in this case:
 

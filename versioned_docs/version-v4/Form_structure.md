@@ -36,11 +36,11 @@ The behavior of properties and actions in the context of their display on the fo
 
 Each property is displayed exactly in one of the object groups on the form (this group shall be called a *display group* of this property). By default, the display group is the last group for the set of objects which this property receives as an input. If necessary, the developer can specify the display group explicitly (with certain [constraints](Structured_view.md#drawgroup-broken) when used in a structured view)
 
-#### Groups-in-columns
+#### Groups-in-columns {#groupcolumns}
 
 By default, a property is displayed in its display group exactly once. In this case, the values of objects which are not in the display group of this property (these objects shall be called *upper*) are used as their current values. However, it is also possible to display one property multiple times so that all object collections are used as the values of certain upper objects (not their current values). With this display of the property, a kind of "matrix" is formed - upper objects x objects of the display group. Thus, to create such a matrix, when adding a property to the form you must specify which *upper* objects (specifically, object groups) must be used to create columns (these object groups shall be called *groups-in-columns*).
 
-When determining a [display group](#drawgroup-broken), properties of the group-to-columns are ignored.
+When determining a [display group](#drawgroup), properties of the group-to-columns are ignored.
 
 #### Property groups {#propertygroup}
 

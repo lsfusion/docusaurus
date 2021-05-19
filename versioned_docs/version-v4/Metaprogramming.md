@@ -63,9 +63,9 @@ There is also the special operation `###`. It is equivalent to operation `##`, e
 
 ```lsf
 META objectProperties(object, type, caption)
-    object##Name 'Name'##caption = DATA BPSTRING[100](###object-broken); // capitalizing the first letter
-    object##Type 'Type'##caption = DATA type (###object-broken);
-    object##Value 'Cost'##caption = DATA INTEGER (###object-broken);
+    object##Name 'Name'##caption = DATA BPSTRING[100](###object); // capitalizing the first letter
+    object##Type 'Type'##caption = DATA type (###object);
+    object##Value 'Cost'##caption = DATA INTEGER (###object);
 END
 
 META objectProperties(object, type)

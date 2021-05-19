@@ -25,7 +25,7 @@ Using this option comes down to whether to display data for a parent object grou
 
 ### Report hierarchy example
 
-The form is similar to the [example of building an object group hierarchy](Static_view.md#hierarchysample-broken):
+The form is similar to the [example of building an object group hierarchy](Static_view.md#hierarchysample):
 
 ```lsf
 

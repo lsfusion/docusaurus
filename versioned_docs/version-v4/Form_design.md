@@ -87,7 +87,7 @@ Since the current implementation uses the [CSS Table Layout Fixed](https://www.w
 
 The caption and the value cell are placed inside the property panel in the same way as if the panel were a container (horizontal if the caption is on the left, vertical if at the top), in which the cell has an extension coefficient of `1`, the caption is `0` and the alignment of both is set to  `STRETCH` 
 
-#### Property value cell sizes
+#### Property value cell sizes {#valueWidth}
 
 When displaying properties, you can explicitly specify dimensions of the entire container (together with the caption, if the property is in a panel) and also the dimensions of the *value cell* itself. To do this, add the prefix `value` to the size name, e.g. `valueWidth`). Also, it is worth noting that these dimensions (those of the value cells, and not the entire container) are also used to determine the column widths if the property is displayed in a table.
 

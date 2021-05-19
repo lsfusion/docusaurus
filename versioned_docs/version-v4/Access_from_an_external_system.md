@@ -89,7 +89,7 @@ When executing an http request, it is often necessary to identify the user on wh
     -   At the first stage, you need to execute the `Authentication.getAuthToken[]` action with basic authentication. The result of this action will be an authentication token with a fixed lifetime (one day [by default](Working_parameters.md#authTokenExpiration-broken)). An example of a request:  `http://localhost/exec?action=getAuthToken`.
     -   The token you receive can be used for authentication during its lifetime by passing it in the `Authorization: Bearer <token>` header (similarly to JWT which is used in the current implementation of the platform for generating authentication tokens).
 
-## Form API
+## Form API {#form}
 
 Apart from executing actions, the platform also supports an API (similar to JSON API) for working with [forms](Forms.md), or specifically, their [interactive views](Interactive_view.md). Since it's a stateful API designed for the asynchronous mode (which means that the HTTPS interface itself has a number of system parameters, such as a request index, index of the latest received response, etc.), it's easier to use this API with the help of special libraries for specific languages/platforms that you want to integrate with:
 

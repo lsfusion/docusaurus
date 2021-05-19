@@ -36,9 +36,9 @@ title: 'Инструкция META'
 
 ```lsf
 META objectProperties(object, type, caption)
-    object##Name 'Имя'##caption = DATA BPSTRING[100](###object-broken); // делаем заглавной первую букву
-    object##Type 'Тип'##caption = DATA type (###object-broken);
-    object##Value 'Стоимость'##caption = DATA INTEGER (###object-broken);
+    object##Name 'Имя'##caption = DATA BPSTRING[100](###object); // делаем заглавной первую букву
+    object##Type 'Тип'##caption = DATA type (###object);
+    object##Value 'Стоимость'##caption = DATA INTEGER (###object);
 END
 
 META objectProperties(object, type)

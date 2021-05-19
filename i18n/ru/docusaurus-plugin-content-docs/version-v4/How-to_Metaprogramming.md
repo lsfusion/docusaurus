@@ -62,7 +62,7 @@ META defineObject(class, id, shortId, caption, multiCaption)
 END
 
 META defineObject(id, shortId, caption, multiCaption)
-    @defineObject(###id, id, shortId, caption, multiCaption-broken);
+    @defineObject(###id, id, shortId, caption, multiCaption);
 END
 ```
 

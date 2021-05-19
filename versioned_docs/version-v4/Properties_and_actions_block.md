@@ -171,7 +171,7 @@ In the current platform implementation, if the name and caption are not specifie
 
 - `COLUMNS [groupid] (groupName1, ..., groupNameM)`
 
-    Specifies the upper [object groups](Form_structure.md#objects) whose values will define a set of [columns](Form_structure.md#groupcolumns-broken) to display the added property (action). The `COLUMNS` option is often used with the `HEADER` option which defines headers for these columns.
+    Specifies the upper [object groups](Form_structure.md#objects) whose values will define a set of [columns](Form_structure.md#groupcolumns) to display the added property (action). The `COLUMNS` option is often used with the `HEADER` option which defines headers for these columns.
 
     - `groupid`
 

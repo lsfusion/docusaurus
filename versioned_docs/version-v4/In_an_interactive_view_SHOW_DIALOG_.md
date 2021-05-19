@@ -29,7 +29,7 @@ In the current implementation of the platform, a form shown as a window is alway
 
 ### System action management
 
-By default, when the interactive view is enabled, the platform [automatically determines](Interactive_view.md#sysactions) which system actions of the form/session lifecycle management should be shown and which not. But since these conditions are somewhat heuristic, the developer can use a corresponding set of options to specify the actions that need to be shown when the form is opened. Similarly, the corresponding option can be used to specify whether the form is the [owner of the session](Interactive_view.md#anchor-broken) in which it is opened or not.
+By default, when the interactive view is enabled, the platform [automatically determines](Interactive_view.md#sysactions) which system actions of the form/session lifecycle management should be shown and which not. But since these conditions are somewhat heuristic, the developer can use a corresponding set of options to specify the actions that need to be shown when the form is opened. Similarly, the corresponding option can be used to specify whether the form is the [owner of the session](Interactive_view.md#owner) in which it is opened or not.
 
 ### Dialog form {#dialog}
 

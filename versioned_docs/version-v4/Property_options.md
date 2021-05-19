@@ -98,7 +98,7 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `CHARWIDTH width [FLEX | NOFLEX]`
 
-    Specifying the [number of characters](Form_design.md#valueWidth-broken) of the property value that should be visible to the user. Sets the value for the default design, can be overridden in a `DESIGN` instruction.
+    Specifying the [number of characters](Form_design.md#valueWidth) of the property value that should be visible to the user. Sets the value for the default design, can be overridden in a `DESIGN` instruction.
 
     - `width`
 

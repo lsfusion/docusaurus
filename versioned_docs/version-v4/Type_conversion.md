@@ -10,7 +10,7 @@ String types can be converted to human-readable file types (`CSVFILE`, `XMLFILE`
 
 
 :::info
-Converting dynamic-type files (`FILE`) to strings and vice versa is prohibited in the current implementation, but if necessary this can be done via an intermediate human-readable type - for example, by first converting to `CSVFILE`, and only then to `FILE` (the resulting file [will have the extension](Built-in_classes.md#csv-broken) CSV)
+Converting dynamic-type files (`FILE`) to strings and vice versa is prohibited in the current implementation, but if necessary this can be done via an intermediate human-readable type - for example, by first converting to `CSVFILE`, and only then to `FILE` (the resulting file [will have the extension](Built-in_classes.md#extension) CSV)
 :::
 
 ### Language

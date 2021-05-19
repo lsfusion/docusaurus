@@ -36,9 +36,9 @@ The `META` instruction is an exception - it is not supposed to end with a semico
 
 ```lsf
 META objectProperties(object, type, caption)
-    object##Name 'Name'##caption = DATA BPSTRING[100](###object-broken); // capitalizing the first letter
-    object##Type 'Type'##caption = DATA type (###object-broken);
-    object##Value 'Cost'##caption = DATA INTEGER (###object-broken);
+    object##Name 'Name'##caption = DATA BPSTRING[100](###object); // capitalizing the first letter
+    object##Type 'Type'##caption = DATA type (###object);
+    object##Value 'Cost'##caption = DATA INTEGER (###object);
 END
 
 META objectProperties(object, type)

@@ -109,7 +109,7 @@ The `DIALOG` operator creates an action that opens the specified form. When open
 
 - `MANAGESESSION` | `NOMANAGESESSION`
 
-    Keywords. Determine whether or not the created form is considered to be the [session owner](Interactive_view.md#session-broken) (if so, the corresponding buttons for managing the session will be shown on the form in interactive mode). By default, the platform tries to determine which mode to use [automatically](Interactive_view.md#sysactions) depending on the context.
+    Keywords. Determine whether or not the created form is considered to be the [session owner](Interactive_view.md#owner) (if so, the corresponding buttons for managing the session will be shown on the form in interactive mode). By default, the platform tries to determine which mode to use [automatically](Interactive_view.md#sysactions) depending on the context.
 
 - `CANCEL` | `NOCANCEL`
 

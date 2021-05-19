@@ -71,11 +71,11 @@ The candidate is a [local property](Data_properties_DATA_.md#local) and:
 
 ### Suitable classes of parameters {#direct}
 
-[Classes of call parameters](#call-broken) [match](#directclasses-broken) [the classes of the candidate's parameters](#decl-broken) or classes of the referring parameters are unknown.
+[Classes of call parameters](#call) [match](#directclasses) [the classes of the candidate's parameters](#decl) or classes of the referring parameters are unknown.
 
 ### Classes of parameters intersect {#indirect}
 
-[Classes of the referring parameters](#call-broken) [intersect](#indirectclasses-broken) with [classes of the candidate's parameters](#decl-broken).
+[Classes of the referring parameters](#call) [intersect](#indirectclasses) with [classes of the candidate's parameters](#decl).
 
 ### Selection of more specific classes of parameters {#concrete}
 
@@ -102,7 +102,7 @@ Then: properties (actions) from the third section are deleted from the set of ca
 
 ### Additional operations to search for properties / actions
 
-#### Matching parameter classes
+#### Matching parameter classes {#directclasses}
 
 Let's say that the classes of parameters `(A1, ..., An)` *match* the classes of parameters `(B1, ..., Bm)` if:
 
@@ -112,7 +112,7 @@ Let's say that the classes of parameters `(A1, ..., An)` *match* the classes of 
     -   `Bi` is unknown (equal to `?`)
     -   `Ai` [inherits](User_classes.md#inheritance) from `Bi` (more specifically, the set of descendant classes of `Bi` includes the set of descendant classes of `Ai`)
 
-#### Intersection of parameter classes
+#### Intersection of parameter classes {#indirectclasses}
 
 Let's say that the classes of parameters `(A1, ..., An)` *intersect with* the classes of parameters `(B1, ..., Bm)` if:
 
@@ -122,7 +122,7 @@ Let's say that the classes of parameters `(A1, ..., An)` *intersect with* the cl
     -   `Bi` is unknown (equal to `?`)
     -   `Ai` and `Bi` have a common descendant (more specifically, the set of descendant classes of `Bi` intersects with the set of descendant classes of `Ai`)
 
-#### Defining the classes of the referring parameters
+#### Defining the classes of the referring parameters {#call}
 
 When a call is made a property (action), if the parameter classes are not explicitly set, the platform tries to automatically determine them from the reference context. The following is an (incomplete) list of possible contexts, and how the platform determines the referring parameter classes in these cases:
 
@@ -136,7 +136,7 @@ When a call is made a property (action), if the parameter classes are not explic
 | Nested local properties in session operators | Unknown                                                   |
 | Data import                                  | If a list of values is imported (`LIST`), the empty list, otherwise a list of a single `INTEGER` element |
 
-#### Determining parameter classes of a property (action)
+#### Determining parameter classes of a property (action) {#decl}
 
 If the parameter classes of a property (action) are not explicitly specified, the platform tries to automatically determine them from the property (action) implementation. The following is an (incomplete) list of possible implementations, and how the platform determines property (action) parameter classes in these cases:
 

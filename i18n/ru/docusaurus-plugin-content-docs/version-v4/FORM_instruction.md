@@ -64,7 +64,7 @@ sidebar_label: Обзор
     
         Пeриод времени в секундах. [Целочисленный литерал](IDs.md#intliteral-broken). 
 
-### Блоки формы (`formBlock1 ... formBlockN`)
+### Блоки формы (`formBlock1 ... formBlockN`) {#blocks}
 
 - `OBJECTS ...`
 
@@ -80,7 +80,7 @@ sidebar_label: Обзор
 
 - `FILTERS ...`
 
-    Добавляет фиксированные фильтры на форму. [Синтаксис блока фиксированных фильтров](Filters_and_sortings_block.md#fixedfilters-broken).
+    Добавляет фиксированные фильтры на форму. [Синтаксис блока фиксированных фильтров](Filters_and_sortings_block.md#fixedfilters).
 
 - `[EXTEND] FILTERGROUP ...`
 
@@ -92,7 +92,7 @@ sidebar_label: Обзор
 
 - `EVENTS ...`
 
-    Устанавливает действия, выполняемые при определенных событиях. [Синтаксис блока событий](Event_block.md#events-broken)[.](Event_block.md)
+    Устанавливает действия, выполняемые при определенных событиях. [Синтаксис блока событий](Event_block.md).
 
 - `FORMEXTID extID`
 

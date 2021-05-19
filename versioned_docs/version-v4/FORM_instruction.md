@@ -64,7 +64,7 @@ The `FORM` instruction declares a new form and adds it to the current [module](M
     
         A period of time in seconds. [Integral literal](IDs.md#intliteral-broken). 
 
-### Form blocks (`formBlock1 ... formBlockN`)
+### Form blocks (`formBlock1 ... formBlockN`) {#blocks}
 
 - `OBJECTS ...`
 
@@ -80,7 +80,7 @@ The `FORM` instruction declares a new form and adds it to the current [module](M
 
 - `FILTERS ...`
 
-    Adds fixed filters to the form. [Syntax of the fixed filters block](Filters_and_sortings_block.md#fixedfilters-broken).
+    Adds fixed filters to the form. [Syntax of the fixed filters block](Filters_and_sortings_block.md#fixedfilters).
 
 - `[EXTEND] FILTERGROUP ...`
 
@@ -92,7 +92,7 @@ The `FORM` instruction declares a new form and adds it to the current [module](M
 
 - `EVENTS ...`
 
-    Defines actions that are executed on specific events. [Syntax of the event block](Event_block.md#events-broken)[.](Event_block.md)
+    Defines actions that are executed on specific events. [Syntax of the event block](Event_block.md).
 
 - `FORMEXTID extID`
 

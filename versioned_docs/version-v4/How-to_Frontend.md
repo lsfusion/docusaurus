@@ -302,7 +302,7 @@ The implementation of the entire task may look as follows:
 
 ### Example 5
 
-By analogy with [**Example 1**](#example-1), we implement the Score table form with editing ability using the [Form API](Access_from_an_external_system.md#form-broken). To use it, you need to link the [@lsfusion/core](https://www.npmjs.com/package/@lsfusion/core) library.
+By analogy with [**Example 1**](#example-1), we implement the Score table form with editing ability using the [Form API](Access_from_an_external_system.md#form). To use it, you need to link the [@lsfusion/core](https://www.npmjs.com/package/@lsfusion/core) library.
 
 First of all, you need to initialize the form using the `create` function after loading the main component:
 ```js

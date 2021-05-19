@@ -14,7 +14,7 @@ The `EXTEND FORM` instruction [extends](Form_extension.md) an existing [form](Fo
 
 ### Description
 
-The `EXTEND FORM` instruction allows you to extend an existing form with additional [form blocks](FORM_instruction.md#blocks-broken).
+The `EXTEND FORM` instruction allows you to extend an existing form with additional [form blocks](FORM_instruction.md#blocks).
 
 ### Parameters
 

@@ -15,9 +15,9 @@ Working with flat formats with a hierarchy depth greater than one is not very co
 Formats are also divided into:
 
 -   human-readable (text) and binary. All hierarchical formats are human-readable, flat can be either binary (DBF, TABLE, XLS), or human-readable (CSV). You can and should specify the encoding for human-readable formats (UTF-8 is used by default).
--   standardized and internal. At the moment, only one internal format is supported: TABLE (a table of values). All the other formats are standardized. Internal format files are processed in a special way in some [integration](Integration.md) operations (e.g., in [SQL calls](Access_to_an_external_system_EXTERNAL_.md#table-broken)). In addition, internal formats can be used to communicate lsFusion systems with each other.
+-   standardized and internal. At the moment, only one internal format is supported: TABLE (a table of values). All the other formats are standardized. Internal format files are processed in a special way in some [integration](Integration.md) operations (e.g., in [SQL calls](Access_to_an_external_system_EXTERNAL_.md#table)). In addition, internal formats can be used to communicate lsFusion systems with each other.
 
-In the current implementation the [group-in-columns](Form_structure.md#groupcolumns-broken) platforms are ignored in a structured view.
+In the current implementation the [group-in-columns](Form_structure.md#groupcolumns) platforms are ignored in a structured view.
 
 When building an object group [hierarchy](Static_view.md#hierarchy) in a structured view, the object groups that have all their objects [passed](Open_form.md#params) on the form opening are ignored (as if these object groups did not exist).
 
