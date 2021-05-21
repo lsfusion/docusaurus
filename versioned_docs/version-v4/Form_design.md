@@ -142,7 +142,7 @@ An automatic design can be created for each form, based on the form's structure.
 The automatic design is generated as follows:
 
 -   `BOX`: contains all the components of this form. Vertical container. Extension coefficient: `1`, alignment: `STRETCH`.
-    -   `PANEL`: contains components of the properties that are displayed in `PANEL` view  and [display group](Form_structure.md#drawgroup) of which is undefined (the property has no parameters). The internal structure and layout are similar to the internal structure and layout of the object group container. 
+    -   `PANEL`: contains components of the properties that are displayed in `PANEL` [view](Interactive_view.md#property)  and [display group](Form_structure.md#drawgroup) of which is undefined (the property has no parameters). The internal structure and layout are similar to the internal structure and layout of the object group container. 
         -   `GROUP...`
     -   `OBJECTS`: contains all the components that are created for object groups/trees on this form. Vertical container. Extension coefficient: `1`, alignment: `STRETCH`.
         -   `BOX(<object group/tree>)`:  contains all the components of this group of objects. Vertical container. Extension coefficient: `1`, alignment: `STRETCH`.
@@ -154,13 +154,13 @@ The automatic design is generated as follows:
                 -   `TOOLBARRIGHT(<group of objects / tree>)`: the right side of a toolbar. Horizontal container. Extension coefficient: `1`, alignment: `CENTER`.
                     -   `FILTERGROUPS(<group of filters>)`: contains all the components that are created for filter groups corresponding to a object group. Horizontal container. Alignment: `CENTER`.
                         -   `FILTERGROUP`: base component of a Filter group. Alignment: `CENTER`.
-                    -   `TOOLBAR(<group of objects / tree>)`:  contains the components of the properties displayed in the `TOOLBAR` view and display group equal to the specified one. Horizontal container. Alignment: `CENTER`.
+                    -   `TOOLBAR(<group of objects / tree>)`:  contains the components of the properties displayed in the `TOOLBAR` [view](Interactive_view.md#property) and [display group](Form_structure.md#drawgroup) equal to the specified one. Horizontal container. Alignment: `CENTER`.
                         -   `PROPERTY(<property>)`: base component of the Property Panel.
             -   `USERFILTER(<group of objects / tree>)`:  base component of the User filter. Alignment: `STRETCH`.
-            -   `PANEL(<group of objects / tree>)`: contains the components of the properties displayed in the `PANEL` view. Vertical container. Alignment: `STRETCH`. If several properties belong to [groups](Groups_of_properties_and_actions.md) for which it is necessary to create separate containers, then a corresponding hierarchy of containers is created for them and the components of these properties are placed in it:
+            -   `PANEL(<group of objects / tree>)`: contains the components of the properties displayed in the `PANEL` [view](Interactive_view.md#property). Vertical container. Alignment: `STRETCH`. If several properties belong to [groups](Groups_of_properties_and_actions.md) for which it is necessary to create separate containers, then a corresponding hierarchy of containers is created for them and the components of these properties are placed in it:
                 -   `GROUP(<property group>, <group of objects / tree>)`: contains components of properties that belong to the specified object group and property group (or do not belong to any property group: in this case the property group is not specified, for example `GROUP(,a))`. Column container.
                     -   `PROPERTY(<property>)`: base component of the Property Panel.
-    -   `TOOLBARBOX`: contains property components that are displayed in `TOOLBAR` view and have no display group (for example, the property has no parameters). The internal structure and layout are similar to the corresponding internal structure and layout of an object group (except for `FILTERGROUPS`, which does not make sense when there is no object group, and therefore is not present in this container).
+    -   `TOOLBARBOX`: contains property components that are displayed in `TOOLBAR` [view](Interactive_view.md#property) and have no [display group](Form_structure.md#drawgroup) (for example, the property has no parameters). The internal structure and layout are similar to the corresponding internal structure and layout of an object group (except for `FILTERGROUPS`, which does not make sense when there is no object group, and therefore is not present in this container).
         -   `TOOLBARLEFT, TOOLBARRIGHT, TOOLBAR...`
 
 ### Default design example

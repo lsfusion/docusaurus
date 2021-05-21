@@ -13,14 +13,14 @@ The idea of inheritance is as follows: if class `B` inherits from class `A`, the
 
 Let's say that an object *belongs to* class `A` if that object is either an instance of class `A` or an instance of a class `A` descendant.  
 
-To implement polymorphism, inheritance is usually used together with properties and actions extension mechanism. 
+To implement polymorphism, inheritance is usually used together with [properties](Property_extension.md) and [actions](Action_extension.md) extension mechanism. 
 
 ### Class limitations
 
 The class mechanism has several limitations:
 
-1.  Belonging to a class cannot be calculated (only set explicitly when creating and changing the class) of an object.
+1.  Belonging to a class cannot be calculated (only set explicitly when [creating](New_object_NEW_.md) and [changing the class](Class_change_CHANGECLASS_DELETE_.md)) of an object.
 2.  A class is set for only one object (not for an object collection).
 3.  It is not possible to inherit the same class multiple times.
 
-Accordingly, if the class mechanism is not sufficient, the platform also supports the aggregation mechanism, which together with inheritance allows implementing almost any polymorphic logic.
+Accordingly, if the class mechanism is not sufficient, the platform also supports the [aggregation](Aggregations.md) mechanism, which together with inheritance allows implementing almost any polymorphic logic.

@@ -3,7 +3,7 @@ title: 'Primitive operations'
 sidebar_label: Overview
 ---
 
-Primitive operators include operators for working with properties which values belong to the built-in classes. The platform supports the following primitive operators:
+Primitive operators include operators for working with properties which values belong to the [built-in](Built-in_classes.md) classes. The platform supports the following primitive operators:
 
 -   [Arithmetic operators (`+`, `-`, `*`, `/`)](Arithmetic_operators_+_-_..._.md)
 -   [Logical operators (`AND`, `OR`, `NOT`, `XOR`)](Logical_operators_AND_OR_NOT_XOR_.md)

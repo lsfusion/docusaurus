@@ -75,7 +75,7 @@ If none of these options is explicitly specified, the platform will try to deter
 
 
 :::info
-It is worth noting that the selection of objects by default is pretty the same as the [object search](Search_SEEK_.md)operation, where the search objects are:
+It is worth noting that the selection of objects by default is pretty the same as the [object search](Search_SEEK_.md) operation, where the search objects are:
 
 -   for type `PREV`
     -   on opening a form: either the passed objects, or, if there are none, the last used objects for the form object class.
@@ -91,7 +91,7 @@ Search direction is determined by the object's default type (`PREV` here is equi
 
 When adding properties to a form, you can use a predefined set of operators that implement the most common scenarios for working with objects instead of using specific properties (thus avoiding the need to create and name these properties outside the form each time):
 
--   Object value (`VALUE`) – for a form object of built-in class , a special property with one argument will be added which displays the current object value and allows the user to change it. For [custom classes](User_classes.md), a property will be added which displays the object ID in the database; when you try to change it, it shows a dialog with a list of objects of that class. The selected value will be used as the current value of the object on the form.
+-   Object value (`VALUE`) – for a form object of [built-in class](Built-in_classes.md) , a special property with one argument will be added which displays the current object value and allows the user to change it. For [custom classes](User_classes.md), a property will be added which displays the object ID in the database; when you try to change it, it shows a dialog with a list of objects of that class. The selected value will be used as the current value of the object on the form.
 -   Create object (`NEW`) – adds an action without arguments, which [creates](New_object_NEW_.md) an object of the class of the passed form object (or the class explicitly specified by the developer), after which it automatically makes this object current. If the class has descendants, the user will be shown a dialog where he can select specific child class. If any filters are applied to the form object, for which the object is created, the system will try to [change](Property_change_CHANGE_.md) the newly created object's properties so that it meets these filter conditions (as a rule, for created objects, a default value of the class of each filter's value is written to that filter)
 -   Edit object (`EDIT`) – adds an action with one argument, which calls the `System.formEdit` action (which, in turn, open the default [edit form](#edtClass) for the edited object class). 
 -   Create and edit an object (`NEWEDIT`) – adds an action without arguments which creates an object of the form object class, calls the edit object action (`EDIT`), and if the input is not [canceled](Value_input.md#result), sets the added object as current.

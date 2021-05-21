@@ -12,7 +12,7 @@ The platform also allows you to define a condition and the corresponding result 
 
 
 :::info
-Note that the [extremum operator](Extremum_MAX_MIN_.md) and logical operators basically are also varieties of the selection operator (and of its polymorphic form, i.e. the conditions and result are defined by one property)
+Note that the [extremum operator](Extremum_MAX_MIN_.md) and [logical operators](Logical_operators_AND_OR_NOT_XOR_.md) basically are also varieties of the selection operator (and of its polymorphic form, i.e. the conditions and result are defined by one property)
 :::
 
 ### Mutual exclusion of conditions {#exclusive}

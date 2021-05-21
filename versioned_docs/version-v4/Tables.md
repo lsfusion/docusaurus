@@ -2,9 +2,9 @@
 title: 'Tables'
 ---
 
-For storing and calculating values of the [properties](Properties.md) the **lsFusion** platform uses a relational database. All [data properties](Data_properties_DATA_.md), as well as all calculated [properties](Properties.md) marked as [materialized](Materializations.md), are stored in the fields of the *tables* in the database. For each table, there is a set of key fields with the names `key0`, `key1`, ..., `keyN`, where the object IDs are stored. All other fields store property values in such a way that in the corresponding field of each row there is a property value for the objects with IDs from the key fields. Objects of built-in classes can also be used as table keys.
+For storing and calculating values of the [properties](Properties.md) the **lsFusion** platform uses a relational database. All [data properties](Data_properties_DATA_.md), as well as all calculated [properties](Properties.md) marked as [materialized](Materializations.md), are stored in the fields of the *tables* in the database. For each table, there is a set of key fields with the names `key0`, `key1`, ..., `keyN`, where the object IDs are stored. All other fields store property values in such a way that in the corresponding field of each row there is a property value for the objects with IDs from the key fields. Objects of [built-in classes](Built-in_classes.md) can also be used as table keys.
 
-When creating a table, you must specify a list of the object classes which will be the keys in this table.
+When creating a table, you must specify a list of the object [classes](Classes.md) which will be the keys in this table.
 
 ### Property table determining {#property}
 

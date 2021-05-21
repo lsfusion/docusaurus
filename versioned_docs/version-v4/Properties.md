@@ -5,7 +5,7 @@ sidebar_label: Overview
 
 A *property* is an element of the system that takes a set of objects (*parameters*) and returns exactly one object (the *return value*). 
 
-The type and the specifics of how to calculate each property are determined by the operator used to create the property.
+The type and the specifics of how to calculate each property are determined by the [operator](Operators.md) used to create the property.
 
 ### Type constraint {#type}
 

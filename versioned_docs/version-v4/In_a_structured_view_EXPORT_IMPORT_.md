@@ -16,11 +16,11 @@ Form import is an operation that is opposite to opening the form in a structured
 
 Since the import operator is essentially an "input operator", the following constraints apply to the form being imported:
 
--   All form objects must belong to  numeric or [concrete](User_classes.md#abstract) [user](User_classes.md) classes. Object groups must consist of exactly one object (this constraint is caused by the fact that all the used formats are essentially lists — that is, mappings of numbers to values).
+-   All form objects must belong to  [numeric](Built-in_classes.md#inheritance) or [concrete](User_classes.md#abstract) [user](User_classes.md) classes. Object groups must consist of exactly one object (this constraint is caused by the fact that all the used formats are essentially lists — that is, mappings of numbers to values).
 
 -   Properties and [filters](Form_structure.md#filters) on the form should be [changeable](Property_change_CHANGE_.md) by a given value (that is, as a rule, be [primary](Data_properties_DATA_.md)). Before importing, any existing changes to the imported properties in the current session are canceled.
 
-During import, filters change to the default values of value classes of these filters.
+During import, filters change to the [default values](Built-in_classes.md#defaultvalue) of value classes of these filters.
 
 When importing data into objects of numeric classes, 0-based numbering is used. In case of [hierarchical](Structured_view.md#hierarchy) formats, numbering is "end-to-end" (that is, when the object group being imported is encountered for the second and subsequent times, object numbering in it starts from the position that the previous one stopped at).
 

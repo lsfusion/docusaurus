@@ -86,7 +86,7 @@ If property event handler uses (even [implicitly](Value_request_REQUEST_.md#impl
 
 For an *object request* from the user, depending on the type of class, the following operators are used:
 
--   Builtin classes - the [input primitive](Primitive_input_INPUT_.md) operator.
+-   [Builtin classes](Built-in_classes.md) - the [input primitive](Primitive_input_INPUT_.md) operator.
 -   [Custom classes](User_classes.md) - the [open form](In_an_interactive_view_SHOW_DIALOG_.md) operator. The form is the [list](Interactive_view.md#edtClass) form for this class. 
 
 ### Standard handlers {#predefined}
