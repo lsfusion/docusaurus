@@ -12,7 +12,7 @@ The `WHILE` operator creates an [action](Actions.md) that implements a [recursiv
 
 ### Description
 
-The `WHILE` operator creates an action implementing a recursive loop. This operator  can add its local parameters while defining a condition. These parameters correspond to the objects being iterated and are not parameters of the created action. You can also use the `NEW` block to specify the name of the class whose object will be created for each object collection meeting the condition. The name of this object needs to be specified. This name will be used as the name of the local parameter that the created object will be written to.
+The `WHILE` operator creates an action implementing a recursive loop. This operator  can add its local [parameters](Actions.md) while defining a condition. These parameters correspond to the objects being iterated and are not parameters of the created action. You can also use the `NEW` block to specify the name of the [class](Classes.md) whose object will be created for each object collection meeting the condition. The name of this object needs to be specified. This name will be used as the name of the local parameter that the created object will be written to.
 
 The object iteration order in the `WHILE` operator can be specified with the `ORDER` block.
 

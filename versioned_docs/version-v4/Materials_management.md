@@ -119,7 +119,9 @@ index 'Line number' (ReceiptDetail d) =
         ORDER d BY receipt(d);
 ```
 
+:::info
 The use of the name of an object class in expressions is similar to using its identification number (id) created by the system for all objects by an automatic counter. In this case, the use of the `ORDER d` construct helps sort the lines of the receipt by the order of ascension of their id, i.e. basically in the order of their creation.
+:::
 
 Here, the `PARTITION` instruction uses the `BY` block that groups objects by a certain attribute. The calculation of the expression cumulative total is performed in each group. In this case, the line number is determined only within this line's document (`receipt` property).
 

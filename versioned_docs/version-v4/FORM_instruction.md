@@ -104,7 +104,7 @@ The `FORM` instruction declares a new form and adds it to the current [module](M
 
 - `REPORT propertyExpression`
 
-    Specifying the property whose value will be used as the name of the report file for an empty group. You can use the names of already declared objects on the form as parameters. It is assumed that the values of these objects will be passed when the form is opened in the print view (if it doesn't happen, they will be considered equal to `NULL`).
+    Specifying the property whose value will be used as the name of the [report](Print_view.md) file for [an empty](Static_view.md#empty) group. You can use the names of already declared objects on the form as parameters. It is assumed that the values of these objects will be [passed](Open_form.md) when the form is opened [in the print view](In_a_print_view_PRINT_.md) (if it doesn't happen, they will be considered equal to `NULL`).
 
     - `propertyExpression`
 

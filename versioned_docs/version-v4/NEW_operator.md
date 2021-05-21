@@ -10,11 +10,13 @@ The `NEW` operator creates an [action](Actions.md) that [creates objects](New_ob
 
 ### Description
 
-The `NEW` operator creates an action which creates objects of the specified class and writes them as the returned values of certain [properties](Properties.md). This operator can add its local parameters when defining a condition in the `WHERE` block. These parameters correspond to the objects being iterated for which the object will be created and are not parameters of the created action. 
+The `NEW` operator creates an action which creates objects of the specified class and writes them as the returned values of certain [properties](Properties.md). This operator can add its local [parameters](Actions.md) when defining a condition in the `WHERE` block. These parameters correspond to the objects being iterated for which the object will be created and are not parameters of the created action. 
 
 The `TO` block is used to define the [data property](Data_properties_DATA_.md) to which value the created object is written. 
 
+:::info
 There is a special option with the same name (`NEW`) in the [`FOR` operator](FOR_operator.md) for creating objects, and it is recommended to use it when possible.
+:::
 
 ### Parameters
 

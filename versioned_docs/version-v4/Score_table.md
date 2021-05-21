@@ -251,7 +251,7 @@ EXTEND FORM MainForm
     ORDERS place(team)
 ;
 ```
-
+:::info
 The above form can be defined with a single block of code without using the `EXTEND` instruction.
 
 ```lsf
@@ -265,6 +265,7 @@ FORM MainFormSingle 'Score table'
     ORDERS place(team)
 ;
 ```
+:::
 
 We place the created form on the main menu of the program - the predefined navigator `root` folder - and indicate that it should be positioned by the very first element in front of the system menu item `'Administration'`.
 

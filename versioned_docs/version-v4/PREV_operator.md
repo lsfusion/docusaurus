@@ -2,7 +2,7 @@
 title: 'PREV operator'
 ---
 
-The `PREV` operator creates a property using a [previous value operator](Previous_value_PREV_.md).
+The `PREV` operator creates a [property](Properties.md) using a [previous value operator](Previous_value_PREV_.md).
 
 ### Syntax
 

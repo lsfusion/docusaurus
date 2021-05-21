@@ -39,7 +39,7 @@ Since properties and actions can have the same names within the same namespace, 
     Document.addHeader[Document.Document,STRING]
     Math.sum[?,?]
 
-Since the signature of properties/actions do not have to contain only custom classes, canonical names are also determined for built-in classes: 
+Since the signature of properties/actions do not have to contain only custom classes, canonical names are also determined for [built-in](Built-in_classes.md) classes: 
 
 | Class name              | Canonical name    |
 | ----------------------- | ----------------- |

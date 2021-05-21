@@ -27,7 +27,7 @@ When opening the list/edit form, the syntax is slightly different:
 
 ### Description
 
-The `SHOW` operator creates an action that opens the specified form. When opening the form in the `OBJECTS` block, [initial values](Open_form.md#params) can be specified for [Form structure](Form_structure.md)form objects.
+The `SHOW` operator creates an action that opens the specified form. When opening the form in the `OBJECTS` block, [initial values](Open_form.md#params) can be specified for [Form structure](Form_structure.md) form objects.
 
 ### Parameters
 
