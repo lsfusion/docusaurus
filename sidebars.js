@@ -321,7 +321,7 @@ module.exports = {
                   items: [
                     'Element_identification', 
                     'Naming', 
-                    'Search', 
+                    'Search_', 
                   ]
                 },
                 {

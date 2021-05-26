@@ -31,6 +31,10 @@ module.exports = {
         },
 //        {to: 'blog', label: 'Blog', position: 'left'},
         {
+          type: 'search',
+          position: 'right',
+        },      
+        {
           href: 'https://github.com/lsfusion/platform',
           label: 'GitHub',
           position: 'right',
@@ -46,7 +50,7 @@ module.exports = {
         {
           type: 'localeDropdown',
           position: 'right',
-        },        
+        },  
       ],
     },
     footer: {
@@ -103,6 +107,11 @@ module.exports = {
       darkTheme: require('prism-react-renderer/themes/vsDark'),
       additionalLanguages: ['java'],
     },
+    algolia: {
+      apiKey: '1afce0f4e082c8214ae5af1774dec862',
+      indexName: 'lsfusion',
+      contextualSearch: true,
+    },    
   },
   presets: [
     [
