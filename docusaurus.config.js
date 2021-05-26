@@ -31,10 +31,6 @@ module.exports = {
         },
 //        {to: 'blog', label: 'Blog', position: 'left'},
         {
-          type: 'search',
-          position: 'right',
-        },      
-        {
           href: 'https://github.com/lsfusion/platform',
           label: 'GitHub',
           position: 'right',
