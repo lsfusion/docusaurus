@@ -2,7 +2,7 @@
 title: 'Naming'
 ---
 
-Each [system element](Element_identification.md) may have a *name* which can be used to [access](Search.md) the element.
+Each [system element](Element_identification.md) may have a *name* which can be used to [access](Search_.md) the element.
 
 ### Namespaces {#namespace}
 
@@ -10,7 +10,7 @@ It is often necessary to use the same name in different contexts. In order not t
 
 
 :::info
-You can [find](Search.md) more details on how namespaces are used when [finding](Search.md) elements in the relevant section.
+You can [find](Search_.md) more details on how namespaces are used when [finding](Search_.md) elements in the relevant section.
 :::
 
 The namespace in which elements are created is determined by the [module](Modules.md), and cannot be changed in the future. The same limitation applies to additional priority namespaces.

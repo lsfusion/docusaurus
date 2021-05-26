@@ -16,7 +16,7 @@ Any module always automatically depends on the system module [`System`](https://
 
 ### Namespaces
 
-In each module a [namespace](Naming.md#namespace) is specified, containing the names of all system elements created in this module. By default, the module creates its own namespace, the name of which is equal to the name of the module. For the module you can also specify a list of additional namespaces that will have priority when [finding](Search.md) [system elements](Element_identification.md).
+In each module a [namespace](Naming.md#namespace) is specified, containing the names of all system elements created in this module. By default, the module creates its own namespace, the name of which is equal to the name of the module. For the module you can also specify a list of additional namespaces that will have priority when [finding](Search_.md) [system elements](Element_identification.md).
 
 ### Language
 

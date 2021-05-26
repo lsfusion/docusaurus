@@ -19,7 +19,7 @@ The `MODULE`  instruction defines the module name. It is required. Each module w
 
 The `REQUIRE` instruction defines the list of modules on which the current module [depends](Modules.md#depends). If the `REQUIRE` instruction is absent, that is equivalent to depending only on the `System` module.
 
-The `PRIORITY` instruction defines the list of additional [namespaces](Naming.md#namespace) that will have priority in [finding](Search.md) [system elements](Element_identification.md).
+The `PRIORITY` instruction defines the list of additional [namespaces](Naming.md#namespace) that will have priority in [finding](Search_.md) [system elements](Element_identification.md).
 
 The `NAMESPACE` instruction defines the module's namespace.  
 
