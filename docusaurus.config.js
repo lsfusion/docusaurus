@@ -103,6 +103,11 @@ module.exports = {
       darkTheme: require('prism-react-renderer/themes/vsDark'),
       additionalLanguages: ['java'],
     },
+    algolia: {
+      apiKey: '1afce0f4e082c8214ae5af1774dec862',
+      indexName: 'lsfusion',
+      contextualSearch: true,
+    },    
   },
   presets: [
     [
