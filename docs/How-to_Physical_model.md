@@ -13,7 +13,7 @@ TABLE animal(Animal);
 name 'Name' = DATA STRING[50] (Animal);
 ```
 
-With a standard [field naming policy](Tables.md#name), a <[Namespace](Naming.md)\>**\_animal** table will be created within the database, with a key **key0** with the internal ID of an animal and a <[Namespace](Naming.md)\>**\_name\_Animal** field storing its name.
+With a standard [field naming policy](Tables.md#name), a `<Namespace>_animal` table will be created within the database, with a key `key0` with the internal ID of an animal and a `<Namespace>_name_Animal` field storing its name.
 
 For properties with multiple parameters, we can create a table as follows:
 
@@ -24,9 +24,9 @@ TABLE animalCountry (Animal, Country);
 population 'Number' = DATA INTEGER (Animal, Country);
 ```
 
-In this case we create a <Namespace\>**\_animalCountry** table with two keys: **key0** for the animal and **key1** for the country. It will also have a <Namespace\>**\_population\_Animal\_Country** field.
+In this case we create a `<Namespace>_animalCountry` table with two keys: `key0` for the animal and `key1` for the country. It will also have a `<Namespace>_population_Animal_Country` field.
 
-All other properties with signature (**Animal**, **Country**) will also be placed in this table. If some property needs to be placed in a separate table, then the following technique can be used:
+All other properties with signature `[Animal, Country]` will also be placed in this table. If some property needs to be placed in a separate table, then the following technique can be used:
 
 ```lsf
 TABLE ageAnimalCountry (Animal, Country);
@@ -35,10 +35,10 @@ averageAge 'Average age' = DATA NUMERIC[8,2] (Animal, Country) TABLE ageAnimalCo
 
 This table will only store properties for which it is explicitly specified. All others will go into the first table declared with the necessary signature.
 
-Computed properties that need to be stored [permanently](Materializations.md) in the table need to be marked with the keyword **MATERIALIZED** :
+Computed properties that need to be stored [permanently](Materializations.md) in the table need to be marked with the keyword `MATERIALIZED`:
 
 ```lsf
 totalPopulation 'Total number' (Animal a) = GROUP SUM population(a, Country c) MATERIALIZED;
 ```
 
-The table in which this field will be stored will be selected according to the same algorithm as for [data properties](Data_properties_DATA_.md). In this case, it will go into the table <Namespace\>**\_animal**.
+The table in which this field will be stored will be selected according to the same algorithm as for [data properties](Data_properties_DATA_.md). In this case, it will go into the table `<Namespace>_animal`.

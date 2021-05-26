@@ -2,7 +2,7 @@
 title: 'MULTI operator'
 ---
 
-The **MULTI** operator creates a [property](Properties.md) that implements [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#single) of one of the values (polymorphic form).
+The `MULTI` operator creates a [property](Properties.md) that implements [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#single) of one of the values (polymorphic form).
 
 ### Syntax
 
@@ -10,27 +10,26 @@ The **MULTI** operator creates a [property](Properties.md) that implements [sel
 
 ### Description
 
-The **MULTI** operator creates a property which value will be the value of one of the properties specified in the operator. The property selection condition is that the parameters match this property [signature](CLASS_operator.md). 
+The `MULTI` operator creates a property which value will be the value of one of the properties specified in the operator. The property selection condition is that the parameters match this property [signature](CLASS_operator.md). 
 
 ### Parameters
 
-*expr1, ..., exprN* ** ** 
+- `expr1, ..., exprN`  
 
-A list of [expressions](Expression.md) defining the properties from which the selection is made.
+    A list of [expressions](Expression.md) defining the properties from which the selection is made.
 
-*exclusionType*
+- `exclusionType`
 
-[Type of mutual exclusion](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Determines whether several conditions for the property selection can be met simultaneously with a certain set of parameters. It is specified by one of the keywords:
+    [Type of mutual exclusion](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Determines whether several conditions for the property selection can be met simultaneously with a certain set of parameters. It is specified by one of the keywords:
 
--   **EXCLUSIVE**
--   **OVERRIDE**
+    - `EXCLUSIVE`
+    - `OVERRIDE`
 
-The **EXCLUSIVE** type indicates that the conditions for the property selection cannot be met simultaneously. The **OVERRIDE** type allows several conditions to be met simultaneously, in which case the first property in the list which selection condition is met will be selected. 
+  The `EXCLUSIVE` type indicates that the conditions for the property selection cannot be met simultaneously. The `OVERRIDE` type allows several conditions to be met simultaneously, in which case the first property in the list which selection condition is met will be selected. 
 
-The **EXCLUSIVE** type is used by default.
+    The `EXCLUSIVE` type is used by default.
 
 ### Examples
-
 
 ```lsf
 nameMulti (Human h) = MULTI 'Male' IF h IS Male, 'Female' IF h IS Female;
@@ -44,4 +43,3 @@ quantity = DATA INTEGER (OutLedger);
 
 signedQuantity (Ledger l) = MULTI quantity[InLedger](l), quantity[OutLedger](l);
 ```
-

@@ -30,7 +30,7 @@ FORM types 'List of types'
 ;
 ```
 
-*DIALOG* indicates that this form will be used for selecting a type from the list (e. g. when the user wants to change the book type).
+`LIST` indicates that this form will be used for selecting a type from the list (e. g. when the user wants to change the book type).
 
 ## Example 2
 
@@ -45,7 +45,7 @@ name 'Name' = DATA ISTRING[30] (Book) IN id;
 
 
 :::info
-It is recommended that you add all the **name** properties to the **id** group. Values of this property will help identify the object in case of the constraint violations. It will also be added to automatic forms when no edit (EDIT) or list (LIST) forms are defined for the class.
+It is recommended that you add all the `name` properties to the `id` group. Values of this property will help identify the object in case of the constraint violations. It will also be added to automatic forms when no edit (`EDIT`) or list (`LIST`) forms are defined for the class.
 :::
 
   

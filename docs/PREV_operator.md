@@ -2,7 +2,7 @@
 title: 'PREV operator'
 ---
 
-The **PREV** operator creates a property using a [previous value operator](Previous_value_PREV_.md).
+The `PREV` operator creates a [property](Properties.md) using a [previous value operator](Previous_value_PREV_.md).
 
 ### Syntax
 
@@ -10,21 +10,20 @@ The **PREV** operator creates a property using a [previous value operator](Pr
 
 ### Description
 
-The **PREV** operator creates a property that returns the value of another property at the start of the current session (or at the time of the previous event in [event](Events.md#change) mode) - i.e., the value that existed before the changes that were made in the current session.
+The `PREV` operator creates a property that returns the value of another property at the start of the current session (or at the time of the previous event in [event](Events.md#change) mode) - i.e., the value that existed before the changes that were made in the current session.
 
 
 :::info
-It's important to understand that **PREV** is not a built-in property with [composition](Composition_JOIN_.md) but an operator. Thus, in particular **PREV**(f(a)) is not equal to \[**PREV**(a)\](f(a)).
+It's important to understand that `PREV` is not a built-in property with [composition](Composition_JOIN_.md) but an operator. Thus, in particular `PREV(f(a))` is not equal to `[PREV(a)](f(a))`.
 :::
 
 ### Parameters
 
-*propExpr*
+- `propExpr`
 
-[Expression](Expression.md) whose value defines the property for which the previous value must be obtained.
+    [Expression](Expression.md) whose value defines the property for which the previous value must be obtained.
 
 ### Examples
-
 
 ```lsf
 f = DATA INTEGER (A);
@@ -46,4 +45,3 @@ setPrice  {
     price(Document d, Article a) <- PREV((GROUP LAST price(d, a) ORDER date(d), d));
 }
 ```
-

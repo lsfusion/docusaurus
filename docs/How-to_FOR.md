@@ -37,13 +37,13 @@ EXTEND FORM books
 ;
 ```
 
-Use the isSubstring property (defined in the **Utils** system [module](Modules.md)) to identify whether a given line contains another line.
+Use the isSubstring property (defined in the `Utils` system [module](Modules.md)) to identify whether a given line contains another line.
 
 ## Example 2
 
 ### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to create an action that creates 100 new books with certain titles.
 
@@ -71,13 +71,13 @@ EXTEND FORM books
 
 Both these implementations will provide the same result.
 
-To solve this task, use the **iterate** property (defined in the **Utils** system module) which returns **TRUE** for all integers in the range.
+To solve this task, use the `iterate` property (defined in the `Utils` system module) which returns `TRUE` for all integers in the range.
 
 ## Example 3
 
 ### Task
 
-Similar to **Example 1**, but with the order logic. Each order contains lines where books and discount prices are specified.
+Similar to [**Example 1**](#example-1), but with the order logic. Each order contains lines where books and discount prices are specified.
 
 ```lsf
 CLASS Order 'Order';
@@ -117,7 +117,7 @@ Both these implementations will provide the same result.
 
 ### Task
 
-Similar to **Example 3**, but a default price was added for each book.
+Similar to [**Example 3**](#example-3), but a default price was added for each book.
 
 ```lsf
 price 'Price' = DATA NUMERIC[14,2] (Book);

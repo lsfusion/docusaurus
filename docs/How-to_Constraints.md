@@ -4,7 +4,7 @@ title: 'How-to: Constraints'
 
 ## Example 1
 
-### Condition
+### Task
 
 There is a book for which a price is defined.
 
@@ -28,13 +28,13 @@ CONSTRAINT SET(price(Book b) > 100)
     MESSAGE 'The book price cannot be more than 100 rubles';
 ```
 
-If a user tries to save a book costing over 100 on any form, the user will see a message with a corresponding text. This message will also contain all objects of the **Book** class for which the constraint is violated. Values of properties from the **id** group will be shown for each object.
+If a user tries to save a book costing over 100 on any form, the user will see a message with a corresponding text. This message will also contain all objects of the `Book` class for which the constraint is violated. Values of properties from the `id` group will be shown for each object.
 
-Both options are identical from the execution perspective. If the platform does not find any [change operator](Change_operators_SET_CHANGED_..._.md) in a constraint, the entire expression is automatically "wrapped" into a **SET** operator.
+Both options are identical from the execution perspective. If the platform does not find any [change operator](Change_operators_SET_CHANGED_..._.md) in a constraint, the entire expression is automatically "wrapped" into a `SET` operator.
 
 ## Example 2
 
-### Condition
+### Task
 
 We have an order with a date, ID and a posted/not posted flag.
 
@@ -56,9 +56,9 @@ CONSTRAINT CHANGED(date(Order o)) AND posted(o)
 
 ## Example 3
 
-### Condition
+### Task
 
-Identical to  **Example 2**.
+Identical to [**Example 2**](#example-2).
 
 You need to prohibit the deletion of a posted order.
 
@@ -69,13 +69,13 @@ CONSTRAINT DROPPED(Order o IS Order) AND PREV(date(o)) < currentDate()
     MESSAGE 'It is forbidden to delete old orders';
 ```
 
-When an order is deleted, all of its properties will be **NULL**. That is why you need to you use the **PREV** operator to access its property values.
+When an order is deleted, all of its properties will be `NULL`. That is why you need to you use the `PREV` operator to access its property values.
 
 ## Example 4
 
-### Condition
+### Task
 
-Similar to **Example 1** and **Example 2**. Also, the order contains lines with a price and a link to the book.
+Similar to [**Example 1**](#example-1) and [**Example 2**](#example-2). Also, the order contains lines with a price and a link to the book.
 
 ```lsf
 CLASS OrderDetail 'Order line';
@@ -100,9 +100,9 @@ Since the expression contains no change operators, this constraint will be trigg
 
 ## Example 5
 
-### Condition
+### Task
 
-Similar to  **Example 4**. Here are added the concept of a customer and the possibility to select books that will be available to the customer.
+Similar to [**Example 4**](#example-4). Here are added the concept of a customer and the possibility to select books that will be available to the customer.
 
 ```lsf
 CLASS Customer 'Customer';
@@ -123,13 +123,13 @@ CONSTRAINT book(OrderDetail d) AND NOT in(customer(d), book(d))
     MESSAGE 'A book is selected in the order line that is not allowed for the customer';
 ```
 
-It is important to check that the **book** property for the order line is set because otherwise, the constraint will be applied to all order lines with the yet unselected book. The **CHECKED BY ** block adds the filter for the order line on the book selection form in order to avoid violating the defined constraint. This way, the user will only see books available to the buyer.
+It is important to check that the `book` property for the order line is set because otherwise, the constraint will be applied to all order lines with the yet unselected book. The `CHECKED BY` block adds the filter for the order line on the book selection form in order to avoid violating the defined constraint. This way, the user will only see books available to the buyer.
 
 ## Example 6
 
-### Condition
+### Task
 
-Identical to  **Example 4**.
+Identical to [**Example 4**](#example-4).
 
 We need to prohibit the entry of books that are unavailable to the buyer for the order line, but only for posted orders.
 

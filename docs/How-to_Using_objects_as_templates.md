@@ -4,7 +4,7 @@ title: 'How-to: Using objects as templates'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a book for which a name and price are defined. List and edit forms are defined for the book.
 
@@ -47,11 +47,11 @@ EXTEND FORM books
 ;
 ```
 
-When the button is pressed, a new [change session](Change_sessions.md) will be created within which the book will be created and the new form will work with. If the user closes the form without saving, the new book will not be saved to the database and will be lost. The word **TOOLBAR** specifies that this button should be displayed in the toolbar of the table with the list of orders.
+When the button is pressed, a new [change session](Change_sessions.md) will be created within which the book will be created and the new form will work with. If the user closes the form without saving, the new book will not be saved to the database and will be lost. The word `TOOLBAR` specifies that this button should be displayed in the toolbar of the table with the list of orders.
 
 ## Example 2
 
-### Condition
+### Task
 
 We have the concepts of order documents and invoices, as well as forms for listing and editing them. Lines are defined for each document.
 
@@ -141,11 +141,11 @@ EXTEND FORM orders
 
 ## Example 3
 
-### Condition
+### Task
 
-Similar to **Example 2**.
+Similar to [**Example 2**](#example-2).
 
-We need to implement an [action](Actions.md) that will open a dialog for the invoice with a list of orders and add lines from the selected one.
+We need to implement an [action](Actions.md) that will open a dialog for the invoice with a list of orders and add lines from the selected one.
 
 ### Solution
 

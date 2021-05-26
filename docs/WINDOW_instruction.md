@@ -2,17 +2,17 @@
 title: 'WINDOW instruction'
 ---
 
-The **WINDOW** instruction creates a new [window](Navigator_design.md).
+The `WINDOW` instruction creates a new [window](Navigator_design.md).
 
 ### Syntax
 
     WINDOW name [caption] type [options]
 
-The options that go at the end of the instruction has the following syntax (the syntax for each option is indicated on a separate line):
+The `options` that go at the end of the instruction has the following syntax (the syntax for each option is indicated on a separate line):
 
-    HIDETITLE 
-    HIDESCROLLBARS 
-    DRAWROOT 
+    HIDETITLE 
+    HIDESCROLLBARS 
+    DRAWROOT 
     VERTICAL | HORIZONTAL
     POSITION(x, y, width, height)
     LEFT | RIGHT | TOP | BOTTOM
@@ -23,115 +23,114 @@ The options that go at the end of the instruction has the following syntax (the 
 
 ### Description
 
-The **WINDOW** instruction declares a new window and adds it to the current [module](Modules.md). Options are listed one after another in arbitrary order, separated by spaces or line breaks. Depending on the selected window type – **TOOLBAR**, **PANEL**, **TREE**, or **MENU** – a toolbar, panel, tree, or menu* *will be created.
+The `WINDOW` instruction declares a new window and adds it to the current [module](Modules.md). Options are listed one after another in arbitrary order, separated by spaces or line breaks. Depending on the selected window type – `TOOLBAR`, `PANEL`, `TREE`, or `MENU` – a toolbar, panel, tree, or menu will be created.
 
 ### Parameters
 
-*name*
+- `name`
 
-Window name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+    Window name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
 
-*caption*
+- `caption`
 
-Window caption. [String literal](Literals.md#strliteral-broken). If caption is not specified, the caption of the window will be its name.  
+    Window caption. [String literal](Literals.md#strliteral-broken). If caption is not specified, the caption of the window will be its name.  
 
-*type*
+- `type`
 
-Type of window to create. Specified with one of the keywords **TOOLBAR**, **PANEL**, **TREE**, or **MENU**.
+    Type of window to create. Specified with one of the keywords `TOOLBAR`, `PANEL`, `TREE`, or `MENU`.
 
-### *Window options*
+- `options`
 
-HIDETITLE
+    - `HIDETITLE`
 
-Specifying that no caption should be displayed in the user interface.
+        Specifying that no caption should be displayed in the user interface.
 
-HIDESCROLLBARS
+    - `HIDESCROLLBARS`
 
-Specifying that no scrollbars should be displayed for this window.
+        Specifying that no scrollbars should be displayed for this window.
 
-DRAWROOT
+    - `DRAWROOT`
 
-Specifying that the [navigator elements](Navigator.md) whose descendants will be added to this window will also be added to it.
+        Specifying that the [navigator elements](Navigator.md) whose descendants will be added to this window will also be added to it.
 
-VERTICAL | HORIZONTAL
+    - `VERTICAL` | `HORIZONTAL`
 
-Specifying the vertical or horizontal orientation of the toolbar or panel being created. **VERTICAL** is used by default. This option only makes sense for **TOOLBAR** or **PANEL** windows.
+        Specifying the vertical or horizontal orientation of the toolbar or panel being created. `VERTICAL` is used by default. This option only makes sense for `TOOLBAR` or `PANEL` windows.
 
-POSITION (x, y, width, height)
+    - `POSITION (x, y, width, height)`
 
-Specifying the size and location of the window. 
+        Specifying the size and location of the window. 
 
-*x*
+        - `x`
 
-The left window coordinate. [Integer literal](Literals.md#intliteral-broken) ranging from 0 to 100.
+            The left window coordinate. [Integer literal](Literals.md#intliteral-broken) ranging from `0` to `100`.
 
-*y*
+        - `y`
 
-Top window coordinate. Integer literal ranging from 0 to 100.
+            Top window coordinate. Integer literal ranging from `0` to `100`.
 
-*width*
+        - `width`
 
-Window width. Integer literal ranging from 0 to 100.
+            Window width. Integer literal ranging from `0` to `100`.
 
-*height*
+        - `height`
 
-Window height. Integer literal ranging from 0 to 100.
+            Window height. Integer literal ranging from `0` to `100`.
 
-LEFT | RIGHT | TOP | BOTTOM
+    - `LEFT` | `RIGHT` | `TOP` | `BOTTOM`
 
-Specifying a fixed location of the window on the desktop, which does not allow the user to change its position and size. Here the window size is automatically determined based on the preferred dimensions of the component. The window will be located to the left, right, top, and bottom of the desktop, respectively. This option only makes sense for **TOOLBAR** windows and cannot be used simultaneously with the **POSITION** option.
+        Specifying a fixed location of the window on the desktop, which does not allow the user to change its position and size. Here the window size is automatically determined based on the preferred dimensions of the component. The window will be located to the left, right, top, and bottom of the desktop, respectively. This option only makes sense for `TOOLBAR` windows and cannot be used simultaneously with the `POSITION` option.
 
-HALIGN(alignType)
+    - `HALIGN(alignType)`
 
-Specifying the horizontal alignment of the buttons in a vertical toolbar. This option only makes sense for **TOOLBAR** windows with **VERTICAL** orientation.
+        Specifying the horizontal alignment of the buttons in a vertical toolbar. This option only makes sense for `TOOLBAR` windows with `VERTICAL` orientation.
 
-*alignType*
+        - `alignType`
 
-Alignment type. This is specified using one of these keywords:
+            Alignment type. This is specified using one of these keywords:
 
--   -   **START **- all buttons will have the same left coordinate. Used by default.
-    -   **CENTER** - all buttons will be centered along the X axis.
-    -   **END **- all buttons will have the same right coordinate.
+            - `START` - all buttons will have the same left coordinate. Used by default.
+            - `CENTER` - all buttons will be centered along the X axis.
+            - `END` - all buttons will have the same right coordinate.
 
-TEXTHALIGN(alignType)
+    - `TEXTHALIGN(alignType)`
 
-Specifies the horizontal alignment of text on the buttons in a vertical toolbar. This option makes sense only for **TOOLBAR** windows with** VERTICAL** orientation. 
+        Specifies the horizontal alignment of text on the buttons in a vertical toolbar. This option makes sense only for `TOOLBAR` windows with `VERTICAL` orientation. 
 
-*alignType*
+        - `alignType`
 
-Alignment type. This is specified using one of these keywords:
+            Alignment type. This is specified using one of these keywords:
 
--   -   **START **- the text will be located on the button on the left. Used by default.
-    -   **CENTER** – the text will be located in the center of the button.
-    -   **END **- the text will be located on the button on the right.
+            - `START` - the text will be located on the button on the left. Used by default.
+            - `CENTER` – the text will be located in the center of the button.
+            - `END` - the text will be located on the button on the right.
 
-VALIGN(alignType)
+    - `VALIGN(alignType)`
 
-Specifies the vertical alignment of the buttons in a horizontal toolbar. This option only makes sense for **TOOLBAR** windows with **HORIZONTAL** orientation. 
+        Specifies the vertical alignment of the buttons in a horizontal toolbar. This option only makes sense for `TOOLBAR` windows with `HORIZONTAL` orientation. 
 
-*alignType*
+        - `alignType`
 
-Alignment type. This is specified using one of these keywords:
+            Alignment type. This is specified using one of these keywords:
 
--   -   **START **- all buttons will have the same upper coordinate. Used by default.
-    -   **CENTER** - all buttons will be centered along the Y axis.
-    -   **END **- all buttons will have the same lower coordinate.
+            - `START` - all buttons will have the same upper coordinate. Used by default.
+            - `CENTER` - all buttons will be centered along the Y axis.
+            - `END` - all buttons will have the same lower coordinate.
 
-TEXTVALIGN(alignType)
+    - `TEXTVALIGN(alignType)`
 
-Specifying the vertical alignment of text on the buttons in a horizontal toolbar. This option makes sense only for **TOOLBAR** windows with** HORIZONTAL** orientation. 
+        Specifying the vertical alignment of text on the buttons in a horizontal toolbar. This option makes sense only for `TOOLBAR` windows with `HORIZONTAL` orientation. 
 
-*alignType*
+        - `alignType`
 
-Alignment type. This is specified using one of these keywords:
+            Alignment type. This is specified using one of these keywords:
 
--   -   **START **- the text will be located at the top of the button.
-    -   **CENTER** - the text will be located in the center of the button. Used by default.
-    -   **END **- the text will be located at the bottom of the button.  
-          
+            - `START` - the text will be located at the top of the button.
+            - `CENTER` - the text will be located in the center of the button. Used by default.
+            - `END` - the text will be located at the bottom of the button.  
+
 
 ### Examples
-
 
 ```lsf
 // creating system windows in the System module

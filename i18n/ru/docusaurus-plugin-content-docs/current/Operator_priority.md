@@ -2,22 +2,20 @@
 title: 'Приоритет операторов'
 ---
 
-При вычислении [выражения](Expression.md) [операторы](Operators.md) вычисляются в определенном порядке в зависимости от *приоритета операторов.* Чем выше приоритет оператора, тем раньше он будет выполнен. В таблице ниже перечислены приоритеты всех операторов в порядке убывания.* *
+При вычислении [выражения](Expression.md) [операторы](Operators.md) вычисляются в определенном порядке в зависимости от *приоритета операторов*. Чем выше приоритет оператора, тем раньше он будет выполнен. В таблице ниже перечислены приоритеты всех операторов в порядке убывания.
 
 |Оператор|Описание|Тип|
 |---|---|---|
-|<p>(expression)</p><br/><p>JOIN</p><br/><p>CASE, MULTI, OVERRIDE, EXCLUSIVE, IF ... THEN</p><br/><p>[PARTITION](PARTITION_operator.md)</p><br/><p>RECURSION</p><br/><p>GROUP</p><br/><p>[STRUCT](STRUCT_operator.md)</p><br/><p>MAX/MIN</p><br/><p>CONCAT</p><br/><p>INTEGER, DOUBLE...</p><br/><p>[PREV](PREV_operator.md), [CHANGED, ...](Change_operators.md)</p><br/><p>CLASS</p><br/><p>ACTIVE</p><br/><p>literal</p>|<p>Выражение в круглых скобках</p><br/><p>[Композиция](Composition_JOIN_.md)</p><br/><p>[Выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md)</p><br/><p>[Разбиение / упорядочивание](Partitioning_sorting_PARTITION_..._ORDER_.md)</p><br/><p>[Рекурсия](Recursion_RECURSION_.md)</p><br/><p>[Группировка](Grouping_GROUP_.md)</p><br/><p>[Создание структуры](Structure_operations_STRUCT_.md)</p><br/><p>Максимум / минимум</p><br/><p>Объединение строк</p><br/><p>[Преобразование типа](Type_conversion.md)</p><br/><p> </p><br/><p>[Сигнатура свойства](Property_signature_CLASS_.md)</p><br/><p>[Активность](Activity_ACTIVE_.md)</p><br/><p> [Константы](Constant.md)</p>|<p> </p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p><br/><p>Префиксный</p>|
-|<p>[[ ]](Operator_.md)</p><br/><p>[IS](IS_AS_operators.md)</p><br/><p>[AS](IS_AS_operators.md)</p>|<p>[Обращение к элементу структуры](Structure_operations_STRUCT_.md)</p><br/><p>[Классификация](Classification_IS_AS_.md)</p><br/><p>[Классификация](Classification_IS_AS_.md)</p>|<p>Постфиксный</p><br/><p>Постфиксный</p><br/><p>Постфиксный</p>|
-|[-](Arithmetic_operators.md)|Унарный минус|Префиксный|
-|<p>[*](Arithmetic_operators.md)</p><br/><p>[/](Arithmetic_operators.md)</p>|<p>Умножение</p><br/><p>Деление</p>|<p>Бинарный</p><br/><p>Бинарный</p>|
-|<p>[+](Arithmetic_operators.md)</p><br/><p>[-](Arithmetic_operators.md)</p>|<p>Сложение</p><br/><p>Вычитание</p>|<p>Бинарный</p><br/><p>Бинарный</p>|
-|<p>[(+)](Arithmetic_operators.md)</p><br/><p>[(-)](Arithmetic_operators.md)</p>|<p>Сложение с учетом NULL</p><br/><p>Вычитание с учетом NULL</p>|<p>Бинарный</p><br/><p>Бинарный</p>|
-|<p>[<](Comparison_operators.md)</p><br/><p>[<=](Comparison_operators.md)</p><br/><p>[\>](Comparison_operators.md)</p><br/><p>[\>=](Comparison_operators.md)</p>|<p>Меньше</p><br/><p>Меньше или равно</p><br/><p>Больше</p><br/><p>Больше или равно</p>|<p>Бинарный</p><br/><p>Бинарный</p><br/><p>Бинарный</p><br/><p>Бинарный</p>|
-|<p>[==](Comparison_operators.md)</p><br/><p>[!=](Comparison_operators.md)</p>|<p>Равно</p><br/><p>Не равно</p>|<p>Бинарный</p><br/><p>Бинарный</p>|
-|[NOT](AND_OR_NOT_XOR_operators.md)|[Логическое отрицание](Logical_operators_AND_OR_NOT_XOR_.md)|Префиксный|
-|[AND](AND_OR_NOT_XOR_operators.md)|[Логическое И](Logical_operators_AND_OR_NOT_XOR_.md)|Бинарный|
-|[XOR](AND_OR_NOT_XOR_operators.md)|[Логическое исключающее ИЛИ](Logical_operators_AND_OR_NOT_XOR_.md)|Бинарный|
-|[OR](AND_OR_NOT_XOR_operators.md)|[Логическое ИЛИ](Logical_operators_AND_OR_NOT_XOR_.md)|Бинарный|
-|[IF](IF_operator.md)|Условие|Бинарный|
-
-* * 
+|`(expression)`<br/>[`JOIN`](JOIN_operator.md)<br/>[`CASE`](CASE_operator.md), [`MULTI`](MULTI_operator.md), [`OVERRIDE`](OVERRIDE_operator.md), [`EXCLUSIVE`](EXCLUSIVE_operator.md), [`IF ... THEN`](IF_..._THEN_operator.md)<br/>[`PARTITION`](PARTITION_operator.md)<br/>`RECURSION`<br/>`GROUP`<br/>[`STRUCT`](STRUCT_operator.md)<br/>[`MAX`](MAX_operator.md)/[`MIN`](MIN_operator.md)<br/>[`CONCAT`](CONCAT_operator.md)<br/>`INTEGER`, `DOUBLE`...<br/>[`PREV`](PREV_operator.md), [`CHANGED`, ...](Change_operators.md)<br/>[`CLASS`](Property_signature_CLASS_.md)<br/>[`ACTIVE`](ACTIVE_TAB_operator.md)<br/>[`literal`](Literals.md)|Выражение в круглых скобках<br/>[Композиция](Composition_JOIN_.md)<br/>[Выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md)<br/>[Разбиение / упорядочивание](Partitioning_sorting_PARTITION_..._ORDER_.md)<br/>[Рекурсия](Recursion_RECURSION_.md)<br/>[Группировка](Grouping_GROUP_.md)<br/>[Создание структуры](Structure_operations_STRUCT_.md)<br/>Максимум / минимум<br/>Объединение строк<br/>[Преобразование типа](Type_conversion.md)<br/> <br/>[Сигнатура свойства](Property_signature_CLASS_.md)<br/>[Активность](Activity_ACTIVE_.md)<br/> [Константы](Constant.md)| <br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/>Префиксный<br/><br/>|
+|[`[ ]`](Operator_.md)<br/>[`IS`](IS_AS_operators.md)<br/>[`AS`](IS_AS_operators.md)|[Обращение к элементу структуры](Structure_operations_STRUCT_.md)<br/>[Классификация](Classification_IS_AS_.md)<br/>[Классификация](Classification_IS_AS_.md)|Постфиксный<br/>Постфиксный<br/>Постфиксный|
+|[`-`](Arithmetic_operators.md)|Унарный минус|Префиксный|
+|[`*`](Arithmetic_operators.md)<br/>[`/`](Arithmetic_operators.md)|Умножение<br/>Деление|Бинарный<br/>Бинарный|
+|[`+`](Arithmetic_operators.md)<br/>[`-`](Arithmetic_operators.md)|Сложение<br/>Вычитание|Бинарный<br/>Бинарный|
+|[`(+)`](Arithmetic_operators.md)<br/>[`(-)`](Arithmetic_operators.md)|Сложение с учетом `NULL`<br/>Вычитание с учетом `NULL`|Бинарный<br/>Бинарный|
+|[`<`](Comparison_operators.md)<br/>[`<=`](Comparison_operators.md)<br/>[`>`](Comparison_operators.md)<br/>[`>=`](Comparison_operators.md)|Меньше<br/>Меньше или равно<br/>Больше<br/>Больше или равно|Бинарный<br/>Бинарный<br/>Бинарный<br/>Бинарный|
+|[`==`](Comparison_operators.md)<br/>[`!=`](Comparison_operators.md)|Равно<br/>Не равно|Бинарный<br/>Бинарный|
+|[`NOT`](AND_OR_NOT_XOR_operators.md)|[Логическое отрицание](Logical_operators_AND_OR_NOT_XOR_.md)|Префиксный|
+|[`AND`](AND_OR_NOT_XOR_operators.md)|[Логическое И](Logical_operators_AND_OR_NOT_XOR_.md)|Бинарный|
+|[`XOR`](AND_OR_NOT_XOR_operators.md)|[Логическое исключающее ИЛИ](Logical_operators_AND_OR_NOT_XOR_.md)|Бинарный|
+|[`OR`](AND_OR_NOT_XOR_operators.md)|[Логическое ИЛИ](Logical_operators_AND_OR_NOT_XOR_.md)|Бинарный|
+|[`IF`](IF_operator.md)|Условие|Бинарный|

@@ -4,7 +4,7 @@ title: 'How-to: Table status'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the concept of books, for which title, genre and price are defined.
 
@@ -39,13 +39,13 @@ EXTEND FORM books
 ;
 ```
 
-The solution uses the [FILTER](Filter_FILTER_.md) operator, which returns **TRUE** if the object is included in the current filter on the form.
+The solution uses the [`FILTER` operator](Filter_FILTER_.md), which returns `TRUE` if the object is included in the current filter on the form.
 
 ## Example 2
 
-### Condition
+### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
 We need to display the serial number of the book in the table with books taking into account the current filter and order made by the user.
 
@@ -59,8 +59,8 @@ EXTEND FORM books
 ;
 ```
 
-The property with the current order, defined using the [ORDER](Order_ORDER_.md) operator, is not declared as a separate named property but is used directly in the expression.
+The property with the current order, defined using the [`ORDER` operator](Order_ORDER_.md), is not declared as a separate named property but is used directly in the expression.
 
 The form obtained in both examples, with user-defined filter and order, will look like this:
 
-![](attachments/46367766/46367772.png)
+![](images/How-to_Table_status.png)

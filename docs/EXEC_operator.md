@@ -2,7 +2,7 @@
 title: 'EXEC operator'
 ---
 
-The **EXEC** operator creates an [action](Actions.md) that [executes](Call_EXEC_.md) another action.
+The `EXEC` operator creates an [action](Actions.md) that [executes](Call_EXEC_.md) another action.
 
 ### Syntax
 
@@ -10,24 +10,23 @@ The **EXEC** operator creates an [action](Actions.md) that [executes](Call_EXEC
 
 ### Description
 
-The **EXEC** operator creates an action that executes another action, passing it the values of [expressions](Expression.md) as parameters.
+The `EXEC` operator creates an action that executes another action, passing it the values of [expressions](Expression.md) as parameters.
 
 ### Parameters
 
-*actionId*
+- `actionId`
 
-[Action ID](IDs.md#propertyid-broken). 
+    [Action ID](IDs.md#propertyid-broken). 
 
-*expression1, ..., expressionN*
+- `expression1, ..., expressionN`
 
-A list of expressions whose values will be passed to the action being executed as arguments. The number of expressions must be equal to the number of parameters of the action being executed.
+    A list of expressions whose values will be passed to the action being executed as arguments. The number of expressions must be equal to the number of parameters of the action being executed.
 
-*operator*
+- `operator`
 
-An operator that creates the action being executed.
+    An operator that creates the action being executed.
 
 ### Examples
-
 
 ```lsf
 importData(Sku sku, Order order)  {
@@ -37,5 +36,3 @@ importData(Sku sku, Order order)  {
 order = DATA Order (OrderDetail) NONULL DELETE;
 runImport(OrderDetail d)  { importData(sku(d), order(d)); } // declaration of the action runImport that will call importData
 ```
-
-  

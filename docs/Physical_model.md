@@ -3,21 +3,22 @@ title: 'Physical model'
 sidebar_label: Overview
 ---
 
-The physical model consists of three parts: 
+The physical model consists of three parts: 
 
-[Development](Development.md)
+### [Development](Development.md)
 
 Includes everything related to the development process.
 
-[Execution](Execution.md)
+### [Execution](Execution.md)
 
-Includes everything related to the system performance improvement.
+Includes everything related to the system performance improvement.
 
-[Management](Management.md)
+### [Management](Management.md)
 
 Includes everything related to operations on an already working system.
 
 ### Stack
 
+import PhysicalModelENSvg from './images/PhysicalModelEn.svg';
 
-![](download/temp/svgout7741212016876622307.png)
+<PhysicalModelENSvg />

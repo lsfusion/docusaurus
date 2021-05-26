@@ -4,7 +4,7 @@ title: 'How-to: Documents with lines'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the orders and their specification lines.
 
@@ -54,13 +54,13 @@ NAVIGATOR {
 }
 ```
 
-We do not add a link to the order for the line object on the *order* form, since when adding the object using *NEW*, the system will automatically set up this link based on the *FILTERS* block.
+We do not add a link to the order for the line object on the `order` form, since when adding the object using `NEW`, the system will automatically set up this link based on the `FILTERS` block.
 
 ## Example 2
 
-### Condition
+### Task
 
-Similar to Example 1.
+Similar to [**Example 1**](#example-1).
 
 We need to add order specification to the order list form.
 

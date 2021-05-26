@@ -4,7 +4,7 @@ title: 'How-to: NEW'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have an order with a given date and customer.
 
@@ -35,9 +35,9 @@ copyOrder 'Copy' (Order o)  {
 
 ## Example 2
 
-### Condition
+### Task
 
-Similar to **Example 1**, except that the order contains lines with other orders.
+Similar to [**Example 1**](#example-1), except that the order contains lines with other orders.
 
 ```lsf
 CLASS Book 'Book';

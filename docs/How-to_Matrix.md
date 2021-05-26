@@ -4,7 +4,7 @@ title: 'How-to: Matrix'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the concepts of books and buyers defined. A price is defined for each book and buyer.
 
@@ -31,17 +31,17 @@ FORM prices 'Prices'
 ;
 ```
 
-Object **c** will not be displayed on the form, since no properties have been added for it.
+Object `c` will not be displayed on the form, since no properties have been added for it.
 
 The form will look like this:
 
-![](attachments/46367544/46367547.png)
+![](images/How-to_Matrix_ex1.png)
 
 ## Example 2
 
-### Condition
+### Task
 
-Similar to **Example 1**, only there is a deferred payment period for each book and buyer.
+Similar to [**Example 1**](#example-1), only there is a deferred payment period for each book and buyer.
 
 ```lsf
 gracePeriod 'Delay, days' = DATA INTEGER (Book, Customer);
@@ -80,17 +80,17 @@ DESIGN pricesAndGracePeriods {
 }
 ```
 
-Only objects that meet the filter condition for object **c** will be shown in the columns. Besides, the columns will be shown in the same order as the objects.
+Only objects that meet the filter condition for object `c` will be shown in the columns. Besides, the columns will be shown in the same order as the objects.
 
-All properties with the same ID after the word **COLUMNS** will go side by side for the same objects. In this case, the price and the deferred payment period for the first buyer, then the price and deferral for the second one, and so forth. If IDs were different or unspecified, prices for all buyers would have been shown first followed by deferred payment values.
+All properties with the same ID after the word `COLUMNS` will go side by side for the same objects. In this case, the price and the deferred payment period for the first buyer, then the price and deferral for the second one, and so forth. If IDs were different or unspecified, prices for all buyers would have been shown first followed by deferred payment values.
 
 The form will look like this:
 
-![](attachments/46367544/46367551.png)
+![](images/How-to_Matrix_ex2.png)
 
 ## Example 3
 
-### Condition
+### Task
 
 We need to create a form containing a matrix with a specified number of rows and columns. The user should be able to check each cell.
 
@@ -121,8 +121,8 @@ DESIGN matrix {
 }
 ```
 
-In real projects, we recommend limiting the number of rows and columns during data entry or filtering. Otherwise, if the user enters too many rows or columns, the system will generate a CTE query for the **iterate** property which, in turn, will produce a table containing entered (very big) number of records and that may cause the server database to crash.
+In real projects, we recommend limiting the number of rows and columns during data entry or filtering. Otherwise, if the user enters too many rows or columns, the system will generate a CTE query for the `iterate` property which, in turn, will produce a table containing entered (very big) number of records and that may cause the server database to crash.
 
 Result:
 
-![](attachments/46367544/46367557.png)
+![](images/How-to_Matrix_ex3.png)

@@ -4,7 +4,7 @@ title: 'How-to: Navigator'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have the forms with a list of books and categories.
 
@@ -13,7 +13,7 @@ FORM categories 'Categories';
 FORM books 'Books';
 ```
 
-We need to add them to the [navigator](Navigator.md) to the new folder called **Application** under the main toolbar.
+We need to add them to the [navigator](Navigator.md) to the new folder called `'Application'` under the main toolbar.
 
 ### Solution
 
@@ -26,17 +26,17 @@ NAVIGATOR {
 }
 ```
 
-By specifying **WINDOW** for the **application** element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called **toolbar**. This will look like this:
+By specifying `WINDOW` for the `application` element, we indicated that all its child objects must be displayed in the system [window](Navigator_design.md) called `toolbar`. This will look like this:
 
-![](attachments/46367463/46367465.png)
+![](images/How-to_Navigator_ex1.png)
 
 ## Example 2
 
-### Condition
+### Task
 
-Similar to **Example 1**.
+Similar to [**Example 1**](#example-1).
 
-We need to place the same forms in the subfolder called Directories.
+We need to place the same forms in the subfolder called `'Directories'`.
 
 ### Solution
 
@@ -53,4 +53,4 @@ NAVIGATOR {
 
 Result:
 
-![](attachments/46367463/46367468.png)
+![](images/How-to_Navigator_ex2.png)

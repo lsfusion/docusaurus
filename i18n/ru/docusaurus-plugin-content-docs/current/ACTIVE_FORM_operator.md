@@ -2,7 +2,7 @@
 title: 'Оператор ACTIVE FORM'
 ---
 
-Оператор **ACTIVE FORM **- создание [действия](Actions.md), проверяющего [активность](Activity_ACTIVE_.md) [формы](Forms.md).
+Оператор `ACTIVE FORM` - создание [действия](Actions.md), проверяющего [активность](Activity_ACTIVE_.md) [формы](Forms.md).
 
 ### Синтаксис
 
@@ -10,16 +10,15 @@ title: 'Оператор ACTIVE FORM'
 
 ### Описание
 
-Оператор **ACTIVE FORM** создает действие, которое записывает в свойство **System.isActiveForm\[\]** значение активности указанной формы. Если форма активна, то записывается **TRUE**.
+Оператор `ACTIVE FORM` создает действие, которое записывает в свойство `System.isActiveForm[]` значение активности указанной формы. Если форма активна, то записывается `TRUE`.
 
 ### Параметры
 
-*formName*
+- `formName`
 
-Имя формы. [Составной идентификатор](IDs.md#cid-broken).
+    Имя формы. [Составной идентификатор](IDs.md#cid-broken).
 
 ### Примеры
-
 
 ```lsf
 FORM exampleForm;
@@ -28,5 +27,3 @@ testActive  {
     IF isActiveForm() THEN MESSAGE 'Example form is active';
 }
 ```
-
-  

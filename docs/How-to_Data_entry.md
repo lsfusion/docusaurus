@@ -4,7 +4,7 @@ title: 'How-to: Data entry'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a form that displays a list of books. We need to implement an option for entering a name only in upper case. Group change, copy&paste, and similar features must also be supported.
 
@@ -39,9 +39,9 @@ EXTEND FORM books
 
 ## Example 2
 
-### Condition
+### Task
 
-We have a form that displays a list of books. In this form, the user can specify a genre, so that only books of this genre will be displayed. We also have a form containing the list of orders where you can also apply a filter by genre. Each book has a restricted/allowed flag, and the order may contain only allowed books.
+We have a form that displays a list of books. In this form, the user can specify a genre, so that only books of this genre will be displayed. We also have a form containing the list of orders where you can also apply a filter by genre. Each book has a restricted/allowed flag, and the order may contain only allowed books.
 
 ```lsf
 CLASS Genre 'Genre';

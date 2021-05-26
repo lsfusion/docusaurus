@@ -4,7 +4,7 @@ title: 'How-to: Working with documents'
 
 ## Posting documents
 
-### Condition
+### Task
 
 There is some logic for working with orders.
 
@@ -52,7 +52,7 @@ NAVIGATOR {
 }
 ```
 
-Besides, a **"Posted"** property has been added for orders. In the future, only orders with this property will take part in subsequent calculations (for example, calculation of the reserved quantity).
+Besides, a `posted` property has been added for orders. In the future, only orders with this property will take part in subsequent calculations (for example, calculation of the reserved quantity).
 
 ```lsf
 posted 'Completed' = DATA BOOLEAN (Order);
@@ -63,7 +63,7 @@ EXTEND FORM order
 ;
 ```
 
-We need to do so that instead of the **ОК** button on the order form, there is a **Post** button that simultaneously sets the **Posted** property for the order, saves changes, and closes the form.
+We need to do so that instead of the `ОК` button on the order form, there is a `Post` button that simultaneously sets the `posted` property for the order, saves changes, and closes the form.
 
 ### Solution
 
@@ -80,13 +80,13 @@ DESIGN order {
 }
 ```
 
-Each time the renamed **OK** button is pressed, the **post** action will be executed in a single transaction. With this scheme, if the user wants to "post" a document, they just need to go to the edit form, uncheck the **Posted** box in the document header, then click **Save** and **Close**.
+Each time the renamed `OK` button is pressed, the `post` action will be executed in a single transaction. With this scheme, if the user wants to "post" a document, they just need to go to the edit form, uncheck the `Posted` box in the document header, then click `Save` and `Close`.
 
 ## Line selection
 
-### Condition
+### Task
 
-We have an order with an edit form similar to the **Posting documents** example.
+We have an order with an edit form similar to the [**Posting documents**](#posting-documents) example.
 
 We need to add a possibility to enter order lines by specifying the quantify in the table containing the list of products. Any changes in order lines and this table should be automatically synchronized with each other.
 
@@ -134,9 +134,9 @@ DESIGN order {
 
 The form will look like this:
 
-![](attachments/46367481/46367490.png)![](attachments/46367481/46367491.png)
+![](images/How-to_Working_with_documents_line.png)![](images/How-to_Working_with_documents_select.png)
 
-If the quantity changes on the **Selection** tab, the system will automatically change order lines. If the order lines are changed, the quantity on the **Selection** tab will change as well.
+If the quantity changes on the `Selection` tab, the system will automatically change order lines. If the order lines are changed, the quantity on the `Selection` tab will change as well.
 
 If an order has two or more lines with one book, the system will reset the quantity in the first lines and set the total in the last line. If you want the change to affect the last line only, you need to use the following action during saving:
 
@@ -144,11 +144,11 @@ If an order has two or more lines with one book, the system will reset the quant
 quantity(OrderDetail d) <- q WHERE d == lastOrderDetail(o, b);
 ```
 
-However, users may not understand this behavior, since after they enter a particular quantity on the **Selection** tab, the total quantity for all lines will be shown in the same column and it will be different from the entered value.
+However, users may not understand this behavior, since after they enter a particular quantity on the `Selection` tab, the total quantity for all lines will be shown in the same column and it will be different from the entered value.
 
 ## Aggregated documents
 
-### Condition
+### Task
 
 We have the order logic.
 
@@ -156,7 +156,7 @@ We need to add some invoicing logic so that an order could automatically create 
 
 ### Solution
 
-In order to implement this logic, you need to create an abstract **Invoice** [class](Classes.md) with the necessary set of [abstract properties](Property_extension.md).
+In order to implement this logic, you need to create an abstract `Invoice` [class](Classes.md) with the necessary set of [abstract properties](Property_extension.md).
 
 ```lsf
 CLASS ABSTRACT Invoice 'Invoice';
@@ -171,7 +171,7 @@ quantity 'Quantity' = ABSTRACT INTEGER (InvoiceDetail);
 price 'Price' = ABSTRACT NUMERIC[14,2] (InvoiceDetail);
 ```
 
-A form containing the list of objects of this abstract class is also created. It will contain the objects of all classes inherited from the **Invoice** class.
+A form containing the list of objects of this abstract class is also created. It will contain the objects of all classes inherited from the `Invoice` class.
 
 ```lsf
 FORM invoices 'Invoices'
@@ -185,9 +185,9 @@ NAVIGATOR {
 }
 ```
 
-The **edit** property will call the current object's edit form defined for its class. If it's not defined for the current object's class, no action will be taken. The **DELETE** property will delete the current object if it doesn't violate any constrains.
+The `edit` property will call the current object's edit form defined for its class. If it's not defined for the current object's class, no action will be taken. The `DELETE` property will delete the current object if it doesn't violate any constrains.
 
-An object of an abstract class cannot exist in the system. In order for the user to manually create an invoice, a separate class **UserInvoice** is created . Also, it requires the creation of properties symmetrical to the abstract ones that are later added as their implementation.
+An object of an abstract class cannot exist in the system. In order for the user to manually create an invoice, a separate class `UserInvoice` is created . Also, it requires the creation of properties symmetrical to the abstract ones that are later added as their implementation.
 
 ```lsf
 CLASS UserInvoice 'Custom invoice' : Invoice;
@@ -233,7 +233,7 @@ EXTEND FORM invoices
 ;
 ```
 
-For orders, let's create a **createInvoice** option that will be used for generating an invoice. We will now need to create a **OrderInvoice** class that will be inherited from **Invoice**. An object of this class will be automatically created and deleted by the system for every order with the **createInvoice** option. Therefore, this invoice is an [aggregated object](Aggregations.md) for the corresponding order. Aggregation for the invoice line relative to the order line is created identically.
+For orders, let's create a `createInvoice` option that will be used for generating an invoice. We will now need to create a `OrderInvoice` class that will be inherited from `Invoice`. An object of this class will be automatically created and deleted by the system for every order with the `createInvoice` option. Therefore, this invoice is an [aggregated object](Aggregations.md) for the corresponding order. Aggregation for the invoice line relative to the order line is created identically.
 
 ```lsf
 createInvoice 'Create invoice' = DATA BOOLEAN (Order);

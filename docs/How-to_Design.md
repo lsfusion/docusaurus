@@ -4,7 +4,7 @@ title: 'How-to: Design'
 
 ## Example 1
 
-### Condition
+### Task
 
 We have a form with the list of orders, where each order is associated with a list of books and its posted payments.
 
@@ -76,13 +76,13 @@ DESIGN orders {
 
 The form will look like this:
 
-![](attachments/36307439/46367472.png)
+![](images/How-to_Design_ex1.png)
 
 ## Example 2
 
-### Condition
+### Task
 
-Similar to Example 1, except we have added filters by date and customer to the form.
+Similar to [**Example 1**](#example-1), except we have added filters by date and customer to the form.
 
 ```lsf
 CLASS Customer 'Customer';
@@ -135,4 +135,4 @@ DESIGN orders {
 
 Result:
 
-![](attachments/36307439/46367474.png)
+![](images/How-to_Design_ex2.png)

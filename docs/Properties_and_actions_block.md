@@ -2,15 +2,15 @@
 title: 'Properties and actions block'
 ---
 
-The property and action [block of the FORM instruction](FORM_instruction.md) adds [properties and actions](Form_structure.md#properties) to the [form structure](Form_structure.md). 
+The property and action block of the [FORM instruction](FORM_instruction.md) adds [properties and actions](Form_structure.md#properties) to the [form structure](Form_structure.md). 
 
 ### Syntax
 
     PROPERTIES [(cparam1, ..., cparamN)] [formPropertyOptions] formPropertyDecl1, ..., formPropertyDeclM
 
-Each *formPropertyDecl* describes the property or action being added to the form structure and has the following syntax:
+Each `formPropertyDecl` describes the property or action being added to the form structure and has the following syntax:
 
-If the common parameters of the **PROPERTIES** *(cparam1, ..., cparamN)* block have been specified:
+If the common parameters `(cparam1, ..., cparamN)` have been specified:
 
     [[alias1] [caption1] =] [ACTION] formPropertyId1 [formPropertyOptions1], ..., [[aliasK] [captionK] =] [ACTION] formPropertyIdK [formPropertyOptionsK] 
 
@@ -18,14 +18,14 @@ If the common parameters of the block have not been specified, then:
 
     [[alias1] [caption1] =] formMappedProperty1 [formPropertyOptions1], ..., [[aliasK] [captionK] =] formMappedPropertyK [formPropertyOptionsK] 
 
-Each formMappedProperty describes the implementation of a property or action being added to the form and having one of the following syntaxes
+Each `formMappedProperty` describes the implementation of a property or action being added to the form and having one of the following syntaxes
 
     [ACTION] formPropertyId(param1, ..., paramN1) 
     formPropertyExpression 
 
     { formActionOperator }
 
-Each *formPropertyOptions* specifies options for the property or action being added to the form structure. They can be added one by one in arbitrary order:
+Each `formPropertyOptions` specifies options for the property or action being added to the form structure. They can be added one by one in arbitrary order:
 
     changeType
     SHOWIF propertyExpression
@@ -48,237 +48,232 @@ Each *formPropertyOptions* specifies options for the property or action being ad
 
 ### Description
 
-One **PROPERTIES** block adds properties and actions to the form structure. To add a property (action), specify its ID and the [form objects](Form_structure.md#objects) whose values will be passed to this property (action) as arguments. Sometimes it’s convenient to list these form objects for the entire **PROPERTIES** block. To do this, specify the block of *common parameters*. In this case, when adding a property (action), you only need to specify its ID, while the common parameters will be passed as arguments.
+One `PROPERTIES` block adds properties and actions to the form structure. To add a property (action), specify its ID and the [form objects](Form_structure.md#objects) whose values will be passed to this property (action) as arguments. Sometimes it’s convenient to list these form objects for the entire `PROPERTIES` block. To do this, specify the block of *common parameters*. In this case, when adding a property (action), you only need to specify its ID, while the common parameters will be passed as arguments.
 
-Each property (action) being added to the form structure must have a *unique name within the form*. This name may be specified either explicitly or based on the name of the property and the passed parameters, i. e. names of objects separated by commas. 
+Each property (action) being added to the form structure must have a *unique name within the form*. This name may be specified either explicitly or based on the name of the property and the passed parameters, i.e. names of objects separated by commas. 
 
     FORM order
     OBJECTS o=Order 
     PROPERTIES(o) d=date, Order.number;
 
-In the given example, the names of the added properties **date** and **Order.number** will be **d** and **number(o)** respectively.
+In the given example, the names of the added properties `date` and `Order.number` will be `d` and `number(o)` respectively.
 
-When adding a property (action) to the form structure, you may specify a set of its options. You may also specify common options for the entire **PROPERTIES** block. If any of the options are specified for both the entire block and a specific declaration, the option value for the declaration will be used.
+When adding a property (action) to the form structure, you may specify a set of its options. You may also specify common options for the entire `PROPERTIES` block. If any of the options are specified for both the entire block and a specific declaration, the option value for the declaration will be used.
 
-In all [expressions](Expression.md) and [context-dependent action operators](Action_operator.md#contextdependent), you can use the names of the objects already declared on the form as parameters.
+In all [expressions](Expression.md) and [context-dependent action operators](Action_operator.md#contextdependent), you can use the names of the objects already declared on the form as parameters.
 
 ### Parameters
 
-*cparam1, ..., cparamN*
+- `cparam1, ..., cparamN`
 
-List of common parameters of the block. Each parameter is specified with the name of the object on the form. If this list is defined, then adding a property (action) will require that you specify only its ID without parameters. The object name is specified with [simple ID](IDs.md#id-broken).
+    List of common parameters of the block. Each parameter is specified with the name of the object on the form. If this list is defined, then adding a property (action) will require that you specify only its ID without parameters. The object name is specified with [simple ID](IDs.md#id-broken).
 
-*alias*
+- `alias`
 
-The name of the property or action being added to the form. [Simple ID](IDs.md#id-broken). If the name is not specified, then the name of the property (action) on the form will be the same as the property's name itself (but without the namespace and signature) with parameters, i. e. names of the objects separated by commas and enclosed in brackets. 
+    The name of the property or action being added to the form. [Simple ID](IDs.md#id-broken). If the name is not specified, then the name of the property (action) on the form will be the same as the property's name itself (but without the namespace and signature) with parameters, i.e. names of the objects separated by commas and enclosed in brackets. 
 
-*caption*
+- `caption`
 
-The caption of the property or action being added to the form. [String literal](Literals.md#strliteral-broken). If the caption is not specified, then the caption of the property (action) itself will be used on the form.
+    The caption of the property or action being added to the form. [String literal](Literals.md#strliteral-broken). If the caption is not specified, then the caption of the property (action) itself will be used on the form.
 
 
 :::info
-In the current platform implementation, if the name and caption are not specified together, then **=** is required when using the expressions and action operators (i. e. f(a,b), but =a\*b+5)
+In the current platform implementation, if the name and caption are not specified together, then `=` is required when using the expressions and action operators (i.e. `f(a,b)`, but `=a*b+5`)
 :::
 
-*formPropertyId*
+- `formPropertyId`
 
-[ID of the property or action](IDs.md#propertyid-broken) being added to the form structure.
+    [ID of the property or action](IDs.md#propertyid-broken) being added to the form structure.
+    
+    Alternatively, you may use [object operators](Interactive_view.md#objectoperators) instead of the property/action IDs:
 
-Alternatively, you may use [object operators](Interactive_view.md#objectoperators) instead of the property/action IDs:
+    - `VALUE` displays the object value (or the object ID for custom classes).
+    - `NEW` creates a new object.
+    - `EDIT` edits the object.
+    - `DELETE` deletes the object.
+    - `NEWEDIT` creates and edits a new object.
 
-**VALUE** displays the object value (or the object ID for custom classes).
+  In addition, you may use brackets to explicitly specify a class whose object will be added/edited (e. g. `NEW[A]`) for operators `NEW`, `EDIT`, and `NEWEDIT` or for property/action IDs.
 
-**NEW** creates a new object.
+- `ACTION`
 
-**EDIT** edits the object.
+    Keyword. When specified, it is considered that the action is specified in formPropertyId. When not specified, it is initially considered that a property is specified in formPropertyId; otherwise, if property is not found, it is considered that an action is specified in formPropertyId.
 
-**DELETE** deletes the object.
+- `param1, ..., paramNk`
 
-**NEWEDIT** creates and edits a new object.
+    List of parameters of the added properties or actions. Each parameter is specified with the name of the object on the form. The number of specified parameters must match the number of parameters for the property or action being added. Not specified if the common parameters block is specified. The object name, in turn, is specified with a [simple ID](IDs.md#id-broken).
 
-In addition, you may use brackets to explicitly specify a class whose object will be added/edited (e. g. **NEW\[A\]**) for operators **NEW**, **EDIT**, and **NEWEDIT** or for property/action IDs.
+- `formPropertyExpression`
 
-*ACTION*
+    [Expression](Expression.md) being added to the form structure.
 
-Keyword. When specified, it is considered that the action is specified in formPropertyId. When not specified, it is initially considered that a property is specified in formPropertyId; otherwise, if property is not found, it is considered that an action is specified in formPropertyId.
+- `formActionOperator`
 
-*param1, ..., paramNk*
+    [Context-dependent action operator](Action_operator.md#contextdependent) being added to the form structure.
 
-List of parameters of the added properties or actions. Each parameter is specified with the name of the object on the form. The number of specified parameters must match the number of parameters for the property or action being added. Not specified if the common parameters block is specified. The object name, in turn, is specified with a [simple ID](IDs.md#id-broken).
+#### Options for the property or action
 
-*formPropertyExpression*
+- `changeType`
 
-[Expression](Expression.md) being added to the form structure.
+    Specifying [standard handlers](Form_events.md#predefined) for property/action change events. It is specified with one of the keywords:
 
-*formActionOperator*
+    - `CHANGEABLE` calls the corresponding handler of the triggered event. Default value. It makes sense to use it explicitly only when another modifier is defined for the entire block but should not be applied to a specific property.
+    - `READONLY` will either turn on the filtering mechanism or simply ignore the event when the user tries to change the property.
+    - `SELECTOR` shows a dialog for changing the current value of the object (not the property value) when the user tries to change the property. Applicable only for properties with one parameter.
 
-[Context-dependent action operator](Action_operator.md#contextdependent) being added to the form structure
+- `SHOWIF propertyExpression`
 
-### *Options*** ***for the property or action*
+    Specifies a property that determines visibility of the property or action being added to the form. If the value of this property is `NULL`, then the property (action) being added will not be displayed. Cannot be used together with the `HEADER` option.
 
-*changeType*
+    - `propertyExpression`
 
-Specifying [standard handlers](Form_events.md#predefined) for property/action change events. It is specified with one of the keywords:
+        [Expression](Expression.md).
 
--   **CHANGEABLE** calls the corresponding handler of the triggered event. Default value. It makes sense to use it explicitly only when another modifier is defined for the entire block but should not be applied to a specific property.
--   **READONLY** will either turn on the filtering mechanism or simply ignore the event when the user tries to change the property.
--   **SELECTOR** shows a dialog for changing the current value of the object (not the property value) when the user tries to change the property. Applicable only for properties with one parameter.
+- `READONLYIF propertyExpression`
 
-*SHOWIF propertyExpression*
+    Specifies a property that allows or prohibits changing the property being added (or execution of the action being added). If the value of this property is `NULL`, then the property being added will not be changeable, and the action being added will not be executable. The behavior is similar to the `READONLY` option, but with an additional data-dependant condition.
 
-Specifies a property that determines visibility of the property or action being added to the form. If the value of this property is **NULL**, then the property (action) being added will not be displayed. Cannot be used together with the **HEADER** option.
+    - `propertyExpression`
 
-*propertyExpression*
+        [Expression](Expression.md).
 
-[Expression](Expression.md).
+- `BACKGROUND propertyExpression`
 
-*READONLYIF propertyExpression*
+    Specifying a property that determines the background color for the value cell of the property (action) being added. The property may have the `COLOR` type (in this case, its value will be used) or any other type. In this case, if the value is not equal `NULL`, then either the default color stored in the global property `System.defaultBackgroundColor` (set in settings) or yellow color (if the default color is not set) will be used.
 
-Specifies a property that allows or prohibits changing the property being added (or execution of the action being added). If the value of this property is **NULL**, then the property being added will not be changeable, and the action being added will not be executable. The behavior is similar to the **READONLY option**, but with an additional data-dependant condition.
+    - `propertyExpression`
 
-*propertyExpression*
+        [Expression](Expression.md).
 
-[Expression](Expression.md).
+- `FOREGROUND propertyExpression`
 
-*BACKGROUND propertyExpression*
+    Specifying a property that determines the text color for the value cell of the property (action) being added. The property may have the `COLOR` type (in this case, its value will be used) or any other type. In this case, if the value is not equal to `NULL`, then either the default text color stored in the global property `System.defaultForegroundColor` (set in settings) or red color (if the default color is not set) will be used.
 
-Specifying a property that determines the background color for the value cell of the property (action) being added. The property may have the **COLOR** type (in this case, its value will be used) or any other type. In this case, if the value is not equal **NULL**, then either the default color stored in the global property **System.defaultBackgroundColor** (set in settings) or yellow color (if the default color is not set) will be used.
+    - `propertyExpression`
 
-*propertyExpression*
+        [Expression](Expression.md).
 
-[Expression](Expression.md).
+- `HEADER propertyExpression`
 
-*FOREGROUND propertyExpression*
+    Specifying a property that determines the header for the column of the property (action) being added. The return value of this property will be used as the header. If the return value is `NULL`, then the added property (action) will be automatically hidden. 
 
-Specifying a property that determines the text color for the value cell of the property (action) being added. The property may have the **COLOR** type (in this case, its value will be used) or any other type. In this case, if the value is not equal to **NULL**, then either the default text color stored in the global property **System.defaultForegroundColor** (set in settings) or red color (if the default color is not set) will be used.
+    - `propertyExpression`
 
-*propertyExpression*
+    [Expression](Expression.md).
 
-[Expression](Expression.md).
+- `FOOTER propertyExpression`
 
-*HEADER propertyExpression*
+    Specifying a property that determines the footer of the property (action) being added. Used only in the [print view](Print_view.md) of the form.
 
-Specifying a property that determines the header for the column of the property (action) being added. The return value of this property will be used as the header. If the return value is **NULL**, then the added property (action) will be automatically hidden. 
+    - `propertyExpression`
 
-*propertyExpression*
+        [Expression](Expression.md).
 
-[Expression](Expression.md).
+- `COLUMNS [groupid] (groupName1, ..., groupNameM)`
 
-*FOOTER propertyExpression*
+    Specifies the upper [object groups](Form_structure.md#objects) whose values will define a set of [columns](Form_structure.md#groupcolumns) to display the added property (action). The `COLUMNS` option is often used with the `HEADER` option which defines headers for these columns.
 
-Specifying a property that determines the footer of the property (action) being added. Used only in the [print view](Print_view.md) of the form.
+    - `groupid`
 
-*propertyExpression*
+        Column group ID. [String literal](Literals.md#strliteral-broken). If the `COLUMNS` option is specified for several properties (actions) being added with the same set of object groups, then by default the columns of the first property (action) will be added, followed by the columns of the second property (action), and so on. To group columns of different properties (actions) by values of the upper objects, you can set for them the same string ID of the group of columns. In this case, the columns for different properties (actions) will alternate. 
 
-[Expression](Expression.md).
+    - `groupName1, ..., groupNameM`
 
-*COLUMNS \[groupid\] (groupName1, ..., groupNameM)*
+        List of the names of the upper object groups. Each name is defined [by a simple ID](IDs.md#id-broken).
 
-Specifies the upper [object groups](Form_structure.md#objects) whose values will define a set of [columns](Form_structure.md#groupcolumns-broken) to display the added property (action). The **COLUMNS** option is often used with the **HEADER** option which defines headers for these columns.
+- `DRAW groupObjectName`
 
-*groupid*
+    Specifying the name of the object group on the form where the added property or action will be displayed in the table of the specified object group.
 
-Column group ID. [String literal](Literals.md#strliteral-broken). If the **COLUMNS** option is specified for several properties (actions) being added with the same set of object groups, then by default the columns of the first property (action) will be added, followed by the columns of the second property (action), and so on. To group columns of different properties (actions) by values of the upper objects, you can set for them the same string ID of the group of columns. In this case, the columns for different properties (actions) will alternate. 
+    - `groupObjectName`
 
-*groupName1, ..., groupNameM*
+        Name of an object group. [Simple ID](IDs.md#id-broken).
 
-List of the names of the upper object groups. Each name is defined [by a simple ID](IDs.md#id-broken).
+- `viewType`
 
-*DRAW groupObjectName*
+    Specifying the [view type](Interactive_view.md#property) of the property or action being added:
 
-Specifying the name of the object group on the form where the added property or action will be displayed in the table of the specified object group.
+    - `GRID` — table column
+    - `TOOLBAR` — toolbar
+    - `PANEL` — panel
 
-*groupObjectName*
+  If not specified, the corresponding option from the [property options](Property_options.md) is used. If it is also not specified, then the [default view type](Interactive_view.md#property) is used for the display group of this property or action.
 
-Name of an object group. [Simple ID](IDs.md#id-broken).
+- `NEWSESSION` | `NESTEDSESSION`
 
-*viewType*
+    Modifiers specifying that object operators (`NEW`, `EDIT`, `DELETE`, `NEWEDIT`) must be executed in a new (nested) session.
 
-Specifying the [view type](Interactive_view.md#property) of the property or action being added:
+- `BEFORE formPropertyName` | `AFTER  formPropertyName`
 
--   **GRID** — table column
--   **TOOLBAR** — toolbar
--   **PANEL** — panel
+    Specifying that a property or an action should be added to the form structure before (keyword `BEFORE`) or after (keyword `AFTER`) the previously added property or action. Typically used in the [form extension](Form_extension.md) concept.
 
-If not specified, the corresponding option from the [property options](Property_options.md) is used. If it is also not specified, then the [default view type](Interactive_view.md#defaultPropertyView-broken) is used for the display group of this property or action.
+    - `formPropertyName`
 
-*NEWSESSION | NESTEDSESSION*
+        [Property/action name on the form](#name-broken).
 
-Modifiers specifying that object operators (**NEW**, **EDIT**, **DELETE**, **NEWEDIT**) must be executed in a new (nested) session.
+- `QUICKFILTER formPropertyName`
 
-*BEFORE formPropertyName*
+    Specifying the property to be used in [default handlers](Form_events.md#default) for quick filtering.
 
-*AFTER  formPropertyName*
+    - `formPropertyName`
 
-Specifying that a property or an action should be added to the form structure before (keyword **BEFORE**) or after (keyword **AFTER**) the previously added property or action. Typically used in the [form extension](Form_extension.md) concept.
+        [Property name/actions on the form](#name-broken).
 
-*formPropertyName*
+- `ON eventType actionId(param1, ..., paramZ) | { actionOperator }`
 
-[Property/action name on the form](#name-broken).
+    Specifying the action that will be executed when the specified [form event](Form_events.md) occurs.
 
-*QUICKFILTER formPropertyName*
+    - `eventType`
 
-Specifying the property to be used in [default handlers](Form_events.md#default) for quick filtering.
+        Type of form event. It is specified by one of the following keywords:
 
-*formPropertyName*
+        - `CHANGE` — the user tries to change the value of the property being added (call the added action). 
+        - `CHANGEWYS` — the user tries to change the displayed value of the property. It is triggered when the user inserts a text into the added property (by pressing Ctrl + V or similarly). 
+        - `GROUPCHANGE` — the user tries to change the property value for all objects in the table (group change).
+        - `EDIT` — the user tries to edit the object that represents the property value.
+        - `CONTEXTMENU [caption]` is the event type which adds a menu item executing the specified action to the context menu of the property (action) on the form. You can also specify the caption for this menu item (as string literal). If it is not specified, then, by default, it will be the same as the action caption.
 
-[Property name/actions on the form](#name-broken).
+            - `caption`
 
-*ON eventType actionId(param1, ..., paramZ) | { actionOperator }*
+                Caption of the item in the context menu. [String literal](Literals.md#strliteral-broken). If the caption is not specified explicitly, then it will be the same as the caption of the action called upon the event.
 
-Specifying the action that will be executed when the specified [form event](Form_events.md) occurs.
+    - `actionId`
 
-*eventType*
+        [Action ID](IDs.md#propertyid-broken).
 
-Type of form event. It is specified by one of the following keywords:
+    - `param1, ..., paramZ`
 
--   **CHANGE** — the user tries to change the value of the property being added (call the added action). 
--   **CHANGEWYS** — the user tries to change the displayed value of the property. It is triggered when the user inserts a text into the added property (by pressing Ctrl + V or similarly). 
--   **GROUPCHANGE** — the user tries to change the property value for all objects in the table (group change).
--   **EDIT** — the user tries to edit the object that represents the property value.**  
-    **
--   **CONTEXTMENU** \[caption\] is the event type which adds a menu item executing the specified action to the context menu of the property (action) on the form. You can also specify the caption for this menu item (as string literal). If it is not specified, then, by default, it will be the same as the action caption.
+        List of action parameters. Each parameter is specified with the object name on the form. The object name, in turn, is specified with a simple ID.
 
-*caption*
+    - `actionOperator`
 
-Caption of the item in the context menu. [String literal](Literals.md#strliteral-broken). If the caption is not specified explicitly, then it will be the same as the caption of the action called upon the event.
+        [Context-dependent action operator](Action_operator.md#contextdependent).
 
-*actionId*
+- `ATTR`
 
-[Action ID](IDs.md#propertyid-broken).
+    Keyword. Used only in the [hierarchical](Structured_view.md#hierarchy) view. Indicates that:
 
-*param1, ..., paramZ*
+    -   When importing from XML, the data is imported from the tag attributes instead of the child tag.
+    -   When exporting to XML, the data is exported to the tag attributes instead of the child tag.
 
-List of action parameters. Each parameter is specified with the object name on the form. The object name, in turn, is specified with a simple ID.
+- `EXTID extID`
 
-*actionOperator*
+    Specifying the name to be used for [export/import](Structured_view.md#extid) operations of this property. Used only in the [structured](Structured_view.md) view.
 
-[Context-dependent action operator](Action_operator.md#contextdependent).
+    - `extId`
 
-*ATTR*
+        String literal.
 
-Keyword. Used only in the [hierarchical](Structured_view.md#hierarchy) view. Indicates that:
+- `IN propertyGroup`
 
--   When importing from XML, the data is imported from the tag attributes instead of the child tag.
--   When exporting to XML, the data is exported to the tag attributes instead of the child tag.
+    Specifying a [property/action group](Groups_of_properties_and_actions.md) which the property (action) on the form belongs to. If this option is not specified, then the property group of the property itself will be used as the property (action) group on the form. 
 
-*EXTID extID*
+    - `propertyGroup`
+    
+        The property group name. [Composite ID](IDs.md#cid-broken).
 
-Specifying the name to be used for [export/import](Structured_view.md#extid) operations of this property. Used only in the [structured](Structured_view.md) view.
-
-*extId*
-
-String literal.
-
-*IN** **propertyGroup*
-
-Specifying a [property/action group](Groups_of_properties_and_actions.md) which the property (action) on the form belongs to. If this option is not specified, then the property group of the property itself will be used as the property (action) group on the form. 
-
-**propertyGroup* – *the property group name. [Composite ID](IDs.md#cid-broken).
 
 ### Examples
-
 
 ```lsf
 CLASS Order;

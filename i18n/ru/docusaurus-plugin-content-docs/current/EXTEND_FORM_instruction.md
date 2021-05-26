@@ -2,7 +2,7 @@
 title: 'Инструкция EXTEND FORM'
 ---
 
-Инструкция **EXTEND FORM** - [расширение](Form_extension.md) существующей [формы](Forms.md).
+Инструкция `EXTEND FORM` - [расширение](Form_extension.md) существующей [формы](Forms.md).
 
 ### Синтаксис
 
@@ -14,20 +14,19 @@ title: 'Инструкция EXTEND FORM'
 
 ### Описание
 
-Инструкция **EXTEND FORM** позволяет расширять существующую форму дополнительными [блоками формы](FORM_instruction.md#blocks-broken).
+Инструкция `EXTEND FORM` позволяет расширять существующую форму дополнительными [блоками формы](FORM_instruction.md#blocks).
 
 ### Параметры
 
-*formName*
+- `formName`
 
-Имя расширяемой формы. [Составной идентификатор](IDs.md#cid-broken).
+    Имя расширяемой формы. [Составной идентификатор](IDs.md#cid-broken).
 
-*formBlock1 ... formBlockN *
+- `formBlock1 ... formBlockN`
 
-Блоки формы.
+    Блоки формы.
 
 ### Пример
-
 
 ```lsf
 CLASS ItemGroup;
@@ -43,5 +42,3 @@ EXTEND FORM items
     FILTERS itemGroup(i) == g // если бы объект был добавлен после объекта с товарами, то фильтрация шла бы по группе товаров, а не по товарам
 ;
 ```
-
-  

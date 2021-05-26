@@ -2,13 +2,13 @@
 title: 'EXTERNAL operator'
 ---
 
-The **EXTERNAL** operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL_.md). 
+The `EXTERNAL` operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL_.md). 
 
 ### Syntax
 
     EXTERNAL externalCall [PARAMS paramExpr1, ..., paramExprN] [TO propertyId1. ..., propertyIdM]
 
-externalCall - an external call defined by one of the following syntaxes:
+`externalCall` - an external call defined by one of the following syntaxes:
 
     HTTP [requestType] connectionStrExpr [BODYURL bodyStrExpr] [HEADERS headersPropertyId] [COOKIES cookiesPropertyId] [HEADERSTO headersToPropertyId] [COOKIESTO cookiesToPropertyId]
     SQL connectionStrExpr EXEC execStrExpr
@@ -16,78 +16,72 @@ externalCall - an external call defined by one of the following syntaxes:
 
 ### Description
 
-The **EXTERNAL** operator creates an action that makes a request to an external system.
+The `EXTERNAL` operator creates an action that makes a request to an external system.
 
 ### Parameters
 
-*HTTP*
+- `HTTP`
 
-Keyword. Specifies that the operator is executing a web server HTTP request.
+    Keyword. Specifies that the operator is executing a web server HTTP request.
 
-### requestType
+- `requestType`
 
-Keyword. Defines the [method](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) of the HTTP request:
+    Keyword. Defines the [method](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) of the HTTP request:
 
--   **POST**
--   **GET**
--   **PUT**
--   **DELETE**
+    - `POST`
+    - `GET`
+    - `PUT`
+    - `DELETE`
 
-The default value is **POST**.**  
-**
+  The default value is `POST`.
 
-*SQL*
+- `SQL`
 
-Keyword. Specifies that the operator executes an SQL server command or commands.
+    Keyword. Specifies that the operator executes an SQL server command or commands.
 
-*LSF*
+- `LSF`
 
-Keyword. Specifies that the operator executes an action of another lsFusion server.
+    Keyword. Specifies that the operator executes an action of another lsFusion server.
 
-*connectionStrExpr  
-*
+- `connectionStrExpr`  
 
-[Expression](Expression.md). ****HTTP****: http request string. **SQL**: DBMS connection string. **LSF**: URL of an lsFusion server (application).
+    [Expression](Expression.md). `HTTP`: http request string. `SQL`: DBMS connection string. `LSF`: URL of an lsFusion server (application).
 
-    bodyStrExpr
+- `bodyStrExpr`
 
-[Expression](Expression.md). Continuation of http request string in BODY. Relevant when BODY has > 1 parameter. If not specified, the parameters are passed in multipart format.
+    [Expression](Expression.md). Continuation of http request string in BODY. Relevant when BODY has > 1 parameter. If not specified, the parameters are passed in multipart format.
 
-*headersPropertyId*
+- `headersPropertyId`
+- `headersToPropertyId`
 
-### headersToPropertyId
+    [Property ID](IDs.md#propertyid-broken) containing request headers. The property must have exactly one parameter: the name of the request's header. This parameter must belong to a string class. If the property is not specified, headers are ignored/not set.
 
-[Property ID](IDs.md#propertyid-broken) containing request headers. The property must have exactly one parameter: the name of the request's header. This parameter must belong to a string class. If the property is not specified, headers are ignored/not set.
+- `cookiesPropertyId`
+- `cookiesToPropertyId`
 
-*cookiesPropertyId*
+    [Property ID](IDs.md#propertyid-broken) containing request cookies. The property must have exactly one parameter: the name of the cookie. This parameter must belong to a string class. If the property is not specified, cookies are ignored/not set.
 
-*cookiesToPropertyId*
+- `lsfExecType`
 
-[Property ID](IDs.md#propertyid-broken) containing request cookies. The property must have exactly one parameter: the name of the cookie. This parameter must belong to a string class. If the property is not specified, cookies are ignored/not set.
+    Keyword. Specifies the [way of defining](Access_from_an_external_system.md#actiontype) the action:
 
-lsfExecType
+    - `EXEC` – the name of the action is specified.
+    - `EVAL` – the code of the action is specified in the **lsFusion** language. It is assumed that this code contains a declaration of an action named `run`. This is the action that will be called.
+    - `EVAL ACTION` – the action code in the **lsFusion** language is specified. To access a parameter, the special character `$` and the parameter number (starting from `1`) are used.
 
-Keyword. Specifies the [way of defining](Access_from_an_external_system.md#actiontype) the action:
+- `execStr`  
 
--   **EXEC** – the name of the action is specified.
--   **EVAL** – the code of the action is specified in the lsFusion language. It is assumed that this code contains a declaration of an action named **run**. This is the action that will be called.
--   **EVAL ACTION** – the action code in the lsFusion language is specified. To access a parameter, the special character $ and the parameter number (starting from 1) are used.
+    Expression. `SQL`: SQL query command(s). `LSF`: The name of an action or code, depending on how the action is defined.
 
-*execStr  
-*
+- `paramExpr1, ..., paramExprN`
 
-Expression. **SQL**: SQL query command(s). **LSF**: The name of an action or code, depending on how the action is defined.
+    List of expressions whose values will be used as the call parameters.
 
-*paramExpr1, ..., paramExprN*
+- `propertyId1, ..., propertyIdM`
 
-List of expressions whose values will be used as the call parameters.
-
-*propertyId1, ..., propertyIdM*
-
-List of property IDs (without parameters) to which the results will be written.
+    List of property IDs (without parameters) to which the results will be written.
 
 ### Examples
-
 
 ```lsf
 testExportFile = DATA FILE ();
@@ -117,5 +111,3 @@ externalLSF()  {
     EXTERNAL LSF 'http://localhost:7651' EXEC 'System.testAction[]';
 };
 ```
-
-  

@@ -77,7 +77,7 @@ nameStatus2 'Status' (Order o) = staticCaption(status(o));
 
 ### Task
 
-We have a set of books described in **Example 1**.
+We have a set of books described in [**Example 1**](#example-1).
 
 We need to set a markup for the book and also provide an option for setting a default value.
 
@@ -98,7 +98,7 @@ markup2 'Markup, %' (Book b) = IF dataMarkup(b) THEN dataMarkup(b) ELSE defaultM
 
 ### Task
 
-The same set of books from **Example 1**, but categorized.
+The same set of books from [**Example 1**](#example-1), but categorized.
 
 ```lsf
 CLASS Category 'Category';
@@ -137,4 +137,4 @@ freeNumber1 () = (GROUP MAX number(Book b)) (+) 1;
 freeNumber2() = (OVERRIDE 0, (GROUP MAX number(Book b))) + 1;
 ```
 
-We use the operator (+) instead of the regular operator +, because otherwise if no books are found, then the standard increment by 1 will return **NULL**.
+We use the operator `(+)` instead of the regular operator `+`, because otherwise if no books are found, then the standard increment by `1` will return `NULL`.

@@ -18,7 +18,7 @@ nameParent 'Parent' (Category c) = name(parent(c)) IN id;
 markup 'Markup' = DATA NUMERIC[8,2] (Category);
 ```
 
-The [RECURSION](RECURSION_operator.md) operator is used to calculate the *level* property for given two categories. This property will be equal to two to the power of N, where N is the distance between these categories.
+The [`RECURSION` operator](RECURSION_operator.md) is used to calculate the `level` property for given two categories. This property will be equal to two to the power of N, where N is the distance between these categories.
 
 ```lsf
 level 'Level' (Category child, Category parent) = RECURSION 1l IF child IS Category AND parent == child
@@ -47,7 +47,7 @@ nearestGroup 'The closest group for which the markup is set' (Category category)
 overMarkup 'Overidden markup' (Category category) = markup(nearestGroup(category));
 ```
 
-Thus, the **overMarkup** property will contain the required markup value for this category with its hierarchy taken into account.
+Thus, the `overMarkup` property will contain the required markup value for this category with its hierarchy taken into account.
 
 Let's now define the logic for books. Each of them is associated with a certain category that may be located at any level of the category hierarchy.
 
@@ -59,7 +59,7 @@ category 'Category' = DATA Category (Book) AUTOSET;
 nameCategory 'Category' (Book b) = name(category(b)) IN id;
 ```
 
-Let's define the data property of a product markup. After that, let's construct an overridden property that will return a product markup if it's not **NULL** and a previously created property with a category markup.
+Let's define the data property of a product markup. After that, let's construct an overridden property that will return a product markup if it's not `NULL` and a previously created property with a category markup.
 
 ```lsf
 markup 'Product markup' = DATA NUMERIC[8,2] (Book);
@@ -77,4 +77,4 @@ overMarkup 'Overidden markup' (Book b) = OVERRIDE markup(b), overMarkup(category
 
 As a result, the form with the filled data will look like this:
 
-![](attachments/46367603/46367612.png)
+![](images/How-to_Overriding_values.png)

@@ -46,7 +46,7 @@ EXTEND FORM order
 
 ### Task
 
-Similar to **Example 1**, except that a specification was added to the order. The current price for each book is also defined.
+Similar to [**Example 1**](#example-1), except that a specification was added to the order. The current price for each book is also defined.
 
 ```lsf
 CLASS Book 'Book';
@@ -80,4 +80,4 @@ EXTEND FORM order
 ;
 ```
 
-Make sure to use WHERE in the action. Otherwise, the prices will be set for all lines of all orders in the database.
+Make sure to use `WHERE` in the action. Otherwise, the prices will be set for all lines of all orders in the database.
