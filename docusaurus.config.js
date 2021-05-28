@@ -106,7 +106,7 @@ module.exports = {
     algolia: {
       apiKey: '1afce0f4e082c8214ae5af1774dec862',
       indexName: 'lsfusion',
-//      contextualSearch: true,
+      contextualSearch: true,
     },    
   },
   presets: [
