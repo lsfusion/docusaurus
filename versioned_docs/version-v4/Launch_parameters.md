@@ -54,7 +54,7 @@ By default, it is assumed that the startup parameter files `conf/settings.proper
 
 ## Web server (Client)
 
-### Java {#appjava}
+### Java {#webjava}
 
 Java web server startup parameters are set in the Tomcat launch command, which, in turn, launches this web server (for example, for [automatic](Execution_auto_.md#webapp-broken) installation). 
 
@@ -62,7 +62,7 @@ Java web server startup parameters are set in the Tomcat launch command, which, 
 |---|---|---|---|
 |System (starting with `X`)|[Standard](https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)||Standard Java parameters. It is important above all to pay attention to:<ul><li>`Xmx` - maximum memory size. For complex logics, it is recommended that you allocate at least 2GB. </li></ul>|
 
-### lsFusion {#applsfusion}
+### lsFusion {#weblsfusion}
 
 lsFusion startup parameters for the web server can be set in one of the following ways (in the order of their priorities, lower priority at the bottom):
 
