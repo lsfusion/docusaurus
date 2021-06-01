@@ -28,7 +28,7 @@ title: 'Онлайн демо'
 
 ### MyCompany
 
-Описание на MyCompany.
+Описание на [MyCompany](https://github.com/lsfusion-solutions/mycompany).
 
 ### ERP
 
@@ -39,4 +39,4 @@ title: 'Онлайн демо'
 Логин : **guest**<br/>
 Пароль : **guest**
 
-Исходный код на GitHub находится [здесь](https://github.com/lsfusion-solutions/erp). В качестве демо-версии используется модуль equ-erp-logics, который включает в себя : базовую ERP логику (erp-logics) + интерфейсы общения (equ-srv) с сервером оборудования (который, в свою очередь, находится в equ-clt).
+Исходный код на GitHub находится [здесь](https://github.com/lsfusion-solutions/erp). В качестве демо-версии используется модуль [equ-erp-logics](https://github.com/lsfusion-solutions/erp/tree/master/erp-equ-logics), который включает в себя : базовую ERP логику ([erp-logics](https://github.com/lsfusion-solutions/erp/tree/master/erp-logics)) + интерфейсы общения ([equ-srv](https://github.com/lsfusion-solutions/erp/tree/master/equ-srv)) с сервером оборудования (который, в свою очередь, находится в [equ-clt](https://github.com/lsfusion-solutions/erp/tree/master/equ-clt)).
