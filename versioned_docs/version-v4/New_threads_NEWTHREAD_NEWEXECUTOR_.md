@@ -8,7 +8,7 @@ By default, an action is executed once in a new thread, immediately after the cr
 
 The action can also be executed in a new thread on behalf of a specified connection (for example, some user). In this case, [user interaction](User_IS_interaction.md) operators may be used inside the action, including [form opening](Open_form.md) in [interactive](In_an_interactive_view_SHOW_DIALOG_.md) view (by default, when you use these operators, the platform will throw an error).
 
-The delay, interval and connection in this statement are defined as certain [properties](Properties.md).
+The delay, interval and connection in this operator are defined as certain [properties](Properties.md).
 
 ### New thread pool
 
