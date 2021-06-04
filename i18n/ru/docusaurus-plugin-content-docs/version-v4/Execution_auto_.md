@@ -2,40 +2,326 @@
 title: 'Выполнение (авто)'
 ---
 
-|Этап|Windows|Linux|
-|---|---|---|
-|Установка|Помимо установки lsFusion эти программы / скрипты установки также устанавливают OpenJDK, PostgreSQL и Tomcat. При этом Tomcat встраивается в установку lsFusion Client, а OpenJDK и PostgreSQL устанавливаются отдельно (в частности, в отдельные папки).|
-|<div class="content-wrapper"><br/><p>Исполняемые exe файлы:</p><br/><p>lsFusion<strong> 4.1 </strong>Server &amp; Client (+ OpenJDK 11.0.9, PostgreSQL 13.1(x64)/<strong>10.8</strong>(x32), Tomcat <strong>9.0.21</strong>):</p><br/><ul><br/><li><p>[x32](http://download.lsfusion.org/exe/lsfusion-4.1.exe)</p></li><br/><li>x64</li><br/></ul><br/><div id="expander-586140183" class="expand-container"><br/><div id="expander-control-586140183" class="expand-control"><br/>Предыдущие версии<br/></div><br/><div id="expander-content-586140183" class="expand-content"><br/><div id="expander-1731717914" class="expand-container"><br/><div id="expander-control-1731717914" class="expand-control"><br/>lsFusion 4.0 Server &amp; Client<br/></div><br/><div id="expander-content-1731717914" class="expand-content"><br/><ul><br/><li>[x32](https://download.lsfusion.org/exe/lsfusion-4.0.exe)</li><br/><li>[x64](https://download.lsfusion.org/exe/lsfusion-4.0-x64.exe)</li><br/></ul><br/></div><br/></div><br/><div id="expander-448829529" class="expand-container"><br/><div id="expander-control-448829529" class="expand-control"><br/>lsFusion 3.1 Server &amp; Client<br/></div><br/><div id="expander-content-448829529" class="expand-content"><br/><ul><br/><li>[x32](https://download.lsfusion.org/exe/lsfusion-3.1.exe)</li><br/><li>[x64](https://download.lsfusion.org/exe/lsfusion-3.1-x64.exe)</li><br/></ul><br/></div><br/></div><br/><div id="expander-1081992360" class="expand-container"><br/><div id="expander-control-1081992360" class="expand-control"><br/>lsFusion 2.4 Server &amp; Client<br/></div><br/><div id="expander-content-1081992360" class="expand-content"><br/><ul><br/><li>[x32](https://download.lsfusion.org/exe/lsfusion-2.4.exe)</li><br/><li>[x64](https://download.lsfusion.org/exe/lsfusion-2.4-x64.exe)</li><br/></ul><br/></div><br/></div><br/></div><br/></div><br/><p>В дальнейшем $INSTALL_DIR$ - папка, выбранная при установке lsFusion (по умолчанию Program Files/lsFusion <версия\>). Также предполагается, что все параметры (порты, имя веб-контекста) оставлены равными по умолчанию.</p><br/></div>|<div class="content-wrapper"><br/><p>Bash скрипты с использованием yum/apt (в качестве минорных версий используются последние стабильные):</p><br/><p>lsFusion <strong>4</strong> Server &amp; Client (+ OpenJDK <strong>11</strong>, PostgreSQL <strong>13</strong>, Tomcat <strong>9.0.21</strong>) : </p><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><colgroup><br/><col  /><br/><col  /><br/></colgroup><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">ОС</th><br/><th class="confluenceTh">Команда / Скрипт</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">RHEL 7 / CentOS 7 / Fedora 29</td><br/><td class="confluenceTd"><div class="content-wrapper"><br/><p>source <(curl -s [https://download.lsfusion.org/yum/install-lsfusion4](https://download.lsfusion.org/yum/install-lsfusion4))</p><br/></div></td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Ubuntu 18 / Debian 9</td><br/><td class="confluenceTd"><p>source <(curl -s [https://download.lsfusion.org/apt/install-lsfusion4](https://download.lsfusion.org/apt/install-lsfusion4))</p><br/><p>PostgreSQL устанавливается версии <strong>10</strong>, так как только он есть в репозитории</p></td><br/></tr><br/></tbody><br/></table><br/></div><br/></div>|
-|<br /><br/>После установки<br /><br/><br /><br/>|Порты|<p>После того как установка завершится, по умолчанию, на компьютере будут локально установлены и запущены в качестве служб:</p><br/><ul><br/><li>сервер БД (PostgreSQL) на порту 5432</li><br/><li>сервер приложений (Server) на порту 7652</li><br/><li>веб-сервер (Client) на порту 8080</li><br/></ul>|
-|<p>Установка / обновление приложения</p>|<div class="content-wrapper"><br/><p>Для того чтобы загрузить разработанную логику на установленный сервер приложений (Server) необходимо:</p><br/><p>Поместить разработанные на языке lsFusion [модули](Modules.md) в виде файлов с расширением lsf в папку находящуюся в [classpath](Launch_parameters.md#classpath-broken) сервера (значение по умолчанию при автоматической установке см. ниже). Кроме того туда необходимо поместить остальные файлы ресурсов (если они есть, например, файлы отчетов, скомпилированные Java файлы, картинки и т.п.). Допускается помещать эти файлы в подпапки classpath'а, а также внутри jar-файлов (zip-архивов с расширением jar). После того как все файлы скопированы, необходимо [перезапустить](#restart-broken) сервер.</p><br/><div><br/><div><br/><p>Часто бывает удобно поставлять все файлы проекта внутри одного jar-файла. Для того чтобы сформировать такой файл автоматически, можно использовать [Maven](Development_manual_.md#uber-broken) (с профилями assemble и noserver) или средства сборки, встроенные в [IDE](IDE.md#build).</p><br/></div><br/></div><br/><p>Classpath сервера по умолчанию устанавливается равным $APP_DIR$;$APP_DIR$/*;server.jar, то есть папка $APP_DIR$ и все ее подпапки, все jar-файлы в папке $APP_DIR$ (но не в подпапках), а также jar-файл самого сервера приложений</p><br/><p>$APP_DIR$ при этом равен:</p><br/></div>|
-|$INSTALL_DIR$/lib|<p>*/var/lib/lsfusion*</p><br/><p>Сервер приложений инсталлируется и запускается под автоматически создаваемым непривилегированным пользователем *lsfusion*, соответственно, файлы в этой папке должны быть доступны этому пользователю на чтение. </p>|
-|<p>Установка / обновление клиентов</p>|<div class="content-wrapper"><br/><p>Для того чтобы дать доступ пользователям к установленной системе необходимо:</p><br/><p>Отправить пользователям ссылку http://<сетевой адрес веб-сервера (Client)\>:8080. При открытии этой ссылки, пользователь, по умолчанию, будет перенаправлен на страницу логина, где он, в свою очередь, при необходимости, может установить себе десктоп-клиент через Java Web Start, предварительно установив себе Java (JDK) (например, по [этой](https://developers.redhat.com/products/openjdk/download) ссылке с регистрацией или по этой - [без](https://github.com/ojdkbuild/ojdkbuild)).</p><br/><p>Обновление веб и десктоп-клиентов происходит автоматически вместе с [обновлением веб-сервера](#webupdate-broken) (Client).</p><br/><div><br/><div><br/><p>Под Windows также можно воспользоваться [программами установки](http://download.lsfusion.org/exe/) десктоп клиента (файлы lsfusion-desktop-* с нужной версией и разрядностью ОС). Однако в отличие от установки при помощи Java Web Start, установленный таким образом десктоп-клиент не будет автоматически обновляться. Соответственно для его ручного обновления необходимо скачать файл новой версии десктоп клиента (lsfusion-client-4.<новая версия\>.jar) с [центрального сервера](https://download.lsfusion.org/java) и заместить им файл $INSTALL_DIR$/client.jar</p><br/></div><br/></div><br/></div>|
-|<br /><br/>|Все пути и команды ниже приведены для мажорной версии платформы номер 4 (соответственно для других версий необходимо просто заменить 4 на нужное число, например lsfusion4-server → lsfusion11-server)|
-|*Все пути по умолчанию*|*Пути изменены (в частности при помощи symlink'ов) в соответствии с идеологией Linux*|
-|Обновление|<p>Программы устанавливаемые отдельно (OpenJDK, PostgreSQL) обновляются также отдельно (более подробная об этом процессе в документации к соответствующим программам)</p><br/><p>Компоненты платформы также обновляются отдельно друг от друга. Чтобы сделать это необходимо:</p>|
-|<div class="content-wrapper"><br/><p>Скачать файл новой версии компоненты с [центрального сервера](https://download.lsfusion.org/java) и заместить им следующий файл:</p><br/></div>|Выполнить команду:|
-|Сервер приложений (Server)|<p>Файл на центральном сервере: lsfusion-server-4.<новая версия\>.jar</p><br/><p>Замещаемый файл: $INSTALL_DIR$/Server/server.jar</p>|<div class="content-wrapper"><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><colgroup><br/><col  /><br/><col  /><br/></colgroup><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">ОС</th><br/><th class="confluenceTh">Команда</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">RHEL 7 / CentOS 7 / Fedora 29</td><br/><td class="confluenceTd"><div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom"><br/><strong></strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb1-1">[](#1-broken)<span class="ex">yum</span> update lsfusion4_server</span></div><br/></div><br/></div><br/></div></td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Ubuntu 18 / Debian 9</td><br/><td class="confluenceTd"><div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom"><br/><strong></strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb2-1">[](#1-broken)<span class="ex">apt</span> install lsfusion4_server</span></div><br/></div><br/></div><br/></div></td><br/></tr><br/></tbody><br/></table><br/></div><br/></div>|
-|<div class="content-wrapper"><br/><p>Веб-сервер (Client)</p><br/></div>|<div class="content-wrapper"><br/>Файл на центральном сервере: lsfusion-client-4.<новая версия\>.war<br/><p>Замещаемый файл: $INSTALL_DIR$/Client/webapps/ROOT.war</p><br/><p>Для обновления Tomcat, необходимо скачать архив с новой версией Tomcat и разархивировать его в папку $INSTALL_DIR$/Client без каталога webapps и файла [параметров запуска](#webapp-broken)</p><br/></div>|<div class="content-wrapper"><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><colgroup><br/><col  /><br/><col  /><br/></colgroup><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">ОС</th><br/><th class="confluenceTh">Команда</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">RHEL 7 / CentOS 7 / Fedora 29</td><br/><td class="confluenceTd"><div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom"><br/><strong></strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb3-1">[](#1-broken)<span class="ex">yum</span> update lsfusion4_client</span></div><br/></div><br/></div><br/></div></td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Ubuntu 18 / Debian 9</td><br/><td class="confluenceTd"><div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom"><br/><strong></strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb4-1">[](#1-broken)<span class="ex">apt</span> install lsfusion4_client</span></div><br/></div><br/></div><br/></div></td><br/></tr><br/></tbody><br/></table><br/></div><br/></div>|
-|Выборочная установка<br /><br/><br /><br/><br /><br/>|Если какие-то из перечисленных в установке программ (компонент платформы) не надо устанавливать / уже установлены на вашем компьютере:|
-|Эти программы можно исключить в процессе установки при помощи соответствующего графического интерфейса.|<div class="content-wrapper"><br/><p>Ниже приведены скрипты для установки отдельных компонент платформы:</p><br/><p>Сервер БД - PostgreSQL <strong>11</strong> :</p><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><colgroup><br/><col  /><br/><col  /><br/></colgroup><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">ОС</th><br/><th class="confluenceTh">Команда / Скрипт</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">RHEL 7 / CentOS 7 / Fedora 29</td><br/><td class="confluenceTd"><p>source <(curl -s [https://download.lsfusion.org/yum/install-lsfusion4-db](https://download.lsfusion.org/yum/install-lsfusion4-db))</p></td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Ubuntu 18 / Debian 9</td><br/><td class="confluenceTd"><p>source <(curl -s [https://download.lsfusion.org/apt/install-lsfusion4-db](https://download.lsfusion.org/apt/install-lsfusion4-db))</p><br/><p>PostgreSQL <strong>10</strong></p></td><br/></tr><br/></tbody><br/></table><br/></div><br/><p>Сервер приложений - lsFusion <strong>4</strong> Server (+ OpenJDK <strong>1.8</strong>) : </p><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">ОС</th><br/><th class="confluenceTh">Команда / Скрипт</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">RHEL 7+ / CentOS 7+ / Fedora 29+</td><br/><td class="confluenceTd">source <(curl -s [https://download.lsfusion.org/yum/install-lsfusion4-server](https://download.lsfusion.org/yum/install-lsfusion4-server))</td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Ubuntu 18 / Debian 9</td><br/><td class="confluenceTd">source <(curl -s [https://download.lsfusion.org/apt/install-lsfusion4-server](https://download.lsfusion.org/apt/install-lsfusion4-server))</td><br/></tr><br/></tbody><br/></table><br/></div><br/><p>Веб-сервер - lsFusion <strong>4</strong> Client (+ Tomcat <strong>9.0.20</strong>) : </p><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">ОС</th><br/><th class="confluenceTh">Команда / Скрипт</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">RHEL 7+ / CentOS 7+ / Fedora 29+</td><br/><td class="confluenceTd">source <(curl -s [https://download.lsfusion.org/yum/install-lsfusion4-client](https://download.lsfusion.org/yum/install-lsfusion4-client))</td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Ubuntu 18 / Debian 9</td><br/><td class="confluenceTd">source <(curl -s [https://download.lsfusion.org/apt/install-lsfusion4-client](https://download.lsfusion.org/apt/install-lsfusion4-client))</td><br/></tr><br/></tbody><br/></table><br/></div><br/></div>|
-|<div class="content-wrapper"><br/><p>При установке компонент платформы на разные компьютеры необходимо дополнительно [донастроить параметры](#settings-broken) их подключения друг к другу:</p><br/><div class="table-wrap"><br/><table class="wrapped confluenceTable"><br/><tbody><br/><tr class="header"><br/><th class="confluenceTh">Компоненты на разных компьютерах</th><br/><th class="confluenceTh">Параметры подключения</th><br/><th class="confluenceTh">Настраиваемый файл</th><br/></tr><br/><br/><tr class="odd"><br/><td class="confluenceTd">Сервер БД и сервер приложений (Server)</td><br/><td class="confluenceTd"><p>[Сервера приложений к серверу БД](Launch_parameters.md#connectdb-broken)</p></td><br/><td class="confluenceTd">[Файл](#lsfusionapp-broken) lsFusion параметров запуска сервера приложений</td><br/></tr><br/><tr class="even"><br/><td class="confluenceTd">Сервер приложений (Server) и веб-сервер (Client)</td><br/><td class="confluenceTd"><p>[Веб-сервера к серверу приложений](Launch_parameters.md#connectapp-broken)</p></td><br/><td class="confluenceTd">[Файл](#webapp-broken) lsFusion параметров запуска веб-сервера</td><br/></tr><br/></tbody><br/></table><br/></div><br/><div><br/><div><br/><p>При установке под Windows вышеописанные параметры запрашиваются в процессе установки и файлы параметров настраиваются автоматически.</p><br/></div><br/></div><br/></div>|
-|<div class="content-wrapper"><br/><p>Ручная донастройка </p><br/></div><br/><div class="content-wrapper"><br/><p>(пути к файлам, имена служб)</p><br/></div><br/><br /><br/><br /><br/><br /><br/><br /><br/><br /><br/><br /><br/><br /><br/><br/><p><br /><br/></p><br/><p><br /><br/></p><br/><br /><br/><br /><br/>|||||
-|<div class="content-wrapper"><br/><p>[Параметры](Launch_parameters.md)</p><br/><p>[запуска](Launch_parameters.md)</p><br/><p><br /><br/></p><br/></div><br/><p><br /><br/></p><br/><p><br /><br/></p><br/><p><br /><br/></p><br/><p><br /><br/></p><br/><p><br /><br/></p>|<div class="content-wrapper"><br/><p>Сервер приложений (Server) :</p><br/></div>|
-|<p>[Java](Launch_parameters.md#appjava) </p>|<p>вкладка Java в графическом интерфейсе $INSTALL\_DIR/Server/bin/lsfusion4\_serverw.exe</p><br/><ul><br/><li>[classpath](Launch_parameters.md#classpath-broken) - параметр Classpath в той же вкладке</li><br/></ul>|<p>параметр <strong>FUSION\_OPTS</strong> в файле /etc/lsfusion4-server/lsfusion.conf</p><br/><ul><br/><li>[classpath](Launch_parameters.md#classpath-broken) : параметр <strong>CLASSPATH</strong> в том же файле</li><br/></ul>|
-|<div class="content-wrapper"><br/><p>[lsFusion](Launch_parameters.md#appp3-broken) </p><br/></div>|<div class="content-wrapper"><br/><p>файл $INSTALL_DIR/Server/conf/settings.properties</p><br/></div>|<div class="content-wrapper"><br/><p>файл /etc/lsfusion4-server/settings.properties</p><br/></div>|
-|Веб-сервер (Client) : |
-|<p>[Java](Launch_parameters.md#webjava) </p>|<p>вкладка Java в графическом интерфейсе $INSTALL_DIR/Client/bin/lsfusion4_clientw.exe</p>|<div class="content-wrapper"><br/><p>параметр <strong>CATALINA_OPTS</strong> файла /etc/lsfusion4-client/lsfusion.conf</p><br/></div>|
-|<p>[lsFusion](Launch_parameters.md#webp3-broken) </p>|<p>файл $INSTALL_DIR/Client/conf/catalina/localhost/ROOT.xml</p>|<div class="content-wrapper"><br/><p>файл /etc/lsfusion4-client/catalina/localhost/ROOT.xml</p><br/></div>|
-|<p>Десктоп-клиент: Java параметры задаются внутри тега j2se в jnlp файле</p>|
-|<div class="content-wrapper"><br/><p>Перезапуск </p><br/></div>|<div class="content-wrapper"><br/><p>Любые изменения, сделанные в параметрах запуска, а также изменение модулей lsFusion требуют перезапуска сервера (при изменении модулей lsFusion только сервера приложений (Server) ). Это можно сделать при помощи:</p><br/><p>Сервер приложений (Server)</p><br/></div>|
-|<div class="content-wrapper"><br/><p>Графический интерфейс:</p><br/><p>Панель управления → Администрирование → Службы → lsFusion 4 Server</p><br/><p>или</p><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom" ><br/><strong>Команда</strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb5-1">[](#1-broken)<span class="co"># Остановить сервер</span></span><br/><span id="cb5-2">[](#1-broken)<span class="va">$INSTALL_DIR</span><span class="ex">/Server/bin/lsfusion4_server.exe</span> //SS//lsfusion4_server</span><br/><span id="cb5-3">[](#1-broken)</span><br/><span id="cb5-4">[](#1-broken)<span class="co"># Запустить сервер</span></span><br/><span id="cb5-5">[](#1-broken)<span class="va">$INSTALL_DIR</span><span class="ex">/Server/bin/lsfusion4_server.exe</span> //ES//lsfusion4_server</span></div><br/></div><br/></div><br/></div>|<div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom" ><br/><strong>Команда</strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb6-1">[](#1-broken)<span class="co"># Остановить сервер</span></span><br/><span id="cb6-2">[](#1-broken)<span class="ex">systemctl</span> stop lsfusion4-server</span><br/><span id="cb6-3">[](#1-broken)</span><br/><span id="cb6-4">[](#1-broken)<span class="co"># Запустить сервер</span></span><br/><span id="cb6-5">[](#1-broken)<span class="ex">systemctl</span> start lsfusion4-server</span></div><br/></div><br/></div><br/><br /><br/><br/></div>|
-|Веб-сервер (Client)|
-|<div class="content-wrapper"><br/><p>Графический интерфейс:</p><br/><p>Панель управления → Администрирование → Службы → lsFusion 4 Client</p><br/><p>или</p><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom" ><br/><strong>Команда</strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb7" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb7-1">[](#1-broken)<span class="co"># Остановить сервер</span></span><br/><span id="cb7-2">[](#1-broken)<span class="va">$INSTALL_DIR</span><span class="ex">/Client/bin/lsfusion4_client.exe</span> //SS//lsfusion4_client</span><br/><span id="cb7-3">[](#1-broken)</span><br/><span id="cb7-4">[](#1-broken)<span class="co"># Запустить сервер</span></span><br/><span id="cb7-5">[](#1-broken)<span class="va">$INSTALL_DIR</span><span class="ex">/Client/bin/lsfusion4_client.exe</span> //ES//lsfusion4_client</span></div><br/></div><br/></div><br/></div>|<div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom" ><br/><strong>Команда</strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb8" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb8-1">[](#1-broken)<span class="co"># Остановить клиент</span></span><br/><span id="cb8-2">[](#1-broken)<span class="ex">systemctl</span> stop lsfusion4-client</span><br/><span id="cb8-3">[](#1-broken)</span><br/><span id="cb8-4">[](#1-broken)<span class="co"># Запустить клиент</span></span><br/><span id="cb8-5">[](#1-broken)<span class="ex">systemctl</span> start lsfusion4-client</span></div><br/></div><br/></div><br/></div>|
-|<div class="content-wrapper"><br/>[Логи](Journals_and_logs.md#logs)<br /><br/><br /><br/><br /><br/><br /><br/><br/><p><br /><br/></p><br/><p><br /><br/></p><br/></div><br/><br /><br/><br /><br/><br /><br/><br /><br/><br/><p><br /><br/></p><br/><div class="content-wrapper"><br/><p><br /><br/></p><br/></div><br/><p><br /><br/></p>|<p>Логи платформы пишутся в следующие папки:</p><br/><p>Сервер приложений (Server) :</p>|
-|<div class="content-wrapper"><br/><p>$INSTALL_DIR$/Server/logs</p><br/></div>|/var/log/lsfusion4-server|
-|Веб-сервер (Client) :|
-|$INSTALL_DIR$/Client/logs|/var/log/lsfusion4-client|
-|<p>Основные логи (в том числе процесс остановки и запуска сервера) находятся в:</p><br/><ul><br/><li>Сервер приложений (Server) - stdout</li><br/><li>Веб-сервера (Client) - catalina.out (так как веб-сервер запускается на базе Tomcat)*.*</li><br/></ul><br/><p>Логи десктоп-клиента: $USER_DIR$/.fusion/logs, где $USER_DIR$ - папка пользователя:</p>|
-|Users/<имя пользователя\>|/home/<имя пользователя\>|
-|[Локаль](Internationalization.md)|Локаль, используемая платформой, определяется на основе локали установленной в операционной системе. При необходимости ее можно изменить при помощи:|
-|<p>Графический интерфейс:</p><br/><p>Панель управления → Язык и региональные стандарты</p>|<div class="content-wrapper"><br/><div class="code panel pdl" ><br/><div class="codeHeader panelHeader pdl hide-border-bottom" ><br/><strong>Команда</strong><br/> Expand source<br/></div><br/><div class="codeContent panelContent pdl hide-toolbar"><br/><div class="sourceCode" id="cb9" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence; collapse: true" data-theme="Confluence" ><span id="cb9-1">[](#1-broken)<span class="ex">localectl</span> set-locale LANG=ru_RU.utf8</span></div><br/></div><br/></div><br/></div>|
+## Установка
+
+Помимо установки lsFusion эти программы / скрипты установки также устанавливают **OpenJDK**, **PostgreSQL** и **Tomcat**. При этом Tomcat встраивается в установку lsFusion Client, а OpenJDK и PostgreSQL устанавливаются отдельно (в частности, в отдельные папки).
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+Исполняемые exe файлы:
+lsFusion **4.1** Server & Client (+ OpenJDK **11.0.9**, PostgreSQL **13.1**(x64) / **10.8**(x32), Tomcat **9.0.21**):
+
+- [x32](http://download.lsfusion.org/exe/lsfusion-4.1.exe)
+- [x64](http://download.lsfusion.org/exe/lsfusion-4.1-x64.exe)
+- <details><summary>Предыдущие версии</summary>
+
+    - lsFusion 4.0 Server & Client
+        - [x32](https://download.lsfusion.org/exe/lsfusion-4.0.exe)
+        - [x64](https://download.lsfusion.org/exe/lsfusion-4.0-x64.exe)
+    - lsFusion 3.1 Server & Client
+        - [x32](https://download.lsfusion.org/exe/lsfusion-3.1.exe)
+        - [x64](https://download.lsfusion.org/exe/lsfusion-3.1-x64.exe)
+    - lsFusion 2.4 Server & Client
+        - [x32](https://download.lsfusion.org/exe/lsfusion-2.4.exe)
+        - [x64](https://download.lsfusion.org/exe/lsfusion-2.4-x64.exe)
+
+  </details>
+
+В дальнейшем `$INSTALL_DIR$` - папка, выбранная при установке lsFusion (по умолчанию `Program Files/lsFusion <версия>`). Также предполагается, что все параметры (порты, имя веб-контекста) оставлены равными по умолчанию.
+
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+<TabItem value="linux">
+
+Bash скрипты с использованием yum/apt (в качестве минорных версий используются последние стабильные):
+
+lsFusion **4** Server & Client (+ OpenJDK **1.8**, PostgreSQL **13**, Tomcat **9.0.21**):
+
+| ОС                            | Команда / Скрипт |
+|-------------------------------| -----------------|
+| RHEL 7 / CentOS 7 / Fedora 29 | `source <(curl -s https://download.lsfusion.org/yum/install-lsfusion4)` |
+| Ubuntu 18 / Debian 9          | `source <(curl -s https://download.lsfusion.org/apt/install-lsfusion4)` <br/>PostgreSQL устанавливается версии 10, так как только он есть в репозитории. |
+
+</TabItem>
+</Tabs>
+
+## После установки
+
+### Порты
+
+После того как установка завершится, по умолчанию, на компьютере будут локально установлены и запущены в качестве служб:
+
+- сервер БД (PostgreSQL) на порту `5432`
+- сервер приложений (Server) на порту `7652`
+- веб-сервер (Client) на порту `8080`
+
+### Установка / обновление приложения
+
+Для того чтобы загрузить разработанную логику на установленный сервер приложений (Server) необходимо: 
+
+Поместить разработанные на языке lsFusion [модули](Modules.md) в виде файлов с расширением lsf в папку находящуюся в [classpath](Launch_parameters.md#classpath-broken) сервера (значение по умолчанию при автоматической установке см. ниже). Кроме того туда необходимо поместить остальные файлы ресурсов (если они есть, например, файлы отчетов, скомпилированные Java файлы, картинки и т.п.). Допускается помещать эти файлы в подпапки classpath'а, а также внутри jar-файлов (zip-архивов с расширением jar). После того как все файлы скопированы, необходимо [перезапустить](#restart) сервер.
+
+:::info
+Часто бывает удобно поставлять все файлы проекта внутри одного jar-файла. Для того чтобы сформировать такой файл автоматически, можно использовать [Maven](Development_manual_.md#maven) (с профилями assemble и noserver) или средства сборки, встроенные в [IDE](IDE.md#build).
+:::
+
+Classpath сервера по умолчанию устанавливается равным `$APP_DIR$;$APP_DIR$/*;server.jar`, то есть папка `$APP_DIR$` и все ее подпапки, все jar-файлы в папке `$APP_DIR$` (но не в подпапках), а также jar-файл самого сервера приложений.
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+`$APP_DIR$` при этом равен `$INSTALL_DIR$/lib` 
+</TabItem>
+<TabItem value="linux">
+
+`$APP_DIR$` при этом равен `/var/lib/lsfusion` 
+
+Сервер приложений инсталлируется и запускается под автоматически создаваемым непривилегированным пользователем `lsfusion`, соответственно, файлы в этой папке должны быть доступны этому пользователю на чтение. 
+</TabItem>
+</Tabs>
+
+### Установка / обновление клиентов
+
+Для того чтобы дать доступ пользователям к установленной системе необходимо:
+
+Отправить пользователям ссылку `http://<сетевой адрес веб-сервера (Client)>:8080`. При открытии этой ссылки, пользователь, по умолчанию, будет перенаправлен на страницу логина, где он, в свою очередь, при необходимости, может установить себе десктоп-клиент через Java Web Start, предварительно установив себе Java (JDK) (например, по [этой](https://developers.redhat.com/products/openjdk/download) ссылке с регистрацией или по этой - [без](https://github.com/ojdkbuild/ojdkbuild)). Обновление веб и десктоп-клиентов происходит автоматически вместе с [обновлением веб-сервера](#update) (Client).
+
+:::info
+Под Windows также можно воспользоваться [программами установки](http://download.lsfusion.org/exe/) десктоп клиента (файлы `lsfusion-desktop-*` с нужной версией и разрядностью ОС). Однако в отличие от установки при помощи Java Web Start, установленный таким образом десктоп-клиент не будет автоматически обновляться. Соответственно для его ручного обновления необходимо скачать файл новой версии десктоп клиента (`lsfusion-client-4.<новая версия>.jar`) с [центрального сервера](https://download.lsfusion.org/java) и заместить им файл `$INSTALL_DIR$/client.jar`.
+:::
+
+:::caution
+Все пути и команды ниже приведены для мажорной версии платформы номер 4 (соответственно для других версий необходимо просто заменить 4 на нужное число, например `lsfusion4-server` → `lsfusion11-server`)
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+Все пути по умолчанию
+</TabItem>
+<TabItem value="linux">
+
+Пути изменены (в частности при помощи symlink'ов) в соответствии с идеологией Linux
+</TabItem>
+</Tabs>
+:::
+
+### Обновление {#update}
+
+Программы устанавливаемые отдельно (OpenJDK, PostgreSQL) обновляются также отдельно (более подробная об этом процессе в документации к соответствующим программам). 
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+Компоненты платформы также обновляются отдельно друг от друга. Чтобы сделать это, необходимо cкачать файл новой версии компоненты с [центрального сервера](https://download.lsfusion.org/java) и заместить им следующий файл:
+
+|Компонент|Файлы|
+|-|-|
+|Сервер приложений (Server)|Файл на центральном сервере: `lsfusion-server-4.<новая версия>.jar`<br/>Замещаемый файл: `$INSTALL_DIR$/Server/server.jar`|
+|Веб-сервер (Client)|Файл на центральном сервере: `lsfusion-client-4.<новая версия>.war`<br/>Замещаемый файл: `$INSTALL_DIR$/Client/webapps/ROOT.war`<br/>Для обновления Tomcat, необходимо скачать архив с новой версией Tomcat и разархивировать его в папку `$INSTALL_DIR$/Client` без каталога `webapps` и файла [параметров запуска](#settings)
+</TabItem>
+<TabItem value="linux">
+
+Компоненты платформы также обновляются отдельно друг от друга. Чтобы сделать это, необходимо выполнить команду:
+
+#### Сервер приложений (Server)
+
+| ОС                            | Команда                        |
+| ----------------------------- | ------------------------------ |
+| RHEL 7 / CentOS 7 / Fedora 29 | `yum update lsfusion4_server`  |
+| Ubuntu 18 / Debian 9          | `apt install lsfusion4_server` |
+
+#### Веб-сервер (Client)
+
+| ОС                            | Команда                        |
+| ----------------------------- | ------------------------------ |
+| RHEL 7 / CentOS 7 / Fedora 29 | `yum update lsfusion4_client`  |
+| Ubuntu 18 / Debian 9          | `apt install lsfusion4_client` |
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+</Tabs>
+
+## Выборочная установка
+
+Если какие-то из перечисленных в установке программ (компонент платформы) не надо устанавливать / уже установлены на вашем компьютере:
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+Эти программы можно исключить в процессе установки при помощи соответствующего графического интерфейса.
+</TabItem>
+<TabItem value="linux">
+
+Ниже приведены скрипты для установки отдельных компонент платформы:
+
+Сервер БД - PostgreSQL **11**:
+
+| ОС                            | Команда / Скрипт                                                                                |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| RHEL 7 / CentOS 7 / Fedora 29 | `source <(curl -s https://download.lsfusion.org/yum/install-lsfusion4-db)`                      |
+| Ubuntu 18 / Debian 9          | `source <(curl -s https://download.lsfusion.org/apt/install-lsfusion4-db)` <br/>PostgreSQL `10` |
+
+Сервер приложений - lsFusion 4 Server (+ OpenJDK **1.8**):
+
+
+| ОС                               | Команда / Скрипт                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------ |
+| RHEL 7+ / CentOS 7+ / Fedora 29+ | `source <(curl -s https://download.lsfusion.org/yum/install-lsfusion4-server)` |
+| Ubuntu 18 / Debian 9             | `source <(curl -s https://download.lsfusion.org/apt/install-lsfusion4-server)` |
+ 
+Веб-сервер - lsFusion 4 Client (+ Tomcat 9.0.20): 
+
+| ОС                               | Команда / Скрипт                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------ |
+| RHEL 7+ / CentOS 7+ / Fedora 29+ | `source <(curl -s https://download.lsfusion.org/yum/install-lsfusion4-client)` |
+| Ubuntu 18 / Debian 9             | `source <(curl -s https://download.lsfusion.org/apt/install-lsfusion4-client)` |
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+</Tabs>
+
+При установке компонент платформы на разные компьютеры необходимо дополнительно [донастроить параметры](#settings) их подключения друг к другу:
+
+| Компоненты на разных компьютерах                 | Параметры подключения                                                      | Настраиваемый файл                                               |
+| ------------------------------------------------ | -------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Сервер БД и сервер приложений (Server)           | [Сервера приложений к серверу БД](Launch_parameters.md)                    | [Файл](#settings) lsFusion параметров запуска сервера приложений |
+| Сервер приложений (Server) и веб-сервер (Client) | [Веб-сервера к серверу приложений](Launch_parameters.md#connectapp-broken) | [Файл](#settings) lsFusion параметров запуска веб-сервера        |
+
+:::info
+При установке под Windows вышеописанные параметры запрашиваются в процессе установки и файлы параметров настраиваются автоматически.
+:::
+
+## Ручная донастройка (пути к файлам, имена служб) 
+
+### [Параметры запуска](Launch_parameters.md) {#settings}
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+|Компонент|java|lsfusion|
+|-|-|-|
+|Сервер приложений (Server)|вкладка Java в графическом интерфейсе `$INSTALL_DIR/Server/bin/lsfusion4_serverw.exe`<br/>[`classpath`](Launch_parameters.md#classpath-broken) - параметр Classpath в той же вкладке|файл `$INSTALL_DIR/Server/conf/settings.properties`|
+|Веб-сервер (Client)|вкладка Java в графическом интерфейсе `$INSTALL_DIR/Client/bin/lsfusion4_serverw.exe`|файл `$INSTALL_DIR/Client/conf/catalina/localhost/ROOT.xml`|
+|Десктоп-клиент|Java параметры задаются внутри тега `j2se` в jnlp файле.||
+</TabItem>
+
+<TabItem value="linux">
+
+|Component|java|lsfusion|
+|-|-|-|
+|Сервер приложений (Server)|параметр `FUSION_OPTS` в файле `/etc/lsfusion4-server/lsfusion.conf`<br/>[`classpath`](Launch_parameters.md#classpath-broken) - параметр `CLASSPATH` в том же файле|файл `/etc/lsfusion4-server/settings.properties`|
+|Веб-сервер (Client)|параметр `CATALINA_OPTS` в файле `/etc/lsfusion4-client/lsfusion.conf`|файл `/etc/lsfusion4-client/catalina/localhost/ROOT.xml`|
+|Десктоп-клиент|Java параметры задаются внутри тега `j2se` в jnlp файле.||
+</TabItem>
+</Tabs>
+
+### Перезапуск {#restart}
+
+Любые изменения, сделанные в параметрах запуска, а также изменение модулей lsFusion требуют перезапуска сервера (при изменении модулей lsFusion только сервера приложений (Server)). Это можно сделать при помощи:
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+#### Сервер приложений (Server)
+```shell script title="Графический интерфейс"
+Панель управления > Администрирование > Службы > lsFusion 4 Server
+```
+
+```shell script title="Команда" 
+# Остановить сервер
+$INSTALL_DIR/Server/bin/lsfusion4_server.exe //SS//lsfusion4_server
+ 
+# Запустить сервер
+$INSTALL_DIR/Server/bin/lsfusion4_server.exe //ES//lsfusion4_server
+```
+
+#### Веб-сервер (Client)
+```shell script title="GUI"
+Панель управления > Администрирование > Службы > lsFusion 4 Client
+```
+
+```shell script title="Команда"
+# Остановить клиент
+$INSTALL_DIR/Client/bin/lsfusion4_client.exe //SS//lsfusion4_client
+ 
+# Запустить клиент
+$INSTALL_DIR/Client/bin/lsfusion4_client.exe //ES//lsfusion4_client
+```
+</TabItem>
+<TabItem value="linux">
+
+#### Сервер приложений (Server)
+```shell script title="Команда" 
+# Остановить сервер
+systemctl stop lsfusion4-server
+ 
+# Запустить сервер
+systemctl start lsfusion4-server
+```
+
+#### Веб-сервер (Client)
+```shell script title="Команда"
+# Остановить клиент
+systemctl stop lsfusion4-client
+ 
+# Запустить клиент
+systemctl start lsfusion4-client
+```
+
+</TabItem>
+</Tabs>
+
+### [Логи](Journals_and_logs.md) {#logs}
+
+Логи платформы пишутся в следующие папки:
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+| Компонент                   | Folder                                  |
+| --------------------------- | --------------------------------------- |
+| Сервер приложений (Server)  | `$INSTALL_DIR$/Server/logs`             |
+| Веб-сервер (Client)         | `$INSTALL_DIR$/Client/logs`             |
+| Десктоп-клиент              | `Users/<имя пользователя>/.fusion/logs` |
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+<TabItem value="linux">
+
+
+| Компонент                   | Folder                                  |
+| --------------------------- | --------------------------------------- |
+| Сервер приложений (Server)  | `/var/log/lsfusion4-server`             |
+| Веб-сервер (Client)         | `/var/log/lsfusion4-client`             |
+| Десктоп-клиент              | `/home/<имя пользователя>/.fusion/logs` |
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+</Tabs>
+
+Основные логи (в том числе процесс остановки и запуска сервера) находятся в:
+
+- Сервер приложений (Server) - `stdout`
+- Веб-сервера (Client) - `catalina.out` (так как веб-сервер запускается на базе Tomcat).
+
+### [Локаль](Internationalization.md)
+
+Локаль, используемая платформой, определяется на основе локали установленной в операционной системе. При необходимости ее можно изменить при помощи:
+
+<Tabs groupId="operating-systems" defaultValue="win" values={[{label: 'Windows', value: 'win'}, {label: 'Linux', value: 'linux'}]}>
+<TabItem value="win">
+
+```shell script title="Графический интерфейс"
+Панель управления > Язык и региональные стандарты
+```
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+<TabItem value="linux">
+
+```shell script title="Команда"
+localectl set-locale LANG=ru_RU.utf8
+```
+<!--- comment to prevent multiple error messages in IDEA --->
+</TabItem>
+</Tabs>
+
