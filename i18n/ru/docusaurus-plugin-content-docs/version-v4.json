@@ -183,13 +183,13 @@
     "message": "Язык",
     "description": "The label for category Language in sidebar docs"
   },
-  "sidebar.learn.category.Instructions": {
+  "sidebar.learn.category.Statements": {
     "message": "Инструкции",
-    "description": "The label for category Instructions in sidebar docs"
+    "description": "The label for category Statements in sidebar docs"
   },
-  "sidebar.learn.category.Instruction =": {
+  "sidebar.learn.category.= statement": {
     "message": "Инструкция =",
-    "description": "The label for category Instruction = in sidebar docs"
+    "description": "The label for category = statement in sidebar docs"
   },
   "sidebar.learn.category.Expression": {
     "message": "Выражения",
@@ -199,21 +199,21 @@
     "message": "Операторы-свойства",
     "description": "The label for category Property operators in sidebar docs"
   },
-  "sidebar.learn.category.ACTION instruction": {
+  "sidebar.learn.category.ACTION statement": {
     "message": "Инструкция ACTION",
-    "description": "The label for category ACTION instruction in sidebar docs"
+    "description": "The label for category ACTION statement in sidebar docs"
   },
   "sidebar.learn.category.Action operator": {
     "message": "Операторы-действия",
     "description": "The label for category Action operator in sidebar docs"
   },
-  "sidebar.learn.category.ON instruction": {
+  "sidebar.learn.category.ON statement": {
     "message": "Инструкция ON",
-    "description": "The label for category ON instruction in sidebar docs"
+    "description": "The label for category ON statement in sidebar docs"
   },
-  "sidebar.learn.category.FORM instruction": {
+  "sidebar.learn.category.FORM statement": {
     "message": "Инструкция FORM",
-    "description": "The label for category FORM instruction in sidebar docs"
+    "description": "The label for category FORM statement in sidebar docs"
   },
   "sidebar.learn.category.Examples": {
     "message": "Примеры",
