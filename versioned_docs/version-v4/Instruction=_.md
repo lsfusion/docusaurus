@@ -1,8 +1,8 @@
 ---
-title: 'Instruction =>'
+title: '=> statement'
 ---
 
-The `=>` instruction creates a [consequence](Simple_constraints.md).
+The `=>` statement creates a [consequence](Simple_constraints.md).
 
 ### Syntax
 
@@ -10,9 +10,9 @@ The `=>` instruction creates a [consequence](Simple_constraints.md).
 
 ### Description
 
-The `=>` instruction creates a consequence. This operator can declare its own local parameters when specifying the property of the consequence premise. These parameters can then be used in the expression of the consequence.
+The `=>` statement creates a consequence. This operator can declare its own local parameters when specifying the property of the consequence premise. These parameters can then be used in the expression of the consequence.
 
-When creating a consequence a [constraint](Constraints.md) will be created, which is pretty similar to the following instruction
+When creating a consequence a [constraint](Constraints.md) will be created, which is pretty similar to the following statement
 
     CONSTRAINT eventClause leftPropertyId(param1, ..., paramN) AND NOT rightExpr MESSAGE 'Consequence violated';
 
@@ -44,8 +44,8 @@ but it allows you to automatically resolve situations where this constraint is v
 
     [Auto resolution](Simple_event.md) type in case of violation of the consequence. Specified by one of the following options:
 
-    - `LEFT`: if the premise (the left part of the instruction) is changed to non-`NULL`, then the consequence changes to non`NULL`.
-    - `RIGHT`: if the consequence (the right part of the instruction) changes to `NULL`, then the premise changes to `NULL`.
+    - `LEFT`: if the premise (the left part of the statement) is changed to non-`NULL`, then the consequence changes to non `NULL`.
+    - `RIGHT`: if the consequence (the right part of the statement) changes to `NULL`, then the premise changes to `NULL`.
     - `LEFT RIGHT`: similar to `LEFT` and `RIGHT` together. 
 
 - `eventClause`

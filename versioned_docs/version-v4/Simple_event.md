@@ -16,7 +16,7 @@ Compared to a basic event, a simple event just wraps its handling in a [loop](Lo
 
 ### Language
 
-To create simple events, use the [`WHEN` instruction](WHEN_instruction.md).
+To create simple events, use the [`WHEN` statement](WHEN_instruction.md).
 
 ### Examples
 

@@ -123,7 +123,7 @@ index 'Line number' (ReceiptDetail d) =
 The use of the name of an object class in expressions is similar to using its identification number (id) created by the system for all objects by an automatic counter. In this case, the use of the `ORDER d` construct helps sort the lines of the receipt by the order of ascension of their id, i.e. basically in the order of their creation.
 :::
 
-Here, the `PARTITION` instruction uses the `BY` block that groups objects by a certain attribute. The calculation of the expression cumulative total is performed in each group. In this case, the line number is determined only within this line's document (`receipt` property).
+Here, the `PARTITION` operator uses the `BY` block that groups objects by a certain attribute. The calculation of the expression cumulative total is performed in each group. In this case, the line number is determined only within this line's document (`receipt` property).
 
 We define a set of key attributes of a receipt header: number, date, supplier and its name, the stock where the product is received and its name. The name of the supplier and the stock will be needed in the future for displaying them on the form.
 
@@ -205,7 +205,7 @@ sum 'Sale amount' (ShipmentDetail d) = quantity(d) * price(d);
 
   
 
-We implement the auto filling of the item sale price in the shipment with the value of the wholesale price defined by the user for item (`salePrice` property). Auto filling for the shipment line should work when the item is changed (`WHEN CHANGED` instruction).
+We implement the auto filling of the item sale price in the shipment with the value of the wholesale price defined by the user for item (`salePrice` property). Auto filling for the shipment line should work when the item is changed (`WHEN CHANGED` statement).
 
 ```lsf
 price(ShipmentDetail d) <- salePrice(item(d)) WHEN CHANGED(item(d));
@@ -285,7 +285,7 @@ inn 'TIN' = DATA BPSTRING[9](LegalEntity) IN base;
 
 Let's create edit forms for a receipt and a shipment. These forms will be used for creating new documents or editing existing ones. The layout of the forms will be similar: two vertical blocks, the top one containing a panel with the header attributes of the document being created/edited, and the lower one containing the document lines in a grid view and their attributes.
 
-In the Receipt module, we should create a receipt edit form. For the form we are building, we specify that it will be used as a default form for creating/editing receipts (the `EDIT` instruction).
+In the Receipt module, we should create a receipt edit form. For the form we are building, we specify that it will be used as a default form for creating/editing receipts (the `EDIT` form block).
 
 ```lsf
 FORM receipt 'Receipt'
@@ -304,7 +304,7 @@ Line filtering for the current receipt is performed with the help of the `FILTER
 
 In addition, if a filter is specified for objects of this class on the form, then when the user presses the `NEW` button, the property of the newly added object will be automatically filled in a way that will make this object meet the filter conditions. In this case, when a new receipt line is created, the `receipt` property of this line will be automatically filled with a link to the current header of the receipt.
 
-Let's create an edit form for the shipment in the `Shipment` module. For the form we are creating, we specify that it will be used as the default form for creating/editing shipments (`EDIT` instruction).
+Let's create an edit form for the shipment in the `Shipment` module. For the form we are creating, we specify that it will be used as the default form for creating/editing shipments (`EDIT` form block).
 
 ```lsf
 FORM shipment 'Shipment'

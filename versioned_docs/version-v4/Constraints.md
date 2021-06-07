@@ -26,7 +26,7 @@ For any non-`NULL` value [output](In_a_print_view_PRINT_.md) the platform uses a
 
 ### Language
 
-Constraints are created using the [`CONSTRAINT` instruction](CONSTRAINT_instruction.md). 
+Constraints are created using the [`CONSTRAINT` statement](CONSTRAINT_instruction.md). 
 
 ### Examples
 

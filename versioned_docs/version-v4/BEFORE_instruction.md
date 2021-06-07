@@ -1,8 +1,8 @@
 ---
-title: 'BEFORE instruction'
+title: 'BEFORE statement'
 ---
 
-The `BEFORE` instruction calls an [action](Actions.md) before calling another action. 
+The `BEFORE` statement calls an [action](Actions.md) before calling another action. 
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `BEFORE` instruction calls an [action](Actions.md) before calling another ac
 
 ### Description
 
-The `BEFORE` instruction defines an action (let's call it an *aspect*) that will be called before the specified one.
+The `BEFORE` statement defines an action (let's call it an *aspect*) that will be called before the specified one.
 
 ### Parameters
 

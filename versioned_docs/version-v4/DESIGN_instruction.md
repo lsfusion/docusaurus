@@ -1,12 +1,12 @@
 ---
-title: 'DESIGN instruction'
+title: 'DESIGN statement'
 ---
 
-The `DESIGN` instruction changes [form design](Form_design.md).
+The `DESIGN` statement changes [form design](Form_design.md).
 
 ## Syntax
 
-The syntax consists of nested blocks of *design instructions*. The outer block, beginning with the keyword `DESIGN`, defines a [form](Forms.md) whose design will change: 
+The syntax consists of nested blocks of *design statements*. The outer block, beginning with the keyword `DESIGN`, defines a [form](Forms.md) whose design will change: 
 
     DESIGN formName [caption] [CUSTOM] {
         designStatement1
@@ -14,7 +14,7 @@ The syntax consists of nested blocks of *design instructions*. The outer block, 
         designStatementN
     }
 
-Each  `designStatement` describes one design instruction. Design instructions are of the following types: 
+Each `designStatement` describes one design statement. Design statements are of the following types: 
 
     NEW name [insertPos] [{...}];
     MOVE selector [insertPos] [{...}];  
@@ -22,7 +22,7 @@ Each  `designStatement` describes one design instruction. Design instructions ar
     REMOVE selector;
     propertyName = value;
 
-The first three instructions – *create* (`NEW`), *move* (`MOVE`), and *modify* – may in turn contain nested blocks of design instructions. The design instructions *remove* (`REMOVE`) and *change property value* (`=`) are simple single instructions. Each navigator instruction must end with a semicolon if it does not contain a nested instruction block.
+The first three statements – *create* (`NEW`), *move* (`MOVE`), and *modify* – may in turn contain nested blocks of design statements. The design statements *remove* (`REMOVE`) and *change property value* (`=`) are simple single statements. Each design statement must end with a semicolon if it does not contain a nested statement block.
 
 Each `selector` can be one of the following types:
 
@@ -41,17 +41,17 @@ In turn, `groupObjectTreeSelector` can be one of two types:
 
 ## Description
 
-Using the `DESIGN` instruction the developer can manage the [design](Form_design.md) of the [interactive form view](Interactive_view.md) by creating, moving, and deleting containers and components, as well as changing their certain properties. By default, a [default design](Form_design.md#defaultDesign)  is created for each form, along with appropriate containers. If necessary, you can recreate the design without the default containers and previously configured settings. This is done using the keyword `CUSTOM`.  
+Using the `DESIGN` statement the developer can manage the [design](Form_design.md) of the [interactive form view](Interactive_view.md) by creating, moving, and deleting containers and components, as well as changing their certain properties. By default, a [default design](Form_design.md#defaultDesign)  is created for each form, along with appropriate containers. If necessary, you can recreate the design without the default containers and previously configured settings. This is done using the keyword `CUSTOM`.  
 
-Each block of design instructions enclosed in braces alows to modify a particular component and its descendants. Let's call this component the *current component* or the *current container* if we know that the component should be a container in our case. In the external block following the `DESIGN` keyword, the `main` container is the current component. There are the following design instructions:
+Each block of design statements enclosed in braces alows to modify a particular component and its descendants. Let's call this component the *current component* or the *current container* if we know that the component should be a container in our case. In the external block following the `DESIGN` keyword, the `main` container is the current component. There are the following design statements:
 
-- The *create instruction* (`NEW`) allows to create a new container, making it a descendant of the current one. The newly-created container will be the current component in the design instructions block contained in this instruction.
-- The *move instruction* (`MOVE`)  allows to make an existing component a direct descendant of the current container. This component is first removed from the previous parent container. The component being moved becomes the current component in the design instructions block contained in this instruction. 
-- The *modify* instruction allows to modify the specified component which must be a descendant (not necessarily a child) of the current container. The specified element will be the current component in the design instructions block contained in this instruction.
-- The *remove instruction* (`REMOVE`) allows to remove a specified component from the component hierarchy. The component to be removed has to be a descendant of the current container. 
-- The *change property value instruction* (`=`) allows to change the value of the specified property of the current component.
+- The *create statement* (`NEW`) allows to create a new container, making it a descendant of the current one. The newly-created container will be the current component in the design statements block contained in this statement.
+- The *move statement* (`MOVE`)  allows to make an existing component a direct descendant of the current container. This component is first removed from the previous parent container. The component being moved becomes the current component in the design statements block contained in this statement. 
+- The *modify* statement allows to modify the specified component which must be a descendant (not necessarily a child) of the current container. The specified element will be the current component in the design statements block contained in this statement.
+- The *remove statement* (`REMOVE`) allows to remove a specified component from the component hierarchy. The component to be removed has to be a descendant of the current container. 
+- The *change property value statement* (`=`) allows to change the value of the specified property of the current component.
 
-The component hierarchy described in this instruction can have an arbitrary number of nesting levels and describe any number of components and their properties at each level.
+The component hierarchy described in this statement can have an arbitrary number of nesting levels and describe any number of components and their properties at each level.
 
 To access design components, you can use their names or address property components on the form (`PROPERTY`), the parent component (`PARENT`), property group components (`GROUP`), and other base components/default design components.
 
@@ -275,7 +275,7 @@ DESIGN order { // customizing the design of the form, starting with the default 
     }
 }
 
-// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+// splitting the form definition into two statements (the second statement can be transferred to another module)
 DESIGN order {
     REMOVE TOOLBARLEFT; // removing from the hierarchy the container with the print and export buttons to xls, thereby making them invisible
 }

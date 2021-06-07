@@ -151,7 +151,7 @@ Also, if necessary, you can enable *automatic update* mode for a form: the `Syst
 
 ### Language
 
-All of the above options, as well as defining the form structure, can be done using the [`FORM` instruction](FORM_instruction.md).
+All of the above options, as well as defining the form structure, can be done using the [`FORM` statement](FORM_instruction.md).
 
 ### Open form
 

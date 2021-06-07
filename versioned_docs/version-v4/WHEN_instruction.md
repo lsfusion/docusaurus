@@ -1,8 +1,8 @@
 ---
-title: 'WHEN instruction'
+title: 'WHEN statement'
 ---
 
-The `WHEN` instruction adds a [simple event](Simple_event.md) handler.
+The `WHEN` statement adds a [simple event](Simple_event.md) handler.
 
 ### Syntax 
 
@@ -10,13 +10,13 @@ The `WHEN` instruction adds a [simple event](Simple_event.md) handler.
 
 ### Description
 
-The `WHEN` instruction adds a simple event handler. In a condition expression you can implicitly declare local parameters that can then be used in the event handler.
+The `WHEN` statement adds a simple event handler. In a condition expression you can implicitly declare local parameters that can then be used in the event handler.
 
 Also, the `ORDER` block can be used to define the order in which the handler will be called for an object collection for which the condition on the simple event has been met. 
 
 
 :::info
-Using the `WHEN` instruction is much like the following instruction:
+Using the `WHEN` statement is much like the following statement:
 
     ON eventClause FOR eventExpr [ORDER [DESC] orderExpr1, ..., orderExprN] DO eventAction;
 

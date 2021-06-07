@@ -10,7 +10,7 @@ The `ABSTRACT` operator - creating an [abstract action](Action_extension.md).
 
 ### Description
 
-The `ABSTRACT` operator creates an abstract action, the implementation of which can be defined later (for example, in other [modules](Modules.md) dependent on the module containing the `ABSTRACT` action). Implementations are added to the action using the [instruction +=](ACTION+_instruction.md). When executing `MULTI` or `CASE` type abstract actions, their matching implementation is selected and executed. The selection of the matching implementation depends on the selection conditions that are defined when adding implementations, and on the `ABSTRACT` operator type.
+The `ABSTRACT` operator creates an abstract action, the implementation of which can be defined later (for example, in other [modules](Modules.md) dependent on the module containing the `ABSTRACT` action). Implementations are added to the action using the [`ACTION+` statement](ACTION+_instruction.md). When executing `MULTI` or `CASE` type abstract actions, their matching implementation is selected and executed. The selection of the matching implementation depends on the selection conditions that are defined when adding implementations, and on the `ABSTRACT` operator type.
 
 - `CASE` - a general case. The selection condition will be explicitly specified in the implementation using the [`WHEN` block](ACTION+_instruction.md).
 - `MULTI` - [a polymorphic form](Branching_CASE_IF_MULTI_.md#poly). The selection condition is that the parameters match the implementation [signature](CLASS_operator.md). This type is the default type and need not be explicitly specified.

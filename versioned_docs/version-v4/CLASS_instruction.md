@@ -1,8 +1,8 @@
 ---
-title: 'CLASS instruction'
+title: 'CLASS statement'
 ---
 
-`CLASS` instruction creates a new [custom class](User_classes.md).
+`CLASS` statement creates a new [custom class](User_classes.md).
 
 ### Syntax
 
@@ -18,9 +18,9 @@ title: 'CLASS instruction'
 
 ### Description
 
-The `CLASS` instruction declares a new class and adds it to the current [module](Modules.md). 
+The `CLASS` statement declares a new class and adds it to the current [module](Modules.md). 
 
-The instruction has two forms:  `CLASS ABSTRACT` for declaring an [abstract class](User_classes.md#abstract) and just `CLASS` for declaring a concrete class. In the latter case, during declaration, you can declare the [static objects](Static_objects.md)  of this class and specify their names and captions in a curly brackets block.   
+The statement has two forms:  `CLASS ABSTRACT` for declaring an [abstract class](User_classes.md#abstract) and just `CLASS` for declaring a concrete class. In the latter case, during declaration, you can declare the [static objects](Static_objects.md)  of this class and specify their names and captions in a curly brackets block.   
 
 ### Parameters
 

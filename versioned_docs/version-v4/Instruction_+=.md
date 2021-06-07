@@ -1,8 +1,8 @@
 ---
-title: 'Instruction +='
+title: '+= statement'
 ---
 
-The `+=` instruction adds an implementation (selection option) to an [abstract property](Property_extension.md).
+The `+=` statement adds an implementation (selection option) to an [abstract property](Property_extension.md).
 
 ### Syntax
 
@@ -11,7 +11,7 @@ The `+=` instruction adds an implementation (selection option) to an [abstract p
 
 ### Description
 
-The `+=` instruction adds an implementation to an abstract property. The syntax for adding an implementation depends on the type of abstract property. If the abstract property is of type `CASE`, then the implementation should be described using `WHEN ... THEN ...` otherwise, the implementation should be described simply as a property. 
+The `+=` statement adds an implementation to an abstract property. The syntax for adding an implementation depends on the type of abstract property. If the abstract property is of type `CASE`, then the implementation should be described using `WHEN ... THEN ...` otherwise, the implementation should be described simply as a property. 
 
 ### Parameters
 

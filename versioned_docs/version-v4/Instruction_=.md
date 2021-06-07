@@ -1,9 +1,9 @@
 ---
-title: 'Instruction ='
+title: '= statement'
 sidebar_label: Overview
 ---
 
-The `=` instruction creates a new [property](Properties.md).
+The `=` statement creates a new [property](Properties.md).
 
 ### Syntax
 
@@ -12,9 +12,9 @@ The `=` instruction creates a new [property](Properties.md).
 
 ### Description
 
-The `=` instruction declares a new property and adds it to the current [module](Modules.md).
+The `=` statement declares a new property and adds it to the current [module](Modules.md).
 
-When creating a property, the instruction has two forms:
+When creating a property, the statement has two forms:
 
 - The first form describes and creates a property using an [expression](Expression.md). 
 - The second form describes the property using one of the [context-independent](Property_operators.md#contextindependent) [property operators](Property_operators.md) that cannot be part of an expression.

@@ -8,7 +8,7 @@ Form extension allows you to extract a specific functionality into a separate mo
 
 ### Language
 
-In order to extend the structure and design of an existing form, the [`EXTEND FORM` instruction](EXTEND_FORM_instruction.md) must be used.
+In order to extend the structure and design of an existing form, the [`EXTEND FORM` statement](EXTEND_FORM_instruction.md) must be used.
 
 ### Example
 

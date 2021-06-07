@@ -69,7 +69,7 @@ By default, the property of belonging to the class is named `_CLASS_TableName`. 
 
 ### Language
 
-To create tables, use the [`TABLE` instruction](TABLE_instruction.md). To specify the table which should store the property, use the [`TABLE` option](Property_options.md) in the property options.
+To create tables, use the [`TABLE` statement](TABLE_instruction.md). To specify the table which should store the property, use the [`TABLE` option](Property_options.md) in the property options.
 
 ### Examples
 

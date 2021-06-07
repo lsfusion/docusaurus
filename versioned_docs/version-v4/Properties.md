@@ -15,7 +15,7 @@ The same constraint exists for each property parameter: a property cannot have a
 
 ### Language
 
-To create properties, use [the `=` instruction](Instruction_=.md). 
+To create properties, use the [`=` statement](Instruction_=.md). 
 
 ### Examples
 

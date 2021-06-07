@@ -1,8 +1,8 @@
 ---
-title: 'INDEX instruction'
+title: 'INDEX statement'
 ---
 
-The `INDEX` instruction creates a new [index](Indexes.md).
+The `INDEX` statement creates a new [index](Indexes.md).
 
 ### Syntax
 
@@ -18,7 +18,7 @@ or by specifying a typed parameter referring to the corresponding key field:
 
 ### Description
 
-The `INDEX` instruction adds a new index by an ordered list of fields of a certain table. The list must contain at least one property. The table that the index should be built for is determined by the first property in the list. Also, the parameters passed to this property are used to determine the correspondence of the parameters to the key fields of the table. Accordingly, all other properties in the list should have the same number of parameters and be stored in the same table as the first property. The parameters specified in the list will correspond to the key fields of the table.
+The `INDEX` statement adds a new index by an ordered list of fields of a certain table. The list must contain at least one property. The table that the index should be built for is determined by the first property in the list. Also, the parameters passed to this property are used to determine the correspondence of the parameters to the key fields of the table. Accordingly, all other properties in the list should have the same number of parameters and be stored in the same table as the first property. The parameters specified in the list will correspond to the key fields of the table.
 
 ### Parameters
 

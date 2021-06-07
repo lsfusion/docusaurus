@@ -1,8 +1,8 @@
 ---
-title: 'EXTEND CLASS instruction'
+title: 'EXTEND CLASS statement'
 ---
 
-The `EXTEND CLASS` instruction [extends](Class_extension.md) an existing class.
+The `EXTEND CLASS` statement [extends](Class_extension.md) an existing class.
 
 ### Syntax
 
@@ -16,7 +16,7 @@ The `EXTEND CLASS` instruction [extends](Class_extension.md) an existing class.
 
 ### Description
 
-The `EXTEND CLASS` instruction extends an existing [custom class](User_classes.md) with additional parent classes and new [static objects](Static_objects.md). You can also extend [abstract classes](User_classes.md#abstract) by adding parent classes to them.
+The `EXTEND CLASS` statement extends an existing [custom class](User_classes.md) with additional parent classes and new [static objects](Static_objects.md). You can also extend [abstract classes](User_classes.md#abstract) by adding parent classes to them.
 
 ### Parameters
 

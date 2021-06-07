@@ -2,7 +2,7 @@
 title: 'How-to: Namespaces'
 ---
 
-Occasionally, you will find yourself in situations where you will need to use the same [name](Naming.md) for different system elements. For this purpose, you can assign them to different namespaces that are defined for a module using the [`NAMESPACE` instruction](Module_header.md). By default, the namespace matches the name of the module.
+Occasionally, you will find yourself in situations where you will need to use the same [name](Naming.md) for different system elements. For this purpose, you can assign them to different namespaces that are defined for a module using the [`NAMESPACE` statement](Module_header.md). By default, the namespace matches the name of the module.
 
 Let's create two modules, `UseCaseNamePurchase` and `UseCaseNameSale`, that declare the logic of purchase and sell orders:
 
@@ -78,7 +78,7 @@ In case the namespace of a module matches the space of the required system eleme
 NAMESPACE Purchase;
 ```
 
-or the namespace priority has not been specified using the [`PRIORITY` instruction](Module_header.md),
+or the namespace priority has not been specified using the [`PRIORITY` statement](Module_header.md),
 
 ```lsf
 PRIORITY Purchase;

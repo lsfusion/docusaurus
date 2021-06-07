@@ -13,7 +13,7 @@ Aggregate function is *commutative* if the order in which the object collections
 
 The table below shows the currently supported types of aggregate functions:
 
-|Type/instruction option|Initial value|Names of the operands|Add operation|Conversion function|Commutativity|Data type|
+|Type/statement option  |Initial value|Names of the operands|Add operation|Conversion function|Commutativity|Data type|
 |-----------------------|-------------|---------------------|-------------|-------------------|-------------|---------|
 |`SUM`                  |`NULL`       |operand              |result = result (+) operand|result|+|number|
 |`MAX`                  |`NULL`       |operand              |result = max(result, operand)|result|+|any comparable|

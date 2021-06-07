@@ -1,9 +1,9 @@
 ---
-title: 'ON instruction'
+title: 'ON statement'
 sidebar_label: Overview
 ---
 
-The `ON` instruction adds an [event](Events.md) handler.
+The `ON` statement adds an [event](Events.md) handler.
 
 ### Syntax 
 
@@ -11,7 +11,7 @@ The `ON` instruction adds an [event](Events.md) handler.
 
 ### Description
 
-The `ON` instruction adds an event handler for the specified event. 
+The `ON` statement adds an event handler for the specified event. 
 
 ### Parameters
 

@@ -40,7 +40,7 @@ Context dependent property operators can be part of [expressions](Expression.md)
 
 ### Context independent operators {#contextindependent}
 
-Context independent property operators differ from the context dependent ones in that they do not just use the upper parameters but define the parameters themselves. As a result, they cannot be part of expressions and can only be used in the [`=` instruction](Instruction_=.md) and the [`JOIN` operator](JOIN_operator.md): 
+Context independent property operators differ from the context dependent ones in that they do not just use the upper parameters but define the parameters themselves. As a result, they cannot be part of expressions and can only be used in the [`=` statement](Instruction_=.md) and the [`JOIN` operator](JOIN_operator.md): 
 
 -   [`DATA` operator](DATA_operator.md)
 -   [`GROUP` operator](GROUP_operator.md) (with `BY` block)

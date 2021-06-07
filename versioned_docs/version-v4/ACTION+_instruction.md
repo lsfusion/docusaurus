@@ -1,8 +1,8 @@
 ---
-title: 'ACTION+ instruction'
+title: 'ACTION+ statement'
 ---
 
-The `ACTION+` instruction adds an implementation (branching condition) to an [abstract action](Action_extension.md).
+The `ACTION+` statement adds an implementation (branching condition) to an [abstract action](Action_extension.md).
 
 ### Syntax
 
@@ -11,7 +11,7 @@ The `ACTION+` instruction adds an implementation (branching condition) to an [ab
 
 ### Description
 
-The `ACTION+` instruction adds an implementation to an abstract action. The syntax for adding an implementation depends on the type of abstract action. If the abstract action is of type `CASE`, then the implementation should be described using `WHEN ... THEN ...` otherwise, the implementation should be described simply as an action. 
+The `ACTION+` statement adds an implementation to an abstract action. The syntax for adding an implementation depends on the type of abstract action. If the abstract action is of type `CASE`, then the implementation should be described using `WHEN ... THEN ...` otherwise, the implementation should be described simply as an action. 
 
 ### Parameters
 

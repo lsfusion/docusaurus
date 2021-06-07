@@ -1,8 +1,8 @@
 ---
-title: 'GROUP instruction'
+title: 'GROUP statement'
 ---
 
-The `GROUP` instruction creates a new [property group](Groups_of_properties_and_actions.md).
+The `GROUP` statement creates a new [property group](Groups_of_properties_and_actions.md).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `GROUP` instruction creates a new [property group](Groups_of_properties_and_
 
 ### Description
 
-The `GROUP` instruction declares a new property group and adds it to the current [module](Modules.md).  
+The `GROUP` statement declares a new property group and adds it to the current [module](Modules.md).  
 
 ### Parameters
 

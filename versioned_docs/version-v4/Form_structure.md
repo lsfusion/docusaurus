@@ -64,7 +64,7 @@ By default, in all object group views, object collections are displayed in a cer
 
 ### Language
 
-To create a new form and define its structure, the [`FORM` instruction](FORM_instruction.md) is used.
+To create a new form and define its structure, the [`FORM` statement](FORM_instruction.md) is used.
 
 ### Examples
 
@@ -113,7 +113,7 @@ FORM printInvoice
     // ... adding properties and filters to the form
 ;
 
-// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+// splitting the form definition into two statements (the second statement can be transferred to another module)
 EXTEND FORM printInvoice
     OBJECTS d = InvoiceDetail // adding invoice lines, each of which will be used in the report as a detail
 

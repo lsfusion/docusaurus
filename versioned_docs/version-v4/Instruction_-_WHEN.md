@@ -1,8 +1,8 @@
 ---
-title: 'Instruction <- WHEN'
+title: '<- WHEN statement'
 ---
 
-The `<- WHEN` instruction creates a [calculated event](Calculated_events.md).
+The `<- WHEN` statement creates a [calculated event](Calculated_events.md).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `<- WHEN` instruction creates a [calculated event](Calculated_events.md).
 
 ### Description
 
-The `<-WHEN` instruction creates a calculated event for the [property](Data_properties_DATA_.md) specified on the left side of the instruction. This operator can declare its own local parameters when specifying the property whose value will [change](Property_change_CHANGE_.md). These parameters can then be used in expressions of the condition and value to which the property will change.
+The `<- WHEN` statement creates a calculated event for the [property](Data_properties_DATA_.md) specified on the left side of the statement. This operator can declare its own local parameters when specifying the property whose value will [change](Property_change_CHANGE_.md). These parameters can then be used in expressions of the condition and value to which the property will change.
 
 Only one calculated event can be defined for a property. 
 

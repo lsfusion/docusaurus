@@ -1,8 +1,8 @@
 ---
-title: 'EXTEND FORM instruction'
+title: 'EXTEND FORM statement'
 ---
 
-The `EXTEND FORM` instruction [extends](Form_extension.md) an existing [form](Forms.md).
+The `EXTEND FORM` statement [extends](Form_extension.md) an existing [form](Forms.md).
 
 ### Syntax
 
@@ -14,7 +14,7 @@ The `EXTEND FORM` instruction [extends](Form_extension.md) an existing [form](Fo
 
 ### Description
 
-The `EXTEND FORM` instruction allows you to extend an existing form with additional [form blocks](FORM_instruction.md#blocks).
+The `EXTEND FORM` statement allows you to extend an existing form with additional [form blocks](FORM_instruction.md#blocks).
 
 ### Parameters
 

@@ -1,9 +1,9 @@
 ---
-title: 'ACTION instruction'
+title: 'ACTION statement'
 sidebar_label: Overview
 ---
 
-The `ACTION` instruction creates an [action](Actions.md).
+The `ACTION` statement creates an [action](Actions.md).
 
 ### Syntax
 
@@ -12,9 +12,9 @@ The `ACTION` instruction creates an [action](Actions.md).
 
 ### Description
 
-The `ACTION` instruction declares a new action and adds it to the current [module](Modules.md).
+The `ACTION` statement declares a new action and adds it to the current [module](Modules.md).
 
-The instruction has two forms: the first form creates an action using a [context-dependent](Action_operator.md#contextdependent) action operator, the second form creates a [context-independent](Property_operators.md#contextindependent) one.
+The statement has two forms: the first form creates an action using a [context-dependent](Action_operator.md#contextdependent) action operator, the second form creates a [context-independent](Property_operators.md#contextindependent) one.
 
 Also, when declaring an action, a set of its options can be specified.   
 
@@ -36,7 +36,7 @@ Also, when declaring an action, a set of its options can be specified.
 
 - `operator`
 
-    A [context-dependent](Action_operator.md#contextdependent) action operator describing and creating an action. You can use the parameters defined in this instruction (if any) as operator parameters.
+    A [context-dependent](Action_operator.md#contextdependent) action operator describing and creating an action. You can use the parameters defined in this statement (if any) as operator parameters.
 
 - `contextIndependentOperator`
 

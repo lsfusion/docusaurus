@@ -30,7 +30,7 @@ REQUIRE System, Utils;
 
 ### Team definition
 
-We introduce the concept of a team, for which we create a separate [class](Classes.md) using the corresponding [instruction `CLASS`](CLASS_instruction.md). 
+We introduce the concept of a team, for which we create a separate [class](Classes.md) using the corresponding [statement `CLASS`](CLASS_instruction.md). 
 
 ```lsf
 CLASS Team 'Team';
@@ -164,7 +164,7 @@ We define the indicators that determine the team's place on the scoreboard:
 
 Here, the construction `(+)` is used instead of the arithmetic `+` to obtain the correct result if at least one of the terms has a value of `NULL`. Using `(+)` in this case is equivalent to replacing a possible `NULL` with `0`. If one of the terms is `NULL`, then using the arithmetic `+` will also result in a value of `NULL`.
 
-To determine the number of games played by the team at home and away, the [`GROUP SUM`](Grouping_GROUP_.md) operator is used, which allows you to get the sum of the calculation results of a given expression for objects of a certain class, grouped by one or more of their attributes (similar to subtotals in Excel). Here the number `1` is specified for summation, and all games are grouped by guest team and host team (the `BY` instruction). As a result, for example, the `hostGamesPlayed` property determines for the team (since the result of the `hostTeam` property calculation is the `Team`-class object) the number (that is, the sum of the number `1` for all games where the host team is equal to the defined one) of games played as hosts (the `hostTeam` property is specified only for objects of the `Game` class). With this calculation the system analyzes all games entered into the system.
+To determine the number of games played by the team at home and away, the [`GROUP SUM`](Grouping_GROUP_.md) operator is used, which allows you to get the sum of the calculation results of a given expression for objects of a certain class, grouped by one or more of their attributes (similar to subtotals in Excel). Here the number `1` is specified for summation, and all games are grouped by guest team and host team (the `BY` block). As a result, for example, the `hostGamesPlayed` property determines for the team (since the result of the `hostTeam` property calculation is the `Team`-class object) the number (that is, the sum of the number `1` for all games where the host team is equal to the defined one) of games played as hosts (the `hostTeam` property is specified only for objects of the `Game` class). With this calculation the system analyzes all games entered into the system.
 
 -   number of games won in regular time, in overtime, and in extra time  
       
@@ -237,7 +237,7 @@ FORM MainForm 'Score table'
 ;
 ```
 
-The `FORM` instruction creates an empty form with [a certain default functionality](Form_structure.md). Using the `OBJECTS game=Game` expression, a `game` object is added to the form: a table view block containing all instances of the `Game` class entered in the system. Using the expression `PROPERTIES(game)` with a the subsequent listing of a subset of properties, the specified properties are added to the form, and objects of the "game" block are passed to them as arguments. In addition to previously created properties, the [actions](Actions.md) `NEW` and `DELETE` are also placed on the form, which will visually appear as buttons and allow you to add and remove objects of the `Game` class.
+The `FORM` statement creates an empty form with [a certain default functionality](Form_structure.md). Using the `OBJECTS game=Game` expression, a `game` object is added to the form: a table view block containing all instances of the `Game` class entered in the system. Using the expression `PROPERTIES(game)` with a the subsequent listing of a subset of properties, the specified properties are added to the form, and objects of the "game" block are passed to them as arguments. In addition to previously created properties, the [actions](Actions.md) `NEW` and `DELETE` are also placed on the form, which will visually appear as buttons and allow you to add and remove objects of the `Game` class.
 
 Data properties displayed on a form that are of a primitive type (`date`, `hostGoals`, `guestGoals`) will visually appear as cells that can be filled and changed by the user. Calculated properties that return an attribute of another object (`hostTeamName`, `guestTeamName`, `resultName`) will appear as cells. When these are clicked, a dialog box with the list of their objects and base group properties will be shown (for example, when clicking on the cell `hostTeamName` "Guests" a dialog box appears with the list of teams). In the dialog box you can select one of the objects, thus changing the property value for the object of the original form (for example, changing the game host team).
 
@@ -252,7 +252,7 @@ EXTEND FORM MainForm
 ;
 ```
 :::info
-The above form can be defined with a single block of code without using the `EXTEND` instruction.
+The above form can be defined with a single block of code without using the `EXTEND FORM` statement.
 
 ```lsf
 FORM MainFormSingle 'Score table'

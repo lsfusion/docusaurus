@@ -2,7 +2,7 @@
 title: 'Properties and actions block'
 ---
 
-The property and action block of the [FORM instruction](FORM_instruction.md) adds [properties and actions](Form_structure.md#properties) to the [form structure](Form_structure.md). 
+The property and action block of the [FORM statement](FORM_instruction.md) adds [properties and actions](Form_structure.md#properties) to the [form structure](Form_structure.md). 
 
 ### Syntax
 

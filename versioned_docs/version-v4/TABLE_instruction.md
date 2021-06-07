@@ -1,8 +1,8 @@
 ---
-title: 'TABLE instruction'
+title: 'TABLE statement'
 ---
 
-The `TABLE` instruction creates an new [table](Tables.md).
+The `TABLE` statement creates an new [table](Tables.md).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `TABLE` instruction creates an new [table](Tables.md).
 
 ### Description
 
-The `TABLE` instruction declares a new table and adds it to the current [module](Modules.md). 
+The `TABLE` statement declares a new table and adds it to the current [module](Modules.md). 
 
 
 ### Parameters

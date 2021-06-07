@@ -45,7 +45,7 @@ We need to define the logic such that a city can only be linked to a region belo
 CONSTRAINT country(City c) != country(region(c)) CHECKED BY region[City] MESSAGE 'The country of the city region must match the country of the city';
 ```
 
-The [`CONSTRAINT` instruction](CONSTRAINT_instruction.md) defines a condition that must always be `NULL`. In this case, the constraint based on this condition will be violated if there is a country defined for the region, a region for the city, and a country for the region, and the region's country is not the same as the city's country. The `CHECKED BY` block indicates that when you select a region in a dialog, the regions will be filtered by default so as not to violate this constraint. It should be noted that if no country has yet been set for the given city then the condition will always be `NULL`, and all existing regions will be shown in the dialog.
+The [`CONSTRAINT` statement](CONSTRAINT_instruction.md) defines a condition that must always be `NULL`. In this case, the constraint based on this condition will be violated if there is a country defined for the region, a region for the city, and a country for the region, and the region's country is not the same as the city's country. The `CHECKED BY` block indicates that when you select a region in a dialog, the regions will be filtered by default so as not to violate this constraint. It should be noted that if no country has yet been set for the given city then the condition will always be `NULL`, and all existing regions will be shown in the dialog.
 
 ## Example 2
 

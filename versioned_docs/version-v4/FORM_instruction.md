@@ -1,9 +1,9 @@
 ---
-title: 'FORM instruction'
+title: 'FORM statement'
 sidebar_label: Overview
 ---
 
-The `FORM` instruction creates a [form](Forms.md). 
+The `FORM` statement creates a [form](Forms.md). 
 
 ## Syntax
 
@@ -34,7 +34,7 @@ After the form options, the blocks of the form `formBlock1 ... formBlockN` are d
 
 ## Description
 
-The `FORM` instruction declares a new form and adds it to the current [module](Modules.md). In addition, this instruction is used to describe [the form structure](Form_structure.md), as well as its [static](Static_view.md) and partially [interactive](Interactive_view.md) (except [form design](Form_design.md)) views. At the beginning of the instruction, name and captions are specified, followed by form options and the declaration containing an arbitrary number of blocks describing the structure of the form. They can be used in any order, provided that each block is declared after the blocks whose elements it uses. Each block can be used any number of times.
+The `FORM` statement declares a new form and adds it to the current [module](Modules.md). In addition, this statement is used to describe [the form structure](Form_structure.md), as well as its [static](Static_view.md) and partially [interactive](Interactive_view.md) (except [form design](Form_design.md)) views. At the beginning of the statement, name and captions are specified, followed by form options and the declaration containing an arbitrary number of blocks describing the structure of the form. They can be used in any order, provided that each block is declared after the blocks whose elements it uses. Each block can be used any number of times.
 
 ## Parameters
 
@@ -179,7 +179,7 @@ FORM printInvoice
     // ... adding properties and filters to the form
 ;
 
-// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+// splitting the form definition into two statements (the second statement can be transferred to another module)
 EXTEND FORM printInvoice
     OBJECTS d = InvoiceDetail // adding invoice lines, each of which will be used in the report as a detail
 

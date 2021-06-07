@@ -2,7 +2,7 @@
 title: 'Object blocks'
 ---
 
-Object block of the [FORM instruction](FORM_instruction.md)  adds [objects](#objects) (including object groups) to the form structure, as well as [object trees](#tree) to the interactive form view.
+Object block of the [FORM statement](FORM_instruction.md)  adds [objects](#objects) (including object groups) to the form structure, as well as [object trees](#tree) to the interactive form view.
 
 ## Object block {#objects}
 

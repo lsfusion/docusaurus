@@ -183,7 +183,7 @@ The hierarchy of containers and components in the default design will look like 
 
 ### Language
 
-To set up the design of the form, use the [`DESIGN` instruction](DESIGN_instruction.md).
+To set up the design of the form, use the [`DESIGN` statement](DESIGN_instruction.md).
 
 ### Examples
 
@@ -235,7 +235,7 @@ DESIGN order { // customizing the design of the form, starting with the default 
     }
 }
 
-// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+// splitting the form definition into two statements (the second statement can be transferred to another module)
 DESIGN order {
     REMOVE TOOLBARLEFT; // removing from the hierarchy the container with the print and export buttons to xls, thereby making them invisible
 }

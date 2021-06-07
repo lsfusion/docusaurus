@@ -50,7 +50,7 @@ Context dependent action operators can use external context parameters. They can
 
 ### Context independent operators {#contextindependent}
 
-Context independent action operators cannot use external context parameters. Thus they can only be used in the [`ACTION` instruction](ACTION_instruction.md):
+Context independent action operators cannot use external context parameters. Thus they can only be used in the [`ACTION` statement](ACTION_instruction.md):
 
 -   [`ABSTRACT` operator](ABSTRACT_operator_action_.md)
 -   [`INTERNAL` operator](INTERNAL_operator.md)

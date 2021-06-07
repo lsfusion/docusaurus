@@ -1,8 +1,8 @@
 ---
-title: 'AFTER instruction'
+title: 'AFTER statement'
 ---
 
-The `AFTER` instruction calls an [action](Actions.md) after calling another action. 
+The `AFTER` statement calls an [action](Actions.md) after calling another action. 
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `AFTER` instruction calls an [action](Actions.md) after calling another acti
 
 ### Description
 
-The `AFTER` instruction defines an action (let's call it an *aspect*) that will be called after the specified action.
+The `AFTER` statement defines an action (let's call it an *aspect*) that will be called after the specified action.
 
 ### Parameters
 

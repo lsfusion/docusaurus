@@ -1,8 +1,8 @@
 ---
-title: 'Instruction @'
+title: '@ statement'
 ---
 
-The `@` instruction uses [metacode](Metaprogramming.md#metacode).
+The `@` statement uses [metacode](Metaprogramming.md#metacode).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `@` instruction uses [metacode](Metaprogramming.md#metacode).
 
 ### Description
 
-The `@` instruction generates code obtained from the metacode with the name `name`, replacing metacode parameters with the values of its own parameters and executing the special [`##` and `###` operations](Metaprogramming.md#concat). 
+The `@` statement generates code obtained from the metacode with the name `name`, replacing metacode parameters with the values of its own parameters and executing the special [`##` and `###` operations](Metaprogramming.md#concat). 
 
 ### Parameters 
 
@@ -20,7 +20,7 @@ The `@` instruction generates code obtained from the metacode with the name `nam
 
 - `param1, ..., paramN`
 
-    The list of instruction parameters that will be substituted for the parameters of the metacode used. The parameters can be a [composite ID](IDs.md#cid-broken), a [class ID](IDs.md#classid-broken), a [literal](Literals.md) or the *empty parameter* when nothing is passed as a parameter.
+    The list of statement parameters that will be substituted for the parameters of the metacode used. The parameters can be a [composite ID](IDs.md#cid-broken), a [class ID](IDs.md#classid-broken), a [literal](Literals.md) or the *empty parameter* when nothing is passed as a parameter.
 
 ### Examples
 
