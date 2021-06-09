@@ -2,7 +2,7 @@
 title: 'Оператор FORMULA'
 ---
 
-Оператор `FORMULA` - создание [свойства](Properties.md), реализующего [пользовательскую формулу](Custom_formula_FORMULA_.md).
+Оператор `FORMULA` - создание [свойства](Properties.md), реализующего [пользовательскую формулу](Custom_formula_FORMULA.md).
 
 ### Синтаксис
 

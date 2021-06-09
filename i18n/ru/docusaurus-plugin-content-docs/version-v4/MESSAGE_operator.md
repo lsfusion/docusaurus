@@ -2,7 +2,7 @@
 title: 'Оператор MESSAGE'
 ---
 
-Оператор `MESSAGE` - создание [действия](Actions.md), показывающего пользователю [сообщение](Show_message_MESSAGE_ASK_.md).
+Оператор `MESSAGE` - создание [действия](Actions.md), показывающего пользователю [сообщение](Show_message_MESSAGE_ASK.md).
 
 ### Синтаксис
 

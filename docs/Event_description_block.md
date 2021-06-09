@@ -2,7 +2,7 @@
 title: 'Event description block'
 ---
 
-*Event description block* describes an [event](Events.md) in different instructions.
+*Event description block* describes an [event](Events.md) in different statements.
 
 ### Syntax
 
@@ -24,4 +24,4 @@ title: 'Event description block'
 
 - `propertyId1, ..., propertyIdM`
 
-    List of [property IDs](IDs.md#propertyid-broken). This list means that all event handlers that change one of the specified properties must be [executed earlier](Events.md#order-broken) than the handlers that will be defined in the instruction for which this event description block is being defined.
+    List of [property IDs](IDs.md#propertyid-broken). This list means that all event handlers that change one of the specified properties must be [executed earlier](Events.md#order-broken) than the handlers that will be defined in the statement for which this event description block is being defined.

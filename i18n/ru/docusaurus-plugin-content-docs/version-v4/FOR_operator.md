@@ -2,7 +2,7 @@
 title: 'Оператор FOR'
 ---
 
-Оператор `FOR` - создание [действия](Actions.md), реализующего [цикл](Loop_FOR_.md).
+Оператор `FOR` - создание [действия](Actions.md), реализующего [цикл](Loop_FOR.md).
 
 ### Синтаксис
 
@@ -50,7 +50,7 @@ title: 'Оператор FOR'
 
 - `action`
 
-    [Контекстно-зависимый оператор-действие](Action_operator.md#contextdependent), описывающий основное действие.
+    [Контекстно-зависимый оператор-действие](Action_operators.md#contextdependent), описывающий основное действие.
 
 - `alternativeAction`
 

@@ -2,7 +2,7 @@
 title: 'Event block'
 ---
 
-The event block of the  [`FORM` instruction](FORM_instruction.md) - a set of constructions controlling [events](Form_events.md) in an interactive form view.
+The event block of the  [`FORM` statement](FORM_statement.md) - a set of constructions controlling [events](Form_events.md) in an interactive form view.
 
 ### Syntax
 
@@ -46,7 +46,7 @@ The event block allows to define handlers for [form events](Form_events.md) that
 
 - `actionOperator`
 
-    [Context-dependent action operator](Action_operator.md#contextdependent). You can use the names of already declared objects on the form as parameters.
+    [Context-dependent action operator](Action_operators.md#contextdependent). You can use the names of already declared objects on the form as parameters.
 
 
 ### Examples

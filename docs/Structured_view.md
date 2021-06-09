@@ -15,7 +15,7 @@ Working with flat formats with a hierarchy depth greater than one is not very co
 Formats are also divided into:
 
 -   human-readable (text) and binary. All hierarchical formats are human-readable, flat can be either binary (DBF, TABLE, XLS), or human-readable (CSV). You can and should specify the encoding for human-readable formats (UTF-8 is used by default).
--   standardized and internal. At the moment, only one internal format is supported: TABLE (a table of values). All the other formats are standardized. Internal format files are processed in a special way in some [integration](Integration.md) operations (e.g., in [SQL calls](Access_to_an_external_system_EXTERNAL_.md#table)). In addition, internal formats can be used to communicate lsFusion systems with each other.
+-   standardized and internal. At the moment, only one internal format is supported: TABLE (a table of values). All the other formats are standardized. Internal format files are processed in a special way in some [integration](Integration.md) operations (e.g., in [SQL calls](Access_to_an_external_system_EXTERNAL.md#table)). In addition, internal formats can be used to communicate lsFusion systems with each other.
 
 In the current implementation the [group-in-columns](Form_structure.md#groupcolumns) platforms are ignored in a structured view.
 
@@ -157,11 +157,11 @@ If a column with the form property name is not found when importing the form, th
 
 ### Language
 
-All of the above options, as well as defining the form structure, can be done using the [`FORM` instruction](FORM_instruction.md).
+All of the above options, as well as defining the form structure, can be done using the [`FORM` statement](FORM_statement.md).
 
 ### Open form
 
-To display the form in structured view, the corresponding [open form](Open_form.md) in a [structured view](In_a_structured_view_EXPORT_IMPORT_.md) operator is used.
+To display the form in structured view, the corresponding [open form](Open_form.md) in a [structured view](In_a_structured_view_EXPORT_IMPORT.md) operator is used.
 
 ### Examples
 

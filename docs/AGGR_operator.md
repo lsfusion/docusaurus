@@ -13,7 +13,7 @@ The `AGGR` operator creates an [aggregation](Aggregations.md).
 In addition to the property that is the result of this operator and contains the value of the aggregated object, for each parameter the `AGGR` operator also creates a data property with one parameter, whose [class](User_classes.md) is equal to the class of the aggregated object. The value class and name of this property are equal to the class and name of the parameter for which this property is created. Accordingly, when creating an aggregated object, the value of the parameter for which the aggregated object is created is automatically written to this property.
 
 :::info
-Creating an aggregation is in many ways similar to the following instructions (example for 2 parameters):
+Creating an aggregation is in many ways similar to the following statements (example for 2 parameters):
 
     prm1 = DATA class1 (aggrClass);
     prm2 = DATA class2 (aggrClass);
@@ -30,7 +30,7 @@ Creating an aggregation is in many ways similar to the following instructions (e
     WHEN aggrClass aggrObject IS aggrClass AND DROPPED(result(prm1(aggrObject),prm2(aggrObject))) DO
         DELETE aggrObject;
 
-but it is a more declarative and readable instruction, and therefore using it is recommended
+but it is a more declarative and readable statement, and therefore using it is recommended
 :::
 
 Unlike other context-dependent operators, the `AGGR` operator cannot be used in [expressions](Expression.md) inside other operators (in this sense it is more like context-independent operators), or in the [`JOIN` operator](JOIN_operator.md) (inside `[= ]`)

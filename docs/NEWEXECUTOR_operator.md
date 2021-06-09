@@ -2,7 +2,7 @@
 title: 'NEWEXECUTOR operator'
 ---
 
-The `NEWEXECUTOR` operator creates an [action](Actions.md) that enables executing other actions in a [new thread pool](New_threads_NEWTHREAD_NEWEXECUTOR_.md).
+The `NEWEXECUTOR` operator creates an [action](Actions.md) that enables executing other actions in a [new thread pool](New_threads_NEWTHREAD_NEWEXECUTOR.md).
 
 ### Syntax
 
@@ -16,7 +16,7 @@ The `NEWEXECUTOR` operator creates an action that creates a new thread pool and 
 
 - `action`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that defines an action to be executed.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that defines an action to be executed.
 
 - `threadExpr`
 

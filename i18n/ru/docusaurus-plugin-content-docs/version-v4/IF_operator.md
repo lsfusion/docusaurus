@@ -2,7 +2,7 @@
 title: 'Оператор IF'
 ---
 
-Оператор `IF` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) значения по условию (одиночная форма). 
+Оператор `IF` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md) значения по условию (одиночная форма). 
 
 ### Синтаксис
 

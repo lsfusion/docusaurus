@@ -2,7 +2,7 @@
 title: 'Object blocks'
 ---
 
-Object block of the [FORM statement](FORM_instruction.md)  adds [objects](#objects) (including object groups) to the form structure, as well as [object trees](#tree) to the interactive form view.
+Object block of the [FORM statement](FORM_statement.md)  adds [objects](#objects) (including object groups) to the form structure, as well as [object trees](#tree) to the interactive form view.
 
 ## Object block {#objects}
 
@@ -70,7 +70,7 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
     - `actionOperator`
 
-        [Context-dependent action operator](Action_operator.md#contextdependent). You can use the names of already declared objects on the form as parameters.
+        [Context-dependent action operator](Action_operators.md#contextdependent). You can use the names of already declared objects on the form as parameters.
 
 ### Object group options
 
@@ -131,7 +131,7 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
     - `subReportExpression`
 
-        The [expression](Expression.md) whose value will be used as the name of the  [report](Print_view.md) file for the created object group. You can use the names of already declared objects on the form as parameters. It is assumed that the values of these objects will be [passed](Open_form.md#params) when the form is opened [in the print view](In_a_print_view_PRINT_.md) (if it's not done, they will be considered equal `NULL`).
+        The [expression](Expression.md) whose value will be used as the name of the  [report](Print_view.md) file for the created object group. You can use the names of already declared objects on the form as parameters. It is assumed that the values of these objects will be [passed](Open_form.md#params) when the form is opened [in the print view](In_a_print_view_PRINT.md) (if it's not done, they will be considered equal `NULL`).
 
 ### Examples
 

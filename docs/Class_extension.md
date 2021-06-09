@@ -12,7 +12,7 @@ Class extension, together with the [property](Property_extension.md) and [action
 
 ### Language
 
-To extend a class, use the [`EXTEND CLASS` instruction](EXTEND_CLASS_instruction.md).
+To extend a class, use the [`EXTEND CLASS` statement](EXTEND_CLASS_statement.md).
 
 ### Examples
 

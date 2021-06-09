@@ -2,7 +2,7 @@
 title: 'PRINT operator'
 ---
 
-The `PRINT` operator creates an [action](Actions.md) that [opens a form](In_a_print_view_PRINT_.md) in print view. 
+The `PRINT` operator creates an [action](Actions.md) that [opens a form](In_a_print_view_PRINT.md) in print view. 
 
 ### Syntax
 
@@ -38,7 +38,7 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `printFormat`
 
-    The [print format](In_a_print_view_PRINT_.md#format) is specified by one of these keywords:
+    The [print format](In_a_print_view_PRINT.md#format) is specified by one of these keywords:
 
     - `PDF` – the form will be exported to a PDF file.
     - `XLS`, `XLSX` – the form will be exported to a file in one of the specified EXCEL formats.
@@ -60,7 +60,7 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `PREVIEW`
 
-    Keyword. If specified, the form is displayed in [preview](In_a_print_view_PRINT_.md#interactive) mode. This mode is used by default if no other modes/formats are specified.
+    Keyword. If specified, the form is displayed in [preview](In_a_print_view_PRINT.md#interactive) mode. This mode is used by default if no other modes/formats are specified.
 
 - `NOPREVIEW`
 
@@ -72,7 +72,7 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `MESSAGE`
 
-    Keyword. If specified, the form displays data to the user in [message](In_a_print_view_PRINT_.md#interactive) mode.
+    Keyword. If specified, the form displays data to the user in [message](In_a_print_view_PRINT.md#interactive) mode.
 
 - `TOP n`
 

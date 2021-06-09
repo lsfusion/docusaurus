@@ -6,7 +6,7 @@ Often there are tasks when it is necessary to give the user opportunity to enter
 
 Let's take a look when you need to define a trade mark-up for a book. At the same time, we have the logic of categories defined. These categories form a tree by specifying a parent for each category. The user should be able to set a mark-up for any product and category at any level.
 
-Let's define the logic of categories and the [data property](Data_properties_DATA_.md) of this category's markup.
+Let's define the logic of categories and the [data property](Data_properties_DATA.md) of this category's markup.
 
 ```lsf
 CLASS Category 'Category';

@@ -23,10 +23,10 @@ sidebar_label: Обзор
 
 С точки зрения определения множества наборов объектов, а также способа представления результата, можно выделить четыре основных оператора работы с множествами:
 
--   [Группировка (`GROUP`)](Grouping_GROUP_.md)
--   [Разбиение / Упорядочивание (`PARTITION ... ORDER`)](Partitioning_sorting_PARTITION_..._ORDER_.md)
--   [Рекурсия (`RECURSION`)](Recursion_RECURSION_.md)
--   [Распределение (`UNGROUP`)](Distribution_UNGROUP_.md)
+-   [Группировка (`GROUP`)](Grouping_GROUP.md)
+-   [Разбиение / Упорядочивание (`PARTITION ... ORDER`)](Partitioning_sorting_PARTITION_..._ORDER.md)
+-   [Рекурсия (`RECURSION`)](Recursion_RECURSION.md)
+-   [Распределение (`UNGROUP`)](Distribution_UNGROUP.md)
 
 ### Корректность операции {#correct}
 

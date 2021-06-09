@@ -2,7 +2,7 @@
 title: 'PREV operator'
 ---
 
-The `PREV` operator creates a [property](Properties.md) using a [previous value operator](Previous_value_PREV_.md).
+The `PREV` operator creates a [property](Properties.md) using a [previous value operator](Previous_value_PREV.md).
 
 ### Syntax
 
@@ -14,7 +14,7 @@ The `PREV` operator creates a property that returns the value of another propert
 
 
 :::info
-It's important to understand that `PREV` is not a built-in property with [composition](Composition_JOIN_.md) but an operator. Thus, in particular `PREV(f(a))` is not equal to `[PREV(a)](f(a))`.
+It's important to understand that `PREV` is not a built-in property with [composition](Composition_JOIN.md) but an operator. Thus, in particular `PREV(f(a))` is not equal to `[PREV(a)](f(a))`.
 :::
 
 ### Parameters

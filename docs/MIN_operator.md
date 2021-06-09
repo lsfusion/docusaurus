@@ -2,7 +2,7 @@
 title: 'MIN operator'
 ---
 
-The `MIN` operator creates a [property](Properties.md) that implements finding the [minimum](Extremum_MAX_MIN_.md) value.
+The `MIN` operator creates a [property](Properties.md) that implements finding the [minimum](Extremum_MAX_MIN.md) value.
 
 ### Syntax 
 

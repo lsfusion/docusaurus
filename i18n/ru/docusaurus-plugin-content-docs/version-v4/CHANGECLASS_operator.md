@@ -2,7 +2,7 @@
 title: 'Оператор CHANGECLASS'
 ---
 
-Оператор `CHANGECLASS` - создание [действия](Actions.md), которое [изменяет классы объектов](Class_change_CHANGECLASS_DELETE_.md).
+Оператор `CHANGECLASS` - создание [действия](Actions.md), которое [изменяет классы объектов](Class_change_CHANGECLASS_DELETE.md).
 
 ### Синтаксис
 

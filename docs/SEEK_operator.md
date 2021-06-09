@@ -2,7 +2,7 @@
 title: 'SEEK operator'
 ---
 
-The `SEEK` operator creates an [action](Actions.md) that [seeks specified objects](Search_SEEK_.md) on a [form](Forms.md).
+The `SEEK` operator creates an [action](Actions.md) that [seeks specified objects](Search_SEEK.md) on a [form](Forms.md).
 
 ### Syntax
 

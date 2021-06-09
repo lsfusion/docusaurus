@@ -3,7 +3,7 @@ title: 'Property operators'
 sidebar_label: Overview
 ---
 
-*Property operator* is a syntax construct that describes an [operator](Operators.md) creating a [property](Properties.md). 
+*Property operator* is a syntax construct that describes an [operator](Property_operators_paradigm.md) creating a [property](Properties.md). 
 
 Property operators can be divided into *context dependent* and *context independent*.
 
@@ -12,7 +12,7 @@ Property operators can be divided into *context dependent* and *context independ
 Context dependent property operators can be part of [expressions](Expression.md) and use common parameters (context). These operators are:
 
 -   [Arithmetic operators](Arithmetic_operators.md)
--   [`[]` operator](Operator_.md)
+-   [`[]` operator](Brackets_operator.md)
 -   [`ACTIVE TAB` operator](ACTIVE_TAB_operator.md)
 -   [`AGGR` operator](AGGR_operator.md)
 -   [`CASE` operator](CASE_operator.md)
@@ -40,7 +40,7 @@ Context dependent property operators can be part of [expressions](Expression.md)
 
 ### Context independent operators {#contextindependent}
 
-Context independent property operators differ from the context dependent ones in that they do not just use the upper parameters but define the parameters themselves. As a result, they cannot be part of expressions and can only be used in the [`=` statement](Instruction_=.md) and the [`JOIN` operator](JOIN_operator.md): 
+Context independent property operators differ from the context dependent ones in that they do not just use the upper parameters but define the parameters themselves. As a result, they cannot be part of expressions and can only be used in the [`=` statement](=_statement.md) and the [`JOIN` operator](JOIN_operator.md): 
 
 -   [`DATA` operator](DATA_operator.md)
 -   [`GROUP` operator](GROUP_operator.md) (with `BY` block)

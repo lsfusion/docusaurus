@@ -19,7 +19,7 @@ To implement polymorphism, inheritance is usually used together with [properties
 
 The class mechanism has several limitations:
 
-1.  Belonging to a class cannot be calculated (only set explicitly when [creating](New_object_NEW_.md) and [changing the class](Class_change_CHANGECLASS_DELETE_.md)) of an object.
+1.  Belonging to a class cannot be calculated (only set explicitly when [creating](New_object_NEW.md) and [changing the class](Class_change_CHANGECLASS_DELETE.md)) of an object.
 2.  A class is set for only one object (not for an object collection).
 3.  It is not possible to inherit the same class multiple times.
 

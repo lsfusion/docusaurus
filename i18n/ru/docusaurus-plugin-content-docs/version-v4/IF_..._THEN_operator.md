@@ -2,7 +2,7 @@
 title: 'Оператор IF ... THEN'
 ---
 
-Оператор `IF ... THEN` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) с одним условием (одиночная форма).
+Оператор `IF ... THEN` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md) с одним условием (одиночная форма).
 
 ### Синтаксис
 

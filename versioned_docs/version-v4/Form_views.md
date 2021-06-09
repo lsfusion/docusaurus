@@ -7,7 +7,7 @@ A [form](Forms.md) view can be classified as follows:
 
 #### [Interactive](Interactive_view.md)
 
-A view in which the user can interact with an open form: select current objects, call [actions](Actions.md), change [data properties](Data_properties_DATA_.md), and so on. Data is usually read as needed depending on user actions. It is this view (along with the [programming interface](Integration.md)) that is responsible for data input into the system.
+A view in which the user can interact with an open form: select current objects, call [actions](Actions.md), change [data properties](Data_properties_DATA.md), and so on. Data is usually read as needed depending on user actions. It is this view (along with the [programming interface](Integration.md)) that is responsible for data input into the system.
 
 #### [Static](Static_view.md)
 

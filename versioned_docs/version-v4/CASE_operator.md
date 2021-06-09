@@ -2,7 +2,7 @@
 title: 'CASE operator'
 ---
 
-The `CASE` operator  creates a [property](Properties.md) that [selects](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) a result by condition.
+The `CASE` operator  creates a [property](Properties.md) that [selects](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md) a result by condition.
 
 ### Syntax 
 
@@ -20,7 +20,7 @@ The `CASE` operator creates a property that implements a conditional selection. 
 
 - `exclusionType`
 
-    [Type of mutual exclusion](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Determines whether several conditions can be met simultaneously for a certain set of parameters. It is specified by one of the keywords:
+    [Type of mutual exclusion](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md#exclusive). Determines whether several conditions can be met simultaneously for a certain set of parameters. It is specified by one of the keywords:
 
     - `EXCLUSIVE`
     - `OVERRIDE`

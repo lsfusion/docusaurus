@@ -30,7 +30,7 @@ CONSTRAINT SET(price(Book b) > 100)
 
 If a user tries to save a book costing over 100 on any form, the user will see a message with a corresponding text. This message will also contain all objects of the `Book` class for which the constraint is violated. Values of properties from the `id` group will be shown for each object.
 
-Both options are identical from the execution perspective. If the platform does not find any [change operator](Change_operators_SET_CHANGED_..._.md) in a constraint, the entire expression is automatically "wrapped" into a `SET` operator.
+Both options are identical from the execution perspective. If the platform does not find any [change operator](Change_operators_SET_CHANGED_etc.md) in a constraint, the entire expression is automatically "wrapped" into a `SET` operator.
 
 ## Example 2
 

@@ -2,7 +2,7 @@
 title: 'Properties and actions block'
 ---
 
-The property and action block of the [FORM instruction](FORM_instruction.md) adds [properties and actions](Form_structure.md#properties) to the [form structure](Form_structure.md). 
+The property and action block of the [FORM statement](FORM_statement.md) adds [properties and actions](Form_structure.md#properties) to the [form structure](Form_structure.md). 
 
 ### Syntax
 
@@ -60,7 +60,7 @@ In the given example, the names of the added properties `date` and `Order.number
 
 When adding a property (action) to the form structure, you may specify a set of its options. You may also specify common options for the entire `PROPERTIES` block. If any of the options are specified for both the entire block and a specific declaration, the option value for the declaration will be used.
 
-In all [expressions](Expression.md) and [context-dependent action operators](Action_operator.md#contextdependent), you can use the names of the objects already declared on the form as parameters.
+In all [expressions](Expression.md) and [context-dependent action operators](Action_operators.md#contextdependent), you can use the names of the objects already declared on the form as parameters.
 
 ### Parameters
 
@@ -109,7 +109,7 @@ In the current platform implementation, if the name and caption are not specifie
 
 - `formActionOperator`
 
-    [Context-dependent action operator](Action_operator.md#contextdependent) being added to the form structure.
+    [Context-dependent action operator](Action_operators.md#contextdependent) being added to the form structure.
 
 #### Options for the property or action
 
@@ -247,7 +247,7 @@ In the current platform implementation, if the name and caption are not specifie
 
     - `actionOperator`
 
-        [Context-dependent action operator](Action_operator.md#contextdependent).
+        [Context-dependent action operator](Action_operators.md#contextdependent).
 
 - `ATTR`
 

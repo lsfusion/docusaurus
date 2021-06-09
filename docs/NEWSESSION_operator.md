@@ -2,7 +2,7 @@
 title: 'NEWSESSION operator'
 ---
 
-The `NEWSESSION` operator creates an [action](Actions.md) that executes the other action in a [new session](New_session_NEWSESSION_NESTEDSESSION_.md).
+The `NEWSESSION` operator creates an [action](Actions.md) that executes the other action in a [new session](New_session_NEWSESSION_NESTEDSESSION.md).
 
 ### Syntax
 
@@ -17,7 +17,7 @@ where `nestedBlock` has one of two possible syntaxes:
 
 The `NEWSESSION` operator creates an action which executes the other action in a new session.
 
-If the `NESTED` keyword is specified, the changes of the [local properties](Data_properties_DATA_.md#local) will be visible in the new session. If the `LOCAL` keyword is specified, changes of all the local properties will be visible, otherwise, a list of the local properties whose changes need to be visible in the new session should be specified. Also, changes to these local properties in the new session will get to the current session when applying changes in this new session.
+If the `NESTED` keyword is specified, the changes of the [local properties](Data_properties_DATA.md#local) will be visible in the new session. If the `LOCAL` keyword is specified, changes of all the local properties will be visible, otherwise, a list of the local properties whose changes need to be visible in the new session should be specified. Also, changes to these local properties in the new session will get to the current session when applying changes in this new session.
 
 ### Parameters
 
@@ -35,7 +35,7 @@ If the `NESTED` keyword is specified, the changes of the [local properties](Data
 
 - `action`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that defines an action to be executed in the new session.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that defines an action to be executed in the new session.
 
 ### Examples
 

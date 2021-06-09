@@ -2,7 +2,7 @@
 title: 'Оператор RECURSION'
 ---
 
-Оператор `RECURSION` - создание [свойства](Properties.md), реализующего [рекурсию](Recursion_RECURSION_.md).
+Оператор `RECURSION` - создание [свойства](Properties.md), реализующего [рекурсию](Recursion_RECURSION.md).
 
 ### Синтаксис 
 

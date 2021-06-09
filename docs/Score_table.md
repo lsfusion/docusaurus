@@ -30,7 +30,7 @@ REQUIRE System, Utils;
 
 ### Team definition
 
-We introduce the concept of a team, for which we create a separate [class](Classes.md) using the corresponding [instruction `CLASS`](CLASS_instruction.md). 
+We introduce the concept of a team, for which we create a separate [class](Classes.md) using the corresponding [statement `CLASS`](CLASS_statement.md). 
 
 ```lsf
 CLASS Team 'Team';
@@ -44,7 +44,7 @@ So that all teams can be easily identified when working with forms created later
 name 'Team name' = DATA STRING[30] (Team) IN base;
 ```
 
-Thus, the team name is a [data](Data_properties_DATA_.md) (user-entered) string-type property. Using the `IN` option, the created property is added to the predefined `base` [property group](Groups_of_properties_and_actions.md). Object properties belonging to the `base` group will be automatically displayed on the dialog form for selecting an object of the `Team` class.
+Thus, the team name is a [data](Data_properties_DATA.md) (user-entered) string-type property. Using the `IN` option, the created property is added to the predefined `base` [property group](Groups_of_properties_and_actions.md). Object properties belonging to the `base` group will be automatically displayed on the dialog form for selecting an object of the `Team` class.
 
 ### Game definition
 
@@ -60,7 +60,7 @@ hostTeamName 'Hosts' (Game game) = name(hostTeam(game));
 guestTeamName 'Guests' (Game game) = name(guestTeam(game));
 ```
 
-The `hostTeam` and `guestTeam` properties are [data](Data_properties_DATA_.md) object properties of a game, whose values are links to the host team and guest team, respectively (that is, to specific `Team`-class objects). Properties of the team names of the game hosts and guests (`hostTeamName` and `guestTeamName`) are created for subsequent use on forms. If the `hostTeam` and `guestTeam` properties are added to the form, the user will see the internal IDs of objects from the database.
+The `hostTeam` and `guestTeam` properties are [data](Data_properties_DATA.md) object properties of a game, whose values are links to the host team and guest team, respectively (that is, to specific `Team`-class objects). Properties of the team names of the game hosts and guests (`hostTeamName` and `guestTeamName`) are created for subsequent use on forms. If the `hostTeam` and `guestTeam` properties are added to the form, the user will see the internal IDs of objects from the database.
 
 We introduce the constraint that the game participants must be two different teams.
 
@@ -95,7 +95,7 @@ winner(Game game) = IF hostGoals(game) > guestGoals(game)
                     ELSE guestTeam(game);
 ```
 
-Here we use the operator [`IF... THEN... ELSE`](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md), which checks the condition that the host team in this game has scored more goals than the guest team. If it is met, the winner is the home team; if not, the guest team.
+Here we use the operator [`IF... THEN... ELSE`](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md), which checks the condition that the host team in this game has scored more goals than the guest team. If it is met, the winner is the home team; if not, the guest team.
 
 By a similar principle, the team that participated in the game and scored fewer goals than its opponent will be considered the loser.
 
@@ -164,7 +164,7 @@ We define the indicators that determine the team's place on the scoreboard:
 
 Here, the construction `(+)` is used instead of the arithmetic `+` to obtain the correct result if at least one of the terms has a value of `NULL`. Using `(+)` in this case is equivalent to replacing a possible `NULL` with `0`. If one of the terms is `NULL`, then using the arithmetic `+` will also result in a value of `NULL`.
 
-To determine the number of games played by the team at home and away, the [`GROUP SUM`](Grouping_GROUP_.md) operator is used, which allows you to get the sum of the calculation results of a given expression for objects of a certain class, grouped by one or more of their attributes (similar to subtotals in Excel). Here the number `1` is specified for summation, and all games are grouped by guest team and host team (the `BY` instruction). As a result, for example, the `hostGamesPlayed` property determines for the team (since the result of the `hostTeam` property calculation is the `Team`-class object) the number (that is, the sum of the number `1` for all games where the host team is equal to the defined one) of games played as hosts (the `hostTeam` property is specified only for objects of the `Game` class). With this calculation the system analyzes all games entered into the system.
+To determine the number of games played by the team at home and away, the [`GROUP SUM`](Grouping_GROUP.md) operator is used, which allows you to get the sum of the calculation results of a given expression for objects of a certain class, grouped by one or more of their attributes (similar to subtotals in Excel). Here the number `1` is specified for summation, and all games are grouped by guest team and host team (the `BY` block). As a result, for example, the `hostGamesPlayed` property determines for the team (since the result of the `hostTeam` property calculation is the `Team`-class object) the number (that is, the sum of the number `1` for all games where the host team is equal to the defined one) of games played as hosts (the `hostTeam` property is specified only for objects of the `Game` class). With this calculation the system analyzes all games entered into the system.
 
 -   number of games won in regular time, in overtime, and in extra time  
       
@@ -176,7 +176,7 @@ To determine the number of games played by the team at home and away, the [`GROU
     gamesWonSO 'WB' (Team team) = gamesWonBy(team, GameResult.winSO);
     ```
 
-Since the logic for determining the number of wins of each type for a team is almost identical, we create and use the intermediate property `gamesWonByResult`, which is defined for a pair of objects (arguments). This property calculates for the team (first argument) the number of wins of a given type (second argument). The value of the `gamesWonBy` property is calculated with the `OVERRIDE` operator, which takes as input an expression specified in brackets `[...]` and `0`. If the expression value is `NULL`, the result of the whole property will be the value `0`. A nested expression is specified in square brackets using the [`GROUP SUM`](Grouping_GROUP_.md) construct. Using a given expression in brackets is identical to using a previously defined property with a similar expression. Thus, the construction `[...]` allows you to simply reduce the number of lines of code. Here, [`GROUP SUM`](Grouping_GROUP_.md) returns the total sum on number `1` for all games grouped by game winner and game result.
+Since the logic for determining the number of wins of each type for a team is almost identical, we create and use the intermediate property `gamesWonByResult`, which is defined for a pair of objects (arguments). This property calculates for the team (first argument) the number of wins of a given type (second argument). The value of the `gamesWonBy` property is calculated with the `OVERRIDE` operator, which takes as input an expression specified in brackets `[...]` and `0`. If the expression value is `NULL`, the result of the whole property will be the value `0`. A nested expression is specified in square brackets using the [`GROUP SUM`](Grouping_GROUP.md) construct. Using a given expression in brackets is identical to using a previously defined property with a similar expression. Thus, the construction `[...]` allows you to simply reduce the number of lines of code. Here, [`GROUP SUM`](Grouping_GROUP.md) returns the total sum on number `1` for all games grouped by game winner and game result.
 
 The total result of the `gamesWonByResult` property will be the number of wins of a given type for a given team, or zero if the team did not have any wins of this type (that is, if `[GROUP SUM 1 BY winner(Game game), result(game)]` for a given team and type of win is `NULL`).
 
@@ -217,7 +217,7 @@ place 'Rank' (Team team) = PARTITION SUM 1 ORDER DESC points(team), gamesWon(tea
 
   
 
-The `place` property "Team place on the score table" is determined using the construction [`PARTITION SUM`](Partitioning_sorting_PARTITION_..._ORDER_.md), which for all objects of a certain class in a cumulative total, the sequence of which is specified by the `ORDER` operator, calculates the sum of the results of the calculation of a specified expression. It is important to remember that the values of all properties involved in determining the order must not be `NULL`. For this purpose, the penultimate expression uses the `OVERRIDE` operator so that the number 0 is used instead of `NULL`.
+The `place` property "Team place on the score table" is determined using the construction [`PARTITION SUM`](Partitioning_sorting_PARTITION_..._ORDER.md), which for all objects of a certain class in a cumulative total, the sequence of which is specified by the `ORDER` operator, calculates the sum of the results of the calculation of a specified expression. It is important to remember that the values of all properties involved in determining the order must not be `NULL`. For this purpose, the penultimate expression uses the `OVERRIDE` operator so that the number 0 is used instead of `NULL`.
 
 Thus, the logic for determining the `place` property for each command is as follows:
 
@@ -237,7 +237,7 @@ FORM MainForm 'Score table'
 ;
 ```
 
-The `FORM` instruction creates an empty form with [a certain default functionality](Form_structure.md). Using the `OBJECTS game=Game` expression, a `game` object is added to the form: a table view block containing all instances of the `Game` class entered in the system. Using the expression `PROPERTIES(game)` with a the subsequent listing of a subset of properties, the specified properties are added to the form, and objects of the "game" block are passed to them as arguments. In addition to previously created properties, the [actions](Actions.md) `NEW` and `DELETE` are also placed on the form, which will visually appear as buttons and allow you to add and remove objects of the `Game` class.
+The `FORM` statement creates an empty form with [a certain default functionality](Form_structure.md). Using the `OBJECTS game=Game` expression, a `game` object is added to the form: a table view block containing all instances of the `Game` class entered in the system. Using the expression `PROPERTIES(game)` with a the subsequent listing of a subset of properties, the specified properties are added to the form, and objects of the "game" block are passed to them as arguments. In addition to previously created properties, the [actions](Actions.md) `NEW` and `DELETE` are also placed on the form, which will visually appear as buttons and allow you to add and remove objects of the `Game` class.
 
 Data properties displayed on a form that are of a primitive type (`date`, `hostGoals`, `guestGoals`) will visually appear as cells that can be filled and changed by the user. Calculated properties that return an attribute of another object (`hostTeamName`, `guestTeamName`, `resultName`) will appear as cells. When these are clicked, a dialog box with the list of their objects and base group properties will be shown (for example, when clicking on the cell `hostTeamName` "Guests" a dialog box appears with the list of teams). In the dialog box you can select one of the objects, thus changing the property value for the object of the original form (for example, changing the game host team).
 
@@ -252,7 +252,7 @@ EXTEND FORM MainForm
 ;
 ```
 :::info
-The above form can be defined with a single block of code without using the `EXTEND` instruction.
+The above form can be defined with a single block of code without using the `EXTEND FORM` statement.
 
 ```lsf
 FORM MainFormSingle 'Score table'

@@ -2,7 +2,7 @@
 title: 'Action options'
 ---
 
-When declaring an [action](Actions.md) in the [`ACTION` statement](ACTION_instruction.md) a certain set of *action options* may be specified at the end of the declaration. 
+When declaring an [action](Actions.md) in the [`ACTION` statement](ACTION_statement.md) a certain set of *action options* may be specified at the end of the declaration. 
 
 ## Syntax
 
@@ -40,7 +40,7 @@ The following set of options is supported (the syntax of each option is indicate
     - `TOOLBAR` - toolbar
     - `PANEL` - panel
 
-  It is similar to specifying the viewType option in the [property block](Properties_and_actions_block.md) of the [`FORM` statement](FORM_instruction.md). Thus, if this option is not specified either in the action options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the action display group on the form is used.
+  It is similar to specifying the viewType option in the [property block](Properties_and_actions_block.md) of the [`FORM` statement](FORM_statement.md). Thus, if this option is not specified either in the action options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the action display group on the form is used.
 
 - `ON eventType { actionOperator }`
 
@@ -58,7 +58,7 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `actionOperator`
 
-        A [context-dependent action operator](Action_operator.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
+        A [context-dependent action operator](Action_operators.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
 
 - `ASON eventType [ACTION] propertyId`
 
@@ -88,7 +88,7 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `CHANGEKEY key [SHOW | HIDE]`
 
-    Specifies a [keyboard shortcut](Form_events.md#keyboard-broken) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [`DESIGN` statement](DESIGN_instruction.md).
+    Specifies a [keyboard shortcut](Form_events.md#keyboard-broken) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [`DESIGN` statement](DESIGN_statement.md).
 
     - `key`
      

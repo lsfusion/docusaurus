@@ -205,7 +205,7 @@ The resulting file will look like this:
 }
 ```
 
-Note that the `ATTR` instruction is ignored when you export data in the JSON format.
+Note that the `ATTR` option is ignored when you export data in the JSON format.
 
 ## Example 3
 

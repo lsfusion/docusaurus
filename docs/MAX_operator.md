@@ -2,7 +2,7 @@
 title: 'MAX operator'
 ---
 
-The `MAX` operator creates a [property](Properties.md) that implements finding [maximum](Extremum_MAX_MIN_.md) value.
+The `MAX` operator creates a [property](Properties.md) that implements finding [maximum](Extremum_MAX_MIN.md) value.
 
 ### Syntax 
 

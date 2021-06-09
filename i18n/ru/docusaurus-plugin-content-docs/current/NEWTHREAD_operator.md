@@ -2,7 +2,7 @@
 title: 'Оператор NEWTHREAD'
 ---
 
-Оператор `NEWTHREAD` - создание [действия](Actions.md), которое выполняет другое действие в [новом потоке](New_threads_NEWTHREAD_NEWEXECUTOR_.md).
+Оператор `NEWTHREAD` - создание [действия](Actions.md), которое выполняет другое действие в [новом потоке](New_threads_NEWTHREAD_NEWEXECUTOR.md).
 
 ### Синтаксис
 
@@ -17,7 +17,7 @@ title: 'Оператор NEWTHREAD'
 
 - `action`
 
-    [Контекстно-зависимый оператор](Action_operator.md#contextdependent), описывающий действие, которое должно быть выполнено в новом потоке.
+    [Контекстно-зависимый оператор](Action_operators.md#contextdependent), описывающий действие, которое должно быть выполнено в новом потоке.
 
 - `connectionExpr`
 

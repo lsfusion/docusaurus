@@ -7,14 +7,14 @@ sidebar_label: Overview
 
 ### Java {#appjava}
 
-Java application server startup parameters are set in the launch command (for example, for [manual](Execution_manual_.md#command-broken) or [automatic](Execution_auto_.md#settings-broken) installation):
+Java application server startup parameters are set in the launch command (for example, for [manual](Execution_manual.md#command-broken) or [automatic](Execution_auto.md#settings) installation):
 
 ||Name|Type|Description|Default|
 |---|---|---|---|---|
-|System (starting with `X`)|[Standard](https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)||Standard Java parameters. It is important above all to pay attention to:<ul><li>`cp` - classpath, the paths in which java looks for class files and other resources (including lsFusion modules). The default is `.` - current folder (different for [automatic installation](Execution_auto_.md)).</li><li>`Xmx` - maximum memory size. The default value is determined depending on the configuration of the computer on which the application server is running. For complex logics, it is recommended that you allocate at least 4GB. </li></ul>||
+|System (starting with `X`)|[Standard](https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)||Standard Java parameters. It is important above all to pay attention to:<ul><li>`cp` - classpath, the paths in which java looks for class files and other resources (including lsFusion modules). The default is `.` - current folder (different for [automatic installation](Execution_auto.md)).</li><li>`Xmx` - maximum memory size. The default value is determined depending on the configuration of the computer on which the application server is running. For complex logics, it is recommended that you allocate at least 4GB. </li></ul>||
 ||`-XX:CMSInitiatingOccupancyFraction`|`int`|In general, this is the standard parameter responsible for the threshold after which the CMS garbage collector is turned on. At the same time, the platform uses this parameter to target the memory usage amount using LRU caches (setting more aggressive parameters for cleaning them if this goal is exceeded, and less aggressive in the opposite case). For heavily loaded servers, it is recommended that you set it in the range from `40` to `60`.|`70`|
 |Custom (starting with `D`)|`-Dlsfusion.server.lightstart`|`boolean`|"Light" start mode (usually used during development). In this mode, the server does not perform metadata synchronization operations or create [security policy](Security_policy.md) settings forms, etc., and the startup time and the amount of memory consumed at startup are therefore reduced.<br/>In the [IDE](IDE.md) it is set with a checkmark in [lsFusion server configuration](IDE.md#configuration) (enabled by default).|`false`|
-||`-Dlsfusion.server.devmode`|`boolean`|Development mode. In this mode:<ul><li>System tasks are not launched (so as not to interfere with the debugger)</li><li>You can edit [report design](Report_design.md) in [interactive print](In_a_print_view_PRINT_.md#interactive) view</li><li>Anonymous access to the API and UI is enabled ([system parameters](Working_parameters.md) enableAPI, enableUI). In addition, anonymous access in this mode is as an admin and not an anonymous user</li><li>Client is automatically reconnected when connection is lost</li><li>The cache for reading reports from resources is turned off</li></ul>In the [IDE](IDE.md), automatically enabled when running [lsFusion server configuration](IDE.md#configuration).|`false`|
+||`-Dlsfusion.server.devmode`|`boolean`|Development mode. In this mode:<ul><li>System tasks are not launched (so as not to interfere with the debugger)</li><li>You can edit [report design](Report_design.md) in [interactive print](In_a_print_view_PRINT.md#interactive) view</li><li>Anonymous access to the API and UI is enabled ([system parameters](Working_parameters.md) enableAPI, enableUI). In addition, anonymous access in this mode is as an admin and not an anonymous user</li><li>Client is automatically reconnected when connection is lost</li><li>The cache for reading reports from resources is turned off</li></ul>In the [IDE](IDE.md), automatically enabled when running [lsFusion server configuration](IDE.md#configuration).|`false`|
 ||`-Dlsfusion.server.testmode`|`boolean`|Enables some experimental features<br/>Automatically enabled if assertions are enabled (`-ea` option)|`false`|
 
 ### lsFusion {#applsfusion}
@@ -49,20 +49,20 @@ lsFusion startup parameters for server applications can be set in one of the fol
 
 
 :::info
-By default, it is assumed that the startup parameter files `conf/settings.properties` and `lsfusion.properties` are located in the application server's startup folder. However, with [automatic installation](Execution_auto_.md) under GNU Linux symlinks for these files (as well as for [log](Journals_and_logs.md#logs) folders)  are automatically created to [other files](Execution_auto_.md#settings-broken) whose layout is better aligned with Linux ideology.
+By default, it is assumed that the startup parameter files `conf/settings.properties` and `lsfusion.properties` are located in the application server's startup folder. However, with [automatic installation](Execution_auto.md) under GNU Linux symlinks for these files (as well as for [log](Journals_and_logs.md#logs) folders)  are automatically created to [other files](Execution_auto.md#settings) whose layout is better aligned with Linux ideology.
 :::
 
 ## Web server (Client)
 
-### Java {#appjava}
+### Java {#webjava}
 
-Java web server startup parameters are set in the Tomcat launch command, which, in turn, launches this web server (for example, for [automatic](Execution_auto_.md#webapp-broken) installation). 
+Java web server startup parameters are set in the Tomcat launch command, which, in turn, launches this web server (for example, for [automatic](Execution_auto.md#settings) installation). 
 
 ||Name|Type|Description|
 |---|---|---|---|
 |System (starting with `X`)|[Standard](https://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html)||Standard Java parameters. It is important above all to pay attention to:<ul><li>`Xmx` - maximum memory size. For complex logics, it is recommended that you allocate at least 2GB. </li></ul>|
 
-### lsFusion {#applsfusion}
+### lsFusion {#weblsfusion}
 
 lsFusion startup parameters for the web server can be set in one of the following ways (in the order of their priorities, lower priority at the bottom):
 
@@ -70,9 +70,9 @@ lsFusion startup parameters for the web server can be set in one of the followin
     -   in a web application in the file `/WEB-INF/web.xml`, the `context-param` tag (relevant for platform forks)
     -   in a web application in the file `/META-INF/context.xml`, `Context` tag, `Parameter` tag (relevant for platform forks)
     -   in Tomcat, in the file `$CATALINA_BASE/conf/[enginename]/[hostname]/[contextpath].xml`, tag `Context`, tag `Parameter`, where:
-        -   `$CATALINA_BASE$` is the folder where Tomcat is installed (for example, with [automatic](Execution_auto_.md#settings-broken) installation, this folder is `$INSTALL_DIR/Client`)
-        -   `[contextpath]` - contextual path of the web application (for example, with [automatic](Execution_auto_.md#settings-broken) installation this name is empty by default, which in Tomcat is equivalent to the name `ROOT`; with [manual](Execution_manual_.md#tomcat-broken) installation it depends on the name of the war file), 
-        -   `[enginename]` and `[hostname]` are the names of the tomcat implementation mechanism and the web server computer (for example, with [automatic](Execution_auto_.md#settings-broken) installation these names are `catalina` and `localhost` respectively)
+        -   `$CATALINA_BASE$` is the folder where Tomcat is installed (for example, with [automatic](Execution_auto.md#settings) installation, this folder is `$INSTALL_DIR/Client`)
+        -   `[contextpath]` - contextual path of the web application (for example, with [automatic](Execution_auto.md#settings) installation this name is empty by default, which in Tomcat is equivalent to the name `ROOT`; with [manual](Execution_manual.md#tomcat-broken) installation it depends on the name of the war file), 
+        -   `[enginename]` and `[hostname]` are the names of the tomcat implementation mechanism and the web server computer (for example, with [automatic](Execution_auto.md#settings) installation these names are `catalina` and `localhost` respectively)
     -   in Tomcat, in the file `$CATALINA_BASE/conf/server.xml`, `Context` tag, `Parameter` tag (not recommended)
 -   In URL parameters (e.g. `http://tryonline.lsfusion.org?host=3.3.3.3&port=4444`)
 

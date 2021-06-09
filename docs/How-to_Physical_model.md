@@ -41,4 +41,4 @@ Computed properties that need to be stored [permanently](Materializations.md) in
 totalPopulation 'Total number' (Animal a) = GROUP SUM population(a, Country c) MATERIALIZED;
 ```
 
-The table in which this field will be stored will be selected according to the same algorithm as for [data properties](Data_properties_DATA_.md). In this case, it will go into the table `<Namespace>_animal`.
+The table in which this field will be stored will be selected according to the same algorithm as for [data properties](Data_properties_DATA.md). In this case, it will go into the table `<Namespace>_animal`.

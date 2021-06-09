@@ -2,7 +2,7 @@
 title: 'REQUEST operator'
 ---
 
-The `REQUEST` operator creates an [action](Actions.md) that [requests a value](Value_request_REQUEST_.md).
+The `REQUEST` operator creates an [action](Actions.md) that [requests a value](Value_request_REQUEST.md).
 
 ### Syntax
 
@@ -17,7 +17,7 @@ The `REQUEST` operator creates an action that allows the separation of a request
 
 - `requestAction`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that requests a value.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that requests a value.
 
 - `doAction`
 

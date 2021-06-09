@@ -46,4 +46,4 @@ REQUIRE Shape;
 overSquareCircle (circle) += radius(circle) * radius(circle) * 3.14159265359; // using a formula with higher accuracy
 ```
 
-Note that you can use any other expressions instead of the [`OVERRIDE` operator](OVERRIDE_operator.md). In particular, [`(+)` and `(-)` operators](Arithmetic_operators_+_-_..._.md) may be the most frequently used.
+Note that you can use any other expressions instead of the [`OVERRIDE` operator](OVERRIDE_operator.md). In particular, [`(+)` and `(-)` operators](Arithmetic_operators_+_-_etc.md) may be the most frequently used.

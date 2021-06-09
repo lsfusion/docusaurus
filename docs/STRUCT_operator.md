@@ -2,7 +2,7 @@
 title: 'STRUCT operator'
 ---
 
-The `STRUCT` operator creates a [property](Properties.md) that creates a [structure](Structure_operations_STRUCT_.md).
+The `STRUCT` operator creates a [property](Properties.md) that creates a [structure](Structure_operators_STRUCT.md).
 
 ### Syntax
 

@@ -2,7 +2,7 @@
 title: 'DATA operator'
 ---
 
-The `DATA` operator creates a [data property](Data_properties_DATA_.md).
+The `DATA` operator creates a [data property](Data_properties_DATA.md).
 
 ### Syntax
 
@@ -10,7 +10,7 @@ The `DATA` operator creates a [data property](Data_properties_DATA_.md).
 
 ### Description
 
-The `DATA` operator creates a data property. This [property operator](Operators.md) cannot be used inside [expressions](Expression.md). The data property can be created local by specifying the keyword `LOCAL`. 
+The `DATA` operator creates a data property. This [property operator](Property_operators_paradigm.md) cannot be used inside [expressions](Expression.md). The data property can be created local by specifying the keyword `LOCAL`. 
 
 This operator cannot be used in the [`JOIN` operator](JOIN_operator.md) (inside `[ ]`), since a name must be specified for the data property.
 
@@ -18,7 +18,7 @@ This operator cannot be used in the [`JOIN` operator](JOIN_operator.md) (inside 
 
 - `LOCAL`
 
-    A keyword that, when specified, creates a [local data property](Data_properties_DATA_.md#local). 
+    A keyword that, when specified, creates a [local data property](Data_properties_DATA.md#local). 
 
 - `NESTED`
 

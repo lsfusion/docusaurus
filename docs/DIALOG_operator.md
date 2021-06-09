@@ -2,7 +2,7 @@
 title: 'DIALOG operator'
 ---
 
-The `DIALOG` operator creates an [action](Actions.md) that [opens a form](In_an_interactive_view_SHOW_DIALOG_.md) in an interactive view in [dialog](In_an_interactive_view_SHOW_DIALOG_.md#dialog) mode. 
+The `DIALOG` operator creates an [action](Actions.md) that [opens a form](In_an_interactive_view_SHOW_DIALOG.md) in an interactive view in [dialog](In_an_interactive_view_SHOW_DIALOG.md#dialog) mode. 
 
 ## Syntax
 
@@ -92,17 +92,17 @@ The `DIALOG` operator creates an action that opens the specified form. When open
 
 - `actionOperator`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that is executed if the input was completed successfully.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that is executed if the input was completed successfully.
 
 - `elseActionOperator`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that is executed if the input was cancelled. Parameters added to the input block `INPUT` cannot be used as parameters.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that is executed if the input was cancelled. Parameters added to the input block `INPUT` cannot be used as parameters.
 
 ### Additional options
 
 - `windowType`
 
-    Method of [the form layout](In_an_interactive_view_SHOW_DIALOG_.md#location):
+    Method of [the form layout](In_an_interactive_view_SHOW_DIALOG.md#location):
 
     - `DOCKED` - as a tab.
     - `FLOAT` - as a window. Used by default.
@@ -121,7 +121,7 @@ The `DIALOG` operator creates an action that opens the specified form. When open
 
 - `READONLY`
 
-    Keyword. If specified, the form is opened in [read-only](In_an_interactive_view_SHOW_DIALOG_.md#extra) mode.
+    Keyword. If specified, the form is opened in [read-only](In_an_interactive_view_SHOW_DIALOG.md#extra) mode.
 
 ## Examples
 

@@ -2,7 +2,7 @@
 title: 'NEWTHREAD operator'
 ---
 
-The `NEWTHREAD` operator creates an [action](Actions.md) that executes another action in a [new thread](New_threads_NEWTHREAD_NEWEXECUTOR_.md).
+The `NEWTHREAD` operator creates an [action](Actions.md) that executes another action in a [new thread](New_threads_NEWTHREAD_NEWEXECUTOR.md).
 
 ### Syntax
 
@@ -17,7 +17,7 @@ The `NEWTHREAD` operator creates an action that executes another action in a new
 
 - `action`
 
-    A [context dependent operator](Action_operator.md#contextdependent) that defines an action to be executed in the new thread.
+    A [context dependent operator](Action_operators.md#contextdependent) that defines an action to be executed in the new thread.
 
 - `connectionExpr`
 

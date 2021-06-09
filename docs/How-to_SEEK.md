@@ -148,4 +148,4 @@ EXTEND FORM report
 ;
 ```
 
-Date properties can be found in the `Time` [system module](Modules.md) which is loaded at the very beginning using the `REQUIRE` instruction.
+Date properties can be found in the `Time` [system module](Modules.md) which is loaded at the very beginning using the `REQUIRE` statement.

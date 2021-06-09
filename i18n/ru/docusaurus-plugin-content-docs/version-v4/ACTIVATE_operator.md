@@ -2,7 +2,7 @@
 title: 'Оператор ACTIVATE'
 ---
 
-Оператор `ACTIVATE` - создание [действия](Actions.md), [активирующего](Activation_ACTIVATE_.md) указанную [форму](Forms.md), закладку, свойство или действие на форме
+Оператор `ACTIVATE` - создание [действия](Actions.md), [активирующего](Activation_ACTIVATE.md) указанную [форму](Forms.md), закладку, свойство или действие на форме
 
 ### Синтаксис 
 
@@ -22,7 +22,7 @@ title: 'Оператор ACTIVATE'
 
 - `componentSelector`
 
-    [Селектор](DESIGN_instruction.md#selector-broken) компонента дизайна. Компонент должен быть закладкой на панели вкладок.
+    [Селектор](DESIGN_statement.md#selector-broken) компонента дизайна. Компонент должен быть закладкой на панели вкладок.
 
 - `formPropertyId`
 

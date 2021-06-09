@@ -23,7 +23,7 @@ bookExists (INTEGER number)  {
 }
 ```
 
-The [`GROUP AGGR` operator](Grouping_GROUP_.md) automatically adds a constraint on the uniqueness of the number. If you try to save the same number to the database, you will get an error message.
+The [`GROUP AGGR` operator](Grouping_GROUP.md) automatically adds a constraint on the uniqueness of the number. If you try to save the same number to the database, you will get an error message.
 
 Let's add an [event](Events.md) that will automatically number books by increasing the maximum number existing in the database.
 

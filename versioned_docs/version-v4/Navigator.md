@@ -7,7 +7,7 @@ sidebar_label: Overview
 
 -   *folder* - combines other navigator elements into a group. Selecting this element [affects](Navigator_design.md#selectedfolder) the display of its children if they belong to another [window](Navigator_design.md).
 -   *action* – executes a specified [action](Actions.md). Only actions that take no arguments can be added to the navigator.
--   *form* – [opens](In_an_interactive_view_SHOW_DIALOG_.md) a specified [form](Forms.md) in the interactive view and the [asynchronous](In_an_interactive_view_SHOW_DIALOG_.md#flow) mode.
+-   *form* – [opens](In_an_interactive_view_SHOW_DIALOG.md) a specified [form](Forms.md) in the interactive view and the [asynchronous](In_an_interactive_view_SHOW_DIALOG.md#flow) mode.
 
 When an element is added to the navigator, a *parent* element is defined for it. The root element of the navigator is the `System.root` folder. 
 
@@ -17,7 +17,7 @@ Just as an [interactive](Interactive_view.md) form view, the navigator is displa
 
 ### Language
 
-To manage the navigator use the [`NAVIGATOR` statement](NAVIGATOR_instruction.md).
+To manage the navigator use the [`NAVIGATOR` statement](NAVIGATOR_statement.md).
 
 ### Examples
 

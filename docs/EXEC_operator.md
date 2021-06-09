@@ -2,7 +2,7 @@
 title: 'EXEC operator'
 ---
 
-The `EXEC` operator creates an [action](Actions.md) that [executes](Call_EXEC_.md) another action.
+The `EXEC` operator creates an [action](Actions.md) that [executes](Call_EXEC.md) another action.
 
 ### Syntax
 

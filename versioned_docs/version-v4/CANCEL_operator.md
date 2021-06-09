@@ -2,7 +2,7 @@
 title: 'CANCEL operator'
 ---
 
-The `CANCEL` operator creates an [action](Actions.md) that [cancels changes](Cancel_changes_CANCEL_.md) in the current session.
+The `CANCEL` operator creates an [action](Actions.md) that [cancels changes](Cancel_changes_CANCEL.md) in the current session.
 
 ### Syntax
 
@@ -15,7 +15,7 @@ where `nestedBlock` has one of two possible syntaxes:
 
 ### Description
 
-The `CANCEL` operator creates an action that cancels changes in the current session. By specifying the keyword `NESTED` you can specify [local properties](Data_properties_DATA_.md#local) whose changes are not dropped when cancelling the changes. 
+The `CANCEL` operator creates an action that cancels changes in the current session. By specifying the keyword `NESTED` you can specify [local properties](Data_properties_DATA.md#local) whose changes are not dropped when cancelling the changes. 
 
 ### Parameters
 

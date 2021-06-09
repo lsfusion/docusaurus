@@ -2,7 +2,7 @@
 title: 'ACTIVE FORM operator'
 ---
 
-The `ACTIVATE FORM` operator creates an [action](Actions.md) that checks the [activeness](Activity_ACTIVE_.md) of a [form](Forms.md).
+The `ACTIVATE FORM` operator creates an [action](Actions.md) that checks the [activeness](Activity_ACTIVE.md) of a [form](Forms.md).
 
 ### Syntax
 

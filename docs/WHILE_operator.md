@@ -2,7 +2,7 @@
 title: 'WHILE operator'
 ---
 
-The `WHILE` operator creates an [action](Actions.md) that implements a [recursive loop](Recursive_loop_WHILE_.md).
+The `WHILE` operator creates an [action](Actions.md) that implements a [recursive loop](Recursive_loop_WHILE.md).
 
 ### Syntax
 
@@ -40,7 +40,7 @@ The object iteration order in the `WHILE` operator can be specified with the `OR
 
 - `action`
 
-    [Context-dependent action operator](Action_operator.md#contextdependent) describing the action being executed.
+    [Context-dependent action operator](Action_operators.md#contextdependent) describing the action being executed.
 
 ### Examples
 

@@ -48,7 +48,7 @@ Properties on the form can be combined into [groups](Groups_of_properties_and_ac
 
 #### Default settings
 
-Properties on the form have a large number of display settings in various [views](Form_views.md), most of which can be set not only directly for the property on the form, but also for the property itself (when creating it). These settings will be the default settings, i.e., if the setting is not explicitly set for a specific property on the form, then the setting of the property itself is used. In addition, these default settings are "inherited" when using [composition](Composition_JOIN_.md), [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) and [previous value](Previous_value_PREV_.md) operators (i.e., if property `f(a)` has the default width of `10`, then the property `g(a) = f(a) IF h(a)` will also have a width of `10` by default).
+Properties on the form have a large number of display settings in various [views](Form_views.md), most of which can be set not only directly for the property on the form, but also for the property itself (when creating it). These settings will be the default settings, i.e., if the setting is not explicitly set for a specific property on the form, then the setting of the property itself is used. In addition, these default settings are "inherited" when using [composition](Composition_JOIN.md), [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md) and [previous value](Previous_value_PREV.md) operators (i.e., if property `f(a)` has the default width of `10`, then the property `g(a) = f(a) IF h(a)` will also have a width of `10` by default).
 
 ### Filters {#filters}
 
@@ -64,7 +64,7 @@ By default, in all object group views, object collections are displayed in a cer
 
 ### Language
 
-To create a new form and define its structure, the [`FORM` statement](FORM_instruction.md) is used.
+To create a new form and define its structure, the [`FORM` statement](FORM_statement.md) is used.
 
 ### Examples
 

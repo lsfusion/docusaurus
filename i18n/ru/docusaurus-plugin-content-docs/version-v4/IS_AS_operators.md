@@ -2,7 +2,7 @@
 title: 'Операторы IS, AS'
 ---
 
-Операторы `IS`, `AS` - создание [свойства](Properties.md), реализующего [классификацию](Classification_IS_AS_.md).
+Операторы `IS`, `AS` - создание [свойства](Properties.md), реализующего [классификацию](Classification_IS_AS.md).
 
 ### Синтаксис
 

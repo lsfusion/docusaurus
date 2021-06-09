@@ -2,7 +2,7 @@
 title: 'Оператор NEWEXECUTOR'
 ---
 
-Оператор `NEWEXECUTOR` - создание [действия](Actions.md), позволяющего выполнение других действий в [новом пуле потоков](New_threads_NEWTHREAD_NEWEXECUTOR_.md).
+Оператор `NEWEXECUTOR` - создание [действия](Actions.md), позволяющего выполнение других действий в [новом пуле потоков](New_threads_NEWTHREAD_NEWEXECUTOR.md).
 
 ### Синтаксис
 
@@ -16,7 +16,7 @@ title: 'Оператор NEWEXECUTOR'
 
 - `action`
 
-    [Контекстно-зависимый оператор-действие](Action_operator.md#contextdependent), описывающий действие которое будет выполнено.
+    [Контекстно-зависимый оператор-действие](Action_operators.md#contextdependent), описывающий действие которое будет выполнено.
 
 - `threadExpr`
 

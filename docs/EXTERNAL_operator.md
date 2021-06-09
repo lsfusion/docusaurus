@@ -2,7 +2,7 @@
 title: 'EXTERNAL operator'
 ---
 
-The `EXTERNAL` operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL_.md). 
+The `EXTERNAL` operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL.md). 
 
 ### Syntax
 
@@ -69,7 +69,7 @@ The `EXTERNAL` operator creates an action that makes a request to an external sy
     - `EVAL` – the code of the action is specified in the **lsFusion** language. It is assumed that this code contains a declaration of an action named `run`. This is the action that will be called.
     - `EVAL ACTION` – the action code in the **lsFusion** language is specified. To access a parameter, the special character `$` and the parameter number (starting from `1`) are used.
 
-- `execStr`  
+- `execStrExpr`  
 
     Expression. `SQL`: SQL query command(s). `LSF`: The name of an action or code, depending on how the action is defined.
 

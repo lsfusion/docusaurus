@@ -2,7 +2,7 @@
 title: 'Оператор EXCLUSIVE'
 ---
 
-Оператор `EXCLUSIVE` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive) одного из значений (полиморфная форма).
+Оператор `EXCLUSIVE` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md#exclusive) одного из значений (полиморфная форма).
 
 ### Синтаксис
 

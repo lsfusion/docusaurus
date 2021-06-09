@@ -2,7 +2,7 @@
 title: 'FOR operator'
 ---
 
-The `FOR` operator creates an [action](Actions.md) that implements [loop](Loop_FOR_.md).
+The `FOR` operator creates an [action](Actions.md) that implements [loop](Loop_FOR.md).
 
 ### Syntax
 
@@ -50,7 +50,7 @@ In the case when the operator contains a `NEW` block, and no condition is specif
 
 - `action`
 
-    [Context-dependent action operator](Action_operator.md#contextdependent) describing the main action.
+    [Context-dependent action operator](Action_operators.md#contextdependent) describing the main action.
 
 - `alternativeAction`
 

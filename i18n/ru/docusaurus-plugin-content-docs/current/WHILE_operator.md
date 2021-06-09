@@ -2,7 +2,7 @@
 title: 'Оператор WHILE'
 ---
 
-Оператор `WHILE` - создание [действия](Actions.md), реализующего [рекурсивный цикл](Recursive_loop_WHILE_.md).
+Оператор `WHILE` - создание [действия](Actions.md), реализующего [рекурсивный цикл](Recursive_loop_WHILE.md).
 
 ### Синтаксис
 
@@ -40,7 +40,7 @@ title: 'Оператор WHILE'
 
 - `action`
 
-    [Контекстно-зависимый оператор-действие](Action_operator.md#contextdependent), описывающий выполняемое действие.
+    [Контекстно-зависимый оператор-действие](Action_operators.md#contextdependent), описывающий выполняемое действие.
 
 ### Примеры
 

@@ -9,7 +9,7 @@ A form opened in *interactive* mode is a graphical component with a certain [des
 
 In the interactive view, object groups can be displayed in a table. The rows in the table are object collections, and the columns are properties. The records displayed in the table and their order are determined by the current [filters](Form_structure.md#filters) and [orders](Form_structure.md#sort).
 
-[Current values](Form_structure.md#currentObject) of objects can change either as a result of an action created using the special search operator [(`SEEK`)](Search_SEEK_.md), or as a result of a change to the current row, if an object group is displayed in a table.
+[Current values](Form_structure.md#currentObject) of objects can change either as a result of an action created using the special search operator [(`SEEK`)](Search_SEEK.md), or as a result of a change to the current row, if an object group is displayed in a table.
 
 When an object group is displayed in a table, the number of rows (object collections) displayed can either be determined automatically based on the height of the visible part of the table, or specified by the developer explicitly when creating the form.
 
@@ -17,7 +17,7 @@ When an object group is displayed in a table, the number of rows (object collect
 
 The platform also allows to display multiple object groups in one table simultaneously. This happens similarly to the [object group hierarchy](Static_view.md#hierarchy) in a static view, i.e. if we have two groups `A` and `B` then, in the "joined" table, the first object collection from `A` is displayed first, then all object collections from `B` (as filtered), then a second object collection from `A`, then again all the object collections from `B` and so on. In this case, it is highly desirable that the filters for `B` used all objects from `A`, since otherwise combining these groups into a single tree doesn't make sense. Initially, when a form is opened in the table, only objects of the topmost object group are displayed, but at the same time, a special column is created on the left of the table, using which the user can open nodes on his own and thus view only objects of interest in the lower object groups. Another function of this created column is to demonstrate the nesting of nodes by tabulating the elements inside this column (this allows the user to better understand what level of the hierarchy he is currently at).
 
-Object trees also can be used to display hierarchical data (such as classifiers). In this case, the descendants of the object collection of a group in the tree can be not only object collections of lower groups but also object collections of the same group (such an object group shall be called *hierarchical*). To determine these child object collections in a hierarchical object group, it is necessary to define an additional filter for it – which, unlike regular filters, can refer not only to the values of the filtered object collections but also to the values of the "upper in the tree" object collection (the same approach is used in the [recursion](Recursion_RECURSION_.md) operator). It is highly desirable that the hierarchical filter uses all the values of the upper object collections, since otherwise, as with filters between different groups of objects, creating such a tree doesn't make sense. Initially, it is assumed that all values of the "upper in the tree" object collection are `NULL`.
+Object trees also can be used to display hierarchical data (such as classifiers). In this case, the descendants of the object collection of a group in the tree can be not only object collections of lower groups but also object collections of the same group (such an object group shall be called *hierarchical*). To determine these child object collections in a hierarchical object group, it is necessary to define an additional filter for it – which, unlike regular filters, can refer not only to the values of the filtered object collections but also to the values of the "upper in the tree" object collection (the same approach is used in the [recursion](Recursion_RECURSION.md) operator). It is highly desirable that the hierarchical filter uses all the values of the upper object collections, since otherwise, as with filters between different groups of objects, creating such a tree doesn't make sense. Initially, it is assumed that all values of the "upper in the tree" object collection are `NULL`.
 
 
 :::info
@@ -75,7 +75,7 @@ If none of these options is explicitly specified, the platform will try to deter
 
 
 :::info
-It is worth noting that the selection of objects by default is pretty the same as the [object search](Search_SEEK_.md) operation, where the search objects are:
+It is worth noting that the selection of objects by default is pretty the same as the [object search](Search_SEEK.md) operation, where the search objects are:
 
 -   for type `PREV`
     -   on opening a form: either the passed objects, or, if there are none, the last used objects for the form object class.
@@ -92,14 +92,14 @@ Search direction is determined by the object's default type (`PREV` here is equi
 When adding properties to a form, you can use a predefined set of operators that implement the most common scenarios for working with objects instead of using specific properties (thus avoiding the need to create and name these properties outside the form each time):
 
 -   Object value (`VALUE`) – for a form object of [built-in class](Built-in_classes.md) , a special property with one argument will be added which displays the current object value and allows the user to change it. For [custom classes](User_classes.md), a property will be added which displays the object ID in the database; when you try to change it, it shows a dialog with a list of objects of that class. The selected value will be used as the current value of the object on the form.
--   Create object (`NEW`) – adds an action without arguments, which [creates](New_object_NEW_.md) an object of the class of the passed form object (or the class explicitly specified by the developer), after which it automatically makes this object current. If the class has descendants, the user will be shown a dialog where he can select specific child class. If any filters are applied to the form object, for which the object is created, the system will try to [change](Property_change_CHANGE_.md) the newly created object's properties so that it meets these filter conditions (as a rule, for created objects, a default value of the class of each filter's value is written to that filter)
+-   Create object (`NEW`) – adds an action without arguments, which [creates](New_object_NEW.md) an object of the class of the passed form object (or the class explicitly specified by the developer), after which it automatically makes this object current. If the class has descendants, the user will be shown a dialog where he can select specific child class. If any filters are applied to the form object, for which the object is created, the system will try to [change](Property_change_CHANGE.md) the newly created object's properties so that it meets these filter conditions (as a rule, for created objects, a default value of the class of each filter's value is written to that filter)
 -   Edit object (`EDIT`) – adds an action with one argument, which calls the `System.formEdit` action (which, in turn, open the default [edit form](#edtClass) for the edited object class). 
 -   Create and edit an object (`NEWEDIT`) – adds an action without arguments which creates an object of the form object class, calls the edit object action (`EDIT`), and if the input is not [canceled](Value_input.md#result), sets the added object as current.
 -   Delete object (`DELETE`) – adds an action with one argument which deletes the current object.
 
 You can also specify options for the last four operators (ignored for all other actions):
 
--   [New Session](New_session_NEWSESSION_NESTEDSESSION_.md) (`NEWSESSION`) – in this case, the action added to the form will be executed in a new session. When opening forms in a new session, it is important to remember that changes made in the current session (form) will not be visible. Thus, this mechanism is only recommended if the form is opened from a form in which the user cannot change anything, or if the properties and actions of the two forms do not intersect in any way. Note that when the operator is used to create a new object (`NEW`) in a new session, the object is not only created but also edited (`NEWEDIT`) (otherwise, the session would immediately close and your changes would be lost).
+-   [New Session](New_session_NEWSESSION_NESTEDSESSION.md) (`NEWSESSION`) – in this case, the action added to the form will be executed in a new session. When opening forms in a new session, it is important to remember that changes made in the current session (form) will not be visible. Thus, this mechanism is only recommended if the form is opened from a form in which the user cannot change anything, or if the properties and actions of the two forms do not intersect in any way. Note that when the operator is used to create a new object (`NEW`) in a new session, the object is not only created but also edited (`NEWEDIT`) (otherwise, the session would immediately close and your changes would be lost).
 -   Nested Session (`NESTEDSESSION`) – the action will be executed in a new nested session. As with a new session, `NEW` is replaced by `NEWEDIT`.
 
 ### Selection/editing forms {#edtClass}
@@ -110,9 +110,9 @@ If list/edit form is not defined for a class, the platform will create one autom
 
 ### Session owner {#owner}
 
-Since a form is opened by default in the current session, it may not always be safe to apply/cancel changes to this session: for example, the changes made in other forms may accidentally be applied. To avoid such situations, the platform has the concept of a *session owner* – a form which is responsible for managing the life cycle of the session (for example, applying / canceling changes). By default, it is considered that a form is the session owner if the session did not have any other owner when the form was [opened](In_an_interactive_view_SHOW_DIALOG_.md).
+Since a form is opened by default in the current session, it may not always be safe to apply/cancel changes to this session: for example, the changes made in other forms may accidentally be applied. To avoid such situations, the platform has the concept of a *session owner* – a form which is responsible for managing the life cycle of the session (for example, applying / canceling changes). By default, it is considered that a form is the session owner if the session did not have any other owner when the form was [opened](In_an_interactive_view_SHOW_DIALOG.md).
 
-To implement the mechanism for working with session owners the platform uses a numerical [local](Data_properties_DATA_.md#local) property called `System.sessionOwners`. Accordingly, this property is incremented by `1` when you open a form and decremented by `1` when you close it. Thus, it shows the nesting depth of the "form opening stack", and is `NULL` if the session has no owner and not `NULL` otherwise.
+To implement the mechanism for working with session owners the platform uses a numerical [local](Data_properties_DATA.md#local) property called `System.sessionOwners`. Accordingly, this property is incremented by `1` when you open a form and decremented by `1` when you close it. Thus, it shows the nesting depth of the "form opening stack", and is `NULL` if the session has no owner and not `NULL` otherwise.
 
 If necessary, the developer can explicitly specify when opening a form that this form is the owner of the session that it uses.
 
@@ -138,7 +138,7 @@ By default, these system actions have the following visibility conditions:
 |---|---|
 |Refresh|Always|
 |Save, Cancel|If the form is the owner and actions that change the current session can be called on the form. Cancel may not be shown if the platform determines that canceling the changes is guaranteed to lead to a change of the [initial values](Open_form.md#params) of form objects (i.e., selecting other objects)|
-|OK, Close|If the form was opened [synchronously](In_an_interactive_view_SHOW_DIALOG_.md#flow)|
+|OK, Close|If the form was opened [synchronously](In_an_interactive_view_SHOW_DIALOG.md#flow)|
 |Drop|If the form is opened synchronously, returns a value and allows `NULL` values to be passed|
 
 If necessary, all these actions can be shown/hidden by removing the corresponding components from the [form design](Form_design.md) and/or using the corresponding options in the [open form](Open_form.md) operator.
@@ -151,11 +151,11 @@ Also, if necessary, you can enable *automatic update* mode for a form: the `Syst
 
 ### Language
 
-All of the above options, as well as defining the form structure, can be done using the [`FORM` instruction](FORM_instruction.md).
+All of the above options, as well as defining the form structure, can be done using the [`FORM` statement](FORM_statement.md).
 
 ### Open form
 
-To display the form in the interactive view, the corresponding [open form](Open_form.md) operator is used in [interactive view](In_an_interactive_view_SHOW_DIALOG_.md).
+To display the form in the interactive view, the corresponding [open form](Open_form.md) operator is used in [interactive view](In_an_interactive_view_SHOW_DIALOG.md).
 
 ### Examples
 

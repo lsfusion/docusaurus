@@ -94,7 +94,7 @@ item(ReceiptBatch rb) += item(receipt(rb));
 type(ReceiptBatch rb) += 'Arrival' IF rb IS ReceiptBatch;
 ```
 
-Inheritance is implemented with the help of the [EXTEND CLASS statement](EXTEND_CLASS_instruction.md). After that, for each abstract property of `Batch`, we define how exactly it should be calculated for a specific `ReceiptBatch` class. Date and product values are retrieved from the receipt document through the `receipt(ReceiptBatch b)` link. The necessary string is substituted into the batch type under the condition that the object belongs to the right class (otherwise, the expression will be defined for objects of any class, and the system will generate a signature mismatch error).
+Inheritance is implemented with the help of the [EXTEND CLASS statement](EXTEND_CLASS_statement.md). After that, for each abstract property of `Batch`, we define how exactly it should be calculated for a specific `ReceiptBatch` class. Date and product values are retrieved from the receipt document through the `receipt(ReceiptBatch b)` link. The necessary string is substituted into the batch type under the condition that the object belongs to the right class (otherwise, the expression will be defined for objects of any class, and the system will generate a signature mismatch error).
 
 Note that you could inherit a class directly while declaring the `ReceiptBatch` class.
 

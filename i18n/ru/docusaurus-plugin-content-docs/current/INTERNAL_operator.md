@@ -2,7 +2,7 @@
 title: 'Оператор INTERNAL'
 ---
 
-Оператор `INTERNAL` - создание [действия](Actions.md), выполняющего [внутренний вызов](Internal_call_INTERNAL_.md).
+Оператор `INTERNAL` - создание [действия](Actions.md), выполняющего [внутренний вызов](Internal_call_INTERNAL.md).
 
 ### Синтаксис
 

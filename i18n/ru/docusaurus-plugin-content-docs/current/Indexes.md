@@ -10,7 +10,7 @@ title: 'Индексы'
 
 ### Язык
 
-Для создания индексов необходимо использовать [инструкцию `INDEX`](INDEX_instruction.md) или [опцию `INDEXED`](Property_options.md#indexed-broken) в опциях свойств.
+Для создания индексов необходимо использовать [инструкцию `INDEX`](INDEX_statement.md) или [опцию `INDEXED`](Property_options.md#indexed-broken) в опциях свойств.
 
 ### Примеры
 

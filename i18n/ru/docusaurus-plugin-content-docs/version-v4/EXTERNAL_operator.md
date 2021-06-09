@@ -2,7 +2,7 @@
 title: 'Оператор EXTERNAL'
 ---
 
-Оператор `EXTERNAL` - создание [действия](Actions.md), выполняющего [обращение к внешней системе](Access_to_an_external_system_EXTERNAL_.md). 
+Оператор `EXTERNAL` - создание [действия](Actions.md), выполняющего [обращение к внешней системе](Access_to_an_external_system_EXTERNAL.md). 
 
 ### Синтаксис
 

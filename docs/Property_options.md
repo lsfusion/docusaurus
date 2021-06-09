@@ -2,7 +2,7 @@
 title: 'Property options'
 ---
 
-When a [property](Properties.md) is declared in the [`=` instruction](Instruction_=.md) a set of *property options* can be specified at the end of the declaration 
+When a [property](Properties.md) is declared in the [`=` statement](=_statement.md) a set of *property options* can be specified at the end of the declaration 
 
 ## Syntax
 
@@ -50,7 +50,7 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `INDEXED`
 
-    Keyword. If specified, an [index](Indexes.md) by this property is created. Similar to using the [`INDEX` instruction](INDEX_instruction.md). 
+    Keyword. If specified, an [index](Indexes.md) by this property is created. Similar to using the [`INDEX` statement](INDEX_statement.md). 
 
 - `NONULL [DELETE] eventClause`
 
@@ -74,11 +74,11 @@ The following set of options is supported (the syntax of each option is indicate
     - `TOOLBAR` - toolbar
     - `PANEL` - panel
 
-  It is similar to specifying the `viewType` option in the [property block](Properties_and_actions_block.md) of the [`FORM`instruction](FORM_instruction.md). Thus, if this option is not specified either in the property options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the property display group on the form is used.
+  It is similar to specifying the `viewType` option in the [property block](Properties_and_actions_block.md) of the [`FORM` statement](FORM_statement.md). Thus, if this option is not specified either in the property options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the property display group on the form is used.
 
 - `ON eventType { actionOperator }`
 
-    Specifying an action that will be the default handler of a certain [form event](Form_events.md) for all the interactive views of this property. Can be overridden in the property block of the `FORM` instruction.
+    Specifying an action that will be the default handler of a certain [form event](Form_events.md) for all the interactive views of this property. Can be overridden in the property block of the `FORM` statement.
 
     - `eventType`
 
@@ -92,13 +92,13 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `actionOperator`
 
-        [Context-dependent action operator](Action_operator.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
+        [Context-dependent action operator](Action_operators.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
 
-### `DESIGN` instruction default values block
+### `DESIGN` statement default values block
 
 - `CHARWIDTH width [FLEX | NOFLEX]`
 
-    Specifying the [number of characters](Form_design.md#valueWidth) of the property value that should be visible to the user. Sets the value for the default design, can be overridden in a `DESIGN` instruction.
+    Specifying the [number of characters](Form_design.md#valueWidth) of the property value that should be visible to the user. Sets the value for the default design, can be overridden in a `DESIGN` statement.
 
     - `width`
 
@@ -114,7 +114,7 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `REGEXP rexpr [message]`
 
-    Specifying a regular expression to which the property value should correspond after editing. Sets the value for the default design and can be overridden in the `DESIGN` instruction.
+    Specifying a regular expression to which the property value should correspond after editing. Sets the value for the default design and can be overridden in the `DESIGN` statement.
 
     - `rexpr`
 
@@ -126,11 +126,11 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `ECHO`
 
-    A keyword that causes asterisk `*` characters to be displayed instead of a property value. Used, for example, for passwords. Can be overridden in the `DESIGN` instruction. 
+    A keyword that causes asterisk `*` characters to be displayed instead of a property value. Used, for example, for passwords. Can be overridden in the `DESIGN` statement. 
 
 - `CHANGEKEY key [SHOW | HIDE]`
 
-    Specifies a [key combination](Form_events.md#keyboard-broken) which triggers editing of this property. Sets the value for the default design and can be overridden in the `DESIGN` instruction.
+    Specifies a [key combination](Form_events.md#keyboard-broken) which triggers editing of this property. Sets the value for the default design and can be overridden in the `DESIGN` statement.
 
     - `key`
 
@@ -150,7 +150,7 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `compare`
 
-        Default filter type. [String literal](Literals.md#strliteral-broken). Can be one the following values: `=`, `>`, `<`, `>=`, `<=`, `!=`, `START_WITH`, `CONTAINS`, `ENDS_WITH`, `LIKE`. The default value is `=` for all data types except case-insensitive string types, for which the default value is `CONTAINS`. If `System.defaultCompareForStringContains` is enabled, default value is `CONTAINS` for all string data regardless of case sensitivity. Can be overridden in the `DESIGN` instruction.
+        Default filter type. [String literal](Literals.md#strliteral-broken). Can be one the following values: `=`, `>`, `<`, `>=`, `<=`, `!=`, `START_WITH`, `CONTAINS`, `ENDS_WITH`, `LIKE`. The default value is `=` for all data types except case-insensitive string types, for which the default value is `CONTAINS`. If `System.defaultCompareForStringContains` is enabled, default value is `CONTAINS` for all string data regardless of case sensitivity. Can be overridden in the `DESIGN` statement.
 
 ## Examples
 

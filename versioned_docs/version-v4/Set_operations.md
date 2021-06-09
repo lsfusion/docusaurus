@@ -23,10 +23,10 @@ The table below shows the currently supported types of aggregate functions:
 
 From the perspective of determining the set of object collections and the result display method, four main operators for working with sets can be distinguished:
 
--   [Group (`GROUP`)](Grouping_GROUP_.md)
--   [Partition/order (`PARTITION ... ORDER`)](Partitioning_sorting_PARTITION_..._ORDER_.md)
--   [Recursion (`RECURSION`)](Recursion_RECURSION_.md)
--   [Distribution (`UNGROUP`)](Distribution_UNGROUP_.md)
+-   [Group (`GROUP`)](Grouping_GROUP.md)
+-   [Partition/order (`PARTITION ... ORDER`)](Partitioning_sorting_PARTITION_..._ORDER.md)
+-   [Recursion (`RECURSION`)](Recursion_RECURSION.md)
+-   [Distribution (`UNGROUP`)](Distribution_UNGROUP.md)
 
 ### Operation correctness {#correct}
 

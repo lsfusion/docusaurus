@@ -2,7 +2,7 @@
 title: 'Оператор ACTIVE FORM'
 ---
 
-Оператор `ACTIVE FORM` - создание [действия](Actions.md), проверяющего [активность](Activity_ACTIVE_.md) [формы](Forms.md).
+Оператор `ACTIVE FORM` - создание [действия](Actions.md), проверяющего [активность](Activity_ACTIVE.md) [формы](Forms.md).
 
 ### Синтаксис
 

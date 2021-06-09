@@ -2,7 +2,7 @@
 title: 'INPUT operator'
 ---
 
-The `INPUT` operator creates an [action](Actions.md) that [inputs a primitive](Primitive_input_INPUT_.md).
+The `INPUT` operator creates an [action](Actions.md) that [inputs a primitive](Primitive_input_INPUT.md).
 
 ### Syntax
 
@@ -43,11 +43,11 @@ The `INPUT` operator creates an action which allows to request the value of one 
 
 - `actionOperator`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that is executed if the input was completed successfully.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that is executed if the input was completed successfully.
 
 - `elseActionOperator`
 
-    A [context-dependent action operator](Action_operator.md#contextdependent) that is executed if the input was cancelled. The input result parameter cannot be used as parameters.
+    A [context-dependent action operator](Action_operators.md#contextdependent) that is executed if the input was cancelled. The input result parameter cannot be used as parameters.
 
 ### Examples
 

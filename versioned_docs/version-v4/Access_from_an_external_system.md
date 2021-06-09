@@ -63,7 +63,7 @@ At the same time, if the number of results being returned is more than one, then
 
 
 :::info
-Note that the processing of parameters and request results is largely similar to their processing during [access to an external system](Access_to_an_external_system_EXTERNAL_.md) over the HTTP protocol (in this case, parameters are processed as results and vice versa, results are processed as parameters).
+Note that the processing of parameters and request results is largely similar to their processing during [access to an external system](Access_to_an_external_system_EXTERNAL.md) over the HTTP protocol (in this case, parameters are processed as results and vice versa, results are processed as parameters).
 :::
 
 ##### Stateful API

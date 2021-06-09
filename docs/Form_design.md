@@ -95,7 +95,7 @@ For property value cells, it is also possible to specify the base width not in p
 
 In addition, cell widths can be specified in *characters* (`charWidth`), which is equivalent to giving a string sample value consisting of the given number of zeros.
 
-In the last two cases (that is, when specifying the width as a sample value or in characters), if the property value class implies the presence of buttons on the right during [input](Primitive_input_INPUT_.md) (for example, `DATE` class), then the width of this button (21 pixels) is added to the width of the property value cell.
+In the last two cases (that is, when specifying the width as a sample value or in characters), if the property value class implies the presence of buttons on the right during [input](Primitive_input_INPUT.md) (for example, `DATE` class), then the width of this button (21 pixels) is added to the width of the property value cell.
 
 ### Default dimensions and layout
 
@@ -133,7 +133,7 @@ The default height of a property value cell is equal to the height of the font u
 
 ### Window size
 
-If the form opens in [window](In_an_interactive_view_SHOW_DIALOG_.md#location) mode it does not have an upper container, so you need to determine this window's initial size. This size is determined similarly to the default base size, the only difference is that for tables/trees the default size is determined not as a constant (the default is `130`, `70`) but in such a way that it contains their whole contents (similar to the automatic sizing mechanism), but no less than `130` in width and `140` in height.
+If the form opens in [window](In_an_interactive_view_SHOW_DIALOG.md#location) mode it does not have an upper container, so you need to determine this window's initial size. This size is determined similarly to the default base size, the only difference is that for tables/trees the default size is determined not as a constant (the default is `130`, `70`) but in such a way that it contains their whole contents (similar to the automatic sizing mechanism), but no less than `130` in width and `140` in height.
 
 ### Default design {#defaultDesign}
 
@@ -183,7 +183,7 @@ The hierarchy of containers and components in the default design will look like 
 
 ### Language
 
-To set up the design of the form, use the [`DESIGN` instruction](DESIGN_instruction.md).
+To set up the design of the form, use the [`DESIGN` statement](DESIGN_statement.md).
 
 ### Examples
 
@@ -235,7 +235,7 @@ DESIGN order { // customizing the design of the form, starting with the default 
     }
 }
 
-// splitting the form definition into two instructions (the second instruction can be transferred to another module)
+// splitting the form definition into two statements (the second statement can be transferred to another module)
 DESIGN order {
     REMOVE TOOLBARLEFT; // removing from the hierarchy the container with the print and export buttons to xls, thereby making them invisible
 }

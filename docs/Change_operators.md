@@ -2,7 +2,7 @@
 title: 'Change operators'
 ---
 
-Change operators - a set of operators that determine various types of [property value changes](Change_operators_SET_CHANGED_..._.md). 
+Change operators - a set of operators that determine various types of [property value changes](Change_operators_SET_CHANGED_etc.md). 
 
 ### Syntax
 

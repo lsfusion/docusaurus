@@ -34,7 +34,7 @@ There are also several so-called *derivative* events that are nothing more than 
 -   `DROP` - occurs when the `System.formDrop` action is executed.
 
 
-If the form is [the session owner](Interactive_view.md#owner) (meaning that when the `System.formOk` action is executed the form session [is saved](Apply_changes_APPLY_.md)):
+If the form is [the session owner](Interactive_view.md#owner) (meaning that when the `System.formOk` action is executed the form session [is saved](Apply_changes_APPLY.md)):
 
 -   `OK`, `OK BEFORE`, `OK AFTER` - occurs when the `System.formOk` action is executed, at the moments similar to the corresponding moments for the `APPLY` event (i.e. inside, before and after the transaction). In this case, `OK` and `OK BEFORE` handlers are executed before executing `APPLY` and `APPLY BEFORE` handlers, and `OK AFTER` is executed after `APPLY AFTER`.
 
@@ -73,7 +73,7 @@ For some events, the platform automatically creates default handlers:
 
 - `CHANGE`
 
-    The user is requested for an object of the changed property value class, after which the received object is written to this property. If the property is not [mutable](Property_change_CHANGE_.md#changeable), the [user filter](Interactive_view.md#userfilters) mechanism for this property (or for the property specified using the corresponding option) is automatically called.
+    The user is requested for an object of the changed property value class, after which the received object is written to this property. If the property is not [mutable](Property_change_CHANGE.md#changeable), the [user filter](Interactive_view.md#userfilters) mechanism for this property (or for the property specified using the corresponding option) is automatically called.
 
 - `GROUPCHANGE`
 
@@ -81,13 +81,13 @@ For some events, the platform automatically creates default handlers:
 
 
 :::info
-If property event handler uses (even [implicitly](Value_request_REQUEST_.md#implicit)) the [value request](Value_request_REQUEST_.md) operator, then default handler can be created [in a different way](Value_request_REQUEST_.md#defaultChange-broken).
+If property event handler uses (even [implicitly](Value_request_REQUEST.md#implicit)) the [value request](Value_request_REQUEST.md) operator, then default handler can be created [in a different way](Value_request_REQUEST.md#defaultChange-broken).
 :::
 
 For an *object request* from the user, depending on the type of class, the following operators are used:
 
--   [Builtin classes](Built-in_classes.md) - the [input primitive](Primitive_input_INPUT_.md) operator.
--   [Custom classes](User_classes.md) - the [open form](In_an_interactive_view_SHOW_DIALOG_.md) operator. The form is the [list](Interactive_view.md#edtClass) form for this class. 
+-   [Builtin classes](Built-in_classes.md) - the [input primitive](Primitive_input_INPUT.md) operator.
+-   [Custom classes](User_classes.md) - the [open form](In_an_interactive_view_SHOW_DIALOG.md) operator. The form is the [list](Interactive_view.md#edtClass) form for this class. 
 
 ### Standard handlers {#predefined}
 

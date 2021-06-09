@@ -41,9 +41,9 @@ The platform also allows to additionally specify that the event will occur only 
 
 ### Change operators' event mode {#change}
 
-When handling events, you can use a special mode of the [previous value](Previous_value_PREV_.md) operator (it shall be called *event* mode). In this mode, the previous value operator will return the property's values not at the beginning of the session, but at the time of the previous occurrence of this event (or rather, the end of its handling). A similar mode is supported for all [change](Change_operators_SET_CHANGED_..._.md) operators.
+When handling events, you can use a special mode of the [previous value](Previous_value_PREV.md) operator (it shall be called *event* mode). In this mode, the previous value operator will return the property's values not at the beginning of the session, but at the time of the previous occurrence of this event (or rather, the end of its handling). A similar mode is supported for all [change](Change_operators_SET_CHANGED_etc.md) operators.
 
-Event mode is also supported for the [cancel changes](Cancel_changes_CANCEL_.md) operator. In this case, when changes are canceled inside the global event handler, the session is not cleared, but [applying changes](Apply_changes_APPLY_.md) which led to the execution of this handler is canceled. The global event must be synchronous, otherwise the platform will throw an error.
+Event mode is also supported for the [cancel changes](Cancel_changes_CANCEL.md) operator. In this case, when changes are canceled inside the global event handler, the session is not cleared, but [applying changes](Apply_changes_APPLY.md) which led to the execution of this handler is canceled. The global event must be synchronous, otherwise the platform will throw an error.
 
 By default, the following modes are used in event handling:
 
@@ -58,7 +58,7 @@ For change operators and the previous value operator, when executing global sync
 
 ### Language
 
-To create actions that handle events, use the [`ON` statement](ON_instruction.md).
+To create actions that handle events, use the [`ON` statement](ON_statement.md).
 
 ### Examples
 

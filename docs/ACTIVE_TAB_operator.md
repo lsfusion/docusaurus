@@ -2,7 +2,7 @@
 title: 'ACTIVE TAB operator'
 ---
 
-The `ACTIVE TAB` operator creates a [property](Properties.md) that checks if specified tab is [active](Activity_ACTIVE_.md).
+The `ACTIVE TAB` operator creates a [property](Properties.md) that checks if specified tab is [active](Activity_ACTIVE.md).
 
 ### Syntax 
 
@@ -20,7 +20,7 @@ The `ACTIVE TAB` operator creates a property that returns `TRUE` if the specifie
 
 - `componentSelector`  
 
-    Design component [selector](DESIGN_instruction.md#selector-broken). The component must be a tab in the tab panel.
+    Design component [selector](DESIGN_statement.md#selector-broken). The component must be a tab in the tab panel.
 
 ### Examples
 

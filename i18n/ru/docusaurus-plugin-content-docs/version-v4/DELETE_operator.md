@@ -2,7 +2,7 @@
 title: 'Оператор DELETE'
 ---
 
-Оператор `DELETE` - создание [действия](Actions.md), которое [удаляет объекты](Class_change_CHANGECLASS_DELETE_.md).
+Оператор `DELETE` - создание [действия](Actions.md), которое [удаляет объекты](Class_change_CHANGECLASS_DELETE.md).
 
 ### Синтаксис
 

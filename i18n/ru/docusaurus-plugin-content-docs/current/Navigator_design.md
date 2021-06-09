@@ -80,7 +80,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 ### Язык
 
-Для управления окнами необходимо использовать [инструкцию `WINDOW`](WINDOW_instruction.md).
+Для управления окнами необходимо использовать [инструкцию `WINDOW`](WINDOW_statement.md).
 
 ### Примеры
 

@@ -2,7 +2,7 @@
 title: 'CHANGECLASS operator'
 ---
 
-The `CHANGECLASS` operator creates an [action](Actions.md) that [changes objects classes](Class_change_CHANGECLASS_DELETE_.md).
+The `CHANGECLASS` operator creates an [action](Actions.md) that [changes objects classes](Class_change_CHANGECLASS_DELETE.md).
 
 ### Syntax
 

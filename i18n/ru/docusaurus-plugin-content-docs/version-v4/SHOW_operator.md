@@ -2,7 +2,7 @@
 title: 'Оператор SHOW'
 ---
 
-Оператор `SHOW` - создание [действия](Actions.md), [открывающего форму](In_an_interactive_view_SHOW_DIALOG_.md) в интерактивном представлении. 
+Оператор `SHOW` - создание [действия](Actions.md), [открывающего форму](In_an_interactive_view_SHOW_DIALOG.md) в интерактивном представлении. 
 
 ### Синтаксис
 
@@ -62,14 +62,14 @@ title: 'Оператор SHOW'
 
 - `syncType`
 
-    Определяет, в каком режиме [управления потоком](In_an_interactive_view_SHOW_DIALOG_.md#flow) будет работать оператор:
+    Определяет, в каком режиме [управления потоком](In_an_interactive_view_SHOW_DIALOG.md#flow) будет работать оператор:
 
     -   `WAIT` - синхронном. Используется по умолчанию.
     -   `NOWAIT` - асинхронном.
 
 - `windowType`
 
-    Способ [расположения формы](In_an_interactive_view_SHOW_DIALOG_.md#location):
+    Способ [расположения формы](In_an_interactive_view_SHOW_DIALOG.md#location):
 
     -   `DOCKED` - как закладка. Используется по умолчанию в асинхронном режиме.
     -   `FLOAT` -  как окно. Используется по умолчанию в синхронном режиме.
@@ -88,7 +88,7 @@ title: 'Оператор SHOW'
 
 - `READONLY`
 
-    Ключевое слово. Если указывается, то форма открывается в режиме [только для чтения](In_an_interactive_view_SHOW_DIALOG_.md#extra).
+    Ключевое слово. Если указывается, то форма открывается в режиме [только для чтения](In_an_interactive_view_SHOW_DIALOG.md#extra).
 
 ### Примеры
 

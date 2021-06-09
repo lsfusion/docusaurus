@@ -41,7 +41,7 @@ Property groups are currently used in the following mechanisms:
 
 ### Language
 
-To add a new property/action group to the system, use the [`GROUP` instruction](GROUP_instruction.md).
+To add a new property/action group to the system, use the [`GROUP` statement](GROUP_statement.md).
 
 ```lsf
 GROUP base : root; // The caption of this group will be 'base'

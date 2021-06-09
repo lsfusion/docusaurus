@@ -2,7 +2,7 @@
 title: 'TRY operator'
 ---
 
-The `TRY` operator creates an [action](Actions.md) that executes another action with [exception handling](Exception_handling_TRY_.md).
+The `TRY` operator creates an [action](Actions.md) that executes another action with [exception handling](Exception_handling_TRY.md).
 
 ### Syntax
 
@@ -20,7 +20,7 @@ An operator form with the `FINALLY` keyword creates an action that executes anot
 
 - `action`
 
-    A [context-dependent operator](Action_operator.md#contextdependent) that describes an action to be executed with exception handling.
+    A [context-dependent operator](Action_operators.md#contextdependent) that describes an action to be executed with exception handling.
 
 - `catchAction`
 

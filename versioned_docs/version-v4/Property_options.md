@@ -2,7 +2,7 @@
 title: 'Property options'
 ---
 
-When a [property](Properties.md) is declared in the [`=` statement](Instruction_=.md) a set of *property options* can be specified at the end of the declaration 
+When a [property](Properties.md) is declared in the [`=` statement](=_statement.md) a set of *property options* can be specified at the end of the declaration 
 
 ## Syntax
 
@@ -50,7 +50,7 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `INDEXED`
 
-    Keyword. If specified, an [index](Indexes.md) by this property is created. Similar to using the [`INDEX` statement](INDEX_instruction.md). 
+    Keyword. If specified, an [index](Indexes.md) by this property is created. Similar to using the [`INDEX` statement](INDEX_statement.md). 
 
 - `NONULL [DELETE] eventClause`
 
@@ -74,7 +74,7 @@ The following set of options is supported (the syntax of each option is indicate
     - `TOOLBAR` - toolbar
     - `PANEL` - panel
 
-  It is similar to specifying the `viewType` option in the [property block](Properties_and_actions_block.md) of the [`FORM` statement](FORM_instruction.md). Thus, if this option is not specified either in the property options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the property display group on the form is used.
+  It is similar to specifying the `viewType` option in the [property block](Properties_and_actions_block.md) of the [`FORM` statement](FORM_statement.md). Thus, if this option is not specified either in the property options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the property display group on the form is used.
 
 - `ON eventType { actionOperator }`
 
@@ -92,7 +92,7 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `actionOperator`
 
-        [Context-dependent action operator](Action_operator.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
+        [Context-dependent action operator](Action_operators.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
 
 ### `DESIGN` statement default values block
 

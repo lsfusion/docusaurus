@@ -2,7 +2,7 @@
 title: 'IF ... THEN operator'
 ---
 
-The `IF ... THEN` operator creates a [property](Properties.md) that implements [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) with one condition (single form).
+The `IF ... THEN` operator creates a [property](Properties.md) that implements [selection](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md) with one condition (single form).
 
 ### Syntax
 

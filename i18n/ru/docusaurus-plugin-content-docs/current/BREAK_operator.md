@@ -2,7 +2,7 @@
 title: 'Оператор BREAK'
 ---
 
-Оператор `BREAK` - создание [действия](Actions.md), реализующего [прерывание цикла](Interruption_BREAK_.md).
+Оператор `BREAK` - создание [действия](Actions.md), реализующего [прерывание цикла](Interruption_BREAK.md).
 
 ### Синтаксис
 

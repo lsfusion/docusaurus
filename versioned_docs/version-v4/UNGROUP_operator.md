@@ -6,7 +6,7 @@ title: 'UNGROUP operator'
 At the moment, the `UNGROUP` operator is not implemented.
 :::
 
-The `UNGROUP` operator creates a [property](Properties.md) that implements [distribution](Distribution_UNGROUP_.md) in an extended form.
+The `UNGROUP` operator creates a [property](Properties.md) that implements [distribution](Distribution_UNGROUP.md) in an extended form.
 
 ### Syntax
 

@@ -2,7 +2,7 @@
 title: 'Оператор IMPORT'
 ---
 
-Оператор `IMPORT` - создание [действия](Actions.md), импортирующего данные из заданного файла в [заданные свойства (параметры)](Data_import_IMPORT_.md) или, в общем случае, в [заданную форму](In_a_structured_view_EXPORT_IMPORT_.md#importForm).
+Оператор `IMPORT` - создание [действия](Actions.md), импортирующего данные из заданного файла в [заданные свойства (параметры)](Data_import_IMPORT.md) или, в общем случае, в [заданную форму](In_a_structured_view_EXPORT_IMPORT.md#importForm).
 
 ## Синтаксис
 
@@ -103,7 +103,7 @@ title: 'Оператор IMPORT'
 
 - `actionOperator`
 
-    [Контекстно-зависимый оператор-действие](Action_operator.md#contextdependent), описывающий действие, которое выполняется для каждой импортированной записи.
+    [Контекстно-зависимый оператор-действие](Action_operators.md#contextdependent), описывающий действие, которое выполняется для каждой импортированной записи.
 
 - `elseActionOperator`
 
@@ -117,7 +117,7 @@ title: 'Оператор IMPORT'
 
 - `objClassId1, ..., objClassIdK`
 
-    Классы [импортируемых](Data_import_IMPORT_.md#objects-broken) объектов. Задаются [идентификаторами класса](IDs.md#classid-broken). `K <= 1`. По умолчанию считается, что импортируется один объект класса `INTEGER`.
+    Классы [импортируемых](Data_import_IMPORT.md#objects-broken) объектов. Задаются [идентификаторами класса](IDs.md#classid-broken). `K <= 1`. По умолчанию считается, что импортируется один объект класса `INTEGER`.
 
 - `objAlias1, ..., objAliasK`
 

@@ -2,7 +2,7 @@
 title: 'RECURSION operator'
 ---
 
-The `RECURSION` operator creates a [property](Properties.md) that implements [recursion](Recursion_RECURSION_.md).
+The `RECURSION` operator creates a [property](Properties.md) that implements [recursion](Recursion_RECURSION.md).
 
 ### Syntax 
 

@@ -2,7 +2,7 @@
 title: 'ACTIVATE operator'
 ---
 
-The `ACTIVATE` operator creates an [action](Actions.md) that [activates](Activation_ACTIVATE_.md) a specified [form](Forms.md), tab, property, or action on a form
+The `ACTIVATE` operator creates an [action](Actions.md) that [activates](Activation_ACTIVATE.md) a specified [form](Forms.md), tab, property, or action on a form
 
 ### Syntax 
 
@@ -22,7 +22,7 @@ The `ACTIVATE` operator creates an action that activates a form, a tab, a proper
 
 - `componentSelector`
 
-    Design component [selector](DESIGN_instruction.md#selector-broken). The component must be a tab in the tab panel.
+    Design component [selector](DESIGN_statement.md#selector-broken). The component must be a tab in the tab panel.
 
 - `formPropertyId`
 

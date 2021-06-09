@@ -8,7 +8,7 @@ In this type of interaction, the internal system can directly access the Java el
 
 It is worth noting that in order to access the Java elements of the lsFusion system directly, you must first obtain a link to an object that will have interfaces for finding these Java elements. This is usually done in one of two ways:
 
-1.  If the initial call comes from the lsFusion system via the [Java interaction](Access_to_an_internal_system_INTERNAL_FORMULA_.md#javato) mechanism, the action object "through which" the call is done may be used as the "search object" (the class of this action must be inherited from `lsfusion.server.physics.dev.integration.internal.to.InternalAction`, which in turn has all the required interfaces).
+1.  If the initial call comes from the lsFusion system via the [Java interaction](Access_to_an_internal_system_INTERNAL_FORMULA.md#javato) mechanism, the action object "through which" the call is done may be used as the "search object" (the class of this action must be inherited from `lsfusion.server.physics.dev.integration.internal.to.InternalAction`, which in turn has all the required interfaces).
 2.  If the object from whose method the lsFusion system must be accessed is a Spring bean, a link to the business logic object can be obtained using dependency injection (the bean is accordingly called `businessLogics`).
 
 ### SQL interaction

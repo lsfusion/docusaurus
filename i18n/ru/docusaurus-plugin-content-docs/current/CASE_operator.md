@@ -2,7 +2,7 @@
 title: 'Оператор CASE'
 ---
 
-Оператор `CASE` - создание [свойства](Properties.md), осуществляющего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md) результата по условию.
+Оператор `CASE` - создание [свойства](Properties.md), осуществляющего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md) результата по условию.
 
 ### Синтаксис 
 
@@ -20,7 +20,7 @@ title: 'Оператор CASE'
 
 - `exclusionType`
 
-    [Тип взаимоисключения](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Определяет, могут ли одновременно несколько свойств-условий одновременно выполняться при некотором наборе параметров. Задается одним из ключевых слов:
+    [Тип взаимоисключения](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md#exclusive). Определяет, могут ли одновременно несколько свойств-условий одновременно выполняться при некотором наборе параметров. Задается одним из ключевых слов:
 
     - `EXCLUSIVE`
     - `OVERRIDE`

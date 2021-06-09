@@ -2,7 +2,7 @@
 title: 'Оператор DIALOG'
 ---
 
-Оператор `DIALOG` - создание [действия](Actions.md), [открывающего форму](In_an_interactive_view_SHOW_DIALOG_.md) в интерактивном представлении в режиме [диалога](In_an_interactive_view_SHOW_DIALOG_.md#dialog). 
+Оператор `DIALOG` - создание [действия](Actions.md), [открывающего форму](In_an_interactive_view_SHOW_DIALOG.md) в интерактивном представлении в режиме [диалога](In_an_interactive_view_SHOW_DIALOG.md#dialog). 
 
 ## Синтаксис
 
@@ -92,17 +92,17 @@ title: 'Оператор DIALOG'
 
 - `actionOperator`
 
-    [Контекстно-зависимый оператор-действие](Action_operator.md), выполняется, если ввод был успешно завершен.
+    [Контекстно-зависимый оператор-действие](Action_operators.md), выполняется, если ввод был успешно завершен.
 
 - `elseActionOperator`
 
-    [Контекстно-зависимый оператор-действие](Action_operator.md), выполняется, если ввод был отменен. В качестве параметров нельзя использовать параметры, добавленные в блоке ввода `INPUT`.
+    [Контекстно-зависимый оператор-действие](Action_operators.md), выполняется, если ввод был отменен. В качестве параметров нельзя использовать параметры, добавленные в блоке ввода `INPUT`.
 
 ### Дополнительные опции
 
 - `windowType`
 
-    Способ [расположения формы](In_an_interactive_view_SHOW_DIALOG_.md#location):
+    Способ [расположения формы](In_an_interactive_view_SHOW_DIALOG.md#location):
 
     - `DOCKED` - как закладка.
     - `FLOAT` -  как окно. Используется по умолчанию.
@@ -121,7 +121,7 @@ title: 'Оператор DIALOG'
 
 - `READONLY`
 
-    Ключевое слово. Если указывается, то форма открывается в режиме [только для чтения](In_an_interactive_view_SHOW_DIALOG_.md#extra).
+    Ключевое слово. Если указывается, то форма открывается в режиме [только для чтения](In_an_interactive_view_SHOW_DIALOG.md#extra).
 
 ## Примеры
 

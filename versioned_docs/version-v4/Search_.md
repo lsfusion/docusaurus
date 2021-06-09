@@ -64,9 +64,9 @@ This step is only executed if no search namespace is specified.
 
 ### Located upper in the stack {#stack}
 
-The candidate is a [local property](Data_properties_DATA_.md#local) and:
+The candidate is a [local property](Data_properties_DATA.md#local) and:
 
--   is declared inside an operator of a [sequence](Sequence_..._.md) that executes an action that refers to the required element.
+-   is declared inside an operator of a [sequence](Sequence.md) that executes an action that refers to the required element.
 -   is declared earlier than the action that directly refers to the required element.
 
 ### Suitable classes of parameters {#direct}

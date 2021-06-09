@@ -2,7 +2,7 @@
 title: 'Оператор MULTI'
 ---
 
-Оператор `MULTI` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#single) одного из значений (полиморфная форма).
+Оператор `MULTI` - создание [свойства](Properties.md), реализующего [выбор](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md#single) одного из значений (полиморфная форма).
 
 ### Синтаксис
 
@@ -20,7 +20,7 @@ title: 'Оператор MULTI'
 
 - `exclusionType`
 
-    [Тип взаимоисключения](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_.md#exclusive). Определяет, могут ли несколько условий выбора свойства одновременно выполняться при некотором наборе наборе параметров. Задается одним из ключевых слов:
+    [Тип взаимоисключения](Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE.md#exclusive). Определяет, могут ли несколько условий выбора свойства одновременно выполняться при некотором наборе наборе параметров. Задается одним из ключевых слов:
 
     - `EXCLUSIVE`
     - `OVERRIDE`

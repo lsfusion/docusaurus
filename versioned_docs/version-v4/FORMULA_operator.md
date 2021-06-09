@@ -2,7 +2,7 @@
 title: 'FORMULA operator'
 ---
 
-The `FORMULA` operator creates a [property](Properties.md) that implements a [custom formula](Custom_formula_FORMULA_.md).
+The `FORMULA` operator creates a [property](Properties.md) that implements a [custom formula](Custom_formula_FORMULA.md).
 
 ### Syntax
 

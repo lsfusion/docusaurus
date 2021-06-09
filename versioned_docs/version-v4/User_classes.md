@@ -26,7 +26,7 @@ As a common ancestor for several custom classes, the platform selects a class fr
 
 ### Language
 
-To add a new custom class to the system, use the [`CLASS` statement](CLASS_instruction.md).
+To add a new custom class to the system, use the [`CLASS` statement](CLASS_statement.md).
 
 ### Examples
 

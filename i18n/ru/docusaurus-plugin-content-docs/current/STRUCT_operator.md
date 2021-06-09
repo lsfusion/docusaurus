@@ -2,7 +2,7 @@
 title: 'Оператор STRUCT'
 ---
 
-Оператор `STRUCT` - создание [свойства](Properties.md), которое создает [структуру](Structure_operations_STRUCT_.md).
+Оператор `STRUCT` - создание [свойства](Properties.md), которое создает [структуру](Structure_operators_STRUCT.md).
 
 ### Синтаксис
 

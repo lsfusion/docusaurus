@@ -2,7 +2,7 @@
 title: 'PARTITION operator'
 ---
 
-The `PARTITION` operator creates a [property](Properties.md) that implements [partition/order](Partitioning_sorting_PARTITION_..._ORDER_.md) or [simple distribution](Distribution_UNGROUP_.md).
+The `PARTITION` operator creates a [property](Properties.md) that implements [partition/order](Partitioning_sorting_PARTITION_..._ORDER.md) or [simple distribution](Distribution_UNGROUP.md).
 
 ### Syntax
 

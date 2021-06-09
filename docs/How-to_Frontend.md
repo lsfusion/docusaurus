@@ -459,7 +459,7 @@ change(updateState => this.setState(updateState), { game : { value : 6063, hostG
 ```
 This call changes the current object to the game with the ID 6063 and the value of the host team's goals to the passed value (3). If you do not pass the `value` tag, then the goal change will be made for the previously selected game.
 
-The same scheme is used to change properties that are not data, but are a simple [composition](Composition_JOIN_.md) of object properties: 
+The same scheme is used to change properties that are not data, but are a simple [composition](Composition_JOIN.md) of object properties: 
 ```js
 change(updateState => this.setState(updateState), { game : { value : 6063, hostTeamName: "Montreal Canadiens" } });
 ```

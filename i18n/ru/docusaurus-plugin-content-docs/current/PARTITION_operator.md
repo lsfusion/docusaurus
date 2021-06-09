@@ -2,7 +2,7 @@
 title: 'Оператор PARTITION'
 ---
 
-Оператор `PARTITION` - создание [свойства](Properties.md), реализующего [разбиение / упорядочивание](Partitioning_sorting_PARTITION_..._ORDER_.md) либо [простое распределение](Distribution_UNGROUP_.md).
+Оператор `PARTITION` - создание [свойства](Properties.md), реализующего [разбиение / упорядочивание](Partitioning_sorting_PARTITION_..._ORDER.md) либо [простое распределение](Distribution_UNGROUP.md).
 
 ### Синтаксис
 

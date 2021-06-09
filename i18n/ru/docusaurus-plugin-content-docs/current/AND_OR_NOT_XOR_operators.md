@@ -2,7 +2,7 @@
 title: 'Операторы AND, OR, NOT, XOR'
 ---
 
-Операторы `AND`, `OR`, `NOT`, `XOR` - создание [свойств](Properties.md), реализующих [логические операции](Logical_operators_AND_OR_NOT_XOR_.md).
+Операторы `AND`, `OR`, `NOT`, `XOR` - создание [свойств](Properties.md), реализующих [логические операции](Logical_operators_AND_OR_NOT_XOR.md).
 
 ### Синтаксис
 

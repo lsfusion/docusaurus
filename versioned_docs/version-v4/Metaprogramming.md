@@ -6,7 +6,7 @@ title: 'Metaprogramming'
 
 ### Metacode {#metacode}
 
-In **lsFusion** the metaprogramming tool used is *metacode*, which is described by the [`META` statement](META_instruction.md). Metacode consists of a header and an **lsFusion** code block describing the [statement](Instructions.md) sequence. This code block must end with the keyword `END`. Let us consider an example of metacode that allows you to add two [actions](Actions.md) to an arbitrary [form](Forms.md):
+In **lsFusion** the metaprogramming tool used is *metacode*, which is described by the [`META` statement](META_statement.md). Metacode consists of a header and an **lsFusion** code block describing the [statement](Statements.md) sequence. This code block must end with the keyword `END`. Let us consider an example of metacode that allows you to add two [actions](Actions.md) to an arbitrary [form](Forms.md):
 
 ```lsf
 META addActions(formName)
@@ -16,7 +16,7 @@ META addActions(formName)
 END
 ```
 
-The first line of the example contains the metacode header. It consists of the keyword `META`, metacode name, and parameter list. In this example, the metacode `addActions` has one parameter: `formName`. This is the name of the form to which the actions will be added. Let's consider the possible uses for this metacode, which are described by the [`@` statement](Instruction_.md). 
+The first line of the example contains the metacode header. It consists of the keyword `META`, metacode name, and parameter list. In this example, the metacode `addActions` has one parameter: `formName`. This is the name of the form to which the actions will be added. Let's consider the possible uses for this metacode, which are described by the [`@` statement](commat_statement.md). 
 
 ```lsf
 @addActions(documentForm);

@@ -2,7 +2,7 @@
 title: 'Action options'
 ---
 
-When declaring an [action](Actions.md) in the [`ACTION` instruction](ACTION_instruction.md) a certain set of *action options* may be specified at the end of the declaration. 
+When declaring an [action](Actions.md) in the [`ACTION` statement](ACTION_statement.md) a certain set of *action options* may be specified at the end of the declaration. 
 
 ## Syntax
 
@@ -40,11 +40,11 @@ The following set of options is supported (the syntax of each option is indicate
     - `TOOLBAR` - toolbar
     - `PANEL` - panel
 
-  It is similar to specifying the viewType option in the [property block](Properties_and_actions_block.md) of the [`FORM`instruction ](FORM_instruction.md). Thus, if this option is not specified either in the action options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the action display group on the form is used.
+  It is similar to specifying the viewType option in the [property block](Properties_and_actions_block.md) of the [`FORM` statement](FORM_statement.md). Thus, if this option is not specified either in the action options or in the property block directly on the form, the [default view](Interactive_view.md#property) of the action display group on the form is used.
 
 - `ON eventType { actionOperator }`
 
-    Specifying an action that will be the default handler of a certain [event](Form_events.md) for all the interactive views of this action. Can be overridden in the property block of the `FORM` instruction.
+    Specifying an action that will be the default handler of a certain [event](Form_events.md) for all the interactive views of this action. Can be overridden in the property block of the `FORM` statement.
 
     - `eventType`
 
@@ -58,11 +58,11 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `actionOperator`
 
-        A [context-dependent action operator](Action_operator.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
+        A [context-dependent action operator](Action_operators.md#contextdependent). An operator that defines the action executed on an event. You can use the parameters of the property itself as operator parameters.
 
 - `ASON eventType [ACTION] propertyId`
 
-    Specifies that this action will be the default handler of a certain [event](Form_events.md) for all the interactive views of the specified property or action. Can be overridden in the [property and action block](Properties_and_actions_block.md) of the `FORM` instruction. 
+    Specifies that this action will be the default handler of a certain [event](Form_events.md) for all the interactive views of the specified property or action. Can be overridden in the [property and action block](Properties_and_actions_block.md) of the `FORM` statement. 
 
     - `eventType`
 
@@ -84,11 +84,11 @@ The following set of options is supported (the syntax of each option is indicate
      
         The relative path to the file. [String literal](Literals.md#strliteral-broken). The path is specified relative to the `images` folder.
 
-### `DESIGN` instruction default values block
+### `DESIGN` statement default values block
 
 - `CHANGEKEY key [SHOW | HIDE]`
 
-    Specifies a [keyboard shortcut](Form_events.md#keyboard-broken) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [`DESIGN` instruction](DESIGN_instruction.md).
+    Specifies a [keyboard shortcut](Form_events.md#keyboard-broken) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [`DESIGN` statement](DESIGN_statement.md).
 
     - `key`
      
@@ -104,4 +104,4 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `CONFIRM`
 
-    Keyword. If specified, the user will be asked to confirm the action when it is executed. Sets the value for the default design and can be overridden in the `DESIGN` instruction.
+    Keyword. If specified, the user will be asked to confirm the action when it is executed. Sets the value for the default design and can be overridden in the `DESIGN` statement.

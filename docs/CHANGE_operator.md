@@ -2,7 +2,7 @@
 title: 'CHANGE operator'
 ---
 
-The `CHANGE` operator creates an [action](Actions.md) that [changes properties](Property_change_CHANGE_.md).
+The `CHANGE` operator creates an [action](Actions.md) that [changes properties](Property_change_CHANGE.md).
 
 ### Syntax
 

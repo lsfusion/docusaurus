@@ -37,7 +37,7 @@ These two expressions provide identical results.
 
 ### Task
 
-We have multiple purchase orders to suppliers for books. For each purchase order defined it's status if it was placed, agreed and delivered. In this example these statuses are declared as [data](Data_properties_DATA_.md) properties, but in more sophisticated cases they may be calculated.
+We have multiple purchase orders to suppliers for books. For each purchase order defined it's status if it was placed, agreed and delivered. In this example these statuses are declared as [data](Data_properties_DATA.md) properties, but in more sophisticated cases they may be calculated.
 
 ```lsf
 CLASS Order 'Order';

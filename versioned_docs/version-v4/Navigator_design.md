@@ -81,7 +81,7 @@ By default, the desktop has the following layout (the left coordinate, upper coo
 
 ### Language
 
-To manage windows, use the [`WINDOW` statement](WINDOW_instruction.md).
+To manage windows, use the [`WINDOW` statement](WINDOW_statement.md).
 
 ### Examples
 

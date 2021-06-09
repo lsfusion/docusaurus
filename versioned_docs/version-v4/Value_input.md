@@ -5,10 +5,10 @@ sidebar_label: Overview
 
 This category includes operators responsible for inputting a value:
 
--   [Value input (`INPUT`)](Primitive_input_INPUT_.md)
--   [Value request (`REQUEST`)](Value_request_REQUEST_.md)
+-   [Value input (`INPUT`)](Primitive_input_INPUT.md)
+-   [Value request (`REQUEST`)](Value_request_REQUEST.md)
 
-In addition to the above operators, data input is also performed via the *dialog forms* of message display  [(`ASK`)](Show_message_MESSAGE_ASK_.md#dialog)  and [form opening (`DIALOG`)](In_an_interactive_view_SHOW_DIALOG_.md#dialog) operators in an interactive view.
+In addition to the above operators, data input is also performed via the *dialog forms* of message display  [(`ASK`)](Show_message_MESSAGE_ASK.md#dialog)  and [form opening (`DIALOG`)](In_an_interactive_view_SHOW_DIALOG.md#dialog) operators in an interactive view.
 
 ### Cancellation and input result {#result}
 
@@ -20,7 +20,7 @@ For all value input operators, the platform allows to specify an action (let's c
 
 Value input often assumes the presence of a certain *initial* (previous) value that the input starts from (that is, the initial value is assigned to the current one) and that the user can subsequently change. Like most other values, the initial value is defined as a property.
 
-Also, in many cases (especially in property [change event](Form_events.md#property-broken) handlers), it is sometimes necessary to not just input value, but also to [write](Property_change_CHANGE_.md) this value to a certain property (as a rule, the one for which the change event handler is invoked. This is necessary to ensure WYSYWIG). In most cases, the changed property equals the initial value property. To make the implementation of such a scenario more convenient, you can specify a special option (`CHANGE`) in value input operators. This option will automatically add property change to the end of the main action. The changed property, in this case, will be the initial value property, and changed value — the input result (however, if necessary, the developer can specify changed property explicitly). It is worth noting that the described feature is nothing more than syntactic sugar, however, it allows to make the code a lot more concise and readable.
+Also, in many cases (especially in property [change event](Form_events.md#property-broken) handlers), it is sometimes necessary to not just input value, but also to [write](Property_change_CHANGE.md) this value to a certain property (as a rule, the one for which the change event handler is invoked. This is necessary to ensure WYSYWIG). In most cases, the changed property equals the initial value property. To make the implementation of such a scenario more convenient, you can specify a special option (`CHANGE`) in value input operators. This option will automatically add property change to the end of the main action. The changed property, in this case, will be the initial value property, and changed value — the input result (however, if necessary, the developer can specify changed property explicitly). It is worth noting that the described feature is nothing more than syntactic sugar, however, it allows to make the code a lot more concise and readable.
 
 
 :::info

@@ -2,7 +2,7 @@
 title: 'MESSAGE operator'
 ---
 
-The `MESSAGE` operator creates an [action](Actions.md) that shows the user a [message](Show_message_MESSAGE_ASK_.md).
+The `MESSAGE` operator creates an [action](Actions.md) that shows the user a [message](Show_message_MESSAGE_ASK.md).
 
 ### Syntax
 

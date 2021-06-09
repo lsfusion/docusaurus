@@ -2,7 +2,7 @@
 title: 'Оператор CHANGE'
 ---
 
-Оператор `CHANGE` - создание [действия](Actions.md), которое [изменяет свойство](Property_change_CHANGE_.md).
+Оператор `CHANGE` - создание [действия](Actions.md), которое [изменяет свойство](Property_change_CHANGE.md).
 
 ### Синтаксис
 

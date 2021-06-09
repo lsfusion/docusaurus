@@ -2,7 +2,7 @@
 title: 'EXTERNAL operator'
 ---
 
-The `EXTERNAL` operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL_.md). 
+The `EXTERNAL` operator creates an [action](Actions.md) that implements [accessing to an external system](Access_to_an_external_system_EXTERNAL.md). 
 
 ### Syntax
 
