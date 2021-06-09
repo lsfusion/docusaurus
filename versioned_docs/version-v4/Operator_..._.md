@@ -1,5 +1,5 @@
 ---
-title: 'Operator{...}'
+title: '{...} operator'
 ---
 
 The `{...}` operator creates [actions](Actions.md) that executes a [sequence of other actions](Sequence_..._.md). 

@@ -1,9 +1,9 @@
 ---
-title: 'Object group operations'
+title: 'Object group operators'
 sidebar_label: Overview
 ---
 
-Object group operations include the following operators:
+Object group operators include the following operators:
 
 ### Actions
 

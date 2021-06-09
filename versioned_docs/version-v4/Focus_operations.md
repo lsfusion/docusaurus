@@ -1,5 +1,5 @@
 ---
-title: 'Focus operations'
+title: 'Focus operators'
 sidebar_label: Overview
 ---
 
