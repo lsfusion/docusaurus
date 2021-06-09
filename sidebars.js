@@ -55,7 +55,7 @@ module.exports = {
                         'Constant', 
                         {
                           type: 'category',
-                          label: 'Primitive operations',
+                          label: 'Operations with primitives',
                           items: [
                             'Primitive_operations', 
                             'Arithmetic_operators_+_-_..._', 
@@ -69,7 +69,7 @@ module.exports = {
                         },
                         {
                           type: 'category',
-                          label: 'Class operations',
+                          label: 'Class operators',
                           items: [
                             'Class_operations', 
                             'Classification_IS_AS_', 
@@ -241,7 +241,7 @@ module.exports = {
                                 },
                                 {
                                   type: 'category',
-                                  label: 'Object group operations',
+                                  label: 'Object group operators',
                                   items: [
                                     'Object_group_operations', 
                                     'Search_SEEK_', 
@@ -252,7 +252,7 @@ module.exports = {
                                 },
                                 {
                                   type: 'category',
-                                  label: 'Focus operations',
+                                  label: 'Focus operators',
                                   items: [
                                     'Focus_operations', 
                                     'Activation_ACTIVATE_', 
@@ -425,13 +425,13 @@ module.exports = {
         'Literals', 
         {
           type: 'category',
-          label: 'Instructions',
+          label: 'Statements',
           items: [
             'Instructions', 
             'Module_header', 
             {
               type: 'category',
-              label: 'Instruction =',
+              label: '= statement',
               items: [
                 'Instruction_=', 
                 {
@@ -484,12 +484,12 @@ module.exports = {
             },
             {
               type: 'category',
-              label: 'ACTION instruction',
+              label: 'ACTION statement',
               items: [
                 'ACTION_instruction', 
                 {
                   type: 'category',
-                  label: 'Action operator',
+                  label: 'Action operators',
                   items: [
                     'Action_operator', 
                     'Operator_..._', 
@@ -539,7 +539,7 @@ module.exports = {
             'GROUP_instruction', 
             {
               type: 'category',
-              label: 'ON instruction',
+              label: 'ON statement',
               items: [
                 'ON_instruction', 
                 'Event_description_block', 
@@ -552,7 +552,7 @@ module.exports = {
             'CLASS_instruction', 
             {
               type: 'category',
-              label: 'FORM instruction',
+              label: 'FORM statement',
               items: [
                 'FORM_instruction', 
                 'Object_blocks', 

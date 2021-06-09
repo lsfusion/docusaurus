@@ -108,7 +108,7 @@
                             {
                               "collapsed": true,
                               "type": "category",
-                              "label": "Primitive operations",
+                              "label": "Operations with primitives",
                               "items": [
                                 {
                                   "type": "doc",
@@ -147,7 +147,7 @@
                             {
                               "collapsed": true,
                               "type": "category",
-                              "label": "Class operations",
+                              "label": "Class operators",
                               "items": [
                                 {
                                   "type": "doc",
@@ -524,7 +524,7 @@
                                     {
                                       "collapsed": true,
                                       "type": "category",
-                                      "label": "Object group operations",
+                                      "label": "Object group operators",
                                       "items": [
                                         {
                                           "type": "doc",
@@ -551,7 +551,7 @@
                                     {
                                       "collapsed": true,
                                       "type": "category",
-                                      "label": "Focus operations",
+                                      "label": "Focus operators",
                                       "items": [
                                         {
                                           "type": "doc",
@@ -1097,7 +1097,7 @@
                     {
                       "collapsed": true,
                       "type": "category",
-                      "label": "Action operator",
+                      "label": "Action operators",
                       "items": [
                         {
                           "type": "doc",

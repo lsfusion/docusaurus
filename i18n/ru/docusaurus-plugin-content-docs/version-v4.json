@@ -31,13 +31,13 @@
     "message": "Операторы",
     "description": "The label for category Operators in sidebar docs"
   },
-  "sidebar.learn.category.Primitive operations": {
+  "sidebar.learn.category.Operations with primitives": {
     "message": "Операции с примитивами",
-    "description": "The label for category Primitive operations in sidebar docs"
+    "description": "The label for category Operations with primitives in sidebar docs"
   },
-  "sidebar.learn.category.Class operations": {
+  "sidebar.learn.category.Class operators": {
     "message": "Операции с классами",
-    "description": "The label for category Class operations in sidebar docs"
+    "description": "The label for category Class operators in sidebar docs"
   },
   "sidebar.learn.category.Set operations": {
     "message": "Операции с множествами",
@@ -111,13 +111,13 @@
     "message": "Ввод значения",
     "description": "The label for category Value input in sidebar docs"
   },
-  "sidebar.learn.category.Object group operations": {
+  "sidebar.learn.category.Object group operators": {
     "message": "Операции с группами объектов",
-    "description": "The label for category Object group operations in sidebar docs"
+    "description": "The label for category Object group operators in sidebar docs"
   },
-  "sidebar.learn.category.Focus operations": {
+  "sidebar.learn.category.Focus operators": {
     "message": "Управление фокусом",
-    "description": "The label for category Focus operations in sidebar docs"
+    "description": "The label for category Focus operators in sidebar docs"
   },
   "sidebar.learn.category.Static view": {
     "message": "Статичное представление",
@@ -203,9 +203,9 @@
     "message": "Инструкция ACTION",
     "description": "The label for category ACTION statement in sidebar docs"
   },
-  "sidebar.learn.category.Action operator": {
+  "sidebar.learn.category.Action operators": {
     "message": "Операторы-действия",
-    "description": "The label for category Action operator in sidebar docs"
+    "description": "The label for category Action operators in sidebar docs"
   },
   "sidebar.learn.category.ON statement": {
     "message": "Инструкция ON",

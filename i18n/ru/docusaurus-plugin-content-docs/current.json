@@ -31,13 +31,13 @@
     "message": "Операторы",
     "description": "The label for category Operators in sidebar docs"
   },
-  "sidebar.learn.category.Primitive operations": {
+  "sidebar.learn.category.Operations with primitives": {
     "message": "Операции с примитивами",
-    "description": "The label for category Primitive operations in sidebar docs"
+    "description": "The label for category Operations with primitives in sidebar docs"
   },
-  "sidebar.learn.category.Class operations": {
+  "sidebar.learn.category.Class operators": {
     "message": "Операции с классами",
-    "description": "The label for category Class operations in sidebar docs"
+    "description": "The label for category Class operators in sidebar docs"
   },
   "sidebar.learn.category.Set operations": {
     "message": "Операции с множествами",
@@ -111,13 +111,13 @@
     "message": "Ввод значения",
     "description": "The label for category Value input in sidebar docs"
   },
-  "sidebar.learn.category.Object group operations": {
+  "sidebar.learn.category.Object group operators": {
     "message": "Операции с группами объектов",
-    "description": "The label for category Object group operations in sidebar docs"
+    "description": "The label for category Object group operators in sidebar docs"
   },
-  "sidebar.learn.category.Focus operations": {
+  "sidebar.learn.category.Focus operators": {
     "message": "Управление фокусом",
-    "description": "The label for category Focus operations in sidebar docs"
+    "description": "The label for category Focus operators in sidebar docs"
   },
   "sidebar.learn.category.Static view": {
     "message": "Статичное представление",
@@ -183,13 +183,13 @@
     "message": "Язык",
     "description": "The label for category Language in sidebar docs"
   },
-  "sidebar.learn.category.Instructions": {
+  "sidebar.learn.category.Statements": {
     "message": "Инструкции",
-    "description": "The label for category Instructions in sidebar docs"
+    "description": "The label for category Statements in sidebar docs"
   },
-  "sidebar.learn.category.Instruction =": {
+  "sidebar.learn.category.= statement": {
     "message": "Инструкция =",
-    "description": "The label for category Instruction = in sidebar docs"
+    "description": "The label for category = statement in sidebar docs"
   },
   "sidebar.learn.category.Expression": {
     "message": "Выражения",
@@ -199,21 +199,21 @@
     "message": "Операторы-свойства",
     "description": "The label for category Property operators in sidebar docs"
   },
-  "sidebar.learn.category.ACTION instruction": {
+  "sidebar.learn.category.ACTION statement": {
     "message": "Инструкция ACTION",
-    "description": "The label for category ACTION instruction in sidebar docs"
+    "description": "The label for category ACTION statement in sidebar docs"
   },
-  "sidebar.learn.category.Action operator": {
+  "sidebar.learn.category.Action operators": {
     "message": "Операторы-действия",
-    "description": "The label for category Action operator in sidebar docs"
+    "description": "The label for category Action operators in sidebar docs"
   },
-  "sidebar.learn.category.ON instruction": {
+  "sidebar.learn.category.ON statement": {
     "message": "Инструкция ON",
-    "description": "The label for category ON instruction in sidebar docs"
+    "description": "The label for category ON statement in sidebar docs"
   },
-  "sidebar.learn.category.FORM instruction": {
+  "sidebar.learn.category.FORM statement": {
     "message": "Инструкция FORM",
-    "description": "The label for category FORM instruction in sidebar docs"
+    "description": "The label for category FORM statement in sidebar docs"
   },
   "sidebar.learn.category.Examples": {
     "message": "Примеры",
