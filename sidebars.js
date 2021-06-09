@@ -7,8 +7,8 @@ module.exports = {
       label: 'Automatic installation',
       items: [
         'Automatic_installation', 
-        'Development_auto_', 
-        'Execution_auto_', 
+        'Development_auto', 
+        'Execution_auto', 
       ]
     },
     {
@@ -17,8 +17,8 @@ module.exports = {
       label: 'Manual installation',
       items: [
         'Manual_installation', 
-        'Development_manual_', 
-        'Execution_manual_', 
+        'Development_manual', 
+        'Execution_manual', 
       ]
     },
   ],
@@ -49,21 +49,21 @@ module.exports = {
                       type: 'category',
                       label: 'Operators',
                       items: [
-                        'Operators', 
-                        'Data_properties_DATA_', 
-                        'Composition_JOIN_', 
+                        'Property_operators_paradigm', 
+                        'Data_properties_DATA', 
+                        'Composition_JOIN', 
                         'Constant', 
                         {
                           type: 'category',
                           label: 'Operations with primitives',
                           items: [
-                            'Primitive_operations', 
-                            'Arithmetic_operators_+_-_..._', 
-                            'Logical_operators_AND_OR_NOT_XOR_', 
-                            'Comparison_operators_=_..._', 
-                            'Extremum_MAX_MIN_', 
-                            'String_operators_+_CONCAT_SUBSTRING_', 
-                            'Structure_operations_STRUCT_', 
+                            'Operations_with_primitives', 
+                            'Arithmetic_operators_+_-_etc', 
+                            'Logical_operators_AND_OR_NOT_XOR', 
+                            'Comparison_operators_=_etc', 
+                            'Extremum_MAX_MIN', 
+                            'String_operators_+_CONCAT_SUBSTRING', 
+                            'Structure_operators_STRUCT', 
                             'Type_conversion', 
                           ]
                         },
@@ -71,21 +71,21 @@ module.exports = {
                           type: 'category',
                           label: 'Class operators',
                           items: [
-                            'Class_operations', 
-                            'Classification_IS_AS_', 
-                            'Property_signature_CLASS_', 
+                            'Class_operators', 
+                            'Classification_IS_AS', 
+                            'Property_signature_CLASS', 
                           ]
                         },
-                        'Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_', 
+                        'Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE', 
                         {
                           type: 'category',
                           label: 'Set operations',
                           items: [
                             'Set_operations', 
-                            'Grouping_GROUP_', 
-                            'Partitioning_sorting_PARTITION_..._ORDER_', 
-                            'Recursion_RECURSION_', 
-                            'Distribution_UNGROUP_', 
+                            'Grouping_GROUP', 
+                            'Partitioning_sorting_PARTITION_..._ORDER', 
+                            'Recursion_RECURSION', 
+                            'Distribution_UNGROUP', 
                           ]
                         },
                       ]
@@ -102,21 +102,21 @@ module.exports = {
                       type: 'category',
                       label: 'Оperators',
                       items: [
-                        'Оperators', 
+                        'Action_operators_paradigm', 
                         {
                           type: 'category',
                           label: 'Execution order',
                           items: [
                             'Execution_order', 
-                            'Sequence_..._', 
-                            'Call_EXEC_', 
-                            'Loop_FOR_', 
-                            'Branching_CASE_IF_MULTI_', 
-                            'Recursive_loop_WHILE_', 
-                            'Interruption_BREAK_', 
-                            'Exit_RETURN_', 
-                            'New_threads_NEWTHREAD_NEWEXECUTOR_', 
-                            'Exception_handling_TRY_', 
+                            'Sequence', 
+                            'Call_EXEC', 
+                            'Loop_FOR', 
+                            'Branching_CASE_IF_MULTI', 
+                            'Recursive_loop_WHILE', 
+                            'Interruption_BREAK', 
+                            'Exit_RETURN', 
+                            'New_threads_NEWTHREAD_NEWEXECUTOR', 
+                            'Exception_handling_TRY', 
                           ]
                         },
                         {
@@ -124,9 +124,9 @@ module.exports = {
                           label: 'State change',
                           items: [
                             'State_change', 
-                            'Property_change_CHANGE_', 
-                            'New_object_NEW_', 
-                            'Class_change_CHANGECLASS_DELETE_', 
+                            'Property_change_CHANGE', 
+                            'New_object_NEW', 
+                            'Class_change_CHANGECLASS_DELETE', 
                           ]
                         },
                         {
@@ -134,11 +134,11 @@ module.exports = {
                           label: 'Session management',
                           items: [
                             'Session_management', 
-                            'Apply_changes_APPLY_', 
-                            'Cancel_changes_CANCEL_', 
-                            'New_session_NEWSESSION_NESTEDSESSION_', 
-                            'Previous_value_PREV_', 
-                            'Change_operators_SET_CHANGED_..._', 
+                            'Apply_changes_APPLY', 
+                            'Cancel_changes_CANCEL', 
+                            'New_session_NEWSESSION_NESTEDSESSION', 
+                            'Previous_value_PREV', 
+                            'Change_operators_SET_CHANGED_etc', 
                           ]
                         },
                         {
@@ -146,19 +146,19 @@ module.exports = {
                           label: 'User/IS interaction',
                           items: [
                             'User_IS_interaction', 
-                            'Show_message_MESSAGE_ASK_', 
+                            'Show_message_MESSAGE_ASK', 
                             {
                               type: 'category',
                               label: 'File operators',
                               items: [
                                 'File_operators', 
-                                'Read_file_READ_', 
-                                'Write_file_WRITE_', 
-                                'Data_import_IMPORT_', 
-                                'Data_export_EXPORT_', 
+                                'Read_file_READ', 
+                                'Write_file_WRITE', 
+                                'Data_import_IMPORT', 
+                                'Data_export_EXPORT', 
                               ]
                             },
-                            'Send_mail_EMAIL_', 
+                            'Send_mail_EMAIL', 
                           ]
                         },
                       ]
@@ -235,28 +235,28 @@ module.exports = {
                                   label: 'Value input',
                                   items: [
                                     'Value_input', 
-                                    'Primitive_input_INPUT_', 
-                                    'Value_request_REQUEST_', 
+                                    'Primitive_input_INPUT', 
+                                    'Value_request_REQUEST', 
                                   ]
                                 },
                                 {
                                   type: 'category',
                                   label: 'Object group operators',
                                   items: [
-                                    'Object_group_operations', 
-                                    'Search_SEEK_', 
-                                    'Filter_FILTER_', 
-                                    'Order_ORDER_', 
-                                    'View_VIEW_', 
+                                    'Object_group_operators', 
+                                    'Search_SEEK', 
+                                    'Filter_FILTER', 
+                                    'Order_ORDER', 
+                                    'View_VIEW', 
                                   ]
                                 },
                                 {
                                   type: 'category',
                                   label: 'Focus operators',
                                   items: [
-                                    'Focus_operations', 
-                                    'Activation_ACTIVATE_', 
-                                    'Activity_ACTIVE_', 
+                                    'Focus_operators', 
+                                    'Activation_ACTIVATE', 
+                                    'Activity_ACTIVE', 
                                   ]
                                 },
                               ]
@@ -286,9 +286,9 @@ module.exports = {
                       label: 'Open form',
                       items: [
                         'Open_form', 
-                        'In_an_interactive_view_SHOW_DIALOG_', 
-                        'In_a_print_view_PRINT_', 
-                        'In_a_structured_view_EXPORT_IMPORT_', 
+                        'In_an_interactive_view_SHOW_DIALOG', 
+                        'In_a_print_view_PRINT', 
+                        'In_a_structured_view_EXPORT_IMPORT', 
                       ]
                     },
                   ]
@@ -352,17 +352,17 @@ module.exports = {
                     'Integration', 
                     'Access_from_an_external_system', 
                     'Access_from_an_internal_system', 
-                    'Access_to_an_external_system_EXTERNAL_', 
+                    'Access_to_an_external_system_EXTERNAL', 
                     {
                       type: 'category',
                       label: 'Access to an internal system (INTERNAL, FORMULA)',
                       items: [
-                        'Access_to_an_internal_system_INTERNAL_FORMULA_', 
-                        'Internal_call_INTERNAL_', 
-                        'Custom_formula_FORMULA_', 
+                        'Access_to_an_internal_system_INTERNAL_FORMULA', 
+                        'Internal_call_INTERNAL', 
+                        'Custom_formula_FORMULA', 
                       ]
                     },
-                    'Eval_EVAL_', 
+                    'Eval_EVAL', 
                   ]
                 },
                 'Migration', 
@@ -427,13 +427,13 @@ module.exports = {
           type: 'category',
           label: 'Statements',
           items: [
-            'Instructions', 
+            'Statements', 
             'Module_header', 
             {
               type: 'category',
               label: '= statement',
               items: [
-                'Instruction_=', 
+                '=_statement', 
                 {
                   type: 'category',
                   label: 'Expression',
@@ -448,7 +448,7 @@ module.exports = {
                   items: [
                     'Property_operators', 
                     'Arithmetic_operators', 
-                    'Operator_', 
+                    'Brackets_operator', 
                     'ABSTRACT_operator', 
                     'ACTIVE_TAB_operator', 
                     'AGGR_operator', 
@@ -486,14 +486,14 @@ module.exports = {
               type: 'category',
               label: 'ACTION statement',
               items: [
-                'ACTION_instruction', 
+                'ACTION_statement', 
                 {
                   type: 'category',
                   label: 'Action operators',
                   items: [
-                    'Action_operator', 
-                    'Operator_..._', 
-                    'ABSTRACT_operator_action_', 
+                    'Action_operators', 
+                    'Braces_operator', 
+                    'ABSTRACT_action_operator', 
                     'ACTIVATE_operator', 
                     'ACTIVE_FORM_operator', 
                     'APPLY_operator', 
@@ -501,7 +501,7 @@ module.exports = {
                     'CHANGE_operator', 
                     'BREAK_operator', 
                     'CANCEL_operator', 
-                    'CASE_operator_action_', 
+                    'CASE_action_operator', 
                     'CHANGECLASS_operator', 
                     'INTERNAL_operator', 
                     'DELETE_operator', 
@@ -512,11 +512,11 @@ module.exports = {
                     'EXPORT_operator', 
                     'EXTERNAL_operator', 
                     'FOR_operator', 
-                    'IF_..._THEN_operator_action_', 
+                    'IF_..._THEN_action_operator', 
                     'IMPORT_operator', 
                     'INPUT_operator', 
                     'MESSAGE_operator', 
-                    'MULTI_operator_action_', 
+                    'MULTI_action_operator', 
                     'NEW_operator', 
                     'NESTEDSESSION_operator', 
                     'NEWEXECUTOR_operator', 
@@ -525,7 +525,7 @@ module.exports = {
                     'PRINT_operator', 
                     'READ_operator', 
                     'REQUEST_operator', 
-                    'RETURN', 
+                    'RETURN_operator', 
                     'SEEK_operator', 
                     'SHOW_operator', 
                     'TRY_operator', 
@@ -536,45 +536,45 @@ module.exports = {
                 'Action_options', 
               ]
             },
-            'GROUP_instruction', 
+            'GROUP_statement', 
             {
               type: 'category',
               label: 'ON statement',
               items: [
-                'ON_instruction', 
+                'ON_statement', 
                 'Event_description_block', 
               ]
             },
-            'WHEN_instruction', 
-            'Instruction_-_WHEN', 
-            'CONSTRAINT_instruction', 
-            'Instruction=_', 
-            'CLASS_instruction', 
+            'WHEN_statement', 
+            'lt-_WHEN_statement', 
+            'CONSTRAINT_statement', 
+            '=gt_statement', 
+            'CLASS_statement', 
             {
               type: 'category',
               label: 'FORM statement',
               items: [
-                'FORM_instruction', 
+                'FORM_statement', 
                 'Object_blocks', 
                 'Properties_and_actions_block', 
                 'Filters_and_sortings_block', 
                 'Event_block', 
               ]
             },
-            'DESIGN_instruction', 
-            'NAVIGATOR_instruction', 
-            'WINDOW_instruction', 
-            'EXTEND_CLASS_instruction', 
-            'EXTEND_FORM_instruction', 
-            'Instruction_+=', 
-            'ACTION+_instruction', 
-            'META_instruction', 
-            'Instruction_', 
-            'TABLE_instruction', 
-            'INDEX_instruction', 
-            'BEFORE_instruction', 
-            'AFTER_instruction', 
-            'Empty_instruction', 
+            'DESIGN_statement', 
+            'NAVIGATOR_statement', 
+            'WINDOW_statement', 
+            'EXTEND_CLASS_statement', 
+            'EXTEND_FORM_statement', 
+            '+=_statement', 
+            'ACTION+_statement', 
+            'META_statement', 
+            'commat_statement', 
+            'TABLE_statement', 
+            'INDEX_statement', 
+            'BEFORE_statement', 
+            'AFTER_statement', 
+            'Empty_statement', 
           ]
         },
         'Coding_conventions', 

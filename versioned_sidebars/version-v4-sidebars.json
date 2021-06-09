@@ -15,11 +15,11 @@
         },
         {
           "type": "doc",
-          "id": "version-v4/Development_auto_"
+          "id": "version-v4/Development_auto"
         },
         {
           "type": "doc",
-          "id": "version-v4/Execution_auto_"
+          "id": "version-v4/Execution_auto"
         }
       ]
     },
@@ -34,11 +34,11 @@
         },
         {
           "type": "doc",
-          "id": "version-v4/Development_manual_"
+          "id": "version-v4/Development_manual"
         },
         {
           "type": "doc",
-          "id": "version-v4/Execution_manual_"
+          "id": "version-v4/Execution_manual"
         }
       ]
     }
@@ -91,15 +91,15 @@
                           "items": [
                             {
                               "type": "doc",
-                              "id": "version-v4/Operators"
+                              "id": "version-v4/Property_operators_paradigm"
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/Data_properties_DATA_"
+                              "id": "version-v4/Data_properties_DATA"
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/Composition_JOIN_"
+                              "id": "version-v4/Composition_JOIN"
                             },
                             {
                               "type": "doc",
@@ -112,31 +112,31 @@
                               "items": [
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Primitive_operations"
+                                  "id": "version-v4/Operations_with_primitives"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Arithmetic_operators_+_-_..._"
+                                  "id": "version-v4/Arithmetic_operators_+_-_etc"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Logical_operators_AND_OR_NOT_XOR_"
+                                  "id": "version-v4/Logical_operators_AND_OR_NOT_XOR"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Comparison_operators_=_..._"
+                                  "id": "version-v4/Comparison_operators_=_etc"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Extremum_MAX_MIN_"
+                                  "id": "version-v4/Extremum_MAX_MIN"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/String_operators_+_CONCAT_SUBSTRING_"
+                                  "id": "version-v4/String_operators_+_CONCAT_SUBSTRING"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Structure_operations_STRUCT_"
+                                  "id": "version-v4/Structure_operators_STRUCT"
                                 },
                                 {
                                   "type": "doc",
@@ -151,21 +151,21 @@
                               "items": [
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Class_operations"
+                                  "id": "version-v4/Class_operators"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Classification_IS_AS_"
+                                  "id": "version-v4/Classification_IS_AS"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Property_signature_CLASS_"
+                                  "id": "version-v4/Property_signature_CLASS"
                                 }
                               ]
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE_"
+                              "id": "version-v4/Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE"
                             },
                             {
                               "collapsed": true,
@@ -178,19 +178,19 @@
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Grouping_GROUP_"
+                                  "id": "version-v4/Grouping_GROUP"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Partitioning_sorting_PARTITION_..._ORDER_"
+                                  "id": "version-v4/Partitioning_sorting_PARTITION_..._ORDER"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Recursion_RECURSION_"
+                                  "id": "version-v4/Recursion_RECURSION"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Distribution_UNGROUP_"
+                                  "id": "version-v4/Distribution_UNGROUP"
                                 }
                               ]
                             }
@@ -218,7 +218,7 @@
                           "items": [
                             {
                               "type": "doc",
-                              "id": "version-v4/Оperators"
+                              "id": "version-v4/Action_operators_paradigm"
                             },
                             {
                               "collapsed": true,
@@ -231,39 +231,39 @@
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Sequence_..._"
+                                  "id": "version-v4/Sequence"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Call_EXEC_"
+                                  "id": "version-v4/Call_EXEC"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Loop_FOR_"
+                                  "id": "version-v4/Loop_FOR"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Branching_CASE_IF_MULTI_"
+                                  "id": "version-v4/Branching_CASE_IF_MULTI"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Recursive_loop_WHILE_"
+                                  "id": "version-v4/Recursive_loop_WHILE"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Interruption_BREAK_"
+                                  "id": "version-v4/Interruption_BREAK"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Exit_RETURN_"
+                                  "id": "version-v4/Exit_RETURN"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/New_threads_NEWTHREAD_NEWEXECUTOR_"
+                                  "id": "version-v4/New_threads_NEWTHREAD_NEWEXECUTOR"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Exception_handling_TRY_"
+                                  "id": "version-v4/Exception_handling_TRY"
                                 }
                               ]
                             },
@@ -278,15 +278,15 @@
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Property_change_CHANGE_"
+                                  "id": "version-v4/Property_change_CHANGE"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/New_object_NEW_"
+                                  "id": "version-v4/New_object_NEW"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Class_change_CHANGECLASS_DELETE_"
+                                  "id": "version-v4/Class_change_CHANGECLASS_DELETE"
                                 }
                               ]
                             },
@@ -301,23 +301,23 @@
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Apply_changes_APPLY_"
+                                  "id": "version-v4/Apply_changes_APPLY"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Cancel_changes_CANCEL_"
+                                  "id": "version-v4/Cancel_changes_CANCEL"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/New_session_NEWSESSION_NESTEDSESSION_"
+                                  "id": "version-v4/New_session_NEWSESSION_NESTEDSESSION"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Previous_value_PREV_"
+                                  "id": "version-v4/Previous_value_PREV"
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Change_operators_SET_CHANGED_..._"
+                                  "id": "version-v4/Change_operators_SET_CHANGED_etc"
                                 }
                               ]
                             },
@@ -332,7 +332,7 @@
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Show_message_MESSAGE_ASK_"
+                                  "id": "version-v4/Show_message_MESSAGE_ASK"
                                 },
                                 {
                                   "collapsed": true,
@@ -345,25 +345,25 @@
                                     },
                                     {
                                       "type": "doc",
-                                      "id": "version-v4/Read_file_READ_"
+                                      "id": "version-v4/Read_file_READ"
                                     },
                                     {
                                       "type": "doc",
-                                      "id": "version-v4/Write_file_WRITE_"
+                                      "id": "version-v4/Write_file_WRITE"
                                     },
                                     {
                                       "type": "doc",
-                                      "id": "version-v4/Data_import_IMPORT_"
+                                      "id": "version-v4/Data_import_IMPORT"
                                     },
                                     {
                                       "type": "doc",
-                                      "id": "version-v4/Data_export_EXPORT_"
+                                      "id": "version-v4/Data_export_EXPORT"
                                     }
                                   ]
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "version-v4/Send_mail_EMAIL_"
+                                  "id": "version-v4/Send_mail_EMAIL"
                                 }
                               ]
                             }
@@ -513,11 +513,11 @@
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Primitive_input_INPUT_"
+                                          "id": "version-v4/Primitive_input_INPUT"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Value_request_REQUEST_"
+                                          "id": "version-v4/Value_request_REQUEST"
                                         }
                                       ]
                                     },
@@ -528,23 +528,23 @@
                                       "items": [
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Object_group_operations"
+                                          "id": "version-v4/Object_group_operators"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Search_SEEK_"
+                                          "id": "version-v4/Search_SEEK"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Filter_FILTER_"
+                                          "id": "version-v4/Filter_FILTER"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Order_ORDER_"
+                                          "id": "version-v4/Order_ORDER"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/View_VIEW_"
+                                          "id": "version-v4/View_VIEW"
                                         }
                                       ]
                                     },
@@ -555,15 +555,15 @@
                                       "items": [
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Focus_operations"
+                                          "id": "version-v4/Focus_operators"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Activation_ACTIVATE_"
+                                          "id": "version-v4/Activation_ACTIVATE"
                                         },
                                         {
                                           "type": "doc",
-                                          "id": "version-v4/Activity_ACTIVE_"
+                                          "id": "version-v4/Activity_ACTIVE"
                                         }
                                       ]
                                     }
@@ -614,15 +614,15 @@
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/In_an_interactive_view_SHOW_DIALOG_"
+                              "id": "version-v4/In_an_interactive_view_SHOW_DIALOG"
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/In_a_print_view_PRINT_"
+                              "id": "version-v4/In_a_print_view_PRINT"
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/In_a_structured_view_EXPORT_IMPORT_"
+                              "id": "version-v4/In_a_structured_view_EXPORT_IMPORT"
                             }
                           ]
                         }
@@ -753,7 +753,7 @@
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/Access_to_an_external_system_EXTERNAL_"
+                          "id": "version-v4/Access_to_an_external_system_EXTERNAL"
                         },
                         {
                           "collapsed": true,
@@ -762,21 +762,21 @@
                           "items": [
                             {
                               "type": "doc",
-                              "id": "version-v4/Access_to_an_internal_system_INTERNAL_FORMULA_"
+                              "id": "version-v4/Access_to_an_internal_system_INTERNAL_FORMULA"
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/Internal_call_INTERNAL_"
+                              "id": "version-v4/Internal_call_INTERNAL"
                             },
                             {
                               "type": "doc",
-                              "id": "version-v4/Custom_formula_FORMULA_"
+                              "id": "version-v4/Custom_formula_FORMULA"
                             }
                           ]
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/Eval_EVAL_"
+                          "id": "version-v4/Eval_EVAL"
                         }
                       ]
                     },
@@ -918,7 +918,7 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-v4/Instructions"
+                  "id": "version-v4/Statements"
                 },
                 {
                   "type": "doc",
@@ -931,7 +931,7 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-v4/Instruction_="
+                      "id": "version-v4/=_statement"
                     },
                     {
                       "collapsed": true,
@@ -963,7 +963,7 @@
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/Operator_"
+                          "id": "version-v4/Brackets_operator"
                         },
                         {
                           "type": "doc",
@@ -1092,7 +1092,7 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-v4/ACTION_instruction"
+                      "id": "version-v4/ACTION_statement"
                     },
                     {
                       "collapsed": true,
@@ -1101,15 +1101,15 @@
                       "items": [
                         {
                           "type": "doc",
-                          "id": "version-v4/Action_operator"
+                          "id": "version-v4/Action_operators"
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/Operator_..._"
+                          "id": "version-v4/Braces_operator"
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/ABSTRACT_operator_action_"
+                          "id": "version-v4/ABSTRACT_action_operator"
                         },
                         {
                           "type": "doc",
@@ -1141,7 +1141,7 @@
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/CASE_operator_action_"
+                          "id": "version-v4/CASE_action_operator"
                         },
                         {
                           "type": "doc",
@@ -1185,7 +1185,7 @@
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/IF_..._THEN_operator_action_"
+                          "id": "version-v4/IF_..._THEN_action_operator"
                         },
                         {
                           "type": "doc",
@@ -1201,7 +1201,7 @@
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/MULTI_operator_action_"
+                          "id": "version-v4/MULTI_action_operator"
                         },
                         {
                           "type": "doc",
@@ -1237,7 +1237,7 @@
                         },
                         {
                           "type": "doc",
-                          "id": "version-v4/RETURN"
+                          "id": "version-v4/RETURN_operator"
                         },
                         {
                           "type": "doc",
@@ -1269,7 +1269,7 @@
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/GROUP_instruction"
+                  "id": "version-v4/GROUP_statement"
                 },
                 {
                   "collapsed": true,
@@ -1278,7 +1278,7 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-v4/ON_instruction"
+                      "id": "version-v4/ON_statement"
                     },
                     {
                       "type": "doc",
@@ -1288,23 +1288,23 @@
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/WHEN_instruction"
+                  "id": "version-v4/WHEN_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/Instruction_-_WHEN"
+                  "id": "version-v4/lt-_WHEN_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/CONSTRAINT_instruction"
+                  "id": "version-v4/CONSTRAINT_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/Instruction=_"
+                  "id": "version-v4/=gt_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/CLASS_instruction"
+                  "id": "version-v4/CLASS_statement"
                 },
                 {
                   "collapsed": true,
@@ -1313,7 +1313,7 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-v4/FORM_instruction"
+                      "id": "version-v4/FORM_statement"
                     },
                     {
                       "type": "doc",
@@ -1335,59 +1335,59 @@
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/DESIGN_instruction"
+                  "id": "version-v4/DESIGN_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/NAVIGATOR_instruction"
+                  "id": "version-v4/NAVIGATOR_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/WINDOW_instruction"
+                  "id": "version-v4/WINDOW_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/EXTEND_CLASS_instruction"
+                  "id": "version-v4/EXTEND_CLASS_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/EXTEND_FORM_instruction"
+                  "id": "version-v4/EXTEND_FORM_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/Instruction_+="
+                  "id": "version-v4/+=_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/ACTION+_instruction"
+                  "id": "version-v4/ACTION+_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/META_instruction"
+                  "id": "version-v4/META_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/Instruction_"
+                  "id": "version-v4/commat_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/TABLE_instruction"
+                  "id": "version-v4/TABLE_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/INDEX_instruction"
+                  "id": "version-v4/INDEX_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/BEFORE_instruction"
+                  "id": "version-v4/BEFORE_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/AFTER_instruction"
+                  "id": "version-v4/AFTER_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "version-v4/Empty_instruction"
+                  "id": "version-v4/Empty_statement"
                 }
               ]
             },
