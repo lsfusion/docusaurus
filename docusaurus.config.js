@@ -9,9 +9,11 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'lsfusion', // Usually your GitHub org/user name.
   projectName: 'lsfusion.github.io', // Usually your repo name.
+  trailingSlash: false,
   themeConfig: {
     navbar: {
       title: '',
+//      hideOnScroll: true,
       logo: {
         alt: 'Logo',
         src: 'img/logo.png',
