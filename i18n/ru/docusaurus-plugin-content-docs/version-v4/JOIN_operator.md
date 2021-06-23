@@ -30,7 +30,7 @@ title: 'Оператор JOIN'
 
 - `propertyId`
 
-    [Идентификатор свойства](IDs.md#propertyid-broken). 
+    [Идентификатор свойства](IDs.md#propertyid). 
 
 - `expr1, ..., exprN`
 

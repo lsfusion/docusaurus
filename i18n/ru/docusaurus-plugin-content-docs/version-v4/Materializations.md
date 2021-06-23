@@ -8,7 +8,7 @@ title: 'Материализации'
 
 ### Язык
 
-Для материализации свойства используется [опция `MATERIALIZED`](Property_options.md#persistent-broken) в опциях свойств.
+Для материализации свойства используется [опция `MATERIALIZED`](Property_options.md#persistent) в опциях свойств.
 
 ### Примеры
 

@@ -35,7 +35,7 @@ If the value of the property to which the file is written belongs to the `FILE` 
 
 - `propertyId`
 
-    The [ID of the property](IDs.md#propertyid-broken) to which read data should be written. This property must not have parameters and its value must be of a file class (`FILE`, `RAWFILE`, `JSONFILE`, etc.). If this property is not specified, the `System.exportFile` property is used by default.
+    The [ID of the property](IDs.md#propertyid) to which read data should be written. This property must not have parameters and its value must be of a file class (`FILE`, `RAWFILE`, `JSONFILE`, etc.). If this property is not specified, the `System.exportFile` property is used by default.
 
 ### Examples
 

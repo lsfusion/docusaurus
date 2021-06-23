@@ -12,13 +12,15 @@ The *value request* operator creates an [action](Actions.md) in which *requestin
 
     When the user inserts a value into a property cell using the OS tools, the platform triggers a WYSIWYG event to change this property (`CHANGEWYS`), and calls the corresponding handler on the server. In this case, the value that the user inserted is pushed as the request value.
 
+<a className="lsdoc-anchor" id="defaultChange"/>
+
 - Change event (`CHANGEWYS` and `CHANGE`) [default handler](Form_events.md#default) for composition
 
     If a property being changed is created using the [composition](Composition_JOIN.md) operator with one argument (most often a name or ID), and change event handler is not explicitly defined for it, the platform automatically creates this handler as follows: 
 
     - CHANGE
 
-        The user is [requested](Form_events.md#queryValue-broken) an object of the property value class which is used as an argument, and this property value changes to the received object 
+        The user is [requested](Form_events.md#queryValue) an object of the property value class which is used as an argument, and this property value changes to the received object 
 
     - CHANGEWYS
 

@@ -37,7 +37,7 @@ The `WHERE` block defines a condition under which an object collection will part
 
 - `propertyId`
 
-    [ID](IDs.md#propertyid-broken) of the distributed property. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the `BY` block. When calculating the values of group/partition expressions will be passed to this property as an input.
+    [ID](IDs.md#propertyid) of the distributed property. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the `BY` block. When calculating the values of group/partition expressions will be passed to this property as an input.
 
 - `groupExpr1, ..., groupExprM`  
 
@@ -61,7 +61,7 @@ The `WHERE` block defines a condition under which an object collection will part
 
             - `digits`
 
-                [Integer literal](Literals.md#intliteral-broken) specifying the number of decimal places. 
+                [Integer literal](Literals.md#intliteral) specifying the number of decimal places. 
 
     - `LIMIT`
 
@@ -73,7 +73,7 @@ The `WHERE` block defines a condition under which an object collection will part
 
 - `exPropertyId`
 
-    [ID](IDs.md#propertyid-broken) of the property that defines a proportion for `PROPORTION` type distributions, and defines limits for `LIMIT` type distributions. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the `BY` block. 
+    [ID](IDs.md#propertyid) of the property that defines a proportion for `PROPORTION` type distributions, and defines limits for `LIMIT` type distributions. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the `BY` block. 
 
 - `exGroupExpr1, ..., exGroupExprM`  
 

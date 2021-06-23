@@ -17,11 +17,11 @@ The `ACTION+` statement adds an implementation to an abstract action. The syntax
 
 - `actionId`  
 
-    [ID](IDs.md#propertyid-broken) of the abstract action. 
+    [ID](IDs.md#propertyid) of the abstract action. 
 
 - `param1, ..., paramN`
 
-    List of parameters that will be used to define the implementation. Each element is a [typed parameter](IDs.md#paramid-broken). The number of these parameters must be equal to the number of parameters of the abstract action. These parameters can then be used in the implementation operator of the abstract property and in the selection condition expression of this implementation.
+    List of parameters that will be used to define the implementation. Each element is a [typed parameter](IDs.md#paramid). The number of these parameters must be equal to the number of parameters of the abstract action. These parameters can then be used in the implementation operator of the abstract property and in the selection condition expression of this implementation.
 
 - `implAction`
 

@@ -40,9 +40,11 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
 ### Parameters
 
+<a className="lsdoc-anchor" id="groupName"/>
+
 - `groupName`
 
-    Name of an object group. [Simple ID](IDs.md#id-broken). Must be specified if you need to access an object group consisting of several objects. If an object group consists of a single object, the name of the object group will be equal to the name of the object and doesn't need to be specified.
+    Name of an object group. [Simple ID](IDs.md#id). Must be specified if you need to access an object group consisting of several objects. If an object group consists of a single object, the name of the object group will be equal to the name of the object and doesn't need to be specified.
 
 - `name`
 
@@ -50,11 +52,11 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
 - `classId`
 
-    [Object class ID](IDs.md#classid-broken). 
+    [Object class ID](IDs.md#classid). 
 
 - `caption`
 
-    Caption of the object being added. [String literal](Literals.md#strliteral-broken). If the caption is not specified, the class caption will become the object caption.
+    Caption of the object being added. [String literal](Literals.md#strliteral). If the caption is not specified, the class caption will become the object caption.
 
 - `ON CHANGE actionName(param1, ..., paramM) | { actionOperator }`
 
@@ -62,11 +64,11 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
     - `actionID`
 
-        [Action ID](IDs.md#propertyid-broken).
+        [Action ID](IDs.md#propertyid).
 
     - `param1, ..., paramM`
     
-        A list of object names on the form that will be used as action parameters. The number of these objects must be equal to the number of action parameters. The name of the object is defined with a [simple ID](IDs.md#id-broken).
+        A list of object names on the form that will be used as action parameters. The number of these objects must be equal to the number of action parameters. The name of the object is defined with a [simple ID](IDs.md#id).
 
     - `actionOperator`
 
@@ -88,7 +90,7 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
     - `pageSize`
 
-        Number of objects read. [Integer literal](Literals.md#intliteral-broken).
+        Number of objects read. [Integer literal](Literals.md#intliteral).
 
 - `AFTER` groupName
 - `BEFORE` groupName
@@ -97,7 +99,7 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
     - `groupName`
 
-        [Object group name](#groupName-broken). 
+        [Object group name](#groupName). 
 
 - `defaultObjectsType`
 
@@ -115,7 +117,7 @@ A single `OBJECTS` block can contain several comma-delimited declarations of [ob
 
     - `propertyGroup`
     
-        The property group name. [Composite ID](IDs.md#cid-broken).
+        The property group name. [Composite ID](IDs.md#cid).
 
 - `EXTID extID`
 
@@ -193,17 +195,19 @@ The `treeOptions` options set may be specified after the declaration of each obj
 
 *Object tree block* lets you create an [object tree](Interactive_view.md#tree). The first specified object group will form a list of top-level objects, each of which will have a child list of objects of the second specified object group and so  on.
 
-Use the `PARENT` block to create [hierarchical object groups](Interactive_view.md#treegroup-broken). To do that, specify a property that will define the parent element for an object (or several objects if an object group contains several ones).
+Use the `PARENT` block to create [hierarchical object groups](Interactive_view.md#treegroup). To do that, specify a property that will define the parent element for an object (or several objects if an object group contains several ones).
 
 ### Parameters
 
+<a className="lsdoc-anchor" id="treeName"/>
+
 - `name`
 
-    The name of the object tree being created. [Simple ID](IDs.md#id-broken). 
+    The name of the object tree being created. [Simple ID](IDs.md#id). 
 
 - `propertyId`
 
-    [ID of the property](IDs.md#propertyid-broken) defining the hierarchy for an object group consisting of a single object. The specified property must have a single parameter and return the parent object of the passed object as its value (or `NULL`  if the passed object is the top one).
+    [ID of the property](IDs.md#propertyid) defining the hierarchy for an object group consisting of a single object. The specified property must have a single parameter and return the parent object of the passed object as its value (or `NULL`  if the passed object is the top one).
 
 - `propertyId1, ..., propertyIdK`
 
@@ -218,7 +222,7 @@ Use the `PARENT` block to create [hierarchical object groups](Interactive_view.m
 
 - `groupName`
 
-    [Object group name](#groupName-broken). 
+    [Object group name](#groupName). 
 
 ### Examples
 

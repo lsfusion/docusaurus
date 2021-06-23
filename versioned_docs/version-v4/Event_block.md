@@ -38,11 +38,11 @@ The event block allows to define handlers for [form events](Form_events.md) that
 
 - `eventActionId`
 
-    The [ID of the action](IDs.md#propertyid-broken), that will be the event handler.
+    The [ID of the action](IDs.md#propertyid), that will be the event handler.
 
 - `param1, ..., paramK`
 
-    List of action parameters. Each parameter is specified with the object name on the form. The object name, in turn, is specified with a [simple ID](IDs.md#id-broken).
+    List of action parameters. Each parameter is specified with the object name on the form. The object name, in turn, is specified with a [simple ID](IDs.md#id).
 
 - `actionOperator`
 

@@ -37,7 +37,7 @@ EXTEND FORM orderForm
 
 ### Lexeme concatenation  {#concat}
 
-Simply substituting an ID for a metacode parameter is often not enough. For example, when creating a large number of new [system elements](Element_identification.md) inside the metacode, you must be able to specify these new names. Passing all the names as metacode parameters can be inconvenient. For this reason the metacode contains the special operation `##`, which operates at the [tokens](Tokens.md) level. This operation can concatenate two adjacent lexemes into one. If one of the concatenated lexemes is a [string literal](Literals.md#strliteral-broken), the concatenation will result in a single string literal.
+Simply substituting an ID for a metacode parameter is often not enough. For example, when creating a large number of new [system elements](Element_identification.md) inside the metacode, you must be able to specify these new names. Passing all the names as metacode parameters can be inconvenient. For this reason the metacode contains the special operation `##`, which operates at the [tokens](Tokens.md) level. This operation can concatenate two adjacent lexemes into one. If one of the concatenated lexemes is a [string literal](Literals.md#strliteral), the concatenation will result in a single string literal.
 
 ```lsf
 META objectProperties(object, caption)

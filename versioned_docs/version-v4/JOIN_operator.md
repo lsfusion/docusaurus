@@ -30,7 +30,7 @@ Formally, the `JOIN` operator is also responsible for such constructions as `pro
 
 - `propertyId`
 
-    [Property ID](IDs.md#propertyid-broken). 
+    [Property ID](IDs.md#propertyid). 
 
 - `expr1, ..., exprN`
 

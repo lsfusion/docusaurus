@@ -16,11 +16,11 @@ The `GROUP` statement declares a new property group and adds it to the current [
 
 - `name`
 
-    Group name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+    Group name. [Simple ID](IDs.md#id). The name must be unique within the current [namespace](Naming.md#namespace).
 
 - `caption`
 
-    Group caption. [String literal](Literals.md#strliteral-broken). If the caption is not defined, the name of the group will be its caption.  
+    Group caption. [String literal](Literals.md#strliteral). If the caption is not defined, the name of the group will be its caption.  
 
 - `EXTID extID`
 
@@ -32,7 +32,7 @@ The `GROUP` statement declares a new property group and adds it to the current [
 
 - `parentName`
 
-    Name of the parent group. [Сomposite ID](IDs.md#cid-broken). If the name of the parent group is not defined, the `System.private` group becomes the parent.  
+    Name of the parent group. [Сomposite ID](IDs.md#cid). If the name of the parent group is not defined, the `System.private` group becomes the parent.  
 
 ### Examples
 

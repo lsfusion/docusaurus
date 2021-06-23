@@ -16,7 +16,7 @@ title: 'Оператор EXEC'
 
 - `actionId`
 
-    [Идентификатор действия](IDs.md#propertyid-broken). 
+    [Идентификатор действия](IDs.md#propertyid). 
 
 - `expression1, ..., expressionN`
 

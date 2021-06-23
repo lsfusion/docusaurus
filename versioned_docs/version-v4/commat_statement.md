@@ -16,11 +16,11 @@ The `@` statement generates code obtained from the metacode with the name `name`
 
 - `name`
 
-    The name of the metacode used. [Composite ID](IDs.md#cid-broken).  
+    The name of the metacode used. [Composite ID](IDs.md#cid).  
 
 - `param1, ..., paramN`
 
-    The list of statement parameters that will be substituted for the parameters of the metacode used. The parameters can be a [composite ID](IDs.md#cid-broken), a [class ID](IDs.md#classid-broken), a [literal](Literals.md) or the *empty parameter* when nothing is passed as a parameter.
+    The list of statement parameters that will be substituted for the parameters of the metacode used. The parameters can be a [composite ID](IDs.md#cid), a [class ID](IDs.md#classid), a [literal](Literals.md) or the *empty parameter* when nothing is passed as a parameter.
 
 ### Examples
 

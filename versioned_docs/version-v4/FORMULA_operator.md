@@ -35,7 +35,7 @@ This property operator cannot be used inside [expressions](Expression.md).
 
 -   `text1, ..., textN`
 
-    [String literals](IDs.md#strliteral-broken), each of which contains a formula in SQL syntax. The notation `$1`, `$2` etc. is used to pass property parameters to the formula, where the number denotes the property parameter number. Parameter numbers start from `1`. The number of parameters in the created property will be equal to the maximum parameter number specified in the description of the formula.
+    [String literals](IDs.md#strliteral), each of which contains a formula in SQL syntax. The notation `$1`, `$2` etc. is used to pass property parameters to the formula, where the number denotes the property parameter number. Parameter numbers start from `1`. The number of parameters in the created property will be equal to the maximum parameter number specified in the description of the formula.
 
 ### Examples
 

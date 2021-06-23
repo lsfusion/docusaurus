@@ -33,7 +33,7 @@ The `SHOW` operator creates an action that opens the specified form. When openin
 
 - `name`
 
-    Form name. [Composite ID](IDs.md#cid-broken).
+    Form name. [Composite ID](IDs.md#cid).
 
 - `classFormType`
 
@@ -44,11 +44,11 @@ The `SHOW` operator creates an action that opens the specified form. When openin
 
 - `className`
 
-    The name of the user class whose list/edit form is to be opened. [Composite ID](IDs.md#cid-broken)
+    The name of the user class whose list/edit form is to be opened. [Composite ID](IDs.md#cid)
 
 - `objName1 ... objNameN`
 
-    Names of form objects for which initial values are specified. [Simple IDs](IDs.md#id-broken).
+    Names of form objects for which initial values are specified. [Simple IDs](IDs.md#id).
 
 - `expr, expr1 ... exprN`
 

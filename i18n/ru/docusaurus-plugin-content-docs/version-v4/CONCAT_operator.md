@@ -16,7 +16,7 @@ title: 'Оператор CONCAT'
 
 - `separatorString`
 
-    [Строковый литерал](Literals.md#strliteral-broken), который будет использован как разделитель.
+    [Строковый литерал](Literals.md#strliteral), который будет использован как разделитель.
 
 - `concatExpr1, ..., concatExprN`
 

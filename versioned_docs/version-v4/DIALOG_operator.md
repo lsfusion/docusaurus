@@ -39,7 +39,7 @@ The `DIALOG` operator creates an action that opens the specified form. When open
 
 - `name`
 
-    Form name. [Composite ID](IDs.md#cid-broken).
+    Form name. [Composite ID](IDs.md#cid).
 
 - `classFormType`
 
@@ -50,11 +50,11 @@ The `DIALOG` operator creates an action that opens the specified form. When open
 
 - `className`
 
-    The name of the custom class for which a list/edit form should be opened. [Composite ID](IDs.md#cid-broken).
+    The name of the custom class for which a list/edit form should be opened. [Composite ID](IDs.md#cid).
 
 - `objName1 ... objNameN`
 
-    Names of form objects for which initial values are specified. [Simple IDs](IDs.md#id-broken).
+    Names of form objects for which initial values are specified. [Simple IDs](IDs.md#id).
 
 - `expr1 ... exprN`
 
@@ -72,7 +72,7 @@ The `DIALOG` operator creates an action that opens the specified form. When open
 
 - `alias`
 
-    The name of the local parameter to which the input result is written. [Simple ID](IDs.md#id-broken). If the name is not specified, then the name of the form object will be used as the parameter name.
+    The name of the local parameter to which the input result is written. [Simple ID](IDs.md#id). If the name is not specified, then the name of the form object will be used as the parameter name.
 
 - `CHANGE`
 

@@ -24,11 +24,11 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `name`
 
-    Form name. [Composite ID](IDs.md#cid-broken).
+    Form name. [Composite ID](IDs.md#cid).
 
 - `objName1 ... objNameN`
 
-    Names of form objects for which additional filters are specified. [Simple IDs](IDs.md#id-broken).
+    Names of form objects for which additional filters are specified. [Simple IDs](IDs.md#id).
 
 - `expr1 ... exprN`
 
@@ -48,7 +48,7 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `sheetProperty`
 
-    The [ID of the property](IDs.md#propertyid-broken) whose value is used as the name of the sheet in the exported file. The property must not have parameters. It is used for `XLS` and `XLSX` print formats.
+    The [ID of the property](IDs.md#propertyid) whose value is used as the name of the sheet in the exported file. The property must not have parameters. It is used for `XLS` and `XLSX` print formats.
 
 - `passwordExpr`
 
@@ -56,7 +56,7 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `propertyId`
 
-    [Property ID](IDs.md#propertyid-broken) to which the generated file will be written. The property must not have parameters. If a property is not specified, the generated file is sent to the client and opened by the operating system
+    [Property ID](IDs.md#propertyid) to which the generated file will be written. The property must not have parameters. If a property is not specified, the generated file is sent to the client and opened by the operating system
 
 - `PREVIEW`
 
@@ -76,7 +76,7 @@ The `PRINT` operator creates an action that prints the specified form. When prin
 
 - `TOP n`
 
-    Displays only the first `n` entries. [Integer literal](Literals.md#intliteral-broken).
+    Displays only the first `n` entries. [Integer literal](Literals.md#intliteral).
 
 - `syncType`
 

@@ -49,7 +49,7 @@ The `ABSTRACT` operator cannot be used inside the [`{...}` operator](Braces_oper
 
 - `argClassName1, ..., argClassNameN`
 
-    List of class names of property arguments. Each name is defined by a [class ID](IDs.md#classid-broken).
+    List of class names of property arguments. Each name is defined by a [class ID](IDs.md#classid).
 
 ### Examples
 

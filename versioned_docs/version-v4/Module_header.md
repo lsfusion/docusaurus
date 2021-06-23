@@ -28,7 +28,7 @@ The `NAMESPACE` statement defines the module's namespace.
 
 - `name`
 
-    The name of the module. [Simple ID](IDs.md#id-broken). Module names cannot contain an underscore.
+    The name of the module. [Simple ID](IDs.md#id). Module names cannot contain an underscore.
 
 - `moduleName1, ..., moduleNameN`
 

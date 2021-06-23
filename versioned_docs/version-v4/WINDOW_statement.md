@@ -29,11 +29,11 @@ The `WINDOW` statement declares a new window and adds it to the current [module]
 
 - `name`
 
-    Window name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+    Window name. [Simple ID](IDs.md#id). The name must be unique within the current [namespace](Naming.md#namespace).
 
 - `caption`
 
-    Window caption. [String literal](Literals.md#strliteral-broken). If caption is not specified, the caption of the window will be its name.  
+    Window caption. [String literal](Literals.md#strliteral). If caption is not specified, the caption of the window will be its name.  
 
 - `type`
 
@@ -63,7 +63,7 @@ The `WINDOW` statement declares a new window and adds it to the current [module]
 
         - `x`
 
-            The left window coordinate. [Integer literal](Literals.md#intliteral-broken) ranging from `0` to `100`.
+            The left window coordinate. [Integer literal](Literals.md#intliteral) ranging from `0` to `100`.
 
         - `y`
 

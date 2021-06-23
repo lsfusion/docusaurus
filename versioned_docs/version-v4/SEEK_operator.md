@@ -44,7 +44,7 @@ Also, in the second form of the operator (when a group of objects is specified) 
 
 - `formObjectId`
 
-    Global [form object ID](IDs.md#groupobjectid-broken) for which the required value is specified.
+    Global [form object ID](IDs.md#groupobjectid) for which the required value is specified.
 
 - `expr`
 
@@ -52,11 +52,11 @@ Also, in the second form of the operator (when a group of objects is specified) 
 
 - `formGroupObjectId`
 
-    A global [ID for an object group](IDs.md#groupobjectid-broken) for whose objects required values are specified.
+    A global [ID for an object group](IDs.md#groupobjectid) for whose objects required values are specified.
 
 - `formObject1 ...  formObjectK`
 
-    List of form object names. May contain only a part of the objects of the specified object group. An object name is defined by a [simple ID](IDs.md#id-broken).
+    List of form object names. May contain only a part of the objects of the specified object group. An object name is defined by a [simple ID](IDs.md#id).
 
 - `expr1 ... exprk`
 

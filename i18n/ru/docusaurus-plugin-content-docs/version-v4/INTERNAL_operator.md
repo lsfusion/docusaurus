@@ -21,11 +21,11 @@ title: 'Оператор INTERNAL'
 
 - `className`
 
-    Полное имя java-класса (fully qualified name). [Строковый литерал](Literals.md#strliteral-broken).
+    Полное имя java-класса (fully qualified name). [Строковый литерал](Literals.md#strliteral).
 
 - `classId1, ..., classIdN`
 
-    Список [идентификаторов классов](IDs.md#classid-broken) аргументов действия. Если не указывается, то создаваемое действие будет иметь ноль параметров.
+    Список [идентификаторов классов](IDs.md#classid) аргументов действия. Если не указывается, то создаваемое действие будет иметь ноль параметров.
 
 - `NULL`
 

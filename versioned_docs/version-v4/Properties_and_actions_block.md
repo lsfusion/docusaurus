@@ -50,6 +50,8 @@ Each `formPropertyOptions` specifies options for the property or action being ad
 
 One `PROPERTIES` block adds properties and actions to the form structure. To add a property (action), specify its ID and the [form objects](Form_structure.md#objects) whose values will be passed to this property (action) as arguments. Sometimes it’s convenient to list these form objects for the entire `PROPERTIES` block. To do this, specify the block of *common parameters*. In this case, when adding a property (action), you only need to specify its ID, while the common parameters will be passed as arguments.
 
+<a className="lsdoc-anchor" id="name"/>
+
 Each property (action) being added to the form structure must have a *unique name within the form*. This name may be specified either explicitly or based on the name of the property and the passed parameters, i.e. names of objects separated by commas. 
 
     FORM order
@@ -66,15 +68,15 @@ In all [expressions](Expression.md) and [context-dependent action operators](Act
 
 - `cparam1, ..., cparamN`
 
-    List of common parameters of the block. Each parameter is specified with the name of the object on the form. If this list is defined, then adding a property (action) will require that you specify only its ID without parameters. The object name is specified with [simple ID](IDs.md#id-broken).
+    List of common parameters of the block. Each parameter is specified with the name of the object on the form. If this list is defined, then adding a property (action) will require that you specify only its ID without parameters. The object name is specified with [simple ID](IDs.md#id).
 
 - `alias`
 
-    The name of the property or action being added to the form. [Simple ID](IDs.md#id-broken). If the name is not specified, then the name of the property (action) on the form will be the same as the property's name itself (but without the namespace and signature) with parameters, i.e. names of the objects separated by commas and enclosed in brackets. 
+    The name of the property or action being added to the form. [Simple ID](IDs.md#id). If the name is not specified, then the name of the property (action) on the form will be the same as the property's name itself (but without the namespace and signature) with parameters, i.e. names of the objects separated by commas and enclosed in brackets. 
 
 - `caption`
 
-    The caption of the property or action being added to the form. [String literal](Literals.md#strliteral-broken). If the caption is not specified, then the caption of the property (action) itself will be used on the form.
+    The caption of the property or action being added to the form. [String literal](Literals.md#strliteral). If the caption is not specified, then the caption of the property (action) itself will be used on the form.
 
 
 :::info
@@ -83,7 +85,7 @@ In the current platform implementation, if the name and caption are not specifie
 
 - `formPropertyId`
 
-    [ID of the property or action](IDs.md#propertyid-broken) being added to the form structure.
+    [ID of the property or action](IDs.md#propertyid) being added to the form structure.
     
     Alternatively, you may use [object operators](Interactive_view.md#objectoperators) instead of the property/action IDs:
 
@@ -101,7 +103,7 @@ In the current platform implementation, if the name and caption are not specifie
 
 - `param1, ..., paramNk`
 
-    List of parameters of the added properties or actions. Each parameter is specified with the name of the object on the form. The number of specified parameters must match the number of parameters for the property or action being added. Not specified if the common parameters block is specified. The object name, in turn, is specified with a [simple ID](IDs.md#id-broken).
+    List of parameters of the added properties or actions. Each parameter is specified with the name of the object on the form. The number of specified parameters must match the number of parameters for the property or action being added. Not specified if the common parameters block is specified. The object name, in turn, is specified with a [simple ID](IDs.md#id).
 
 - `formPropertyExpression`
 
@@ -175,11 +177,11 @@ In the current platform implementation, if the name and caption are not specifie
 
     - `groupid`
 
-        Column group ID. [String literal](Literals.md#strliteral-broken). If the `COLUMNS` option is specified for several properties (actions) being added with the same set of object groups, then by default the columns of the first property (action) will be added, followed by the columns of the second property (action), and so on. To group columns of different properties (actions) by values of the upper objects, you can set for them the same string ID of the group of columns. In this case, the columns for different properties (actions) will alternate. 
+        Column group ID. [String literal](Literals.md#strliteral). If the `COLUMNS` option is specified for several properties (actions) being added with the same set of object groups, then by default the columns of the first property (action) will be added, followed by the columns of the second property (action), and so on. To group columns of different properties (actions) by values of the upper objects, you can set for them the same string ID of the group of columns. In this case, the columns for different properties (actions) will alternate. 
 
     - `groupName1, ..., groupNameM`
 
-        List of the names of the upper object groups. Each name is defined [by a simple ID](IDs.md#id-broken).
+        List of the names of the upper object groups. Each name is defined [by a simple ID](IDs.md#id).
 
 - `DRAW groupObjectName`
 
@@ -187,7 +189,7 @@ In the current platform implementation, if the name and caption are not specifie
 
     - `groupObjectName`
 
-        Name of an object group. [Simple ID](IDs.md#id-broken).
+        Name of an object group. [Simple ID](IDs.md#id).
 
 - `viewType`
 
@@ -209,7 +211,7 @@ In the current platform implementation, if the name and caption are not specifie
 
     - `formPropertyName`
 
-        [Property/action name on the form](#name-broken).
+        [Property/action name on the form](#name).
 
 - `QUICKFILTER formPropertyName`
 
@@ -217,7 +219,7 @@ In the current platform implementation, if the name and caption are not specifie
 
     - `formPropertyName`
 
-        [Property name/actions on the form](#name-broken).
+        [Property name/actions on the form](#name).
 
 - `ON eventType actionId(param1, ..., paramZ) | { actionOperator }`
 
@@ -235,11 +237,11 @@ In the current platform implementation, if the name and caption are not specifie
 
             - `caption`
 
-                Caption of the item in the context menu. [String literal](Literals.md#strliteral-broken). If the caption is not specified explicitly, then it will be the same as the caption of the action called upon the event.
+                Caption of the item in the context menu. [String literal](Literals.md#strliteral). If the caption is not specified explicitly, then it will be the same as the caption of the action called upon the event.
 
     - `actionId`
 
-        [Action ID](IDs.md#propertyid-broken).
+        [Action ID](IDs.md#propertyid).
 
     - `param1, ..., paramZ`
 
@@ -270,7 +272,7 @@ In the current platform implementation, if the name and caption are not specifie
 
     - `propertyGroup`
     
-        The property group name. [Composite ID](IDs.md#cid-broken).
+        The property group name. [Composite ID](IDs.md#cid).
 
 
 ### Examples

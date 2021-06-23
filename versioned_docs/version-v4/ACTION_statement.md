@@ -22,15 +22,15 @@ Also, when declaring an action, a set of its options can be specified.
 
 - `name`
 
-    Action name. [Simple ID](IDs.md#id-broken).
+    Action name. [Simple ID](IDs.md#id).
 
 - `caption`
 
-    Action caption. [String literal](Literals.md#strliteral-broken). If no caption is defined, the action name will be its caption.  
+    Action caption. [String literal](Literals.md#strliteral). If no caption is defined, the action name will be its caption.  
 
 - `param1, ..., paramN`
 
-    List of parameters. Each of them is defined by a [typed parameter](IDs.md#paramid-broken) These parameters can be later used in the action operator describing the action being created (as well as in some options).
+    List of parameters. Each of them is defined by a [typed parameter](IDs.md#paramid) These parameters can be later used in the action operator describing the action being created (as well as in some options).
 
     If parameters are not defined explicitly, they will be automatically calculated when the operator is processed. The order of the parameters will match the order of their appearance in the operator. It is recommended to explicitly define action parameters. This will help find typos and other errors in the declaration (for example, a mismatch of the number of defined parameters with the number of parameters of the created action).
 

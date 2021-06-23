@@ -83,4 +83,4 @@ To avoid name collision, as well as for better readability, it is recommended th
 
 ### Language
 
-Elements are named using [simple IDs](IDs.md#id-broken).
+Elements are named using [simple IDs](IDs.md#id).

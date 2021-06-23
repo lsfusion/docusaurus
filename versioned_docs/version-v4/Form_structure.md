@@ -34,7 +34,7 @@ The behavior of properties and actions in the context of their display on the fo
   
 #### Display group {#drawgroup}
 
-Each property is displayed exactly in one of the object groups on the form (this group shall be called a *display group* of this property). By default, the display group is the last group for the set of objects which this property receives as an input. If necessary, the developer can specify the display group explicitly (with certain [constraints](Structured_view.md#drawgroup-broken) when used in a structured view)
+Each property is displayed exactly in one of the object groups on the form (this group shall be called a *display group* of this property). By default, the display group is the last group for the set of objects which this property receives as an input. If necessary, the developer can specify the display group explicitly (with certain [constraints](Structured_view.md#drawgroup) when used in a structured view)
 
 #### Groups-in-columns {#groupcolumns}
 

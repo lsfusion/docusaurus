@@ -51,7 +51,7 @@ title: 'Оператор ABSTRACT'
 
 - `returnClassName`
 
-    Класс возвращаемого значение свойства. [Идентификатор класса](IDs.md#classid-broken).
+    Класс возвращаемого значение свойства. [Идентификатор класса](IDs.md#classid).
 
 - `argClassName1, ..., argClassNameN`
 

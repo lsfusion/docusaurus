@@ -24,7 +24,7 @@ The `ORDER` operator creates a property which value determines the relative orde
 
 - `groupObjectId`
 
-    Global [object group ID](IDs.md#groupobjectid-broken).
+    Global [object group ID](IDs.md#groupobjectid).
 
 ### Examples
 
