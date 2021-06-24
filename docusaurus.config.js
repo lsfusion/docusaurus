@@ -126,9 +126,9 @@ module.exports = {
                    permalink,
                  }) {
                    if (version == 'current') {
-                     return `https://github.com/danchanka/platform/edit/master/docs/${locale}/${docPath}`;
+                     return `https://github.com/lsfusion/platform/edit/master/docs/${locale}/${docPath}`;
                    } else {
-                     return `https://github.com/danchanka/platform/edit/${version}/docs/${locale}/${docPath}`;
+                     return `https://github.com/lsfusion/platform/edit/${version}/docs/${locale}/${docPath}`;
                    } 
                  },
           editLocalizedFiles: true,
@@ -148,7 +148,7 @@ module.exports = {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/danchanka/platform/edit/master/blog/',
+            'https://github.com/lsfusion/platform/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
