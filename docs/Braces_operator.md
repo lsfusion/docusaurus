@@ -33,11 +33,11 @@ A sequence of [action operators](Action_operators.md) and `LOCAL` operators encl
 
 - `name1, ..., nameN`
 
-    A list of names of the local properties being created. The names are defined by [simple ID's](IDs.md#id-broken).
+    A list of names of the local properties being created. The names are defined by [simple ID's](IDs.md#id).
 
 - `returnClass`
 
-    The [class ID](IDs.md#classid-broken) of the returned value of the local property. 
+    The [class ID](IDs.md#classid) of the returned value of the local property. 
 
 - `argumentClass1, ..., argumentClassN`
 

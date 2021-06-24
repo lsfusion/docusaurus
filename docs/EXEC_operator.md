@@ -16,7 +16,7 @@ The `EXEC` operator creates an action that executes another action, passing it t
 
 - `actionId`
 
-    [Action ID](IDs.md#propertyid-broken). 
+    [Action ID](IDs.md#propertyid). 
 
 - `expression1, ..., expressionN`
 

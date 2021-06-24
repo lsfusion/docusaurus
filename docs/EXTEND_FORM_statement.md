@@ -20,7 +20,7 @@ The `EXTEND FORM` statement allows you to extend an existing form with additiona
 
 - `formName`
 
-    The name of the form being extended. [Composite ID](IDs.md#cid-broken).
+    The name of the form being extended. [Composite ID](IDs.md#cid).
 
 - `formBlock1 ... formBlockN`
 

@@ -16,7 +16,7 @@ The `DELETE` operator creates an action that deletes objects for which a certain
 
 - `expr`
 
-    An [expression](Expression.md) or [typed parameter](IDs.md#paramid-broken). You can either use an already declared parameter as a typed parameter, or declare a new local parameter. When using an expression, new local parameters cannot be added.
+    An [expression](Expression.md) or [typed parameter](IDs.md#paramid). You can either use an already declared parameter as a typed parameter, or declare a new local parameter. When using an expression, new local parameters cannot be added.
 
 - `whereExpr`
 

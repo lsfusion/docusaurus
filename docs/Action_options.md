@@ -28,7 +28,7 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `groupName`
     
-        A group name. [Composite ID](IDs.md#cid-broken).
+        A group name. [Composite ID](IDs.md#cid).
 
 ### Interactive view block
 
@@ -54,7 +54,7 @@ The following set of options is supported (the syntax of each option is indicate
         - `CHANGEWYS` - occurs when the user tries to change the value of the specified property using a special input mechanism. You can read more in the description of the [form events](Form_events.md) 
         - `GROUPCHANGE` - occurs when the user tries to change the property value for all objects in the table (group editing)
         - `EDIT` - occurs when the user tries to edit the object that is the value of the specified property
-        - `CONTEXTMENU [caption]` - the user has selected the specified item in the property context menu on the form. If necessary, you can also define the caption of this menu item ([string literal](Literals.md#strliteral-broken)). If it is not specified, then, by default, it will be the same as the action caption.
+        - `CONTEXTMENU [caption]` - the user has selected the specified item in the property context menu on the form. If necessary, you can also define the caption of this menu item ([string literal](Literals.md#strliteral)). If it is not specified, then, by default, it will be the same as the action caption.
 
     - `actionOperator`
 
@@ -70,7 +70,7 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `propertyId`
 
-        An [ID of the property or action](IDs.md#propertyid-broken) for which the created action will be executed when the specified form event occurs.
+        An [ID of the property or action](IDs.md#propertyid) for which the created action will be executed when the specified form event occurs.
 
     - `ACTION`
 
@@ -82,17 +82,17 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `path`
      
-        The relative path to the file. [String literal](Literals.md#strliteral-broken). The path is specified relative to the `images` folder.
+        The relative path to the file. [String literal](Literals.md#strliteral). The path is specified relative to the `images` folder.
 
 ### `DESIGN` statement default values block
 
 - `CHANGEKEY key [SHOW | HIDE]`
 
-    Specifies a [keyboard shortcut](Form_events.md#keyboard-broken) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [`DESIGN` statement](DESIGN_statement.md).
+    Specifies a [keyboard shortcut](Form_events.md#keyboard) which triggers this action. Sets the value for the [default design](Form_design.md#defaultDesign) and can be overridden in the [`DESIGN` statement](DESIGN_statement.md).
 
     - `key`
      
-        [String literal](Literals.md#strliteral-broken) that defines a keyboard shortcut. The definition method is identical to that for a parameter in the Java class method [Keystroke.getKeystroke(String)](http://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html#getKeyStroke(java.lang.String)).
+        [String literal](Literals.md#strliteral) that defines a keyboard shortcut. The definition method is identical to that for a parameter in the Java class method [Keystroke.getKeystroke(String)](http://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html#getKeyStroke(java.lang.String)).
 
     - `SHOW`
     

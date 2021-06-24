@@ -8,7 +8,7 @@ A property can be materialized if and only if for it there is a finite number of
 
 ### Language
 
-To materialize a property, use the [`MATERIALIZED` option](Property_options.md#persistent-broken) in the property options.
+To materialize a property, use the [`MATERIALIZED` option](Property_options.md#persistent) in the property options.
 
 ### Examples
 

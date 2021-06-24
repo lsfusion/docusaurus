@@ -26,7 +26,7 @@ The `ASK` operator creates an action that asks the user for confirmation/asks th
 
 - `alias`
 
-    The name of the local parameter in which the user's response to the question will be written (Yes = `TRUE`, No = `NULL`). [Simple ID](IDs.md#id-broken).
+    The name of the local parameter in which the user's response to the question will be written (Yes = `TRUE`, No = `NULL`). [Simple ID](IDs.md#id).
 
 - `actionOperator`
 

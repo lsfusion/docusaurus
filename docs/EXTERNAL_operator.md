@@ -54,12 +54,12 @@ The `EXTERNAL` operator creates an action that makes a request to an external sy
 - `headersPropertyId`
 - `headersToPropertyId`
 
-    [Property ID](IDs.md#propertyid-broken) containing request headers. The property must have exactly one parameter: the name of the request's header. This parameter must belong to a string class. If the property is not specified, headers are ignored/not set.
+    [Property ID](IDs.md#propertyid) containing request headers. The property must have exactly one parameter: the name of the request's header. This parameter must belong to a string class. If the property is not specified, headers are ignored/not set.
 
 - `cookiesPropertyId`
 - `cookiesToPropertyId`
 
-    [Property ID](IDs.md#propertyid-broken) containing request cookies. The property must have exactly one parameter: the name of the cookie. This parameter must belong to a string class. If the property is not specified, cookies are ignored/not set.
+    [Property ID](IDs.md#propertyid) containing request cookies. The property must have exactly one parameter: the name of the cookie. This parameter must belong to a string class. If the property is not specified, cookies are ignored/not set.
 
 - `lsfExecType`
 

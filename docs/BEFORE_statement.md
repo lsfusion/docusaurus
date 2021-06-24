@@ -16,11 +16,11 @@ The `BEFORE` statement defines an action (let's call it an *aspect*) that will b
 
 - `action`
 
-    The [ID](IDs.md#propertyid-broken) of the action before which the aspect will be called.
+    The [ID](IDs.md#propertyid) of the action before which the aspect will be called.
 
 - `param1, ..., paramN`
 
-    List of action parameter names. Each name is defined [by a simple ID](IDs.md#id-broken). These parameters can be accessed while defining an aspect.
+    List of action parameter names. Each name is defined [by a simple ID](IDs.md#id). These parameters can be accessed while defining an aspect.
 
 - `aspectAction`
 

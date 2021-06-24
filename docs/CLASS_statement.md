@@ -26,11 +26,11 @@ The statement has two forms:  `CLASS ABSTRACT` for declaring an [abstract class]
 
 - `name`
 
-    Class name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+    Class name. [Simple ID](IDs.md#id). The name must be unique within the current [namespace](Naming.md#namespace).
 
 - `caption`
 
-    Class header. [String literal](Literals.md#strliteral-broken). If the caption is not defined, the name of the class will be its caption.  
+    Class header. [String literal](Literals.md#strliteral). If the caption is not defined, the name of the class will be its caption.  
 
 - `objectName1, ..., objectNameM`
 
@@ -42,7 +42,7 @@ The statement has two forms:  `CLASS ABSTRACT` for declaring an [abstract class]
 
 - `parent1, ..., parentN`
 
-    List of parent class names. Each name is defined by a [composite ID](IDs.md#cid-broken). If the list of parent classes is not specified, the class is inherited from the `System.Object` class.  
+    List of parent class names. Each name is defined by a [composite ID](IDs.md#cid). If the list of parent classes is not specified, the class is inherited from the `System.Object` class.  
 
 ### Examples
 

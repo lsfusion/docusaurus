@@ -25,7 +25,7 @@ The `CANCEL` operator creates an action that cancels changes in the current sess
 
 - `propertyId1, ..., propertyIdN`
 
-    List of local properties. Each list element is a [property ID](IDs.md#propertyid-broken). The local properties specified in the list will preserve their changes after the operator is executed.
+    List of local properties. Each list element is a [property ID](IDs.md#propertyid). The local properties specified in the list will preserve their changes after the operator is executed.
 
 ### Examples
 

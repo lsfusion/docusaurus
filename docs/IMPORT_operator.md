@@ -53,7 +53,7 @@ The first passed file is used to automatically determine a flat file format by i
 
 - `groupId1, ..., groupIdM`
 
-    Names of object groups of the imported form for which you want to import data. [Simple IDs](IDs.md#id-broken). Used only for importing a form from flat formats.
+    Names of object groups of the imported form for which you want to import data. [Simple IDs](IDs.md#id). Used only for importing a form from flat formats.
 
 - `fileExpr1, ..., fileExprM`
 
@@ -67,7 +67,7 @@ The first passed file is used to automatically determine a flat file format by i
 
 - `separator`
 
-    Delimiter in a **CSV** file. [String literal](Literals.md#strliteral-broken). If not specified, then the default delimiter is `;`.
+    Delimiter in a **CSV** file. [String literal](Literals.md#strliteral). If not specified, then the default delimiter is `;`.
 
 - `HEADER` | `NOHEADER`
 
@@ -114,19 +114,19 @@ The first passed file is used to automatically determine a flat file format by i
 
 - `formName`
 
-    The name of the form into which data has to be imported. [Composite ID](IDs.md#cid-broken).
+    The name of the form into which data has to be imported. [Composite ID](IDs.md#cid).
 
 - `objClassId1, ..., objClassIdK`
 
-    Classes of the [imported](Data_import_IMPORT.md#objects-broken) objects. Specified by [class IDs](IDs.md#classid-broken). `K <= 1`. By default, it is assumed that what is being imported is one object of class `INTEGER`.
+    Classes of the [imported](Data_import_IMPORT.md) objects. Specified by [class IDs](IDs.md#classid). `K <= 1`. By default, it is assumed that what is being imported is one object of class `INTEGER`.
 
 - `objAlias1, ..., objAliasK`
 
-    Names of local parameters into which imported objects are written. [Simple IDs](IDs.md#id-broken). `K <= 1`. By default, it is assumed that one object is being imported with the name `row`.
+    Names of local parameters into which imported objects are written. [Simple IDs](IDs.md#id). `K <= 1`. By default, it is assumed that one object is being imported with the name `row`.
 
 - `propertyId1, ..., propertyIdN`
 
-    List [property IDs](IDs.md#propertyid-broken) into which columns (fields) of data are imported. Property parameters and their classes must match the imported objects and their classes.
+    List [property IDs](IDs.md#propertyid) into which columns (fields) of data are imported. Property parameters and their classes must match the imported objects and their classes.
 
 - `columnId1, ..., columnIdN`
 

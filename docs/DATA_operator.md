@@ -26,7 +26,7 @@ This operator cannot be used in the [`JOIN` operator](JOIN_operator.md) (inside 
 
 - `returnClass`
 
-    [Class ID](IDs.md#classid-broken) of the return value of a property. 
+    [Class ID](IDs.md#classid) of the return value of a property. 
 
 - `argumentClass1, ..., argumentClassN`
 

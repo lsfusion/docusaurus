@@ -18,11 +18,11 @@ Only one calculated event can be defined for a property.
 
 - `propertyId`
 
-    [ID of the property](IDs.md#propertyid-broken) whose value will be changed when the event occurs.
+    [ID of the property](IDs.md#propertyid) whose value will be changed when the event occurs.
 
 - `param1, ..., paramN`
 
-    [Typed parameters](IDs.md#paramid-broken) properties whose value will be changed when the event occurs. The number of these parameters must be equal to the number of parameters of the property being changed.
+    [Typed parameters](IDs.md#paramid) properties whose value will be changed when the event occurs. The number of these parameters must be equal to the number of parameters of the property being changed.
 
 - `valueExpr`
 

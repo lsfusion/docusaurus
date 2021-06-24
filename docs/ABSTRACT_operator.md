@@ -51,7 +51,7 @@ The `ABSTRACT` operator cannot be used inside [expressions](Expression.md).
 
 - `returnClassName`
 
-    Class of the return value of the property. [Class ID](IDs.md#classid-broken).
+    Class of the return value of the property. [Class ID](IDs.md#classid).
 
 - `argClassName1, ..., argClassNameN`
 

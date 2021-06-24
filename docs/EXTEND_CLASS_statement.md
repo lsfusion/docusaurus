@@ -22,15 +22,15 @@ The `EXTEND CLASS` statement extends an existing [custom class](User_classes.md)
 
 - `name`
 
-    Class name. A [composite ID](IDs.md#cid-broken). 
+    Class name. A [composite ID](IDs.md#cid). 
 
 - `objectName1, ..., objectNameM`
 
-    Names of new static objects of the specified class. Each name is defined [by a simple ID](IDs.md#id-broken). Name values are stored in the `System.staticName` system property.
+    Names of new static objects of the specified class. Each name is defined [by a simple ID](IDs.md#id). Name values are stored in the `System.staticName` system property.
 
 - `objectCaption1, ..., objectCaptionM`
 
-    Captions of new static objects of the specified class. Each caption is a [string literal](IDs.md#strliteral-broken). If the caption is not defined, the name of the static object will be its caption. Caption values are stored in the `System.staticCaption` system property.
+    Captions of new static objects of the specified class. Each caption is a [string literal](IDs.md#strliteral). If the caption is not defined, the name of the static object will be its caption. Caption values are stored in the `System.staticCaption` system property.
 
 - `parent1, ..., parentN`
 

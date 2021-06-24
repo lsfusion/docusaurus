@@ -42,11 +42,11 @@ In the case when the operator contains a `NEW` block, and no condition is specif
 
 - `alias`
 
-    The name of the local parameter that will correspond to the object being created. [Simple ID](IDs.md#id-broken).
+    The name of the local parameter that will correspond to the object being created. [Simple ID](IDs.md#id).
 
 - `className`
 
-    The name of the class of the object to create. Defined by a [class ID](IDs.md#classid-broken).
+    The name of the class of the object to create. Defined by a [class ID](IDs.md#classid).
 
 - `action`
 

@@ -23,7 +23,7 @@ The `AS` operator creates a property which returns the expression value if this 
 
 - `className`
 
-    Class name. [Class ID](IDs.md#classid-broken).
+    Class name. [Class ID](IDs.md#classid).
 
 ### Examples 
 

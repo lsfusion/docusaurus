@@ -39,11 +39,11 @@ but it also has [a number of advantages](Constraints.md).
 
 - `propertyId1, ..., propertyIdN`
 
-    List of [property IDs](IDs.md#propertyid-broken). When showing change dialog for each property in that list, options that violate the created constraint will be filtered.
+    List of [property IDs](IDs.md#propertyid). When showing change dialog for each property in that list, options that violate the created constraint will be filtered.
 
 - `messageExpr`
 
-    An expression whose value is shown as a message to the user when the set constraint is violated. It may be either a [string literal](IDs.md#strliteral-broken) or a property without parameters.
+    An expression whose value is shown as a message to the user when the set constraint is violated. It may be either a [string literal](IDs.md#strliteral) or a property without parameters.
 
 ### Examples
 

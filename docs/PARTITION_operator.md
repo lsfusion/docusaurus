@@ -44,7 +44,7 @@ The `ORDER` block defines the order in which the aggregate function will be calc
 
 - `propertyId`
 
-    [ID](IDs.md#propertyid-broken) of the distributed property. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the `BY` block. When calculating the values of group/partition expressions, objects that identify a certain group of object sets will be passed to this property as an input.
+    [ID](IDs.md#propertyid) of the distributed property. The value of this property must be numeric, and the number of parameters must be equal to the number of groups in the `BY` block. When calculating the values of group/partition expressions, objects that identify a certain group of object sets will be passed to this property as an input.
 
 - `distributionType`
 
@@ -62,7 +62,7 @@ The `ORDER` block defines the order in which the aggregate function will be calc
 
             Specifies the number of decimal places the value will be rounded to.
 
-            - `digits` – [Integer literal](Literals.md#intliteral-broken) specifying the number of decimal places. 
+            - `digits` – [Integer literal](Literals.md#intliteral) specifying the number of decimal places. 
 
     - `LIMIT`
 

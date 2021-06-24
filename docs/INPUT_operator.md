@@ -31,7 +31,7 @@ The `INPUT` operator creates an action which allows to request the value of one 
 
 - `alias`
 
-    The name of the local parameter to which the input result is written. [Simple ID](IDs.md#id-broken).
+    The name of the local parameter to which the input result is written. [Simple ID](IDs.md#id).
 
 - `CHANGE`
 

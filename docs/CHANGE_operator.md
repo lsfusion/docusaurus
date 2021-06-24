@@ -20,7 +20,7 @@ The keyword `CHANGE`, which defines an operator, may be omitted.
 
 - `propertyId`
 
-    [ID of the property](IDs.md#propertyid-broken) whose value is being changed. The property must be created by certain operators so that its value can be changed. You can change the values of properties created using the operators [`DATA`](DATA_operator.md) , [`ABSTRACT`](ABSTRACT_operator.md), and `LOCAL`.
+    [ID of the property](IDs.md#propertyid) whose value is being changed. The property must be created by certain operators so that its value can be changed. You can change the values of properties created using the operators [`DATA`](DATA_operator.md) , [`ABSTRACT`](ABSTRACT_operator.md), and `LOCAL`.
 
 - `expr1, ..., exprN`
 

@@ -17,11 +17,11 @@ The `TABLE` statement declares a new table and adds it to the current [module](M
 
 - `name`
 
-    Table name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+    Table name. [Simple ID](IDs.md#id). The name must be unique within the current [namespace](Naming.md#namespace).
 
 - `className1, ..., classNameN`
 
-    List of class names. Each name is a [class ID](IDs.md#classname-broken). Specifies classes for the key fields of the table being created. Cannot be empty,
+    List of class names. Each name is a [class ID](IDs.md#classid). Specifies classes for the key fields of the table being created. Cannot be empty,
 
 - `FULL`
 

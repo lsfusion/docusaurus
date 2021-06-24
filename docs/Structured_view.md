@@ -19,7 +19,11 @@ Formats are also divided into:
 
 In the current implementation the [group-in-columns](Form_structure.md#groupcolumns) platforms are ignored in a structured view.
 
+<a className="lsdoc-anchor" id="objects"/>
+
 When building an object group [hierarchy](Static_view.md#hierarchy) in a structured view, the object groups that have all their objects [passed](Open_form.md#params) on the form opening are ignored (as if these object groups did not exist).
+
+<a className="lsdoc-anchor" id="drawgroup"/>
 
 If the property [display group](Form_structure.md#drawgroup) is specified explicitly in a structured view, then this group should not be earlier than the default one (if the specified group appears earlier, then the default display group will be used anyway).
 

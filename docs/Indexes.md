@@ -10,7 +10,7 @@ An index can also be built on several properties at once (this is effective if, 
 
 ### Language
 
-To create indexes, you must use the [`INDEX` statement](INDEX_statement.md) or the [`INDEXED` option](Property_options.md#indexed-broken) in property options.
+To create indexes, you must use the [`INDEX` statement](INDEX_statement.md) or the [`INDEXED` option](Property_options.md#indexed) in property options.
 
 ### Examples
 

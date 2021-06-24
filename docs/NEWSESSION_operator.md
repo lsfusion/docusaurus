@@ -31,7 +31,7 @@ If the `NESTED` keyword is specified, the changes of the [local properties](Data
 
 - `propertyId1, ..., propertyIdN`
 
-    A list of local properties whose changes will be visible in the new session. Each list element must be a [property ID](IDs.md#propertyid-broken).
+    A list of local properties whose changes will be visible in the new session. Each list element must be a [property ID](IDs.md#propertyid).
 
 - `action`
 

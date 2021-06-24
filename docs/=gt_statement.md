@@ -30,11 +30,11 @@ but it allows you to automatically resolve situations where this constraint is v
 
 - `leftPropertyId`
 
-    [ID of the property](IDs.md#propertyid-broken) specifying the consequence premise.
+    [ID of the property](IDs.md#propertyid) specifying the consequence premise.
 
 - `param1, ..., paramN`
 
-    List of [parameters](IDs.md#paramid-broken) of the property that defines the premise of the consequence. The number of these parameters must be equal to the number of parameters of the property.
+    List of [parameters](IDs.md#paramid) of the property that defines the premise of the consequence. The number of these parameters must be equal to the number of parameters of the property.
 
 - `rightExpr`
 

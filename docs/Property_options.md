@@ -34,7 +34,9 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `groupName`
 
-        Group name. [Compound ID](IDs.md#cid-broken).
+        Group name. [Compound ID](IDs.md#cid).
+
+<a className="lsdoc-anchor" id="persistent"/>
 
 - `MATERIALIZED`
 
@@ -47,6 +49,8 @@ The following set of options is supported (the syntax of each option is indicate
     - `tableName`
     
         Table name. Composite ID. 
+
+<a className="lsdoc-anchor" id="indexed"/>
 
 - `INDEXED`
 
@@ -88,7 +92,7 @@ The following set of options is supported (the syntax of each option is indicate
         - `CHANGEWYS` - occurs when the user tries to change the value of the specified property using a special input mechanism. 
         - `GROUPCHANGE` - occurs when the user tries to change the property value for all objects in the table (group editing).  
         - `EDIT` - occurs when the user tries to edit the object that is the value of the specified property. 
-        - `CONTEXTMENU [caption]` - the user has selected the specified item in the property context menu on the form. If necessary, you can also define the `caption` of this menu item ([string literal](Literals.md#strliteral-broken)). If it is not specified, then, by default, it will be the same as the action caption.
+        - `CONTEXTMENU [caption]` - the user has selected the specified item in the property context menu on the form. If necessary, you can also define the `caption` of this menu item ([string literal](Literals.md#strliteral)). If it is not specified, then, by default, it will be the same as the action caption.
 
     - `actionOperator`
 
@@ -130,11 +134,11 @@ The following set of options is supported (the syntax of each option is indicate
 
 - `CHANGEKEY key [SHOW | HIDE]`
 
-    Specifies a [key combination](Form_events.md#keyboard-broken) which triggers editing of this property. Sets the value for the default design and can be overridden in the `DESIGN` statement.
+    Specifies a [key combination](Form_events.md#keyboard) which triggers editing of this property. Sets the value for the default design and can be overridden in the `DESIGN` statement.
 
     - `key`
 
-        [String literal](Literals.md#strliteral-broken) describing the key combination. The method of specifying is similar to the method of specifying a parameter in the Java class method [Keystroke.getKeystroke (String)](http://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html#getKeyStroke(java.lang.String)).
+        [String literal](Literals.md#strliteral) describing the key combination. The method of specifying is similar to the method of specifying a parameter in the Java class method [Keystroke.getKeystroke (String)](http://docs.oracle.com/javase/7/docs/api/javax/swing/KeyStroke.html#getKeyStroke(java.lang.String)).
 
     - `SHOW`
 
@@ -150,7 +154,7 @@ The following set of options is supported (the syntax of each option is indicate
 
     - `compare`
 
-        Default filter type. [String literal](Literals.md#strliteral-broken). Can be one the following values: `=`, `>`, `<`, `>=`, `<=`, `!=`, `START_WITH`, `CONTAINS`, `ENDS_WITH`, `LIKE`. The default value is `=` for all data types except case-insensitive string types, for which the default value is `CONTAINS`. If `System.defaultCompareForStringContains` is enabled, default value is `CONTAINS` for all string data regardless of case sensitivity. Can be overridden in the `DESIGN` statement.
+        Default filter type. [String literal](Literals.md#strliteral). Can be one the following values: `=`, `>`, `<`, `>=`, `<=`, `!=`, `START_WITH`, `CONTAINS`, `ENDS_WITH`, `LIKE`. The default value is `=` for all data types except case-insensitive string types, for which the default value is `CONTAINS`. If `System.defaultCompareForStringContains` is enabled, default value is `CONTAINS` for all string data regardless of case sensitivity. Can be overridden in the `DESIGN` statement.
 
 ## Examples
 

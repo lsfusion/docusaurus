@@ -4,16 +4,16 @@ title: 'Form events'
 
 While the application is running, there is a number of events for each form that occur as a result of certain user actions:
 
-*Global*
+#### Global
 
 -   `QUERYCLOSE` - the user tries to close the form by clicking on the corresponding button in the form header.
 -   `QUERYOK` - the user tries to close a modal form by double-clicking on any row in the table.
 
-*For objects on the form*
+#### For objects on the form
 
 -   `CHANGE` - user [changed](Interactive_view.md#objects) the [current value](Form_structure.md#currentObject) of an object.
 
-*For properties or actions on the form*
+#### For properties or actions on the form {#property}
 
 -   `CHANGE` - the user initiated a property change or action call.
 -   `CHANGEWYS` - the user initiated a WYSIWYG property change using the PASTE operation or a special input mechanism 
@@ -23,7 +23,7 @@ While the application is running, there is a number of events for each form that
 
 There are also several so-called *derivative* events that are nothing more than syntactic sugar, but at the same time allow you more effectively to solve typical problems that arise when working with forms:
 
-*Global*
+#### Global
 
 -   `INIT` - occurs immediately after the form is opened.
 -   `APPLY` - occurs when the form session is saved to the database (inside the transaction, at the very beginning, before global event handling is performed).
@@ -57,6 +57,8 @@ The developer can execute certain actions (*handlers*) when any of the events de
 
 For property, it is possible to define its event handlers for the whole logics at once. In that case, these handlers will be automatically added to all forms where these properties are displayed.
 
+<a className="lsdoc-anchor" id="keyboard"/>
+
 You can also specify a keyboard shortcut for each property, pressing which triggers the property's `CHANGE` event. If several properties on the form correspond to one key combination, the event will be triggered only for the property whose component is closest to the current active component in the component hierarchy.
 
 ### Default handlers {#default}
@@ -81,8 +83,10 @@ For some events, the platform automatically creates default handlers:
 
 
 :::info
-If property event handler uses (even [implicitly](Value_request_REQUEST.md#implicit)) the [value request](Value_request_REQUEST.md) operator, then default handler can be created [in a different way](Value_request_REQUEST.md#defaultChange-broken).
+If property event handler uses (even [implicitly](Value_request_REQUEST.md#implicit)) the [value request](Value_request_REQUEST.md) operator, then default handler can be created [in a different way](Value_request_REQUEST.md#defaultChange).
 :::
+
+<a className="lsdoc-anchor" id="queryValue"/>
 
 For an *object request* from the user, depending on the type of class, the following operators are used:
 

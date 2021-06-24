@@ -20,7 +20,7 @@ For each table created in the platform, a corresponding table is created in the 
 | Full without signature        | `NameSpace_TableName` |
 | Short                         | `TableName`           |
 
-The naming policy is defined using the [`db.namingPolicy`](Launch_parameters.md#namingpolicy-broken) startup parameter.
+The naming policy is defined using the [`db.namingPolicy`](Launch_parameters.md#namingpolicy) startup parameter.
 
 ### Field naming {#name}
 
@@ -39,7 +39,7 @@ If necessary, for each property, the developer can explicitly specify the name o
 Using too short property naming policy (in case the number of materialized properties is large enough) can significantly complicate [naming](Naming.md) these properties (keeping them unique), or, accordingly, lead to the case when you will need to explicitly name the fields in which these properties will be stored too often.
 :::
 
-The naming policy is defined using the [`db.namingPolicy`](Launch_parameters.md#namingpolicy-broken) startup parameter.
+The naming policy is defined using the [`db.namingPolicy`](Launch_parameters.md#namingpolicy) startup parameter.
 
 ### Default tables
 

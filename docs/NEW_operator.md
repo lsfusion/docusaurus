@@ -22,7 +22,7 @@ There is a special option with the same name (`NEW`) in the [`FOR` operator](FOR
 
 - `className`
 
-    Name of the [custom](User_classes.md) class for the created objects. [Composite ID](IDs.md#cid-broken).
+    Name of the [custom](User_classes.md) class for the created objects. [Composite ID](IDs.md#cid).
 
 - `whereExpr`
 
@@ -30,7 +30,7 @@ There is a special option with the same name (`NEW`) in the [`FOR` operator](FOR
 
 - `propertyId`
 
-    An [ID of the property](IDs.md#propertyid-broken) to which value the created objects are written. If the property is not specified, then:
+    An [ID of the property](IDs.md#propertyid) to which value the created objects are written. If the property is not specified, then:
 
     - if the condition is not defined, it is automatically set to  `System.addedObject[]`
     - if the condition is defined, the created objects are not written anywhere

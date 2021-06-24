@@ -24,6 +24,8 @@ Each `designStatement` describes one design statement. Design statements are of 
 
 The first three statements – *create* (`NEW`), *move* (`MOVE`), and *modify* – may in turn contain nested blocks of design statements. The design statements *remove* (`REMOVE`) and *change property value* (`=`) are simple single statements. Each design statement must end with a semicolon if it does not contain a nested statement block.
 
+<a className="lsdoc-anchor" id="selector"/>
+
 Each `selector` can be one of the following types:
 
     componentName
@@ -61,15 +63,15 @@ To access design components, you can use their names or address property compone
 
 - `formName`
 
-    The name of the form being changed. [Composite ID](IDs.md#cid-broken).
+    The name of the form being changed. [Composite ID](IDs.md#cid).
 
 - `caption`
 
-    The new form caption in the interactive view mode. [String literal](Literals.md#strliteral-broken). The form caption doesn't change in the [navigator](Navigator.md).
+    The new form caption in the interactive view mode. [String literal](Literals.md#strliteral). The form caption doesn't change in the [navigator](Navigator.md).
 
 - `name`
 
-    The name of the container being created. [Simple ID](IDs.md#id-broken).
+    The name of the container being created. [Simple ID](IDs.md#id).
 
 - `insertPos`
 
@@ -96,19 +98,19 @@ To access design components, you can use their names or address property compone
 
 |Property name|Description|Value type|Default value|Examples|
 |---|---|---|---|---|
-|`size`|The base component size in pixels (a value of -1 means that the size is undefined)|A pair of [integer literals](Literals.md#intliteral-broken) (width, height)|`(-1, -1)`|`(100, 20)`|
+|`size`|The base component size in pixels (a value of -1 means that the size is undefined)|A pair of [integer literals](Literals.md#intliteral) (width, height)|`(-1, -1)`|`(100, 20)`|
 |`height`|The base component height in pixels.|Integer literal|`-1`|`50`|
 |`width`|The base component width in pixels.|Integer literal|`-1`|`20`|
-|`background`|The color to be used for the component background|[Literal of class `COLOR`](Literals.md#colorliteral-broken)|`#FFFFFF`|`#FFFFCC`<br/>`RGB(255, 0, 0)`|
+|`background`|The color to be used for the component background|[Literal of class `COLOR`](Literals.md#colorliteral)|`#FFFFFF`|`#FFFFCC`<br/>`RGB(255, 0, 0)`|
 |`foreground`|The color to be used for the component text|Color|`NULL`|`#FFFFCC`<br/>`RGB(255, 0, 0)`|
-|`font`|The font to be used for displaying the component text — for example, property value, action caption, table text|[String literal](Literals.md#strliteral-broken)|depends on the component|`'Tahoma bold 16'`<br/>`'Times 12'`|
+|`font`|The font to be used for displaying the component text — for example, property value, action caption, table text|[String literal](Literals.md#strliteral)|depends on the component|`'Tahoma bold 16'`<br/>`'Times 12'`|
 |`fontSize`|The size of the font to be used for displaying the component text|Numeric literal|depends on the component|`10`|
 |`fontStyle`|The style of the font to be used for the component text May contain the words `'bold'` and/or `'italic'`, or an empty string|String literal|`''`|`'bold'`<br/>`'bold italic'`|
-|`defaultComponent`|Specifying that this component should get the focus when the form is initialized. Can only be set for one component on the entire form|Extended [Boolean literal](Literals.md#booleanliteral-broken)|`FALSE`|`TRUE`<br/>`FALSE`|
+|`defaultComponent`|Specifying that this component should get the focus when the form is initialized. Can only be set for one component on the entire form|Extended [Boolean literal](Literals.md#booleanliteral)|`FALSE`|`TRUE`<br/>`FALSE`|
 |align, alignment|Component alignment inside the container. Acceptable values: `START` (at the beginning), `CENTER` (in the center), `END` (at the end), `STRETCH` (stretched).|Alignment type|`START`|`STRETCH`|
-|`flex`|Extension coefficient. Value of a property similar to the [CSS flex-grow](http://www.w3schools.com/cssref/css3_pr_flex-grow.asp) property. Defines how much the component should grow in size relative to other components.|[`NUMERIC` type literal](Literals.md#numericliteral-broken)|`0`|`0.25`|
+|`flex`|Extension coefficient. Value of a property similar to the [CSS flex-grow](http://www.w3schools.com/cssref/css3_pr_flex-grow.asp) property. Defines how much the component should grow in size relative to other components.|[`NUMERIC` type literal](Literals.md#numericliteral)|`0`|`0.25`|
 |`fill`|Similar to the `flex` property, the only difference being that if a zero value is set, the `align` property is set to `START`, otherwise `align` is set to `STRETCH`|`NUMERIC` type literal|`0`|`1.5`|
-|noSort |No sorting|[Logical literal](Literals.md#booleanliteral-broken)|`FALSE`|`TRUE`<br/>`FALSE`|
+|noSort |No sorting|[Logical literal](Literals.md#booleanliteral)|`FALSE`|`TRUE`<br/>`FALSE`|
 |`defaultCompare`|Default filter. Acceptable values: `EQUALS`, `GREATER`, `LESS`, `GREATER_EQUALS`, `LESS_EQUALS`, `NOT_EQUALS`, `START_WITH`, `CONTAINS`, `ENDS_WITH`, `LIKE`.|String literal|`CONTAINS`|`START_WITH`|
 |`marginTop`|Top margin|Integer literal|`0`|`3`|
 |`marginRight`|Right margin|Integer literal|`0`|`1`|
@@ -181,27 +183,27 @@ To access design components, you can use their names or address property compone
 
 - `componentName`
 
-    Name of a design component. [Simple ID](IDs.md#id-broken).
+    Name of a design component. [Simple ID](IDs.md#id).
 
 - `formPropertyName`
 
-    [Property/action name on the form](Properties_and_actions_block.md#name-broken).
+    [Property/action name on the form](Properties_and_actions_block.md#name).
 
 - `filterGroupName`
 
-    The name of [a filter group](Filters_and_sortings_block.md#filterName-broken). [Simple ID](IDs.md#id-broken).
+    The name of [a filter group](Filters_and_sortings_block.md#filterName). [Simple ID](IDs.md#id).
 
 - `propertyGroupSelector`
 
-    The name of a [property group](Groups_of_properties_and_actions.md). [Simple ID](IDs.md#id-broken).
+    The name of a [property group](Groups_of_properties_and_actions.md). [Simple ID](IDs.md#id).
 
 - `groupObjectSelector`
 
-    The name of an [object group on the form](Object_blocks.md#groupName-broken). [Simple ID](IDs.md#id-broken).
+    The name of an [object group on the form](Object_blocks.md#groupName). [Simple ID](IDs.md#id).
 
 - `treeSelector`
 
-    The name of [an object tree on the form](Object_blocks.md#treeName-broken). [Simple ID](IDs.md#id-broken).
+    The name of [an object tree on the form](Object_blocks.md#treeName). [Simple ID](IDs.md#id).
 
 - `noGroupObjectTreeContainerType`
 

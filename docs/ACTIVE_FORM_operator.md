@@ -16,7 +16,7 @@ The `ACTIVE FORM` operator creates an action that writes the activeness value of
 
 - `formName`
 
-    Form name. [Composite ID](IDs.md#cid-broken).
+    Form name. [Composite ID](IDs.md#cid).
 
 ### Examples
 

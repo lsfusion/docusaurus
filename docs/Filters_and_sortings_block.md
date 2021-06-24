@@ -70,13 +70,15 @@ Each filter is defined with an [expression](Expression.md) that defines the filt
 
 ### Parameters
 
-- `groupName`
+<a className="lsdoc-anchor" id="filterName"/>
+ 
+- `groupName` 
 
-    Internal name of a filter group [Simple ID](IDs.md#id-broken). If the `EXTEND` keyword is specified, the platform will search the form for the created filter group with the specified name — otherwise a new filter group with the specified name will be created.
+    Internal name of a filter group [Simple ID](IDs.md#id). If the `EXTEND` keyword is specified, the platform will search the form for the created filter group with the specified name — otherwise a new filter group with the specified name will be created.
 
 - `caption1, ..., captionN`
 
-    Captions that will be shown in the user interface for the corresponding filter being added. Each caption is defined with a [string literal](IDs.md#strliteral-broken).
+    Captions that will be shown in the user interface for the corresponding filter being added. Each caption is defined with a [string literal](IDs.md#strliteral).
 
 - `expression1, ..., expressionN`
 

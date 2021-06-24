@@ -40,11 +40,11 @@ The `FORM` statement declares a new form and adds it to the current [module](Mod
 
 - `name`
 
-    Form name. [Simple ID](IDs.md#id-broken). The name must be unique within the current [namespace](Naming.md#namespace).
+    Form name. [Simple ID](IDs.md#id). The name must be unique within the current [namespace](Naming.md#namespace).
 
 - `caption`
 
-    Form caption. [String literal](IDs.md#strliteral-broken). If the caption is not defined, the form's name will be its caption.
+    Form caption. [String literal](IDs.md#strliteral). If the caption is not defined, the form's name will be its caption.
 
 ### Form options (`formOptions`)
 
@@ -62,7 +62,7 @@ The `FORM` statement declares a new form and adds it to the current [module](Mod
 
     - `period`
     
-        A period of time in seconds. [Integral literal](IDs.md#intliteral-broken). 
+        A period of time in seconds. [Integral literal](IDs.md#intliteral). 
 
 ### Form blocks (`formBlock1 ... formBlockN`) {#blocks}
 
@@ -116,11 +116,11 @@ The `FORM` statement declares a new form and adds it to the current [module](Mod
 
     - `className`
     
-        The name of the [custom](User_classes.md) . When editing objects of this class, the created form will be opened. Defined with a [composite ID](IDs.md#cid-broken).
+        The name of the [custom](User_classes.md) . When editing objects of this class, the created form will be opened. Defined with a [composite ID](IDs.md#cid).
 
     - `objectName`
     
-        The name of the form object that will be used for editing. Defined with a [simple ID](IDs.md#id-broken).
+        The name of the form object that will be used for editing. Defined with a [simple ID](IDs.md#id).
 
 - `LIST сlassName OBJECT objectName`
 

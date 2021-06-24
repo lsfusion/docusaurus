@@ -22,7 +22,7 @@ The `[]` operator creates a property that takes a structure as input and returns
 
 - `number`
 
-    The sequence number of an object. [Numeric literal](Literals.md#intliteral-broken). Must be within the range of `[1..N]`, where `N` is the number of objects in the structure.
+    The sequence number of an object. [Integer literal](Literals.md#intliteral). Must be within the range of `[1..N]`, where `N` is the number of objects in the structure.
 
 ### Examples
 

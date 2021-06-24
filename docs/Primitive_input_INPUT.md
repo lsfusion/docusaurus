@@ -10,7 +10,7 @@ As with other value input operators, this operator allows to:
 -   specify [main and alternative](Value_input.md#result) actions. The first is called if the input was successfully completed, the second if not (i.e. if the input was canceled).
 -   [change](Value_input.md#initial) a specified property
 
-This operator can only be used in property  [change event](Form_events.md#property-broken) handlers on a form.
+This operator can only be used in property [change event](Form_events.md#property) handlers on a form.
 
 ### Language
 
