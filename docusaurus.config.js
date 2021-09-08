@@ -10,6 +10,7 @@ module.exports = {
   organizationName: 'lsfusion', // Usually your GitHub org/user name.
   projectName: 'lsfusion.github.io', // Usually your repo name.
   trailingSlash: true,
+  plugins: ['@docusaurus/plugin-google-analytics'],
   themeConfig: {
     navbar: {
       title: '',
@@ -110,6 +111,9 @@ module.exports = {
       indexName: 'lsfusion',
       contextualSearch: true,
     },    
+    googleAnalytics: {
+      trackingID: 'UA-38678623-1',
+    },
   },
   presets: [
     [
