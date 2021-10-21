@@ -84,10 +84,6 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'Habr',
               href: 'https://habr.com/ru/company/lsfusion/blog/',
             },
