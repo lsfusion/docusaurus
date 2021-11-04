@@ -626,7 +626,8 @@ module.exports = {
                     'How-to_Navigator', 
                     'How-to_Matrix', 
                     'How-to_Table_status',
-                    'How-to_Custom_components',
+                    'How-to_Custom_components_properties',
+                    'How-to_Custom_components_objects',
                   ]
                 },
                 'How-to_Reports', 
