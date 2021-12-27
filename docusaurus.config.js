@@ -102,7 +102,7 @@ module.exports = {
       additionalLanguages: ['java'],
     },
     algolia: {
-      apiKey: 'f6c2b97a0bccd796c66607945d7fc014',
+      apiKey: 'fb60cbd2d509692aa2646143b0dea6d5',
       indexName: 'lsfusion',
       contextualSearch: true,
     },    
