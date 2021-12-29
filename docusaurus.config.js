@@ -107,9 +107,6 @@ module.exports = {
       indexName: 'lsfusion',
       contextualSearch: true,
     },    
-    googleAnalytics: {
-      trackingID: 'UA-38678623-1',
-    },
   },
   presets: [
     [
@@ -152,6 +149,9 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        googleAnalytics: {
+          trackingID: 'UA-38678623-1',
         },
       },
     ],
