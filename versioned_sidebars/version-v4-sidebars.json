@@ -8,11 +8,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Automatic installation",
+      "link": {"type": "doc", "id": "version-v4/Automatic_installation"},
       "items": [
-        {
-          "type": "doc",
-          "id": "version-v4/Automatic_installation"
-        },
         {
           "type": "doc",
           "id": "version-v4/Development_auto"
@@ -27,11 +24,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Manual installation",
+      "link": {"type": "doc", "id": "version-v4/Manual_installation"},
       "items": [
-        {
-          "type": "doc",
-          "id": "version-v4/Manual_installation"
-        },
         {
           "type": "doc",
           "id": "version-v4/Development_manual"
@@ -52,47 +46,32 @@
           "collapsed": false,
           "type": "category",
           "label": "Paradigm",
+          "link": {"type": "doc", "id": "version-v4/Paradigm"},
           "items": [
-            {
-              "type": "doc",
-              "id": "version-v4/Paradigm"
-            },
             {
               "collapsed": true,
               "type": "category",
               "label": "Logical model",
+              "link": {"type": "doc", "id": "version-v4/Logical_model"},
               "items": [
-                {
-                  "type": "doc",
-                  "id": "version-v4/Logical_model"
-                },
                 {
                   "collapsed": true,
                   "type": "category",
                   "label": "Domain logic",
+                  "link": {"type": "doc", "id": "version-v4/Domain_logic"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/Domain_logic"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "Properties",
+                      "link": {"type": "doc", "id": "version-v4/Properties"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Properties"
-                        },
                         {
                           "collapsed": true,
                           "type": "category",
                           "label": "Operators",
+                          "link": {"type": "doc", "id": "version-v4/Property_operators_paradigm"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Property_operators_paradigm"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/Data_properties_DATA"
@@ -109,11 +88,8 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "Operations with primitives",
+                              "link": {"type": "doc", "id": "version-v4/Operations_with_primitives"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Operations_with_primitives"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Arithmetic_operators_+_-_etc"
@@ -148,11 +124,8 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "Class operators",
+                              "link": {"type": "doc", "id": "version-v4/Class_operators"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Class_operators"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Classification_IS_AS"
@@ -171,11 +144,8 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "Set operations",
+                              "link": {"type": "doc", "id": "version-v4/Set_operations"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Set_operations"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Grouping_GROUP"
@@ -202,11 +172,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Actions",
+                      "link": {"type": "doc", "id": "version-v4/Actions"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Actions"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Change_sessions"
@@ -215,20 +182,14 @@
                           "collapsed": true,
                           "type": "category",
                           "label": "Оperators",
+                          "link": {"type": "doc", "id": "version-v4/Action_operators_paradigm"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Action_operators_paradigm"
-                            },
                             {
                               "collapsed": true,
                               "type": "category",
                               "label": "Execution order",
+                              "link": {"type": "doc", "id": "version-v4/Execution_order"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Execution_order"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Sequence"
@@ -271,11 +232,8 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "State change",
+                              "link": {"type": "doc", "id": "version-v4/State_change"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/State_change"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Property_change_CHANGE"
@@ -294,11 +252,8 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "Session management",
+                              "link": {"type": "doc", "id": "version-v4/Session_management"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Session_management"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Apply_changes_APPLY"
@@ -325,11 +280,8 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "User/IS interaction",
+                              "link": {"type": "doc", "id": "version-v4/User_IS_interaction"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/User_IS_interaction"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Show_message_MESSAGE_ASK"
@@ -338,11 +290,8 @@
                                   "collapsed": true,
                                   "type": "category",
                                   "label": "File operators",
+                                  "link": {"type": "doc", "id": "version-v4/File_operators"},
                                   "items": [
-                                    {
-                                      "type": "doc",
-                                      "id": "version-v4/File_operators"
-                                    },
                                     {
                                       "type": "doc",
                                       "id": "version-v4/Read_file_READ"
@@ -375,11 +324,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Events",
+                      "link": {"type": "doc", "id": "version-v4/Events"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Events"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Simple_event"
@@ -394,11 +340,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Constraints",
+                      "link": {"type": "doc", "id": "version-v4/Constraints"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Constraints"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Simple_constraints"
@@ -407,11 +350,8 @@
                           "collapsed": true,
                           "type": "category",
                           "label": "Classes",
+                          "link": {"type": "doc", "id": "version-v4/Classes"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Classes"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/Built-in_classes"
@@ -438,29 +378,20 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "View logic",
+                  "link": {"type": "doc", "id": "version-v4/View_logic"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/View_logic"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "Forms",
+                      "link": {"type": "doc", "id": "version-v4/Forms"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Forms"
-                        },
                         {
                           "collapsed": true,
                           "type": "category",
                           "label": "Form structure",
+                          "link": {"type": "doc", "id": "version-v4/Form_structure"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Form_structure"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/Groups_of_properties_and_actions"
@@ -471,20 +402,14 @@
                           "collapsed": true,
                           "type": "category",
                           "label": "Form views",
+                          "link": {"type": "doc", "id": "version-v4/Form_views"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Form_views"
-                            },
                             {
                               "collapsed": true,
                               "type": "category",
                               "label": "Interactive view",
+                              "link": {"type": "doc", "id": "version-v4/Interactive_view"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Interactive_view"
-                                },
                                 {
                                   "type": "doc",
                                   "id": "version-v4/Form_design"
@@ -497,20 +422,14 @@
                                   "collapsed": true,
                                   "type": "category",
                                   "label": "Form operators",
+                                  "link": {"type": "doc", "id": "version-v4/Form_operators"},
                                   "items": [
-                                    {
-                                      "type": "doc",
-                                      "id": "version-v4/Form_operators"
-                                    },
                                     {
                                       "collapsed": true,
                                       "type": "category",
                                       "label": "Value input",
+                                      "link": {"type": "doc", "id": "version-v4/Value_input"},
                                       "items": [
-                                        {
-                                          "type": "doc",
-                                          "id": "version-v4/Value_input"
-                                        },
                                         {
                                           "type": "doc",
                                           "id": "version-v4/Primitive_input_INPUT"
@@ -525,11 +444,8 @@
                                       "collapsed": true,
                                       "type": "category",
                                       "label": "Object group operators",
+                                      "link": {"type": "doc", "id": "version-v4/Object_group_operators"},
                                       "items": [
-                                        {
-                                          "type": "doc",
-                                          "id": "version-v4/Object_group_operators"
-                                        },
                                         {
                                           "type": "doc",
                                           "id": "version-v4/Search_SEEK"
@@ -552,11 +468,8 @@
                                       "collapsed": true,
                                       "type": "category",
                                       "label": "Focus operators",
+                                      "link": {"type": "doc", "id": "version-v4/Focus_operators"},
                                       "items": [
-                                        {
-                                          "type": "doc",
-                                          "id": "version-v4/Focus_operators"
-                                        },
                                         {
                                           "type": "doc",
                                           "id": "version-v4/Activation_ACTIVATE"
@@ -575,20 +488,14 @@
                               "collapsed": true,
                               "type": "category",
                               "label": "Static view",
+                              "link": {"type": "doc", "id": "version-v4/Static_view"},
                               "items": [
-                                {
-                                  "type": "doc",
-                                  "id": "version-v4/Static_view"
-                                },
                                 {
                                   "collapsed": true,
                                   "type": "category",
                                   "label": "Print view",
+                                  "link": {"type": "doc", "id": "version-v4/Print_view"},
                                   "items": [
-                                    {
-                                      "type": "doc",
-                                      "id": "version-v4/Print_view"
-                                    },
                                     {
                                       "type": "doc",
                                       "id": "version-v4/Report_design"
@@ -607,11 +514,8 @@
                           "collapsed": true,
                           "type": "category",
                           "label": "Open form",
+                          "link": {"type": "doc", "id": "version-v4/Open_form"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Open_form"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/In_an_interactive_view_SHOW_DIALOG"
@@ -632,11 +536,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Navigator",
+                      "link": {"type": "doc", "id": "version-v4/Navigator"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Navigator"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Navigator_design"
@@ -651,29 +552,20 @@
               "collapsed": true,
               "type": "category",
               "label": "Physical model",
+              "link": {"type": "doc", "id": "version-v4/Physical_model"},
               "items": [
-                {
-                  "type": "doc",
-                  "id": "version-v4/Physical_model"
-                },
                 {
                   "collapsed": true,
                   "type": "category",
                   "label": "Development",
+                  "link": {"type": "doc", "id": "version-v4/Development"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/Development"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "Element identification",
+                      "link": {"type": "doc", "id": "version-v4/Element_identification"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Element_identification"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Naming"
@@ -688,11 +580,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Modularity",
+                      "link": {"type": "doc", "id": "version-v4/Modularity"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Modularity"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Modules"
@@ -705,11 +594,8 @@
                           "collapsed": true,
                           "type": "category",
                           "label": "Extensions",
+                          "link": {"type": "doc", "id": "version-v4/Extensions"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Extensions"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/Class_extension"
@@ -738,11 +624,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Integration",
+                      "link": {"type": "doc", "id": "version-v4/Integration"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Integration"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Access_from_an_external_system"
@@ -759,11 +642,8 @@
                           "collapsed": true,
                           "type": "category",
                           "label": "Access to an internal system (INTERNAL, FORMULA)",
+                          "link": {"type": "doc", "id": "version-v4/Access_to_an_internal_system_INTERNAL_FORMULA"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Access_to_an_internal_system_INTERNAL_FORMULA"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/Internal_call_INTERNAL"
@@ -794,11 +674,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "Execution",
+                  "link": {"type": "doc", "id": "version-v4/Execution"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/Execution"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/Materializations"
@@ -817,29 +694,20 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "Management",
+                  "link": {"type": "doc", "id": "version-v4/Management"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/Management"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "System parameters",
+                      "link": {"type": "doc", "id": "version-v4/System_parameters"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/System_parameters"
-                        },
                         {
                           "collapsed": true,
                           "type": "category",
                           "label": "Launch parameters",
+                          "link": {"type": "doc", "id": "version-v4/Launch_parameters"},
                           "items": [
-                            {
-                              "type": "doc",
-                              "id": "version-v4/Launch_parameters"
-                            },
                             {
                               "type": "doc",
                               "id": "version-v4/Launch_events"
@@ -894,11 +762,8 @@
           "collapsed": false,
           "type": "category",
           "label": "Language",
+          "link": {"type": "doc", "id": "version-v4/Language"},
           "items": [
-            {
-              "type": "doc",
-              "id": "version-v4/Language"
-            },
             {
               "type": "doc",
               "id": "version-v4/Tokens"
@@ -915,11 +780,8 @@
               "collapsed": true,
               "type": "category",
               "label": "Statements",
+              "link": {"type": "doc", "id": "version-v4/Statements"},
               "items": [
-                {
-                  "type": "doc",
-                  "id": "version-v4/Statements"
-                },
                 {
                   "type": "doc",
                   "id": "version-v4/Module_header"
@@ -928,20 +790,14 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "= statement",
+                  "link": {"type": "doc", "id": "version-v4/=_statement"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/=_statement"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "Expression",
+                      "link": {"type": "doc", "id": "version-v4/Expression"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Expression"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Operator_priority"
@@ -952,11 +808,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "Property operators",
+                      "link": {"type": "doc", "id": "version-v4/Property_operators"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Property_operators"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Arithmetic_operators"
@@ -1089,20 +942,14 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "ACTION statement",
+                  "link": {"type": "doc", "id": "version-v4/ACTION_statement"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/ACTION_statement"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "Action operators",
+                      "link": {"type": "doc", "id": "version-v4/Action_operators"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/Action_operators"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/Braces_operator"
@@ -1275,11 +1122,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "ON statement",
+                  "link": {"type": "doc", "id": "version-v4/ON_statement"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/ON_statement"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/Event_description_block"
@@ -1310,11 +1154,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "FORM statement",
+                  "link": {"type": "doc", "id": "version-v4/FORM_statement"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/FORM_statement"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/Object_blocks"
@@ -1405,11 +1246,8 @@
           "collapsed": false,
           "type": "category",
           "label": "Examples",
+          "link": {"type": "doc", "id": "version-v4/Examples"},
           "items": [
-            {
-              "type": "doc",
-              "id": "version-v4/Examples"
-            },
             {
               "type": "doc",
               "id": "version-v4/Score_table"
@@ -1422,20 +1260,14 @@
               "collapsed": true,
               "type": "category",
               "label": "How-to",
+              "link": {"type": "doc", "id": "version-v4/How-to"},
               "items": [
-                {
-                  "type": "doc",
-                  "id": "version-v4/How-to"
-                },
                 {
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Computations",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Computations"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Computations"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/How-to_GROUP_SUM"
@@ -1466,20 +1298,14 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: GUI",
+                  "link": {"type": "doc", "id": "version-v4/How-to_GUI"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_GUI"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "How-to: Interactive forms",
+                      "link": {"type": "doc", "id": "version-v4/How-to_Interactive_forms"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/How-to_Interactive_forms"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/How-to_CRUD"
@@ -1528,20 +1354,14 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Imperative logic",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Imperative_logic"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Imperative_logic"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "How-to: Actions",
+                      "link": {"type": "doc", "id": "version-v4/How-to_Actions"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/How-to_Actions"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/How-to_CHANGE"
@@ -1590,11 +1410,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Declarative logic",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Declarative_logic"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Declarative_logic"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/How-to_Constraints"
@@ -1609,11 +1426,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Searching for elements",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Searching_for_elements"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Searching_for_elements"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/How-to_Namespaces"
@@ -1628,11 +1442,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Extensions",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Extensions"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Extensions"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/How-to_Class_extension"
@@ -1655,20 +1466,14 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Integration",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Integration"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Integration"
-                    },
                     {
                       "collapsed": true,
                       "type": "category",
                       "label": "How-to: Working with external formats",
+                      "link": {"type": "doc", "id": "version-v4/How-to_Working_with_external_formats"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/How-to_Working_with_external_formats"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/How-to_Data_export"
@@ -1691,11 +1496,8 @@
                       "collapsed": true,
                       "type": "category",
                       "label": "How-to: Access to internal systems",
+                      "link": {"type": "doc", "id": "version-v4/How-to_Access_to_internal_systems"},
                       "items": [
-                        {
-                          "type": "doc",
-                          "id": "version-v4/How-to_Access_to_internal_systems"
-                        },
                         {
                           "type": "doc",
                           "id": "version-v4/How-to_FORMULA"
@@ -1712,11 +1514,8 @@
                   "collapsed": true,
                   "type": "category",
                   "label": "How-to: Use Cases",
+                  "link": {"type": "doc", "id": "version-v4/How-to_Use_Cases"},
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "version-v4/How-to_Use_Cases"
-                    },
                     {
                       "type": "doc",
                       "id": "version-v4/How-to_Working_with_documents"

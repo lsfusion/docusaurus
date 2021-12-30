@@ -5,8 +5,8 @@ module.exports = {
       collapsed: false,
       type: 'category',
       label: 'Automatic installation',
+      link: {type: 'doc', id: 'Automatic_installation'},
       items: [
-        'Automatic_installation', 
         'Development_auto', 
         'Execution_auto', 
       ]
@@ -15,8 +15,8 @@ module.exports = {
       collapsed: false,
       type: 'category',
       label: 'Manual installation',
+      link: {type: 'doc', id: 'Manual_installation'},
       items: [
-        'Manual_installation', 
         'Development_manual', 
         'Execution_manual', 
       ]
@@ -28,36 +28,36 @@ module.exports = {
       collapsed: false,
       type: 'category',
       label: 'Paradigm',
+      link: {type: 'doc', id: 'Paradigm'},
       items: [
-        'Paradigm', 
         {
           type: 'category',
           label: 'Logical model',
+          link: {type: 'doc', id: 'Logical_model'},
           items: [
-            'Logical_model', 
             {
               type: 'category',
               label: 'Domain logic',
+              link: {type: 'doc', id: 'Domain_logic'},
               items: [
-                'Domain_logic', 
                 {
                   type: 'category',
                   label: 'Properties',
+                  link: {type: 'doc', id: 'Properties'},
                   items: [
-                    'Properties', 
                     {
                       type: 'category',
                       label: 'Operators',
+                      link: {type: 'doc', id: 'Property_operators_paradigm'},
                       items: [
-                        'Property_operators_paradigm', 
                         'Data_properties_DATA', 
                         'Composition_JOIN', 
                         'Constant', 
                         {
                           type: 'category',
                           label: 'Operations with primitives',
+                          link: {type: 'doc', id: 'Operations_with_primitives'},
                           items: [
-                            'Operations_with_primitives', 
                             'Arithmetic_operators_+_-_etc', 
                             'Logical_operators_AND_OR_NOT_XOR', 
                             'Comparison_operators_=_etc', 
@@ -70,8 +70,8 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'Class operators',
+                          link: {type: 'doc', id: 'Class_operators'},
                           items: [
-                            'Class_operators', 
                             'Classification_IS_AS', 
                             'Property_signature_CLASS', 
                           ]
@@ -80,8 +80,8 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'Set operations',
+                          link: {type: 'doc', id: 'Set_operations'},
                           items: [
-                            'Set_operations', 
                             'Grouping_GROUP', 
                             'Partitioning_sorting_PARTITION_..._ORDER', 
                             'Recursion_RECURSION', 
@@ -95,19 +95,19 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Actions',
+                  link: {type: 'doc', id: 'Actions'},
                   items: [
-                    'Actions', 
                     'Change_sessions', 
                     {
                       type: 'category',
                       label: 'Оperators',
+                      link: {type: 'doc', id: 'Action_operators_paradigm'},
                       items: [
-                        'Action_operators_paradigm', 
                         {
                           type: 'category',
                           label: 'Execution order',
+                          link: {type: 'doc', id: 'Execution_order'},
                           items: [
-                            'Execution_order', 
                             'Sequence', 
                             'Call_EXEC', 
                             'Loop_FOR', 
@@ -122,8 +122,8 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'State change',
+                          link: {type: 'doc', id: 'State_change'},
                           items: [
-                            'State_change', 
                             'Property_change_CHANGE', 
                             'New_object_NEW', 
                             'Class_change_CHANGECLASS_DELETE', 
@@ -132,8 +132,8 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'Session management',
+                          link: {type: 'doc', id: 'Session_management'},
                           items: [
-                            'Session_management', 
                             'Apply_changes_APPLY', 
                             'Cancel_changes_CANCEL', 
                             'New_session_NEWSESSION_NESTEDSESSION', 
@@ -144,14 +144,14 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'User/IS interaction',
+                          link: {type: 'doc', id: 'User_IS_interaction'},
                           items: [
-                            'User_IS_interaction', 
                             'Show_message_MESSAGE_ASK', 
                             {
                               type: 'category',
                               label: 'File operators',
+                              link: {type: 'doc', id: 'File_operators'},
                               items: [
-                                'File_operators', 
                                 'Read_file_READ', 
                                 'Write_file_WRITE', 
                                 'Data_import_IMPORT', 
@@ -168,8 +168,8 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Events',
+                  link: {type: 'doc', id: 'Events'},
                   items: [
-                    'Events', 
                     'Simple_event', 
                     'Calculated_events', 
                   ]
@@ -177,14 +177,14 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Constraints',
+                  link: {type: 'doc', id: 'Constraints'},
                   items: [
-                    'Constraints', 
                     'Simple_constraints', 
                     {
                       type: 'category',
                       label: 'Classes',
+                      link: {type: 'doc', id: 'Classes'},
                       items: [
-                        'Classes', 
                         'Built-in_classes', 
                         'User_classes', 
                         'Static_objects', 
@@ -198,43 +198,43 @@ module.exports = {
             {
               type: 'category',
               label: 'View logic',
+              link: {type: 'doc', id: 'View_logic'},
               items: [
-                'View_logic', 
                 {
                   type: 'category',
                   label: 'Forms',
+                  link: {type: 'doc', id: 'Forms'},
                   items: [
-                    'Forms', 
                     {
                       type: 'category',
                       label: 'Form structure',
+                      link: {type: 'doc', id: 'Form_structure'},
                       items: [
-                        'Form_structure', 
                         'Groups_of_properties_and_actions', 
                       ]
                     },
                     {
                       type: 'category',
                       label: 'Form views',
+                      link: {type: 'doc', id: 'Form_views'},
                       items: [
-                        'Form_views', 
                         {
                           type: 'category',
                           label: 'Interactive view',
+                          link: {type: 'doc', id: 'Interactive_view'},
                           items: [
-                            'Interactive_view', 
                             'Form_design', 
                             'Form_events', 
                             {
                               type: 'category',
                               label: 'Form operators',
+                              link: {type: 'doc', id: 'Form_operators'},
                               items: [
-                                'Form_operators', 
                                 {
                                   type: 'category',
                                   label: 'Value input',
+                                  link: {type: 'doc', id: 'Value_input'},
                                   items: [
-                                    'Value_input', 
                                     'Primitive_input_INPUT', 
                                     'Value_request_REQUEST', 
                                   ]
@@ -242,8 +242,8 @@ module.exports = {
                                 {
                                   type: 'category',
                                   label: 'Object group operators',
+                                  link: {type: 'doc', id: 'Object_group_operators'},
                                   items: [
-                                    'Object_group_operators', 
                                     'Search_SEEK', 
                                     'Filter_FILTER', 
                                     'Order_ORDER', 
@@ -253,8 +253,8 @@ module.exports = {
                                 {
                                   type: 'category',
                                   label: 'Focus operators',
+                                  link: {type: 'doc', id: 'Focus_operators'},
                                   items: [
-                                    'Focus_operators', 
                                     'Activation_ACTIVATE', 
                                     'Activity_ACTIVE', 
                                   ]
@@ -266,13 +266,13 @@ module.exports = {
                         {
                           type: 'category',
                           label: 'Static view',
+                          link: {type: 'doc', id: 'Static_view'},
                           items: [
-                            'Static_view', 
                             {
                               type: 'category',
                               label: 'Print view',
+                              link: {type: 'doc', id: 'Print_view'},
                               items: [
-                                'Print_view', 
                                 'Report_design', 
                               ]
                             },
@@ -284,8 +284,8 @@ module.exports = {
                     {
                       type: 'category',
                       label: 'Open form',
+                      link: {type: 'doc', id: 'Open_form'},
                       items: [
-                        'Open_form', 
                         'In_an_interactive_view_SHOW_DIALOG', 
                         'In_a_print_view_PRINT', 
                         'In_a_structured_view_EXPORT_IMPORT', 
@@ -296,8 +296,8 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Navigator',
+                  link: {type: 'doc', id: 'Navigator'},
                   items: [
-                    'Navigator', 
                     'Navigator_design', 
                   ]
                 },
@@ -308,18 +308,18 @@ module.exports = {
         {
           type: 'category',
           label: 'Physical model',
+          link: {type: 'doc', id: 'Physical_model'},
           items: [
-            'Physical_model', 
             {
               type: 'category',
               label: 'Development',
+              link: {type: 'doc', id: 'Development'},
               items: [
-                'Development', 
                 {
                   type: 'category',
                   label: 'Element identification',
+                  link: {type: 'doc', id: 'Element_identification'},
                   items: [
-                    'Element_identification', 
                     'Naming', 
                     'Search_', 
                   ]
@@ -327,15 +327,15 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Modularity',
+                  link: {type: 'doc', id: 'Modularity'},
                   items: [
-                    'Modularity', 
                     'Modules', 
                     'Projects', 
                     {
                       type: 'category',
                       label: 'Extensions',
+                      link: {type: 'doc', id: 'Extensions'},
                       items: [
-                        'Extensions', 
                         'Class_extension', 
                         'Property_extension', 
                         'Action_extension', 
@@ -348,16 +348,16 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'Integration',
+                  link: {type: 'doc', id: 'Integration'},
                   items: [
-                    'Integration', 
                     'Access_from_an_external_system', 
                     'Access_from_an_internal_system', 
                     'Access_to_an_external_system_EXTERNAL', 
                     {
                       type: 'category',
                       label: 'Access to an internal system (INTERNAL, FORMULA)',
+                      link: {type: 'doc', id: 'Access_to_an_internal_system_INTERNAL_FORMULA'},
                       items: [
-                        'Access_to_an_internal_system_INTERNAL_FORMULA', 
                         'Internal_call_INTERNAL', 
                         'Custom_formula_FORMULA', 
                       ]
@@ -372,8 +372,8 @@ module.exports = {
             {
               type: 'category',
               label: 'Execution',
+              link: {type: 'doc', id: 'Execution'},
               items: [
-                'Execution', 
                 'Materializations', 
                 'Indexes', 
                 'Tables', 
@@ -382,18 +382,18 @@ module.exports = {
             {
               type: 'category',
               label: 'Management',
+              link: {type: 'doc', id: 'Management'},
               items: [
-                'Management', 
                 {
                   type: 'category',
                   label: 'System parameters',
+                  link: {type: 'doc', id: 'System_parameters'},
                   items: [
-                    'System_parameters', 
                     {
                       type: 'category',
                       label: 'Launch parameters',
+                      link: {type: 'doc', id: 'Launch_parameters'},
                       items: [
-                        'Launch_parameters', 
                         'Launch_events', 
                       ]
                     },
@@ -418,35 +418,35 @@ module.exports = {
       collapsed: false,
       type: 'category',
       label: 'Language',
+      link: {type: 'doc', id: 'Language'},
       items: [
-        'Language', 
         'Tokens', 
         'IDs', 
         'Literals', 
         {
           type: 'category',
           label: 'Statements',
+          link: {type: 'doc', id: 'Statements'},
           items: [
-            'Statements', 
             'Module_header', 
             {
               type: 'category',
               label: '= statement',
+              link: {type: 'doc', id: '=_statement'},
               items: [
-                '=_statement', 
                 {
                   type: 'category',
                   label: 'Expression',
+                  link: {type: 'doc', id: 'Expression'},
                   items: [
-                    'Expression', 
                     'Operator_priority', 
                   ]
                 },
                 {
                   type: 'category',
                   label: 'Property operators',
+                  link: {type: 'doc', id: 'Property_operators'},
                   items: [
-                    'Property_operators', 
                     'Arithmetic_operators', 
                     'Brackets_operator', 
                     'ABSTRACT_operator', 
@@ -485,13 +485,13 @@ module.exports = {
             {
               type: 'category',
               label: 'ACTION statement',
+              link: {type: 'doc', id: 'ACTION_statement'},
               items: [
-                'ACTION_statement', 
                 {
                   type: 'category',
                   label: 'Action operators',
+                  link: {type: 'doc', id: 'Action_operators'},
                   items: [
-                    'Action_operators', 
                     'Braces_operator', 
                     'ABSTRACT_action_operator', 
                     'ACTIVATE_operator', 
@@ -540,8 +540,8 @@ module.exports = {
             {
               type: 'category',
               label: 'ON statement',
+              link: {type: 'doc', id: 'ON_statement'},
               items: [
-                'ON_statement', 
                 'Event_description_block', 
               ]
             },
@@ -553,8 +553,8 @@ module.exports = {
             {
               type: 'category',
               label: 'FORM statement',
+              link: {type: 'doc', id: 'FORM_statement'},
               items: [
-                'FORM_statement', 
                 'Object_blocks', 
                 'Properties_and_actions_block', 
                 'Filters_and_sortings_block', 
@@ -585,20 +585,20 @@ module.exports = {
       collapsed: false,
       type: 'category',
       label: 'Examples',
+      link: {type: 'doc', id: 'Examples'},
       items: [
-        'Examples', 
         'Score_table', 
         'Materials_management', 
         {
           type: 'category',
           label: 'How-to',
+          link: {type: 'doc', id: 'How-to'},
           items: [
-            'How-to', 
             {
               type: 'category',
               label: 'How-to: Computations',
+              link: {type: 'doc', id: 'How-to_Computations'},
               items: [
-                'How-to_Computations', 
                 'How-to_GROUP_SUM', 
                 'How-to_GROUP_MAX_MIN_AGGR', 
                 'How-to_CASE_IF_OVERRIDE', 
@@ -610,13 +610,13 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: GUI',
+              link: {type: 'doc', id: 'How-to_GUI'},
               items: [
-                'How-to_GUI', 
                 {
                   type: 'category',
                   label: 'How-to: Interactive forms',
+                  link: {type: 'doc', id: 'How-to_Interactive_forms'},
                   items: [
-                    'How-to_Interactive_forms', 
                     'How-to_CRUD', 
                     'How-to_Documents_with_lines', 
                     'How-to_Filtering_and_ordering', 
@@ -636,13 +636,13 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: Imperative logic',
+              link: {type: 'doc', id: 'How-to_Imperative_logic'},
               items: [
-                'How-to_Imperative_logic', 
                 {
                   type: 'category',
                   label: 'How-to: Actions',
+                  link: {type: 'doc', id: 'How-to_Actions'},
                   items: [
-                    'How-to_Actions', 
                     'How-to_CHANGE', 
                     'How-to_EXEC', 
                     'How-to_NEW', 
@@ -660,8 +660,8 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: Declarative logic',
+              link: {type: 'doc', id: 'How-to_Declarative_logic'},
               items: [
-                'How-to_Declarative_logic', 
                 'How-to_Constraints', 
                 'How-to_Inheritance_and_aggregation', 
               ]
@@ -669,8 +669,8 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: Searching for elements',
+              link: {type: 'doc', id: 'How-to_Searching_for_elements'},
               items: [
-                'How-to_Searching_for_elements', 
                 'How-to_Namespaces', 
                 'How-to_Explicit_typing', 
               ]
@@ -678,8 +678,8 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: Extensions',
+              link: {type: 'doc', id: 'How-to_Extensions'},
               items: [
-                'How-to_Extensions', 
                 'How-to_Class_extension', 
                 'How-to_Property_extension', 
                 'How-to_Action_extension', 
@@ -689,13 +689,13 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: Integration',
+              link: {type: 'doc', id: 'How-to_Integration'},
               items: [
-                'How-to_Integration', 
                 {
                   type: 'category',
                   label: 'How-to: Working with external formats',
+                  link: {type: 'doc', id: 'How-to_Working_with_external_formats'},
                   items: [
-                    'How-to_Working_with_external_formats', 
                     'How-to_Data_export', 
                     'How-to_Data_import', 
                   ]
@@ -705,8 +705,8 @@ module.exports = {
                 {
                   type: 'category',
                   label: 'How-to: Access to internal systems',
+                  link: {type: 'doc', id: 'How-to_Access_to_internal_systems'},
                   items: [
-                    'How-to_Access_to_internal_systems', 
                     'How-to_FORMULA', 
                     'How-to_INTERNAL', 
                   ]
@@ -716,8 +716,8 @@ module.exports = {
             {
               type: 'category',
               label: 'How-to: Use Cases',
+              link: {type: 'doc', id: 'How-to_Use_Cases'},
               items: [
-                'How-to_Use_Cases', 
                 'How-to_Working_with_documents', 
                 'How-to_Registers', 
                 'How-to_Numbering', 
