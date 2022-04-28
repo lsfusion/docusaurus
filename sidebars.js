@@ -559,7 +559,6 @@ module.exports = {
                 'Properties_and_actions_block', 
                 'Filters_and_sortings_block', 
                 'Event_block', 
-                'Scheduler_block',
               ]
             },
             'DESIGN_statement', 
