@@ -155,6 +155,9 @@ module.exports = {
         googleAnalytics: {
           trackingID: 'UA-38678623-1',
         },
+        gtag: {
+          trackingID: 'G-9PP67L9JM9',
+        },
       },
     ],
   ],
