@@ -4,6 +4,10 @@
     "branch": "v4"
   },
   {
+    "id": "v5",
+    "branch": "v5"
+  },
+  {
     "id": "next",
     "branch": "master"
   }

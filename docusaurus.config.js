@@ -133,9 +133,12 @@ module.exports = {
           routeBasePath: '/',
 //          showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-          lastVersion: 'current',
+          lastVersion: 'v5',
           versions: {
             current: {
+              label: '6.x',
+            },
+            'v5': {
               label: '5.x',
             },
             'v4': {
