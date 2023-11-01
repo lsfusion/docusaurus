@@ -68,16 +68,16 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://ru.stackoverflow.com/questions/tagged/lsfusion',
+              label: 'Telegram',
+              href: 'https://t.me/lsfusion_official',
             },
             {
               label: 'Slack',
               href: 'https://slack.lsfusion.org',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/lsfusion',
+              label: 'Stack Overflow',
+              href: 'https://ru.stackoverflow.com/questions/tagged/lsfusion',
             },
           ],
         },

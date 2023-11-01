@@ -23,9 +23,9 @@
     "message": "Slack",
     "description": "The label of footer link with label=Slack linking to https://slack.lsfusion.org"
   },
-  "link.item.label.Twitter": {
-    "message": "Twitter",
-    "description": "The label of footer link with label=Twitter linking to https://twitter.com/lsfusion"
+  "link.item.label.Telegram": {
+    "message": "Telegram",
+    "description": "The label of footer link with label=Telegram linking to https://t.me/lsfusion_official"
   },
   "link.item.label.Blog": {
     "message": "Блог",
