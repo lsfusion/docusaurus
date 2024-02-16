@@ -62,6 +62,10 @@ module.exports = {
               label: 'lsf docs',
               to: '/',
             },
+            {
+               label: 'Learning materials',
+               href: 'https://lsfusion.org/ru/ed_materials',
+            },
           ],
         },
         {

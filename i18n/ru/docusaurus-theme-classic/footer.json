@@ -15,6 +15,10 @@
     "message": "lsf документация",
     "description": "The label of footer link with label=lsf docs linking to docs/Learn"
   },
+  "link.item.label.Learning materials": {
+    "message": "Обучающие материалы",
+    "description": "The label of footer link with label=lsf docs linking to https://lsfusion.org/ru/ed_materials"
+  },
   "link.item.label.Stack Overflow": {
     "message": "Stack Overflow",
     "description": "The label of footer link with label=Stack Overflow linking to https://ru.stackoverflow.com/questions/tagged/lsfusion"
