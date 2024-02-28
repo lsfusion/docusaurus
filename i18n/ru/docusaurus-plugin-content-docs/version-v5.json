@@ -215,6 +215,10 @@
     "message": "Инструкция FORM",
     "description": "The label for category FORM statement in sidebar docs"
   },
+  "sidebar.learn.category.Learning materials": {
+    "message": "Обучающие материалы",
+    "description": "The label for category Examples in sidebar docs"
+  },
   "sidebar.learn.category.Examples": {
     "message": "Примеры",
     "description": "The label for category Examples in sidebar docs"

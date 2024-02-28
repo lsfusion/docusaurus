@@ -584,11 +584,18 @@ module.exports = {
     {
       collapsed: false,
       type: 'category',
-      label: 'Examples',
-      link: {type: 'doc', id: 'Examples'},
+      label: 'Learning materials',
+      link: {type: 'doc', id: 'Learning_materials'},
       items: [
-        'Score_table', 
-        'Materials_management', 
+      {
+          type: 'category',
+          label: 'Examples',
+          link: {type: 'doc', id: 'Examples'},
+          items: [
+            'Score_table',
+            'Materials_management',
+            ]
+        },
         {
           type: 'category',
           label: 'How-to',
