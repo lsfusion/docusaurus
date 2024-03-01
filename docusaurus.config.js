@@ -1,4 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+
+import {themes as prismThemes} from 'prism-react-renderer';
+
 module.exports = {
   title: 'lsfusion documentation',
   tagline: 'lsfusion documentation',
@@ -6,6 +9,7 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  onBrokenAnchors: 'ignore', 
   favicon: 'img/favicon.ico',
   organizationName: 'lsfusion', // Usually your GitHub org/user name.
   projectName: 'lsfusion.github.io', // Usually your repo name.
@@ -102,9 +106,11 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} lsFusion Foundation. Built with Docusaurus.`,
     },
     prism: {
-      theme: require('prism-react-renderer/themes/nightOwlLight'),
-      darkTheme: require('prism-react-renderer/themes/vsDark'),
-      additionalLanguages: ['java'],
+      // theme: require('prism-react-renderer/themes/nightOwlLight'),
+      // darkTheme: require('prism-react-renderer/themes/vsDark'),
+      theme: prismThemes.nightOwlLight,
+      darkTheme: prismThemes.vsDark,      
+      additionalLanguages: ['bash', 'css', 'java', 'json'],
     },
     algolia: {
       appId: 'KNJZ5D60XY',
@@ -168,6 +174,14 @@ module.exports = {
       },
     ],
   ],
+  markdown: {
+    format: 'mdx',
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true
+    }
+  },  
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ru'],
