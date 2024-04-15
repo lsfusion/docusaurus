@@ -463,6 +463,7 @@ module.exports = {
                     'IF_..._THEN_operator',
                     'CLASS_operator',
                     'JOIN_operator',
+                    'LIKE_operator',
                     'MAX_operator', 
                     'MIN_operator', 
                     'MULTI_operator', 
