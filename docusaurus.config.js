@@ -9,7 +9,7 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  onBrokenAnchors: 'ignore', 
+  onBrokenAnchors: 'ignore', // Should be updated to 'warn' in the future due to current functionality issues
   favicon: 'img/favicon.ico',
   organizationName: 'lsfusion', // Usually your GitHub org/user name.
   projectName: 'lsfusion.github.io', // Usually your repo name.
@@ -81,7 +81,7 @@ module.exports = {
             },
             {
               label: 'Slack',
-              href: 'https://slack.lsfusion.org',
+              href: 'https://join.slack.com/t/lsfusion/shared_invite/zt-1itj7vlmf-9aBIP__nj9iMJglDaecqXg',
             },
             {
               label: 'Stack Overflow',
