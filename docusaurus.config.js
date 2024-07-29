@@ -143,7 +143,7 @@ module.exports = {
           routeBasePath: '/',
 //          showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-          lastVersion: 'v5',
+          lastVersion: 'current',
           versions: {
             current: {
               label: '6.x',
