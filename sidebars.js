@@ -586,6 +586,7 @@ module.exports = {
             'Empty_statement', 
           ]
         },
+        'Comments',
         'Coding_conventions', 
       ]
     },
