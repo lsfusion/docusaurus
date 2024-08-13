@@ -1,8 +1,13 @@
 Prism.languages.lsf = {
-	'comment': {
-		pattern: /(^|[^\\])(?:\/\/).*/,
-		lookbehind: true
-	},
+	'comment': [
+		{
+			pattern: /\/\/.*/,
+			greedy: true
+		},
+		{
+			pattern: /\/\*[\s\S]*?\*\//
+		}
+	],
 	'string': {
 		pattern: /'(\\'|\\\\|[^\n\r'])*'/,
 		greedy: true,
