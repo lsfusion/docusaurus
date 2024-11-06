@@ -158,6 +158,8 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
+          onInlineAuthors: 'ignore',
+          onUntruncatedBlogPosts: 'ignore',
           // Please change this to your repo.
           editUrl:
             'https://github.com/lsfusion/platform/edit/master/blog/',
