@@ -674,6 +674,7 @@
                     "IF_..._THEN_action_operator",
                     "IMPORT_operator",
                     "INPUT_operator",
+                    "JSON_operator",
                     "MESSAGE_operator",
                     "MULTI_action_operator",
                     "NEW_operator",
