@@ -748,6 +748,7 @@ module.exports = {
             'How-to_Metaprogramming', 
             'How-to_Physical_model', 
             'How-to_Internationalization', 
+            'How-to_Adding_New_Fonts',
           ]
         },
       ]
