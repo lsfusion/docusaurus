@@ -195,5 +195,8 @@ module.exports = {
         label: 'Русский',
       },
     },
-  },  
+  }, 
+  future: {
+    experimental_faster: true,
+  },   
 };
