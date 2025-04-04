@@ -21,6 +21,7 @@ module.exports = {
         'Execution_manual', 
       ]
     },
+    'Docker',
   ],
   learn: [
     'Learn', 
