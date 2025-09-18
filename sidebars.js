@@ -226,7 +226,14 @@ module.exports = {
                           label: 'Interactive view',
                           link: {type: 'doc', id: 'Interactive_view'},
                           items: [
-                            'Form_design', 
+                            {
+                                 type: 'category',
+                                 label: 'Form design',
+                                 link: {type: 'doc', id: 'Form_design'},
+                                 items: [
+                                    'Icons'
+                                 ]
+                            },
                             'Form_events', 
                             {
                               type: 'category',

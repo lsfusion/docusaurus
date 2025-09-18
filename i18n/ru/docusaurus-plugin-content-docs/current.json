@@ -103,6 +103,10 @@
     "message": "Интерактивное представление",
     "description": "The label for category Interactive view in sidebar docs"
   },
+  "sidebar.learn.category.Form design": {
+    "message": "Дизайн формы",
+    "description": "The label for category Form design in sidebar docs"
+  },
   "sidebar.learn.category.Form operators": {
     "message": "Операторы формы",
     "description": "The label for category Form operators in sidebar docs"
