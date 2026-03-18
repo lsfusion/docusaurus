@@ -8,7 +8,6 @@ module.exports = {
   url: 'https://lsfusion.github.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
   onBrokenAnchors: 'ignore', // Should be updated to 'warn' in the future due to current functionality issues
   favicon: 'img/favicon.ico',
   organizationName: 'lsfusion', // Usually your GitHub org/user name.
@@ -182,6 +181,10 @@ module.exports = {
       comments: true,
       admonitions: true,
       headingIds: true
+    },
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownImages: 'warn',
     }
   },  
   i18n: {
@@ -197,6 +200,7 @@ module.exports = {
     },
   }, 
   future: {
+    v4: true,
     experimental_faster: true,
   },   
 };
