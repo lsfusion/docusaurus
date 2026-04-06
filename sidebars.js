@@ -476,6 +476,7 @@ module.exports = {
                     'JOIN_operator',
                     'JSON_operator',
                     'LIKE_operator',
+                    'MATCH_operator',
                     'MAX_operator', 
                     'MIN_operator', 
                     'MULTI_operator', 
