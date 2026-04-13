@@ -145,7 +145,11 @@ module.exports = {
           lastVersion: 'current',
           versions: {
             current: {
+              label: '7.0',
+            },
+            'v6': {
               label: '6.x',
+              banner: 'none',
             },
             'v5': {
               label: '5.x',

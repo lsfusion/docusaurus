@@ -8,6 +8,10 @@
     "branch": "v5"
   },
   {
+    "id": "v6",
+    "branch": "v6"
+  },
+  {
     "id": "next",
     "branch": "master"
   }

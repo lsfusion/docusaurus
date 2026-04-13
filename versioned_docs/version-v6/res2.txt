@@ -1,0 +1,180 @@
++=_statement.md: propertyId (param1, ..., paramN) += implExpr;
+=gt_statement.md: leftPropertyId(param1, ..., paramN) => eventClause rightExpr [RESOLVE resolveType];
+=gt_statement.md: CONSTRAINT eventClause leftPropertyId(param1, ..., paramN) AND NOT rightExpr MESSAGE '═рЁє°хэю ёыхфёЄтшх';
+=gt_statement.md: WHEN eventClause SET(leftPropertyId(param1, ..., paramN)) DO
+=gt_statement.md: WHEN eventClause DROPPED(rightExpr) DO
+=_statement.md: name [caption] [(param1, ..., paramN)] = expression [options];
+ABSTRACT_action_operator.md: ABSTRACT [type [exclusionType]] [FIRST | LAST] [CHECKED] (argClassName1, ..., argClassNameN)
+ABSTRACT_operator.md: ABSTRACT [type [exclusionType]] [CHECKED] returnClassName(argClassName1, ..., argClassNameN)
+ABSTRACT_operator.md: EXCLUSIVE
+ACTION+_statement.md: [ACTION] actionId(param1, ..., paramN) + { implAction }
+Action_options.md: propertyOption1 ... propertyOptionN
+Action_options.md: IN groupName
+ACTION_statement.md: [ACTION] name [caption] [(param1, ..., paramN)] { operator } [options];
+ACTIVATE_operator.md: ACTIVATE FORM formName
+ACTIVE_FORM_operator.md: ACTIVE FORM formName
+ACTIVE_TAB_operator.md: ACTIVE TAB formName.componentSelector
+AFTER_statement.md: AFTER action(param1, ..., paramN) DO aspectAction;
+AGGR_operator.md: AGGR aggrClass WHERE aggrExpr
+AGGR_operator.md: prm1 = DATA class1 (aggrClass);
+AGGR_operator.md: // хёыш aggrExpr ёЄрэютшЄё  эх null, ёючфрхь юс·хъЄ ъырёёр aggrClass (¤ътштрыхэЄэю whereExpr => result(prm1, prm2) RESOLVE LEFT)
+AGGR_operator.md: // хёыш aggrExpr ёЄрэютшЄё  null, єфры хь юс·хъЄ (¤ътштрыхэЄэю aggrClass aggrObject IS aggrClass => result(prm1(aggrObject),prm2(aggrObject)) RESOLVE RIGHT)
+AND_OR_NOT_XOR_operators.md: expression1 AND expression2
+APPLY_operator.md: APPLY [nestedBlock] [SERIALIZABLE] [action]
+APPLY_operator.md: NESTED LOCAL
+Arithmetic_operators.md: expression1 + expression2
+ASK_operator.md: ASK expression
+BEFORE_statement.md: BEFORE action(param1, ..., paramN) DO aspectAction;
+Braces_operator.md: {
+Braces_operator.md: actionOperator
+Brackets_operator.md: expr [ number ]
+BREAK_operator.md: BREAK
+Built-in_classes.md: result = STRING[blankPadded = s1.blankPadded OR s2.blankPadded,
+Built-in_classes.md: IF p1.integerPart >= p2.integerPart AND p1.precision >= p2.precision
+Built-in_classes.md: IF p1 = p2
+Built-in_classes.md: IF p1 = p2
+CANCEL_operator.md: CANCEL [nestedBlock]
+CANCEL_operator.md: NESTED LOCAL
+CASE_action_operator.md: CASE [exclusionType]
+CASE_operator.md: CASE [exclusionType]
+CHANGECLASS_operator.md: CHANGECLASS expr TO className [WHERE whereExpr]
+CHANGE_operator.md: [CHANGE] propertyId(expr1, ..., exprN) <- valueExpr [WHERE whereExpr]
+Change_operators.md: typeChange(propExpr)
+CLASS_operator.md: CLASS(expr)
+CLASS_statement.md: CLASS ABSTRACT name [caption] [: parent1, ..., parentN];
+commat_statement.md: @name(param1, ..., paramN);
+Comparison_operators.md: expression1 == expression2
+CONCAT_operator.md: CONCAT separatorString, concatExpr1, ..., concatExprN
+CONSTRAINT_statement.md: CONSTRAINT eventClause constraintExpr [CHECKED [BY propertyId1, ..., propertyIdN]] MESSAGE messageExpr;
+CONSTRAINT_statement.md: constraintProperty = constraintExpr;
+DATA_operator.md: DATA [LOCAL [NESTED]] returnClass (argumentClass1, ..., argumentClassN)
+DELETE_operator.md: DELETE expr [WHERE whereExpr]
+DESIGN_statement.md: DESIGN formName [caption] [CUSTOM] {
+DESIGN_statement.md: NEW name [insertPos] [{...}];
+DESIGN_statement.md: componentName
+DESIGN_statement.md: groupObjectSelector
+DIALOG_operator.md: DIALOG name
+DIALOG_operator.md: DIALOG classFormType className
+DIALOG_operator.md: INPUT [alias] [NULL]
+DIALOG_operator.md: windowType
+EMAIL_operator.md: EMAIL [FROM fromExpr]
+Empty_statement.md: ;
+EVAL_operator.md: EVAL [ACTION] expression [PARAMS paramExpr1, ..., paramExprN]
+Event_block.md: EVENTS formEventDecl1, ..., formEventDeclN
+Event_block.md: ON eventType eventActionId(param1, ..., paramK) | { eventActionOperator }
+Event_description_block.md: [GLOBAL | LOCAL] [FORMS formName1, ..., formNameN] [GOAFTER propertyId1, ..., propertyIdM]
+EXCLUSIVE_operator.md: EXCLUSIVE expr1, ..., exprN
+EXEC_operator.md: [EXEC] actionId(expression1, ..., expressionN)
+EXPORT_operator.md: EXPORT [exportFormat] [TOP n] FROM [columnId1 =] propertyExpr1, ..., [columnIdN = ] propertyExprN [WHERE whereExpr] [ORDER orderExpr1 [DESC], ..., orderExprL [DESC]] [TO propertyId]
+EXPORT_operator.md: JSON [CHARSET charsetStr]
+EXTEND_CLASS_statement.md: EXTEND CLASS name
+EXTEND_FORM_statement.md: EXTEND FORM formName
+EXTERNAL_operator.md: EXTERNAL externalCall [PARAMS paramExpr1, ..., paramExprN] [TO propertyId1. ..., propertyIdM]
+EXTERNAL_operator.md: HTTP [requestType] connectionStrExpr [BODYURL bodyStrExpr] [HEADERS headersPropertyId] [COOKIES cookiesPropertyId] [HEADERSTO headersToPropertyId] [COOKIESTO cookiesToPropertyId]
+Filters_and_sortings_block.md: FILTERS expression1, ..., expressionN
+Filters_and_sortings_block.md: [EXTEND] FILTERGROUP groupName
+Filters_and_sortings_block.md: ORDERS formPropertyName1 [DESC]
+FORMULA_operator.md: FORMULA [NULL] [className] [syntaxType1] text1, ..., [syntaxTypeN] textN
+FORM_statement.md: FORM name [caption] formOptions
+FORM_statement.md: IMAGE path
+FORM_statement.md: OBJECTS ...
+FOR_operator.md: FOR expression [ORDER [DESC] orderExpr1, ..., orderExprN]
+FOR_operator.md: NEW [alias =] className
+GROUP_operator.md: GROUP
+GROUP_statement.md: GROUP name [caption] [EXTID extID] [: parentName];
+How-to_Frontend.md: change(updateState => this.setState(updateState), { game : { value : 6063, hostGoals : 3 } });
+How-to_Interaction_via_HTTP_protocol.md: http://localhost:7651/exec?action=Location.createCity
+How-to_Reports.md: **╪рсыюэ** `Sample_customerInfo.jrxml`:
+How-to_Reports.md: **╪рсыюэ** `Sample_customerInfo_o.jrxml`:
+How-to_Reports.md: **╪рсыюэ** `Sample_customerInfo_i.jrxml`:
+IF_..._THEN_action_operator.md: IF condition
+IF_..._THEN_operator.md: IF condition
+IF_operator.md: result IF condition
+IMPORT_operator.md: IMPORT [importFormat] FROM fileExpr importDestination [DO actionOperator [ELSE elseActionOperator]]
+IMPORT_operator.md: JSON [CHARSET charsetStr]
+IMPORT_operator.md: TO [(objClassId1, objClassId2, ..., objClassIdK)] propertyId1 [= columnId1], ..., propertyIdN [= columnIdN] [WHERE whereId]
+INDEX_statement.md: INDEX field1, ..., fieldN;
+INDEX_statement.md: propertyId(param1, ..., paramN)
+INDEX_statement.md: param
+INPUT_operator.md: INPUT inputOptions
+INPUT_operator.md: [alias =] builtInClassName
+INTERNAL_operator.md: INTERNAL className [(classId1, ..., classIdN)] [NULL]
+IS_AS_operators.md: expression IS className
+JOIN_operator.md: [JOIN] propertyId(expr1, ..., exprN)
+Launch_parameters.md: db.server=localhost
+Launch_parameters.md: rmi.port=7652
+lt-_WHEN_statement.md: propertyId(param1, ..., paramN) <- valueExpr WHEN eventExpr;
+MAX_operator.md: MAX expr1, ..., exprN
+MESSAGE_operator.md: MESSAGE expression [syncType]
+META_statement.md: META name(param1, ..., paramN)
+Migration.md: V<эюьхЁ тхЁёшш> {
+Migration.md: PROPERTY oldNS.oldName[class1,...,classN] -> newNS.newName[class1,...,classN]
+Migration.md: V0.3.1 {
+MIN_operator.md: MIN expr1, ..., exprN
+Module_header.md: MODULE name;
+MULTI_action_operator.md: MULTI [exclusionType] action1, ..., actionN
+MULTI_action_operator.md: - `EXCLUSIVE`
+MULTI_action_operator.md: ╥шя `EXCLUSIVE` шёяюы№чєхЄё  яю єьюыўрэш■.
+MULTI_operator.md: MULTI expr1, ..., exprN [exclusionType]
+Naming.md: <шь  яЁюёЄЁрэёЄтр шьхэ>.<шь  ¤ыхьхэЄр ёшёЄхь√>
+Naming.md: <шь  яЁюёЄЁрэёЄтр шьхэ>.<шь  ётющёЄтр/фхщёЄтш >[<ъырёё1>,...,<ъырёёN>]
+NAVIGATOR_statement.md: NAVIGATOR {
+NAVIGATOR_statement.md: NEW elementDescription [options] [{ ... }];
+NAVIGATOR_statement.md: FOLDER name [caption]
+NAVIGATOR_statement.md: WINDOW windowName
+NESTEDSESSION_operator.md: NESTEDSESSION action
+NEWEXECUTOR_operator.md: NEWEXECUTOR action THREADS threadExpr
+NEWSESSION_operator.md: NEWSESSION [NEWSQL] [nestedBlock] action
+NEWSESSION_operator.md: NESTED LOCAL
+NEWTHREAD_operator.md: NEWTHREAD action [CONNECTION connectionExpr]
+NEW_operator.md: NEW className [WHERE whereExpr] [TO propertyId(prm1, ..., prmN)]
+Object_blocks.md: OBJECTS groupDeclaration1 [groupOptions1], ...., groupDeclarationN [groupOptionsN]
+Object_blocks.md: [groupName =] (objectDeclaration1, ..., objectDeclarationK)
+Object_blocks.md: objectDeclaration
+Object_blocks.md: [[name] [caption] =] classId [ON CHANGE actionId(param1, ..., paramM) | { actionOperator } ]
+Object_blocks.md: viewType
+Object_blocks.md: TREE [name] groupDeclaration1 [parentBlock1], ...., groupDeclarationN [parentBlockN] [treeOptions]
+Object_blocks.md: PARENT propertyId
+Object_blocks.md: AFTER groupName
+Object_group_operator.md: FILTER groupObjectId
+ON_statement.md: ON eventClause eventAction;
+OVERRIDE_operator.md: OVERRIDE expr1, ..., exprN
+PARTITION_operator.md: PARTITION
+PARTITION_operator.md: PARTITION
+PARTITION_operator.md: PROPORTION [STRICT] ROUND(digits)
+PREV_operator.md: PREV(propExpr)
+PRINT_operator.md: PRINT name
+PRINT_operator.md: printFormat [SHEET sheetProperty] [PASSWORD passwordExpr] [TO propertyId]
+Properties_and_actions_block.md: PROPERTIES [(cparam1, ..., cparamN)] [formPropertyOptions] formPropertyDecl1, ..., formPropertyDeclM
+Properties_and_actions_block.md: [[alias1] [caption1] =] [ACTION] formPropertyId1 [formPropertyOptions1], ..., [[aliasK] [captionK] =] [ACTION] formPropertyIdK [formPropertyOptionsK]
+Properties_and_actions_block.md: [[alias1] [caption1] =] formMappedProperty1 [formPropertyOptions1], ..., [[aliasK] [captionK] =] formMappedPropertyK [formPropertyOptionsK]
+Properties_and_actions_block.md: [ACTION] formPropertyId(param1, ..., paramN1)
+Properties_and_actions_block.md: { formActionOperator }
+Properties_and_actions_block.md: changeType
+Properties_and_actions_block.md: FORM order
+Property_options.md: propertyOption1 ... propertyOptionN
+Property_options.md: IN groupName
+READ_operator.md: READ [CLIENT [DIALOG]] urlExpr [TO propertyId]
+READ_operator.md: [file://]path_to_file
+RECURSION_operator.md: RECURSION initialExpr STEP stepExpr [CYCLES YES | CYCLES NO | CYCLES IMPOSSIBLE]
+REQUEST_operator.md: REQUEST requestAction
+RETURN_operator.md: RETURN
+SEEK_operator.md: SEEK [FIRST | LAST] formObjectId = expr
+SHOW_operator.md: SHOW name
+SHOW_operator.md: SHOW classFormType className
+SHOW_operator.md: syncType
+Structured_view.md: <ЁюфшЄхы№ёъшщ Єху ... шь  ётющёЄтр эр ЇюЁьх = "чэрўхэшх ётющёЄтр" ...>
+Structured_view.md: [namespace[=uri]:]name
+STRUCT_operator.md: STRUCT(expr1, ..., exprN)
+TABLE_statement.md: TABLE name(className1, ..., classNameN) [FULL | NODEFAULT];
+TRY_operator.md: TRY action [CATCH catchAction] [FINALLY finallyAction]
+Type_conversion_operator.md: typeName(expression)
+UNGROUP_operator.md: UNGROUP
+UNGROUP_operator.md: PROPORTION [STRICT] ROUND(digits)
+WHEN_statement.md: WHEN eventClause eventExpr [ORDER [DESC] orderExpr1, ..., orderExprN] DO eventAction;
+WHEN_statement.md: ON eventClause FOR eventExpr [ORDER [DESC] orderExpr1, ..., orderExprN] DO eventAction;
+WHILE_operator.md: WHILE expression [ORDER [DESC] orderExpr1, ..., orderExprN]
+WINDOW_statement.md: WINDOW name [caption] type [options]
+WINDOW_statement.md: HIDETITLE
+WRITE_operator.md: WRITE [CLIENT [DIALOG]] fileExpr TO urlExpr [APPEND]
+WRITE_operator.md: [file://]path_to_file
