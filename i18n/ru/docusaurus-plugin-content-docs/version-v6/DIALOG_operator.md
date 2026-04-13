@@ -10,7 +10,6 @@ title: 'Оператор DIALOG'
 DIALOG name
 [OBJECTS objName1 [= expr1] [NULL] [inputOptions1], ..., objNameN [= exprN] [NULL] [inputOptionsN]]
 [formActionOptions]
-[{initActionOperator}]
 [DO actionOperator [ELSE elseActionOperator]]
 ```
 
@@ -20,7 +19,6 @@ DIALOG name
 DIALOG classFormType className
 [= expr] [NULL] [inputOptions]
 [formActionOptions]
-[{initActionOperator}]
 [DO actionOperator [ELSE elseActionOperator]]
 ```
 
@@ -100,18 +98,13 @@ READONLY
 
     Ключевое слово, которое определяет может ли пользователь в качестве возвращаемого значения выбрать значение `NULL` (при помощи специального действия Сбросить - `System.formDrop`). Если не задана, включена тогда и только тогда, когда указана опция `CHANGE`.
 
-- `initActionOperator`
-
-    [Контекстно-зависимый оператор-действие](Action_operators.md), выполняется при открытии формы, после действий, указанных в [EVENTS ON INIT](Event_block.md) формы.
-
-
 - `actionOperator`
 
-    Контекстно-зависимый оператор-действие, выполняется, если ввод был успешно завершен.
+    [Контекстно-зависимый оператор-действие](Action_operators.md), выполняется, если ввод был успешно завершен.
 
 - `elseActionOperator`
 
-    Контекстно-зависимый оператор-действие, выполняется, если ввод был отменен. В качестве параметров нельзя использовать параметры, добавленные в блоке ввода `INPUT`.
+    [Контекстно-зависимый оператор-действие](Action_operators.md), выполняется, если ввод был отменен. В качестве параметров нельзя использовать параметры, добавленные в блоке ввода `INPUT`.
 
 ### Дополнительные опции
 
@@ -147,9 +140,7 @@ FORM selectSku
 ;
 
 testDialog  {
-    DIALOG selectSku OBJECTS s INPUT {
-        MESSAGE 'On Init';
-    } DO {
+    DIALOG selectSku OBJECTS s INPUT DO {
         MESSAGE 'Selected sku : ' + id(s);
     }
 }
