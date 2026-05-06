@@ -205,6 +205,15 @@ module.exports = {
   }, 
   future: {
     v4: true,
-    experimental_faster: true,
-  },   
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      rspackPersistentCache: true,
+      mdxCrossCompilerCache: true,
+      ssgWorkerThreads: false,
+    },
+  },
 };
