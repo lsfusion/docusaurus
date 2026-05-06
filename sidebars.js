@@ -360,9 +360,17 @@ module.exports = {
                   label: 'Integration',
                   link: {type: 'doc', id: 'Integration'},
                   items: [
-                    'Access_from_an_external_system', 
-                    'Access_from_an_internal_system', 
-                    'Access_to_an_external_system_EXTERNAL', 
+                    'Access_from_an_external_system',
+                    {
+                      type: 'category',
+                      label: 'Access from an internal system',
+                      link: {type: 'doc', id: 'Access_from_an_internal_system'},
+                      items: [
+                        'Custom_Spring_bean_EventServer',
+                        'Java_integration_API',
+                      ]
+                    },
+                    'Access_to_an_external_system_EXTERNAL',
                     {
                       type: 'category',
                       label: 'Access to an internal system (INTERNAL, FORMULA)',
@@ -726,15 +734,15 @@ module.exports = {
                     'How-to_Data_import', 
                   ]
                 },
-                'How-to_Interaction_via_HTTP_protocol', 
-                'How-to_Frontend', 
+                'How-to_Interaction_via_HTTP_protocol',
+                'How-to_Frontend',
                 {
                   type: 'category',
                   label: 'How-to: Access to internal systems',
                   link: {type: 'doc', id: 'How-to_Access_to_internal_systems'},
                   items: [
-                    'How-to_FORMULA', 
-                    'How-to_INTERNAL', 
+                    'How-to_FORMULA',
+                    'How-to_INTERNAL',
                   ]
                 },
               ]
