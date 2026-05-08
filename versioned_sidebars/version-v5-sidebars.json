@@ -82,12 +82,12 @@
                             "id": "Operations_with_primitives"
                           },
                           "items": [
-                            "Arithmetic_operators_+_-_etc",
+                            "Arithmetic_operators_plus_minus_etc",
                             "Logical_operators_AND_OR_NOT_XOR",
                             "Comparison_operators_=_etc",
                             "Rounding_operator_ROUND",
                             "Extremum_MAX_MIN",
-                            "String_operators_+_CONCAT_SUBSTRING",
+                            "String_operators_plus_CONCAT_SUBSTRING",
                             "Structure_operators_STRUCT",
                             "Type_conversion"
                           ]
@@ -733,8 +733,8 @@
             "WINDOW_statement",
             "EXTEND_CLASS_statement",
             "EXTEND_FORM_statement",
-            "+=_statement",
-            "ACTION+_statement",
+            "plus_equals_statement",
+            "ACTION_plus_statement",
             "META_statement",
             "commat_statement",
             "TABLE_statement",

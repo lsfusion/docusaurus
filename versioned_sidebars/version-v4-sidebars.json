@@ -92,7 +92,7 @@
                               "items": [
                                 {
                                   "type": "doc",
-                                  "id": "Arithmetic_operators_+_-_etc"
+                                  "id": "Arithmetic_operators_plus_minus_etc"
                                 },
                                 {
                                   "type": "doc",
@@ -108,7 +108,7 @@
                                 },
                                 {
                                   "type": "doc",
-                                  "id": "String_operators_+_CONCAT_SUBSTRING"
+                                  "id": "String_operators_plus_CONCAT_SUBSTRING"
                                 },
                                 {
                                   "type": "doc",
@@ -1196,11 +1196,11 @@
                 },
                 {
                   "type": "doc",
-                  "id": "+=_statement"
+                  "id": "plus_equals_statement"
                 },
                 {
                   "type": "doc",
-                  "id": "ACTION+_statement"
+                  "id": "ACTION_plus_statement"
                 },
                 {
                   "type": "doc",
