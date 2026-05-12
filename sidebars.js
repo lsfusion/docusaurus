@@ -265,10 +265,11 @@ module.exports = {
                                   label: 'Focus operators',
                                   link: {type: 'doc', id: 'Focus_operators'},
                                   items: [
-                                    'Activation_ACTIVATE', 
-                                    'Activity_ACTIVE', 
+                                    'Activation_ACTIVATE',
+                                    'Activity_ACTIVE',
                                   ]
                                 },
+                                'Capture_SCREENSHOT',
                               ]
                             },
                           ]
@@ -555,10 +556,11 @@ module.exports = {
                     'NEWEXECUTOR_operator', 
                     'NEWSESSION_operator', 
                     'NEWTHREAD_operator', 
-                    'PRINT_operator', 
-                    'READ_operator', 
-                    'REQUEST_operator', 
+                    'PRINT_operator',
+                    'READ_operator',
+                    'REQUEST_operator',
                     'RETURN_operator',
+                    'SCREENSHOT_operator',
                     'SHOW_operator',
                     'TRY_operator',
                     'WHILE_operator', 
