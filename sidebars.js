@@ -137,11 +137,11 @@ module.exports = {
                           label: 'Session management',
                           link: {type: 'doc', id: 'Session_management'},
                           items: [
-                            'Apply_changes_APPLY', 
-                            'Cancel_changes_CANCEL', 
-                            'New_session_NEWSESSION_NESTEDSESSION', 
-                            'Previous_value_PREV', 
-                            'Change_operators_SET_CHANGED_etc', 
+                            'Apply_changes_APPLY',
+                            'Cancel_changes_CANCEL',
+                            'New_session_NEWSESSION_NESTEDSESSION',
+                            'Previous_value_PREV',
+                            'Change_operators_SET_CHANGED_etc',
                           ]
                         },
                         {
@@ -370,7 +370,14 @@ module.exports = {
                         'Java_integration_API',
                       ]
                     },
-                    'Access_to_an_external_system_EXTERNAL',
+                    {
+                      type: 'category',
+                      label: 'Access to an external system (EXTERNAL)',
+                      link: {type: 'doc', id: 'Access_to_an_external_system_EXTERNAL'},
+                      items: [
+                        'New_connection_NEWCONNECTION',
+                      ]
+                    },
                     {
                       type: 'category',
                       label: 'Access to an internal system (INTERNAL, FORMULA)',
