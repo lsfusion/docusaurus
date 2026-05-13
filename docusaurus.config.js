@@ -116,7 +116,17 @@ module.exports = {
       apiKey: 'fb60cbd2d509692aa2646143b0dea6d5',
       indexName: 'lsfusion',
       contextualSearch: true,
-    },    
+    },
+    zoom: {
+      selector: '.markdown img',
+      background: {
+        light: 'rgb(255, 255, 255)',
+        dark: 'rgb(50, 50, 50)',
+      },
+      config: {
+        margin: 24,
+      },
+    },
   },
   presets: [
     [
@@ -216,4 +226,7 @@ module.exports = {
       ssgWorkerThreads: false,
     },
   },
+  plugins: [
+    require.resolve('docusaurus-plugin-image-zoom'),
+  ],
 };
