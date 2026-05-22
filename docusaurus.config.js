@@ -25,13 +25,13 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'Install',
+          docId: 'paradigm/Install',
           label: 'Install',
           position: 'left',
         },
         {
           type: 'doc',
-          docId: 'Learn', 
+          docId: 'paradigm/Learn', 
           label: 'Learn',
           position: 'left',
         },
