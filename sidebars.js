@@ -75,7 +75,6 @@ module.exports = {
                           link: {type: 'doc', id: 'paradigm/Class_operators'},
                           items: [
                             'paradigm/Classification_IS_AS', 
-                            'Property_signature_CLASS', 
                           ]
                         },
                         'paradigm/Selection_CASE_IF_MULTI_OVERRIDE_EXCLUSIVE', 
@@ -486,7 +485,6 @@ module.exports = {
                     'language/GROUP_operator',
                     'language/IF_operator',
                     'language/IF_..._THEN_operator',
-                    'CLASS_operator',
                     'language/JOIN_operator',
                     'language/JSON_operator',
                     'language/LIKE_operator',
