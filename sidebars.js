@@ -779,6 +779,7 @@ module.exports = {
       collapsed: false,
       type: 'category',
       label: 'AI',
+      link: {type: 'doc', id: 'paradigm/AI'},
       items: [
         {type: 'doc', id: 'brief/Brief', label: 'Brief'},
         {type: 'doc', id: 'rules/Rules', label: 'Rules'},
