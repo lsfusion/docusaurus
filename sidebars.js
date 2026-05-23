@@ -775,6 +775,15 @@ module.exports = {
         },
       ]
     },
-    'paradigm/Online_demo', 
+    {
+      collapsed: false,
+      type: 'category',
+      label: 'AI',
+      items: [
+        {type: 'doc', id: 'brief/Brief', label: 'Brief'},
+        {type: 'doc', id: 'rules/Rules', label: 'Rules'},
+      ]
+    },
+    'paradigm/Online_demo',
   ]
 };
