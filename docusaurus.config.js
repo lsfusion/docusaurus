@@ -228,5 +228,14 @@ module.exports = {
   },
   plugins: [
     require.resolve('docusaurus-plugin-image-zoom'),
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        // Emit a Markdown twin of each current doc page + an /llms.txt index,
+        // for LLM consumption (and for get_guidance to fetch Brief/Rules).
+        // Current docs only — the v4/v5/v6 snapshots stay HTML-only.
+        content: {includeVersionedDocs: false},
+      },
+    ],
   ],
 };
