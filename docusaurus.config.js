@@ -143,10 +143,17 @@ module.exports = {
                    permalink,
                  }) {
                    if (version == 'current') {
-                     return `https://github.com/lsfusion/platform/edit/master/docs/${locale}/${docPath}`;
+                     // master uses the TYPE-FIRST source layout docs/<type>/<locale>/<stem>.
+                     // docPath is "<type>/<stem>" — insert the locale after the type.
+                     const i = docPath.indexOf('/');
+                     const typeFirst = i < 0
+                       ? docPath
+                       : `${docPath.slice(0, i)}/${locale}/${docPath.slice(i + 1)}`;
+                     return `https://github.com/lsfusion/platform/edit/master/docs/${typeFirst}`;
                    } else {
+                     // v4/v5/v6 branches keep the old flat layout docs/<locale>/<docPath>.
                      return `https://github.com/lsfusion/platform/edit/${version}/docs/${locale}/${docPath}`;
-                   } 
+                   }
                  },
           editLocalizedFiles: true,
           routeBasePath: '/',
