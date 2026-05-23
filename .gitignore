@@ -7,6 +7,8 @@
 # Generated files
 .docusaurus
 .cache-loader
+# Current-docs sidebar copied from platform/docs/sidebars.js by deployDocumentation
+/sidebars.generated.js
 
 # Misc
 .DS_Store
