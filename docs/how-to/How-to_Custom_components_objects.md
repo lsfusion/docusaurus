@@ -222,3 +222,15 @@ The result is converted to a JS value:
 Parameters are passed as plain JS values (a number, string, boolean, `Date`, or an object/array for a `JSON` parameter) and bound positionally. An error — a missing action or property, a script error, or a runtime exception — rejects the promise with its message.
 
 In a form the calls run in the form's session, so a change is visible to the following calls and is committed when the form applies. In the navigator each call runs in its own session, so a change is discarded unless the script applies it with `APPLY`, and a read sees the committed database state.
+
+By default these calls are gated like the external HTTP API: with the default `enableAPI = 0` a call is allowed only when the target action or property carries [`@@api`](../language/Action_options.md) (which also exposes it over HTTP), or the user has admin rights. To let a specific form's controller call selected actions/properties without that gate, list them in the form's `API` clause — the authorization becomes "the user can open this form" plus the explicit listing:
+
+```lsf
+FORM order 'Order'
+    OBJECTS o = Order
+    PROPERTIES(o) number, note
+    API round, format = formatSum, taxRate
+;
+```
+
+Now `controller.exec("round", 3.14159)`, `controller.exec("format", 1990, "USD")` and `controller.change("taxRate", 0.2)` work on this form without `@@api` or `enableAPI`. Each entry may be renamed with an alias (`format = formatSum`), prefixed with `ACTION` to force the action reading, and fully qualified with a signature (`round[NUMERIC]`) to pick an overload; `exec` needs an action entry and `change` a property entry. Parameters are passed positionally by the caller as plain values — phase 1 entries are mostly primitive calls like these. The clause changes which calls are allowed, not how parameters are bound, and does not restrict the argument values a caller passes, so list only entries safe for any argument (forcing a parameter to the form's own object is phase 2). `eval`/`evalAction` run arbitrary script and stay under the gate.
