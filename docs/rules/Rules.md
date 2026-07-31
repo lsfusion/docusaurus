@@ -182,6 +182,13 @@ SYNTAX RULES
    into a separately named property. Otherwise the inner
    comma is parsed as the list separator and the list
    silently reshapes into something other than the intent.
+
+5. When introducing a new parameter, the assistant MUST
+   declare its class explicitly at the first use
+   (`prop(Class x)`, `GROUP MAX Class x IF ...`).
+   `AS` does NOT declare the parameter's class: it is
+   a cast — the parameter itself stays untyped
+   at later occurrences.
 ----------------------------------------------------------------
 BOOLEAN TYPE RULES
 
@@ -365,9 +372,15 @@ ACTION RULES
 3. The assistant SHOULD avoid introducing `LOCAL`
    properties without a concrete need.
 
-   Each `LOCAL` is backed by a temporary table
-   in PostgreSQL, so it carries a real runtime cost
-   well above a stack variable in a conventional language.
+   A `LOCAL` materializes a temporary table in PostgreSQL
+   only once it holds more than one row, so the runtime
+   cost well above a stack variable in a conventional
+   language applies to `LOCAL`s with parameters (buffers
+   keyed by row number, per-object values). A parameterless
+   `LOCAL` holds at most one row and always stays in
+   memory, so parameterless flags and single values are
+   cheap; avoid them to keep the number of entities
+   down, not because of cost.
 
 4. A `LOCAL` is normally justified when BOTH conditions hold:
    - its value is non-trivial to compute
@@ -453,6 +466,17 @@ ASSIGNMENT RULES (`<-`)
    assistant MUST wrap `PREV` in a separate property —
    `prevF(x) = PREV(f(x));` — and call it instead of
    writing `PREV(f(<session-computed arg>))` inline.
+
+4. A parameter through which a property whose name is
+   declared on several classes is read or changed MUST be
+   annotated with its class at first use
+   (`date(Interaction i) <- ...`): an overloaded name is
+   resolved by the parameter classes, and an untyped
+   parameter yields an "ambiguous name" error. This
+   especially concerns events: their statement is a separate
+   parameter context in which the class is not inferred from
+   anywhere else, and an `i IS Interaction` condition does
+   not set the parameter's class.
 ----------------------------------------------------------------
 EVENT RULES (`WHEN`)
 
@@ -493,6 +517,21 @@ EVENT RULES (`WHEN`)
 
    In the absence of an explicit change the event writes
    the value of the expression even when it is `NULL`.
+----------------------------------------------------------------
+ABSTRACT PROPERTY RULES (`+=`)
+
+1. The value class of a `+=` implementation MUST fit within
+   the value class declared on the abstract property; there
+   is no implicit cast — an implementation with a wider
+   class is rejected at server startup with a
+   "wrong value class of implementation" error.
+
+   An expression that widens the value class — above all
+   string concatenation, which sums the operands' lengths
+   (`ISTRING[326]` against a declared `ISTRING[250]`) —
+   the assistant MUST wrap in an explicit cast to the
+   declared class:
+   `f(X x) += ISTRING[250](a(x) + b(x));`
 ----------------------------------------------------------------
 CONSTRAINT RULES
 
@@ -920,13 +959,12 @@ MODULE DESIGN RULES
     SQLUtils, ProcessMonitor, DefaultData, Image, Printer,
     Numerator, Chat, Eval, I18n, Com, Sound, Backup, OpenCV,
     Geo, Historizable, Schedule, Document, QZTray, Excel,
-    Hierarchy, RabbitMQ, MasterData, JKanban, FrappeGantt,
-    Chart, Carousel, Messenger, Whatsapp, Skype, Telegram,
-    Viber, Slack.
+    Hierarchy, RabbitMQ, MasterData, Messenger, Whatsapp,
+    Skype, Telegram, Viber, Slack.
 
     For generic domain names from this list (`MasterData`,
-    `Document`, `Schedule`, `Chart`, `Numerator`), the
-    assistant SHOULD add a project prefix to the module name.
+    `Document`, `Schedule`, `Numerator`), the assistant
+    SHOULD add a project prefix to the module name.
 ----------------------------------------------------------------
 MIGRATION RULES (`migration.script`)
 

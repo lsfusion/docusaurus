@@ -126,7 +126,7 @@ controller.diff(list, (type, index, object) => {
 The _clearDiff_ method resets the remembered list — it is called in the component's optional _clear_ function, invoked when the view is cleared with the same _element_ and _controller_, so that the next rendering starts from an empty state.
 
 After removing the old elements, for each object in the _list_ array a _div_ _card_ is created, in which the desired display elements of each property are placed.
-The names of the object fields correspond to the names of the properties on the form. The property values are converted to JS values in the same way as in the rows of a [React view](How-to_Custom_React_views.md): for example, values of the date and time classes are passed as `Date`, and `JSON` — as a parsed object. The _isCurrent_ method determines which object from the list is current.
+The names of the object fields correspond to the names of the properties on the form. The property values are converted to JS values in the same way as in the rows of a [React view](How-to_Custom_React_views.md): for example, values of the date and time classes are passed as `Date`, and `JSON` — as a parsed object. A property whose value is an object arrives as that object's numeric id — the same id an object is passed by in [FK writes and server calls](How-to_Custom_view_controller.md). The _isCurrent_ method determines which object from the list is current.
 
 At the very end of the function, mouse click handlers are added to the item card. 
 
@@ -224,7 +224,7 @@ The methods of the local controller passed to _render_ and _update_, internal he
 | `getColorThemeName()` | the current color theme name: `'LIGHT'` or `'DARK'` |
 | `form` | the [form controller](How-to_Custom_view_controller.md) |
 
-The value-or-row guess in `changeProperty`, the value formats, and the name qualification rules are the same as in the [form controller](How-to_Custom_view_controller.md)'s method of the same name; a property that is not one of this group's columns is passed by `changeProperty` to the form controller, which resolves it form-wide. `changeProperties` applies several changes in one request — for example, the built-in Gantt chart view changes both dates at once when a task bar is dragged:
+The value-or-row guess in `changeProperty`, the value formats, and the name qualification rules are the same as in the [form controller](How-to_Custom_view_controller.md)'s method of the same name; a property that is not one of this group's columns is passed by `changeProperty` to the form controller, which resolves it form-wide. `changeProperties` applies several changes in one request — for example, a Gantt chart view changes both dates at once when a task bar is dragged:
 
 ```js
 controller.changeProperties(['start', 'end'], [task, task], [newStart, newEnd]);
@@ -238,7 +238,7 @@ controller.getPropertyValues('name', query, result => { ... });
 
 `setBooleanViewFilter` and `setDateIntervalViewFilter` set a server view filter and the page size `pageSize`: the next _update_ call receives an already filtered list. `setBooleanViewFilter` keeps the objects whose `property` value is true. `setDateIntervalViewFilter` keeps the objects whose period from the `startProperty` value to the `endProperty` value intersects the interval from `start` to `end` (the values are JS `Date`s; when `endProperty` is `null`, both ends of the period are taken from `startProperty`); this is how the built-in calendar view reads only the events of the visible date range.
 
-The display getters let the component use the design attributes set on the form: for example, the built-in chart view builds its datasets taking the column captions and colors from `getCaption`, `getBackground` and `getForeground`.
+The display getters let the component use the design attributes set on the form: for example, a chart view builds its datasets taking the column captions and colors from `getCaption`, `getBackground` and `getForeground`.
 
 ### Calling the server {#calling-the-server}
 
