@@ -187,6 +187,10 @@
     "message": "Язык",
     "description": "The label for category Language in sidebar docs"
   },
+  "sidebar.learn.category.Literals": {
+    "message": "Литералы",
+    "description": "The label for category Literals in sidebar docs"
+  },
   "sidebar.learn.category.Statements": {
     "message": "Инструкции",
     "description": "The label for category Statements in sidebar docs"
