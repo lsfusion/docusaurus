@@ -170,9 +170,12 @@ module.exports = {
             },
             'v5': {
               label: '5.x',
+              // Legacy versions: keep them reachable, but out of search engines.
+              noIndex: true,
             },
             'v4': {
               label: '4.x',
+              noIndex: true,
             },
          },          
         },
