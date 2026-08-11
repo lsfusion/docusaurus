@@ -1,0 +1,7 @@
+# Crawling is allowed. This file is not a license — the terms for reusing the
+# content of this site are stated at https://docs.lsfusion.org/license/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://docs.lsfusion.org/sitemap.xml

@@ -43,8 +43,12 @@
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub linking to https://github.com/lsfusion/platform"
   },
+  "link.item.label.License": {
+    "message": "Лицензия",
+    "description": "The label of footer link with label=License linking to /license"
+  },
   "copyright": {
-    "message": "Copyright © 2026 lsFusion Foundation. Built with Docusaurus.",
+    "message": "Copyright © 2026 lsFusion Foundation. Содержимое доступно по лицензии <a href=\"https://creativecommons.org/licenses/by/4.0/deed.ru\">CC BY 4.0</a>. Built with Docusaurus.",
     "description": "The footer copyright"
   }
 }

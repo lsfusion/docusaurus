@@ -14,6 +14,34 @@ module.exports = {
   projectName: 'lsfusion.github.io', // Usually your repo name.
   deploymentBranch: 'master',
   trailingSlash: true,
+  // Machine-readable licensing. Automated crawlers and dataset builders read
+  // rel="license" and schema.org metadata, not the prose on /license.
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'license',
+        href: 'https://creativecommons.org/licenses/by/4.0/',
+      },
+    },
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'lsFusion documentation',
+        url: 'https://docs.lsfusion.org',
+        license: 'https://creativecommons.org/licenses/by/4.0/',
+        publisher: {
+          '@type': 'Organization',
+          name: 'lsFusion Foundation',
+        },
+      }),
+    },
+  ],
   themeConfig: {
     navbar: {
       title: '',
@@ -99,10 +127,14 @@ module.exports = {
               label: 'GitHub',
               href: 'https://github.com/lsfusion/platform',
             },
+            {
+              label: 'License',
+              to: '/license',
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} lsFusion Foundation. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} lsFusion Foundation. Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Built with Docusaurus.`,
     },
     prism: {
       // theme: require('prism-react-renderer/themes/nightOwlLight'),
