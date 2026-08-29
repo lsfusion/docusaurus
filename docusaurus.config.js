@@ -5,15 +5,14 @@ import {themes as prismThemes} from 'prism-react-renderer';
 // The llms-txt plugin resolves each internal link through the route lookup,
 // which under `trailingSlash: true` hands back `/Slug/`, and then appends the
 // extension — producing `/Slug/.md`, which 404s. The Markdown twin is written
-// to `/Slug.md`. This runs after the plugin's own link rewriting and puts the
-// extension back where the file is.
-function rehypeFixMarkdownTwinLinks() {
+// to `/Slug.md`. This runs as a remark plugin because the plugin's built-in
+// rehype set ENDS with the HTML→Markdown conversion, so by the time custom
+// plugins run the tree is already mdast: links are `link` nodes with `url`.
+function remarkFixMarkdownTwinLinks() {
   const fix = (node) => {
-    if (node.type === 'element' && node.tagName === 'a') {
-      const href = node.properties && node.properties.href;
-      if (typeof href === 'string' && href.startsWith('/')) {
-        node.properties.href = href.replace(/\/\.md(?=$|[?#])/, '.md');
-      }
+    if ((node.type === 'link' || node.type === 'definition') &&
+        typeof node.url === 'string' && node.url.startsWith('/')) {
+      node.url = node.url.replace(/\/\.md(?=$|[?#])/, '.md');
     }
     (node.children || []).forEach(fix);
   };
@@ -296,7 +295,7 @@ module.exports = {
         // Current docs only — the v4/v5/v6 snapshots stay HTML-only.
         content: {
           includeVersionedDocs: false,
-          rehypePlugins: [rehypeFixMarkdownTwinLinks],
+          remarkPlugins: [remarkFixMarkdownTwinLinks],
         },
       },
     ],
