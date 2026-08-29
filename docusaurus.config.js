@@ -2,6 +2,24 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+// The llms-txt plugin resolves each internal link through the route lookup,
+// which under `trailingSlash: true` hands back `/Slug/`, and then appends the
+// extension — producing `/Slug/.md`, which 404s. The Markdown twin is written
+// to `/Slug.md`. This runs after the plugin's own link rewriting and puts the
+// extension back where the file is.
+function rehypeFixMarkdownTwinLinks() {
+  const fix = (node) => {
+    if (node.type === 'element' && node.tagName === 'a') {
+      const href = node.properties && node.properties.href;
+      if (typeof href === 'string' && href.startsWith('/')) {
+        node.properties.href = href.replace(/\/\.md(?=$|[?#])/, '.md');
+      }
+    }
+    (node.children || []).forEach(fix);
+  };
+  return (tree) => fix(tree);
+}
+
 module.exports = {
   title: 'lsfusion documentation',
   tagline: 'lsfusion documentation',
@@ -276,7 +294,10 @@ module.exports = {
         // Emit a Markdown twin of each current doc page + an /llms.txt index,
         // for LLM consumption (and for get_guidance to fetch Brief/Rules).
         // Current docs only — the v4/v5/v6 snapshots stay HTML-only.
-        content: {includeVersionedDocs: false},
+        content: {
+          includeVersionedDocs: false,
+          rehypePlugins: [rehypeFixMarkdownTwinLinks],
+        },
       },
     ],
   ],
