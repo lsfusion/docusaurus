@@ -36,13 +36,14 @@ sessionScopeType
 cancelType
 READONLY
 CHECK
+ACTIVATE [USER]
 ```
 
 Where `windowType` is one of:
 
 ```
 FLOAT
-DOCKED
+WINDOW [windowName]
 EMBEDDED
 POPUP
 IN containerName
@@ -56,7 +57,7 @@ The `SHOW` operator creates an action that opens the specified form. The `OBJECT
 
 - `formId`
 
-    [String literal](Literals.md#strliteral) that uniquely identifies the opened form instance for later form-management actions (for example, to close that exact form). By default, the opened form has no such identifier.
+    [String literal](Literals.md#strliteral) - the label the opened form carries, by which later actions address it: [`ACTIVATE FORM`](ACTIVATE_operator.md) and [`CLOSE FORM`](CLOSE_FORM_operator.md). Several open forms may carry the same label: `CLOSE FORM` requests that each of them close, while `ACTIVATE FORM` activates the first one it finds in the `FORMS` windows. By default, the opened form carries none.
 
 - `formName`
 
@@ -106,7 +107,11 @@ The `SHOW` operator creates an action that opens the specified form. The `OBJECT
 
 - `windowType`
 
-    The [form layout](../paradigm/In_an_interactive_view_SHOW_DIALOG.md#location): `FLOAT` shows the form as a floating window, `DOCKED` as a tab in the system forms window, `EMBEDDED` and `POPUP` as in-place editors, and `IN` places the form inside `containerName` — a form-qualified [design component](DESIGN_statement.md#selector) (the form's name followed by the component's path within that form's design) that must be a container. By default, `FLOAT` is used in synchronous mode and `DOCKED` in asynchronous mode. In synchronous mode a `DOCKED` tab blocks the form it is opened from until it is closed, and from a form shown as a window it is shown as a window, like `FLOAT`: to open a tab from a form shown as a window, specify `NOWAIT`.
+    The [form layout](../paradigm/In_an_interactive_view_SHOW_DIALOG.md#location): `FLOAT` shows the form as a floating window, `WINDOW` as a tab in the system forms window `System.forms` - or in the [`FORMS` window](WINDOW_statement.md) `windowName` names, which is how a form is drawn as a header or a side panel - `EMBEDDED` and `POPUP` as in-place editors, and `IN` places the form inside `containerName` — a form-qualified [design component](DESIGN_statement.md#selector) (the form's name followed by the component's path within that form's design) that must be a container. By default, `FLOAT` is used in synchronous mode and `WINDOW` in asynchronous mode. In synchronous mode a `WINDOW` tab blocks the form it is opened from until it is closed, and from a form shown as a window it is shown as a window, like `FLOAT`: to open a tab from a form shown as a window, specify `NOWAIT`.
+
+    - `windowName`
+
+        Name of the window the form is docked into. [Composite ID](IDs.md#cid) of a window declared with `WINDOW ... FORMS`; any other window is an error. The mobile web client and the desktop client draw `System.forms` alone, so there the form opens in `System.forms`, as a tab.
 
 - `manageSessionType`
 
@@ -141,6 +146,20 @@ The `SHOW` operator creates an action that opens the specified form. The `OBJECT
 - `CHECK`
 
     Keyword. If specified, when the user presses the *OK* system action (`System.formOk[]`), the platform first validates the pending session changes (runs the apply pass — constraints, aggregations, event handlers — without committing); the form closes only if the validation passes, otherwise it stays open.
+
+- `ACTIVATE`
+
+    Keyword. If specified, and the same form is already open in the window with the same `formId`, that form is [activated](ACTIVATE_operator.md) instead and no second one is shown; the form that is already open is shown as it is. An open without `formId` means the form opened without one, not any of them. Since the form already open is shown unchanged, `ACTIVATE` can be specified only together with `WINDOW` and `NOWAIT`, and not together with `OBJECTS`, `FILTERS`, `READONLY`, `CHECK`, a session option, a cancel option or an initialization block — those apply to a form being opened and would have nowhere to go.
+
+    When the client predicts this opening and finds the form already open, it activates that form immediately and sends the action to the server. If the action reaches a matching `SHOW`, the server skips creating the form, so its [initialization events](FORM_statement.md) and close events do not run. Other statements and action event handlers execute as usual.
+
+    This early activation happens for an action started from the navigator - by a click or by a key binding - for the action a property runs on its ordinary change or binding, unless the change supplies a value, and, in the web client, for a form event. It does not happen for a value a custom view supplies (a `CUSTOM` renderer's change, the React controller's `changeProperty`), for a paste, or for an action a custom view runs by name: there the form is created on the server and closed by the client when it arrives, as described below.
+
+    Reuse is decided when the action is invoked. If the form closes afterwards, this opening does not recreate it. The activation is retained even if the action is rejected or does not reach this `SHOW`.
+
+    Without an early activation, the client checks again when the new form arrives. If a matching form is already open then, the client activates it and closes the new one; in this case the new form's initialization and close events run.
+
+    Adding `USER` leaves the choice to the user: the form is activated only while duplicate forms are forbidden for them (the `forbidDuplicateForms` setting), and holding *Ctrl* when invoking an action from the navigator opens another instance anyway. Without `USER` neither the setting nor *Ctrl* changes it. `USER` is what a [navigator](../paradigm/Navigator.md) form element does.
 
 ### Examples
 

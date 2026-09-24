@@ -76,7 +76,7 @@ printOrder (Order o) { PRINT printOrder OBJECTS o = o XLSX TO orderFile; }
 
 The `OBJECTS` block of the opening operator passes object values to the form: the passed value becomes the current object in the interactive view, and a filter for equality to it in a static one. By default a `NULL` among the passed values cancels the action; the `NULL` keyword after the value allows it, and a `DIALOG` object marked `INPUT` or `CHANGE` allows it automatically.
 
-`SHOW` and `DIALOG` also set the form location — `FLOAT`, `DOCKED`, `EMBEDDED`, `POPUP`, `IN`. `SHOW` takes `WAIT` / `NOWAIT`; a `DIALOG` has no such option and runs synchronously whenever its result is consumed — by a `DO` / `ELSE` continuation or by a `CHANGE` write-back.
+`SHOW` and `DIALOG` also set the form location — `FLOAT`, `WINDOW`, `EMBEDDED`, `POPUP`, `IN`. `SHOW` takes `WAIT` / `NOWAIT`; a `DIALOG` has no such option and runs synchronously whenever its result is consumed — by a `DO` / `ELSE` continuation or by a `CHANGE` write-back.
 
 In detail — [Opening a form](../paradigm/Open_form.md). A form is also opened by picking a [navigator](../paradigm/Navigator.md) item, see [Brief: navigator](Brief_view.md#navigator).
 
@@ -140,7 +140,7 @@ The [navigator design](../paradigm/Navigator_design.md) is a set of *windows*, a
 
 Which window an element is drawn in is set by the `WINDOW` option of its parent folder. An element that ended up in a window other than the window of its folder is shown only when that folder is the one [selected](../paradigm/Navigator_design.md#selectedfolder) by the user in its own window — this is how a folder switches the content of a neighbouring window.
 
-The [system windows](../paradigm/Navigator_design.md#systemwindows) are created by the platform: `System.forms` — the window forms open in, `System.log` — messages to the user, `System.root` and `System.toolbar` — the horizontal and vertical navigator toolbars, `System.system` — the system buttons, `System.logo` — the logo. The `EXTEND WINDOW ... CUSTOM` statement changes the renderer of an already declared window, and `HIDE WINDOW` hides it. Among the `NATIVE` windows only `System.forms` and `System.log` take a renderer, and only a React component — one that is handed what the application put into the window instead of navigator elements; the rest hold no navigator elements and take neither a component nor a template.
+The [system windows](../paradigm/Navigator_design.md#systemwindows) are created by the platform: `System.forms` — the window forms open in, `System.log` — messages to the user, `System.root` and `System.toolbar` — the horizontal and vertical navigator toolbars, `System.system` — the system buttons, `System.logo` — the logo. The `EXTEND WINDOW ... CUSTOM` statement changes the renderer of an already declared window, and `HIDE WINDOW` hides it. `System.log` among the `NATIVE` windows and the `FORMS` windows — `System.forms` and those an application declares — take a renderer, and only a React component — one that is handed what the window holds instead of navigator elements; the other `NATIVE` windows hold no navigator elements and take neither a component nor a template.
 
 ## Reports
 

@@ -19,7 +19,7 @@ If neither mode is specified, the platform chooses one automatically: the operat
 A form being opened can be shown in one of the following ways:
 
 -   As a *window* (`FLOAT`) - the form is shown as a floating window.
--   As a *tab* (`DOCKED`) - the form is opened as a tab in the system [window](Navigator_design.md) `System.forms`.
+-   As a *tab* (`WINDOW`) - the form is opened as a tab in the system [window](Navigator_design.md) `System.forms`, or in another `FORMS` window the operator names - one the application declared for a form it draws apart from the others, such as a header above the forms area.
 -   As an *embedded form* (`EMBEDDED`) - the form is shown inline, embedded into the form it is opened from.
 -   As a *popup* (`POPUP`) - the form is shown in a floating popup attached to the element it is opened from.
 -   In a *container* (`IN`) - the form is docked into a specified container of the form it is opened from.
@@ -28,7 +28,7 @@ By default, forms in the synchronous mode are shown as windows, in the asynchron
 
 A tab opened in the synchronous mode blocks the calling form until it is closed. If the calling form is itself shown as a window, the opened form is shown as a window instead of a tab.
 
-Each execution of the action opens a new instance of the form, even if the same form is already open. An already open tab of the form is activated instead of a new one only when the form is opened from the [navigator](Navigator.md), and only if duplicate forms are forbidden for the user.
+Each execution of the action opens a new instance of the form, even if the same form is already open, unless the opening is set to activate an instance that is already open: then, if the same form is open in the same window with the same label, that form is [activated](Activation_ACTIVATE.md) instead of a new one. Such an opening does so either always, or only while duplicate forms are forbidden for the user; opening a form from the [navigator](Navigator.md) does the latter.
 
 
 :::info
