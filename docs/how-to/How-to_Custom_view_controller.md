@@ -48,7 +48,7 @@ Optional arguments are bracketed.
 | `<group>.<property>.getValues([object,] value[, mode], ok[, fail][, count])` | a capped server suggestion list | — (via `ok`) |
 | `<property>.change(value)` / `.exec()` / `.getValues(...)` | the same, for a property of the empty group — with no row | — |
 | `<group>.expand(row)` / `.collapse(row)` / `.toggle(row)` | open or close one node of a [tree](How-to_Custom_React_views.md#trees) — a node is a row of a group; only where the tree's rows are drawn | — |
-| `<group>.expandAll()` / `.collapseAll()` | open every node of the group and of the groups below it — the whole tree on its top group — or close the group's nodes; where the tree's rows are drawn | — |
+| `<group>.expandAll()` / `.collapseAll()` | open every node of the group and of the groups below it — the whole tree on its top group — or close them; where the tree's rows are drawn | — |
 | `<group>.filters.change(condition)` | change one of the group's user filter conditions, leaving the rest — where `FILTERS(<group>)` is | — |
 | `<group>.filters.change(conditions)` | an array states them all: replace the whole condition list | — |
 | `properties.change([{property, object, value}])` | several property changes in ONE request | — |
@@ -242,7 +242,7 @@ An [`INTERNAL CLIENT`](../language/INTERNAL_operator.md) action placed in [`NAVI
 
 - `activate(canonicalName[, event])` — does what clicking that navigator element does: selects the folder, or runs the action, opening its form the same optimistic way. `canonicalName` is the element's [canonical name](../language/IDs.md). `event` is the event of the click, React's own or the browser's, and can be omitted when activating from code that has none.
 
-Activating an element that does not exist, or one hidden by its own `SHOWIF`, throws. Running an action reports no completion, just as a click does not.
+Activating an element that does not exist, or one hidden by a `SHOWIF` — its own or that of a folder above it — throws. Running an action reports no completion, just as a click does not.
 
 ```js
 window.openMonthlyReport = function (controller) {
