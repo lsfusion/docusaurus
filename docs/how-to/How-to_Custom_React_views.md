@@ -211,6 +211,8 @@ An option the platform computed nothing for is absent — a property with no `BA
 | Option | What it is | JS value |
 | --- | --- | --- |
 | `type` | The kind the value was converted by — `number`, `boolean`, `string`, `date`, or `json` (parsed, so the value is whatever the JSON held). It describes the property rather than one of its values, so it sits with the column attributes: `data.<g>.<prop>.type` for a table property, and on the entry itself for a panel or empty-group one. A cell does not carry it | string |
+| `askConfirm` | Whether a change of the property — for an action, running it — asks the user first: `CONFIRM` on the action, or `askConfirm = TRUE` in the design. The platform's own editor and button ask before they send; a view's call through the property's member does not, so a view that wants the question asks it itself, before the call. It is where `type` is | `true` / `false` |
+| `askConfirmMessage` | The question to ask: the design's `askConfirmMessage`, or the platform's own | string; only where `askConfirm` is `true` |
 | `hidden` | Whether the form hides the property now — by its `SHOWIF`, or by the `SHOWIF` of a container above it. It is on the property's entry — the column entry of a table property, the entry itself of a panel or empty-group one — and never on a cell | `true`; absent while the form shows it |
 | `loading` | Whether a change of the cell still waits for the server's answer, whoever sent it — this view, through the property's member (`change` or `exec`, in a batch or outside one), or another part of the form. An action's cell says it while the action runs. It is on the cell of a table property, and on the entry itself of a panel or empty-group one | `true`; absent otherwise |
 | `caption` | The property's caption | string |
@@ -1537,7 +1539,7 @@ search box of [`ItemBoard`](#filters), without its list, is such a panel.
 The conditions the component sets are the group's own: a `FILTER` action, a pivot's drill-down and this component all
 change one list, so they cannot disagree.
 
-`TOOLBARSYSTEM(o)`, `FILTERCONTROLS(o)` and `FILTERGROUP(f)` are not containers and do not take `custom`.
+`TOOLBARSYSTEM(o)`, `FILTERCONTROLS(o)` and `FILTERGROUP(f)` are not containers, but each takes a `custom` of its own, and a React component then draws it in its place ([A component's own view](#component-views)).
 
 Receiving a group's state does not make a component the only one drawing it. Which components are drawn is decided
 by the design and by what is placed with `<Platform>`, not by what `data` contains — the state is the group's, whoever draws it. So
