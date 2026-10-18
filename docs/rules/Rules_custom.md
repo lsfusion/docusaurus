@@ -35,7 +35,10 @@ title: 'Rules: custom views'
      React component (a name matching `[A-Z][A-Za-z0-9_$]*`)
      that draws the container's whole subtree from the
      `props.data` projection, or an HTML template that only
-     places platform-drawn children.
+     places platform-drawn children; a table, a toolbar,
+     filter controls or a filter group take a React
+     component the same way, which draws what that
+     component shows of its group, in its place.
 
    All three are web client only: the desktop client renders
    the standard views and the container's regular subtree.
@@ -173,8 +176,9 @@ title: 'Rules: custom views'
    be added as a separate entry — the caption composition of
    the `view` rules (`captionStatus 'Status' = caption(status(p))`).
    A property marked `NOCUSTOM`, or given a `CUSTOM` render
-   function in the `FORM`, is drawn by the platform, and the ban
-   on showing identifiers applies to it as usual.
+   function or a `SELECT` in the `FORM`, is drawn by the
+   platform, and the ban on showing identifiers applies to it
+   as usual.
 
 2. In a container with the `custom` attribute the component
    draws the values and decides itself what is edited: an edit
@@ -188,9 +192,9 @@ title: 'Rules: custom views'
    view does not change, and a property the view changes
    through the controller MUST NOT carry `READONLY`. A
    property marked `NOCUSTOM`, or given a `CUSTOM` render
-   function in the `FORM`, is drawn by the platform with its own
-   editor, and the `READONLY` rule of the `view` rules applies
-   to it as usual.
+   function or a `SELECT` in the `FORM`, is drawn by the
+   platform with its own editor, and the `READONLY` rule of the
+   `view` rules applies to it as usual.
 
 3. A change made through the controller is made in the form's
    change session, like an edit in the standard table: the
