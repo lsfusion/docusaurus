@@ -571,6 +571,7 @@ What the author gets and what stays theirs:
 - The property leaves the rows: it is a component now, so `row.quantity` is not there, and the controller has no member for it — the platform draws and edits the values. Its column entry stays, an ordinary one at `data.o.quantity` — `caption`, `image`, `footer`, `comment`, `type`, `hidden` — and `properties` lists it. Its editors are placed by the same name, `o.quantity`, so it has to have one: a property declared `NOEXTID` is refused when the form is built. Declare a second, ordinary property if the value is also wanted as data.
 - The caption is not drawn in the row, and neither is the comment: the per-row editors draw none of their own. Like a placed child's caption, both arrive in the group's column node — `data.o.quantity.caption`, `data.o.quantity.comment` — so the component puts them where they belong, usually once, in a header. An action's column entry has no caption and no image: they stay on its buttons, as their face.
 - A renderer exists for every row the group is currently showing, whether the component renders that row or not. A row scrolled out of view keeps its editor. Only a row leaving that set loses it.
+- Its key (`CHANGEKEY`) is one for all the rows, as a grid column's is: pressed anywhere in the form, it opens the editor in the current row, while that row's editor is placed — the editor of a row the component does not render takes no key.
 
 Where no `CUSTOM REACT` container draws the group's rows, `NOCUSTOM` is simply the standard view: the platform's grid draws the property, without a custom render or editing function. A grid property grouped in columns is refused, with the property named, where a React view draws its rows: a per-row editor cannot address a row-and-column cell.
 
@@ -600,6 +601,29 @@ Both name their children, so neither is extended from `DESIGN` alone: adding a c
 To read and change form state from the component — selecting a row, changing a property, calling actions — use `props.controller`. Its methods are described in [How-to: Custom view controller](How-to_Custom_view_controller.md).
 
 A component that draws a field of its own also tells the form when the user is editing in it, so that `ENTER` does not move the focus to the next component and `ESCAPE` does not close the window while they are typing — see [Declaring that the user is editing](How-to_Custom_view_controller.md#editing). A component that draws no field of its own has nothing to declare.
+
+### Keys and mouse bindings {#keys}
+
+The keys and mouse bindings the design gives what a view draws work as in the standard form: the key and the mouse binding of a property or an action ([`CHANGEKEY`, `CHANGEMOUSE`](../language/Property_options.md)), the keys of the form's own buttons — actions of the `System` module: `ESCAPE` closes the form, `ctrl ENTER` is OK — and the key of a filter of a [filter group](#filter-groups). The platform binds them itself, and the view does nothing for them. A key works while the form shows its component — its entry is not `hidden` — and the view that draws it is shown, whatever element of the form the user presses it in, and it does what the platform's key does:
+
+- an action runs, as a click on its button. An action in the rows a view draws runs on the current row; with no current row the key is left to the other bindings. An action with `CONFIRM` asks first, in the platform's dialog: the key is the platform's, while a call of the action's member asks nothing — the view asks itself where the entry says [`askConfirm`](#display-options);
+- a property whose change asks no value — its `ON CHANGE` handler runs an action — runs that handler;
+- a filter's key selects the filter, as the platform's widget does.
+
+The key of an action or a property the form shows read only (`READONLY`, `READONLYIF`) is not taken while it is: it is left to the other bindings.
+
+A mouse binding is taken as in the standard form, where its modes let it: by default on a click in a cell of a table the platform draws, not of a panel (the `panel` and `cell` modes). What a view draws is no cell of the platform's: a click there takes a mouse binding only where its `cell` mode allows one outside a cell.
+
+The binding modes of a key work as anywhere: with `showing=all` the key works while the form shows its component, whether the view is on the page or not, and a key of a property of an object group with `group=only` asks for the focus in a view of that group the platform draws — what a view draws belongs to no group.
+
+The platform does not bind:
+
+- the key of a property or an action that asks a value in a cell right away — the default change of a data property, an action that starts by asking a value (`INPUT`), a field a barcode scanner types into: the platform opens the editor for it in a cell, and that field is the view's. A view that needs such a key handles it itself;
+- the keys of the standard grid — `F3` and the other keys of its filters, the typing that starts a quick filter, `ENTER` down a column: over the rows a view draws there is no such grid, and the view uses the members of its [filter controls](#filter-controls) and `filters.change`.
+
+A view of the platform's that a view places with [`<Platform name/>`](#placing) keeps its keys, as it does anywhere: they work while its host is shown, and a host the view hides — `<Platform>` hides it while the entry of what it holds says `hidden` — takes them with it.
+
+A key pressed in a field the view draws reaches the form like any other key. A field where the user types declares it ([`startEditing`](How-to_Custom_view_controller.md#editing)), so that `ENTER`, `ESCAPE` and the keys bound with the default `editing` mode step aside; a key the view needs for itself it stops in its own handler (`stopPropagation`).
 
 ### Live data {#live-data}
 
@@ -1478,9 +1502,9 @@ The server applies the filter selected and reports it, so `value` is what the se
 form opens, a `FILTERGROUP` action's choice — and a filter a view selects shows at once. `change` takes the index of one
 of `filters`, or `null`, and anything else is refused. It is a part of a [batch](How-to_Custom_view_controller.md#batch)
 as `filters.change` is, and asks the server even for the filter shown — after a batch that failed, it is set again. A
-filter's key keeps working while the form shows the filter group — its descriptor's `hidden` — and the view's
-container, as the platform's widget takes it: it selects the filter, and in a group of one filter — the platform's
-check box —, pressed again, takes it off.
+filter's key keeps working while the form shows the filter group — its descriptor's `hidden` — and the view that draws
+it is shown, the host a container places that view in included, as the platform's widget takes it: it selects the
+filter, and in a group of one filter — the platform's check box —, pressed again, takes it off.
 
 A filter group is its group's — the last group for the objects its filters take, the one a
 [filter](../paradigm/Form_structure.md#filters) of the form is applied to —, a group of a [tree](#trees) included: it is
