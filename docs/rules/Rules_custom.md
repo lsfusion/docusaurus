@@ -132,7 +132,13 @@ title: 'Rules: custom views'
    `MOVE PROPERTY(nameItem)` — the how-to, `A page of several
    containers`), and a form-level property two containers
    show is added twice, under two aliases, one in each
-   container.
+   container. What one container changes of what another
+   draws — the current object of a group whose rows it does
+   not draw, a sorting, a user filter, a filter group — it
+   changes through the form's controller, by names
+   (`controller.form.changeOrders('i', …)` — the how-to,
+   `Changing what another container draws`), and never
+   through JavaScript state the components share.
 
 4. Selecting, ordering and totals belong to the form, not to
    the component. Every piece of UI state that decides which
@@ -279,8 +285,8 @@ title: 'Rules: custom views'
    more is needed — a value from a React component, several
    values, an array — the call is the form controller's
    `exec(...)` / `change(...)`
-   (`props.controller` in a React component, `controller.form`
-   in a classic view), and the target MUST be listed in the
+   (`controller.form`, in a React component
+   `props.controller.form`), and the target MUST be listed in the
    form's `CUSTOMS` clause.
 
 2. The assistant MUST prefer `CUSTOMS` over `@@api` for a call
