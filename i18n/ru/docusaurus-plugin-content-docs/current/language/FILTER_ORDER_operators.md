@@ -32,14 +32,14 @@ FILTERS PROPERTY formPropertyId  [TO propId]
 
 Значение представлено в сериализованном виде, зависящем от элемента:
 
-- для порядков группы объектов (`ORDER` / `ORDERS`) — `JSON`: список порядков (имя свойства и признак убывания);
-- для фильтров группы объектов (`FILTER` / `FILTERS`) — `JSON`: список условий фильтрации (имя свойства, сравнение, отрицание, значение, объединение через `OR`);
+- для порядков группы объектов (`ORDER` / `ORDERS`) — `JSON`: список порядков ([имя свойства на форме](Properties_and_actions_block.md#name), например `number(o)`, и признак убывания);
+- для фильтров группы объектов (`FILTER` / `FILTERS`) — `JSON`: список условий фильтрации (имя свойства на форме, сравнение, отрицание, значение, объединение через `OR`);
 - для группы фильтров (`FILTERGROUP` / `FILTERGROUPS`) — `INTEGER`: номер активного фильтра в группе, начиная с 1, или 0, если активного фильтра нет, в том числе в группе `NONULL`; номер, не называющий фильтр группы, ничего не меняет;
 - для фильтра свойства (`FILTER PROPERTY` / `FILTERS PROPERTY`) — `STRING`: значение фильтра свойства.
 
 Если у группы объектов нет пользовательских порядков или пользовательских фильтров, `ORDERS` и `FILTERS` записывают пустое значение `JSON` нулевой длины — не `NULL` и не `[]`: проверка на `NULL` его не обнаруживает, а веб-клиент показывает его как пустую строку. `ORDER` и `FILTER` принимают все три одинаково: пустое значение, `[]` и `NULL` снимают пользовательские порядки или пользовательские фильтры группы объектов.
 
-`ORDER` и `FILTER` пропускают элемент списка, который называет свойство другой группы объектов или свойство с опцией `COLUMNS`: колонку элемент списка не называет. Условие фильтрации без сравнения получает сравнение свойства по умолчанию.
+Указанный в элементе списка `property` должен быть именем свойства на форме. Иначе действие завершается с ошибкой. `ORDER` и `FILTER` пропускают элемент без `property` или с именем свойства, просмотр которого запрещён пользователю [политикой безопасности](../paradigm/Security_policy.md), свойства другой группы объектов или свойства с опцией `COLUMNS`: колонку элемент списка не называет. Условие фильтрации без сравнения получает сравнение свойства по умолчанию.
 
 Если блок `FROM` или `TO` не указан, по умолчанию используется соответствующее свойство системного модуля [`UserEvents`](../paradigm/System_UserEvents.md) (`orders`, `filters`, `filterGroups`, `filtersProperty`), через который эти операторы обычно и вызываются.
 
@@ -81,19 +81,19 @@ savedFilters = DATA JSON ();
 currentOrders = DATA JSON ();
 
 // сохранить текущие фильтры группы объектов o и позже применить их обратно;
-// savedFilters получит JSON вида [{"property": "number", "compare": ">", "negation": false, "value": "1000"}]
+// savedFilters получит JSON вида [{"property": "number(o)", "compare": ">", "negation": false, "value": "1000"}]
 saveFilters ()  { FILTERS orders.o TO savedFilters; }
 restoreFilters ()  { FILTER orders.o FROM savedFilters(); }
 
 // прочитать текущий порядок группы объектов o;
-// currentOrders получит JSON вида [{"property": "date", "desc": true}, {"property": "number", "desc": false}]
+// currentOrders получит JSON вида [{"property": "date(o)", "desc": true}, {"property": "number(o)", "desc": false}]
 readOrders ()  { ORDERS orders.o TO currentOrders; }
 
 // упорядочить группу объектов o по дате, сначала последние: JSON, заданный литералом, — сырой литерал
-sortByDate ()  { ORDER orders.o FROM JSON(r'[{"property": "date", "desc": true}]'); }
+sortByDate ()  { ORDER orders.o FROM JSON(r'[{"property": "date(o)", "desc": true}]'); }
 
 // оставить только заказы с номером больше 1000, тем же способом
-filterLarge ()  { FILTER orders.o FROM JSON(r'[{"property": "number", "compare": ">", "value": "1000"}]'); }
+filterLarge ()  { FILTER orders.o FROM JSON(r'[{"property": "number(o)", "compare": ">", "value": "1000"}]'); }
 
 // активировать второй фильтр («Мелкие») в группе фильтров amount
 showSmall ()  { FILTERGROUP orders.amount FROM 2; }
