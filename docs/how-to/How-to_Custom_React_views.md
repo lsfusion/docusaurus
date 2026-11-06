@@ -108,7 +108,7 @@ Except for `BOOLEAN`, a `NULL` value is converted to `null`.
 
 An interval's bounds are milliseconds since 1970: a bound of an `INTERVAL[ZDATETIME]` is the moment itself, while the other interval classes keep their date and time as those of UTC — `new Date(from).getUTCDate()` is the day an `INTERVAL[DATE]` starts on. A value a view hands back — to a member's `change`, or as a condition's `value` — is read the way this table writes it, so a value taken from `data` goes back as it is — but for a file's: a link is not the file —, and a `COLOR` or an interval written any other way is refused.
 
-`list` contains only the read page, not all rows of the group. The view type of a group rendered by a React container remains the table, and the group is read page by page, but since the table itself is not displayed, the page size is not adjusted to the visible rows — the server default page size (50 objects) applies. For a view that shows all rows of the group — a calendar, a board, a map — specify the `PAGESIZE 0` option (read all objects) or an explicit page size in the [`OBJECTS`](../language/Object_blocks.md) block.
+`list` contains the rows read — up to three pages, not all rows of the group. The view type of a group rendered by a React container remains the table, and the group is read page by page, but since the table itself is not displayed, the page size is not adjusted to the visible rows — the server default page size (50 objects) applies, so `list` holds up to 150 rows. For a view that shows all rows of the group — a calendar, a board, a map — specify the `PAGESIZE 0` option (read all objects) or an explicit page size in the [`OBJECTS`](../language/Object_blocks.md) block.
 
 A view that lays rows out in their own order — a card flow, a feed — can instead keep the page and let it follow the scroll, the way the standard table does. `useSeekOnScroll(controller.<group>)` returns a function that marks each row's element. The hook watches which of them are on screen as the view's own box scrolls — the nearest element that scrolls the rows, looked for from a row up to the element the view is drawn in and no further — and follows the table's own rules: while the current record is on screen, scrolling changes nothing; when it leaves, it is reseated on the visible edge it left through, which is also what requests the next page; on a page change the reseated row keeps its on-screen position, so nothing jumps under the eye; a current record moved from outside — a click, a programmatic seek — is scrolled into view instead. The pact rests on the same contract the table itself lives by, and it is the developer's to keep: the page must hold more rows than the viewport can show — set `PAGESIZE` on the [`OBJECTS`](../language/Object_blocks.md) block accordingly. The window then always extends a page beyond the current record, so it leaves the viewport — and reseats, pulling the next page — before the scroller runs out of room at a loaded edge:
 
@@ -121,6 +121,33 @@ const seekRef = useSeekOnScroll(controller.o, { enabled: follow });
 Options: `enabled` (default `true`) suspends the tracking, `threshold` (`0.6`) is how much of an element must be visible to count as on screen, `settle` (`250` ms) is how long the rows on screen must stay the same before the view seeks — the wait starts over whenever a row comes on screen or leaves it, not on every scroll event —, and `onSeek(row)` is called for each issued seek. Use one `useSeekOnScroll` per scrolling element. The rows delivered for the new position replace `list`, and everything built from it — values and [placed lsFusion views](#placing) alike — follows.
 
 The hook moves the scroll position of that box and switches off the browser's own scroll anchoring there, so it touches nothing outside the element the view is drawn in: everything there — a platform container, a box another view shares, the page, a portal's box — belongs to something else. Rows that scroll only in such an element leave the hook doing nothing at all — no seek, and no scroll into view of a current moved out of sight — and it says so once in the console. Give the rows a scrolling box of the view's own — a bounded height and `overflow: auto`.
+
+To move to the first or last row of the whole list under the group's current filters and sortings, including the user's, place actions with [`ACTIVATE FIRST` / `LAST`](../language/ACTIVATE_operator.md) in the view's container and run them through the controller's members:
+
+```lsf
+toFirst() { ACTIVATE FIRST orders.o; }
+toLast() { ACTIVATE LAST orders.o; }
+
+EXTEND FORM orders PROPERTIES() toFirst, toLast;
+
+DESIGN orders {
+    BOX(o) {
+        MOVE PROPERTY(toFirst());
+        MOVE PROPERTY(toLast());
+    }
+}
+```
+
+```jsx
+<>
+    <button onClick={() => controller.toFirst.exec()}>First</button>
+    <button onClick={() => controller.toLast.exec()}>Last</button>
+</>
+```
+
+These actions perform the same move as the platform table's Ctrl+Home / Ctrl+End: the first / last row becomes current, and the rows read from the start / up to the end replace `list`.
+
+In an [object tree](#trees), `ACTIVATE FIRST` and `ACTIVATE LAST` without seek objects keep the current objects, and the tree is read whole under its open nodes, without pages. To move to the first or last node, call `controller.<group>.change(row)` through the member of that node's group, passing the row of the first or last node the view draws in its own order — parent then children — rather than the first or last element of one group's `list`.
 
 The number of rows read is `list.length`, not how many rows the group's filters admit, so under paged reading the projection alone cannot show "6 of 23". The total is a separate property that counts the rows under the form's current filter with the [`FILTER` operator](../paradigm/Filter_FILTER.md), as in [How-to: Table status](How-to_Table_status.md), placed inside the container so that it reaches `data`:
 
@@ -749,7 +776,7 @@ The scheduled run differs from a request the component would make itself. A time
 
 ### A hidden view {#hidden-view}
 
-The platform hides a view without taking it down: in a tab of a `tabbed` container that is not selected, in a collapsed container, in a `popup` container that is not open, under a `SHOWIF` — of the view's container or of a container above it —, and in a form that is not on screen: in a background tab, or one the [forms window](#forms-window) component does not place. The component stays mounted and keeps its state, and what it draws is not seen.
+The platform hides a view without taking it down: in a tab of a `tabbed` container that is not selected, in a collapsed container, in a `popup` container that is not open, under a `SHOWIF` — of the view's container or of a container above it —, and in a form that is not on screen: in a background tab, one the [forms window](#forms-window) component does not place, or one in another window while System.forms is expanded to the full screen. The component stays mounted and keeps its state, and what it draws is not seen.
 
 While the form hides the view's container, the server does not read what the view draws, as it does not read a hidden part of any form: the rows of a group stay as they were last sent, and a property whose value changes meanwhile reads as `null` — unless a part of the form that is shown reads the same. The first answer after the container is shown brings the current values. A form that is not on screen is read as usual.
 
@@ -935,7 +962,7 @@ The component never draws a form: it renders a place for the form it wants shown
 | `byName` | Each form by name |
 | `editMode` | The name of the chosen edit mode — the one the platform's mode button chooses, and the one kept between sessions. A mode switched on by holding Ctrl, Shift or Alt lasts while the key is held and does not change `editMode` |
 | `editModes` | Every edit mode, in the order the mode button offers them |
-| `fullScreen` | Whether System.forms is expanded to the full screen, the page drawing it alone |
+| `fullScreen` | Whether System.forms is expanded to the full screen, the page drawing it alone; the component of another forms window always gets `false` |
 
 and each form carries:
 
