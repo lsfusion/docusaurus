@@ -856,6 +856,8 @@ A component can also be given to a window that already exists, the standard tool
 EXTEND WINDOW System.toolbar CUSTOM 'AppMenu';
 ```
 
+The window is then not given the classes with which the standard toolbar lays its strip out: with the vertical navbar, `System.logo`, `System.root` and `System.system` do not align their items to the start, and `System.logo` does not size its icon to the height of the horizontal strip — the component's own markup keeps the layout it gives it.
+
 `props.data` is the window's own elements, keyed by [canonical name](../paradigm/Naming.md#canonicalname) — canonical names contain dots, so they are map keys rather than fields:
 
 | Field | Meaning |
@@ -875,7 +877,7 @@ and each element carries:
 | `selected` | Whether it is the selected element **of this window** |
 | `children` | The canonical names of its children that this window draws |
 
-An element declared [`NOCUSTOM`](../language/NAVIGATOR_statement.md) is drawn by the platform, so what it draws is not projected: its entry carries `name`, `caption`, `image`, `children` and `platformDrawn: true`, and none of the rest.
+An element declared [`NOCUSTOM`](../language/NAVIGATOR_statement.md) is drawn by the platform, so what it draws is not projected: its entry carries `name`, `caption`, `image`, `hidden`, `children` and `platformDrawn: true`, and none of the rest. While its `hidden` is `true`, `<Platform>` hides the [place](#standard-button) of its button.
 
 The window is given the elements it is responsible for: an element that crossed into another window, and a subtree gated out because its parent is not selected, are absent — the same rule that decides what the standard toolbar draws. What that rule keeps, the projection keeps, hidden or not. The component is drawn once the navigator has worked out the window's elements, and a window with none is drawn too, with `root` empty. `props.controller` is the navigator controller, whose [`activate`](How-to_Custom_view_controller.md#navigator-controller) does what clicking the element does: selects a folder, or runs an action.
 
@@ -885,7 +887,7 @@ Only the desktop web client draws the component. The mobile web client and the d
 
 #### The standard button {#standard-button}
 
-An element the component does not want to draw itself is placed with `<Platform name/>` — the tag that places a design child on a form, where `name` is the element's canonical name. The platform puts its own button inside, with its icon, caption, tooltip and click behavior. The node itself is left as the component rendered it, without the marks a form's host is given.
+An element the component does not want to draw itself is placed with `<Platform name/>` — the tag that places a design child on a form, where `name` is the element's canonical name. The platform puts its own button inside, with its icon, caption, tooltip and click behavior, but not with what the standard toolbar's layout adds to it: its caption is not hidden until the mouse is over the window, as in an unpinned navigator, and it has no indent for its depth. Where the button goes, and how deep it looks, is up to the component. The node itself is left as the component rendered it, without the marks a form's host is given.
 
 ```jsx
 const { Platform } = window.lsfusion;
@@ -907,7 +909,7 @@ NAVIGATOR {
 }
 ```
 
-A `NOCUSTOM` element no `<Platform>` names is not shown, as on a form. Four mistakes are reported in the page: a name no navigator element has, a name that is not `NOCUSTOM`, which the component is expected to draw from the projection instead, a name of an element another window draws, and a name a second `<Platform>` places again. A name the window merely does not draw right now — an element `SHOWIF` hides, one gated out because its parent is not selected — is not a mistake and is not reported: the place stays empty and waits, and is filled as soon as the window draws that element. Which window draws an element is not such a case: waiting for a button another window owns would wait for good.
+A `NOCUSTOM` element no `<Platform>` names is not shown, as on a form. Four mistakes are reported in the page: a name no navigator element has, a name that is not `NOCUSTOM`, which the component is expected to draw from the projection instead, a name of an element another window draws, and a name a second `<Platform>` places again. A name the window merely does not draw right now — an element `SHOWIF` hides, one gated out because its parent is not selected — is not a mistake and is not reported: the place waits, and is filled as soon as the window draws that element. Meanwhile the place of an element `SHOWIF` hides is hidden, as its entry's `hidden` says, and the place of one gated out, which has no entry, stays empty. Which window draws an element is not such a case: waiting for a button another window owns would wait for good.
 
 A menu that is mostly standard is written this way as one `<Platform>` for each element the platform draws, and markup only for the elements the component draws itself.
 
@@ -987,6 +989,8 @@ and each edit mode in `editModes` carries what the mode button shows it with:
 A form the component places nowhere stays **open and hidden**, which is what a background tab already is: the standard strip only hides the forms it does not show. So a component that places only the current form gives an application without tabs, where every form opened so far is still there, and placing one again shows it as it was left. A form is closed only through `close(name)` or `closeAll()`, or the way it is closed without a component view.
 
 The platform's own toolbar — edit mode, full screen, the mobile menu — is System.forms', in its standard tab strip, so a component that draws System.forms does not show it, and no other window has it. What the toolbar does, a component of any forms window does through the controller: `setEditMode(name)` chooses the edit mode, one for the whole page, the way the mode button does, where `name` is the name of a mode in `editModes`, and `toggleFullScreen()` expands System.forms to the full screen and brings it back, the way the full screen button and ALT+F11 do. The full screen is System.forms' whichever window's component asks for it: the page draws System.forms alone then, without the navigator and the other windows, so the window of another component is not drawn, and that component never sees `fullScreen` as `true`. What the standard tab's context menu offers is here too: `closeAll()` asks every open form to close, starting from the last one in that order. Closing each of them is a request as well, so a form that did not close stays open and the rest are closed. The chosen mode and the full screen are state the platform holds itself, which is why it projects them: a mode chosen by the component and a full screen entered with ALT+F11 are both seen the same way, in `props.data`. The mobile menu is not something a component needs: on the mobile web client the platform draws the forms window.
+
+Hiding the close button of an inactive tab is how the standard strip follows the user's setting *Do not show close button on inactive tab* (`dontShowCloseButtonOnInactiveTab`), so `System.forms` drawn by a component is not given the class that hides it, `dont-show-close-button`: the class would hide the close buttons the component draws with the standard tabs' class names too. Whether its tabs show a close button is the component's to decide. The mobile web client, which draws the standard strip, keeps the class.
 
 Only the desktop web client draws the component. The mobile web client and the desktop client keep their standard forms window.
 
@@ -1162,9 +1166,67 @@ A message is markup, so what the projection carries is only what the standard pa
 
 A message the component places nowhere is still logged and still in the projection: nothing drops one, exactly as the standard panel keeps every message it printed. So a component that shows only the last message, or only the failed ones, loses nothing — an earlier message placed again is shown as it was. There is no clearing and no dismissing, in the projection or in the controller, because the platform has none.
 
-The window itself is still the platform's: the component draws inside it, so the window is hidden, popped out over the form and revealed when a message arrives exactly as before.
+The window itself is still the platform's: the component draws inside it, so in the standard layout the window is hidden, popped out over the form and revealed when a message arrives exactly as before. When the windows are laid out by a [component of their own](#window-layout), the window is shown where that component places it.
 
 Only the desktop web client draws the component. The desktop client keeps its standard message panel, and the mobile web client, whose layout has no message window at all, is left as it was.
+
+### The window layout {#window-layout}
+
+A React component can also lay the windows out on the desktop - which window is where, and how large -, instead of the standard layout, which places them by their [`POSITION`](../language/WINDOW_statement.md). The component is given with the `CUSTOM` option of the [`NAVIGATOR`](../language/NAVIGATOR_statement.md) statement:
+
+```lsf
+NAVIGATOR CUSTOM 'AppLayout';
+```
+
+```jsx
+const { Platform } = window.lsfusion;
+
+function AppLayout({ data }) {
+    const [menu, setMenu] = React.useState(true);
+    // the menu's column is there while the user has not folded it and the platform has something to show in it
+    const showMenu = menu && !data['System.toolbar'].hidden;
+    return <div className={showMenu ? 'app' : 'app app-no-menu'}>
+        <header className="app-top">
+            <Platform name="System.logo"/>
+            <Platform name="System.root" className="app-sections"/>
+            <Platform name="System.system"/>
+            <button onClick={() => setMenu(!menu)}>Menu</button>
+        </header>
+        {showMenu && <aside className="app-menu"><Platform name="System.toolbar"/></aside>}
+        <main className="app-work"><Platform name="System.forms"/></main>
+        {!data['System.log'].hidden && <footer className="app-log"><Platform name="System.log"/></footer>}
+    </div>;
+}
+```
+
+```css
+.app { display: grid; height: 100%; grid-template: "top top" auto "menu work" 1fr "log log" auto / 240px 1fr; }
+.app.app-no-menu { grid-template: "top" auto "work" 1fr "log" auto / 1fr; }
+.app-top { grid-area: top; display: flex; align-items: center; }
+.app-menu { grid-area: menu; }
+.app-work { grid-area: work; display: flex; flex-direction: column; min-height: 0; }
+.app-log { grid-area: log; height: 120px; display: flex; }
+.app-work > .lsf-platform, .app-log > .lsf-platform { flex: 1; }
+```
+
+The component never draws a window: it renders a place for each window it wants shown, and the platform moves that window's own view in, drawn as without the component - a navigator window's buttons, or what the window's own [component](#navigator-window) draws, the forms open in a `FORMS` window, the messages of `System.log`. `<Platform name/>` is that place, and `name` is the window's [canonical name](../paradigm/Naming.md#canonicalname). It places the window the same way it places a [design child](#placing) and an [open form](#forms-window), with the same marks on the place and the same mistakes reported in the page: the window's view fills the place, and the component sizes the place. A window whose place changes size is told so, as when a border of the standard layout is dragged, so a table, a pivot table's chart or a map in a form measures itself again.
+
+`props.data` holds an entry for each window - every window, `System.forms` included - under its canonical name, `data['System.toolbar']`:
+
+| Field | Meaning |
+| --- | --- |
+| `name` | Its own canonical name, so a component that was handed the entry alone can still place the window |
+| `caption` | Its caption - the one the standard layout writes on the tab of windows that share a place. A window declared without a caption, as the system windows are, has its name |
+| `hidden` | Whether the standard layout would not show the window now: `HIDE WINDOW` hides it, or it is a navigator window with nothing to draw - the selected folder has no elements for it -, other than `System.root` and a window its own component draws. While the entry says so, `<Platform>` hides the place. The component reads it to fold its own markup around the place, as `showMenu` does above |
+| `vertical` | Whether the window draws its buttons in a column. The "Navbar: Vertical" design setting turns `System.logo`, `System.root` and `System.system` so, whoever lays them out |
+
+`props.controller` is empty: the windows are drawn and changed by the platform, and nothing about their arrangement is the platform's.
+
+A window the component places nowhere is not shown, and lives on: its navigator buttons are refreshed, a form opened into it is open - hidden, as a background tab is -, its messages are logged. Placed later, it is shown as it is then. So a component that places only the windows it knows hides a window another module adds. A component meant to take any window places the rest by the keys of `data`.
+
+What the standard layout does with its own panels is not done under a component: the user dragging the border between windows and the sizes kept between sessions, the tabs of windows that share a place, the vertical navbar turning the top strip into a column, the unpinned navigator and log popping out over the form. The pin modes are the standard layout's way of laying the navigator and the log out, so a window the component lays out is not given the classes that collapse it and pop it out over the form or show the top strip's captions only on hover: pinning there changes no layout. The full screen (`ALT+F11`) is as without a component: `System.forms` is drawn alone over the page, and the component is hidden meanwhile - still mounted, its state kept. It is not told of the full screen: `fullScreen` is projected to the [component](#forms-window) of `System.forms` alone. [`Service.resetWindowsLayout`](../paradigm/System_Service.md) leaves the full screen and puts back the windows' declared visibility, and it does not reach sizes the component keeps itself.
+
+Only the desktop web client draws the component. The mobile web client keeps its own page - `System.forms` and the navigation menu -, and the desktop client its own layout of the windows.
 
 ### Drawing an image {#image}
 
