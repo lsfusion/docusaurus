@@ -235,8 +235,8 @@ An option the platform computed nothing for is absent — a property with no `BA
 | `caption` | The property's caption | string |
 | `image` | The property's image | string with the image HTML |
 | `footer` | The column's footer value | converted like a cell value of its own type |
-| `readOnly` | The cell is read-only, as delivered by `READONLYIF`. Absent otherwise — a statically `READONLY` property projects nothing here, since the view is not editing it anyway | `true` / absent |
-| `disabled` | The cell is disabled, as delivered by `DISABLEIF`. Absent otherwise. One cell never carries both `readOnly` and `disabled` | `true` / absent |
+| `readOnly` | The cell is read-only: as delivered by `READONLYIF`, and where it delivers nothing, for a property that is `READONLY` on the form or has no change at all. Absent otherwise | `true` / absent |
+| `disabled` | The cell is disabled: as delivered by `DISABLEIF`, and where it delivers nothing, for a property that is `DISABLE` on the form. Absent otherwise. One cell never carries both `readOnly` and `disabled` | `true` / absent |
 | `background`, `foreground` | The background and text colors of the cell | string with a color |
 | `comment` | The comment shown next to the value | string |
 | `placeholder` | The text shown in an empty cell | string |
@@ -2150,8 +2150,8 @@ table: where a view draws the rows, `listViews` is empty, `listView` is `null`, 
 rows a view draws has the default `GRID` list view type. The grid of a group the form gives another
 (`OBJECTS o = Order PIVOT`, and `MAP`, `CALENDAR`, `CUSTOM`) is drawn by the platform in that view type, and a React
 container around it places the grid with `<Platform name="GRID(o)"/>`, as it places a grid given `custom = NULL`. A
-React component of the grid itself (`GRID(o) { custom = 'OrderCards'; }`) is refused for such a group when the form is
-built, since the server starts the group as the platform's view of that kind needs it.
+`custom` of the grid itself (`GRID(o) { custom = 'OrderCards'; }`) is the group's `CUSTOM`, and puts the group in the
+`CUSTOM` view type ([A React component in `CUSTOM`](#form-custom)).
 
 The toolbar's `export()`, `update()`, `manual.change()` and `listView.change()` return the `Promise` of their request.
 Inside a [batch](How-to_Custom_view_controller.md#batch) the members that ask the server return a rejected `Promise` with the reason. The settings of
@@ -2251,7 +2251,7 @@ What the view draws itself the platform does not build: a `custom` on `BOX(o)` d
 
 ### A component's own view {#component-views}
 
-A table, a toolbar, filter controls, a filter group and a property's filter — `GRID(o)`, a tree's `GRID(TREE t)`,
+A tree's table, a toolbar, filter controls, a filter group and a property's filter — `GRID(TREE t)`,
 `TOOLBARSYSTEM`, `FILTERCONTROLS`, `FILTERGROUP(fg)` and `FILTER(<property>)` — take a React component in `custom` as a
 container does, and the component then draws, in their place, what they show of their object group or tree: the rows,
 the toolbar's buttons, the filter controls, the filter selected in the filter group, the property filter's condition.
@@ -2259,48 +2259,33 @@ The rest of the form stays as it is:
 
 ```lsf
 DESIGN items {
-    GRID(i) { custom = 'ItemCards'; } // the toolbar and the filters over the rows stay the platform's
+    GRID(TREE t) { custom = 'CategoryTree'; } // the toolbar and the filters over the rows stay the platform's
     TOOLBARSYSTEM(j) { custom = 'OrderToolbar'; } // over the platform's grid of j
 }
 ```
 
-The component gets what a container holding that component alone would get — `NEW cards { custom = 'ItemCards';
-MOVE GRID(i); }` —: the part of the group or of the tree on its node, under the same names ([the table at the
-top](#the-component)) — the rows and the sortings on `data.i` with `controller.i.change(row)`, the toolbar's state and
+The `custom` of the table of an object group, `GRID(i)`, is another thing: it is the group's `CUSTOM`, the render
+function of one of the views the platform shows the group's rows in ([A React component in `CUSTOM`](#form-custom)).
+
+The component gets what a container holding that component alone would get — `NEW bar { custom = 'OrderToolbar';
+MOVE TOOLBARSYSTEM(j); }` —: the part of the group or of the tree on its node, under the same names ([the table at the
+top](#the-component)) — the toolbar's state and
 members on `data.j` and `controller.j`, a tree's rows on its groups' nodes and its own on `data.<tree>`, a filter group
 on `data.<group>.<filterGroup>`, a property's filter on `data.<group>.filter.<property>`. Nothing else is on the top
-level:
-
-```jsx
-export function ItemCards({data, controller}) {
-    const items = data.i;
-    return <div className="cards">
-        {items.list.map(row =>
-            <div key={row.key} className={row.current ? 'current' : ''} onClick={() => controller.i.change(row)}>
-                {row.name.value}
-            </div>)}
-    </div>;
-}
-```
+level.
 
 The component's own design attributes are its view's, as they are of the platform's view of it: its size and its
 place in its container, its class, and its `SHOWIF`, which hides the view — so its data has no [entry](#display-options)
 of the component itself, which a container around it would have. Inside what a React container draws, the component
-has a view of its own, and the container places it with `<Platform name="GRID(i)"/>`, its entry in the container's
+has a view of its own, and the container places it with `<Platform name="TOOLBARSYSTEM(j)"/>`, its entry in the container's
 data, and its parts in the data of its own view. A property the platform draws in the rows it draws is placed per row
 with [`<Platform name row/>`](#live-editor); it places nothing else.
 
 Some combinations are refused when the form is built:
 
-- a component that shows nothing there — the table, the toolbar or the filter controls of a group in `PANEL` view,
+- a component that shows nothing there — the toolbar or the filter controls of a group in `PANEL` view,
   which has no rows, and a filter of its property, which has no user filters to be among; a toolbar hidden with
   `visible = FALSE`; a filter group with no filters or of no object — would give its component nothing to draw;
-- a table of a group in another list view type than `GRID` — `PIVOT`, `MAP`, `CALENDAR`, `CUSTOM` —, as any view of
-  its rows is ([Toolbar](#toolbar));
-- a table the design moves components into — `MOVE PROPERTY(note(i))` inside `GRID(i) { ... }`, the
-  [record](../paradigm/Form_design.md#record) a `CUSTOM`, `MAP` or `CALENDAR` view pops up for a row: its view places
-  no view of the platform's, so a container around the table, `NEW cards { custom = 'ItemCards'; MOVE GRID(i); }`,
-  draws or places what the record holds;
 - a value other than a component name: `''`, an HTML template and a property lay out the children of a container.
 
 The attributes of the platform's table — a table's `valueClass` given by a property, a tree's `hierarchicalCaption` —
@@ -2331,7 +2316,7 @@ FORM items
 ;
 ```
 
-The component of a property draws one cell: a cell of the table, or the value of the property on a panel. `data` describes that cell — its `value`, `readOnly`, `disabled`, `loading`, `background`, `foreground`, `placeholder`, `defaultValue`, `valueTooltip` and `options`, and the `type` and `askConfirm` of the property, with the meaning they have in [the entry of a property a view draws](#display-options). `controller` is the property's [member](How-to_Custom_view_controller.md) for that cell — `change(value)`, `exec()` and `getValues(query, {mode, count})`, each returning the `Promise` of its request — with the form's controller as `controller.form`. A call takes no row: in a table it changes the row of the cell, whichever row is current, and on a panel the current object of the form. The component changes the value by these calls only: a click on the cell or typing in it does not start the platform's editing of the cell. Whether the cell may be changed is checked by the server, as for a classic render function, so a change of a read-only cell is not made.
+The component of a property draws one cell: a cell of the table, or the value of the property on a panel. `data` describes that cell — its `value`, `readOnly`, `disabled`, `loading`, `background`, `foreground`, `placeholder`, `pattern`, `regexp`, `regexpMessage`, `defaultValue`, `valueTooltip` and `options`, and the `type` and `askConfirm` of the property — the fields [the entry of a panel property a view draws](#display-options) has, with the same meaning, an option the platform computed nothing for being absent. `controller` is the property's [member](How-to_Custom_view_controller.md) for that cell — `change(value)`, `exec()` and `getValues(query, {mode, count})`, each returning the `Promise` of its request — with the form's controller as `controller.form`. A call takes no row: in a table it changes the row of the cell, whichever row is current, and on a panel the current object of the form. The component changes the value by these calls only: a click on the cell or typing in it does not start the platform's editing of the cell. Whether the cell may be changed is checked by the server, as for a classic render function, so a change of a read-only cell is not made.
 
 A table reuses the element of a cell for another row when its rows are sorted or scrolled. The component stays mounted then and keeps its state: it receives the `data` of the other row, and its `controller`, which stays the same object, changes the row the cell shows at the moment of the call — after an `await` too. A view that draws the rows itself places such a property as any other property the platform draws, with [`<Platform name row/>`](#live-editor), and the component is drawn [in that view's tree](#embedded).
 
@@ -2348,9 +2333,9 @@ FORM itemCards
 ```jsx
 function ItemCards({data, controller}) {
     return data.list.map(row =>
-        <button key={controller.getObjectsString(row)}
-                onClick={() => controller.changeObject(row)}>
-            {row.name}
+        <button key={row.key} disabled={row.current}
+                onClick={() => controller.change(row)}>
+            {row.name.value}: {row.quantity.value}
         </button>
     );
 }
@@ -2358,7 +2343,7 @@ function ItemCards({data, controller}) {
 window.lsfusion.custom.register('ItemCards', ItemCards, 'reactView');
 ```
 
-The component is given what the `update` of a classic render function is given ([How-to: Custom Components (objects)](How-to_Custom_components_objects.md)): the rows as `data.list`, each holding the values of its properties under their names, the `OPTIONS` of the group as `data.options`, and the same `controller`. Inside a container a React view draws, the grid of such a group is drawn by the platform, and the view places it with `<Platform name="GRID(i)"/>`.
+The `custom` of the group's table in the design says the same as `CUSTOM` in `OBJECTS`: `GRID(i) { custom = 'ItemCards'; }` is `OBJECTS i = Item CUSTOM 'ItemCards'`, and `custom = NULL` leaves the table to the platform's own views. The component is given its one group, with no name above it: `data` is the group's node, as a container that draws the group's rows has it under the group's name ([Reading the projection](#reading)) — its rows (`data.list`, `data.byKey`, `data.keys`), the entries of its properties, its [sortings](#orders) and [view filters](#view-filters), and the `OPTIONS` of the group as `data.options` —, and `controller` is the group's [member](How-to_Custom_view_controller.md) — `change(row)`, `orders.change(...)`, `viewFilters.change(...)` and a member per property —, with the form's controller as `controller.form` and `controller.batch`. [`List`](#rendering-rows) and [`BucketScope`](#bucketing) are given no `group` there. A property the form gives a view of its own — `NOCUSTOM`, or a `CUSTOM` render function — is not drawn by the component but placed by it in each row, by its name alone: [`<Platform name="quantity" row={row}/>`](#live-editor); the component places nothing else. The table takes the size of what the component draws, as any `CUSTOM` view does, and the toolbar switches it with the platform's other views of the rows. The toolbar and the user filters of the group remain the platform's, which draws them around the component, so `data` and `controller` carry nothing for them. A property whose name is a [reserved name](#reserved-names) of a row or of a group's node where its rows are drawn, or `form` or `batch`, is not given, and neither is a property grouped in columns (`COLUMNS`): the form is not refused for it, as the server does not know that the render function is a component. Inside a container a React view draws, the grid of such a group is drawn by the platform, and the view places it with `<Platform name="GRID(i)"/>`.
 
 ### A React component inside a React view {#embedded}
 
