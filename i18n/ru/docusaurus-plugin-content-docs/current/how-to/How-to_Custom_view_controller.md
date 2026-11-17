@@ -169,7 +169,7 @@ await controller.batch(() => {
 
 | значение | как передаётся |
 | --- | --- |
-| примитив | напрямую: число — для числовых типов, строка, JS-`Date` — для `DATE` / `TIME` / `DATETIME` / `ZDATETIME`, логическое значение, `null` — для очистки |
+| примитив | напрямую: число — для числовых типов, строка, JS-`Date` или его ISO-строка — для `DATE` / `TIME` / `DATETIME` / `ZDATETIME`, логическое значение, `null` — для очистки |
 | интервал, `COLOR` | строкой в том виде, в каком значение [приходит в представление](How-to_Custom_React_views.md#the-component): `<from>.<to>` с границами в миллисекундах, `#rrggbb`. Значение другой формы отклоняется |
 | `JSON` | JS-объект или массив (сериализуется в JSON) |
 | объект (значение FK) | id целевого объекта — `row.key` его строки (для группы с одним объектом это уже его числовой id) либо id-свойство на форме (например, `LONG(obj)`), но не дескриптор |
@@ -198,8 +198,8 @@ controller.batch(() => {
 | метод | делает то же, что этот член | имя |
 | --- | --- | --- |
 | `changeObject(group, row[, {selection}])` | `<group>.change(row[, {selection}])` | SID группы |
-| `changeColumn(group, column[, {selection}])` / `selectAll(group)` | `<group>.properties.change(column[, {selection}])` / `<group>.selectAll()` — [выделение](How-to_Custom_React_views.md#selection) строк, которые рисует другой контейнер; там, где их рисует платформа, отклоняется | SID списочной группы вне дерева |
-| `copy(group)` / `paste(group, text)` | `<group>.copy()` / `<group>.paste(text)` — [буфер обмена](How-to_Custom_React_views.md#clipboard) строк, которые рисует другой контейнер; там, где их рисует платформа, отклоняется | SID списочной группы вне дерева |
+| `changeColumn(group, column[, {selection}])` / `selectAll(group)` | `<group>.properties.change(column[, {selection}])` / `<group>.selectAll()` — [выделение](How-to_Custom_React_views.md#selection) строк, которые рисует другой контейнер, или таблицы платформы | SID списочной группы вне дерева |
+| `copy(group)` / `paste(group, text)` | `<group>.copy()` / `<group>.paste(text)` — [буфер обмена](How-to_Custom_React_views.md#clipboard) строк, которые рисует другой контейнер, или таблицы платформы | SID списочной группы вне дерева |
 | `expand(group, row)` / `collapse(group, row)` / `expandAll(group)` / `collapseAll(group)` | `<group>.expand(row)` / `.collapse(row)` / `.expandAll()` / `.collapseAll()` | SID группы дерева |
 | `expandCurrent(tree)` / `expandTree(tree)` | `<tree>.expandCurrent()` / `expandTree()` его тулбара | имя дерева |
 | `changeOrders(table, order)` / `changeOrders(table, orders)` | `<table>.orders.change(…)` | SID списочной группы или имя дерева |

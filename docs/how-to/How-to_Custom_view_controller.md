@@ -169,7 +169,7 @@ A property's `.change` behaves the same way in a batch and out of one, and the f
 
 | value | how it is passed |
 | --- | --- |
-| a primitive | directly: a number for numeric types, a string, a JS `Date` for `DATE` / `TIME` / `DATETIME` / `ZDATETIME`, a boolean, `null` to clear |
+| a primitive | directly: a number for numeric types, a string, a JS `Date` or its ISO string for `DATE` / `TIME` / `DATETIME` / `ZDATETIME`, a boolean, `null` to clear |
 | an interval, a `COLOR` | in the same string format [received by the view](How-to_Custom_React_views.md#the-component): `<from>.<to>` with the bounds in milliseconds, `#rrggbb`. A value of any other shape is refused |
 | `JSON` | a JS object or array, serialized as JSON |
 | an object (FK value) | the target object's id — `row.key` of its row (for a single-object group it already is its numeric id), or an id-valued property on the form (e.g. `LONG(obj)`) — not a handle |
@@ -198,8 +198,8 @@ What another container draws, or the platform, a view changes through the form's
 | method | does what this member does | named by |
 | --- | --- | --- |
 | `changeObject(group, row[, {selection}])` | `<group>.change(row[, {selection}])` | a group's SID |
-| `changeColumn(group, column[, {selection}])` / `selectAll(group)` | `<group>.properties.change(column[, {selection}])` / `<group>.selectAll()` — the [selection](How-to_Custom_React_views.md#selection) of the rows another container draws; refused where the platform draws them | the SID of a list group not in a tree |
-| `copy(group)` / `paste(group, text)` | `<group>.copy()` / `<group>.paste(text)` — the [clipboard](How-to_Custom_React_views.md#clipboard) of the rows another container draws; refused where the platform draws them | the SID of a list group not in a tree |
+| `changeColumn(group, column[, {selection}])` / `selectAll(group)` | `<group>.properties.change(column[, {selection}])` / `<group>.selectAll()` — the [selection](How-to_Custom_React_views.md#selection) of the rows another container draws, or of the platform's table | the SID of a list group not in a tree |
+| `copy(group)` / `paste(group, text)` | `<group>.copy()` / `<group>.paste(text)` — the [clipboard](How-to_Custom_React_views.md#clipboard) of the rows another container draws, or of the platform's table | the SID of a list group not in a tree |
 | `expand(group, row)` / `collapse(group, row)` / `expandAll(group)` / `collapseAll(group)` | `<group>.expand(row)` / `.collapse(row)` / `.expandAll()` / `.collapseAll()` | the SID of a group of a tree |
 | `expandCurrent(tree)` / `expandTree(tree)` | `<tree>.expandCurrent()` / its toolbar's `expandTree()` | a tree's name |
 | `changeOrders(table, order)` / `changeOrders(table, orders)` | `<table>.orders.change(…)` | a list group's SID, or a tree's name |

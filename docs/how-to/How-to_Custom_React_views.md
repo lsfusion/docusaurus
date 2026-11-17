@@ -106,7 +106,7 @@ A string property whose integration SID is `image` is given as the HTML of the i
 
 Except for `BOOLEAN`, a `NULL` value is converted to `null`.
 
-An interval's bounds are milliseconds since 1970: a bound of an `INTERVAL[ZDATETIME]` is the moment itself, while the other interval classes keep their date and time as those of UTC — `new Date(from).getUTCDate()` is the day an `INTERVAL[DATE]` starts on. A value a view hands back — to a member's `change`, or as a condition's `value` — is read the way this table writes it, so a value taken from `data` goes back as it is — but for a file's: a link is not the file —, and a `COLOR` or an interval written any other way is refused.
+An interval's bounds are milliseconds since 1970: a bound of an `INTERVAL[ZDATETIME]` is the moment itself, while the other interval classes keep their date and time as those of UTC — `new Date(from).getUTCDate()` is the day an `INTERVAL[DATE]` starts on. A value a view hands back — to a member's `change`, or as a condition's `value` — is read the way this table writes it, so a value taken from `data` goes back as it is — but for a file's: a link is not the file —, and a `COLOR` or an interval written any other way is refused. A date or a time goes back as a string too, the one a date input of the class has for its value, with no time zone: `'2026-11-15'` for a `DATE`, `'10:30'` for a `TIME`, `'2026-11-15T10:30'` for a `DATETIME` or a `ZDATETIME`. Any other string is refused, and so is a day its month does not have.
 
 `list` contains the rows read — up to three pages, not all rows of the group. The view type of a group rendered by a React container remains the table, and the group is read page by page, but since the table itself is not displayed, the page size is not adjusted to the visible rows — the server default page size (50 objects) applies, so `list` holds up to 150 rows. For a view that shows all rows of the group — a calendar, a board, a map — specify the `PAGESIZE 0` option (read all objects) or an explicit page size in the [`OBJECTS`](../language/Object_blocks.md) block.
 
@@ -1586,9 +1586,11 @@ leaves its selection.
 
 The selection is the view's that draws the rows. Another container changes it through the form's controller —
 `controller.form.changeObject('<group>', row, {selection})`, `changeColumn('<group>', column, {selection})` and
-`selectAll('<group>')` ([across containers](How-to_Custom_view_controller.md#across-containers)); for a group whose
-rows the platform draws a change of the selection is refused — the platform's table keeps a selection of its own —,
-as it is for a group of a tree: `changeObject` takes a row there, with no `selection` but `'keep'`.
+`selectAll('<group>')` ([across containers](How-to_Custom_view_controller.md#across-containers)). Where the platform's
+table draws the rows, the same calls change the table's own selection: a column is made current where the table shows
+it now and lets the user move to it, and a property grouped in columns has no column of that name. While the table
+shows the rows as another view — a pivot, a map, a calendar, a custom view — the calls are refused, as they are for a
+group of a tree: `changeObject` takes a row there, with no `selection` but `'keep'`.
 
 ### Clipboard {#clipboard}
 
@@ -1640,7 +1642,9 @@ The view takes the browser's `copy` and `paste` events itself and gives the text
 ```
 
 Another container copies and pastes through the form's controller, `controller.form.copy('<group>')` and
-`paste('<group>', text)`, which are refused where the selection's calls are.
+`paste('<group>', text)`, which are refused where the selection's calls are. On the platform's table a column of an
+action, and of a property grouped in columns, is none of the cells, and several values are not pasted while such a
+column is the current one.
 
 ### Filters {#filters}
 
