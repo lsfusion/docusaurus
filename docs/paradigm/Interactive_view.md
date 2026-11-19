@@ -13,7 +13,22 @@ In the interactive view, object groups can be displayed in a table. The rows in 
 
 When an object group is displayed in a table, the number of rows (object collections) displayed can either be determined automatically based on the height of the visible part of the table, or specified by the developer explicitly when creating the form.
 
+In the web client, Ctrl+Home and Ctrl+End make the first or last row of the entire list current, under the current filters and sortings. The server finds that row and reads a portion of the list starting at the beginning or ending at the end, replacing the rows previously loaded into the table. The [object search](Activation_ACTIVATE.md#search) operation with the first or last direction and no seek objects performs the same move.
+
 The button that exports a table to `XLSX` has a fallback for a result that would be too large. The [working parameter](Working_parameters.md) `minSizeForReportExportToCSV` turns it on: it is `-1` by default and there is no fallback, while at zero or above the platform compares the size of the collected data in bytes with it and, if the data is larger, returns the same data as a `CSV` file with `;` as the separator instead of `XLSX`.
+
+#### Copying and pasting {#clipboard}
+
+In the web client's table, copying selected cells produces text with one line per row and tabs between cell values. The cells are the intersection of the selected rows and the selected columns the form currently shows. A selected column that becomes hidden is excluded from copying and pasting. Without a selection, the current cell is copied. The selected rows can include rows not loaded into the table: the server reads them under the current filters and sortings.
+
+Text copied from a table or a spreadsheet is pasted as follows:
+
+| Text | Result |
+| --- | --- |
+| One value | For each selected column, the current row's cell must allow the change. Otherwise the entire column is skipped. If the change is allowed, the value is pasted into the selected cells of that column, including the current row even when it is outside the selected rows. Without a selection, it is pasted into the current cell. |
+| Several values separated by tabs or line breaks | The values are pasted starting at the current cell: into successive shown columns and successive rows in the group's order. If there are not enough rows, new objects are created only for an object group consisting of one object whose base class is a concrete user class. The web client asks for confirmation before pasting several values. |
+
+Pasting uses the property's [change event](Form_events.md#property), with the [event source](Form_events.md#source) set to `PASTE`. Within the columns where pasting is allowed, cells that the form does not allow to change, including read-only cells, are skipped without shifting the other values. The pasted text is parsed for the input type requested by the change event handler, which can differ from the displayed value's type. If parsing fails, the handler receives `NULL`.
 
 ### Object trees {#tree}
 
@@ -87,6 +102,21 @@ The user can change existing orders or add their own, as well as add their own f
 
 The developer can also declare a user filter for a property of the form in advance: its condition row is then shown in the user filter component of the property's object group as soon as the form opens, with the property and the comparison set and an empty value, and it filters nothing until the user enters a value. Such a row is permanent: the user changes its value and, with the filter controls shown, its comparison, but cannot remove it, and resetting all the filters only empties its value. The row is shown only while its component is present in the [form design](Form_design.md), where it can be moved or removed.
 
+In the web client, when the platform draws both the table and its user filters, the table's keys also control the filters:
+
+| Key | Result |
+| --- | --- |
+| F3 | Opens the editor of the first condition on the current column, keeping its comparison, negation and junction with the next condition. If there is no condition, the property's declared filter is used with its last comparison, or a new condition is added at the end with the property's default comparison. The current cell's value is put into the editor when the cell displays the value used for filtering. |
+| Alt+F3 | Resets the conditions and opens the editor of a new condition on the current column. |
+| Shift+F3, Escape | Resets the user filters immediately, including in manual apply mode. Escape is taken for this purpose while there are conditions or pending filter changes to reset. |
+| Typing in a column | Starts editing a quick filter on that column, or on the property assigned to it for quick filtering. If quick search is enabled instead, typing selects a loaded row whose text starts with the typed characters, ignoring case, in the first sorted column, or the first column if none is sorted. |
+
+F3, Alt+F3 and quick filtering require the user filter component in the form design. A cell whose displayed value differs from the value used for filtering does not supply that value to the condition's editor.
+
+Enter in the open filter editor confirms the value. In automatic apply mode, this also applies the filters. In manual apply mode, the change remains pending until the user chooses Apply or presses Enter again on the filter's value cell after editing has ended.
+
+When a React component draws the filters of a platform-drawn table, F3 sets the first condition on the current column using the current cell's value, with the same comparison, negation and junction rules. Alt+F3 replaces the conditions with one condition on that column. These keys do not change conditions when the current cell displays a different value from the one used for filtering. Neither key opens a platform editor, and typing in a column does not start quick filtering. The component edits the condition's value. Manual apply mode still leaves these changes pending until Apply.
+
 When several filters are chained together with AND/OR, by default the junction between two conditions is drawn as a separator glyph (a vertical bar). The working parameter `useTextAsFilterSeparator` draws it as a clickable "AND"/"OR" text label instead, which also switches the junction when clicked.
 
 ### Async input value list {#async}
@@ -125,7 +155,7 @@ It is worth noting that the selection of objects by default is pretty the same a
     -   on opening the form - passed objects
     -   in other cases – an empty object collection
 
-Search direction is determined by the object's default type (`PREV` here is equivalent to `FIRST`).
+[Search direction](Activation_ACTIVATE.md#direction) is determined by the object's default type (`PREV` here is equivalent to `FIRST`).
 :::
 
 ### Object operators {#objectoperators}
@@ -152,7 +182,7 @@ If list/edit form is not defined for a class, the platform will create one autom
 
 ### Session owner {#owner}
 
-Since a form is opened by default in the current session, it may not always be safe to apply/cancel changes to this session: for example, the changes made in other forms may accidentally be applied. To avoid such situations, the platform has the concept of a *session owner* – a form which is responsible for managing the life cycle of the session (for example, applying / canceling changes). By default, it is considered that a form is the session owner if the session did not have any other owner when the form was [opened](In_an_interactive_view_SHOW_DIALOG.md).
+Since a form is opened by default in the current session, it may not always be safe to apply/cancel changes to this session: for example, the changes made in other forms may accidentally be applied. To avoid such situations, the platform has the concept of a *session owner* – a form which is responsible for managing the life cycle of the session (for example, applying / canceling changes). By default, it is considered that a form is the session owner if the session did not have any other owner when the form was [opened](In_an_interactive_view_SHOW_DIALOG.md), the form is not opened read-only, and actions that change the session can be called on the form (in a nested session, the last condition is not required).
 
 To implement the mechanism for working with session owners the platform uses a numerical [local](Data_properties_DATA.md#local) property called `System.sessionOwners`. Accordingly, this property is incremented by `1` when you open a form and decremented by `1` when you close it. Thus, it shows the nesting depth of the "form opening stack", and is `NULL` if the session has no owner and not `NULL` otherwise.
 
@@ -178,10 +208,11 @@ By default, these system actions have the following visibility conditions:
 
 |Action|Condition|
 |---|---|
-|Refresh|Always|
-|Save, Cancel|If the form is the owner and actions that change the current session can be called on the form. Cancel may not be shown if the platform determines that canceling the changes is guaranteed to lead to a change of the [initial values](Open_form.md#params) of form objects (i.e., selecting other objects)|
-|OK, Close|If the form was opened [synchronously](In_an_interactive_view_SHOW_DIALOG.md#flow)|
-|Drop|If the form is opened synchronously, returns a value and allows `NULL` values to be passed|
+|Refresh|If the form is not shown as an [embedded form or a popup](In_an_interactive_view_SHOW_DIALOG.md#location)|
+|Save, Cancel|If the form is the [session owner](#owner) and is not shown as an embedded form or a popup. Cancel may not be shown if the platform determines that canceling the changes is guaranteed to lead to a change of the [initial values](Open_form.md#params) of form objects (i.e., selecting other objects)|
+|OK|If the form is not shown as an embedded form or a popup and is either opened [synchronously](In_an_interactive_view_SHOW_DIALOG.md#flow) or the session owner|
+|Close|If the form is not shown as an embedded form or a popup|
+|Drop|If the form returns object values and `NULL` is allowed for at least one of them|
 
 If necessary, all these actions can be shown/hidden by removing the corresponding components from the [form design](Form_design.md) and/or using the corresponding options in the [open form](Open_form.md) operator.
 
@@ -204,6 +235,14 @@ Hovering over a table column header, on either client, or over any other UI elem
 All of the above options, as well as defining the form structure, can be done using the [`FORM` statement](../language/FORM_statement.md).
 
 The `inputlist` and `noinputlist` annotations of the asynchronous value list are written among the [property options](../language/Property_options.md) in the declaration of the property.
+
+The `CUSTOM` option of an object group or a property can name a JavaScript function that draws [the group's rows](../language/Render_functions.md#object-group) or [the property's value](../language/Render_functions.md#property), respectively. The group function uses [the object group's controller](../language/Render_functions.md#controller-methods) to change current objects and property values and ask for suggestion lists. The property function uses [the property's controller](../language/Render_functions.md#property-controller) to change its value and ask for suggestion lists. In a property's `CUSTOM` option, the JavaScript function named after `CHANGE` supplies [the property's editor](../language/Edit_functions.md#custom-editor).
+
+### React
+
+A React component can [draw the rows of an object group](../language/React_component_views.md#form-custom) in the group's custom list view.
+
+A React component that draws a part of the form receives [the state of that part](../language/React_projection.md): its object groups with their rows and current objects, and its properties with their values, including the options of a property shown as a selection element. Through [its controller](../language/React_view_controller.md) it changes current objects and property values and runs actions, and it asks the server for [the asynchronous value list](../language/Form_and_navigator_controllers.md#looking-up-values) of a property. It can also draw [object trees](../language/React_trees_sortings_selection.md#trees), the [orders](../language/React_trees_sortings_selection.md#orders) of an object group, and its [user filters, filter groups and toolbar](../language/React_filters_and_toolbar.md), and change them as the user does.
 
 ### Open form
 

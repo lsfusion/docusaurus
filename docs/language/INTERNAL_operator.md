@@ -33,11 +33,13 @@ The `INTERNAL` operator creates an action or an action statement that runs eithe
 
 ### Parameters
 
+<a className="lsdoc-anchor" id="client"/>
+
 - `CLIENT`
 
     Keyword. Targets the user's web client instead of the application-server JVM — a JavaScript function already loaded in the client, or a client-side file (resolution rule on `execStrExpr` / `className` below). Without `CLIENT` the call targets the JVM (a Java class extending `InternalAction`, or an inline Java snippet). In the inline statement form `CLIENT` and `DB` are mutually exclusive and one of them is required.
 
-    A `CLIENT` JavaScript function receives the call parameters as its leading arguments, followed by the form *controller* — the same controller a custom view gets, with which it can set the current object, change properties, look up values, and call actions or scripts back on the server. If the function declares parameters beyond those, the call is treated as asynchronous: a success callback is appended after the controller, and a failure callback after it when the function declares one. With no such extra parameter the function's return value is used as the result.
+    A `CLIENT` JavaScript function receives the call parameters as its leading arguments, followed by the [form *controller*](Form_and_navigator_controllers.md). If the function declares parameters beyond those, the call is treated as asynchronous: a success callback is appended after the controller, and a failure callback after it when the function declares one. With no such extra parameter the function's return value is used as the result.
 
     ```js
     function reload(controller) { controller.exec('refreshData'); }
@@ -80,7 +82,7 @@ The `INTERNAL` operator creates an action or an action statement that runs eithe
 
 - `execStrExpr`
 
-    [Expression](Expression.md). `DB`: the SQL command. `CLIENT`: the resource name — a plain identifier (`[a-zA-Z0-9_$]+`) is resolved as a JavaScript function defined in the client-loaded code. Any other value is treated as a client-side file reference and either looked up in the `web/` classpath or, if not found there, passed through the application server's file/URL conversion, which also accepts absolute URLs. Scripts, stylesheets and fonts (`.js`, `.css`, `.ttf`, `.otf`) are recognised by file extension and handled specially on the client. All other file types, including images, are delivered to the client as generic files. A value prefixed with `remove ` unloads the previously-loaded file of the corresponding kind instead of invoking it. This prefix only affects the file branch — with a JavaScript-function target it is silently ignored. File resources do not receive parameters.
+    [Expression](Expression.md). `DB`: the SQL command. `CLIENT`: the resource name — a plain identifier (`[a-zA-Z0-9_$]+`) is resolved as a JavaScript function defined in the [client-loaded code](Client_JavaScript_modules.md#named-exports-and-auto-registration). Any other value is treated as a client-side file reference and either looked up in the `web/` classpath or, if not found there, passed through the application server's file/URL conversion, which also accepts absolute URLs. Scripts, stylesheets and fonts (`.js`, `.css`, `.ttf`, `.otf`) are recognised by file extension and handled specially on the client. All other file types, including images, are delivered to the client as generic files. A value prefixed with `remove ` unloads the previously-loaded file of the corresponding kind instead of invoking it. This prefix only affects the file branch — with a JavaScript-function target it is silently ignored. File resources do not receive parameters.
 
 - `paramExpr1, ..., paramExprN`
 

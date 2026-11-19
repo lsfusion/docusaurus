@@ -24,6 +24,18 @@ If at some point a container has no child components , or they are invisible, it
 
 A container that has a caption is *collapsible* by default: a toggle next to the caption folds it away, and the design can have it start folded. The [working parameter](Working_parameters.md) `disableCollapsibleContainers` (`false` by default) removes that default, leaving collapsible only the containers whose design asks for it explicitly. Its two halves take effect at different times: the toggle disappears as soon as the parameter is set, while the initial folded state given in the design is dropped only for a design built after that, that is, after a server restart.
 
+#### Hidden components {#hidden}
+
+The server does not read the contents of an unselected tab or a collapsed container. Closing a popup container stops reading its contents only if the container is collapsible. The server also does not read components hidden by their own display condition or that of a container above them, or components a React component reports as not shown.
+
+The server stops reading an object group's rows only when all the places on the form that need it are hidden. Until reading resumes, the table keeps the rows last sent.
+
+For a property hidden in an unselected tab, a collapsed container or a closed collapsible popup container, a value that changes while hidden is sent as `NULL` instead of being read. The same rule applies when a React component reports that it does not show the property itself or a component containing it. When a property is hidden by its own display condition or that of a container above it, the server instead removes it from the set of displayed properties and stops sending its values until it is shown again. Values needed by a visible part of the form continue to be read there.
+
+The first server response after a component is shown again brings current values for the contents that have become visible, except for updates held back by an object group's manual update mode. Showing the component does not apply those pending updates.
+
+A component's caption, image and comment continue to be read when they are displayed outside its hidden contents, for example in the title of an unselected tab. An action's labels and a list property's labels follow the visibility of the action or property itself. Hiding the whole form on screen, for example by switching to another form's tab, does not by itself stop the server from reading the form.
+
 ### Base components
 
 When defining the form design, the developer can use the following base components, which are created automatically based on the form structure:
@@ -45,7 +57,7 @@ When defining the form design, the developer can use the following base componen
 
 #### Table record {#record}
 
-The components the design adds to the table of an object group — `MOVE` or `NEW` inside `GRID(<object group>) { ... }` — make up the table's *record*: the card of the current object, which the map and the calendar [view types](../language/Object_blocks.md#objects) show over the marker or the event the user clicks, and a custom view next to the element it passes to [`changeObject`](../how-to/How-to_Custom_components_objects.md#controller-methods), if anything in it is shown. The table and the pivot table do not show the record. A tree has no record.
+The components the design adds to the table of an object group — `MOVE` or `NEW` inside `GRID(<object group>) { ... }` — make up the table's *record*: the card of the current object, which the map and the calendar [views](Interactive_view.md#objects) show over the marker or the event the user clicks, and a custom view next to an element of its own that it specifies when changing the current object, if anything in it is shown. The table and the pivot table do not show the record. A tree has no record.
 
 ### Value cell rendering {#cellrender}
 
@@ -58,6 +70,8 @@ Over the value cell the client draws a *cell toolbar*: the loading indicator of 
 The developer can control how the platform distributes the available container sizes between its internal components, as well as how these components will be located relative to each other.
 
 First of all, for each component you can specify the *base* size that this component will receive in any case, regardless of the algorithm for placing its container.
+
+A container rendered by a React component without a base height grows with what the component draws, as do the containers above it. If the content exceeds the form, the whole form scrolls — in a tab, its main container. With a base height, the container expands from it into the available space by its extension coefficient, and content that does not fit scrolls inside it by default. It stretches the form only when its own size does not fit.
 
 To determine the final size of the components and their location inside the container, the following algorithm is used:
 
@@ -140,9 +154,11 @@ The default height of a property value cell is equal to the height of the font u
 
 If the form opens in [window](In_an_interactive_view_SHOW_DIALOG.md#location) mode it does not have an upper container, so you need to determine this window's initial size. This size is determined similarly to the default base size, the only difference is that for tables/trees the default size is determined not as the default base size but by the rows loaded at opening (similar to the automatic size), within the screen size.
 
-The size is computed from the content present at the moment the window opens and does not change afterwards (only the user can resize the window). In the web client, the content of a container rendered by a React component is drawn by the component itself — after the window size has been computed — so such a container without a base size counts as empty, and its content then does not fit the window and pushes the components below it, including the system buttons, past its edge. A component's base size is taken as the minimum when the window size is computed, so such a container is given a base size. Content that does not fit in it scrolls inside the container by default.
+The size is computed from the content present at the moment the window opens and does not change afterwards (only the user can resize the window). In the web client, a container rendered by a React component is measured as the component first draws it, from the form's first data, before the window size is computed; what the component draws later — more rows, data that arrives afterwards — is not measured, so content that grows after the opening does not fit the window and pushes the components below it, including the system buttons, past its edge. A component's base size is taken as the minimum when the window size is computed, so a container whose content grows after the opening is given a base size. Content that does not fit in it scrolls inside the container by default.
 
 Measuring and fixing the size at opening is the default mode of the form's main container. If the form's design explicitly gives the main container the base size `-1` — in both directions or only in height — the window is not measured and not fixed in that direction but follows the content, including content drawn later. The window is then centered only at opening, by the content present at that moment, its height is not capped at the screen height — a window taller than the screen scrolls as a whole — and tables on such a form do not fit their height to their rows, keeping their base height with their own scrolling.
+
+A form opened as a tab is sized by the forms window, so a base size is not needed to determine its outer size.
 
 ### Default design {#defaultDesign}
 
@@ -202,6 +218,12 @@ The hierarchy of containers and components in the default design will look like 
 ### Language
 
 To set up the design of the form, use the [`DESIGN` statement](../language/DESIGN_statement.md). Its article also gives the complete tables of the properties of components of every kind (containers, components of properties and actions on the form, toolbars, grids) set by this statement.
+
+A JavaScript function named in an object group's `CUSTOM` option draws the group's rows and can [show the table's record next to an element it supplies when changing the current object](../language/Render_functions.md#controller-methods).
+
+### React
+
+A container of the design can be [drawn by a React component](../language/React_views.md) instead of the platform, and then the components inside it that the platform still draws are [placed by that component](../language/React_platform_components.md). A tree's table, a toolbar, filter controls, a filter group and a property's filter can be drawn by [a React component of their own](../language/React_component_views.md#component-views). An unselected tab and a collapsed container [hide what a React component draws](../language/React_form_behavior.md#hidden-view), and the component itself selects the tabs and collapses and expands the containers around it with actions of the form.
 
 ### Examples
 

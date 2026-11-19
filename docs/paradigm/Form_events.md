@@ -5,11 +5,11 @@ title: 'Form events'
 
 While the application is running, there is a number of events for each form that occur as a result of certain user actions:
 
-#### Global
+#### Global {#global}
 
 -   `QUERYCLOSE` - the user tries to close the form by clicking on the corresponding button in the form header.
 -   `QUERYOK` - the user tries to close a modal form by double-clicking on any row in the table.
--   `SCHEDULE` - a timer on the client: the handler runs every given number of seconds while the form is shown on screen. This is how a form keeps its data current - a periodic refresh (polling, auto-update, live data): with `System.formRefresh` as the handler the form re-reads everything it shows. For a form in a background tab (on the web client also for a form under a modal dialog) a run is skipped. The timer keeps counting, and the next run comes once the form is shown again. The next period is counted from the end of the previous run, once its response has been processed, unless the form asks for a fixed pace, when it is counted from the start of the previous run. On the web client the request does not block the user's input.
+-   `SCHEDULE` - a timer on the client: the handler runs every given number of seconds while the form is shown on screen. This is how a form keeps its data current - a periodic refresh (polling, auto-update, live data): with `System.formRefresh` as the handler the form re-reads everything it shows. For a form in a background tab (on the web client also for a form under a modal dialog or one a React component does not place) a run is skipped. The timer keeps counting, and the next run comes once the form is shown again. The next period is counted from the end of the previous run, once its response has been processed, unless the form asks for a fixed pace, when it is counted from the start of the previous run. On the web client the request is asynchronous: it does not block the user's input and shows no [busy indicator](Interactive_view.md#busy).
 
 #### For objects on the form
 
@@ -33,7 +33,7 @@ The `FILTER` and `ORDER` events of an object group also occur when the form read
 -   `CHANGE` - the user initiated a property change or action call.
 -   `CHANGE BEFORE` / `CHANGE AFTER` - occurs on the form immediately before or after the value of a specific property changes.
 -   `GROUPCHANGE` - the user initiated a property change for all objects in the table.
--   `EDIT` - the user initiated editing of the object behind the property: its value or an object the property is computed for (see the [default handler](#default)). It is triggered by the F9 key on the property, by a double click on a property that has no change handler and no custom renderer, by a click on it in the link mode of the web client (the Ctrl key held down, or the link mode chosen with the edit-mode button on the toolbar), or by the `Follow the link` item of its context menu.
+-   `EDIT` - the user initiated editing of the object behind the property: its value or an object the property is computed for (see the [default handler](#default)). It is triggered by the F9 key on the property, by a double click on a property that has no change handler and no custom view, by a click on it in the link mode of the web client (the Ctrl key held down, or the link mode chosen with the edit-mode button on the toolbar), or by the `Follow the link` item of its context menu.
 -   `CONTEXTMENU [caption]` - the user selected the specified item in the context menu of a property (action) on the form. If necessary, you can also define the caption of this menu item ([string literal](Constant.md)). If it is not specified, then, by default, it will be the same as the action caption.
 -   `KEYPRESS key` - the user has pressed the specified `key` (string literal) on keyboard.
 
@@ -45,7 +45,7 @@ The `FILTER` and `ORDER` events of an object group also occur when the form read
 
 There are also several so-called *derivative* events that are nothing more than syntactic sugar, but at the same time allow you more effectively to solve typical problems that arise when working with forms:
 
-#### Global
+#### Global {#global-1}
 
 -   `INIT` - occurs immediately after the form is opened.
 -   `APPLY` - occurs when the form session is saved to the database (inside the transaction, at the very beginning, before global event handling is performed).
@@ -143,13 +143,17 @@ Inside a property's change event handler (`CHANGE`, `GROUPCHANGE`, `EDIT`), the 
 | `EDIT` | The user edited the property value directly through its input control on the form. |
 | `BINDING` | The change was triggered by a keyboard shortcut or a mouse binding assigned to the property. |
 | `PASTE` | The user pasted the value into the property cell using the operating system's tools (a WYSIWYG change). |
-| `CUSTOM` | The change came from a custom client-side source, such as a custom renderer or the form controller API. |
+| `CUSTOM` | A change initiated by client code, for example by a custom view. |
 
 The `PASTE` and `CUSTOM` sources are *external changes*: the value did not come from the user editing the property directly on the form or from a binding.
 
 ### Language
 
 To define the form event handlers, use the `ON` option in the `FORM` statement ([events](../language/Event_block.md) block, [properties and actions](../language/Properties_and_actions_block.md) block, [objects](../language/Object_blocks.md#objects) block), as well as in [property options](../language/Property_options.md). 
+
+### React
+
+The platform itself handles the [keys and mouse bindings](../language/React_form_behavior.md#keys) of the properties, actions and filter groups a React component draws, except those that need a cell of the platform's. What the handler of the `SCHEDULE` event changes [reaches the component](../language/React_form_behavior.md#live-data) like any other change. A React component drawing a custom view changes the values of properties on the form and runs their change events through [its controller](../language/React_view_controller.md#changing-values), and such a change has the `CUSTOM` source.
 
 ### Examples
 
