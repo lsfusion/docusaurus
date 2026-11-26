@@ -27,9 +27,9 @@ const { o, filteredCount } = props.data;
 
 Drawn for the group instead (`PROPERTIES() filteredCount DRAW o PANEL`), the property needs no `MOVE`: its default place is in `PANEL(o)`, inside `BOX(o)`. It is a member of the group node, read as `data.o.filteredCount.value`.
 
-### A feed that loads as it scrolls {#feed}
+### A list that loads during scrolling {#feed}
 
-We need to show a group's rows as a feed that reads the next page as it scrolls, starts over after a change of the filters or sortings, and moves to its first or last row on a button. The solution uses the [`useSeekOnScroll`](../language/React_rendering.md#seek-on-scroll) hook and an edge of the list passed to the group's `change` ([The first and the last row](../language/React_view_controller.md#first-last-row)).
+We need to show a group's rows in a list that loads the next page during scrolling, starts over after a change of the filters or sortings, and moves to its first or last row on a button. The solution uses the [`useSeekOnScroll`](../language/React_rendering.md#seek-on-scroll) hook and an edge of the list passed to the group's `change` ([The first and the last row](../language/React_view_controller.md#first-last-row)).
 
 ```jsx
 const seekRef = useSeekOnScroll(controller.o, { enabled: follow });
@@ -37,7 +37,7 @@ const seekRef = useSeekOnScroll(controller.o, { enabled: follow });
 {rows.map(row => <div key={row.key} ref={seekRef(row)}>...</div>)}
 ```
 
-After a change of the filters or sortings, the server reads rows around the current row, as in the platform's table. A feed that should start over calls `controller.<g>.change(controller.form.HOME)` after the change in the same synchronous [batch](../language/Form_and_navigator_controllers.md#batch). In the [manual filter apply mode](../language/React_filters_and_toolbar.md#filter-controls), move to the start after applying the filters, so the move uses the new conditions.
+After a change of the filters or sortings, the server reads rows around the current row, as in the platform's table. A list that should return to its first row calls `controller.<g>.change(controller.form.HOME)` after the change in the same synchronous [batch](../language/Form_and_navigator_controllers.md#batch). In the [manual filter apply mode](../language/React_filters_and_toolbar.md#filter-controls), move to the start after applying the filters, so the move uses the new conditions.
 
 The buttons to the first and the last row:
 
@@ -101,7 +101,13 @@ export function Board(props) {
 
 We need to build a page of several regions, each drawn by React, that follow one another: picking a category shows its items, and picking an item shows its details. The solution uses the [projection](../language/React_projection.md) each container gets.
 
-A page of several regions — a list of categories, the items of the chosen category, the details of the current item — is not one component over the whole form: each region is a `custom` container of its own, over its own part of the form, and ordinary `DESIGN` containers lay them out. A change then re-renders only the regions whose projections changed, a region in an inactive tab or a collapsed container is not read until it is shown — unless a visible region depends on it — and another module can still add to the page from `DESIGN`. What the regions share is the form's state, not a component's:
+A page of several regions — a list of categories, the items of the chosen category, the details of the current item — is not one component over the whole form: each region is a `custom` container of its own, over its own part of the form, and ordinary `DESIGN` containers lay them out. Then:
+
+- a change re-renders only the regions whose projections changed;
+- a region in an inactive tab or a collapsed container is not read until it is shown — unless a visible region depends on it;
+- another module can still add to the page from `DESIGN`.
+
+What the regions share is the form's state, not a component's:
 
 ```lsf
 CLASS Category;
@@ -172,7 +178,15 @@ export function DetailPanel({data}) {
 }
 ```
 
-Each container's `props.data` holds only the parts it draws: `CategoryList` sees `data.c`, `ItemList` sees `data.i` with its rows and the `archive` filter group, `DetailPanel` sees `data.d` and, as `data.i`, only the panel property `nameItem` moved there. A part of a group is projected where its component stands — the rows where the group's grid is, a panel property where the property itself is — so the current item's name reaches the detail panel as a panel property of `i`, added under an alias and `MOVE`d into the container that draws it, without the group's rows. A click in a list sets the current object (`controller.c.change(row)`), and the filters of the groups below follow it — the platform's own dependency between groups, so the containers need no shared JavaScript state. A container that does not draw a group's rows chooses its current object through the form's controller — `controller.form.changeObject('c', row)`, with a row of its own data or a lookup's `objects` handle —, as it sorts the rows another container draws ([across containers](../language/Form_and_navigator_controllers.md#across-containers)).
+Each container's `props.data` holds only the parts it draws:
+
+- `CategoryList` sees `data.c`;
+- `ItemList` sees `data.i` with its rows and the `archive` filter group;
+- `DetailPanel` sees `data.d` and, in `data.i`, only the panel property `nameItem` moved there.
+
+A part of a group is projected where its component stands — the rows where the group's grid is, a panel property where the property itself is — so the current item's name reaches the detail panel as a panel property of `i`, added under an alias and `MOVE`d into the container that draws it, without the group's rows.
+
+A click in a list sets the current object (`controller.c.change(row)`), and the filters of the groups below follow it — the platform's own dependency between groups, so the containers need no shared JavaScript state. A container that does not draw a group's rows chooses its current object through the form's controller — `controller.form.changeObject('c', row)`, with a row of its own data or a lookup's `objects` handle —, as it sorts the rows another container draws ([across containers](../language/Form_and_navigator_controllers.md#across-containers)).
 
 The named selection is a `FILTERGROUP`: `data.i.archive.value` is `0` for active items and `null` for all items, including archived ones. To show archived items too, call `controller.i.archive.change(null)`; to hide them, call `controller.i.archive.change(0)` ([Filter groups](../language/React_filters_and_toolbar.md#filter-groups)). For other ways to select rows, see [Choosing a filter mechanism](#choosing-a-filter-mechanism).
 
@@ -213,7 +227,7 @@ export function PlacedTabs(props) {
 }
 ```
 
-Rendering only the active child, rather than hiding the others, is what makes the closed tabs stop being read — see [Child placement](../language/React_platform_components.md#placing). Put the tabs over a group's `BOX`, not its `GRID`: only a container and a property carry a caption and an image, so a placed `GRID(o)` has an entry with no caption — it says only whether the form hides the grid.
+Rendering only the active child, rather than hiding the others, is what makes the closed tabs stop being read — see [Child placement](../language/React_platform_components.md#placing). Put the tabs over a group's `BOX`, not its `GRID`: only a container and a property have a caption and an image, so a placed `GRID(o)` has an entry with no caption — it indicates only whether the form hides the grid.
 
 A tab strip over children of both kinds keeps one name per tab, the name it places the child by, and reads the child's entry by it — a design identifier at the top level, a property's name as its path:
 
@@ -258,7 +272,7 @@ export function OrderCard(props) {
 
 ### A quote board refreshed by `SCHEDULE` {#live-data}
 
-We need to show quotes that change while the form is open, re-read by the form every two seconds. The solution uses the form's `SCHEDULE` event running `formRefresh` ([Live data](../language/React_form_behavior.md#live-data)).
+We need to show quotes that change while the form is open, re-read by the form every two seconds. The solution uses the form's `SCHEDULE` event running `formRefresh` ([Scheduled refresh](../language/React_form_behavior.md#live-data)).
 
 ```lsf
 FORM quotes 'Quotes'
@@ -428,7 +442,7 @@ export function MessageLog({ data, controller }) {
 
 ### An application shell {#app-layout}
 
-We need to lay the application's windows out ourselves: a top bar, a menu column the user can fold, the forms area and the message log. The solution uses [the window layout](../language/React_windows.md#window-layout).
+We need to lay the application's windows out ourselves: a top bar, a menu column the user can collapse, the forms area and the message log. The solution uses [the window layout](../language/React_windows.md#window-layout).
 
 ```lsf
 NAVIGATOR CUSTOM 'AppLayout';
@@ -469,7 +483,7 @@ export function AppLayout({ data }) {
 
 We need a header above the forms area with a search field that finds customers and opens the one clicked. The solution uses [projection reading](../language/React_projection.md#reading) with `useData` and `useController`, and the controller's [members](../language/React_view_controller.md#members).
 
-A header with a search field that finds records is a form: it wants a live projection, a session to hold the query, ordering and paging, and a way to open what it finds. So it is built as a form and opened into a window of its own, a [`WINDOW ... FORMS`](../language/WINDOW_statement.md) above the forms area, with [`SHOW ... WINDOW windowName`](../language/SHOW_operator.md).
+A header with a search field that finds records is a form: it needs a projection that updates as the data changes, a session to hold the query, ordering and paging, and a way to open what it finds. So it is built as a form and opened into a window of its own, a [`WINDOW ... FORMS`](../language/WINDOW_statement.md) above the forms area, with [`SHOW ... WINDOW windowName`](../language/SHOW_operator.md).
 
 The query is a form property here because an empty query must find nothing. A search over a list the user browses uses a [property filter](../language/React_filters_and_toolbar.md#property-filters) by default.
 
@@ -584,13 +598,33 @@ window.lsfusion.custom.register('Search', Search, 'reactView');
 
 Everything the component shows comes from the projection it reads with `useData()`: the query is `data.query.value`, the matches are `data.c.list`, kept current by the platform as the query changes - `controller.query.change(…)` is the ordinary edit, and the form's `FILTERS` re-apply.
 
-The input is **uncontrolled** on purpose - it is not given `value={query}` - and that is the one thing a view like this must get right. The projection shows a value the field sends at once, as the platform shows an edit before the server answers, and keeps the latest one while the answers to the earlier ones arrive: the server's answer replaces it only when the server stored something else or refused the change. But the projection can change while the user types - somebody else writes the query, or the server corrects it - and a React-controlled field would be redrawn from it under the user's hands. So the field owns what the user types, and follows the projection only when something else changed it and the user is not in the field, catching up when the user leaves it. `sent` keeps the value the field sent last until the projection shows it, so the field does not take its own change for somebody else's. This relies on the query being stored as typed: it is a `DATA` property, and `maxLength` keeps the input within its `ISTRING[100]`. A click runs the action drawn on the group for the clicked row, `controller.c.openCustomer.exec(row)`, and the record opens where a form opens by default, as a tab in `System.forms`. The header stays: a `FORMS` window draws one form at a time, so a form the application later opens `WINDOW header` replaces it, while `WINDOW` without a window leaves it alone.
+The input is **uncontrolled** on purpose - it is not given `value={query}` - and that is the first thing a view like this must get right.
 
-Two things make it read as a header rather than as a document. `REMOVE TOOLBARBOX` takes the form's own toolbar away - there is nothing here for the user to save, cancel or close, and the buttons are drawn by that container. The results are drawn through a **portal into the page body**, not inside the container, and that is the second thing this kind of view must get right. A window is short by design, and it clips what its form draws - a list left inside a header band is cut off after the first row. Nor is a high `z-index` enough: the window's own element is a stacking context (`position: relative; z-index: 0`), so a layer inside it can never rise above the neighbouring windows. A portal leaves both behind. The layer is then positioned from the field's `getBoundingClientRect()` and has to follow it on resize and scroll, and go away on Escape.
+The projection shows a value the field sends at once, as the platform shows an edit before the server answers, and keeps the latest one while the answers to the earlier ones arrive: the server's answer replaces it only when the server stored something else or refused the change. But the projection can change while the user types - somebody else writes the query, or the server corrects it - and a React-controlled field would be redrawn from it while the user is typing.
 
-`AUTOSIZE` on the window is what keeps the band from being a tall empty strip: the header is as tall as its form - here one input - while still stretching across, and the `fill = 1` container inside it fills that height rather than hugging its own content. A window is sized by the layout rather than by the form in it, so without it the band keeps the share of the height its `POSITION` asks for, empty or not. Note also that the client remembers a size the user dragged, and restores it over the declared one - `Service.resetWindowsLayout` is what puts the declared sizes back. Two things about `POSITION` are worth knowing before the header looks wrong. The numbers are not a rectangle the window is drawn in but the way the layout splits the space, so a header of `POSITION(20, 6, 80, 10)` becomes a band to the right of the toolbar and above `System.forms`. And unless the navigator is fully pinned its panel is an overlay that hangs over the windows beside it: a click aimed at the header then lands on the menu underneath and runs whatever that menu item runs.
+So the field stores what the user types, and takes the value from the projection only when something else changed it and the field is not focused; a change made while the field is focused is taken when the field loses focus. `sent` keeps the value the field sent last until the projection shows it, so the field does not take its own change for somebody else's. This relies on the query being stored as typed: it is a `DATA` property, and `maxLength` keeps the input within its `ISTRING[100]`.
 
-What the form route does not give is freshness across connections: a form does not see what another connection committed until it re-reads, so a header that must show that adds [`EVENTS ON SCHEDULE PERIOD n formRefresh()`](../paradigm/Interactive_view.md) to the form. And the header is drawn by the desktop web client only: the mobile web client and the desktop client draw `System.forms` alone and open the header there, as a tab, so an application that serves them keeps the header's design usable as a plain form.
+A click runs the action drawn on the group for the clicked row, `controller.c.openCustomer.exec(row)`, and the record opens where a form opens by default, as a tab in `System.forms`. The header stays: a `FORMS` window draws one form at a time, so a form the application later opens `WINDOW header` replaces it, while `WINDOW` without a window leaves it alone.
+
+Two things make it read as a header rather than as a document:
+
+- `REMOVE TOOLBARBOX` removes the form's own toolbar - there is nothing here for the user to save, cancel or close, and the buttons are drawn by that container.
+- The results are drawn through a **portal into the page body**, not inside the container, and that is the second thing this kind of view must get right.
+
+A window is short by design, and it clips what its form draws - a list left inside a header band is cut off after the first row. Nor is a high `z-index` enough: the window's own element is a stacking context (`position: relative; z-index: 0`), so a layer inside it can never rise above the neighbouring windows. A portal places the list outside both the clipping element and the window's stacking context.
+
+The layer is then positioned from the field's `getBoundingClientRect()` and has to be repositioned on resize and scroll, and hidden on Escape.
+
+`AUTOSIZE` on the window is what keeps the band from being a tall empty strip: the header is as tall as its form - here one input - while still stretching across, and the `fill = 1` container inside it fills that height rather than sizing itself to its own content. A window is sized by the layout rather than by the form in it, so without it the band keeps the share of the height its `POSITION` asks for, empty or not.
+
+Note also that the client remembers a size the user dragged, and restores it in place of the declared one - `Service.resetWindowsLayout` is what restores the declared sizes.
+
+Two things about `POSITION` and the navigator are worth knowing before the header looks wrong:
+
+- The numbers are not a rectangle the window is drawn in but the way the layout splits the space, so a header of `POSITION(20, 6, 80, 10)` becomes a band to the right of the toolbar and above `System.forms`.
+- Unless the navigator is fully pinned its panel is an overlay displayed over the windows beside it: a click in the covered part of the header then activates the menu item at that position.
+
+Changes committed by another connection are available to a form only after it re-reads the data, so a header that must show that adds [`EVENTS ON SCHEDULE PERIOD n formRefresh()`](../paradigm/Interactive_view.md) to the form. And the header is drawn by the desktop web client only: the mobile web client and the desktop client draw `System.forms` alone and open the header there, as a tab, so an application that serves them keeps the header's design usable as a plain form.
 
 ### A catalogue tree {#tree-catalogue}
 
@@ -799,7 +833,9 @@ export function NameOrDescriptionSearch({data, controller}) {
 }
 ```
 
-At form opening, empty property filters occupy the start of the condition list in declaration order, so these two conditions are adjacent. Always change and clear both together: `or` joins a condition to the next **active** one, so clearing only the second can join the first to an unrelated condition. Replacing the whole list with `filters.change([...])` moves empty property filters to its end, and does not guarantee that this pair stays adjacent. Use the paired variant only while the two conditions remain adjacent; otherwise use a combined property or explicitly state the entire condition list when the view owns it.
+At form opening, empty property filters occupy the start of the condition list in declaration order, so these two conditions are adjacent. Always change and clear both together: `or` joins a condition to the next **active** one, so clearing only the second can join the first to an unrelated condition.
+
+Replacing the whole list with `filters.change([...])` moves empty property filters to its end, and does not guarantee that this pair stays adjacent. Use the paired variant only while the two conditions remain adjacent; otherwise use a combined property or explicitly state the entire condition list when the view owns it.
 
 ### Only the filters, or the whole group {#filters-or-whole-group}
 
@@ -942,12 +978,12 @@ We need the components of a placed child to keep their state while the view does
 
 To keep the state of the components in a child while the child is not shown, keep its place rendered and hide it, rather than render only the place of the child that is shown: `<div hidden={name !== active}><Platform name={name}/></div>`. A child hidden so is still placed: hiding its place does not stop the server reading it.
 
-Where the place itself has to go, `ownRoot` keeps the state instead.
+Where the host itself has to be removed, `ownRoot` keeps the state instead.
 
 ### A React component or an HTML template {#react-or-template}
 
 We need to choose whether a container is drawn by a React component or by an HTML template ([A React component and an HTML template](../language/React_views.md#choosing-between-a-react-component-and-an-html-template)).
 
-Markup of your own that has to use a caption the application computes — as text of its own, or a container's caption — is the point at which a template stops being enough.
+Markup of your own that has to use a caption the application computes — as text of its own, or a container's caption — cannot be implemented with a template alone.
 
-A React component earns its place when the layout is computed — the children are placed conditionally, the grid template is derived from the data read through `useData`, or the markup comes from a component library — or when the markup has to show something the projection carries, which for a container or a child the platform draws is its `caption` and its `image`.
+A React component is appropriate when the layout is computed — the children are placed conditionally, the grid template is derived from the data read through `useData`, or the markup comes from a component library — or when the markup has to show something the projection contains, which for a container or a child the platform draws is its `caption` and its `image`.

@@ -15,7 +15,22 @@ The focus in what a view draws is the view's own: the platform has no field ther
 
 <a className="lsdoc-anchor" id="form-loading"/>
 
-While the form waits for the server, the platform shows it on the form's Refresh button (`formRefresh`), and where React draws that button, the button's entry says so: `data.formRefresh.loading` is `true`. The design moves the button into the view's container — `MOVE PROPERTY(formRefresh())` —, and the view draws from the entry what it needs: the button, or only an indicator. What it shows are the form's asynchronous requests, whichever part of the form sent them — a property changed with a value, the current object, sortings and filters changed, a tree's node opened, a [batch](Form_and_navigator_controllers.md#batch), the controller's own `exec`, `eval`, `evalAction` and `change`, a [scheduled](#live-data) run —, from the moment the first of them has waited 20 milliseconds until the answer to the last of them comes. A request answered sooner shows nothing, so that the page does not flicker. A synchronous request does not set it — the run of an action through its member outside a batch is one, unless the platform runs the action asynchronously, as it runs one drawn with `NOWAIT`: it blocks input, and the platform shows its [busy indicator](../paradigm/Interactive_view.md#busy) instead. The entry also says `loading` while the button's own run waits, as an action's does. A Refresh button the platform draws — placed with [`<Platform>`](React_platform_components.md#placing) or anywhere else on the form — shows it itself, and a form with no Refresh button shows it nowhere. Only the view that draws the button is drawn again when it changes:
+While the form waits for the server, the platform shows it on the form's Refresh button (`formRefresh`), and where React draws that button, the button's entry says so: `data.formRefresh.loading` is `true`. The design moves the button into the view's container — `MOVE PROPERTY(formRefresh())` —, and the view draws from the entry what it needs: the button, or only an indicator.
+
+What it shows are the form's asynchronous requests, whichever part of the form sent them. Such requests are caused by:
+
+- a property changed with a value;
+- the current object, sortings and filters changed;
+- a tree's node opened;
+- a [batch](Form_and_navigator_controllers.md#batch);
+- the controller's own `exec`, `eval`, `evalAction` and `change`;
+- a [scheduled](#live-data) run.
+
+These requests are shown from the moment the first of them has waited 20 milliseconds until the answer to the last of them comes. A request answered sooner shows nothing, so that the page does not flicker.
+
+A synchronous request does not set `loading`: it blocks input, and the platform shows its [busy indicator](../paradigm/Interactive_view.md#busy) instead. The run of an action through its member outside a batch is a synchronous request, unless the platform runs the action asynchronously, as it runs one drawn with `NOWAIT`. The entry also says `loading` while the button's own run waits, as an action's does.
+
+A Refresh button the platform draws — placed with [`<Platform>`](React_platform_components.md#placing) or anywhere else on the form — shows it itself, and a form with no Refresh button shows it nowhere. Only the view that draws the button is drawn again when it changes:
 
 ```lsf
 DESIGN orders {
@@ -35,7 +50,13 @@ function Busy() {
 
 ### Keys and mouse bindings {#keys}
 
-The keys and mouse bindings the design gives what a view draws work as in the standard form: the key and the mouse binding of a property or an action ([`CHANGEKEY`, `CHANGEMOUSE`](Property_options.md)), the keys of the form's own buttons — actions of the `System` module: `ESCAPE` closes the form, `ctrl ENTER` is OK — and the key of a filter of a [filter group](React_filters_and_toolbar.md#filter-groups). The platform binds them itself, and the view does nothing for them. A key works while the form shows its component — its entry is not `hidden` — and the view that draws it is shown, whatever element of the form the user presses it in, and it does what the platform's key does:
+The keys and mouse bindings the design gives what a view draws work as in the standard form:
+
+- the key and the mouse binding of a property or an action ([`CHANGEKEY`, `CHANGEMOUSE`](Property_options.md));
+- the keys of the form's own buttons — actions of the `System` module: `ESCAPE` closes the form, `ctrl ENTER` is OK;
+- the key of a filter of a [filter group](React_filters_and_toolbar.md#filter-groups).
+
+The platform binds them itself, and the view does nothing for them. A key works while the form shows its component — its entry is not `hidden` — and the view that draws it is shown, whatever element of the form the user presses it in, and it does what the platform's key does:
 
 - an action runs, as a click on its button. An action in the rows a view draws runs on the current row; with no current row the key is left to the other bindings. An action with `CONFIRM` asks first, in the platform's dialog: the key is the platform's, while a call of the action's member asks nothing — the view asks itself where the entry says [`askConfirm`](React_projection.md#display-options);
 - a property whose change asks no value — its `ON CHANGE` handler runs an action — runs that handler;
@@ -52,11 +73,11 @@ The platform does not bind:
 - the key of a property or an action that asks a value in a cell right away — the default change of a data property, an action that starts by asking a value (`INPUT`), a field a barcode scanner types into: the platform opens the editor for it in a cell, and that field is the view's. A view that needs such a key handles it itself;
 - the standard grid's [filter keys and typing](../paradigm/Interactive_view.md#userfilters), and `ENTER` down a column: over the rows a view draws there is no such grid, and the view uses the members of its [filter controls](React_filters_and_toolbar.md#filter-controls) and `filters.change`.
 
-A view of the platform's that a view places with [`<Platform name/>`](React_platform_components.md#placing) keeps its keys, as it does anywhere: they work while its host is shown, and a host the view hides — `<Platform>` hides it while the entry of what it holds says `hidden` — takes them with it.
+A view of the platform's that a view places with [`<Platform name/>`](React_platform_components.md#placing) keeps its keys, as it does anywhere: they work while its host is shown, and they stop working when the view hides the host — `<Platform>` hides it while its placed component's entry has `hidden` set.
 
-A key pressed in a field the view draws reaches the form like any other key. A field where the user types declares it ([`controller.form.startEditing`](Form_and_navigator_controllers.md#editing)), so that `ENTER`, `ESCAPE` and the keys bound with the default `editing` mode step aside; a key the view needs for itself it stops in its own handler (`stopPropagation`).
+A key pressed in a field the view draws reaches the form like any other key. A field where the user types declares it ([`controller.form.startEditing`](Form_and_navigator_controllers.md#editing)), so that the bindings for `ENTER`, `ESCAPE` and the keys bound with the default `editing` mode do not run; a key the view needs for itself it stops in its own handler (`stopPropagation`).
 
-### Live data {#live-data}
+### Scheduled refresh {#live-data}
 
 Changes from the form's [`SCHEDULE` event](../paradigm/Form_events.md#global) arrive through `props.data` like any other change:
 
@@ -74,17 +95,19 @@ DESIGN quotes {
 }
 ```
 
-[`System.formRefresh[]`](../paradigm/Form_events.md#global) returns the whole form on every run. There is no refresh of a single object group: `System.forceUpdate[STRING]` only applies the pending update of a group in manual update mode (the `enableManualUpdate` design attribute) and does nothing for a group updated automatically. So a live board is kept as a form of its own, with only the properties it draws, and the period is no shorter than the data needs.
+[`System.formRefresh[]`](../paradigm/Form_events.md#global) returns the whole form on every run. There is no refresh of a single object group: `System.forceUpdate[STRING]` only applies the pending update of a group in manual update mode (the `enableManualUpdate` design attribute) and does nothing for a group updated automatically. So a board refreshed on a schedule is kept as a form of its own, with only the properties it draws, and the period is no shorter than the data needs.
 
 The scheduled run differs from a request the component would make itself. A timer of the component's own that calls `controller.refresh.exec()` polls the server the way a click on the form would — as a synchronous request that blocks input until it completes, unless the action is drawn with `NOWAIT` — and goes on polling while the form is hidden.
 
-**A hidden form stays mounted.** A background tab and an unplaced form are hidden, not closed, so the component is still mounted and a `setInterval` of its own keeps firing — and keeps calling the server — while the form's schedule is paused. That is why the refresh belongs to the form, not to the component. A timer the component does need (an animation, a countdown) is cleared in the effect's cleanup as usual, but that cleanup runs when the form closes, not when it is hidden: what stops it while the view is hidden is [`useVisible()`](#hidden-view).
+**A hidden form stays mounted.** A background tab and an unplaced form are hidden, not closed, so the component is still mounted and a `setInterval` of its own keeps running — and keeps calling the server — while the form's schedule is paused. That is why the refresh belongs to the form, not to the component.
+
+A timer the component does need (an animation, a countdown) is cleared in the effect's cleanup as usual, but that cleanup runs when the form closes, not when it is hidden: what stops it while the view is hidden is [`useVisible()`](#hidden-view).
 
 ### A hidden view {#hidden-view}
 
 The platform hides a view with its container according to the [visibility and reading rules of form components](../paradigm/Form_design.md#hidden), and in a form that is not on screen: in a background tab, one the [forms window](React_windows.md#forms-window) component does not place, or one in another window while System.forms is expanded to the full screen. The component stays mounted and keeps its state, and what it draws is not seen.
 
-What the component does on its own goes on all the while: a timer, a request, an animation. `useVisible()` says whether the view is on screen now — whether the element its root is mounted in is displayed: in the page, with no element above it under `display: none`, which is how the platform hides one — and draws the component again when that changes, so work of the component's own is done while it is `true`:
+What the component does on its own goes on all the while: a timer, a request, an animation. `useVisible()` returns whether the view is on screen now — whether the element its root is mounted in is displayed: in the page, with no element above it under `display: none`, which is how the platform hides one — and draws the component again when that changes, so work of the component's own is done while it is `true`:
 
 ```jsx
 const { useVisible } = window.lsfusion;
@@ -106,4 +129,4 @@ It does not say whether the view is scrolled into sight. What the component draw
 
 The tabs and the collapsible containers around a view are a part of the form, and the view reads and changes them as it does the rest of the form — through the properties and actions the design gives it: [`ACTIVE TAB`](ACTIVE_operator.md) says whether a tab is selected, [`ACTIVATE TAB`](ACTIVATE_operator.md) selects it, [`COLLAPSE CONTAINER`](COLLAPSE_operator.md) and [`EXPAND CONTAINER`](EXPAND_operator.md) collapse and expand a container.
 
-The actions run on the server, so a tab is selected when the server answers, not when the view calls the action. Whether a container is collapsed is no property: the form's [`ON COLLAPSE` and `ON EXPAND`](Event_block.md) events run when the user collapses or expands it. A container the view draws itself has no tab and no collapse of the platform's — the view shows it or not —, so `ACTIVATE TAB`, `COLLAPSE CONTAINER` and `EXPAND CONTAINER` on it are an error. [`SHOW ... IN`](SHOW_operator.md#windowtype).
+The actions run on the server, so a tab is selected when the server answers, not when the view calls the action. Whether a container is collapsed is no property: the form's [`ON COLLAPSE` and `ON EXPAND`](Event_block.md) events run when the user collapses or expands it. A container the view draws itself has no tab and no collapse of the platform's — the view shows it or not —, so `ACTIVATE TAB`, `COLLAPSE CONTAINER` and `EXPAND CONTAINER` on it are an error. [`SHOW ... IN`](SHOW_operator.md#windowtype) also requires a container whose content the platform draws.

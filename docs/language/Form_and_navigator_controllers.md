@@ -5,11 +5,24 @@ title: 'Form and navigator controllers'
 
 The JavaScript code of a [custom view](../paradigm/Custom_views.md), or other client JavaScript code, works with a form open in the [interactive view](../paradigm/Interactive_view.md) through the form controller, and with the [navigator](../paradigm/Navigator.md) through the navigator controller.
 
-A custom view written in JavaScript communicates with the form through a *controller* object — with it the view sets the current object of a group, changes property values, looks up suggestions, and calls actions or scripts on the server. There are three kinds of custom view. A React view gets the controller of its own projection — the [members](React_view_controller.md#members), beside the `props.data` they mirror — and the form's controller as its `form`; a classic view finds the form's controller as `controller.form`, and an `INTERNAL CLIENT` action is given it as an argument. The form's controller carries the server calls (`exec` / `eval` / `evalAction` / `change`), the [methods](#across-containers) that do what a view's members do to what another container or the platform draws (`changeOrders('i', …)`, `changeObject('i', row)`, …), the [editing declaration](#editing) (`startEditing` / `stopEditing` / `isEditing`) and the [batch](#batch).
+A custom view written in JavaScript communicates with the form through a *controller* object — with it the view sets the current object of a group, changes property values, looks up suggestions, and calls actions or scripts on the server.
+
+The controller is obtained in different ways:
+
+- a React view gets the controller of its own projection — the [members](React_view_controller.md#members), at the same paths as the corresponding entries in `props.data` — and the form's controller as its `form`;
+- a classic view finds the form's controller as `controller.form`;
+- an `INTERNAL CLIENT` action is given the form's controller as an argument.
+
+The form's controller provides:
+
+- the server calls (`exec` / `eval` / `evalAction` / `change`);
+- the [methods](#across-containers) that do what a view's members do to what another container or the platform draws (`changeOrders('i', …)`, `changeObject('i', row)`, …);
+- the [editing declaration](#editing) (`startEditing` / `stopEditing` / `isEditing`);
+- the [batch](#batch).
 
 Properties and actions are addressed by their integration name — the name on the form (or the alias / `NEW` / `DELETE` integration name of a button). Unless an `EXTID` gives it one of its own, that name is the property's name on the form with everything from `(` cut off, so `f(a)` and `f(b)` drawn on one group are both `f`: an integration name is not, by itself, unique.
 
-That is the name a view has, everywhere: `props.data` is keyed by it and every controller member is named by it. The form's own operators — `FILTER`, `ORDER` and the `READ` that writes their state back out — speak the other name, the property's SID on the form, in both directions. So a name a view was handed is not a name one of those operators takes: convert where the two meet, in the `lsf` code that calls the operator, rather than expecting either side to accept both.
+That is the name a view has, everywhere: `props.data` is keyed by it and every controller member is named by it. The form's own operators — `FILTER`, `ORDER` and the `READ` that writes their state back out — use the other name, the property's SID on the form, in both directions. So a name a view was handed is not a name one of those operators takes: convert in the `lsf` code that calls the operator, rather than expecting either side to accept both.
 
 Optional arguments are bracketed.
 
@@ -57,9 +70,9 @@ An [`INTERNAL CLIENT`](INTERNAL_operator.md#client) action is another entry poin
 
 ### Server calls {#calling-the-server}
 
-The form's `exec`, `eval`, `evalAction` and `change` — `controller.form` in a React view — each run on the server and return a `Promise`. They are subject to the [authorization gate](#access) and convert [the result](#result) to a JS value.
+The form's `exec`, `eval`, `evalAction` and `change` — `controller.form` in a React view — each run on the server and return a `Promise`. They are subject to the [access checks](#access) and convert [the result](#result) to a JS value.
 
-- `exec(action, ...params)` — runs a named action. Resolves to its `RETURN` value. `action` is the action's name — an entry of the form's `CUSTOMS` by the name it has there, or an action of the project by its [name](IDs.md), with the namespace and the signature in brackets when they are needed to pick one: `runReport[Order]` among overloaded actions. Not the `saveFilters()` a script would write: that shape answers "Action was not found".
+- `exec(action, ...params)` — runs a named action. Resolves to its `RETURN` value. `action` is the action's name — an entry of the form's `CUSTOMS` by the name it has there, or an action of the project by its [name](IDs.md), with the namespace and the signature in brackets when they are needed to pick one: `runReport[Order]` among overloaded actions. Not the `saveFilters()` a script would write: that syntax produces "Action was not found".
 - `eval(script, ...params)` — runs an lsf script that defines its own `run` action (typed parameters).
 - `evalAction(script, ...params)` — runs an action body wrapped into a `run` action, with parameters referenced as `$1`, `$2`, ….
 - `mcp` — `exec`, `eval` and `evalAction` that make their call as the MCP server's eval tool makes one: `controller.form.mcp.eval(script, ...params)`. The parameters are bound as the tool binds its `params`, and the call resolves with the object the tool answers with, `{results, status}` ([described after the result table](#mcp-calls)).
@@ -80,15 +93,39 @@ The result is converted to a JS value:
 
 #### Calls in the MCP tool format {#mcp-calls}
 
-A call made as the [MCP server](../paradigm/MCP_server.md)'s eval tool makes one — `controller.form.mcp.eval(script, ...params)`, and `exec` and `evalAction` likewise — takes its parameters and gives its result as the tool does. The parameters are bound as the tool binds its `params`, by the rules of an HTTP request: a value is taken as its string and parsed by the class of the parameter — so a numeric string is a number —, and an object that has `text` or `base64`, or says `type: 'file'`, is a file whatever the class of the parameter. The call resolves with what the tool answers, in place of the result converted by the table: the object `{results, status}`, where `status` is the HTTP status the action set, `200` when it set none, and `results` has an entry for each value the action returned — `{value}` with the value as its string, and `name` too in each entry of a result with additional parameters.
+A call made as the [MCP server](../paradigm/MCP_server.md)'s eval tool makes one — `controller.form.mcp.eval(script, ...params)`, and `exec` and `evalAction` likewise — takes its parameters and gives its result as the tool does.
 
-A file is the entry `{type: 'file', fileName, extension, mimeType, size}` — `fileName` is the file's name with its extension, the name of a file that has none of its own being `file` — with `text` — the text of a text file —, `base64` — the content of any other file under 64 KiB, in base64 —, or `url` — the download URL of a bigger one. The content is named as in a file given as a parameter, so an entry that carries it can be passed to the next call as it is. A text file over 10 MiB is given without its text, with `truncated: true`; one call carries 30 MiB of content at most, past which a text is given the same way and any other file by its `url`.
+The parameters are bound as the tool binds its `params`, by the rules of an HTTP request:
+
+- a value is taken as its string and parsed by the class of the parameter — so a numeric string is a number;
+- an object that has `text` or `base64`, or says `type: 'file'`, is a file whatever the class of the parameter.
+
+The call resolves with what the tool answers, in place of the result converted by the table: the object `{results, status}`, where:
+
+- `status` is the HTTP status the action set, `200` when it set none;
+- `results` has an entry for each value the action returned — `{value}` with the value as its string, and `name` too in each entry of a result with additional parameters.
+
+A file is the entry `{type: 'file', fileName, extension, mimeType, size}` — `fileName` is the file's name with its extension, the name of a file that has none of its own being `file` — with `text`, `base64` or `url`:
+
+- `text` — the text of a text file;
+- `base64` — the content of any other file under 64 KiB, in base64;
+- `url` — the download URL of a bigger one.
+
+The content is named as in a file given as a parameter, so an entry that contains it can be passed to the next call as it is.
+
+A text file over 10 MiB is given without its text, with `truncated: true`; one call returns 30 MiB of content at most, past which a text is given the same way and any other file by its `url`.
 
 #### Parameters {#parameters}
 
-Parameters are passed as plain JS values (a number, string, boolean, `Date`, or an object/array for a `JSON` parameter) and bound positionally. A file is passed as the string of its text, or as an object: `{base64, fileName, extension}` for a file whose content is not a text, `{text, fileName, extension}` to give a text file a name or an extension; the name and the extension are optional. An lsFusion object cannot be passed — its numeric id is passed instead. When an action parameter is typed by a class, the platform resolves the id to the object of that class — no manual lookup is needed. A row handle (`row.objects`) is not an object reference here: for a class-typed parameter the call fails, so pass the id. An error — a missing action or property, a script error, or a runtime exception — rejects the promise with its message.
+Parameters are passed as plain JS values (a number, string, boolean, `Date`, or an object/array for a `JSON` parameter) and bound positionally.
+
+A file is passed as the string of its text, or as an object: `{base64, fileName, extension}` for a file whose content is not a text, `{text, fileName, extension}` to give a text file a name or an extension; the name and the extension are optional.
+
+An lsFusion object cannot be passed — its numeric id is passed instead. When an action parameter is typed by a class, the platform resolves the id to the object of that class — no manual lookup is needed. A row handle (`row.objects`) is not an object reference here: for a class-typed parameter the call fails, so pass the id.
 
 That id is the `row.key` of the object's row (see [Row identity](#row-identity-contract)) or an id-valued property on the form. A key read out of `data.<group>.byKey` or `data.<group>.keys` is a *string*, because keys of a JS object are always strings, and it can be passed as it is: a string given for a numeric or class-typed parameter is parsed as a number, an empty string gives `NULL`, and a string that is not a number is rejected.
+
+An error — a missing action or property, a script error, or a runtime exception — rejects the promise with its message.
 
 ```js
 const total = await controller.form.exec('recalc', orderId);
@@ -100,9 +137,9 @@ await controller.form.change('archived', orderId, true);
 
 In a form the calls run in the form's session, so a change is visible to the following calls and is committed when the form applies. In the navigator each call runs in its own session, so a change is discarded unless the script applies it with `APPLY`, and a read sees the committed database state.
 
-#### Authorization gate {#access}
+#### Access checks {#access}
 
-By default these calls are gated like the external HTTP API: with the default `enableAPI = 0` a call is allowed only when the target action or property carries [`@@api`](Action_options.md) (which also exposes it over HTTP), or the user can run code in the interpreter. To let a specific form's controller call selected actions/properties without that gate, list them in the form's `CUSTOMS` clause — the authorization becomes "the user can open this form" plus the explicit listing:
+By default these calls undergo the same access checks as the external HTTP API: with the default `enableAPI = 0` a call is allowed only when the target action or property has [`@@api`](Action_options.md) (which also exposes it over HTTP), or the user can run code in the interpreter. To let a specific form's controller call selected actions/properties without those checks, list them in the form's `CUSTOMS` clause — the authorization becomes "the user can open this form" plus the explicit listing:
 
 ```lsf
 FORM order 'Order'
@@ -112,17 +149,36 @@ FORM order 'Order'
 ;
 ```
 
-Now `controller.form.exec("round", 3.14159)`, `controller.form.exec("format", 1990, "USD")` and `controller.form.change("taxRate", 0.2)` work on this form without `@@api` or `enableAPI` (a React view calls the same on `props.controller.form`). Each entry may be renamed with an alias (`format = formatSum`), prefixed with `ACTION` to force the action reading, and fully qualified with a signature (`round[NUMERIC]`) to pick an overload. `exec` needs an action entry and `change` a property entry. Parameters are passed positionally by the caller as plain values. The clause changes which calls are allowed, not how parameters are bound, and does not restrict the argument values a caller passes, so list only entries safe for any argument. `eval`/`evalAction` run arbitrary script and stay under the gate.
+Now `controller.form.exec("round", 3.14159)`, `controller.form.exec("format", 1990, "USD")` and `controller.form.change("taxRate", 0.2)` work on this form without `@@api` or `enableAPI` (a React view calls the same on `props.controller.form`).
+
+Each entry may be:
+
+- renamed with an alias (`format = formatSum`);
+- prefixed with `ACTION` to force the action reading;
+- fully qualified with a signature (`round[NUMERIC]`) to pick an overload.
+
+`exec` needs an action entry and `change` a property entry. Parameters are passed positionally by the caller as plain values.
+
+The clause changes which calls are allowed, not how parameters are bound, and does not restrict the argument values a caller passes, so list only entries safe for any argument. `eval`/`evalAction` run arbitrary script and remain subject to the access checks.
 
 `CUSTOMS` scopes access to this form, while `@@api` also exposes the action or property over the external HTTP API.
 
 #### A closed form {#closed-form}
 
-A call made after the form has been closed *rejects* with a `Form is closed` error — it never hangs — so an `await` on a closed form lands in the `catch` branch. The form counts as closed once the server has closed it. A call made while the close is still being processed — the client has taken the form off the page as an action that may close it was clicked, and the server has not answered yet — is sent and runs after the close's request: if the server refuses the close, the form comes back with what the call did, so input a view commits as the form closes is not lost.
+A call made after the form has been closed *rejects* with a `Form is closed` error — it never waits indefinitely — so an `await` on a closed form transfers control to the `catch` branch. The form counts as closed once the server has closed it.
+
+A call made while the close is still being processed — the client has taken the form off the page as an action that may close it was clicked, and the server has not answered yet — is sent and runs after the close's request: if the server refuses the close, the form comes back with what the call did, so input a view commits as the form closes is not lost.
 
 ### Operations across containers {#across-containers}
 
-What another container draws, or the platform, a view changes through the form's controller, `controller.form`, by names, as strings, checked when the call is made. Each of its methods does what a view's member does — the same arguments after the names, the same checks and refusals, a refusal quoting the form's call (`controller.form.changeOrders('i'): order 0: unknown property 'x' of object group 'i'`) — to the form's state, whoever draws it: a container that draws the part shows the change before the call returns, as a call of its own member would, and the platform's table, tree, toolbar or filter panel shows it as it shows the form's own edits. A call made in a [batch](#batch) goes with it; one that asks the server is refused there, as a member's is. Each returns what its member returns.
+What another container draws, or the platform, a view changes through the form's controller, `controller.form`, by names, as strings, checked when the call is made.
+
+Each of its methods does what a view's member does — the same arguments after the names, the same checks and refusals, a refusal quoting the form's call (`controller.form.changeOrders('i'): order 0: unknown property 'x' of object group 'i'`) — to the form's state, whoever draws it:
+
+- a container that draws the part shows the change before the call returns, as a call of its own member would;
+- the platform's table, tree, toolbar or filter panel shows it as it shows the form's own edits.
+
+A call made in a [batch](#batch) goes with it; one that asks the server is refused there, as a member's is. Each returns what its member returns.
 
 | method | does what this member does | named by |
 | --- | --- | --- |
@@ -146,7 +202,13 @@ What another container draws, or the platform, a view changes through the form's
 
 `changeFilter` is refused if the design removes the property's `FILTER` component or a container holding it. `changeFilters` can still state a condition on that property.
 
-A row is named by what a view has of it: a data row, or its `objects` handle — of a row of its own data, or of a lookup's result (`getValues` in the `objects` mode). A key names a row only in the view that draws the rows, through its member, so the form's controller takes none. A group of a tree has no sortings, user filters or toolbar of its own: they are the tree's, named by the tree's name, each property in its sortings and conditions as `<group>.<property>`. The filter controls' commands go to the table's filter input, whoever draws the conditions and wherever the controls are, if anywhere; where the platform makes none — it draws the conditions, and its toolbar turns its filters off —, the apply and the reset go to the table's user filters themselves, and the add, with no row to add to, is refused. `changeFilterControlsVisible` works where the toolbar's button shows and hides the platform's controls. A current object chosen where the platform draws the rows is the form's current one at once — what the form is asked next is asked of that row —, and the platform's table moves to it with the server's answer.
+A row is named by what a view has of it: a data row, or its `objects` handle — of a row of its own data, or of a lookup's result (`getValues` in the `objects` mode). A key names a row only in the view that draws the rows, through its member, so the form's controller takes none.
+
+A group of a tree has no sortings, user filters or toolbar of its own: they are the tree's, named by the tree's name, each property in its sortings and conditions as `<group>.<property>`.
+
+The filter controls' commands go to the table's filter input, whoever draws the conditions and wherever the controls are, if anywhere; where the platform makes none — it draws the conditions, and its toolbar turns its filters off —, the apply and the reset go to the table's user filters themselves, and the add, with no row to add to, is refused. `changeFilterControlsVisible` works where the toolbar's button shows and hides the platform's controls.
+
+A current object chosen where the platform draws the rows is the form's current one at once — what the form is asked next is asked of that row —, and the platform's table moves to it with the server's answer.
 
 ```js
 // a side panel sorting, filtering and choosing in the rows another container draws
@@ -158,7 +220,9 @@ controller.form.changeObject('i', found.objects);   // a row found by a lookup
 
 ### Value lookup {#looking-up-values}
 
-`getValues` asks the server for a capped suggestion list for a property — a suggestion list, not a full `SELECT DISTINCT` — and returns the `Promise` of the answer, `{ data: [ { displayString, rawString, objects }, ... ] }`. A query too short for the server to search rejects it with the message the platform's editor shows then — "String too short to search", in the user's language —, as `form.exec` and `form.eval` reject with the server's message. An answer the server gave before it was sure the form's unsaved changes do not affect it carries `more` too — the `Promise` of the final answer.
+`getValues` asks the server for a capped suggestion list for a property — a suggestion list, not a full `SELECT DISTINCT` — and returns the `Promise` of the answer, `{ data: [ { displayString, rawString, objects }, ... ] }`.
+
+A query too short for the server to search rejects it with the message the platform's editor shows then — "String too short to search", in the user's language —, as `form.exec` and `form.eval` reject with the server's message. An answer the server gave before it was sure the form's unsaved changes do not affect it contains `more` too — the `Promise` of the final answer.
 
 ```js
 controller.<group>.<property>.getValues(value[, {row, mode, count}]);
@@ -179,21 +243,71 @@ controller.form.getValues('<group>.<property>', value[, {row, mode, count}]);   
 
 - `count` — raises the number of items requested, for paging.
 
-A query that is not a string, an option the call does not know, or one whose value is none of the above throws at the call. The server looks a form's values up one lookup at a time: one it is still running when a later one comes is cancelled, its `Promise` rejected with an `Error` whose `cancelled` is `true`. An answer can still come after a later lookup's, so a view that looks values up as the user types checks that an answer is for the query it shows.
+A query that is not a string, an option the call does not know, or one whose value is none of the above throws at the call.
+
+The server looks a form's values up one lookup at a time: one it is still running when a later one comes is cancelled, its `Promise` rejected with an `Error` whose `cancelled` is `true`. An answer can still come after a later lookup's, so a view that looks values up as the user types checks that an answer is for the query it shows.
 
 Pass `item.objects` from an `'objects'` result straight back as a row, to act on the picked object: to the group's `.change`, to make it the current object, or as the `row` of a list property's `.change(value, row)` or `.exec(row)`. It is never a value: a handle passed as an FK value silently sets it to `NULL` (see [Value formats](#value-formats)), and an FK is set by the object's id.
 
 ### Batch {#batch}
 
-`batch(fn)` runs `fn`, and sends the changes the members make in it together, when `fn` returns. A call in a batch is made when it is made, as outside one — read, checked and shown at once, so it reads the state the calls before it left: two sortings stated one at a time, or two toggles of one node, go on from each other. Only the requests wait: when `fn` returns, the members' changes all go in ONE request — the server makes them in the order the calls were made, property values, a group's current object and its selected rows and columns, its sortings, its user filters and view filters, its update mode and the view its rows are shown as, the filters selected in its filter groups, a tree's nodes alike, and answers once, reading the form again once for all of them. A change of the user filters that the [manual apply mode](React_filters_and_toolbar.md#filter-controls) holds back waits for the apply, a batch's too. An action run with `exec()` inside a batch runs as part of that request, which, like a property change, does not hold up the user. Inside `fn`, call members and the form's controller's methods only: moving the focus, changing the DOM or dispatching events to the platform's components there makes the platform send requests of its own — an editor losing the focus saves its value —, which a batch is not made for. A batch carries changes only: inside `fn`, `getValues` is refused, and so is a server call of the form's controller (`form.exec`, `form.eval`, `form.evalAction`, `form.change`), their promise rejected, and so are a toolbar's calls that ask the server — `getCount`, `getSum`, `export` — a tree's too — and a group's `copy` and `paste`, their `Promise` rejected with the reason —, and the form's controller's methods that stand for them; make them before the batch or after it. `filterControlsVisible.change` shows or hides the controls at once. The [filter controls](React_filters_and_toolbar.md#filter-controls)' `addFilter`, `applyFilters` and `resetFilters` go with the batch, as `filters.change` does, and a tree's `expandCurrent` — and over the platform's tree its toolbar's `expandTree` — open its nodes, going with the batch as `expandAll` does: the row a `change(row)` made current earlier in the batch is the node `expandCurrent` opens. The editor of a condition `filterControlsVisible.change` starts on the platform's empty panel, or `addFilter` on its panel, opens, and takes the focus, once the batch is sent. `props.data` does not change inside `fn`: what the batch changes shows when it ends.
+`batch(fn)` runs `fn`, and sends the changes the members make in it together, when `fn` returns. A call in a batch is made when it is made, as outside one — read, checked and shown at once, so it reads the state the calls before it left: two sortings stated one at a time, or two toggles of one node, go on from each other.
 
-A mistake in the arguments throws where it is made, in a batch and on a closed form too, and a throw inside `fn` — a refused call or the view's own — ends the batch: what was made before the throw is sent, as it would have gone outside a batch, and the throw reaches the view. A batch is the form's, whichever controller begins it — a React view's `batch`, the form's `form.batch`, a classic view's: a batch begun inside another is a part of it, sent when the outer one ends — what it made before a throw too —, and a member of another view, or a method of the form's controller, called in `fn` goes with it. Before `fn` runs, the form sends, in a request of its own, the row a user moved to in a table or a tree the platform draws, which the form sends a moment later otherwise — of every group of the form, so that it is sent whether the batch's request fails or not.
+#### The batch's request {#batch-request}
+
+Only the requests wait: when `fn` returns, the members' changes and action runs all go in ONE request:
+
+- property values;
+- a group's current object and its selected rows and columns, its sortings, its user filters and view filters, its update mode and the view its rows are shown as, the filters selected in its filter groups;
+- a tree's nodes;
+- an action run with `exec()` — it runs as part of that request, which, like a property change, does not hold up the user.
+
+The server makes them in the order the calls were made, whatever their kind, and answers once, reading the form again once for all of them.
+
+A change of the user filters that the [manual apply mode](React_filters_and_toolbar.md#filter-controls) holds back waits for the apply, a batch's too.
+
+Before `fn` runs, the form sends, in a request of its own, the row a user moved to in a table or a tree the platform draws, which the form sends a moment later otherwise — of every group of the form, so that it is sent whether the batch's request fails or not.
+
+#### Calls inside `fn` {#batch-calls}
+
+Inside `fn`, call members and the form's controller's methods only: moving the focus, changing the DOM or dispatching events to the platform's components there makes the platform send requests of its own — an editor losing the focus saves its value —, which a batch is not made for.
+
+A batch includes changes only. Inside `fn`, these are refused:
+
+- `getValues` and a server call of the form's controller (`form.exec`, `form.eval`, `form.evalAction`, `form.change`), their promise rejected;
+- a toolbar's calls that ask the server — `getCount`, `getSum`, `export` — a tree's too — and a group's `copy` and `paste`, their `Promise` rejected with the reason;
+- the form's controller's methods that stand for them.
+
+Make them before the batch or after it.
+
+`filterControlsVisible.change` shows or hides the controls at once. The [filter controls](React_filters_and_toolbar.md#filter-controls)' `addFilter`, `applyFilters` and `resetFilters` go with the batch, as `filters.change` does. The editor of a condition `filterControlsVisible.change` starts on the platform's empty panel, or `addFilter` on its panel, opens, and takes the focus, once the batch is sent.
+
+A tree's `expandCurrent` — and over the platform's tree its toolbar's `expandTree` — open its nodes, going with the batch as `expandAll` does: the row a `change(row)` made current earlier in the batch is the node `expandCurrent` opens.
+
+`props.data` does not change inside `fn`: what the batch changes shows when it ends.
+
+#### Exceptions and nested batches {#batch-throws}
+
+A mistake in the arguments throws where it is made, in a batch and on a closed form too, and a throw inside `fn` — a refused call or the view's own — ends the batch: what was made before the throw is sent, as it would have gone outside a batch, and the throw reaches the view.
 
 `fn` is run at once: a function returning a Promise — an `async` one, whose calls after an `await` would come when the batch is over — is refused, what it made before the `await` sent; await first, then begin the batch. The batch's own `Promise`, which a call made in `fn` returns, is not refused, so `fn` can be written as that call: `controller.batch(() => controller.o.note.change('checked'))`.
 
+A batch is the form's, whichever controller begins it — a React view's `batch`, the form's `form.batch`, a classic view's: a batch begun inside another is a part of it, sent when the outer one ends — what it made before a throw too —, and a member of another view, or a method of the form's controller, called in `fn` goes with it.
+
+#### An error while running the batch {#batch-failed-changes}
+
 A batch is no transaction either: its changes are made in the form's session, as a user's edits are, and on the server one after another — a change that fails stops the rest, those made before it staying in the session; they reach the database when the session is applied.
 
-When a change fails, the property values the batch changed are shown as they were before the batch, and those the server made before the failing change come with its next answer. The rest of what the batch changed — a group's current object, its current column and selected columns, its sortings, user filters and view filters, its update mode and the view its rows are shown as, the filters selected in its filter groups, the nodes of a tree it opened or closed — stays as the batch showed it, whether the server made it or not: the server sends these only when it changes them itself, so after a failure set them again where it matters — the user filters as another list than the batch's, the update mode and the view by way of another one: what the batch set is taken for what was sent, and is not sent again.
+When a change fails, the property values the batch changed are shown as they were before the batch, and those the server made before the failing change come with its next answer.
+
+The rest of what the batch changed stays as the batch showed it, whether the server made it or not:
+
+- a group's current object, its current column and selected columns, its sortings, user filters and view filters, its update mode and the view its rows are shown as, the filters selected in its filter groups;
+- the nodes of a tree it opened or closed.
+
+The server sends these only when it changes them itself, so after a failure set them again where it matters — the user filters as another list than the batch's, the update mode and the view by way of another one: what the batch set is taken for what was sent, and is not sent again.
+
+#### The batch's `Promise` {#batch-promise}
 
 `batch(fn)` returns the `Promise` of its one request, and a mutating member's call made in `fn` returns that same `Promise`, so a failure rejects one `Promise`, not one per call. A batch that makes no request resolves at once. On a closed form it is rejected with `Form is closed`, and `fn` is not run.
 
@@ -238,7 +352,7 @@ controller.batch(() => {
 
 While a form is editing, a binding whose `editing` scope is the default does not fire for an event that came from inside the element being edited: `ENTER` does not move the focus to the next component, `ESCAPE` does not close a modal window, and a shortcut bound with [`CHANGEKEY`](Property_options.md) does not run. A binding declared with `editing=all` fires regardless.
 
-The form knows the editors it created itself. A field a view drew for itself it does not know, so the view declares it, on the form's controller:
+The form tracks the editors it created itself. It does not track a field a view drew for itself, so the view declares it, on the form's controller:
 
 - `startEditing(element)` — from now on the user is editing in `element`;
 - `stopEditing(element)` — the user is no longer editing in `element`, and the declaration is cleared only when `element` is the declared one;
@@ -250,9 +364,9 @@ While the declaration stands, the bindings above do not fire for events from `el
 
 A property's own editor starts editing on the first character typed, not on focus.
 
-Declaring on a wrapper covers every field inside it — including a nested [child the platform draws](React_platform_components.md#placing) and the editor the platform renders there. Declare on a narrower element when that is not wanted.
+Declaring on a containing element applies to every field inside it — including a nested [child the platform draws](React_platform_components.md#placing) and the editor the platform renders there. Declare on a narrower element when that is not wanted.
 
-Removing the declaration is the view's to do, and not only on blur: clear it when the element is removed or the view unmounts. A declaration left behind keeps those bindings from firing for events inside that element for as long as the form is open.
+Removing the declaration is the view's to do, and not only on blur: clear it when the element is removed or the view unmounts. A declaration left in effect keeps those bindings from firing for events inside that element for as long as the form is open.
 
 The declaration does not start property editing: there is no value to commit or to cancel, and `ENTER` saves nothing. To edit a *property* from the view, place the property with [`<Platform name/>`](React_platform_components.md#placing) — the platform renders its own editor there, and nothing is declared.
 
@@ -260,7 +374,9 @@ A single key the view needs regardless of the editing state — a shortcut of it
 
 ### The navigator controller {#navigator-controller}
 
-An [`INTERNAL CLIENT`](INTERNAL_operator.md) action placed in [`NAVIGATOR`](NAVIGATOR_statement.md) receives a controller as well, but a navigator one: there is no form, so it has none of the form methods above. It has the four server calls — `exec`, `eval`, `evalAction`, `change`, and `options` for the first three — which run in the navigator's own session, a new one per call that is not applied automatically, so a standalone `change` made here is not kept. An action or script can apply its changes with `APPLY`. Each returns a `Promise`. And it has `activate`:
+An [`INTERNAL CLIENT`](INTERNAL_operator.md) action placed in [`NAVIGATOR`](NAVIGATOR_statement.md) receives a controller as well, but a navigator one: there is no form, so it has none of the form methods above.
+
+It has the four server calls — `exec`, `eval`, `evalAction`, `change`, and `options` for the first three — which run in the navigator's own session, a new one per call that is not applied automatically, so a standalone `change` made here is not kept. An action or script can apply its changes with `APPLY`. Each returns a `Promise`. And it has `activate`:
 
 - `activate(canonicalName[, event])` — does what clicking that navigator element does: selects the folder, or runs the action, opening its form the same optimistic way. `canonicalName` is the element's [canonical name](IDs.md). `event` is the event of the click, React's own or the browser's, and can be omitted when activating from code that has none.
 
@@ -289,8 +405,16 @@ A method that targets a row accepts one of:
 - a data row object the view received (from the React `props` / the classic `update` list);
 - a spread or `Object.assign` clone of such a row — the enumerable `objects` handle is copied with it, so the clone resolves to the same object;
 - a raw `objects` handle — `row.objects`, or `item.objects` from a `getValues` `'objects'` result;
-- the **key** the projection gave the row — `row.key`, or a key out of `data.<group>.keys` / `byKey`. A row is taken only where its group's rows are drawn, so there is always this view's `byKey` to look the key up in: it is looked up among the rows of the member's own group, and a key naming no row there fails with an error. This is what lets a view hand back what it was handed: `byKey` is a JS object, and `Object.keys()` on it yields strings, so a key that has been through it no longer carries the type `row.key` was written with. A classic view has no such index, so its `changeProperty` takes the row or its handle.
+- the **key** the projection gave the row — `row.key`, or a key out of `data.<group>.keys` / `byKey`.
+
+A row is taken only where its group's rows are drawn, so there is always this view's `byKey` to look the key up in: it is looked up among the rows of the member's own group, and a key naming no row there fails with an error. This is what lets a view hand back what it was handed: `byKey` is a JS object, and `Object.keys()` on it yields strings, so a key obtained that way is a string regardless of the original type of `row.key`.
+
+A classic view has no such index, so its `changeProperty` takes the row or its handle.
 
 For a single-object group of a custom class the value of `row.key` numerically equals that object's id, so it can be passed as the target object's id to a server call or as an FK value — no separate property for the row's own id is needed.
 
-If an explicit row argument is none of these, the platform does not silently fall back to the current row: the call fails with an error naming what was expected rather than acting on another row. Nor does it accept a row of a *different* group: `controller.<group>.change(row)` and a list property member's `change(value, row)` / `exec(row)` both say whose row is meant — the member's group — and a row of another group carries only that group's objects, so the rest would be taken from the current ones and the call would land on a row of this group nobody named. Inside a tree a row of a group BELOW is not another group's row in this sense: its key is the whole path down to it, so it names one row of every group above it, and it is accepted there — exactly as `<group>.change` accepts it.
+If an explicit row argument is none of these, the platform does not silently fall back to the current row: the call fails with an error naming what was expected rather than acting on another row.
+
+Nor does it accept a row of a *different* group: `controller.<group>.change(row)` and a list property member's `change(value, row)` / `exec(row)` both require a row of the member's group and a row of another group contains only that group's objects, so the rest would be taken from the current ones and the call would act on a row of this group that was not specified.
+
+Inside a tree a row of a group BELOW is not another group's row in this sense: its key is the whole path down to it, so it names one row of every group above it, and it is accepted there — exactly as `<group>.change` accepts it.
