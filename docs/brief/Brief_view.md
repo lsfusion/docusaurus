@@ -106,7 +106,7 @@ DESIGN order {
 
 ### Sizes and alignment
 
-A component is given a *base size* in pixels (`size`, `width`, `height`). Beyond that, [along the main direction](../paradigm/Form_design.md#components) of a container the free space is divided between the children in proportion to their *extension coefficient* `flex` (the `fill` option sets it together with the alignment), and across that direction the *alignment* `align` applies — `START`, `CENTER`, `END`, `STRETCH`. **Analogy**: CSS Flexible Box Layout, where `flex` is `flex-grow` and the base size is `flex-basis`. In the web client the layout is implemented through it.
+A component is given a *base size* in pixels (`size`, `width`, `height`). Beyond that, [along the main direction](../paradigm/Form_design.md#components) of a container the free space is divided between the children in proportion to their *extension coefficient* `flex` (the `fill` option sets it together with the alignment), and across that direction the *alignment* `align` applies — `START`, `CENTER`, `END`, `STRETCH`. The web client uses [CSS flexbox and CSS Grid](../language/CSS_view_styles.md#layout) to lay out components.
 
 For a property, the size of the [value cell](../paradigm/Form_design.md#valueWidth) is set separately from the whole component: `valueWidth` and `valueHeight` in pixels, `charWidth` and `charHeight` in characters. It is also what sets the column width when the property is shown in a table. The size `-1` fits the base size to the content: `valueHeight = -1` gives a text cell the height of its text (web client), `size = (-1, -1)` gives a table the height of its loaded rows.
 
@@ -169,7 +169,7 @@ print (Order o) { PRINT printOrder OBJECTS o = o DOCX TO orderFile; }
 
 ### Report design
 
-The [report design](../paradigm/Report_design.md) is how a report is laid out in the document. A report is described by a [template](../paradigm/Report_design.md#template) — a [`.jrxml` file](../paradigm/Report_design.md#format) of the JasperReports technology that the platform looks up in the server classpath by a name derived from the form's canonical name. The fields of the template are the form's properties, and their names and types match. The exact naming and what a wrong name costs are in [Rules: reports](../rules/Rules_view.md).
+The [report design](../paradigm/Report_design.md) is how a report is laid out in the document. A report is described by a [template](../paradigm/Report_design.md#template) — a [`.jrxml` file](../paradigm/Report_design.md#format) of the JasperReports technology that the platform looks up in the server classpath by a name derived from the form's canonical name. The template fields take their names from the form properties, and their [Java classes](../language/JRXML_report_templates.md#fields) follow the classes of those properties. The exact naming and what a wrong name costs are in [Rules: reports](../rules/Rules_view.md).
 
 A report need not have a template of its own: if at least one is not found, the platform builds an [automatic design](../paradigm/Report_design.md#auto) from the form structure. A template can also be set explicitly, by a property holding either a file name or the template file itself: the `REPORT` block of the [`FORM` statement](../language/FORM_statement.md) for the top report, `REPORTS` (the synonym `REPORTFILES`) for the listed object groups, and the expression after `SUBREPORT` in an [object block](../language/Object_blocks.md) for that group.
 

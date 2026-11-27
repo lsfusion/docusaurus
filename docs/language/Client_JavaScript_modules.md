@@ -5,7 +5,7 @@ title: 'Client JavaScript modules'
 
 A *client JavaScript module* is a file of a project that holds client code: JavaScript that draws [custom views](../paradigm/Custom_views.md) — parts of the [form design](../paradigm/Form_design.md) or of the [navigator design](../paradigm/Navigator_design.md) — in the web client, or that an action calls there.
 
-The components of [React views](React_views.md), the [render functions](Render_functions.md) and [edit functions](Edit_functions.md) of the classic custom views, and the functions called by [`INTERNAL CLIENT`](INTERNAL_operator.md) actions are all kept in such modules: lsFusion code names each of them by a string, and the web client resolves all these names the same way ([Named exports and auto-registration](#named-exports-and-auto-registration)).
+The components of [React views](React_views.md), the [render functions](Render_functions.md) and [edit functions](Edit_functions.md) of the classic custom views, and the [functions called by `INTERNAL CLIENT` actions](INTERNAL_CLIENT_functions.md) are all kept in such modules: lsFusion code names each of them by a string, and the web client resolves all these names the same way ([Named exports and auto-registration](#named-exports-and-auto-registration)).
 
 Code in these modules works with a form and the navigator through the [form and navigator controllers](Form_and_navigator_controllers.md).
 
@@ -181,6 +181,6 @@ For a full styling system beyond static class names, a **runtime CSS-in-JS** lib
 
 CSS preprocessors (Sass/SCSS, Less, Stylus) and utility frameworks that generate CSS from a build step (Tailwind, UnoCSS) are **not** part of this build — plain bundling runs the esbuild binary only, with no Node or plugin phase.
 
-A standalone stylesheet that is not part of the build can still be included as a plain file and loaded through the [`onWebClientInit`](INTERNAL_operator.md) action, like the CSS of a classic custom component.
+A standalone stylesheet, such as the CSS of a classic custom component, can use [stylesheet loading without a build](CSS_view_styles.md#stylesheet-loading).
 
-While the dark [color theme](../paradigm/User_interface.md#appearance) is on, the root element of the web client's page (`<html>`) has the attribute `data-bs-theme` with the value `dark`, so a CSS rule can be addressed to that theme: `[data-bs-theme="dark"] .board { ... }`. With the light theme the attribute is absent or has the value `light`. The attribute changes as the theme is switched, without a reload of the page.
+Styles can use the [page’s color-theme attribute](CSS_view_styles.md#color-theme) to follow the interface theme.
