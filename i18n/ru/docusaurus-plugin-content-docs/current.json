@@ -280,7 +280,43 @@
     "description": "The label for category How-to: Access to internal systems in sidebar docs"
   },
   "sidebar.learn.category.How-to: Use Cases": {
-    "message": "How-to: Use Cases",
+    "message": "How-to: Сценарии использования",
     "description": "The label for category How-to: Use Cases in sidebar docs"
+  },
+  "sidebar.learn.category.Other languages": {
+    "message": "Другие языки",
+    "description": "The label for category Other languages in sidebar docs"
+  },
+  "sidebar.learn.category.System modules": {
+    "message": "Системные модули",
+    "description": "The label for category System modules in sidebar docs"
+  },
+  "sidebar.learn.category.Access to an external system (EXTERNAL)": {
+    "message": "Обращение к внешней системе (EXTERNAL)",
+    "description": "The label for category Access to an external system (EXTERNAL) in sidebar docs"
+  },
+  "sidebar.learn.category.Brief": {
+    "message": "Краткий обзор",
+    "description": "The label for category Brief in sidebar docs"
+  },
+  "sidebar.learn.category.brief-via-dev": {
+    "message": "Разработка",
+    "description": "The label for category Development in sidebar docs"
+  },
+  "sidebar.learn.category.brief-via-app": {
+    "message": "Запущенное приложение",
+    "description": "The label for category Application in sidebar docs"
+  },
+  "sidebar.learn.category.Rules": {
+    "message": "Правила",
+    "description": "The label for category Rules in sidebar docs"
+  },
+  "sidebar.learn.category.rules-via-dev": {
+    "message": "Разработка",
+    "description": "The label for category Development in sidebar docs"
+  },
+  "sidebar.learn.category.rules-via-app": {
+    "message": "Запущенное приложение",
+    "description": "The label for category Application in sidebar docs"
   }
 }
